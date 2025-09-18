@@ -171,6 +171,8 @@ class BitcoinMiningNewsBot:
 
     def post_to_twitter(self, article):
         """Post article as a thread on Twitter"""
+        first_tweet_id = None
+        
         try:
             # Create the first tweet with a catchy summary
             tweet_text = self.create_tweet_text(article)
@@ -181,7 +183,13 @@ class BitcoinMiningNewsBot:
             first_tweet_id = first_tweet.data["id"]
             logger.info(f"Posted first tweet with ID: {first_tweet_id}")
 
-            # Create the second tweet with the article link
+        except Exception as e:
+            logger.error(f"Error posting first tweet: {str(e)}")
+            return None
+
+        # Try to post the second tweet with the article link
+        # If this fails, we still return the first tweet ID since that was successful
+        try:
             article_url = article.get("url", "")
             if article_url:
                 # Post as a reply to create a thread
@@ -191,12 +199,14 @@ class BitcoinMiningNewsBot:
                 )
                 second_tweet_id = second_tweet.data["id"]
                 logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
-
-            return first_tweet_id
+            else:
+                logger.warning("No article URL found, skipping second tweet")
 
         except Exception as e:
-            logger.error(f"Error posting to Twitter: {str(e)}")
-            return None
+            logger.error(f"Error posting second tweet (reply): {str(e)}")
+            logger.warning("First tweet was posted successfully, but second tweet failed")
+
+        return first_tweet_id
 
     def run(self):
         """Main function to run the bot"""
