@@ -91,19 +91,25 @@ class BitcoinMiningNewsBot:
             raise
 
     def _load_posted_articles(self):
-        """Load the list of already posted article URIs"""
+        """Load the list of already posted article URIs and queued articles"""
         try:
             with open("posted_articles.json", "r") as f:
-                return json.load(f)
+                data = json.load(f)
+                # Ensure both fields exist for backward compatibility
+                if "queued_articles" not in data:
+                    data["queued_articles"] = []
+                return data
         except (FileNotFoundError, json.JSONDecodeError):
             logger.info("No existing posted articles file found, creating new one")
-            return {"posted_uris": []}
+            return {"posted_uris": [], "queued_articles": []}
 
     def _save_posted_articles(self):
-        """Save the list of posted article URIs"""
+        """Save the list of posted article URIs and queued articles"""
         with open("posted_articles.json", "w") as f:
             json.dump(self.posted_articles, f, indent=2)
-        logger.info(f"Saved {len(self.posted_articles['posted_uris'])} posted article URIs")
+        posted_count = len(self.posted_articles['posted_uris'])
+        queued_count = len(self.posted_articles.get('queued_articles', []))
+        logger.info(f"Saved {posted_count} posted article URIs and {queued_count} queued articles")
 
     def _is_rate_limit_cooldown_active(self):
         """Check if we're still in rate limit cooldown period"""
@@ -405,54 +411,77 @@ class BitcoinMiningNewsBot:
                 
                 new_articles.append(article)
 
-            # Only process the most recent unpublished article, discard the rest
+            # Process articles: post most recent, queue older ones, or use queued articles as fallback
+            article_to_post = None
+            
             if new_articles:
                 # Articles are already sorted by date (most recent first), so take the first one
                 most_recent_article = new_articles[0]
-                discarded_count = len(new_articles) - 1
+                articles_to_queue = new_articles[1:]
                 
-                if discarded_count > 0:
-                    logger.info(f"Found {len(new_articles)} new articles. Posting only the most recent one, discarding {discarded_count} older articles to prevent backlog buildup.")
-                    for i, discarded_article in enumerate(new_articles[1:], 1):
-                        logger.info(f"  Discarding #{i}: {discarded_article.get('title', 'Unknown')[:50]}...")
-                        # Mark discarded articles as posted to prevent them from being processed later
-                        discarded_uri = discarded_article.get("uri")
-                        if discarded_uri:
-                            self.posted_articles["posted_uris"].append(discarded_uri)
+                # Queue older articles for later use
+                if articles_to_queue:
+                    logger.info(f"Found {len(new_articles)} new articles. Posting most recent one, queueing {len(articles_to_queue)} older articles for later.")
+                    for i, queued_article in enumerate(articles_to_queue, 1):
+                        logger.info(f"  Queueing #{i}: {queued_article.get('title', 'Unknown')[:50]}...")
+                        # Add to queue instead of marking as posted
+                        if "queued_articles" not in self.posted_articles:
+                            self.posted_articles["queued_articles"] = []
+                        self.posted_articles["queued_articles"].append(queued_article)
                 else:
                     logger.info(f"Found 1 new article to post.")
-
-                # Post to Twitter
-                tweet_id = self.post_to_twitter(most_recent_article)
+                
+                article_to_post = most_recent_article
+                
+            elif self.posted_articles.get("queued_articles"):
+                # No new articles, but we have queued articles - use the oldest queued article
+                if "queued_articles" not in self.posted_articles:
+                    self.posted_articles["queued_articles"] = []
+                queued_article = self.posted_articles["queued_articles"].pop(0)  # Remove from queue
+                logger.info(f"No new articles found, posting queued article: {queued_article.get('title', 'Unknown')[:50]}...")
+                article_to_post = queued_article
+            
+            # Post the selected article (either newest or from queue)
+            if article_to_post:
+                tweet_id = self.post_to_twitter(article_to_post)
 
                 if tweet_id:
                     # Add to posted articles
-                    self.posted_articles["posted_uris"].append(most_recent_article.get("uri"))
+                    self.posted_articles["posted_uris"].append(article_to_post.get("uri"))
                     posted_count += 1
-                    logger.info(f"Posted article: {most_recent_article.get('title', 'Unknown')[:50]}...")
+                    logger.info(f"Posted article: {article_to_post.get('title', 'Unknown')[:50]}...")
                 else:
                     # Check if it was rate limited or another error
                     rate_limited_count += 1
-                    logger.warning(f"Failed to post article (likely rate limited): {most_recent_article.get('title', 'Unknown')[:50]}...")
+                    logger.warning(f"Failed to post article (likely rate limited): {article_to_post.get('title', 'Unknown')[:50]}...")
 
-            # Save the updated list of posted articles
+            # Save the updated list of posted articles and queue
             self._save_posted_articles()
 
             # Provide detailed summary
             total_new_articles = len(articles) - already_posted_count
+            queued_count = len(self.posted_articles.get("queued_articles", []))
+            
             if posted_count == 0:
-                if total_new_articles == 0:
-                    logger.info("No new articles to post (all articles were already posted)")
+                if total_new_articles == 0 and queued_count == 0:
+                    logger.info("No new articles to post (all articles were already posted and no queued articles available)")
+                elif total_new_articles == 0 and queued_count > 0:
+                    logger.info(f"No new articles found, but {queued_count} articles remain queued for future posting")
                 elif rate_limited_count > 0:
                     logger.warning(f"Found {total_new_articles} new articles but couldn't post any due to rate limiting or other errors")
                 else:
                     logger.info("No new articles were successfully posted")
             else:
-                discarded_count = total_new_articles - posted_count
-                if discarded_count > 0:
-                    logger.info(f"Successfully posted {posted_count} new article. Discarded {discarded_count} older articles to prevent backlog ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                if new_articles:
+                    # Posted from new articles
+                    queued_count_this_run = len(new_articles) - 1  # Articles queued this run
+                    if queued_count_this_run > 0:
+                        logger.info(f"Successfully posted 1 new article. Queued {queued_count_this_run} older articles. Total queued: {queued_count}")
+                    else:
+                        logger.info(f"Successfully posted 1 new article ({total_new_articles} new articles available, {already_posted_count} already posted)")
                 else:
-                    logger.info(f"Successfully posted {posted_count} new article ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                    # Posted from queue
+                    logger.info(f"Successfully posted 1 queued article. {queued_count} articles remain queued for future posting")
 
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")
