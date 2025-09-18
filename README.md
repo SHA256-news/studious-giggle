@@ -35,6 +35,77 @@ The bot includes robust handling for Twitter API rate limits:
 
 ## Troubleshooting
 
+### Why No Tweets Were Posted?
+
+If the bot runs but doesn't post any tweets, here are the most common causes and solutions:
+
+#### 1. Missing API Keys (Most Common)
+**Symptoms:**
+- Error: "Missing required environment variables"
+- Error: "User is not logged in. Unable to execute the request"
+
+**Solution:**
+1. Go to your GitHub repository settings
+2. Navigate to **Settings > Secrets and variables > Actions**
+3. Add all required repository secrets:
+   - `TWITTER_API_KEY`
+   - `TWITTER_API_SECRET`
+   - `TWITTER_ACCESS_TOKEN`
+   - `TWITTER_ACCESS_TOKEN_SECRET`
+   - `EVENTREGISTRY_API_KEY`
+
+**Quick Diagnosis:**
+```bash
+python bot.py --diagnose
+```
+
+#### 2. All Articles Already Posted
+**Symptoms:**
+- Message: "No new articles to post (all articles were already posted)"
+
+**Explanation:**
+This is normal behavior! The bot only posts each article once and tracks what's been posted in `posted_articles.json`.
+
+#### 3. No Recent Articles Found
+**Symptoms:**
+- Message: "No articles found from EventRegistry"
+
+**Possible Causes:**
+- No Bitcoin mining articles in the last 24 hours
+- EventRegistry API issues
+- Invalid EventRegistry API key
+
+#### 4. Rate Limiting
+**Symptoms:**
+- Message: "Found X new articles but couldn't post any due to rate limiting"
+- Error: "429 Too Many Requests"
+
+**Solution:**
+- Wait for the rate limit to reset (usually 15 minutes)
+- The bot automatically retries with exponential backoff
+
+#### 5. Twitter API Issues
+**Symptoms:**
+- Errors during tweet posting
+- Authentication failures
+
+**Solution:**
+- Verify Twitter API keys are correct
+- Check if Twitter account is in good standing
+- Ensure API access level supports posting tweets
+
+### Diagnostic Tools
+
+Run the built-in diagnostic tool to identify issues:
+
+```bash
+# Quick diagnosis
+python bot.py --diagnose
+
+# Or run the dedicated diagnostic script
+python diagnose_bot.py
+```
+
 ### "No new articles to post" vs Rate Limiting
 
 If the bot shows different messages in the logs:
