@@ -9,6 +9,7 @@ import os
 import json
 import logging
 import random
+import time
 from datetime import datetime, timedelta
 
 import tweepy
@@ -171,37 +172,62 @@ class BitcoinMiningNewsBot:
 
     def post_to_twitter(self, article):
         """Post article as a thread on Twitter"""
-        try:
-            # Create the first tweet with a catchy summary
-            tweet_text = self.create_tweet_text(article)
-            logger.info(f"Posting tweet: {tweet_text[:50]}...")
+        return self._post_with_retry(article, max_retries=3)
+        
+    def _post_with_retry(self, article, max_retries=3):
+        """Post to Twitter with exponential backoff retry logic for rate limits"""
+        for attempt in range(max_retries + 1):
+            try:
+                # Create the first tweet with a catchy summary
+                tweet_text = self.create_tweet_text(article)
+                logger.info(f"Posting tweet (attempt {attempt + 1}): {tweet_text[:50]}...")
 
-            # Post the first tweet
-            first_tweet = self.twitter_client.create_tweet(text=tweet_text)
-            first_tweet_id = first_tweet.data["id"]
-            logger.info(f"Posted first tweet with ID: {first_tweet_id}")
+                # Post the first tweet
+                first_tweet = self.twitter_client.create_tweet(text=tweet_text)
+                first_tweet_id = first_tweet.data["id"]
+                logger.info(f"Posted first tweet with ID: {first_tweet_id}")
 
-            # Create the second tweet with the article link
-            article_url = article.get("url", "")
-            if article_url:
-                try:
-                    # Post as a reply to create a thread using the supported reply parameter
-                    reply_parameters = {"in_reply_to_tweet_id": first_tweet_id}
-                    second_tweet = self.twitter_client.create_tweet(
-                        text=f"Read more: {article_url}",
-                        reply=reply_parameters
-                    )
-                    second_tweet_id = second_tweet.data["id"]
-                    logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
-                except Exception as e:
-                    logger.error(f"Error posting second tweet: {str(e)}")
-                    logger.info("First tweet was successful, continuing...")
+                # Create the second tweet with the article link
+                article_url = article.get("url", "")
+                if article_url:
+                    try:
+                        # Post as a reply to create a thread using the supported reply parameter
+                        reply_parameters = {"in_reply_to_tweet_id": first_tweet_id}
+                        second_tweet = self.twitter_client.create_tweet(
+                            text=f"Read more: {article_url}",
+                            reply=reply_parameters
+                        )
+                        second_tweet_id = second_tweet.data["id"]
+                        logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
+                    except Exception as e:
+                        logger.error(f"Error posting second tweet: {str(e)}")
+                        logger.info("First tweet was successful, continuing...")
 
-            return first_tweet_id
+                return first_tweet_id
 
-        except Exception as e:
-            logger.error(f"Error posting to Twitter: {str(e)}")
-            return None
+            except tweepy.TooManyRequests as e:
+                if attempt < max_retries:
+                    # Calculate exponential backoff delay
+                    delay = (2 ** attempt) * 60  # 1 min, 2 min, 4 min
+                    logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {delay} seconds before retry...")
+                    time.sleep(delay)
+                    continue
+                else:
+                    logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
+                    return None
+            except Exception as e:
+                logger.error(f"Error posting to Twitter (attempt {attempt + 1}): {str(e)}")
+                if attempt < max_retries:
+                    # For other errors, shorter delay
+                    delay = 30 * (attempt + 1)  # 30s, 60s, 90s
+                    logger.info(f"Retrying in {delay} seconds...")
+                    time.sleep(delay)
+                    continue
+                else:
+                    logger.error(f"Failed to post after {max_retries + 1} attempts")
+                    return None
+        
+        return None
 
     def run(self):
         """Main function to run the bot"""
@@ -210,9 +236,17 @@ class BitcoinMiningNewsBot:
 
             # Fetch recent Bitcoin mining articles
             articles = self.fetch_bitcoin_mining_articles()
+            
+            if not articles:
+                logger.info("No articles found from EventRegistry")
+                return
+
+            logger.info(f"Found {len(articles)} total articles")
 
             # Track if we posted anything
             posted_count = 0
+            rate_limited_count = 0
+            already_posted_count = 0
 
             # Process each article
             for article in articles:
@@ -225,6 +259,7 @@ class BitcoinMiningNewsBot:
 
                 if article_uri in self.posted_articles["posted_uris"]:
                     logger.info(f"Skipping already posted article: {article.get('title', 'Unknown')[:50]}...")
+                    already_posted_count += 1
                     continue
 
                 # Post to Twitter
@@ -238,14 +273,25 @@ class BitcoinMiningNewsBot:
                     # Only post one article per run to avoid flooding
                     logger.info(f"Posted article: {article.get('title', 'Unknown')[:50]}...")
                     break
+                else:
+                    # Check if it was rate limited or another error
+                    rate_limited_count += 1
+                    logger.warning(f"Failed to post article (likely rate limited): {article.get('title', 'Unknown')[:50]}...")
 
             # Save the updated list of posted articles
             self._save_posted_articles()
 
+            # Provide detailed summary
+            total_new_articles = len(articles) - already_posted_count
             if posted_count == 0:
-                logger.info("No new articles to post")
+                if total_new_articles == 0:
+                    logger.info("No new articles to post (all articles were already posted)")
+                elif rate_limited_count > 0:
+                    logger.warning(f"Found {total_new_articles} new articles but couldn't post any due to rate limiting or other errors")
+                else:
+                    logger.info("No new articles were successfully posted")
             else:
-                logger.info(f"Posted {posted_count} new articles")
+                logger.info(f"Successfully posted {posted_count} new articles ({total_new_articles} new articles available, {already_posted_count} already posted)")
 
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")
