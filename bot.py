@@ -537,6 +537,11 @@ class BitcoinMiningNewsBot:
                     logger.info(f"No new articles found but {queued_articles_count} articles remain in queue for future posting")
                 elif rate_limited_count > 0:
                     logger.warning(f"Found {total_new_articles} new articles but couldn't post any due to rate limiting or other errors")
+                    logger.warning("🔍 WHY NO TWEETS: Bot hit Twitter's 17 requests/24h limit and entered cooldown")
+                    logger.warning("   This is normal behavior to avoid violating Twitter's terms of service")
+                    logger.warning("   The bot will automatically resume posting when the cooldown period expires")
+                    if queued_articles_count > 0:
+                        logger.info(f"   {queued_articles_count} articles are queued and will be posted after cooldown")
                 else:
                     logger.info("No articles were successfully posted")
             else:
