@@ -78,6 +78,10 @@ class BitcoinMiningNewsBot:
         try:
             logger.info("Fetching Bitcoin mining articles...")
             
+            # Set time limit to recent articles (last 24 hours)
+            current_date = datetime.now()
+            yesterday = current_date - timedelta(days=1)
+            
             # Create a query for articles about Bitcoin mining
             q = QueryArticles(
                 keywords=QueryItems.OR(["Bitcoin mining", "crypto mining", "cryptocurrency mining"]),
@@ -86,14 +90,11 @@ class BitcoinMiningNewsBot:
                     self.er_client.getConceptUri("Mining"),
                     self.er_client.getConceptUri("Cryptocurrency")
                 ]),
+                dateStart=yesterday,
+                dateEnd=current_date,
                 dataType=["news"],
                 lang="eng"
             )
-            
-            # Set time limit to recent articles (last 24 hours)
-            current_date = datetime.now()
-            yesterday = current_date - timedelta(days=1)
-            q.setDateLimit(yesterday, current_date)
             
             # Request article information
             q.setRequestedResult(
