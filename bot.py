@@ -10,7 +10,7 @@ import json
 import time
 import logging
 import random
-from datetime import datetime, timedelta
+from datetime import datetime as dt, timedelta
 
 import tweepy
 from eventregistry import *
@@ -91,7 +91,7 @@ class BitcoinMiningNewsBot:
             )
             
             # Set time limit to recent articles (last 24 hours)
-            current_date = datetime.now()
+            current_date = dt.now()
             yesterday = current_date - timedelta(days=1)
             q.setDateLimit(yesterday, current_date)
             
