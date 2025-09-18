@@ -1863,6 +1863,1867 @@
       "sentiment": 0.04313725490196085,
       "wgt": 495913204,
       "relevance": 69
+    },
+    {
+      "uri": "8869543745",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "20:10:39",
+      "dateTime": "2025-09-18T20:10:39Z",
+      "dateTimePub": "2025-09-18T19:54:30Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.vcpost.com/articles/129754/20250917/bemine-launches-golden-harvest-autumn-promo-campaign-70-discounts-cloud-mining-equipment.htm",
+      "title": "BeMine Launches \"Golden Harvest\" Autumn Promo Campaign with Up to 70% Discounts on Cloud Mining Equipment",
+      "body": "BeMine, a global leader in cloud mining services, is excited to announce the launch of its Golden HarvestAutumn Campaign, running from September 15 to November 30, 2025. This seasonal promotion is designed to empower both new and existing users with unprecedented opportunities to expand their mining power, maximize returns, and prepare for the historically bullish winter months in the cryptocurrency market.\n\nAutumn has always been a symbol of harvest and preparation for winter. In the same way, BeMine users can now \"sow\" their mining seeds by acquiring new or upgraded mining capacities -- and then \"harvest\" their results as the crypto market enters one of its strongest growth cycles.\n\nBeMine stands out in the cloud mining industry by offering one of the lowest entry barriers on the market. Users can purchase mining equipment in shares, gradually building up a full device, while all costs are distributed proportionally. This unique model opens the door for both newcomers and experienced miners to participate without heavy upfront investments.\n\nAutumn is statistically the best season to enter crypto mining -- as the winter and spring months historically bring increased demand for hardware and rising network difficulty, making early preparation a crucial advantage.",
+      "source": {
+        "uri": "vcpost.com",
+        "dataType": "news",
+        "title": "IVCPOST"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Harvest",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Harvest"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_trend",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market trend"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Seed",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Seed"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 65
+        }
+      ],
+      "image": "https://d.vcpost.com/en/full/1726465/autumn-bemine.jpg",
+      "eventUri": null,
+      "sentiment": 0.2705882352941176,
+      "wgt": 495922239,
+      "relevance": 43
+    },
+    {
+      "uri": "8869542805",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "20:10:06",
+      "dateTime": "2025-09-18T20:10:06Z",
+      "dateTimePub": "2025-09-18T19:24:21Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.coindesk.com/markets/2025/09/18/are-pure-play-bitcoin-miners-going-to-reprice-like-ai-hpc-miners",
+      "title": "Are Pure Play BTC Miners Going to Reprice Like AI/HPC Miners?",
+      "body": "Potential rotation from AI/HPC miners into pure-play bitcoin miners\n\nPure-play bitcoin BTC$117,536.96 mining stocks are waking up from their slumber after lagging behind those pivoting to the red-hot data center business.\n\nPure-play miners such as MARA Holdings (MARA) and CleanSpark (CLSK) surged 10% and 17% on Thursday, leading gains among the CoinShares Bitcoin Mining ETF members.\n\nThere are two key factors that may be driving the sharp gains.\n\nThe first is the idea that investors could be front-running expectations of a strong year-end for bitcoin, a period that has historically delivered some of its most bullish returns. BTC is climbing towards $118,000 following the Federal Reserve's interest rate cut, up 2.2% on Thursday and trading only 5% below its all-time high.\n\nWith sentiment improving, miners with significant BTC stash on the balance sheet could be leveraged plays on bitcoin's potential rally to new records. MARA and CleanSpark remain the sector's largest BTC holders with 52,477 ($6.2 billion) and 12,703 ($1.5 billion) tokens, respectively. Strategy (MSTR), the world's largest corporate owner of BTC, is up 7% as well today.\n\nThe second driver could be investors rotating profits from stocks in high-performance computing (HPC) and artificial intelligence (AI), which have enjoyed outsized gains over the past months. Iren Energy (IREN), Cipher Mining (CIFR), and Bitfarms (BITF) have all surged, with Bitfarms up 150% in September alone, IREN gaining over 600% since April and CIFR advancing 500% during the same period. However, to reinforce the rotation thesis, CIFR is down 7% and IREN has slipped 4% on Thursday.",
+      "source": {
+        "uri": "coindesk.com",
+        "dataType": "news",
+        "title": "CoinDesk"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Token coin"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Earth_Sciences/Geology",
+          "label": "dmoz/Science/Earth Sciences/Geology",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Health/Alternative/Crystals",
+          "label": "dmoz/Health/Alternative/Crystals",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Marketplaces",
+          "label": "dmoz/Business/Mining and Drilling/Marketplaces",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 70
+        }
+      ],
+      "image": "https://cdn.sanity.io/images/s3y3vcno/production/8f3ebedb9543a24decf4b31119cd6d4fe00930cb-1500x844.jpg",
+      "eventUri": null,
+      "sentiment": 0.3803921568627451,
+      "wgt": 495922206,
+      "relevance": 52
+    },
+    {
+      "uri": "8869508719",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "19:40:08",
+      "dateTime": "2025-09-18T19:40:08Z",
+      "dateTimePub": "2025-09-18T16:00:34Z",
+      "dataType": "news",
+      "sim": 0.7098039388656616,
+      "url": "https://nftplazas.com/mine-on-your-phone-10-free-bitcoin-cloud-mining-apps-of-2025/",
+      "title": "Mine on Your Phone: 10 Free Bitcoin Cloud Mining Apps of 2025",
+      "body": "As cryptocurrency continues to gain mainstream traction, Bitcoin mining remains a lucrative activity -- but one that traditionally requires expensive hardware and technical know-how. Thankfully, the rise of free Bitcoin cloud mining apps has made it easier than ever to mine cryptocurrency right from your smartphone, without any upfront investment.\n\nIn 2025, mobile cloud mining apps are becoming increasingly sophisticated, offering users the ability to earn Bitcoin passively and securely. This article breaks down the 10 Leading Free Bitcoin Cloud Mining Apps of 2025, explaining their key features, how they work, and why they are ideal for anyone looking to get started with crypto mining on their phone.\n\nBefore diving into the apps themselves, it's important to understand the benefits of free cloud mining apps:\n\nChoosing the right app is crucial. Here are some criteria to keep in mind:\n\nA standout choice in 2025, ETNCrypto is a legally registered Australian platform known for transparent and compliant cloud mining services.\n\nETNCrypto Mining Rigs\n\nThis app offers free hashpower to beginners, enabling users to mine Bitcoin and several altcoins.\n\nMineX provides free daily cloud mining contracts to its users.\n\nA reliable cloud mining app linked to professional mining farms.\n\nStormGain integrates free cloud mining directly into its crypto trading app.\n\nA straightforward mobile app focused on mining Bitcoin with zero upfront cost.\n\nThis innovative browser app mines Bitcoin in the background while you surf the internet.\n\nKnown for its Bitcoin faucet, FreeBitco.in also offers free cloud mining features via its app.\n\nAn app designed for easy cloud mining with no technical barriers.\n\nOffers free daily mining and cloud hashpower upgrades.\n\nWhile these apps offer great opportunities, users should keep realistic expectations:\n\nThe 10 Leading Free Bitcoin Cloud Mining Apps of 2025 provide an excellent gateway for newcomers and enthusiasts to mine Bitcoin without the need for expensive hardware or large investments. Platforms like ETNCrypto lead the way with transparent, secure, and legally compliant cloud mining services that empower users to earn Bitcoin daily using just their smartphones.\n\nBy choosing trusted apps, following practices, and staying patient, anyone can explore the exciting world of Bitcoin mining in 2025 with minimal risk and potential rewards.\n\nReady to start mining on your phone today? Download one of these leading apps and begin your crypto journey with zero upfront cost!",
+      "source": {
+        "uri": "nftplazas.com",
+        "dataType": "news",
+        "title": "NFT Plazas"
+      },
+      "authors": [
+        {
+          "uri": "nftplazas_editorial_team@nftplazas.com",
+          "name": "NFTPlazas Editorial Team",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_app",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mobile app"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smartphone",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Smartphone"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Web_browser",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Web browser"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Internet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Surfing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Surfing"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 78
+        }
+      ],
+      "image": "https://nftplazas.com/wp-content/uploads/2025/09/Featured-Image-1280x720-PRPartnered-2025-09-19T021246.525.jpg",
+      "eventUri": "eng-10963620",
+      "sentiment": 0.5058823529411764,
+      "wgt": 495920408,
+      "relevance": 105
+    },
+    {
+      "uri": "8869492089",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "19:26:01",
+      "dateTime": "2025-09-18T19:26:01Z",
+      "dateTimePub": "2025-09-18T19:04:00Z",
+      "dataType": "news",
+      "sim": 0.5098039507865906,
+      "url": "https://newsroompanama.com/2025/09/18/panamanians-join-find-mining-and-easily-earn-high-passive-income-every-day/",
+      "title": "Panamanians Join Find Mining and Easily Earn High Passive Income Every Day - Newsroom Panama",
+      "body": "In Panama, more and more people are starting to pay attention to the new opportunities offered by digital assets. With the continuous evolution of investment methods, cloud mining has become a popular option for many investors to generate passive income. Compared to traditional investment channels, cloud mining not only saves time and effort, but also significantly reduces barriers to entry, allowing more people to easily share in the digital economy's dividends.\n\nCloud mining is a cryptocurrency mining method based on remote computing power leasing. Users don't need to purchase or manage expensive mining equipment themselves; they can simply rent computing power on the platform and receive the same stable returns as a large-scale mining farm.\n\nFor ordinary investors who want to engage in blockchain and Bitcoin mining but lack the necessary technical resources or hardware, this is an efficient and worry-free method. For Panamanian users, cloud mining is not only a stable investment channel, but also a convenient way to participate in the global digital asset market.\n\nAs a leading global cloud mining service provider, Find Mining is committed to providing users with a safe, simple, and efficient investment experience. The platform offers an intuitive interface and a comprehensive process, allowing even beginners to start mining in minutes.\n\nTo help more users get started, Find Mining is offering a limited-time sign-up bonus: new users can receive $15 in free cloud computing power upon registration, allowing them to start generating profits immediately.\n\n1. Quick account registration: Visit the official Find Mining website and complete your account registration in just 60 seconds. New users will immediately receive a $15 trial credit, allowing them to try mining at no cost.\n\n2. Cryptocurrency funding\n\nThe platform supports deposits in 12 major cryptocurrencies, including USDT, BTC, and ETH. You can start with as little as $100, with instant deposits and zero fees.\n\n3. Select an optimized contract plan\n\nBased on your risk tolerance and investment goals, choose the most suitable smart contract from the platform's offerings. Find Mining's AI-based recommendation system provides personalized contract recommendations based on market conditions and your investment profile.\n\n4. Enjoy continuous income growth\n\nOnce your contract is activated, you can rest assured that your earnings will accrue automatically. The platform automatically records your earnings every day, and you can view your earnings changes in real time through the intuitive dashboard.\n\nFind Mining believes making money can be easy and efficient. Whether you're new to cryptocurrency or a Panamanian investor looking to add passive income to your portfolio, you'll find the right solution here.\n\nThe platform combines simplicity and profitability, allowing you to enjoy a steady daily income without complex transactions.\n\nIn the digital mining industry, security and responsibility are equally important. Find Mining adheres to compliant and transparent procedures, operating over 135 mining sites worldwide. All mines are powered by clean energy and have zero carbon emissions, ensuring the safety of users' resources and actively promoting environmental protection.\n\nHigh-end mining equipment: We use industry-leading equipment such as Bitmain, Antminer, Canaan Technology, and others to ensure stable output.\n\nGlobal recognition: The platform was registered in the UK in 2018 and currently has over 9.4 million users worldwide.\n\nIntuitive interface: The design is simple and intuitive, so even beginners can get started quickly.\n\nMulti-currency settlement: Supports popular digital currencies such as BTC, ETH, DOGE, USDT, LTC, SOL, etc.\n\nStable and reliable returns: Automatic daily liquidation and worry-free return of capital upon expiration.\n\n24/7 customer service: Professional support 24/7 to resolve user issues at any time.\n\nGenerous referral rewards: Invite your friends to sign up and receive a bonus of up to 3%.\n\nEven if you don't invest directly, you can still earn extra rewards through Find Mining's referral program. Invite your friends to join and earn unlimited bonuses. There's no limit to the number of people you can invite, and the profit potential is unlimited.\n\nIf you're looking for a new and easy way to start generating passive income, Find Mining is a reliable choice for Panamanian investors. Sign up now to receive a $15 cloud mining bonus and start growing your digital assets today!\n\nOfficial website | Download the official app",
+      "source": {
+        "uri": "newsroompanama.com",
+        "dataType": "news",
+        "title": "Newsroom Panama"
+      },
+      "authors": [
+        {
+          "uri": "newsroom_panama@newsroompanama.com",
+          "name": "Newsroom Panama",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Panama",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Panama"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Panama"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Passive_income",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Passive income"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Barriers_to_entry",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Barriers to entry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_economy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital economy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Evolution",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Evolution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dividend",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Dividend"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smart_contract",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Smart contract"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitmain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitmain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Carbon_neutrality",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Carbon neutrality"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Settlement_(litigation)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Settlement (litigation)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Real-time_computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Real-time computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liquidation",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Liquidation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "United Kingdom"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Kingdom"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Consulting",
+          "label": "dmoz/Business/Mining and Drilling/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 82
+        }
+      ],
+      "image": "https://newsroompanama.com/wp-content/uploads/2025/09/image-37.png",
+      "eventUri": "eng-10976667",
+      "sentiment": 0.4745098039215687,
+      "wgt": 495919561,
+      "relevance": 78
+    },
+    {
+      "uri": "8869492088",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-18",
+      "time": "19:25:50",
+      "dateTime": "2025-09-18T19:25:50Z",
+      "dateTimePub": "2025-09-18T19:04:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://newsroompanama.com/2025/09/17/unlocking-the-potential-of-xrp-how-come-mining-is-driving-unprecedented-returns-in-cryptocurrency/",
+      "title": "Unlocking the Potential of XRP: How Come Mining is Driving Unprecedented Returns in Cryptocurrency - Newsroom Panama",
+      "body": "Bitcoin prices are approaching a new all-time high, currently trading at approximately $110,000 per unit. While the cryptocurrency market has experienced numerous rallies in the past, this one holds special historical significance: institutional investors are accelerating their investment in digital assets, global capital continues to flow into the cryptocurrency market, and cryptocurrency's recognition as a mainstream asset class continues to grow. Investors once skeptical of Bitcoin have now witnessed its price surpass $110,000, demonstrating not only its resilience but also the growing importance of digital currencies in the modern financial system.\n\nAs prices continue to rise, more and more investors are wondering: How can they achieve more stable returns while avoiding extreme speculative volatility? The answer lies in cloud mining.\n\nCloud Mining: Opening the Door to Bitcoin Wealth\n\nTraditional Bitcoin mining requires expensive mining machines, high electricity consumption, and constant maintenance. These high barriers to entry have long been prohibitive for ordinary investors. COME Mining cloud mining is revolutionizing this.\n\nOn the COME Mining platform, users can easily rent computing power and participate in global Bitcoin mining using just their mobile phone or computer. No hardware to purchase, no electricity bills or maintenance costs to worry about -- everything is transparent and efficient. Both new and experienced investors can earn relatively stable daily returns on the platform.\n\nAmidst global interest rate fluctuations and financial market uncertainty, cloud mining offers investors a more predictable and sustainable source of income. With the Bitcoin market on the verge of a bull run, COME Mining cloud mining is undoubtedly a key channel for unlocking new wealth opportunities.\n\nGet Started in Three Easy Steps\n\nStart your Bitcoin mining journey in just minutes:\n\n1. Visit the official website or download the app - Visit comemining.com or install the iOS/Android app to start mining.\n\n2. Register and claim your welcome bonus - Complete your registration and receive a $15 instant bonus.\n\n3. Select a contract and activate mining - Choose a mining plan that suits your budget and start profiting immediately.\n\nMining Contracts Tailored for Every Investor\n\nCOME Mining offers a variety of mining contracts to suit different investment levels. Examples include:\n\n(Trial Contract): Investment: $100, 2 days, Total Net Profit: $100 + $8 = $108\n\n(Avalon Miner A1326-109T): Investment: $600, 6 days, Total Net Profit: $600 + $44.28 = $644.28\n\n(ANTRACK & Bitcoin Miner S19 XP+ Hyd. Bundle): Investment: $10,000, 33 days, Total Net Profit: $10,000 + $5,709 = $15,709\n\n(ANTSPACE HW5): Investment: $50,000, 42 days, Total Net Profit: $50,000 + $39,480 = $89,480\n\n(ANTSPACE HD5): Investment: $100,000, 47 days, Total Net Profit: $100,000 + $99,640 = $199,640\n\nWhether you're starting small or scaling up, these contracts offer flexibility and generous returns.\n\nEarn up to $9,777 per day with COME Mining\n\nOne of COME Mining's biggest draws is its high daily profit potential. Reports indicate that investors can earn up to $9,777 per day through the platform. These profits are made possible by COME Mining's professional-grade infrastructure, transparent payment system, and advanced optimization technology.\n\nUnlike traditional trading, where profits depend on precise timing, mining offers consistent returns. The platform ensures that users receive their earnings directly, without any delays or hidden fees.\n\nApps: https://comemining.com/xml/index.html#/app\n\nCompany Email: info@comemining.com",
+      "source": {
+        "uri": "newsroompanama.com",
+        "dataType": "news",
+        "title": "Newsroom Panama"
+      },
+      "authors": [
+        {
+          "uri": "newsroom_panama@newsroompanama.com",
+          "name": "Newsroom Panama",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Institutional_investor",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Institutional investor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Net_income",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Net income"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Globalization",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Globalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/IOS",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "IOS"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Android_(operating_system)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Android (operating system)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_market",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Financial market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_phone",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mobile phone"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Windows_XP",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Windows XP"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Payment_system",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Payment system"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 72
+        }
+      ],
+      "image": "https://newsroompanama.com/wp-content/uploads/2025/09/comemining.jpg",
+      "eventUri": null,
+      "sentiment": 0.1372549019607843,
+      "wgt": 495919550,
+      "relevance": 105
+    },
+    {
+      "uri": "8869471860",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "19:08:47",
+      "dateTime": "2025-09-18T19:08:47Z",
+      "dateTimePub": "2025-09-18T18:43:42Z",
+      "dataType": "news",
+      "sim": 0.6274510025978088,
+      "url": "https://www.powermag.com/soluna-breaks-ground-on-166-mw-texas-wind-powered-data-center-for-crypto-and-ai/",
+      "title": "Soluna Breaks Ground on 166-MW Texas Wind-Powered Data Center for Crypto and AI",
+      "body": "Soluna Holdings, a developer of data centers powered by renewables, is set to break ground on Project Kati, a 166-MW wind-powered data center campus poised to support Bitcoin hosting and the rapidly growing demand for artificial intelligence (AI) and high-performance computing (HPC) infrastructure.\n\nThe project, a partnership with EDF Renewables, Masdar, and Spring Lane Capital, is designed to integrate utility-scale wind generation with flexible, high-density Bitcoin and AI computing workloads to leverage novel arrangements that will boost grid resilience and optimize returns for renewable energy producers, the company told POWER. Project Kati is slated to become one of the largest dual-purpose computing facilities in Texas, it said.\n\nProject Kati will launch in Willacy County, located in South Texas's Rio Grande Valley, which borders the Gulf of Mexico. On Sept. 18, the project will break ground on Phase 1, an 83-MW Bitcoin hosting facility that, when online in the first quarter of 2026, will offer 48 MW to Galaxy Digital, a New York-based financial services firm focused on digital assets, cryptocurrency, and blockchain technology. The remaining 35 MW from Phase 1 is reserved for Soluna's own customers. Kati 2, the project's 83-MW planned second phase, will \"establish Project Kati as a dual-purpose facility serving both Bitcoin hosting customers and the rapidly growing demand for AI and HPC workloads.\"\n\nGalaxy Digital announced on Aug. 12 that it would relocate 48 MW of proprietary bitcoin mining operations from its Helios campus in the Texas Panhandle to Soluna's Project Kati 1 in Willacy County. The company will be the anchor customer for Soluna's renewable-powered data center. Soluna, notably, secured a $5 million loan from Galaxy for the facility on March 18 and will provide turnkey infrastructure and operations once the facility becomes operational in early 2026.\n\n\"Breaking ground on our biggest project yet expands our Texas footprint, strengthens partnerships with leading renewable developers, and proves our colocation model of pairing high-performance computing with clean energy at utility scale,\" said John Belizaire, CEO of Soluna. \"Project Kati showcases our ability to deliver large-scale facilities with world-class investors and positions Soluna for long-term growth across Bitcoin hosting and AI infrastructure.\"\n\nProject Kati's phased approach aligns with surging demand for data capacity and persistent grid congestion in ERCOT, Soluna said. Community leaders, institutional investors, and utility partners are expected to attend the Sept. 18 ceremony.\n\nWhile Soluna declined to share details about the turbine technology that will power the facility, it noted the project is well-suited to crypto load, which typically requires massive, constant power consumption, often consuming as much electricity as entire cities and placing significant strain on local grids due to its 24/7 baseload demand that can fluctuate unpredictably with cryptocurrency market conditions.\n\nLast year, the Public Utility Commission of Texas (PUCT) adopted a rule for reliability purposes requiring cryptocurrency mining facilities of more than 75 MW in the Electric Reliability Council of Texas (ERCOT) region to register with the state and annually report details about their location, ownership, form of business, and electricity demand. The grid operator's Large Flexible Load category, dominated by crypto miners, is projected to consume 54 TWh in 2025, representing nearly 60% growth from 2024 and accounting for approximately 10% of total ERCOT consumption.\n\nOn June 23, ERCOT issued new requirements mandating that all large electronic loads 75 MW or greater -- including data centers and crypto mining operations -- complete voltage ride-through capability surveys and update their dynamic grid models by Aug. 31, 2025, after studies revealed that up to 2,600 MW of load loss during transmission faults could trigger cascading system-wide outages.\n\nThe directive followed ERCOT's June 13 Large Load Workshop, which detailed how a severe fault in West Texas could cause voltage dips to 0.70 per unit for more than 20 milliseconds, potentially triggering the loss of 1,500 MW out of approximately 3,000 MW of large electronic loads in the region if their ride-through capabilities align with the Information Technology Industry Council (ITIC) curve standards. ERCOT's analysis showed that under worst-case inertia and frequency response conditions, losing more than 2,600 MW of load could push system frequency above 60.4 Hz, a threshold that could cause conventional generators to trip offline and create an uncontrolled cascading blackout across the Texas grid. Such dynamic events could occur in seconds rather than the minutes or hours available for controlled load shedding, it warned.\n\nBut according to Soluna, Project Kati is exceptionally well-suited for a flexible load like cryptocurrency computing \"because it creates a powerful symbiotic relationship,\" Larbi Loudiyi, vice president of Power at Soluna, told POWER. \"Crypto load provides the perfect blend of operational flexibility and economic agility that traditional industries cannot match,\" he said.\n\n\"First, our load can ramp up or down quickly, acting as a dynamic 'shock absorber' for the wind farm's variability. When the wind blows strongly but the grid is congested, we can consume that excess energy in seconds. When grid demand rises and power becomes more valuable, we can power down just as fast, allowing every megawatt to be sold at a premium. This isn't just helpful; it's a fundamental optimizer for the wind farm's revenue.\"\n\nAnd second: \"The speed at which we can deploy and scale this load is critical. Unlike building a factory or a large-scale battery facility, which can take years, our modular computing infrastructure can be built and brought online in a matter of months,\" he said. \"This allows us to rapidly respond to market opportunities and provide an immediate solution to the chronic curtailment issues facing renewable energy in Texas.\"\n\nAsked how Project Kati will address variability while integrating with grid needs, Loudiyi noted Project Kati \"already has a sophisticated industrial automation system -- known as a SCADA system -- that continuously monitors and manages its output in real time to comply with grid operator (ERCOT) commands.\" When the wind farm receives a \"Base Point\" instruction from ERCOT, \"that becomes its absolute maximum output limit (MW),\" he said. The wind farm system automatically adjusts the turbines to ensure they never exceed it. \"The innovation with the data center is that it acts as a 'smart load,' consuming power on-site during periods when the grid cannot accept all the energy the wind farm is capable of producing. Instead of curtailing (wasting) that energy, we redirect it to the data center. This turns a grid constraint into an economic and environmental benefit.\"\n\nLoudiyi confirmed that the project is anchored by a Power Purchase Agreement (PPA), but he noted that the project's behind-the-meter arrangement \"requires a sophisticated suite of agreements to function seamlessly within ERCOT's market rules.\"\n\n\"While the PPA governs the sale of energy from the wind farm to the load, a critical component is the Retail Electricity Provider (REP) agreement. At Project Kati, we've partnered with EDF Renewables to purchase up to 166 MW of energy produced by the Las Majadas Wind Project to power the data center,\" he explained.\n\nUltimately, beyond just providing a flexible load, \"we offer independent power producers (IPPs) a true turnkey solution,\" he said. \"We manage the entire complexity of structuring these agreements, along with development, construction, and operations, to deliver immediate and reliable curtailment mitigation.\"\n\nEarlier this week, Soluna announced it secured a $100 million scalable credit facility from Generate Capital -- a San Francisco-based sustainable infrastructure investment firm. The move intends to bolster the buildout of Project Kati and the expansion of Soluna's pipeline of renewable-powered data centers.\n\nThe structure includes an initial $12.6 million draw to refinance Dorothy 1A and Dorothy 2 projects -- Soluna's existing wind-powered Bitcoin hosting and mining facilities in Silverton, Texas, which it brought online in April 2023 and early 2025. Additional tranches include $22.9 million in delayed draws for continued Dorothy 2 buildout and Project Kati 1 development, alongside an uncommitted $64.5 million accordion facility to support equipment procurement for AI workloads and fund Soluna's expanding 2.8 GW development pipeline.\n\nSoluna said its partnership with Generate Capital positions the company for rapid expansion across its 2.8 GW development pipeline, which includes recently announced Projects Gladys (150 MW wind) and Fei (100 MW solar) that pushed the company past the 1 GW milestone in August 2025.\n\n\"We're not just growing our current projects, we're building new ones wherever wasted renewable energy can be converted into valuable high-performance computing. This deal reflects a different kind of infrastructure financing, focused on capital efficiency, modular growth, and disciplined execution,\" said Soluna CEO Belizaire. \"We've known the Generate team for quite some time before partnering; they understand our business, our team, and our industry well, making them so much more than just investors. We see them as strategic partners going forward.\"",
+      "source": {
+        "uri": "powermag.com",
+        "dataType": "news",
+        "title": "POWER Magazine"
+      },
+      "authors": [
+        {
+          "uri": "sonal_patel@powermag.com",
+          "name": "Sonal Patel",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Soluna",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Soluna"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_Reliability_Council_of_Texas",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Electric Reliability Council of Texas"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wind_power",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Wind power"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Galaxy_Digital",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Galaxy Digital"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wind_farm",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Wind farm"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Willacy_County,_Texas",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "Willacy County, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Willacy County, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/EDF_Renewables",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "EDF Renewables"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas_Panhandle",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Texas Panhandle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Galaxy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Galaxy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fault_(geology)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Fault (geology)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Rio_Grande",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Rio Grande"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Proprietary_software",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Proprietary software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/South_Texas",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "South Texas"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Republican Party (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Silverton,_Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Silverton, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Silverton, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy",
+          "label": "dmoz/Business/Energy",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Technology/Energy",
+          "label": "dmoz/Science/Technology/Energy",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Utilities",
+          "label": "dmoz/Business/Energy/Utilities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Management",
+          "label": "dmoz/Business/Energy/Management",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Renewable",
+          "label": "dmoz/Business/Energy/Renewable",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 64
+        }
+      ],
+      "image": "https://www.powermag.com/wp-content/uploads/2025/09/slnh-project-kati-groundbreaking-scaled.jpg",
+      "eventUri": "eng-10967978",
+      "sentiment": 0.2784313725490195,
+      "wgt": 495918527,
+      "relevance": 97
+    },
+    {
+      "uri": "8869401767",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "18:08:02",
+      "dateTime": "2025-09-18T18:08:02Z",
+      "dateTimePub": "2025-09-18T16:45:00Z",
+      "dataType": "news",
+      "sim": 0.7176470756530762,
+      "url": "https://coinidol.com/hong-kong-bitcoin-mining/",
+      "title": "200 BTC Annually: Hong Kong's Investment Holding Company Sets To Bitcoin Mining",
+      "body": "Hong Kong-listed DL Holdings Group is diving headfirst into the Bitcoin mining sector with a $21.85 million convertible bond deal, according to the report by Coinidol.com.\n\nThe company, through a partnership with Fortune Peak, plans to acquire over 2,200 advanced Bitcoin miners, with an initial goal of producing roughly 200 BTC annually. This action is part of a broader strategy to build a Bitcoin reserve exceeding 4,000 BTC within the next two years, positioning itself as a leading Bitcoin hashrate stock in the Asian market.\n\nBy engaging in mining, DL Holdings is not only acquiring Bitcoin but is also generating revenue and building its digital asset exposure from the ground up. The use of zero-coupon convertible bonds to fund the acquisition is a fascinating intersection of traditional finance and the crypto industry, demonstrating how companies are finding innovative ways to finance their digital asset strategies.\n\nSuch a steps signalize that more corporations including in Asia are viewing Bitcoin not just as a speculative holding but as a long-term strategic asset that can be used to diversify their balance sheets and enhance shareholder value.",
+      "source": {
+        "uri": "coinidol.com",
+        "dataType": "news",
+        "title": "coinidol.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fortune_(magazine)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Fortune (magazine)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible_bond",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Convertible bond"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Scuba_diving",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Scuba diving"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asian_people",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Asian people"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Balance_sheet",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Balance sheet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Corporation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Shareholder"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Cash_Flow",
+          "label": "dmoz/Business/Financial Services/Cash Flow",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Real_Estate",
+          "label": "dmoz/Business/Investing/Real Estate",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 71
+        }
+      ],
+      "image": "https://coinidol.com/upload/resize_cache/iblock/27c/900_900_1/v1z9rkxwv25ge5ex4uwnxy605isknbxo.jpg",
+      "eventUri": "eng-10970224",
+      "sentiment": 0.419607843137255,
+      "wgt": 495914882,
+      "relevance": 43
+    },
+    {
+      "uri": "8869384329",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "17:52:44",
+      "dateTime": "2025-09-18T17:52:44Z",
+      "dateTimePub": "2025-09-18T17:30:35Z",
+      "dataType": "news",
+      "sim": 0.4941176474094391,
+      "url": "https://nypost.com/business/crypto-staking-guide/",
+      "title": "The boring crypto play that actually pays",
+      "body": "Step into the world of crypto, and it's hard to miss the chaos. Coins moon, scams detonate, and first-time investors get played like tourists at a blackjack table.\n\nBut there's one corner of the market that isn't fueled by hype or headline-grabbing moonshots: staking. It won't make you a millionaire by next week. It might, however, keep your portfolio working while you sleep.\n\nThink of it as the slow burn of crypto, locking coins into a network so it runs securely and you earn modest rewards in return. Less roulette wheel, more interest-bearing account. And for investors trying to avoid scams and noise, wallets like Best Wallet now act as a one-stop app to compare opportunities, manage lock-ups, and keep custody of your assets without handing them to some anonymous platform promising the world.\n\nAt its core, staking means putting your coins to work to help secure a blockchain. In return, the network pays you.\n\n\"Crypto staking is like earning interest on your digital coins,\" said Haim Wortman, founder of Impartoo.com, a site that curates expert-backed Top 10 lists for stocks, ETFs and crypto. \"You lock them up to help run the blockchain network and, in return, receive rewards.\"\n\nNo bank manager, no middleman. The protocol itself handles payouts, sending rewards directly to your wallet when you play by the rules.\n\nSize matters.\n\n\"Ethereum dominates because it's the largest proof-of-stake network with deep liquidity and strong demand,\" said Ben Kurland, CEO at crypto research platform DYOR. \"But 'best' depends on risk tolerance and reward goals.\"\n\nNic Puckrin, founder at Coin Bureau, agreed: \"Investors need to weigh potential rewards, lock-up periods, and the risk of the underlying asset's volatility. It's ultimately a trade-off between risk and reward.\"\n\nTranslation: There's no silver bullet when staking. Ethereum, Solana, Avalanche; they all offer staking, but they move differently. While ETH's size makes it stable, smaller chains dangle higher APYs that can vanish just as quickly.\n\nBest Wallet helps cut through the noise by listing hundreds of validators across 60+ chains -- with real-time info on lock-up terms, uptime, fees, and APY -- so you can avoid fly-by-night operators and pick the risk level that fits your comfort zone.\n\nIgnore the billboards promising 20% APY. That's marketing spin you're too smart to fall for if you're reading this.\n\n\"To assess how profitable it is to stake, we need to measure the real staking yield, which is the nominal staking yield minus the token inflation rate,\" said Victor Li, co-founder and Research Advisor at Firinne Capital.\n\nBNB Chain leads the pack on profitability, with Avalanche not far behind, Li noted.\n\nHowever, Maximilian Pace, CTO of BlockTrust IRA, cautions: \"Some coins advertise very high staking rewards, but those are often canceled out by token inflation (new coins constantly being created). True profitability depends not just on the reward rate, but also on whether the token itself gains value over time.\"\n\nBest Wallet's dashboard lets users see inflation-adjusted yields across networks, making it much harder for projects to sucker you with inflated numbers.\n\nOne big rookie mistake? Thinking Bitcoin can be staked.\n\n\"Cryptocurrencies work based on two primary mechanisms to validate transactions,\" said Quinn Shearer, managing director at GA Group. \"Proof of Work (PoW) networks, like Bitcoin, rely on mining. Proof of Stake (PoS) networks, like Ethereum, rely on validators.\"\n\nIn other words, Bitcoin is mining only.\n\nOffers labeled \"Bitcoin staking\" are really lending schemes or wrapped tokens.\n\n\"Much like stock dividends, wealth in crypto typically comes from the token's price itself, rather than the staking rewards,\" said Temujin Louie, CEO of Wanchain.\n\nThis is where newbies can really get burned. Staking carries risks, some obvious, others buried in the fine print.\n\nUnstaking delays mean your funds can be locked for weeks or months. Best Wallet helps by showing validators with different lock-up periods, from as short as one week up to three months, so you know exactly how long you're tied down.\n\nThen there's volatility. If the token's price tanks, your rewards won't matter. Best Wallet includes stablecoin staking options (USDT, USDC) for lower-risk investments.\n\nValidator failure is another killer. If the validator you choose gets penalized (called \"slashing\"), you lose. It's that simple. Best Wallet lets you filter by validator uptime, fees and track record, aiming to steer you toward reliable operators.\n\nAnd don't forget platform risk. Centralized platforms can and do blow up. \"Crypto staking is safe from a security point of view once you maintain control of your coins using a non-custodial method such as a secure hardware wallet,\" said Charles Guillemet, CTO at Ledger.\n\nBest Wallet doubles down here: It's self-custody and no-KYC, so your keys stay with you, not with some faceless exchange. Add biometric logins, two-factor authentication, and suspicious token alerts, and it's built to keep your assets in your hands, which means out of anyone else's.\n\nIs staking legal? Technically, yes.\n\n\"Yes, crypto staking is legal,\" said Ben Michael, attorney at M&A Criminal Defense Attorneys. \"But, there can be different regulations that you have to follow.\"\n\nIn the U.S., regulators zero in on platforms that pool customer funds. \"The biggest issue regulators have is when platforms pool customer funds, promise returns and are not clear about what is really happening,\" said Marlon Williams of Atlanta Blockchain Center.\n\nKraken learned the hard way. In 2023, the SEC accused it of running an unregistered staking program. The company paid penalties and shuttered its U.S. staking service.\n\nSelf-staking through wallets like Best Wallet remains untouched by those cases, yet another reason retail investors lean toward self-custody.\n\n\"If you already hold something like Ethereum and plan to keep it long term, then staking can give you a steady extra return,\" said Dawid Siuda, finance expert at Omni Calculator. \"But it's not a quick way to get rich.\"\n\n\"Staking carries risks, but they're well understood and manageable,\" said Vitaliy Shtyrkin, Chief Product Officer at B2BINPAY. \"Market swings can affect returns, and technical issues like validator downtime can occur, though they're minimized when using verified providers.\"\n\nVeteran investor Maksym Sakharov, co-founder of WeFi, summed it up: \"I'd say it is safer than trading, especially if it is on established networks like Ethereum and Solana. But it's not risk-free.\"\n\nFor investors who see crypto as a long-term bet, staking is more like dividends than day-trading.\n\nWith Best Wallet bundling staking, validator research, stablecoin options and even a launchpad for presale tokens running on PoS blockchains like Ethereum or Solana, it's increasingly the app of choice for investors who want to cut through the hype and keep their keys where they belong -- in their own hands.",
+      "source": {
+        "uri": "nypost.com",
+        "dataType": "news",
+        "title": "New York Post"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Confidence_trick",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Confidence trick"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethereum",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Ethereum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Noise",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Noise"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Proof_of_stake",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Proof of stake"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ben_Kurland",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Ben Kurland"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Communication_protocol",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Communication protocol"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Uptime",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Uptime"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lock-up_period",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Lock-up period"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Roulette",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Roulette"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blackjack",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blackjack"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Derivative_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Derivative (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Risk_aversion",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Risk aversion"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intermediary",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Intermediary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Millionaire",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Millionaire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Genghis_Khan",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Genghis Khan"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Provisional_Irish_Republican_Army",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Provisional Irish Republican Army"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Georgia_(U.S._state)",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Georgia (U.S. state)"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Georgia (U.S. state)"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Kraken_(company)",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Kraken (company)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Atlanta",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Atlanta, Georgia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Atlanta, Georgia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Money_Management",
+          "label": "dmoz/Home/Personal Finance/Money Management",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Fraud",
+          "label": "dmoz/Society/Issues/Fraud",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 99
+        }
+      ],
+      "image": "https://nypost.com/wp-content/uploads/sites/2/2025/09/110635913.jpg?quality=75&strip=all&w=1024",
+      "eventUri": "eng-10969203",
+      "sentiment": 0.1450980392156862,
+      "wgt": 495913964,
+      "relevance": 52
+    },
+    {
+      "uri": "8869372143",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-18",
+      "time": "17:40:04",
+      "dateTime": "2025-09-18T17:40:04Z",
+      "dateTimePub": "2025-09-18T17:13:30Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finbold.com/ripple-etf-innovation-meets-simplicity-gbc-mining-offers-hassle-free-xrp-exposure-through-cloud-mining/",
+      "title": "Ripple ETF Innovation Meets Simplicity: GBC Mining Offers Hassle-Free XRP Exposure Through Cloud Mining",
+      "body": "As regulatory-complex ETFs emerge, cloud mining emerges as the straightforward alternative for crypto investors.\n\nAs the crypto world buzzes over today's launch of the REX-Osprey XRP ETF (\"XRPR\") -- a hybrid product blending spot XRP holdings with derivatives and Treasuries -- investors are reminded that crypto wealth-building doesn't require navigating complex financial wrappers. GBC Mining, a global leader in cloud mining since 2019, offers a simpler solution: earning cryptocurrencies like Bitcoin, and more through automated cloud mining, without derivatives, regulations, or technical barriers.\n\nThe newly launched XRPR ETF, while groundbreaking in its hybrid structure, highlights the increasing complexity of crypto investment vehicles. Fox Business journalist Eleanor Terrett aptly described it as a \"spot ETF with extras,\" referencing its mix of real XRP, cash, and derivatives under the Investment Company Act of 1940. For everyday investors, however, the question remains: why navigate layers of regulation and financial engineering when you can participate directly in crypto's growth?\n\nGBC Mining cuts through the noise. Instead of ETFs, brokerage accounts, or derivatives, we empower users to generate passive income through cloud mining -- a method that lets you rent mining hardware in our global data centers. No technical expertise, no hardware costs, no regulatory uncertainty. Just transparent, daily payouts in the crypto of your choice.\n\nFounded in 2019 and trusted by 6 million users worldwide, GBC Mining operates state-of-the-art mining facilities across the U.S., Canada, Iceland, and Northern Europe. Our platform democratizes access to crypto mining, turning anyone with $20 into a digital asset miner.\n\nUnlike ETFs, which tie returns to market prices, GBC Mining guarantees fixed returns based on your chosen plan. Whether XRP surges or corrects, your daily earnings remain predictable.\n\nStart small or scale big -- no $50K minimums, no waiting periods.\n\nStart Mining Now & Claim Your $20 Bonus\n\nWhile products like the XRPR ETF offer regulated exposure to crypto, they come with hurdles:\n\nGBC Mining eliminates these friction points:\n\n- Fixed, Guaranteed Returns: Earn daily profits regardless of market volatility.\n\n- Zero Technical Hassle: We handle hardware, energy costs, and maintenance.\n\n- Start with $20: No six-figure minimums or brokerage approvals.\n\n- Diversify Effortlessly: Mine Bitcoin, XRP, or other tokens with a single click.\n\nAs Grayscale and others expand their ETF ambitions, GBC Mining remains focused on what matters most to everyday investors: simplicity, accessibility, and guaranteed returns. While financial giants innovate with hybrid products, cloud mining stands out as the easiest way to earn crypto -- no derivatives, no volatility risk, and no waiting for regulatory approvals.",
+      "source": {
+        "uri": "finbold.com",
+        "dataType": "news",
+        "title": "Finbold"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Ripple (payment protocol)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Derivative_(finance)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Derivative (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Treasury_security",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "United States Treasury security"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fox_Business",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fox Business"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_fund",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Investment fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_engineering",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Financial engineering"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_Company_Act_of_1940",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Investment Company Act of 1940"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Broker",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Broker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Noise",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Noise"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Northern_Europe",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Northern Europe"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accessibility",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Accessibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Price",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Price"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Iceland",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Iceland"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Iceland"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canada",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Canada"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Canada"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 77
+        }
+      ],
+      "image": "https://assets.finbold.com/uploads/2025/09/Ripple-ETF-Innovation-Meets-Simplicity_-GBC-Mining-Offers-Hassle-Free-XRP-Exposure-Through-Cloud-Mining.jpeg",
+      "eventUri": null,
+      "sentiment": 0.04313725490196085,
+      "wgt": 495913204,
+      "relevance": 69
     }
   ]
 }
