@@ -388,11 +388,12 @@ class BitcoinMiningNewsBot:
             rate_limited_count = 0
             already_posted_count = 0
 
-            # Process each article
+            # Filter out already posted articles and find the most recent unpublished one
+            new_articles = []
             for article in articles:
                 article_uri = article.get("uri")
 
-                # Skip if article URI is None or already posted
+                # Skip if article URI is None
                 if not article_uri:
                     logger.warning("Skipping article with missing URI")
                     continue
@@ -401,22 +402,38 @@ class BitcoinMiningNewsBot:
                     logger.info(f"Skipping already posted article: {article.get('title', 'Unknown')[:50]}...")
                     already_posted_count += 1
                     continue
+                
+                new_articles.append(article)
+
+            # Only process the most recent unpublished article, discard the rest
+            if new_articles:
+                # Articles are already sorted by date (most recent first), so take the first one
+                most_recent_article = new_articles[0]
+                discarded_count = len(new_articles) - 1
+                
+                if discarded_count > 0:
+                    logger.info(f"Found {len(new_articles)} new articles. Posting only the most recent one, discarding {discarded_count} older articles to prevent backlog buildup.")
+                    for i, discarded_article in enumerate(new_articles[1:], 1):
+                        logger.info(f"  Discarding #{i}: {discarded_article.get('title', 'Unknown')[:50]}...")
+                        # Mark discarded articles as posted to prevent them from being processed later
+                        discarded_uri = discarded_article.get("uri")
+                        if discarded_uri:
+                            self.posted_articles["posted_uris"].append(discarded_uri)
+                else:
+                    logger.info(f"Found 1 new article to post.")
 
                 # Post to Twitter
-                tweet_id = self.post_to_twitter(article)
+                tweet_id = self.post_to_twitter(most_recent_article)
 
                 if tweet_id:
                     # Add to posted articles
-                    self.posted_articles["posted_uris"].append(article_uri)
+                    self.posted_articles["posted_uris"].append(most_recent_article.get("uri"))
                     posted_count += 1
-
-                    # Only post one article per run to avoid flooding
-                    logger.info(f"Posted article: {article.get('title', 'Unknown')[:50]}...")
-                    break
+                    logger.info(f"Posted article: {most_recent_article.get('title', 'Unknown')[:50]}...")
                 else:
                     # Check if it was rate limited or another error
                     rate_limited_count += 1
-                    logger.warning(f"Failed to post article (likely rate limited): {article.get('title', 'Unknown')[:50]}...")
+                    logger.warning(f"Failed to post article (likely rate limited): {most_recent_article.get('title', 'Unknown')[:50]}...")
 
             # Save the updated list of posted articles
             self._save_posted_articles()
@@ -431,7 +448,11 @@ class BitcoinMiningNewsBot:
                 else:
                     logger.info("No new articles were successfully posted")
             else:
-                logger.info(f"Successfully posted {posted_count} new articles ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                discarded_count = total_new_articles - posted_count
+                if discarded_count > 0:
+                    logger.info(f"Successfully posted {posted_count} new article. Discarded {discarded_count} older articles to prevent backlog ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                else:
+                    logger.info(f"Successfully posted {posted_count} new article ({total_new_articles} new articles available, {already_posted_count} already posted)")
 
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")
