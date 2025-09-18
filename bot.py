@@ -13,7 +13,7 @@ import random
 from datetime import datetime, timedelta
 
 import tweepy
-from eventregistry import *
+from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 
 # Configure logging
 logging.basicConfig(
