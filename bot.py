@@ -185,7 +185,7 @@ class BitcoinMiningNewsBot:
                 # Post as a reply to create a thread
                 second_tweet = self.twitter_client.create_tweet(
                     text=f"Read more: {article_url}",
-                    in_reply_to_tweet_id=first_tweet_id
+                    reply={"in_reply_to_tweet_id": first_tweet_id}
                 )
                 logger.info(f"Posted second tweet (reply) with link to article")
             
