@@ -56,17 +56,24 @@ def check_posted_articles():
         with open("posted_articles.json", "r") as f:
             data = json.load(f)
             posted_count = len(data.get("posted_uris", []))
-            logger.info(f"✅ Found {posted_count} previously posted articles")
+            queued_count = len(data.get("queued_articles", []))
+            logger.info(f"✅ Found {posted_count} previously posted articles and {queued_count} queued articles")
             
             if posted_count > 0:
                 logger.info("Recent posted articles:")
                 for uri in data["posted_uris"][-5:]:  # Show last 5
                     logger.info(f"  - {uri}")
+                    
+            if queued_count > 0:
+                logger.info("Queued articles:")
+                for article in data["queued_articles"][:5]:  # Show first 5
+                    title = article.get("title", "Unknown")[:50]
+                    logger.info(f"  - {title}...")
             
             return data
     except FileNotFoundError:
         logger.warning("⚠️  posted_articles.json not found - will be created on first run")
-        return {"posted_uris": []}
+        return {"posted_uris": [], "queued_articles": []}
     except json.JSONDecodeError:
         logger.error("❌ posted_articles.json is corrupted")
         return None
@@ -187,11 +194,18 @@ def analyze_why_no_posts(articles, posted_articles):
     logger.info(f"   - Total articles fetched: {len(articles)}")
     logger.info(f"   - New articles available: {len(new_articles)}")
     logger.info(f"   - Already posted articles: {len(already_posted)}")
+    logger.info(f"   - Queued articles: {len(posted_articles.get('queued_articles', []))}")
     
     if len(new_articles) == 0:
-        logger.warning("🔍 ROOT CAUSE: All fetched articles were already posted")
-        logger.info("   - This is normal if the bot runs frequently")
-        logger.info("   - Check if articles are from the last 24 hours")
+        queued_count = len(posted_articles.get("queued_articles", []))
+        if queued_count > 0:
+            logger.info("🔍 ROOT CAUSE: No new articles found, but bot should post from queue")
+            logger.info(f"   - {queued_count} articles are available in the queue")
+            logger.info("   - Bot should automatically post from queue when no new articles are found")
+        else:
+            logger.warning("🔍 ROOT CAUSE: All fetched articles were already posted and no queued articles")
+            logger.info("   - This is normal if the bot runs frequently")
+            logger.info("   - Check if articles are from the last 24 hours")
         
         # Show some recently posted articles
         if already_posted:

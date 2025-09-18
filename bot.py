@@ -91,19 +91,26 @@ class BitcoinMiningNewsBot:
             raise
 
     def _load_posted_articles(self):
-        """Load the list of already posted article URIs"""
+        """Load the list of already posted article URIs and queued articles"""
         try:
             with open("posted_articles.json", "r") as f:
-                return json.load(f)
+                data = json.load(f)
+                # Auto-upgrade old format to include queued_articles
+                if "queued_articles" not in data:
+                    data["queued_articles"] = []
+                    logger.info("Auto-upgrading posted_articles.json to include queued_articles")
+                return data
         except (FileNotFoundError, json.JSONDecodeError):
             logger.info("No existing posted articles file found, creating new one")
-            return {"posted_uris": []}
+            return {"posted_uris": [], "queued_articles": []}
 
     def _save_posted_articles(self):
-        """Save the list of posted article URIs"""
+        """Save the list of posted article URIs and queued articles"""
         with open("posted_articles.json", "w") as f:
             json.dump(self.posted_articles, f, indent=2)
-        logger.info(f"Saved {len(self.posted_articles['posted_uris'])} posted article URIs")
+        queued_count = len(self.posted_articles.get("queued_articles", []))
+        posted_count = len(self.posted_articles["posted_uris"])
+        logger.info(f"Saved {posted_count} posted article URIs and {queued_count} queued articles")
 
     def _is_rate_limit_cooldown_active(self):
         """Check if we're still in rate limit cooldown period"""
@@ -332,21 +339,22 @@ class BitcoinMiningNewsBot:
 
                 return first_tweet_id
 
-            except tweepy.TooManyRequests as e:
-                if attempt < max_retries:
-                    # For daily rate limits, use longer delays (5 minutes)
-                    delay = 300  # 5 minutes - conservative for daily limits
-                    logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {delay} seconds before retry...")
-                    logger.warning("Daily rate limit is 17 requests per 24 hours - being conservative with retries")
-                    time.sleep(delay)
-                    continue
-                else:
-                    logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
-                    logger.error("Daily rate limit reached (17 requests per 24 hours). Setting extended cooldown.")
-                    # Set progressive cooldown to prevent automation from hitting limits repeatedly
-                    self._set_rate_limit_cooldown()
-                    return None
             except Exception as e:
+                # Check if this is a rate limit error (either tweepy.TooManyRequests or similar)
+                if "TooManyRequests" in str(type(e)) or "429" in str(e) or hasattr(e, 'response') and getattr(e.response, 'status_code', None) == 429:
+                    if attempt < max_retries:
+                        # For daily rate limits, use longer delays (5 minutes)
+                        delay = 300  # 5 minutes - conservative for daily limits
+                        logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {delay} seconds before retry...")
+                        logger.warning("Daily rate limit is 17 requests per 24 hours - being conservative with retries")
+                        time.sleep(delay)
+                        continue
+                    else:
+                        logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
+                        logger.error("Daily rate limit reached (17 requests per 24 hours). Setting extended cooldown.")
+                        # Set progressive cooldown to prevent automation from hitting limits repeatedly
+                        self._set_rate_limit_cooldown()
+                        return None
                 logger.error(f"Error posting to Twitter (attempt {attempt + 1}): {str(e)}")
                 if attempt < max_retries:
                     # For other errors, shorter delay
@@ -373,13 +381,18 @@ class BitcoinMiningNewsBot:
             articles = self.fetch_bitcoin_mining_articles()
             
             if not articles:
-                logger.warning("No articles found from EventRegistry")
-                logger.warning("This could be due to:")
-                logger.warning("  1. Missing or invalid EVENTREGISTRY_API_KEY")
-                logger.warning("  2. API quota exceeded")
-                logger.warning("  3. No recent Bitcoin mining articles in the last 24 hours")
-                logger.warning("  4. EventRegistry service temporarily unavailable")
-                return
+                # Check if we have queued articles to post
+                if not self.posted_articles.get("queued_articles"):
+                    logger.warning("No articles found from EventRegistry and no queued articles available")
+                    logger.warning("This could be due to:")
+                    logger.warning("  1. Missing or invalid EVENTREGISTRY_API_KEY")
+                    logger.warning("  2. API quota exceeded")
+                    logger.warning("  3. No recent Bitcoin mining articles in the last 24 hours")
+                    logger.warning("  4. EventRegistry service temporarily unavailable")
+                    return
+                else:
+                    logger.info("No new articles found from EventRegistry, but queued articles available")
+                    articles = []  # Ensure articles is an empty list for processing
 
             logger.info(f"Found {len(articles)} total articles")
 
@@ -388,7 +401,7 @@ class BitcoinMiningNewsBot:
             rate_limited_count = 0
             already_posted_count = 0
 
-            # Filter out already posted articles and find the most recent unpublished one
+            # Filter out already posted articles
             new_articles = []
             for article in articles:
                 article_uri = article.get("uri")
@@ -405,54 +418,71 @@ class BitcoinMiningNewsBot:
                 
                 new_articles.append(article)
 
-            # Only process the most recent unpublished article, discard the rest
+            # Determine what article to post
+            article_to_post = None
+            
             if new_articles:
-                # Articles are already sorted by date (most recent first), so take the first one
-                most_recent_article = new_articles[0]
-                discarded_count = len(new_articles) - 1
+                # Process multiple new articles: post most recent, queue the rest
+                article_to_post = new_articles[0]  # Most recent
+                queued_count = len(new_articles) - 1
                 
-                if discarded_count > 0:
-                    logger.info(f"Found {len(new_articles)} new articles. Posting only the most recent one, discarding {discarded_count} older articles to prevent backlog buildup.")
-                    for i, discarded_article in enumerate(new_articles[1:], 1):
-                        logger.info(f"  Discarding #{i}: {discarded_article.get('title', 'Unknown')[:50]}...")
-                        # Mark discarded articles as posted to prevent them from being processed later
-                        discarded_uri = discarded_article.get("uri")
-                        if discarded_uri:
-                            self.posted_articles["posted_uris"].append(discarded_uri)
+                if queued_count > 0:
+                    logger.info(f"Found {len(new_articles)} new articles. Posting most recent, queueing {queued_count} older articles for later.")
+                    # Queue older articles instead of discarding them
+                    for i, article_to_queue in enumerate(new_articles[1:], 1):
+                        logger.info(f"  Queueing #{i}: {article_to_queue.get('title', 'Unknown')[:50]}...")
+                        self.posted_articles["queued_articles"].append(article_to_queue)
                 else:
                     logger.info(f"Found 1 new article to post.")
+                    
+            elif self.posted_articles.get("queued_articles"):
+                # No new articles, but we have queued ones - use oldest queued
+                article_to_post = self.posted_articles["queued_articles"].pop(0)
+                remaining_queued = len(self.posted_articles["queued_articles"])
+                logger.info(f"No new articles found. Posting from queue: {article_to_post.get('title', 'Unknown')[:50]}... ({remaining_queued} articles remain in queue)")
 
-                # Post to Twitter
-                tweet_id = self.post_to_twitter(most_recent_article)
+            # Post the selected article
+            if article_to_post:
+                tweet_id = self.post_to_twitter(article_to_post)
 
                 if tweet_id:
                     # Add to posted articles
-                    self.posted_articles["posted_uris"].append(most_recent_article.get("uri"))
+                    self.posted_articles["posted_uris"].append(article_to_post.get("uri"))
                     posted_count += 1
-                    logger.info(f"Posted article: {most_recent_article.get('title', 'Unknown')[:50]}...")
+                    logger.info(f"Posted article: {article_to_post.get('title', 'Unknown')[:50]}...")
                 else:
-                    # Check if it was rate limited or another error
+                    # If posting failed, put article back in queue if it was from queue
+                    if not new_articles and article_to_post:
+                        # This was from queue, put it back at the front
+                        self.posted_articles["queued_articles"].insert(0, article_to_post)
+                        logger.info(f"Returned failed article to front of queue")
                     rate_limited_count += 1
-                    logger.warning(f"Failed to post article (likely rate limited): {most_recent_article.get('title', 'Unknown')[:50]}...")
+                    logger.warning(f"Failed to post article (likely rate limited): {article_to_post.get('title', 'Unknown')[:50]}...")
 
             # Save the updated list of posted articles
             self._save_posted_articles()
 
             # Provide detailed summary
             total_new_articles = len(articles) - already_posted_count
+            queued_articles_count = len(self.posted_articles.get("queued_articles", []))
+            
             if posted_count == 0:
-                if total_new_articles == 0:
-                    logger.info("No new articles to post (all articles were already posted)")
+                if total_new_articles == 0 and queued_articles_count == 0:
+                    logger.info("No new articles to post (all articles were already posted and no queued articles available)")
+                elif total_new_articles == 0 and queued_articles_count > 0:
+                    logger.info(f"No new articles found but {queued_articles_count} articles remain in queue for future posting")
                 elif rate_limited_count > 0:
                     logger.warning(f"Found {total_new_articles} new articles but couldn't post any due to rate limiting or other errors")
                 else:
-                    logger.info("No new articles were successfully posted")
+                    logger.info("No articles were successfully posted")
             else:
-                discarded_count = total_new_articles - posted_count
-                if discarded_count > 0:
-                    logger.info(f"Successfully posted {posted_count} new article. Discarded {discarded_count} older articles to prevent backlog ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                queued_count = len(new_articles) - 1 if new_articles else 0
+                if queued_count > 0:
+                    logger.info(f"Successfully posted 1 article. Queued {queued_count} newer articles for later ({total_new_articles} new articles available, {already_posted_count} already posted, {queued_articles_count} total in queue)")
+                elif not new_articles:  # Posted from queue
+                    logger.info(f"Successfully posted 1 article from queue ({queued_articles_count} articles remain in queue)")
                 else:
-                    logger.info(f"Successfully posted {posted_count} new article ({total_new_articles} new articles available, {already_posted_count} already posted)")
+                    logger.info(f"Successfully posted 1 article ({total_new_articles} new articles available, {already_posted_count} already posted)")
 
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")

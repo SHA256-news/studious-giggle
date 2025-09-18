@@ -46,14 +46,14 @@ def mocked_dependencies(monkeypatch):
     monkeypatch.setattr("eventregistry.EventRegistry", mock.Mock(return_value=mock_er_client))
 
     # Ensure we start with a clean posted articles list
-    mock_open = mock.mock_open(read_data=json.dumps({"posted_uris": []}))
+    mock_open = mock.mock_open(read_data=json.dumps({"posted_uris": [], "queued_articles": []}))
 
     with mock.patch("builtins.open", mock_open):
         yield mock_twitter_client
 
 
-def test_bot_prioritizes_most_recent_and_discards_older_articles(mocked_dependencies):
-    """Test that when multiple new articles are available, only the most recent is posted and older ones are discarded"""
+def test_bot_prioritizes_most_recent_and_queues_older_articles(mocked_dependencies):
+    """Test that when multiple new articles are available, only the most recent is posted and older ones are queued"""
     mock_twitter_client = mocked_dependencies
 
     # Sample articles - first one is most recent
@@ -74,8 +74,8 @@ def test_bot_prioritizes_most_recent_and_discards_older_articles(mocked_dependen
     # Mock the fetch method to return our sample articles
     with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
         with mock.patch.object(bot, '_save_posted_articles'):
-            # Reset posted articles to empty
-            bot.posted_articles = {"posted_uris": []}
+            # Reset posted articles to empty with new structure
+            bot.posted_articles = {"posted_uris": [], "queued_articles": []}
             
             # Run the bot
             bot.run()
@@ -88,11 +88,15 @@ def test_bot_prioritizes_most_recent_and_discards_older_articles(mocked_dependen
             posted_text = first_call_args[1]['text']
             assert "Most Recent News" in posted_text
 
-            # Verify that all articles were marked as "posted" to prevent future processing
-            assert len(bot.posted_articles["posted_uris"]) == 3
+            # Verify that only the posted article is in posted_uris
+            assert len(bot.posted_articles["posted_uris"]) == 1
             assert "uri-1" in bot.posted_articles["posted_uris"]  # Actually posted
-            assert "uri-2" in bot.posted_articles["posted_uris"]  # Discarded but marked as posted  
-            assert "uri-3" in bot.posted_articles["posted_uris"]  # Discarded but marked as posted
+            
+            # Verify that older articles are queued instead of being marked as posted
+            assert len(bot.posted_articles["queued_articles"]) == 2
+            queued_uris = [article["uri"] for article in bot.posted_articles["queued_articles"]]
+            assert "uri-2" in queued_uris  # Queued for later
+            assert "uri-3" in queued_uris  # Queued for later
 
 
 def test_bot_works_normally_with_single_article(mocked_dependencies):
@@ -113,7 +117,7 @@ def test_bot_works_normally_with_single_article(mocked_dependencies):
     
     with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
         with mock.patch.object(bot, '_save_posted_articles'):
-            bot.posted_articles = {"posted_uris": []}
+            bot.posted_articles = {"posted_uris": [], "queued_articles": []}
             
             bot.run()
 
@@ -121,3 +125,111 @@ def test_bot_works_normally_with_single_article(mocked_dependencies):
             assert mock_twitter_client.create_tweet.call_count == 2  # Main tweet + reply
             assert len(bot.posted_articles["posted_uris"]) == 1
             assert bot.posted_articles["posted_uris"][0] == "uri-1"
+            assert len(bot.posted_articles["queued_articles"]) == 0  # No articles queued
+
+
+def test_bot_posts_from_queue_when_no_new_articles(mocked_dependencies):
+    """Test that bot posts from queue when no new articles are found"""
+    mock_twitter_client = mocked_dependencies
+
+    # No new articles fetched
+    sample_articles = []
+
+    # Mock successful Twitter posting
+    mock_tweet = mock.Mock()
+    mock_tweet.data = {"id": "tweet123"}
+    mock_twitter_client.create_tweet.return_value = mock_tweet
+
+    bot = BitcoinMiningNewsBot()
+    
+    # Set up queue with articles
+    queued_article = {"uri": "queued-uri-1", "title": "Queued Article", "url": "https://example.com/queued"}
+    bot.posted_articles = {
+        "posted_uris": [], 
+        "queued_articles": [
+            queued_article,
+            {"uri": "queued-uri-2", "title": "Another Queued Article", "url": "https://example.com/queued2"}
+        ]
+    }
+    
+    with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
+        with mock.patch.object(bot, '_save_posted_articles'):
+            bot.run()
+
+            # Should post from queue
+            assert mock_twitter_client.create_tweet.call_count == 2  # Main tweet + reply
+            assert len(bot.posted_articles["posted_uris"]) == 1
+            assert bot.posted_articles["posted_uris"][0] == "queued-uri-1"
+            assert len(bot.posted_articles["queued_articles"]) == 1  # One article remains in queue
+
+
+def test_bot_skips_when_no_new_articles_and_empty_queue(mocked_dependencies):
+    """Test that bot skips posting when no new articles and queue is empty"""
+    mock_twitter_client = mocked_dependencies
+
+    # No new articles fetched
+    sample_articles = []
+
+    bot = BitcoinMiningNewsBot()
+    
+    # Empty queue
+    bot.posted_articles = {"posted_uris": [], "queued_articles": []}
+    
+    with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
+        with mock.patch.object(bot, '_save_posted_articles'):
+            bot.run()
+
+            # Should not post anything
+            assert mock_twitter_client.create_tweet.call_count == 0
+            assert len(bot.posted_articles["posted_uris"]) == 0
+            assert len(bot.posted_articles["queued_articles"]) == 0
+
+
+def test_bot_returns_failed_queue_article_to_queue(mocked_dependencies):
+    """Test that failed articles from queue are returned to front of queue"""
+    mock_twitter_client = mocked_dependencies
+
+    # No new articles fetched
+    sample_articles = []
+
+    # Mock failed Twitter posting
+    mock_twitter_client.create_tweet.return_value = None  # Simulate failure
+
+    bot = BitcoinMiningNewsBot()
+    
+    # Set up queue with articles
+    queued_article = {"uri": "queued-uri-1", "title": "Queued Article", "url": "https://example.com/queued"}
+    bot.posted_articles = {
+        "posted_uris": [], 
+        "queued_articles": [
+            queued_article,
+            {"uri": "queued-uri-2", "title": "Another Queued Article", "url": "https://example.com/queued2"}
+        ]
+    }
+    
+    with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
+        with mock.patch.object(bot, '_save_posted_articles'):
+            bot.run()
+
+            # Should attempt to post but fail, returning article to queue
+            assert mock_twitter_client.create_tweet.call_count == 2  # 2 attempts (1 retry) per the bot logic
+            assert len(bot.posted_articles["posted_uris"]) == 0  # Nothing posted
+            assert len(bot.posted_articles["queued_articles"]) == 2  # Both articles still in queue
+            # Failed article should be back at front of queue
+            assert bot.posted_articles["queued_articles"][0] == queued_article
+
+
+def test_bot_handles_backward_compatibility(mocked_dependencies):
+    """Test that bot automatically upgrades old posted_articles.json format"""
+    mock_twitter_client = mocked_dependencies
+
+    # Create bot with a file that doesn't have queued_articles
+    old_format_data = {"posted_uris": ["old-uri-1"]}
+    
+    with mock.patch("builtins.open", mock.mock_open(read_data=json.dumps(old_format_data))):
+        bot = BitcoinMiningNewsBot()
+        
+        # Should auto-upgrade to include queued_articles
+        assert "queued_articles" in bot.posted_articles
+        assert bot.posted_articles["queued_articles"] == []
+        assert bot.posted_articles["posted_uris"] == ["old-uri-1"]
