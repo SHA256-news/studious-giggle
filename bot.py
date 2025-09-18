@@ -7,7 +7,6 @@ and posts them to Twitter/X as threaded tweets.
 
 import os
 import json
-import time
 import logging
 import random
 from datetime import datetime, timedelta
@@ -23,16 +22,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger('bitcoin_mining_bot')
 
+
 class BitcoinMiningNewsBot:
     def __init__(self):
         # Load API credentials
         self.twitter_client = self._init_twitter_client()
         self.er_client = self._init_eventregistry_client()
-        
+
         # Load history of posted articles
         self.posted_articles = self._load_posted_articles()
         logger.info(f"Loaded {len(self.posted_articles['posted_uris'])} previously posted articles")
-        
+
     def _init_twitter_client(self):
         """Initialize Twitter API client with OAuth 1.0a"""
         try:
@@ -77,11 +77,11 @@ class BitcoinMiningNewsBot:
         """Fetch latest articles about Bitcoin mining"""
         try:
             logger.info("Fetching Bitcoin mining articles...")
-            
+
             # Set time limit to recent articles (last 24 hours)
             current_date = datetime.now()
             yesterday = current_date - timedelta(days=1)
-            
+
             # Create a query for articles about Bitcoin mining
             q = QueryArticles(
                 keywords=QueryItems.OR(["Bitcoin mining", "crypto mining", "cryptocurrency mining"]),
@@ -95,7 +95,7 @@ class BitcoinMiningNewsBot:
                 dateStart=yesterday,
                 dateEnd=current_date
             )
-            
+
             # Request article information
             q.setRequestedResult(
                 RequestArticlesInfo(
@@ -116,10 +116,10 @@ class BitcoinMiningNewsBot:
                     )
                 )
             )
-            
+
             # Execute the query
             result = self.er_client.execQuery(q)
-            
+
             if "articles" in result and "results" in result["articles"]:
                 articles = result["articles"]["results"]
                 logger.info(f"Found {len(articles)} articles about Bitcoin mining")
@@ -127,7 +127,7 @@ class BitcoinMiningNewsBot:
             else:
                 logger.warning("No articles found or unexpected response format")
                 return []
-                
+
         except Exception as e:
             logger.error(f"Error fetching articles: {str(e)}")
             return []
@@ -138,10 +138,11 @@ class BitcoinMiningNewsBot:
             # Choose a catchy prefix
             prefixes = ["BREAKING: ", "JUST IN: ", "ALERT: ", "NEWS: ", "UPDATE: "]
             prefix = random.choice(prefixes)
-            
+
             # Create a summary (use article title if it's concise enough)
-            title = article.get("title", "").strip()
-            
+            title = article.get("title", "") or ""  # Handle None values
+            title = title.strip() if title else ""
+
             # Clean up and shorten the title if needed
             if len(title) <= 240:  # Leave some room for the prefix
                 summary = title
@@ -152,20 +153,21 @@ class BitcoinMiningNewsBot:
                     summary = title[:first_period+1]
                 else:
                     summary = title[:240] + "..."
-            
+
             # Create the tweet text with the prefix
             tweet_text = f"{prefix}{summary}"
-            
+
             # Truncate if too long for Twitter (280 character limit)
             if len(tweet_text) > 280:
                 tweet_text = tweet_text[:277] + "..."
-            
+
             return tweet_text
-            
+
         except Exception as e:
             logger.error(f"Error creating tweet text: {str(e)}")
-            # Return a fallback tweet text
-            return "New Bitcoin mining article: " + article.get("title", "")[:240]
+            # Return a fallback tweet text with proper None handling
+            fallback_title = article.get("title", "") or ""
+            return "New Bitcoin mining article: " + fallback_title[:240]
 
     def post_to_twitter(self, article):
         """Post article as a thread on Twitter"""
@@ -173,12 +175,12 @@ class BitcoinMiningNewsBot:
             # Create the first tweet with a catchy summary
             tweet_text = self.create_tweet_text(article)
             logger.info(f"Posting tweet: {tweet_text[:50]}...")
-            
+
             # Post the first tweet
             first_tweet = self.twitter_client.create_tweet(text=tweet_text)
             first_tweet_id = first_tweet.data["id"]
             logger.info(f"Posted first tweet with ID: {first_tweet_id}")
-            
+
             # Create the second tweet with the article link
             article_url = article.get("url", "")
             if article_url:
@@ -187,10 +189,11 @@ class BitcoinMiningNewsBot:
                     text=f"Read more: {article_url}",
                     reply={"in_reply_to_tweet_id": first_tweet_id}
                 )
-                logger.info(f"Posted second tweet (reply) with link to article")
-            
+                second_tweet_id = second_tweet.data["id"]
+                logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
+
             return first_tweet_id
-            
+
         except Exception as e:
             logger.error(f"Error posting to Twitter: {str(e)}")
             return None
@@ -199,42 +202,46 @@ class BitcoinMiningNewsBot:
         """Main function to run the bot"""
         try:
             logger.info("Starting Bitcoin Mining News Bot")
-            
+
             # Fetch recent Bitcoin mining articles
             articles = self.fetch_bitcoin_mining_articles()
-            
+
             # Track if we posted anything
             posted_count = 0
-            
+
             # Process each article
             for article in articles:
                 article_uri = article.get("uri")
-                
-                # Skip if we've already posted this article
-                if article_uri in self.posted_articles["posted_uris"]:
-                    logger.info(f"Skipping already posted article: {article.get('title')[:50]}...")
+
+                # Skip if article URI is None or already posted
+                if not article_uri:
+                    logger.warning("Skipping article with missing URI")
                     continue
-                
+
+                if article_uri in self.posted_articles["posted_uris"]:
+                    logger.info(f"Skipping already posted article: {article.get('title', 'Unknown')[:50]}...")
+                    continue
+
                 # Post to Twitter
                 tweet_id = self.post_to_twitter(article)
-                
+
                 if tweet_id:
                     # Add to posted articles
                     self.posted_articles["posted_uris"].append(article_uri)
                     posted_count += 1
-                    
+
                     # Only post one article per run to avoid flooding
-                    logger.info(f"Posted article: {article.get('title')[:50]}...")
+                    logger.info(f"Posted article: {article.get('title', 'Unknown')[:50]}...")
                     break
-            
+
             # Save the updated list of posted articles
             self._save_posted_articles()
-            
+
             if posted_count == 0:
                 logger.info("No new articles to post")
             else:
                 logger.info(f"Posted {posted_count} new articles")
-                
+
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")
 
