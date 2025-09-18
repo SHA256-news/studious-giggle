@@ -184,13 +184,17 @@ class BitcoinMiningNewsBot:
             # Create the second tweet with the article link
             article_url = article.get("url", "")
             if article_url:
-                # Post as a reply to create a thread
-                second_tweet = self.twitter_client.create_tweet(
-                    text=f"Read more: {article_url}",
-                    reply={"in_reply_to_tweet_id": first_tweet_id}
-                )
-                second_tweet_id = second_tweet.data["id"]
-                logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
+                try:
+                    # Post as a reply to create a thread
+                    second_tweet = self.twitter_client.create_tweet(
+                        text=f"Read more: {article_url}",
+                        reply={"in_reply_to_tweet_id": first_tweet_id}
+                    )
+                    second_tweet_id = second_tweet.data["id"]
+                    logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
+                except Exception as e:
+                    logger.error(f"Error posting second tweet: {str(e)}")
+                    logger.info("First tweet was successful, continuing...")
 
             return first_tweet_id
 
