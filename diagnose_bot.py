@@ -48,6 +48,44 @@ def check_environment_variables():
         logger.info("All required environment variables are set")
         return True
 
+def check_rate_limit_cooldown():
+    """Check if there's an active rate limit cooldown"""
+    logger.info("\n=== CHECKING RATE LIMIT STATUS ===")
+    
+    try:
+        with open("rate_limit_cooldown.json", "r") as f:
+            cooldown_data = json.load(f)
+            
+        cooldown_until = cooldown_data.get("cooldown_until")
+        if cooldown_until:
+            from datetime import datetime
+            cooldown_time = datetime.fromisoformat(cooldown_until.replace('Z', '+00:00'))
+            current_time = datetime.now(cooldown_time.tzinfo)
+            
+            if current_time < cooldown_time:
+                time_remaining = cooldown_time - current_time
+                hours = int(time_remaining.total_seconds() // 3600)
+                minutes = int((time_remaining.total_seconds() % 3600) // 60)
+                
+                logger.warning(f"⏰ ACTIVE RATE LIMIT COOLDOWN until {cooldown_until}")
+                logger.warning(f"   Time remaining: {hours}h {minutes}m")
+                logger.info("   This is why no tweets were posted despite a 'successful' run")
+                logger.info("   The bot correctly avoided violating Twitter's 17 requests/24h limit")
+                return True
+            else:
+                logger.info("✅ Rate limit cooldown has expired")
+                return False
+        else:
+            logger.info("✅ No active rate limit cooldown")
+            return False
+            
+    except FileNotFoundError:
+        logger.info("✅ No rate limit cooldown file found (no active cooldown)")
+        return False
+    except Exception as e:
+        logger.error(f"❌ Error checking rate limit cooldown: {str(e)}")
+        return False
+
 def check_posted_articles():
     """Check the posted articles file"""
     logger.info("\n=== CHECKING POSTED ARTICLES FILE ===")
@@ -230,11 +268,24 @@ def main():
     # Check environment
     env_ok = check_environment_variables()
     
+    # Check rate limit cooldown first (most common cause of "successful but no tweets")
+    rate_limited = check_rate_limit_cooldown()
+    
     # Check posted articles
     posted_articles = check_posted_articles()
     
-    # Only proceed with API tests if environment is set up
-    if env_ok:
+    # Determine root cause and provide appropriate messaging
+    if rate_limited:
+        logger.error("🔍 ROOT CAUSE: Active rate limit cooldown prevents posting")
+        logger.info("   The bot is working correctly by respecting Twitter's API limits")
+        logger.info("   Tweets will resume automatically when the cooldown expires")
+        if posted_articles and posted_articles.get("queued_articles"):
+            queued_count = len(posted_articles["queued_articles"])
+            logger.info(f"   {queued_count} articles are queued and will be posted after cooldown")
+    elif not env_ok:
+        logger.error("🔍 ROOT CAUSE: Missing environment variables prevent bot operation")
+    else:
+        # Only proceed with API tests if environment is set up and no active rate limit
         # Test connections
         twitter_ok = test_twitter_connection()
         eventregistry_ok = test_eventregistry_connection()
@@ -248,13 +299,23 @@ def main():
                 analyze_why_no_posts(articles, posted_articles)
         else:
             logger.error("🔍 ROOT CAUSE: API connection failures prevent posting")
-    else:
-        logger.error("🔍 ROOT CAUSE: Missing environment variables prevent bot operation")
     
     logger.info("\n" + "=" * 50)
     logger.info("✅ Diagnostics complete!")
     
-    if not env_ok:
+    # Provide solutions based on the root cause
+    if rate_limited:
+        logger.info("\n💡 EXPLANATION: Why no tweets were posted:")
+        logger.info("   - The GitHub Action ran successfully (no errors)")
+        logger.info("   - The bot found articles and tried to post them")
+        logger.info("   - Twitter's rate limit was reached (17 requests per 24 hours)")
+        logger.info("   - The bot entered cooldown to avoid violating Twitter's terms")
+        logger.info("   - This is normal and expected behavior for rate limiting")
+        logger.info("   - The bot will automatically resume posting when cooldown expires")
+        if not env_ok:
+            logger.info("\n⚠️  NOTE: API keys are also missing in this local environment")
+            logger.info("   However, they are configured in GitHub Actions (hence the successful runs)")
+    elif not env_ok:
         logger.info("\n💡 SOLUTION: Set up the required environment variables:")
         logger.info("   - TWITTER_API_KEY")
         logger.info("   - TWITTER_API_SECRET")
