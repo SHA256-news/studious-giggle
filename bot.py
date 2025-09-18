@@ -13,7 +13,7 @@ import random
 from datetime import datetime, timedelta
 
 import tweepy
-from eventregistry import *
+from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 
 # Configure logging
 logging.basicConfig(
@@ -78,6 +78,10 @@ class BitcoinMiningNewsBot:
         try:
             logger.info("Fetching Bitcoin mining articles...")
             
+            # Set time limit to recent articles (last 24 hours)
+            current_date = datetime.now()
+            yesterday = current_date - timedelta(days=1)
+            
             # Create a query for articles about Bitcoin mining
             q = QueryArticles(
                 keywords=QueryItems.OR(["Bitcoin mining", "crypto mining", "cryptocurrency mining"]),
@@ -87,13 +91,10 @@ class BitcoinMiningNewsBot:
                     self.er_client.getConceptUri("Cryptocurrency")
                 ]),
                 dataType=["news"],
-                lang="eng"
+                lang="eng",
+                dateStart=yesterday,
+                dateEnd=current_date
             )
-            
-            # Set time limit to recent articles (last 24 hours)
-            current_date = datetime.now()
-            yesterday = current_date - timedelta(days=1)
-            q.setDateLimit(yesterday, current_date)
             
             # Request article information
             q.setRequestedResult(
