@@ -25,7 +25,20 @@ logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class BitcoinMiningNewsBot:
-    def __init__(self):
+    def __init__(self, safe_mode=False):
+        """
+        Initialize the bot
+        
+        Args:
+            safe_mode (bool): If True, skip API initialization for diagnostics
+        """
+        if safe_mode:
+            logger.info("Running in safe mode - API clients not initialized")
+            self.twitter_client = None
+            self.er_client = None
+            self.posted_articles = self._load_posted_articles()
+            return
+            
         # Load API credentials
         self.twitter_client = self._init_twitter_client()
         self.er_client = self._init_eventregistry_client()
@@ -37,6 +50,15 @@ class BitcoinMiningNewsBot:
     def _init_twitter_client(self):
         """Initialize Twitter API client with OAuth 1.0a"""
         try:
+            # Check if all required environment variables are set
+            required_vars = ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", "TWITTER_ACCESS_TOKEN_SECRET"]
+            missing_vars = [var for var in required_vars if not os.environ.get(var)]
+            
+            if missing_vars:
+                logger.error(f"Missing required Twitter API environment variables: {missing_vars}")
+                logger.error("Please set these variables in your GitHub repository secrets or environment")
+                raise ValueError(f"Missing environment variables: {missing_vars}")
+            
             client = tweepy.Client(
                 consumer_key=os.environ.get("TWITTER_API_KEY"),
                 consumer_secret=os.environ.get("TWITTER_API_SECRET"),
@@ -52,7 +74,13 @@ class BitcoinMiningNewsBot:
     def _init_eventregistry_client(self):
         """Initialize EventRegistry API client"""
         try:
-            er = EventRegistry(apiKey=os.environ.get("EVENTREGISTRY_API_KEY"))
+            api_key = os.environ.get("EVENTREGISTRY_API_KEY")
+            if not api_key:
+                logger.error("Missing required EVENTREGISTRY_API_KEY environment variable")
+                logger.error("Please set this variable in your GitHub repository secrets or environment")
+                raise ValueError("Missing environment variable: EVENTREGISTRY_API_KEY")
+            
+            er = EventRegistry(apiKey=api_key)
             logger.info("EventRegistry client initialized successfully")
             return er
         except Exception as e:
@@ -127,10 +155,18 @@ class BitcoinMiningNewsBot:
                 return articles
             else:
                 logger.warning("No articles found or unexpected response format")
+                logger.debug(f"EventRegistry response: {result}")
                 return []
 
         except Exception as e:
-            logger.error(f"Error fetching articles: {str(e)}")
+            error_msg = str(e)
+            if "User is not logged in" in error_msg:
+                logger.error("EventRegistry authentication failed - check EVENTREGISTRY_API_KEY")
+                logger.error("The API key may be missing, invalid, or expired")
+            elif "quota" in error_msg.lower() or "limit" in error_msg.lower():
+                logger.error("EventRegistry API quota/rate limit exceeded")
+            else:
+                logger.error(f"Error fetching articles: {error_msg}")
             return []
 
     def create_tweet_text(self, article):
@@ -238,7 +274,12 @@ class BitcoinMiningNewsBot:
             articles = self.fetch_bitcoin_mining_articles()
             
             if not articles:
-                logger.info("No articles found from EventRegistry")
+                logger.warning("No articles found from EventRegistry")
+                logger.warning("This could be due to:")
+                logger.warning("  1. Missing or invalid EVENTREGISTRY_API_KEY")
+                logger.warning("  2. API quota exceeded")
+                logger.warning("  3. No recent Bitcoin mining articles in the last 24 hours")
+                logger.warning("  4. EventRegistry service temporarily unavailable")
                 return
 
             logger.info(f"Found {len(articles)} total articles")
@@ -298,5 +339,34 @@ class BitcoinMiningNewsBot:
 
 
 if __name__ == "__main__":
-    bot = BitcoinMiningNewsBot()
-    bot.run()
+    import sys
+    
+    # Check if running in diagnostic mode
+    if len(sys.argv) > 1 and sys.argv[1] == "--diagnose":
+        logger.info("Running diagnostics...")
+        from diagnose_bot import main as diagnose_main
+        diagnose_main()
+    else:
+        try:
+            bot = BitcoinMiningNewsBot()
+            bot.run()
+        except ValueError as e:
+            if "Missing environment variables" in str(e):
+                logger.error("\n" + "="*60)
+                logger.error("🚨 CONFIGURATION ERROR: Missing API Keys")
+                logger.error("="*60)
+                logger.error("The bot cannot run without the required API keys.")
+                logger.error("\nTo fix this issue:")
+                logger.error("1. Go to your GitHub repository settings")
+                logger.error("2. Navigate to Settings > Secrets and variables > Actions")
+                logger.error("3. Add the following repository secrets:")
+                logger.error("   • TWITTER_API_KEY")
+                logger.error("   • TWITTER_API_SECRET")
+                logger.error("   • TWITTER_ACCESS_TOKEN")
+                logger.error("   • TWITTER_ACCESS_TOKEN_SECRET")
+                logger.error("   • EVENTREGISTRY_API_KEY")
+                logger.error("\nFor detailed setup instructions, see the README.md file.")
+                logger.error("="*60)
+                sys.exit(1)
+            else:
+                raise
