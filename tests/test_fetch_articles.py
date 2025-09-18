@@ -42,7 +42,7 @@ def mocked_dependencies(monkeypatch):
     monkeypatch.setattr("eventregistry.EventRegistry", mock.Mock(return_value=mock_er_client))
 
     # Ensure we start with a clean posted articles list
-    mock_open = mock.mock_open(read_data=json.dumps({"posted_uris": []}))
+    mock_open = mock.mock_open(read_data=json.dumps({"posted_uris": [], "queued_articles": []}))
 
     with mock.patch("builtins.open", mock_open):
         yield mock_twitter_client
