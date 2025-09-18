@@ -51,9 +51,14 @@ python diagnose_bot.py
 
 ### 4. Rate Limiting
 
-**Message:** "Found X new articles but couldn't post any due to rate limiting"
+**Messages:** 
+- "Found X new articles but couldn't post any due to rate limiting"
+- "Rate limit cooldown active. Skipping run. X minutes remaining."
 
-**Fix:** Wait 15 minutes, the bot will retry automatically.
+**Fix:** 
+- The bot automatically retries with exponential backoff during a single run
+- If rate limiting persists, wait up to 1 hour for the cooldown period to end
+- The bot will automatically resume normal operation after the cooldown
 
 ## GitHub Actions Logs
 

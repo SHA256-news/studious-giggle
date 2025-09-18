@@ -32,6 +32,9 @@ class BitcoinMiningNewsBot:
         Args:
             safe_mode (bool): If True, skip API initialization for diagnostics
         """
+        # Define cooldown file path
+        self.rate_limit_cooldown_file = "rate_limit_cooldown.json"
+        
         if safe_mode:
             logger.info("Running in safe mode - API clients not initialized")
             self.twitter_client = None
@@ -101,6 +104,42 @@ class BitcoinMiningNewsBot:
         with open("posted_articles.json", "w") as f:
             json.dump(self.posted_articles, f, indent=2)
         logger.info(f"Saved {len(self.posted_articles['posted_uris'])} posted article URIs")
+
+    def _is_rate_limit_cooldown_active(self):
+        """Check if we're still in rate limit cooldown period"""
+        try:
+            with open(self.rate_limit_cooldown_file, "r") as f:
+                cooldown_data = json.load(f)
+                cooldown_timestamp = datetime.fromisoformat(cooldown_data["cooldown_until"])
+                
+                if datetime.now() < cooldown_timestamp:
+                    remaining_seconds = (cooldown_timestamp - datetime.now()).total_seconds()
+                    remaining_minutes = int(remaining_seconds / 60)
+                    logger.warning(f"Rate limit cooldown active. Skipping run. {remaining_minutes} minutes remaining.")
+                    return True
+                else:
+                    # Cooldown period has passed, remove the file
+                    os.remove(self.rate_limit_cooldown_file)
+                    logger.info("Rate limit cooldown period ended. Proceeding with normal operation.")
+                    return False
+        except (FileNotFoundError, json.JSONDecodeError, KeyError, ValueError):
+            # No cooldown file or invalid format - proceed normally
+            return False
+    
+    def _set_rate_limit_cooldown(self):
+        """Set a 1-hour cooldown period due to rate limiting"""
+        cooldown_until = datetime.now() + timedelta(hours=1)
+        cooldown_data = {
+            "cooldown_until": cooldown_until.isoformat(),
+            "reason": "Twitter API rate limit exceeded",
+            "created_at": datetime.now().isoformat()
+        }
+        
+        with open(self.rate_limit_cooldown_file, "w") as f:
+            json.dump(cooldown_data, f, indent=2)
+        
+        logger.warning(f"Rate limit cooldown set. Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.warning("This prevents the automation from running again for 1 hour as required.")
 
     def fetch_bitcoin_mining_articles(self, max_articles=10):
         """Fetch latest articles about Bitcoin mining"""
@@ -250,6 +289,8 @@ class BitcoinMiningNewsBot:
                     continue
                 else:
                     logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
+                    # Set cooldown to prevent automation from running again for 1 hour
+                    self._set_rate_limit_cooldown()
                     return None
             except Exception as e:
                 logger.error(f"Error posting to Twitter (attempt {attempt + 1}): {str(e)}")
@@ -269,6 +310,10 @@ class BitcoinMiningNewsBot:
         """Main function to run the bot"""
         try:
             logger.info("Starting Bitcoin Mining News Bot")
+
+            # Check if we're in rate limit cooldown period
+            if self._is_rate_limit_cooldown_active():
+                return
 
             # Fetch recent Bitcoin mining articles
             articles = self.fetch_bitcoin_mining_articles()

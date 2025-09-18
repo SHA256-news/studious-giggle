@@ -29,6 +29,7 @@ This bot automatically tweets about the latest Bitcoin mining news every 15 minu
 The bot includes robust handling for Twitter API rate limits:
 
 - **Exponential backoff retry**: Automatically retries failed tweets with increasing delays (1min, 2min, 4min)
+- **1-hour automation cooldown**: If rate limiting persists after all retries, the bot prevents automation runs for 1 hour
 - **Graceful degradation**: If the second tweet (with link) fails, the first tweet is still considered successful
 - **Clear logging**: Distinguishes between "no new articles" and "rate limited" scenarios
 - **Smart reporting**: Provides detailed information about why posting succeeded or failed
@@ -79,10 +80,12 @@ This is normal behavior! The bot only posts each article once and tracks what's 
 **Symptoms:**
 - Message: "Found X new articles but couldn't post any due to rate limiting"
 - Error: "429 Too Many Requests"
+- Message: "Rate limit cooldown active. Skipping run. X minutes remaining."
 
 **Solution:**
-- Wait for the rate limit to reset (usually 15 minutes)
-- The bot automatically retries with exponential backoff
+- The bot automatically retries with exponential backoff during a single run
+- If rate limiting persists, the bot sets a 1-hour cooldown to prevent further automation runs
+- Wait for the cooldown period to end (up to 1 hour) before the bot resumes normal operation
 
 #### 5. Twitter API Issues
 **Symptoms:**
