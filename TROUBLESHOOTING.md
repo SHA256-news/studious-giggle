@@ -53,12 +53,14 @@ python diagnose_bot.py
 
 **Messages:** 
 - "Found X new articles but couldn't post any due to rate limiting"
-- "Rate limit cooldown active. Skipping run. X minutes remaining."
+- "Rate limit cooldown active. Skipping run. X hours Y minutes remaining."
 
 **Fix:** 
-- The bot automatically retries with exponential backoff during a single run
-- If rate limiting persists, wait up to 1 hour for the cooldown period to end
-- The bot will automatically resume normal operation after the cooldown
+- The bot automatically handles Twitter's 17 requests per 24 hours limit
+- Uses progressive cooldowns (2h → 4h → 8h → 24h) when rate limited
+- Runs every 90 minutes maximum to stay within daily limits
+- Wait for the cooldown period to end - the bot will automatically resume
+- Rate limits reset every 24 hours
 
 ## GitHub Actions Logs
 

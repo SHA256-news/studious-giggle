@@ -114,8 +114,16 @@ class BitcoinMiningNewsBot:
                 
                 if datetime.now() < cooldown_timestamp:
                     remaining_seconds = (cooldown_timestamp - datetime.now()).total_seconds()
-                    remaining_minutes = int(remaining_seconds / 60)
-                    logger.warning(f"Rate limit cooldown active. Skipping run. {remaining_minutes} minutes remaining.")
+                    remaining_hours = int(remaining_seconds / 3600)
+                    remaining_minutes = int((remaining_seconds % 3600) / 60)
+                    
+                    duration_hours = cooldown_data.get("duration_hours", "unknown")
+                    progressive_count = cooldown_data.get("progressive_count", 1)
+                    
+                    if remaining_hours > 0:
+                        logger.warning(f"Rate limit cooldown active ({duration_hours}h period, attempt #{progressive_count}). Skipping run. {remaining_hours}h {remaining_minutes}m remaining.")
+                    else:
+                        logger.warning(f"Rate limit cooldown active ({duration_hours}h period, attempt #{progressive_count}). Skipping run. {remaining_minutes} minutes remaining.")
                     return True
                 else:
                     # Cooldown period has passed, remove the file
@@ -127,19 +135,63 @@ class BitcoinMiningNewsBot:
             return False
     
     def _set_rate_limit_cooldown(self):
-        """Set a 1-hour cooldown period due to rate limiting"""
-        cooldown_until = datetime.now() + timedelta(hours=1)
+        """Set a progressive cooldown period due to rate limiting"""
+        # Check if there's an existing cooldown to implement progressive delays
+        existing_cooldown = self._get_existing_cooldown_data()
+        
+        if existing_cooldown:
+            # Progressive cooldown: 2h -> 4h -> 8h -> 24h
+            previous_duration = self._get_cooldown_duration_hours(existing_cooldown)
+            if previous_duration >= 24:
+                cooldown_hours = 24  # Max 24 hours
+            elif previous_duration >= 8:
+                cooldown_hours = 24
+            elif previous_duration >= 4:
+                cooldown_hours = 8
+            elif previous_duration >= 2:
+                cooldown_hours = 4
+            else:
+                cooldown_hours = 4  # Start with 4 hours for daily rate limits
+        else:
+            # First rate limit hit - use 2 hours for daily rate limits
+            cooldown_hours = 2
+        
+        cooldown_until = datetime.now() + timedelta(hours=cooldown_hours)
         cooldown_data = {
             "cooldown_until": cooldown_until.isoformat(),
-            "reason": "Twitter API rate limit exceeded",
-            "created_at": datetime.now().isoformat()
+            "reason": "Twitter API daily rate limit exceeded (17 requests/24h)",
+            "created_at": datetime.now().isoformat(),
+            "duration_hours": cooldown_hours,
+            "progressive_count": (existing_cooldown.get("progressive_count", 0) if existing_cooldown else 0) + 1
         }
         
         with open(self.rate_limit_cooldown_file, "w") as f:
             json.dump(cooldown_data, f, indent=2)
         
-        logger.warning(f"Rate limit cooldown set. Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.warning("This prevents the automation from running again for 1 hour as required.")
+        logger.warning(f"Rate limit cooldown set for {cooldown_hours} hours. Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.warning(f"This prevents automation from running due to Twitter's 17 requests per 24 hours limit.")
+    
+    def _get_existing_cooldown_data(self):
+        """Get existing cooldown data if present"""
+        try:
+            with open(self.rate_limit_cooldown_file, "r") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return None
+    
+    def _get_cooldown_duration_hours(self, cooldown_data):
+        """Extract cooldown duration from existing data"""
+        if "duration_hours" in cooldown_data:
+            return cooldown_data["duration_hours"]
+        
+        # Fallback: calculate from timestamps
+        try:
+            created = datetime.fromisoformat(cooldown_data["created_at"])
+            cooldown_until = datetime.fromisoformat(cooldown_data["cooldown_until"])
+            duration = cooldown_until - created
+            return duration.total_seconds() / 3600
+        except (KeyError, ValueError):
+            return 1  # Default fallback
 
     def fetch_bitcoin_mining_articles(self, max_articles=10):
         """Fetch latest articles about Bitcoin mining"""
@@ -247,10 +299,10 @@ class BitcoinMiningNewsBot:
 
     def post_to_twitter(self, article):
         """Post article as a thread on Twitter"""
-        return self._post_with_retry(article, max_retries=3)
+        return self._post_with_retry(article, max_retries=1)  # Reduced retries for daily rate limits
         
-    def _post_with_retry(self, article, max_retries=3):
-        """Post to Twitter with exponential backoff retry logic for rate limits"""
+    def _post_with_retry(self, article, max_retries=1):
+        """Post to Twitter with conservative retry logic for daily rate limits"""
         for attempt in range(max_retries + 1):
             try:
                 # Create the first tweet with a catchy summary
@@ -282,21 +334,23 @@ class BitcoinMiningNewsBot:
 
             except tweepy.TooManyRequests as e:
                 if attempt < max_retries:
-                    # Calculate exponential backoff delay
-                    delay = (2 ** attempt) * 60  # 1 min, 2 min, 4 min
+                    # For daily rate limits, use longer delays (5 minutes)
+                    delay = 300  # 5 minutes - conservative for daily limits
                     logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {delay} seconds before retry...")
+                    logger.warning("Daily rate limit is 17 requests per 24 hours - being conservative with retries")
                     time.sleep(delay)
                     continue
                 else:
                     logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
-                    # Set cooldown to prevent automation from running again for 1 hour
+                    logger.error("Daily rate limit reached (17 requests per 24 hours). Setting extended cooldown.")
+                    # Set progressive cooldown to prevent automation from hitting limits repeatedly
                     self._set_rate_limit_cooldown()
                     return None
             except Exception as e:
                 logger.error(f"Error posting to Twitter (attempt {attempt + 1}): {str(e)}")
                 if attempt < max_retries:
                     # For other errors, shorter delay
-                    delay = 30 * (attempt + 1)  # 30s, 60s, 90s
+                    delay = 60  # 1 minute for non-rate-limit errors
                     logger.info(f"Retrying in {delay} seconds...")
                     time.sleep(delay)
                     continue
