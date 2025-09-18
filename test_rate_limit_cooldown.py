@@ -95,23 +95,26 @@ def test_rate_limit_integration():
                 with open("posted_articles.json", "w") as f:
                     json.dump({"posted_uris": []}, f)
                 
-                # Mock Twitter client to always raise TooManyRequests
+                # Mock Twitter client to simulate rate limiting properly
                 mock_twitter_client = mock.Mock()
-                mock_twitter_client.create_tweet.side_effect = mock.Mock(side_effect=Exception("TooManyRequests"))
                 
                 with mock.patch('tweepy.Client', return_value=mock_twitter_client), \
-                     mock.patch('eventregistry.EventRegistry'), \
-                     mock.patch('tweepy.TooManyRequests', Exception):  # Make TooManyRequests an Exception for testing
+                     mock.patch('eventregistry.EventRegistry'):
                     
                     from bot import BitcoinMiningNewsBot
+                    
                     bot = BitcoinMiningNewsBot()
                     
-                    # Override the TooManyRequests exception to simulate rate limiting
-                    import tweepy
-                    original_create_tweet = bot.twitter_client.create_tweet
+                    # Create a custom exception that will be detected as rate limiting
+                    class MockTooManyRequests(Exception):
+                        def __init__(self, message="TooManyRequests"):
+                            super().__init__(message)
+                            self.response = mock.Mock()
+                            self.response.status_code = 429
                     
+                    # Set up rate limit exception mock
                     def mock_create_tweet_rate_limited(*args, **kwargs):
-                        raise tweepy.TooManyRequests(response=mock.Mock(), api_errors=[])
+                        raise MockTooManyRequests("TooManyRequests")
                     
                     bot.twitter_client.create_tweet = mock_create_tweet_rate_limited
                     
