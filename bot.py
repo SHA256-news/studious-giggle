@@ -28,6 +28,7 @@ class InvalidTweetResponse(Exception):
     """Raised when the Twitter client returns an unexpected response."""
 
 from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
+from crypto_filter import filter_bitcoin_only_articles
 
 # Configure logging
 logging.basicConfig(
@@ -223,13 +224,20 @@ class BitcoinMiningNewsBot:
             current_date = datetime.now()
             yesterday = current_date - timedelta(days=1)
 
-            # Create a query for articles about Bitcoin mining
+            # Create a query for articles about Bitcoin mining ONLY
+            # Use specific Bitcoin-focused keywords to avoid general crypto content
             q = QueryArticles(
-                keywords=QueryItems.OR(["Bitcoin mining", "crypto mining", "cryptocurrency mining"]),
-                conceptUri=QueryItems.OR([
+                keywords=QueryItems.OR([
+                    "Bitcoin mining", 
+                    "BTC mining", 
+                    "Bitcoin miner", 
+                    "Bitcoin miners",
+                    "Bitcoin hashrate",
+                    "Bitcoin difficulty"
+                ]),
+                conceptUri=QueryItems.AND([
                     self.er_client.getConceptUri("Bitcoin"),
-                    self.er_client.getConceptUri("Mining"),
-                    self.er_client.getConceptUri("Cryptocurrency")
+                    self.er_client.getConceptUri("Mining")
                 ]),
                 dataType=["news"],
                 lang="eng",
@@ -262,9 +270,18 @@ class BitcoinMiningNewsBot:
             result = self.er_client.execQuery(q)
 
             if "articles" in result and "results" in result["articles"]:
-                articles = result["articles"]["results"]
-                logger.info(f"Found {len(articles)} articles about Bitcoin mining")
-                return articles
+                raw_articles = result["articles"]["results"]
+                logger.info(f"Found {len(raw_articles)} initial articles about Bitcoin mining")
+                
+                # Filter out articles mentioning other cryptocurrencies
+                filtered_articles, excluded_count, excluded_details = filter_bitcoin_only_articles(raw_articles)
+                
+                if excluded_count > 0:
+                    logger.info(f"Filtered out {excluded_count} articles mentioning non-Bitcoin cryptocurrencies")
+                    logger.debug(f"Excluded articles: {[detail['title'] for detail in excluded_details[:3]]}")
+                
+                logger.info(f"Final count: {len(filtered_articles)} Bitcoin-only mining articles")
+                return filtered_articles
             else:
                 logger.warning("No articles found or unexpected response format")
                 logger.debug(f"EventRegistry response: {result}")
