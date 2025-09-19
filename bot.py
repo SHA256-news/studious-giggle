@@ -70,6 +70,23 @@ class BitcoinMiningNewsBot:
     def _save_posted_articles(self) -> None:
         """Save the list of posted article URIs and queued articles (backward compatibility)"""
         FileManager.save_posted_articles(self.posted_articles)
+    
+    def _set_rate_limit_cooldown(self) -> None:
+        """Set a simple cooldown period due to rate limiting (backward compatibility)"""
+        cooldown_data = TimeUtils.create_rate_limit_cooldown()
+        FileManager.save_rate_limit_cooldown(cooldown_data)
+    
+    def _is_rate_limit_cooldown_active(self) -> bool:
+        """Check if we're still in rate limit cooldown period (backward compatibility)"""
+        cooldown_data = FileManager.load_rate_limit_cooldown()
+        return TimeUtils.is_rate_limit_cooldown_active(cooldown_data)
+    
+    @property
+    def twitter_client(self):
+        """Get Twitter client for backward compatibility with tests"""
+        if self.tweet_poster and hasattr(self.tweet_poster, 'twitter_client'):
+            return self.tweet_poster.twitter_client.client
+        return None
 
     def _post_article(self, article: Dict[str, Any]) -> bool:
         """Post a single article and update posted articles list"""
@@ -110,11 +127,29 @@ class BitcoinMiningNewsBot:
                 return
 
             # Fetch articles
-            eventregistry_client = self.api_manager.get_eventregistry_client()
-            articles = eventregistry_client.fetch_bitcoin_mining_articles()
+            articles = self.fetch_bitcoin_mining_articles()
 
             if not articles:
                 logger.warning("No articles found from EventRegistry")
+                # Even if no new articles, check queue for pending articles
+                queued_articles = self.posted_articles.get("queued_articles", [])
+                if queued_articles:
+                    logger.info(f"No new articles found. Processing {len(queued_articles)} queued articles...")
+                    # Take the oldest queued article (FIFO)
+                    article_to_post = queued_articles.pop(0)
+                    # Save updated queue
+                    FileManager.save_posted_articles(self.posted_articles)
+                    # Try to post it
+                    success = self._post_article(article_to_post)
+                    if success:
+                        logger.info("Successfully posted 1 queued article")
+                    else:
+                        # Return article to queue if posting failed
+                        queued_articles.insert(0, article_to_post)
+                        FileManager.save_posted_articles(self.posted_articles)
+                        logger.info("Returned failed article to queue")
+                else:
+                    logger.info("No new articles to post (all articles were already posted)")
                 return
 
             logger.info(f"Found {len(articles)} total articles")

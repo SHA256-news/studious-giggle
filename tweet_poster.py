@@ -108,7 +108,12 @@ class TweetPoster:
 
             except InvalidTweetResponse as invalid_response:
                 logger.error(f"Invalid Twitter API response on attempt {attempt + 1}: {invalid_response}")
-                return None
+                if attempt < max_retries:
+                    logger.info("Retrying immediately due to invalid response...")
+                    continue
+                else:
+                    logger.error(f"Failed to post after {max_retries + 1} attempts due to invalid response")
+                    return None
 
             except TweepyTooManyRequests as rate_limit_error:
                 if attempt < max_retries:
@@ -119,6 +124,10 @@ class TweetPoster:
                 else:
                     logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
                     logger.error(f"Daily rate limit reached ({BotConstants.DAILY_REQUEST_LIMIT} requests per 24 hours). Setting extended cooldown.")
+                    # Set rate limit cooldown
+                    from utils import TimeUtils, FileManager
+                    cooldown_data = TimeUtils.create_rate_limit_cooldown()
+                    FileManager.save_rate_limit_cooldown(cooldown_data)
                     return None
 
             except Exception as e:
