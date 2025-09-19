@@ -22,6 +22,9 @@ except (ImportError, AttributeError):
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args)
+            # Store additional attributes for compatibility
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
 
 class InvalidTweetResponse(Exception):
@@ -558,9 +561,15 @@ class BitcoinMiningNewsBot:
                 if queued_count > 0:
                     logger.info(f"Found {len(new_articles)} new articles. Posting most recent, queueing {queued_count} older articles for later.")
                     # Queue older articles instead of discarding them
+                    existing_queue_uris = {article.get("uri") for article in self.posted_articles["queued_articles"] if article.get("uri")}
                     for i, article_to_queue in enumerate(new_articles[1:], 1):
-                        logger.info(f"  Queueing #{i}: {article_to_queue.get('title', 'Unknown')[:50]}...")
-                        self.posted_articles["queued_articles"].append(article_to_queue)
+                        article_uri = article_to_queue.get("uri")
+                        if article_uri and article_uri not in existing_queue_uris:
+                            logger.info(f"  Queueing #{i}: {article_to_queue.get('title', 'Unknown')[:50]}...")
+                            self.posted_articles["queued_articles"].append(article_to_queue)
+                            existing_queue_uris.add(article_uri)
+                        else:
+                            logger.info(f"  Skipping duplicate in queue #{i}: {article_to_queue.get('title', 'Unknown')[:50]}...")
                 else:
                     logger.info(f"Found 1 new article to post.")
                     

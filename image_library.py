@@ -67,12 +67,8 @@ class ImageLibrary:
                         "description": "Official Bitcoin logo",
                         "local_path": None
                     },
-                    {
-                        "name": "mining_concept",
-                        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Bitcoin_mining_farm.jpg/320px-Bitcoin_mining_farm.jpg",
-                        "description": "Bitcoin mining farm concept",
-                        "local_path": None
-                    }
+                    # Note: Mining farm image removed due to broken URL
+                    # System will fallback to Bitcoin logo when mining images are needed
                 ]
             }
             self._save_library_config(default_config)
