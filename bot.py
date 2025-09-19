@@ -21,8 +21,16 @@ except (ImportError, AttributeError):
         """Fallback TooManyRequests when tweepy is fully mocked in tests."""
 
         def __init__(self, *args, **kwargs):
+            # Extract known attributes before calling super()
+            response = kwargs.pop('response', None)
+            api_errors = kwargs.pop('api_errors', None)
+            
+            # Call super with only positional args (avoid kwargs issue)
             super().__init__(*args)
+            
             # Store additional attributes for compatibility
+            self.response = response
+            self.api_errors = api_errors
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
@@ -415,7 +423,16 @@ class BitcoinMiningNewsBot:
                 return None
             except Exception as e:
                 # Check if this is a rate limit error (either tweepy.TooManyRequests or similar)
-                if "TooManyRequests" in str(type(e)) or "429" in str(e) or hasattr(e, 'response') and getattr(e.response, 'status_code', None) == 429:
+                is_rate_limit_error = (
+                    "TooManyRequests" in str(type(e)) or 
+                    "429" in str(e) or 
+                    (hasattr(e, 'response') and getattr(e.response, 'status_code', None) == 429) or
+                    isinstance(e, TweepyTooManyRequests) or
+                    # Handle mock exceptions that might contain TooManyRequests in their string representation
+                    ("TooManyRequests" in str(e))
+                )
+                
+                if is_rate_limit_error:
                     if attempt < max_retries:
                         # For daily rate limits, use longer delays (5 minutes)
                         delay = 300  # 5 minutes - conservative for daily limits

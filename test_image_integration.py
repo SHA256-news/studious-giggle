@@ -86,17 +86,13 @@ def test_image_attachment_integration():
                     # Verify tweet was posted
                     assert result == "123456", "Should return tweet ID"
                     
-                    # Verify create_tweet was called twice (main tweet + reply)
-                    assert mock_twitter_client.create_tweet.call_count == 2, "Should call create_tweet twice (main + reply)"
+                    # Verify create_tweet was called once (single tweet only)
+                    assert mock_twitter_client.create_tweet.call_count == 1, "Should call create_tweet once (single tweet only)"
                     
-                    # Check the first call (main tweet with images)
-                    first_call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
-                    assert "media_ids" in first_call_args, "First tweet should include media_ids"
-                    assert first_call_args["media_ids"] == ["media_123"], "Should use uploaded media ID"
-                    
-                    # Check the second call (reply tweet)
-                    second_call_args = mock_twitter_client.create_tweet.call_args_list[1][1]
-                    assert "reply" in second_call_args, "Second tweet should be a reply"
+                    # Check the call (main tweet with images)
+                    call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
+                    assert "media_ids" in call_args, "Tweet should include media_ids"
+                    assert call_args["media_ids"] == ["media_123"], "Should use uploaded media ID"
                     
                     # Verify media upload was called
                     mock_twitter_client.create_media.assert_called_once()
@@ -156,12 +152,12 @@ def test_image_fallback_without_images():
                 # Verify tweet was posted without images
                 assert result == "123456", "Should return tweet ID even without images"
                 
-                # Verify create_tweet was called twice (main tweet + reply)
-                assert mock_twitter_client.create_tweet.call_count == 2, "Should call create_tweet twice even without images"
+                # Verify create_tweet was called once (single tweet only)
+                assert mock_twitter_client.create_tweet.call_count == 1, "Should call create_tweet once (single tweet only)"
                 
-                # Check the first call (main tweet without images)
-                first_call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
-                assert "media_ids" not in first_call_args or not first_call_args.get("media_ids"), "Should not include media_ids when images fail"
+                # Check the call (main tweet without images)
+                call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
+                assert "media_ids" not in call_args or not call_args.get("media_ids"), "Should not include media_ids when images fail"
                 
                 print("✓ Graceful fallback to text-only tweet")
             

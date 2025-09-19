@@ -97,23 +97,25 @@ def test_rate_limit_integration():
                 
                 # Mock Twitter client to always raise TooManyRequests
                 mock_twitter_client = mock.Mock()
-                mock_twitter_client.create_tweet.side_effect = mock.Mock(side_effect=Exception("TooManyRequests"))
+                
+                # Create a proper TooManyRequests-like exception for testing
+                class MockTooManyRequests(Exception):
+                    def __init__(self, *args, **kwargs):
+                        super().__init__(*args)
+                        self.response = kwargs.get('response')
+                        self.api_errors = kwargs.get('api_errors', [])
+                
+                def mock_create_tweet_rate_limited(*args, **kwargs):
+                    raise MockTooManyRequests("TooManyRequests", response=mock.Mock(), api_errors=[])
+                
+                mock_twitter_client.create_tweet.side_effect = mock_create_tweet_rate_limited
                 
                 with mock.patch('tweepy.Client', return_value=mock_twitter_client), \
                      mock.patch('eventregistry.EventRegistry'), \
-                     mock.patch('tweepy.TooManyRequests', Exception):  # Make TooManyRequests an Exception for testing
+                     mock.patch('tweepy.TooManyRequests', MockTooManyRequests):  # Use our mock class
                     
                     from bot import BitcoinMiningNewsBot
                     bot = BitcoinMiningNewsBot()
-                    
-                    # Override the TooManyRequests exception to simulate rate limiting
-                    import tweepy
-                    original_create_tweet = bot.twitter_client.create_tweet
-                    
-                    def mock_create_tweet_rate_limited(*args, **kwargs):
-                        raise tweepy.TooManyRequests(response=mock.Mock(), api_errors=[])
-                    
-                    bot.twitter_client.create_tweet = mock_create_tweet_rate_limited
                     
                     # Test article
                     test_article = {
