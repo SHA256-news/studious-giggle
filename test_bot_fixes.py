@@ -161,9 +161,9 @@ def test_second_tweet_failure():
                     return False
 
 
-def test_both_tweets_success():
-    """Test that when both tweets succeed, everything works correctly"""
-    print("Testing successful thread posting...")
+def test_single_tweet_success():
+    """Test that single tweet posting works correctly"""
+    print("Testing successful single tweet posting...")
     
     with mock.patch.dict(os.environ, {
         'TWITTER_API_KEY': 'test_key',
@@ -180,16 +180,11 @@ def test_both_tweets_success():
             # Mock Twitter client
             mock_twitter_client = mock.Mock()
             
-            # Mock successful tweets
-            first_tweet_response = mock.Mock()
-            first_tweet_response.data = {"id": "12345"}
-            second_tweet_response = mock.Mock()
-            second_tweet_response.data = {"id": "67890"}
+            # Mock successful tweet
+            tweet_response = mock.Mock()
+            tweet_response.data = {"id": "12345"}
             
-            mock_twitter_client.create_tweet.side_effect = [
-                first_tweet_response,  # First tweet succeeds
-                second_tweet_response  # Second tweet succeeds
-            ]
+            mock_twitter_client.create_tweet.return_value = tweet_response
             
             with mock.patch('tweepy.Client', return_value=mock_twitter_client):
                 bot = BitcoinMiningNewsBot()
@@ -203,16 +198,14 @@ def test_both_tweets_success():
                 result = bot.post_to_twitter(article)
                 
                 if result == "12345":
-                    print("✓ Both tweets posted successfully, first tweet ID returned")
+                    print("✓ Single tweet posted successfully, tweet ID returned")
                     
-                    # Verify that create_tweet was called twice
-                    assert mock_twitter_client.create_tweet.call_count == 2
+                    # Verify that create_tweet was called once
+                    assert mock_twitter_client.create_tweet.call_count == 1
                     
-                    # Verify the calls were made correctly
-                    calls = mock_twitter_client.create_tweet.call_args_list
-                    assert "Test Bitcoin Mining Article" in calls[0][1]['text']
-                    assert "Read more: https://example.com/article" in calls[1][1]['text']
-                    assert calls[1][1]['reply']['in_reply_to_tweet_id'] == "12345"
+                    # Verify the call was made correctly
+                    call = mock_twitter_client.create_tweet.call_args_list[0]
+                    assert "Test Bitcoin Mining Article" in call[1]['text']
                     
                     return True
                 else:
@@ -221,7 +214,7 @@ def test_both_tweets_success():
 
 
 def test_no_url_article():
-    """Test that articles without URLs still work (only first tweet posted)"""
+    """Test that articles without URLs still work (single tweet posted)"""
     print("Testing article without URL...")
     
     with mock.patch.dict(os.environ, {
@@ -256,7 +249,7 @@ def test_no_url_article():
                 result = bot.post_to_twitter(article)
                 
                 if result == "12345":
-                    print("✓ Article without URL handled correctly, only first tweet posted")
+                    print("✓ Article without URL handled correctly, single tweet posted")
                     
                     # Verify that create_tweet was called only once
                     assert mock_twitter_client.create_tweet.call_count == 1
@@ -273,7 +266,7 @@ if __name__ == "__main__":
     success &= test_uri_validation()
     success &= test_tweet_length()
     success &= test_second_tweet_failure()
-    success &= test_both_tweets_success()
+    success &= test_single_tweet_success()
     success &= test_no_url_article()
     
     if success:

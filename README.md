@@ -1,27 +1,23 @@
 # Bitcoin Mining News Twitter Bot
 
-This bot automatically tweets about the latest Bitcoin mining news every 15 minutes. It creates a thread for each article with:
-1. First tweet: A catchy headline and summary
-2. Second tweet: A link to the full article
+This bot automatically tweets about the latest Bitcoin mining news every 90 minutes. It posts single tweets with catchy headlines.
 
 ## Features
 
 - Automatically fetches news about Bitcoin mining from EventRegistry (NewsAPI.ai)
 - Posts tweets with catchy prefixes like "BREAKING:" or "JUST IN:"
-- Creates tweet threads with the article link
-- Runs every 15 minutes via GitHub Actions
+- Posts single tweets with headlines (no links)
+- Runs every 90 minutes via GitHub Actions
 - Tracks posted articles to avoid duplicates
 - **Smart rate limiting handling** with exponential backoff retry logic
 - **Improved error reporting** to distinguish between different failure types
 
 ## How It Works
 
-1. The bot runs every 15 minutes via GitHub Actions
+1. The bot runs every 90 minutes via GitHub Actions
 2. It connects to EventRegistry API to find new articles about Bitcoin mining
 3. It filters out articles that have already been posted
-4. For each new article, it creates a tweet thread:
-   - First tweet: Catchy headline and summary
-   - Second tweet: Link to the full article
+4. For each new article, it posts a single tweet with a catchy headline
 5. It updates the tracking file to avoid posting duplicates
 
 ## Rate Limiting & Error Handling
@@ -31,7 +27,6 @@ The bot includes robust handling for Twitter API daily rate limits (17 requests 
 - **Conservative scheduling**: Runs every 90 minutes (16 times max per day) to stay under limits
 - **Progressive cooldowns**: 2h → 4h → 8h → 24h cooldowns when rate limited
 - **Single retry policy**: Uses 1 retry with 5-minute delay to conserve daily quota
-- **Graceful degradation**: If the second tweet (with link) fails, the first tweet is still considered successful
 - **Clear logging**: Distinguishes between "no new articles" and "rate limited" scenarios
 - **Smart reporting**: Provides detailed information about why posting succeeded or failed
 
