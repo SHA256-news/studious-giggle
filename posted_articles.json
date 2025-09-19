@@ -5,7 +5,8 @@
     "8869932309",
     "8870094920",
     "8870333890",
-    "8870684491"
+    "8870684491",
+    "8870856005"
   ],
   "queued_articles": [
     {
@@ -16200,6 +16201,1951 @@
       "eventUri": null,
       "sentiment": 0.419607843137255,
       "wgt": 495978257,
+      "relevance": 2
+    },
+    {
+      "uri": "8870851643",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "15:15:44",
+      "dateTime": "2025-09-19T15:15:44Z",
+      "dateTimePub": "2025-09-19T13:34:15Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.benzinga.com/pressreleases/25/09/g47760879/xrp-tundra-presale-at-0-01-with-2-50-target-launch-price-draws-investor-interest",
+      "title": "XRP Tundra Presale at $0.01 with $2.50 Target Launch Price Draws Investor Interest",
+      "body": "Enter your email to get Benzinga's ultimate morning update: The PreMarket Activity Newsletter\n\nXRP Tundra presale opens at $0.01 with dual tokens, audited security, and target launch prices for 2026.\n\nLISBON, Portugal, Sept. 19, 2025 (GLOBE NEWSWIRE) -- XRP Tundra has opened its presale, offering participants entry at $0.01 for TUNDRA-S on Solana, with each purchase also granting free allocations of TUNDRA-X on the XRP Ledger. The tokens are set to debut at $2.50 and $1.25 respectively, a contrast that has drawn close attention from investors across the XRP community.\n\nDual-Token Presale Structure\n\nThe presale operates on a \"two-for-one\" basis. Buyers obtain TUNDRA-S, designed for utility within Solana's decentralized finance environment, and also receive TUNDRA-X, a governance and reserve token issued on XRPL. The structure gives investors immediate exposure to two networks with complementary roles.\n\nPhase 1 pricing is fixed at $0.01 for TUNDRA-S, alongside a 19 percent token bonus. Each purchase also provides free TUNDRA-X valued at $0.005. With target launch prices of $2.50 for TUNDRA-S and $1.25 for TUNDRA-X, the model highlights potential upside for early participants.\n\nSupply and Allocation\n\nThe total supply is fixed at 300 million tokens, split between 200 million TUNDRA-X on XRPL and 100 million TUNDRA-S on Solana. Of this, 80 million TUNDRA-X is allocated to presale participants, with a further 20 million designated for ecosystem growth, 20 million for the team and advisors under vesting schedules, and 30 million held in reserve for liquidity and strategic purposes.\n\nVerification and Oversight\n\nSecurity has been reinforced through independent audits with Cyberscope, Solidproof, and Freshcoins. These reviews examined code integrity, tokenomics, and potential vulnerabilities.\n\nThe team has also undergone KYC verification through Vital Block, providing identity assurance that is not typical of early-stage presale projects.\n\nAbout XRP Tundra\n\nXRP Tundra is a cross-chain project designed to expand XRP's role beyond payments. Its dual-token system links XRPL and Solana, providing complementary functionality and supporting future development plans, including GlacierChain, a DeFi layer for XRP that will add lending, automated market makers, and derivatives.\n\nOfficial Channels\n\nWebsite: https://www.xrptundra.com/\n\nMedium: https://medium.com/@xrptundra\n\nTelegram: https://t.me/xrptundra\n\nX (Twitter): https://x.com/Xrptundra\n\nMedia Contact\n\nTim F\u00e9nix\n\nEmail: contact@xrptundra.com\n\nDisclaimer: This content is provided by XRP Tundra. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice. Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector -- including cryptocurrency, NFTs, and mining -- complete accuracy cannot always be guaranteed. Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility. Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/8148c9ea-4fc6-47d1-94cb-e799ffe78bea\n\nMarket News and Data brought to you by Benzinga APIs",
+      "source": {
+        "uri": "benzinga.com",
+        "dataType": "news",
+        "title": "Benzinga"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Solana_(blockchain_platform)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Solana (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Ripple (payment protocol)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tundra",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Tundra"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_finance",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Decentralized finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Medium_(website)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Medium (website)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lisbon",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Lisbon"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Lisbon"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Portugal"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenomics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Tokenomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Know_your_customer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Know your customer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_maker",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market maker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Derivative_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Derivative (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Vulnerability (computing)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Audit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Audit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Twitter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/API",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "API"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Fraud",
+          "label": "dmoz/Society/Issues/Fraud",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 57
+        }
+      ],
+      "image": "https://www.benzinga.com/next-assets/images/schema-image-default.png",
+      "eventUri": null,
+      "sentiment": 0.2627450980392156,
+      "wgt": 495990944,
+      "relevance": 2
+    },
+    {
+      "uri": "2025-09-838334406",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "14:00:35",
+      "dateTime": "2025-09-19T14:00:35Z",
+      "dateTimePub": "2025-09-19T13:55:42Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://seekingalpha.com/article/4824359-wgmi-minings-cohorts-and-risks",
+      "title": "WGMI: Minings, Cohorts, And Risks (NASDAQ:WGMI)",
+      "body": "Maintain existing WGMI positions, add only on significant dips, and prioritize miners with strong operational quality until clearer positive signals emerge.\n\nIn today's article, we will analyze the CoinShares Bitcoin Mining (NASDAQ:WGMI) investment vehicle belonging to the category of exchange-traded funds (ETFs) products, which is owned by the digital asset firm CoinShares. This is an actively managed ETF offering direct exposure to the\n\nNode Analytica is a macro - onchain research firm whose founders have developed systematic investment strategies in the digital assets market in order to generate competitive and uncorrelated investment returns for institutional investors.\n\nAnalyst's Disclosure:I/we have no stock, option or similar derivative position in any of the companies mentioned, and no plans to initiate any such positions within the next 72 hours. I wrote this article myself, and it expresses my own opinions. I am not receiving compensation for it (other than from Seeking Alpha). I have no business relationship with any company whose stock is mentioned in this article.\n\nSeeking Alpha's Disclosure: Past performance is no guarantee of future results. No recommendation or advice is being given as to whether any investment is suitable for a particular investor. Any views or opinions expressed above may not reflect those of Seeking Alpha as a whole. Seeking Alpha is not a licensed securities dealer, broker or US investment adviser or investment bank. Our analysts are third party authors that include both professional investors and individual investors who may not be licensed or certified by any institute or regulatory body.",
+      "source": {
+        "uri": "seekingalpha.com",
+        "dataType": "news",
+        "title": "Seeking Alpha"
+      },
+      "authors": [
+        {
+          "uri": "node_analytica_research@seekingalpha.com",
+          "name": "Node Analytica Research",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/WGMI",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "WGMI"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Investment fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Correlation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Correlation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Active_management",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Active management"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Seeking_Alpha",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Seeking Alpha"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Derivative_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Derivative (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Rate_of_return",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Rate of return"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_strategy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Investment strategy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Macroeconomics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Macroeconomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Institutional_investor",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Institutional investor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_adviser",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial adviser"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/License",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "License"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Security_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Security (finance)"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 36
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 31
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 36
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 42
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 37
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 89
+        }
+      ],
+      "image": "https://static.seekingalpha.com/cdn/s3/uploads/getty_images/2154880425/image_2154880425.jpg?io=getty-c-w1536",
+      "eventUri": null,
+      "sentiment": 0.1372549019607843,
+      "wgt": 495986435,
+      "relevance": 19
+    },
+    {
+      "uri": "2025-09-838318182",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:46:20",
+      "dateTime": "2025-09-19T13:46:20Z",
+      "dateTimePub": "2025-09-19T13:42:15Z",
+      "dataType": "news",
+      "sim": 0.7490196228027344,
+      "url": "https://www.manilatimes.net/2025/09/19/tmt-newswire/globenewswire/xrp-tundra-presale-at-001-with-250-target-launch-price-draws-investor-interest/2187367",
+      "title": "XRP Tundra Presale at $0.01 with $2.50 Target Launch Price Draws Investor Interest",
+      "body": "XRP Tundra presale opens at $0.01 with dual tokens, audited security, and target launch prices for 2026.\n\nLISBON, Portugal, Sept. 19, 2025 (GLOBE NEWSWIRE) -- XRP Tundra has opened its presale, offering participants entry at $0.01 for TUNDRA-S on Solana, with each purchase also granting free allocations of TUNDRA-X on the XRP Ledger. The tokens are set to debut at $2.50 and $1.25 respectively, a contrast that has drawn close attention from investors across the XRP community.\n\nDual-Token Presale Structure\n\nGet the latest news\n\ndelivered to your inbox\n\nSign up for The Manila Times newsletters\n\nBy signing up with an email address, I acknowledge that I have read and agree to the Terms of Service and Privacy Policy.\n\nThe presale operates on a \"two-for-one\" basis. Buyers obtain TUNDRA-S, designed for utility within Solana's decentralized finance environment, and also receive TUNDRA-X, a governance and reserve token issued on XRPL. The structure gives investors immediate exposure to two networks with complementary roles.\n\nPhase 1 pricing is fixed at $0.01 for TUNDRA-S, alongside a 19 percent token bonus. Each purchase also provides free TUNDRA-X valued at $0.005. With target launch prices of $2.50 for TUNDRA-S and $1.25 for TUNDRA-X, the model highlights potential upside for early participants.\n\nAdvertisement\n\nSupply and Allocation\n\nThe total supply is fixed at 300 million tokens, split between 200 million TUNDRA-X on XRPL and 100 million TUNDRA-S on Solana. Of this, 80 million TUNDRA-X is allocated to presale participants, with a further 20 million designated for ecosystem growth, 20 million for the team and advisors under vesting schedules, and 30 million held in reserve for liquidity and strategic purposes.\n\nVerification and Oversight\n\nSecurity has been reinforced through independent audits with Cyberscope, Solidproof, and Freshcoins. These reviews examined code integrity, tokenomics, and potential vulnerabilities.\n\nAdvertisement\n\nThe team has also undergone KYC verification through Vital Block, providing identity assurance that is not typical of early-stage presale projects.\n\nAbout XRP Tundra\n\nXRP Tundra is a cross-chain project designed to expand XRP's role beyond payments. Its dual-token system links XRPL and Solana, providing complementary functionality and supporting future development plans, including GlacierChain, a DeFi layer for XRP that will add lending, automated market makers, and derivatives.\n\nOfficial Channels\n\nAdvertisement\n\nWebsite: https://www.xrptundra.com/\n\nMedium: https://medium.com/@xrptundra\n\nTelegram: https://t.me/xrptundra\n\nX (Twitter): https://x.com/Xrptundra\n\nAdvertisement\n\nMedia Contact\n\nTim F\u00e9nix\n\nEmail: [email protected]\n\nDisclaimer: This content is provided by XRP Tundra. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice. Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector-including cryptocurrency, NFTs, and mining-complete accuracy cannot always be guaranteed. Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility. Globenewswire does not endorse any content on this page.\n\nAdvertisement\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/8148c9ea-4fc6-47d1-94cb-e799ffe78bea",
+      "source": {
+        "uri": "manilatimes.net",
+        "dataType": "news",
+        "title": "The Manila times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Solana_(blockchain_platform)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Solana (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Ripple (payment protocol)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_finance",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Decentralized finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Manila_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "The Manila Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terms_of_service",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Terms of service"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Target_Corporation",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Target Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lisbon",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Lisbon"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Lisbon"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Portugal"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenomics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Tokenomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Medium_(website)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Medium (website)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Know_your_customer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Know your customer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_maker",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market maker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Derivative_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Derivative (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_film",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Independent film"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Vulnerability (computing)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Audit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Audit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Twitter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 12
+        },
+        {
+          "uri": "dmoz/Business/Investing/Socially_Responsible",
+          "label": "dmoz/Business/Investing/Socially Responsible",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 10
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 64
+        }
+      ],
+      "image": "https://www.manilatimes.net/manilatimes/uploads/images/2025/09/19/754001.png",
+      "eventUri": "eng-10978789",
+      "sentiment": 0.2705882352941176,
+      "wgt": 495985580,
+      "relevance": 2
+    },
+    {
+      "uri": "8870731103",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:43:19",
+      "dateTime": "2025-09-19T13:43:19Z",
+      "dateTimePub": "2025-09-19T13:31:29Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://crypto-economy.com/how-dogo-holders-earn-over-5920-in-daily-profits-with-profitablemining/",
+      "title": "How DOGO Holders Earn Over $5,920 in Daily Profits with ProfitableMining - Crypto Economy",
+      "body": "ProfitableMining, a leading global cloud mining platform, has officially announced the release of its latest high-performance cloud mining contracts, designed to deliver high returns for holders of mainstream and community tokens, including DOGO (Dogoverse). According to official data, some users have already achieved daily mining returns exceeding US$5,920, setting a new record for the platform.\n\nIndustry experts consider this a significant step forward in the \"hold-to-earn\" strategy for crypto assets, offering a new path to value realization for mid-cap assets such as DOGO.\n\n\u23f3 Daily payouts, with real-time earnings distribution and enhanced liquidity\n\n\u2699\ufe0f Advanced liquid-cooled mining rigs, improving efficiency by over 30%\n\n\ud83c\udf43 Green energy data centers, offering lower operating costs and improved sustainability\n\nAccording to platform data, DOGO users have shown the highest participation rates in the early stages of the contract rollout. Many leveraged DOGO tokens to offset part of the contract cost, enabling daily earnings to exceed US$5,920 under the flagship plan, significantly shortening the return cycle.\n\n\"This was our first in-depth integration test involving a mid-cap community token. The strong engagement from the DOGO community enabled us to validate the effectiveness of our contract model faster than expected.\"\n\n-- Christopher Nicholas, Head of Product, ProfitableMining\n\nMany users noted that ProfitableMining allowed them to extract extra value from their DOGO holdings while reducing concerns over market volatility.\n\n\"I used to just hold my DOGO in my wallet and hesitate during market swings. Now, I'm getting steady daily earnings -- it's a game changer.\"\n\n-- @DogoMiner88, community user\n\nNew users also reported that the platform interface is intuitive and beginner-friendly, with no technical knowledge or hardware required -- true one-click mining participation.\n\nWhether you're just starting or looking to scale up, ProfitableMining offers a range of mining contracts to suit every investor:\n\nIn the world of crypto mining, security and compliance are non-negotiable. ProfitableMining strictly adheres to global regulatory standards and implements top-tier cryptographic protections to safeguard user funds and data. The platform offers full operational transparency, allowing users to monitor earnings, contract performance, and asset status in real time.\n\nAdditionally, 100% of our mining operations run on clean energy, ensuring a low carbon footprint and long-term sustainability. By promoting green mining, we believe we can deliver not just profit, but also meaningful environmental impact.\n\nWith smart contracts and blockchain technology reshaping global finance, ProfitableMining is at the forefront of this transformation. We are building an inclusive and accessible mining ecosystem, where anyone can participate in the next generation of wealth creation.\n\n'The future of finance doesn't belong to a few -- it belongs to those who take action.'\n\nProfitableMining -- your first step into the financial revolution.\n\n\ud83d\udce9 Get in Touch\n\n\ud83c\udf10 Website: https://www.profitablemining.com\n\n\ud83d\udce7 Email: [email protected]",
+      "source": {
+        "uri": "crypto-economy.com",
+        "dataType": "news",
+        "title": "Crypto Economy"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Real-time_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Real-time computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainability",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Sustainability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Environmental_issues",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Environmental issues"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smart_contract",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Smart contract"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Transparency_(behavior)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Transparency (behavior)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptography",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptography"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Low-carbon_economy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Low-carbon economy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ecosystem",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Ecosystem"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Derivatives",
+          "label": "dmoz/Business/Investing/Derivatives",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 82
+        }
+      ],
+      "image": "https://crypto-economy.com//wp-content/uploads/2025/09/image1-1236.jpg",
+      "eventUri": null,
+      "sentiment": 0.3568627450980393,
+      "wgt": 495985399,
+      "relevance": 52
+    },
+    {
+      "uri": "8870709187",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:27:22",
+      "dateTime": "2025-09-19T13:27:22Z",
+      "dateTimePub": "2025-09-19T13:15:23Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.forbes.com/sites/greatspeculations/2025/09/19/cleanspark-buy-the-clsk-stock-rally-before-its-too-late/",
+      "title": "CleanSpark: Buy The CLSK Stock Rally Before It's Too Late?",
+      "body": "Forbes contributors publish independent expert analyses and insights.\n\nCleanSpark stock (NASDAQ:CLSK) has seen a sharp rise, gaining over 40% in the past month. This surge comes after the company reported a 38% increase in bitcoins mined during August, driven by a significant boost in its operational hashrate, which reached 50 EH/s (Exahashes per second) -- a critical measure of computing power on the Bitcoin network. The company achieved this milestone in June 2025.\n\nThe broader cryptocurrency market has also shown strong momentum. Other Bitcoin miners, like IREN and MARA, have posted gains recently. This upward trend has been supported by the U.S. Federal Reserve's decision to cut interest rates, with further cuts expected -- an environment generally seen as favorable for cryptocurrencies. With Bitcoin's near-term outlook looking positive, we expect Bitcoin mining companies to continue growing.\n\nA few months ago, we noted that the initial jump in CLSK could mark the start of a larger rally. Since then, the stock has climbed over 30%, and we still see it as well-positioned for further gains.\n\nIn the following sections, we'll take a deeper look at CLSK -- comparing its current valuation with its operational performance over recent years and reviewing its financial health. That said, if you're looking for upside potential with less volatility than a single stock, consider the High Quality Portfolio. It has outperformed its benchmark -- a mix of the S&P 500, Russell, and S&P MidCap indexes -- with returns exceeding 91% since inception. Separately, see - CrowdStrike: What's Happening With CRWD Stock?\n\nLooking at what you pay per dollar of sales or profit, CLSK stock appears slightly undervalued compared to the overall market, especially considering its strong revenue growth.\n\nCLSK stock has underperformed the S&P 500 during recent downturns. While investors hope for a soft landing for the U.S. economy, what if another recession hits? Our dashboard How Low Can Stocks Go During A Market Crash shows how major stocks fared during and after the last seven market crashes.\n\nOverall, CleanSpark has performed well across the metrics we've analyzed. Given its moderate valuation, we believe the stock still has significant upside potential.\n\nWhen we look at the competition, CleanSpark appears undervalued. For example, IREN trades at 17 times its trailing revenue, MARA at 8 times, and RIOT at 11 times. In comparison, CleanSpark's valuation is much lower at 6 times revenues, suggesting it could be poised for growth to catch up to its peers.\n\nNow, of course, we could be wrong in our assessment, and investors might continue to value CLSK conservatively, especially considering its historical volatility. We think the long-term outlook is positive. For investors with a risk tolerance and a 3-to-5-year investment horizon, we continue to believe CLSK stock could deliver substantial returns.\n\nStill, single-stock investing carries risk. The Trefis High Quality (HQ) Portfolio -- a collection of 30 stocks -- has consistently outperformed its benchmark (the S&P 500, S&P mid-cap, and Russell 2000). This is because HQ Portfolio stocks have offered better returns with lower risk than the index, as shown in HQ Portfolio performance metrics.",
+      "source": {
+        "uri": "forbes.com",
+        "dataType": "news",
+        "title": "Forbes"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Forbes",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Forbes"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/S&P_500_Index",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "S&P 500 Index"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Benchmarking",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Benchmarking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/CrowdStrike",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "CrowdStrike"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Risk_aversion",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Risk aversion"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Economy_of_the_United_States",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Economy of the United States"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Recession",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Recession"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 86
+        }
+      ],
+      "image": "https://imageio.forbes.com/specials-images/imageserve/685bb7739a85427e7d4f6cc3/0x0.jpg?format=jpg&height=600&width=1200&fit=bounds",
+      "eventUri": null,
+      "sentiment": 0.3725490196078431,
+      "wgt": 495984442,
+      "relevance": 60
+    },
+    {
+      "uri": "8870672222",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:04:39",
+      "dateTime": "2025-09-19T13:04:39Z",
+      "dateTimePub": "2025-09-19T12:58:06Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://cointelegraph.com/news/bhutan-bitcoin-transfer-fed-rate-cut",
+      "title": "Bhutan transfers $107M Bitcoin as whales stir after Fed cut",
+      "body": "Analysts are warning of a potential investor \"recalibration\" for short-term market volatility, which has historically occurred after previous US interest rate cuts.\n\nThe Royal Government of Bhutan transferred more than $100 million worth of Bitcoin this week, raising concerns about potential sell pressure in the market just as the US Federal Reserve delivered its first interest rate cut of 2025.\n\nThe Bhutan government-labelled wallet moved 913 Bitcoin (BTC) worth around $107 million into two newly-created cryptocurrency wallets on Thursday.\n\nThe wallet still holds a total of 9,652 Bitcoin worth over $1.1 billion, according to blockchain data platform Lookonchain.\n\nThe transfers may indicate Bhutan is preparing to sell a portion of its holdings. If the government liquidated its entire stash, it could add more than $1 billion of supply to the market.\n\nRelated: Standard Chartered venture arm to raise $250M for digital asset fund: Report\n\nIt was the first activity in a month from the wallet, which previously moved $92 million worth of Bitcoin on Aug. 18, according to Arkham data.\n\nBhutan has embraced cryptocurrency under its current monarch, King Jigme Khesar Namgyel Wangchuck, including initiatives such as hydro-powered Bitcoin mining and a crypto reserve.\n\nIn September 2024, Arkham identified the first Bitcoin address of Bhutan's investment arm, Druk Holding and Investments, which held approximately $780 million in total crypto holdings, showcasing the benefits of cryptocurrency adoption for developing economies.\n\nRelated: 'Diamond hand' investor turns $1K into $1M as BNB tops $1,000\n\nThe Bhutan transfers come as other large holders move coins ahead of potential volatility.\n\nOn Wednesday, an unknown whale woke up after 12 years of dormancy to transfer $116 million worth of Bitcoin, which he initially acquired for just $847 per token, worth around $847,000 at the time.\n\nThe transfer occurred shortly before Wednesday's highly anticipated Federal Open Market Committee (FOMC) meeting, which delivered the first US interest rate cut of the year.\n\nWhile Bitcoin initially topped $117,000 on the interest rate cut announcement, the \"median FOMC projection of just 50 bps in total cuts this year tempers the optimism,\" introducing short-term volatility risks, Ryan Lee, chief analyst at Bitget exchange, told Cointelegraph, adding:\n\n\"Historically, crypto has dipped 5-8% percent following rate cuts before resuming its upward path, suggesting a potential \"sell the news\" phase in the days ahead.\"\n\n\"In the near term, Ethereum and Solana may outperform on ETF-driven inflows and network catalysts, while Bitcoin consolidates before targeting $123,000 to $150,000 if subsequent cuts materialize,\" the analyst added.",
+      "source": {
+        "uri": "cointelegraph.com",
+        "dataType": "news",
+        "title": "Cointelegraph"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bhutan",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Bhutan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Bhutan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_wallet",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency wallet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jigme_Khesar_Namgyel_Wangchuck",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Jigme Khesar Namgyel Wangchuck"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Monarchy of the United Kingdom"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liquidation",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Liquidation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Standard_Chartered",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Standard Chartered"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Solana_(blockchain_platform)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Solana (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethereum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Ethereum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Open_Market_Committee",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Federal Open Market Committee"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Whale",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Whale"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Developing_country",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Developing country"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Commodities_and_Futures",
+          "label": "dmoz/Business/Investing/Commodities and Futures",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 58
+        }
+      ],
+      "image": "https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=1200/https://s3.cointelegraph.com/uploads/2025-09/019961f6-3839-775f-bd40-22f589880c34",
+      "eventUri": null,
+      "sentiment": 0.1529411764705881,
+      "wgt": 495983079,
+      "relevance": 52
+    },
+    {
+      "uri": "8870664665",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:00:10",
+      "dateTime": "2025-09-19T13:00:10Z",
+      "dateTimePub": "2025-09-19T12:56:59Z",
+      "dataType": "news",
+      "sim": 0.6901960968971252,
+      "url": "https://www.cryptopolitan.com/china-probes-us-chip-trade-discrimination/",
+      "title": "China auto group launches probe into U.S. chip trade discrimination - Cryptopolitan",
+      "body": "Huawei, Baidu, and Alibaba are shifting to domestic chips but still rely on Nvidia.\n\nThe China Association of Automobile Manufacturers on Friday kicked off a full-scale investigation into what it describes as discriminatory U.S. trade policies targeting chip supply in the country's auto sector, according to a formal statement seen by Cryptopolitan.\n\nAutomakers are being asked to send in their official feedback beginning October 13, marking a new front in the chip war between China and the United States.\n\nThe probe comes directly after China's Ministry of Commerce opened its own investigation into U.S. chip dumping and trade bias on September 13, timed just before new trade talks between the two sides started in Spain.\n\nThe auto group's move is viewed as part of a larger government-led effort to evaluate the damage caused by U.S. tech restrictions. It also comes as tensions heat up between Washington and Beijing over Nvidia chips, AI dominance, and access to advanced compute hardware.\n\nJust days before the car group's announcement, Republican House Speaker Mike Johnson slammed China on CNBC's Squawk Box, calling the country an \"adversary\" and accusing it of stealing American IP.\n\n\"They steal our intellectual property,\" Mike said. \"They have no regard whatsoever for U.S. trademark law or any of the other provisions that make for fair trade agreements. It is not the fault of the United States that there are these strained relations.\"\n\nHours before Mike's comments aired, the Cyberspace Administration of China reportedly ordered domestic tech companies to stop buying Nvidia's RTX Pro 6000D, a GPU model custom-built for the country.\n\nThat update was reported by the Financial Times, which cited people briefed on the decision. Nvidia CEO Jensen Huang, while speaking to reporters at an event in London that same day, gave a measured response.\n\n\"We can only be in service of a market if a country wants us to be,\" Jensen said. \"I'm disappointed with what I see, but they have larger agendas to work out between China and the United States.\"\n\nThe bigger picture is that China's local AI ecosystem is moving to fill the gap. On Thursday, Huawei introduced new AI compute infrastructure using its own Ascend chip lineup, touting them as the \"world's most powerful\" in the training space, as Cryptopolitan reported.\n\nSemiAnalysis, a U.S.-based tech research firm, found back in April that Huawei's CloudMatrix system beat out Nvidia's AI compute platform on several performance metrics, despite each Ascend processor offering only one-third the power of Nvidia's chips. Huawei made up for that by interconnecting five times as many chips.\n\nAt the same time, newer players like DeepSeek are signaling support for domestic hardware. The AI start-up said its latest model will work with China's \"next generation\" AI chips.\n\nAnd it's not just small firms making the switch. Alibaba and Baidu have also started using their own internally built processors for some of their AI model training workloads -- reducing, but not eliminating, their reliance on Nvidia.\n\nTrade analysts now believe the entire move, from the Nvidia chip ban to the automotive chip probe, may be part of a larger negotiation play. AJ Kourabi, a tech analyst at SemiAnalysis, said the strategy appears to be an effort to gain leverage in ongoing U.S.-China tariff discussions.\n\n\"The move is likely to be a negotiation tactic as part of a broader set of discussions involving other topics, including tariffs,\" AJ said. \"China is no doubt trying to encourage and establish silicon self sovereignty, while also getting the best possible chip in the meantime.\"\n\nIronically, while Beijing clamps down on U.S. chips, Washington is now signaling the opposite. The Biden administration -- once fully committed to blocking China's access to advanced U.S. processors -- is reportedly considering approving the export of Nvidia chips more powerful than the current H20 model.\n\nThis is a dramatic reversal. Under Donald Trump, who is now back in the White House, the U.S. sharply ramped up chip export controls to limit China's access to AI compute and crypto mining hardware. That momentum carried into the early Biden years. Now, the White House appears to be walking it back.",
+      "source": {
+        "uri": "cryptopolitan.com",
+        "dataType": "news",
+        "title": "Cryptopolitan"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Huawei",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Huawei"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/China",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "China"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "China"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intellectual_property",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Intellectual property"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ministry_of_Commerce_(China)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Ministry of Commerce (China)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Alibaba_Group",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Alibaba Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Baidu",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Baidu"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Speaker_of_the_United_States_House_of_Representatives",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Speaker of the United States House of Representatives"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Republican Party (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Spain",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Spain"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Spain"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia_RTX",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia RTX"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cyberspace_Administration_of_China",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cyberspace Administration of China"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jensen_Huang",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Jensen Huang"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fair_trade",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fair trade"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_Times",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Financial Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trademark",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Trademark"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/CNBC",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "CNBC"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Washington_(state)",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Washington (state)"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Washington (state)"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/London",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "London"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "London"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Kingdom"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Beijing",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Beijing"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Beijing"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "China"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Presidency_of_Joe_Biden",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Presidency of Joe Biden"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Silicon",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Silicon"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joe_Biden",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Joe Biden"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Central_processing_unit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Central processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sovereignty",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Sovereignty"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/White_House",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "White House"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Leverage_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Leverage (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Automotive_industry",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Automotive industry"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Computers/Hardware/Buses",
+          "label": "dmoz/Computers/Hardware/Buses",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Computers/Hardware/Components",
+          "label": "dmoz/Computers/Hardware/Components",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Religion_and_Spirituality/Falun_Dafa",
+          "label": "dmoz/Society/Religion and Spirituality/Falun Dafa",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 90
+        }
+      ],
+      "image": "https://www.cryptopolitan.com/wp-content/uploads/2025/09/China-auto-group-launches-probe-into-U.S.-chip-trade-discrimination.webp",
+      "eventUri": "eng-10978966",
+      "sentiment": -0.1137254901960785,
+      "wgt": 495982810,
+      "relevance": 2
+    },
+    {
+      "uri": "2025-09-838254993",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "12:43:01",
+      "dateTime": "2025-09-19T12:43:01Z",
+      "dateTimePub": "2025-09-19T12:30:47Z",
+      "dataType": "news",
+      "sim": 0.7490196228027344,
+      "url": "https://247wallst.com/forecasts/2025/09/19/nvidia-nvda-bull-base-bear-price-prediction-and-forecast/",
+      "title": "Nvidia (NASDAQ: NVDA) Bull, Base, & Bear Price Prediction and Forecast (Sept 19)",
+      "body": "This post may contain links from our sponsors and affiliates, and Flywheel Publishing may receive compensation for actions taken through them.\n\nThe trade war with China was tough on Nvidia Corp. (NASDAQ: NVDA) investors. In April, shares hit a year-to-date low below $87 apiece. Like its fellow Magnificent 7 members, Nvidia struggled due to economic uncertainties about the effects of tariffs, as well as due to Chinese AI innovations. Bears saw Nvidia stock falling further because of bearish pressure from the broader market. Yet, some investors remain optimistic for a sustained rebound, and that seems to have been the case. The stock returned to all-time highs as some tariff fears dissipated and macro data improved.\n\nThe bearish argument that prevailed on Wall Street early this year is not entirely gone, though. While the AI rally may continue, it remains speculative, whereas the reasons for Nvidia stock's decline in the spring were genuine.\n\nNvidia may still be at a crossroads right now. We do not know for sure where the stock will go next, but with the data on hand, we can speculate. That's what we are doing here.\n\nThree Key Drivers of Nvidia Performance Through 2030\n\n1. AI Infrastructure Dominance: Nvidia controls an estimated 80% of the AI accelerator market through its H100/H200 GPUs and CUDA software ecosystem. It is tough for Nvidia customers to switch to another supplier. This has allowed the company to dominate the industry, with customers returning year after year. As such, it is well-positioned to capture growth from the $400 billion AI chip market projected for 2030.\n\n2. Data Center Expansion: Its data center revenue has surged from $4.3 billion in Q1 2023 to over $35.6 billion in Q4 2024. Maintaining leadership here requires continuous innovation in GPU architecture and energy efficiency as AI workloads grow exponentially. So far, Nvidia has managed to do that.\n\n3. Margin Preservation: One of the biggest arguments against Nvidia is that it may not be able to hold on to its massive margins as competitors catch up and become more attractive to Nvidia's customers. This has not happened yet, and Nvidia has maintained its hold on the market quite well. In turn, this has allowed the company to have industry-leading gross margins at 73% in Q4 FY2025.\n\nNvidia Stock Price Prediction in 2030: Bull, Bear, & Baseline\n\n24/7 Wall St. estimates that Nvidia's stock price in 2030 will be $491 per share in our bull case, $241 in our base case, and $38 in our bear case. That would represent increases of 178.6% and 36.7%, and a decrease of 78.4%, respectively, from current levels. Each of these estimates comes from a specific scenario analysis of Nvidia's business segments.\n\nThe Bull Case for Nvidia's Share Price\n\nAssumptions for our bull case are as follows:\n\n* AI growth: Nvidia currently holds about 80% of the AI accelerator market. Analysts project this dominance could continue through Blackwell GPU adoption and CUDA's software moat. This may allow data center revenue to grow at a 25% CAGR to $351 billion by 2030 vs. $115.2 billion in FY2025. Gross margins could remain above 70% due to limited competition in high-end AI training chips.\n\n* Automotive and robotics: A 50% CAGR in automotive revenue to $25 billion by 2030 is achievable if Level 4 autonomy reaches even 15% to 20% penetration.\n\n* Software: CUDA is already a big part of Nvidia's moat, but this could get even better if the AI narrative succeeds in the long run. Nvidia could potentially shift this to a SaaS model once more developers become dependent on it.\n\nAll things considered, $491 per share is possible, with around $240 billion in net income if all that revenue materializes and margins hold up. Investors will still have to pay a 50x TTM earnings multiple for the stock. The market cap would be $12 trillion.\n\nThe likelihood of this happening is quite low, given the amount of ground Nvidia would have to cover.\n\nThe Base Case for Nvidia's Share Price\n\nAssumptions for our base case are as follows:\n\n* AI growth: Data center revenue can grow at 15% CAGR to $230+ billion by 2030. If Nvidia retains a 60% to 65% market share here, it could reach that goal, especially if competitors keep falling behind.\n\n* AI narrative success: The AI narrative would still have to succeed for Nvidia to reach our base case price of $241. Otherwise, there would be no growth, and investors would quickly slash the growth premium to a discount.\n\nNvidia's valuation for the base case would be $8.9 trillion. We strongly recommend reading this share price forecast for a more detailed analysis of our base case.\n\nThe Bear Case for Nvidia's Share Price\n\nYou may have noticed the big gap between the base case and the bear case. This is mostly because the bear case assumes that the AI narrative would fail.\n\nIf that happens, the result would be catastrophic for Nvidia and its stock. The only reason the shares trade at such a high valuation is that the company is directly linked to AI and its prospects. Without it, it will return to being known as a gaming GPU company with some links to crypto mining.\n\nHowever, that scenario is unlikely. AI demand is not going to disappear overnight. However, what can happen is that AI development could slow down. As a result, Nvidia would slow down too. It needs continuous orders from hyperscalers and AI startups to maintain its momentum and strong margins. If AI slows down and companies are no longer willing to run massive AI models at a loss, they're also unlikely to upgrade their GPUs to whatever Nvidia has to offer. This would crush Nvidia's margins and turn revenue growth red, and investors would no longer pay a growth premium for the stock. $38 for such a scenario is reasonable, if not a bit rich, considering that would still leave Nvidia with a $932 billion valuation.\n\nRegardless, our baseline remains at $241 for 2030.",
+      "source": {
+        "uri": "247wallst.com",
+        "dataType": "news",
+        "title": "24/7 Wall St."
+      },
+      "authors": [
+        {
+          "uri": "joel_south@247wallst.com",
+          "name": "Joel South",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/CUDA",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "CUDA"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/China\u2013United_States_trade_war",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "China\u2013United States trade war"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/AI_accelerator",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "AI accelerator"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Macro_(computer_science)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Macro (computer science)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Recursion",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Recursion"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Compound_annual_growth_rate",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Compound annual growth rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cattle",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cattle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ecosystem",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Ecosystem"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Software",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/China",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "China"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "China"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exponential_growth",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Exponential growth"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Efficient_energy_use",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Efficient energy use"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Automotive_industry",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Automotive industry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Orders_of_magnitude_(numbers)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Orders of magnitude (numbers)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Autonomy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Autonomy"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Business/Investing/Research_and_Analysis",
+          "label": "dmoz/Business/Investing/Research and Analysis",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Computers/Artificial_Intelligence/Publications",
+          "label": "dmoz/Computers/Artificial Intelligence/Publications",
+          "wgt": 10
+        },
+        {
+          "uri": "dmoz/Computers/Artificial_Intelligence/Games",
+          "label": "dmoz/Computers/Artificial Intelligence/Games",
+          "wgt": 13
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 69
+        }
+      ],
+      "image": "https://247wallst.com/wp-content/uploads/2024/03/shutterstock_2309474541-scaled.jpg",
+      "eventUri": "eng-10975062",
+      "sentiment": -0.03529411764705881,
+      "wgt": 495981781,
       "relevance": 2
     }
   ]
