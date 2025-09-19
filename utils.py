@@ -37,12 +37,13 @@ class FileManager:
     @staticmethod
     def save_posted_articles(posted_articles: Dict[str, Any]) -> None:
         """Save the list of posted article URIs and queued articles"""
+        # Update last run time before saving
+        posted_articles["last_run_time"] = datetime.now().isoformat()
+        
         with open(BotConstants.POSTED_ARTICLES_FILE, "w") as f:
             json.dump(posted_articles, f, indent=2)
         queued_count = len(posted_articles.get("queued_articles", []))
         posted_count = len(posted_articles["posted_uris"])
-        # Update last run time
-        posted_articles["last_run_time"] = datetime.now().isoformat()
         logger.info(f"Saved {posted_count} posted article URIs and {queued_count} queued articles")
     
     @staticmethod
