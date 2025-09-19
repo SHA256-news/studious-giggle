@@ -34,9 +34,12 @@ class BitcoinMiningNewsBot:
         """
         self.safe_mode = safe_mode
         
+        # File compatibility attributes expected by the legacy tests
+        self.rate_limit_cooldown_file = BotConstants.RATE_LIMIT_COOLDOWN_FILE
+
         # Initialize API clients
         self.api_manager = APIClientManager(safe_mode=safe_mode)
-        
+
         # Load history of posted articles
         self.posted_articles = FileManager.load_posted_articles()
         if not safe_mode:
@@ -44,9 +47,14 @@ class BitcoinMiningNewsBot:
         
         # Initialize tweet poster if not in safe mode
         self.tweet_poster: Optional[TweetPoster] = None
+        self.image_selector = None
+
         if not safe_mode:
             twitter_client = self.api_manager.get_twitter_client()
             self.tweet_poster = TweetPoster(twitter_client)
+            # Expose the image selector directly for backward compatibility
+            if hasattr(self.tweet_poster, "image_selector"):
+                self.image_selector = self.tweet_poster.image_selector
 
     # Backward compatibility methods for tests
     def fetch_bitcoin_mining_articles(self, max_articles: int = BotConstants.DEFAULT_MAX_ARTICLES) -> List[Dict[str, Any]]:
@@ -75,11 +83,23 @@ class BitcoinMiningNewsBot:
         """Set a simple cooldown period due to rate limiting (backward compatibility)"""
         cooldown_data = TimeUtils.create_rate_limit_cooldown()
         FileManager.save_rate_limit_cooldown(cooldown_data)
-    
+
     def _is_rate_limit_cooldown_active(self) -> bool:
         """Check if we're still in rate limit cooldown period (backward compatibility)"""
         cooldown_data = FileManager.load_rate_limit_cooldown()
         return TimeUtils.is_rate_limit_cooldown_active(cooldown_data)
+
+    def _is_minimum_interval_respected(self) -> bool:
+        """Compatibility wrapper around the minimum interval check"""
+        last_run_time = self.posted_articles.get("last_run_time")
+        return TimeUtils.is_minimum_interval_respected(last_run_time)
+
+    def _post_with_retry(self, article: Dict[str, Any], max_retries: int = BotConstants.MAX_RETRIES) -> Optional[str]:
+        """Expose TweetPoster's retry helper for backwards compatibility"""
+        if not self.tweet_poster:
+            logger.error("Tweet poster not initialized")
+            return None
+        return self.tweet_poster._post_with_retry(article, max_retries=max_retries)
     
     @property
     def twitter_client(self):
@@ -118,12 +138,11 @@ class BitcoinMiningNewsBot:
             logger.info("Starting Bitcoin Mining News Bot")
 
             # Check minimum interval since last run
-            if not TimeUtils.is_minimum_interval_respected(self.posted_articles.get("last_run_time")):
+            if not self._is_minimum_interval_respected():
                 return
 
             # Check if we're in rate limit cooldown
-            cooldown_data = FileManager.load_rate_limit_cooldown()
-            if TimeUtils.is_rate_limit_cooldown_active(cooldown_data):
+            if self._is_rate_limit_cooldown_active():
                 return
 
             # Fetch articles

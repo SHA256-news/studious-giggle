@@ -6,8 +6,8 @@ import logging
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 
+import importlib
 import tweepy
-from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 
 from config import TwitterConfig, EventRegistryConfig, BotConstants
 from crypto_filter import filter_bitcoin_only_articles
@@ -38,14 +38,21 @@ class TwitterClient:
 
 class EventRegistryClient:
     """Wrapper for EventRegistry API client"""
-    
+
     def __init__(self, config: EventRegistryConfig):
-        self.client = EventRegistry(apiKey=config.api_key)
+        self.client = self._create_eventregistry_client(config)
         logger.info("EventRegistry client initialized successfully")
-    
+
     def fetch_bitcoin_mining_articles(self, max_articles: int = BotConstants.DEFAULT_MAX_ARTICLES) -> List[Dict[str, Any]]:
         """Fetch latest articles about Bitcoin mining"""
         try:
+            er_module = self._get_eventregistry_module()
+            QueryArticles = getattr(er_module, "QueryArticles")
+            QueryItems = getattr(er_module, "QueryItems")
+            RequestArticlesInfo = getattr(er_module, "RequestArticlesInfo")
+            ReturnInfo = getattr(er_module, "ReturnInfo")
+            ArticleInfoFlags = getattr(er_module, "ArticleInfoFlags")
+
             logger.info("Fetching Bitcoin mining articles...")
 
             # Set time limit to recent articles (last 24 hours)
@@ -118,6 +125,19 @@ class EventRegistryClient:
             else:
                 logger.error(f"Error fetching articles: {error_msg}")
             return []
+
+    def _create_eventregistry_client(self, config: EventRegistryConfig):
+        er_module = self._get_eventregistry_module()
+        EventRegistryClass = getattr(er_module, "EventRegistry")
+        return EventRegistryClass(apiKey=config.api_key)
+
+    @staticmethod
+    def _get_eventregistry_module():
+        try:
+            return importlib.import_module("eventregistry")
+        except ImportError as exc:
+            logger.error("eventregistry library is required but not installed")
+            raise
 
 
 class APIClientManager:
