@@ -1,0 +1,32 @@
+{
+  "categories": {
+    "bitcoin": {
+      "description": "Bitcoin logos, mining equipment, price charts",
+      "images": []
+    },
+    "locations": {
+      "description": "US state flags, country flags, landmarks",
+      "images": []
+    },
+    "companies": {
+      "description": "Crypto company logos",
+      "images": []
+    },
+    "regulatory": {
+      "description": "Government agencies, regulatory bodies",
+      "images": []
+    },
+    "concepts": {
+      "description": "Blockchain, security, adoption imagery",
+      "images": []
+    }
+  },
+  "default_bitcoin_images": [
+    {
+      "name": "bitcoin_logo",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/256px-Bitcoin.svg.png",
+      "description": "Official Bitcoin logo",
+      "local_path": "images/bitcoin_bitcoin_logo.png"
+    }
+  ]
+}
