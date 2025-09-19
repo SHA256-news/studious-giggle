@@ -4,7 +4,8 @@
     "8869866053",
     "8869932309",
     "8870094920",
-    "8870333890"
+    "8870333890",
+    "8870684491"
   ],
   "queued_articles": [
     {
@@ -13765,6 +13766,2441 @@
       "sentiment": 0.2941176470588236,
       "wgt": 495963860,
       "relevance": 37
+    },
+    {
+      "uri": "8870672222",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:04:39",
+      "dateTime": "2025-09-19T13:04:39Z",
+      "dateTimePub": "2025-09-19T12:58:06Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://cointelegraph.com/news/bhutan-bitcoin-transfer-fed-rate-cut",
+      "title": "Bhutan transfers $107M Bitcoin as whales stir after Fed cut",
+      "body": "Analysts are warning of a potential investor \"recalibration\" for short-term market volatility, which has historically occurred after previous US interest rate cuts.\n\nThe Royal Government of Bhutan transferred more than $100 million worth of Bitcoin this week, raising concerns about potential sell pressure in the market just as the US Federal Reserve delivered its first interest rate cut of 2025.\n\nThe Bhutan government-labelled wallet moved 913 Bitcoin (BTC) worth around $107 million into two newly-created cryptocurrency wallets on Thursday.\n\nThe wallet still holds a total of 9,652 Bitcoin worth over $1.1 billion, according to blockchain data platform Lookonchain.\n\nThe transfers may indicate Bhutan is preparing to sell a portion of its holdings. If the government liquidated its entire stash, it could add more than $1 billion of supply to the market.\n\nRelated: Standard Chartered venture arm to raise $250M for digital asset fund: Report\n\nIt was the first activity in a month from the wallet, which previously moved $92 million worth of Bitcoin on Aug. 18, according to Arkham data.\n\nBhutan has embraced cryptocurrency under its current monarch, King Jigme Khesar Namgyel Wangchuck, including initiatives such as hydro-powered Bitcoin mining and a crypto reserve.\n\nIn September 2024, Arkham identified the first Bitcoin address of Bhutan's investment arm, Druk Holding and Investments, which held approximately $780 million in total crypto holdings, showcasing the benefits of cryptocurrency adoption for developing economies.\n\nRelated: 'Diamond hand' investor turns $1K into $1M as BNB tops $1,000\n\nThe Bhutan transfers come as other large holders move coins ahead of potential volatility.\n\nOn Wednesday, an unknown whale woke up after 12 years of dormancy to transfer $116 million worth of Bitcoin, which he initially acquired for just $847 per token, worth around $847,000 at the time.\n\nThe transfer occurred shortly before Wednesday's highly anticipated Federal Open Market Committee (FOMC) meeting, which delivered the first US interest rate cut of the year.\n\nWhile Bitcoin initially topped $117,000 on the interest rate cut announcement, the \"median FOMC projection of just 50 bps in total cuts this year tempers the optimism,\" introducing short-term volatility risks, Ryan Lee, chief analyst at Bitget exchange, told Cointelegraph, adding:\n\n\"Historically, crypto has dipped 5-8% percent following rate cuts before resuming its upward path, suggesting a potential \"sell the news\" phase in the days ahead.\"\n\n\"In the near term, Ethereum and Solana may outperform on ETF-driven inflows and network catalysts, while Bitcoin consolidates before targeting $123,000 to $150,000 if subsequent cuts materialize,\" the analyst added.",
+      "source": {
+        "uri": "cointelegraph.com",
+        "dataType": "news",
+        "title": "Cointelegraph"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bhutan",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Bhutan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Bhutan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_wallet",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency wallet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jigme_Khesar_Namgyel_Wangchuck",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Jigme Khesar Namgyel Wangchuck"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Monarchy_of_the_United_Kingdom",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Monarchy of the United Kingdom"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liquidation",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Liquidation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Standard_Chartered",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Standard Chartered"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Solana_(blockchain_platform)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Solana (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethereum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Ethereum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Open_Market_Committee",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Federal Open Market Committee"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Whale",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Whale"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Developing_country",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Developing country"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Commodities_and_Futures",
+          "label": "dmoz/Business/Investing/Commodities and Futures",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 58
+        }
+      ],
+      "image": "https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=1200/https://s3.cointelegraph.com/uploads/2025-09/019961f6-3839-775f-bd40-22f589880c34",
+      "eventUri": null,
+      "sentiment": 0.1529411764705881,
+      "wgt": 495983079,
+      "relevance": 52
+    },
+    {
+      "uri": "8870664665",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "13:00:10",
+      "dateTime": "2025-09-19T13:00:10Z",
+      "dateTimePub": "2025-09-19T12:56:59Z",
+      "dataType": "news",
+      "sim": 0.6901960968971252,
+      "url": "https://www.cryptopolitan.com/china-probes-us-chip-trade-discrimination/",
+      "title": "China auto group launches probe into U.S. chip trade discrimination - Cryptopolitan",
+      "body": "Huawei, Baidu, and Alibaba are shifting to domestic chips but still rely on Nvidia.\n\nThe China Association of Automobile Manufacturers on Friday kicked off a full-scale investigation into what it describes as discriminatory U.S. trade policies targeting chip supply in the country's auto sector, according to a formal statement seen by Cryptopolitan.\n\nAutomakers are being asked to send in their official feedback beginning October 13, marking a new front in the chip war between China and the United States.\n\nThe probe comes directly after China's Ministry of Commerce opened its own investigation into U.S. chip dumping and trade bias on September 13, timed just before new trade talks between the two sides started in Spain.\n\nThe auto group's move is viewed as part of a larger government-led effort to evaluate the damage caused by U.S. tech restrictions. It also comes as tensions heat up between Washington and Beijing over Nvidia chips, AI dominance, and access to advanced compute hardware.\n\nJust days before the car group's announcement, Republican House Speaker Mike Johnson slammed China on CNBC's Squawk Box, calling the country an \"adversary\" and accusing it of stealing American IP.\n\n\"They steal our intellectual property,\" Mike said. \"They have no regard whatsoever for U.S. trademark law or any of the other provisions that make for fair trade agreements. It is not the fault of the United States that there are these strained relations.\"\n\nHours before Mike's comments aired, the Cyberspace Administration of China reportedly ordered domestic tech companies to stop buying Nvidia's RTX Pro 6000D, a GPU model custom-built for the country.\n\nThat update was reported by the Financial Times, which cited people briefed on the decision. Nvidia CEO Jensen Huang, while speaking to reporters at an event in London that same day, gave a measured response.\n\n\"We can only be in service of a market if a country wants us to be,\" Jensen said. \"I'm disappointed with what I see, but they have larger agendas to work out between China and the United States.\"\n\nThe bigger picture is that China's local AI ecosystem is moving to fill the gap. On Thursday, Huawei introduced new AI compute infrastructure using its own Ascend chip lineup, touting them as the \"world's most powerful\" in the training space, as Cryptopolitan reported.\n\nSemiAnalysis, a U.S.-based tech research firm, found back in April that Huawei's CloudMatrix system beat out Nvidia's AI compute platform on several performance metrics, despite each Ascend processor offering only one-third the power of Nvidia's chips. Huawei made up for that by interconnecting five times as many chips.\n\nAt the same time, newer players like DeepSeek are signaling support for domestic hardware. The AI start-up said its latest model will work with China's \"next generation\" AI chips.\n\nAnd it's not just small firms making the switch. Alibaba and Baidu have also started using their own internally built processors for some of their AI model training workloads -- reducing, but not eliminating, their reliance on Nvidia.\n\nTrade analysts now believe the entire move, from the Nvidia chip ban to the automotive chip probe, may be part of a larger negotiation play. AJ Kourabi, a tech analyst at SemiAnalysis, said the strategy appears to be an effort to gain leverage in ongoing U.S.-China tariff discussions.\n\n\"The move is likely to be a negotiation tactic as part of a broader set of discussions involving other topics, including tariffs,\" AJ said. \"China is no doubt trying to encourage and establish silicon self sovereignty, while also getting the best possible chip in the meantime.\"\n\nIronically, while Beijing clamps down on U.S. chips, Washington is now signaling the opposite. The Biden administration -- once fully committed to blocking China's access to advanced U.S. processors -- is reportedly considering approving the export of Nvidia chips more powerful than the current H20 model.\n\nThis is a dramatic reversal. Under Donald Trump, who is now back in the White House, the U.S. sharply ramped up chip export controls to limit China's access to AI compute and crypto mining hardware. That momentum carried into the early Biden years. Now, the White House appears to be walking it back.",
+      "source": {
+        "uri": "cryptopolitan.com",
+        "dataType": "news",
+        "title": "Cryptopolitan"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Huawei",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Huawei"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/China",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "China"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "China"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intellectual_property",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Intellectual property"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ministry_of_Commerce_(China)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Ministry of Commerce (China)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Alibaba_Group",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Alibaba Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Baidu",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Baidu"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Speaker_of_the_United_States_House_of_Representatives",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Speaker of the United States House of Representatives"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Republican Party (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Spain",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Spain"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Spain"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia_RTX",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia RTX"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cyberspace_Administration_of_China",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cyberspace Administration of China"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jensen_Huang",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Jensen Huang"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fair_trade",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fair trade"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_Times",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Financial Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trademark",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Trademark"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/CNBC",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "CNBC"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Washington_(state)",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Washington (state)"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Washington (state)"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/London",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "London"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "London"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Kingdom"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Beijing",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Beijing"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Beijing"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "China"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Presidency_of_Joe_Biden",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Presidency of Joe Biden"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Silicon",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Silicon"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joe_Biden",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Joe Biden"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Central_processing_unit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Central processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sovereignty",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Sovereignty"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/White_House",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "White House"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Leverage_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Leverage (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Automotive_industry",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Automotive industry"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Computers/Hardware/Buses",
+          "label": "dmoz/Computers/Hardware/Buses",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Computers/Hardware/Components",
+          "label": "dmoz/Computers/Hardware/Components",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Religion_and_Spirituality/Falun_Dafa",
+          "label": "dmoz/Society/Religion and Spirituality/Falun Dafa",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 90
+        }
+      ],
+      "image": "https://www.cryptopolitan.com/wp-content/uploads/2025/09/China-auto-group-launches-probe-into-U.S.-chip-trade-discrimination.webp",
+      "eventUri": "eng-10978966",
+      "sentiment": -0.1137254901960785,
+      "wgt": 495982810,
+      "relevance": 2
+    },
+    {
+      "uri": "8870624072",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "12:35:04",
+      "dateTime": "2025-09-19T12:35:04Z",
+      "dateTimePub": "2025-09-19T12:29:31Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.raillynews.com/2025/09/Crypto-mining-scandal-on-Russian-railways/",
+      "title": "Crypto Mining Scandal on Russian Railways",
+      "body": "In St. Petersburg, Russia, two executives of Russian Railways (RZD) were accused of mining cryptocurrency using state-owned power lines. Prosecutors allege the operation was funded by an \"unidentified individual.\"\n\nRussian news agency InterfaxAccording to the news of the Head of the Electricity Supply Department of the St. Petersburg-Finlyandsky Station Sergey Kuznetsov and his assistant Nikolay Baltser, abuse of power and nearly 1 billion rubles (over $12 million) They are accused of stealing electricity worth 1,000 lira. The court ordered the duo to be held in custody until November 15.\n\nPolice believe there weren't just two individuals behind the operation, and investigators say the duo were paid by an \"unidentified mastermind.\" This \"mastermind\" is believed to belong to an organized crime syndicate that includes other RZD employees and whose aim is to exploit RZD's facility resources for energy-intensive mining.\n\nAuthorities, Gromovo and Lugovaya They found \"illegally installed\" crypto mining rigs at substations. These rigs were also found to have operated undetected for a year. Prosecutors believe the suspects were aware that their actions violated RZD's property rights and would harm their employer's legitimate interests.\n\nThis phenomenon parallels the growing demand for crypto mining hardware in St. Petersburg. Electronic retailers report that demand for crypto mining hardware in St. Petersburg and the surrounding region is now the third-highest in Russia. This suggests that some miners are abandoning traditional mining centers and moving to larger urban areas.",
+      "source": {
+        "uri": "raillynews.com",
+        "dataType": "news",
+        "title": "RayHaber | RaillyNews"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Russian_Railways",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Russian Railways"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sergey_Kuznetsov_(architect)",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Sergey Kuznetsov (architect)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/State-owned_enterprise",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "State-owned enterprise"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_power_transmission",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electric power transmission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/News_agency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "News agency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Saint_Petersburg",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Saint Petersburg"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Saint Petersburg"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Russia"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Russian_ruble",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Russian ruble"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Organized_crime",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Organized crime"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Turkish_lira",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Turkish lira"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Russia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Russia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Russia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electrical_substation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electrical substation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Urban_area",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Urban area"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gromovo",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Gromovo"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Gromovo"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Russia"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 89
+        }
+      ],
+      "image": "https://i0.wp.com/rayhaber.com/wp-content/uploads/2025/09/Rus-Demiryollarinda-Kripto-Madenciligi-Skandali.jpg?fit=830%2C477&ssl=1&w=640",
+      "eventUri": null,
+      "sentiment": -0.2470588235294118,
+      "wgt": 495981304,
+      "relevance": 47
+    },
+    {
+      "uri": "8870595576",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "12:14:23",
+      "dateTime": "2025-09-19T12:14:23Z",
+      "dateTimePub": "2025-09-19T00:00:00Z",
+      "dataType": "news",
+      "sim": 0.8352941274642944,
+      "url": "https://www.4ni.co.uk/northern-ireland-news/322906/rmc-mining-launches-ai-powered-cloud-mining-platform-with-green-energy-focus",
+      "title": "RMC MINING Launches AI-Powered Cloud Mining Platform With Green Energy Focus",
+      "body": "RMC MINING, a Northern Ireland-based company, has announced the launch of an AI-optimised cloud mining platform that it claims will set a new benchmark for accessibility and profitability in the sector.\n\nBy automating complex processes, powering its operations with renewable energy, and offering simplified contracts, the firm aims to make participation in cryptocurrency mining possible for both seasoned investors and those without technical experience. The company promotes returns of up to $5,000 per day, while removing the need for expensive hardware and specialist knowledge.\n\nAs digital currencies continue to find their place in the UK economy, their use is broadening into areas far beyond trading. In leisure, for example, cryptocurrencies are now central to online casinos, with a wide pool of options for UK players who prefer the added privacy and flexibility of wagering with digital assets. The spread of such services illustrates how demand for crypto solutions is growing in multiple directions, creating an environment in which cloud mining platforms are seeking to capture the attention of both investors and everyday users.\n\nThat demand is measurable. According to official cloud mining statistics for 2025, the global market has reached $14.8 billion, placing RMC MINING's expansion against a sector already attracting substantial international investment. With new companies entering a space of that size, the ability to distinguish themselves through efficiency, security, and accessibility has become essential. RMC MINING presents its use of artificial intelligence as the defining feature that will separate its contracts from those offered by more established providers.\n\nBehind these claims lies significant operational capacity of the company that runs 50 mining farms supported by more than 2 million rigs and reports over 10 million users worldwide. Its contracts are structured to accommodate different levels of participation, ranging from a short-term trial plan worth $18 to large-scale commitments of $200,000 with the promise of daily profits in the thousands. By allowing accounts to be opened with nothing more than an email address, RMC MINING argues that it has lowered the barriers to entry for people who might previously have considered cryptocurrency mining inaccessible.\n\nThat operational reach is closely linked to its emphasis on clean energy. Research on sustainable energy and bitcoin mining by Cambridge Judge Business School indicates that 52.4% of global mining now runs on sustainable sources, compared with 37.6% in 2022. The figures point to a rapid change in how mining is powered, and RMC MINING presents its reliance on renewable energy as a signal that profitability and environmental responsibility can advance together.\n\nSecurity features are also central to the company's narrative. It uses protocols developed by McAfee and Cloudflare to protect user data and transactions, provides a 100% uptime guarantee, and maintains customer support around the clock. Combined with transparent pricing and daily payouts, these measures are intended to reinforce investor confidence. The region's fintech sector has been strengthened by advances in RegTech in Northern Ireland, and RMC MINING reflects how those strengths are extending into digital assets and blockchain.\n\nWith cloud mining valued in the billions and the proportion of sustainable operations rising sharply, the launch of RMC MINING shows how artificial intelligence, renewable energy, and strict security measures are redefining digital asset services. Rather than presenting as speculative side ventures, platforms of this kind are being positioned as structured investment opportunities that attract both everyday users and large financial players.",
+      "source": {
+        "uri": "4ni.co.uk",
+        "dataType": "news",
+        "title": "4NI - Internet Directory and Portal"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accessibility",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Accessibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "United Kingdom"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Kingdom"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Benchmarking",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Benchmarking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gambling",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Gambling"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Casino",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Casino"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Privacy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Privacy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fintech",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fintech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloudflare",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Cloudflare"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cambridge_Judge_Business_School",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Cambridge Judge Business School"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/McAfee",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "McAfee"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Barriers_to_entry",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Barriers to entry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Environmentalism",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Environmentalism"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Northern_Ireland",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Northern Ireland"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Northern Ireland"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Kingdom"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Consulting",
+          "label": "dmoz/Business/Mining and Drilling/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 67
+        }
+      ],
+      "image": "https://www.4ni.co.uk/images/4ni-news-logo.jpg",
+      "eventUri": "eng-10971693",
+      "sentiment": 0.3411764705882352,
+      "wgt": 495980063,
+      "relevance": 72
+    },
+    {
+      "uri": "2025-09-838217374",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "12:02:53",
+      "dateTime": "2025-09-19T12:02:53Z",
+      "dateTimePub": "2025-09-19T11:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.cnhinews.com/news/article_e6dfbb03-8dc3-59cd-aa00-e1ef6f3440f4.html",
+      "title": "The Future of Logistics: Technology Meets High-Touch Solutions",
+      "body": "JUPITER, Fla., Sept. 19, 2025 /PRNewswire/ -- Discoveries Today proudly announces the upcoming production of a segment focusing on how innovation and customer-centric solutions are reshaping logistics and supply-chain compliance.\n\nGlobal trade is evolving rapidly. With new tariff adjustments, shifting trade agreements, and heightened scrutiny of compliance requirements, companies face mounting pressure to adapt quickly while maintaining reliability and cost efficiency across borders.\n\nAn upcoming segment of Discoveries Today will highlight how Compass Logistics & Marine (CLM) combines AI-driven data integration, comprehensive compliance checks, and smart visibility tools with a people-driven approach. Audiences will learn how, from navigating complex customs requirements to managing time-sensitive cargo for niche industries like Bitcoin mining, yacht, marine, and aviation, CLM partners with organizations to unlock value beyond moving goods from A to B.\n\nThe show will share how CLM operates at the intersection of these challenges, combining advanced logistics capabilities with a service model built on close collaboration, and how this balance of smart tools, deep compliance expertise, and customer-first support can help organizations navigate global trade with confidence.\n\n\"At CLM, we believe technology alone isn't enough. Our systems equip clients with timely insights to navigate complexity, but it's our people who turn that into action -- anticipating challenges, communicating clearly, and handling every shipment with precision and care,\" said Danny James, CEO and Founder of Compass Logistics & Marine.\n\nViewers will also learn about CLM's dedication to focusing on what matters most: building trust, fostering collaboration, and delivering hands-on expertise with a personal commitment to each client's goals.\n\n\"We look forward to exploring how companies like CLM are applying logistics technology in real-world settings to strengthen global trade, simplify complexity, and keep supply chains moving,\" said Dustin Schwarz, Programming Director for Discoveries Today.\n\nAbout Compass Logistics & Marine:\n\nCompass Logistics & Marine (CLM) is a veteran-owned logistics company based in South Florida that specializes in customs brokerage, import/export, trucking, and warehousing services. As a licensed U.S. Customs Broker and International Freight Forwarder (IATA, FMC, NVOCC, NCBFAA) with a worldwide agent and partner network, CLM provides customized, cost-effective, and compliant logistics solutions through its dedicated divisions -- CLM Tech, Yacht, Marine, and Aviation, General, and Industrial.\n\nAbout Discoveries Today:\n\nDiscoveries Today is an information-based educational television series dedicated to highlighting recent advances taking place across several industries and economies. Featuring an array of cutting-edge improvements, state-of-the-art technologies, and groundbreaking environmental and sustainable solutions, the program shines a light on several important issues and topics. Backed by an award-winning team of writers, directors, and producers, the series remains dedicated to producing commercial-free, educational programming for viewers and networks.\n\nFor more information, please visit www.DiscoveriesToday.com or call 866-992-0665.\n\nView original content to download multimedia:https://www.prnewswire.com/news-releases/the-future-of-logistics-technology-meets-high-touch-solutions-302560950.html",
+      "source": {
+        "uri": "cnhinews.com",
+        "dataType": "news",
+        "title": "CNHI News"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/CLM",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "CLM"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Logistics",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Logistics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Compass",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Compass"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customer_satisfaction",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Customer satisfaction"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trade_agreement",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Trade agreement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supply_chain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Supply chain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/PR_Newswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "PR Newswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/International_trade",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "International trade"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customs",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Customs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Niche_market",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Niche market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ocean",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ocean"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Yacht",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Yacht"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Aviation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Aviation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customs_broker",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Customs broker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Customs_and_Border_Protection",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "U.S. Customs and Border Protection"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Freight_forwarder",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Freight forwarder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Broker",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Broker"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Transportation_and_Logistics",
+          "label": "dmoz/Business/Transportation and Logistics",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Transportation_and_Logistics/Freight_Forwarding",
+          "label": "dmoz/Business/Transportation and Logistics/Freight Forwarding",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Transportation_and_Logistics/Distribution_and_Logistics",
+          "label": "dmoz/Business/Transportation and Logistics/Distribution and Logistics",
+          "wgt": 38
+        },
+        {
+          "uri": "dmoz/Business/Management/Supply_Chain",
+          "label": "dmoz/Business/Management/Supply Chain",
+          "wgt": 26
+        },
+        {
+          "uri": "dmoz/Business/Transportation_and_Logistics/Employment",
+          "label": "dmoz/Business/Transportation and Logistics/Employment",
+          "wgt": 28
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 81
+        }
+      ],
+      "image": "https://bloximages.chicago2.vip.townnews.com/cnhinews.com/content/tncms/assets/v3/editorial/a/a4/aa4ccc0d-7606-5877-8d6b-b976fb41f616/68cd3c09672f1.image.jpg?crop=1921%2C1009%2C0%2C35&resize=438%2C230&order=crop%2Cresize",
+      "eventUri": null,
+      "sentiment": 0.419607843137255,
+      "wgt": 495979373,
+      "relevance": 19
+    },
+    {
+      "uri": "2025-09-838203389",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "11:48:02",
+      "dateTime": "2025-09-19T11:48:02Z",
+      "dateTimePub": "2025-09-19T11:39:56Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.manilatimes.net/2025/09/19/tmt-newswire/globenewswire/coinex-8-years-of-long-termism-in-the-crypto-industry/2187281",
+      "title": "CoinEx: 8 Years of Long-Termism in the Crypto Industry",
+      "body": "CoinEx Celebrates 8th Anniversary, Marking Eight Years of Steady Growth in the Crypto Industry\n\nHONG KONG, Sept. 19, 2025 (GLOBE NEWSWIRE) -- CoinEx, the global cryptocurrency exchange backed by ViaBTC Group, today announced the celebration of its 8th anniversary in September 2025, a milestone that underscores its resilience and long-term vision in the fast-changing crypto industry. Since its founding in 2017, CoinEx has prioritized security, transparency, and sustainable growth-transforming from a startup exchange into a trusted global brand now serving over 10 million users across 200+ countries and regions.\n\nWhat does eight years mean in the cryptocurrency industry? In a sector defined by rapid iteration and survival of the fittest, eight years is more than just the passage of time-it is proof of resilience, trust, and brand depth. Since its founding in 2017, CoinEx, backed by the global mining giant ViaBTC Group, has operated steadily under a philosophy of long-termism. Over the years, it has evolved into a global crypto brand with substance, warmth, and credibility.\n\nBacked by ViaBTC: Trust at Its Core\n\nCoinEx's confidence stems from its parent company. ViaBTC Group, founded in 2016, is one of the world's leading mining pools, maintaining top rankings in Bitcoin, Bitcoin Cash, and other major networks for years. This deep technical foundation and strong risk control capabilities provide CoinEx with a unique level of security and reliability.\n\nGet the latest news\n\ndelivered to your inbox\n\nSign up for The Manila Times newsletters\n\nBy signing up with an email address, I acknowledge that I have read and agree to the Terms of Service and Privacy Policy.\n\nFor example, in 2021, when several major exchanges suffered losses of hundreds of millions due to hacks, CoinEx remained untouched by major security incidents. Its combination of \"group backing + proprietary technology\" created an unmatched resilience, giving users confidence to entrust their assets long-term.\n\nAdvertisement\n\nEight Years of Steady Operations: Time Builds Brand Depth\n\nUnlike many exchanges chasing aggressive expansion, CoinEx has spent the past eight years consistently prioritizing security, transparency, and long-term growth.\n\nAdvertisement\n\n* Transparency: CoinEx was among the first to launch monthly Proof of Reserve reports, allowing users to independently verify that reserves fully match liabilities. This practice set an industry benchmark.\n\n* Security: While giants like FTX and Celsius collapsed due to mismanagement or misuse of customer funds, CoinEx continued to run stably with no signs of overexposure.\n\n* Compliance: CoinEx has proactively pursued regulatory licenses in markets like Hong Kong and Lithuania, laying a solid foundation for its global strategy. In an industry marked by volatility, CoinEx demonstrates that stability itself can be the most powerful differentiator. Eight years of safe and transparent operations have created a brand identity built on reliability and endurance.\n\nAdvertisement\n\nLocalized Operations: Winning User Trust Globally\n\nCoinEx's global strategy emphasizes localization. Today, CoinEx serves users in over 200 countries and regions, with particularly strong traction in Southeast Asia, Latin America, Africa, and the Middle East.\n\nFor example:\n\nAdvertisement\n\n* In Vietnam and the Philippines, CoinEx has hosted crypto education events to help young users understand both the risks and opportunities of blockchain.\n\n* In Africa, CoinEx Charity donated Starlink satellite internet to schools, solving connectivity issues in rural areas and bridging the digital divide.\n\n* In Latin America, CoinEx has built Spanish-language content and community channels, helping local users adopt crypto tools within familiar cultural and linguistic contexts. This localized approach avoids the pitfalls of a one-size-fits-all global strategy and instead builds deep user affinity and long-term loyalty.\n\nProduct Iteration: Striking a Balance Between Speed and Stability\n\nAnother hallmark of CoinEx is its ability to iterate quickly while remaining stable.\n\n* Trading features: In the past three years, CoinEx has rolled out automated market makers (AMM), copy trading, and cross-chain asset management to meet the needs of both advanced traders and beginners.\n\n* Financial products: CoinEx Earn has consistently ranked among the industry's most competitive in APYs, with flexible and fixed-term options adapting to market shifts.\n\n* User experience: CoinEx embraces the philosophy of \"Making Crypto Simple\", offering an intuitive interface and streamlined logic that lowers entry barriers for new users. Unlike platforms that prioritize \"doing everything\" at the expense of stability, CoinEx has struck a balance: iterate fast enough to stay competitive, but never compromise reliability.\n\nIndustry Engagement: Building Brand Presence\n\nCoinEx also understands that brand influence extends beyond products and services. In recent years, CoinEx has actively participated in and sponsored global flagship events such as Token2049, Coinfest Asia, and Paris Blockchain Week.\n\nFor example, at Token2049 Singapore in 2024, CoinEx not only hosted an exhibition booth but also organized side events, engaging with projects, investors, and developers worldwide. Such active participation amplifies CoinEx's visibility and establishes it as a professional, globally respected player.\n\nLong-Termism: CoinEx's Brand DNA\n\nIn a world where short-term gains often dominate, long-termism has become CoinEx's unique brand DNA. The company builds trust through transparency and security, earns user loyalty through localized services, adds brand depth through time, and enhances warmth through charitable initiatives.\n\nBy choosing steady accumulation over short-term hype, CoinEx has carved out its own path in a noisy, fast-changing industry.\n\nConclusion\n\nOver the past eight years, CoinEx has grown from a startup exchange into a global brand defined by ViaBTC's foundation, steady operations, localized strategies, and long-term vision. For users, CoinEx is not just a trading platform but also a bridge-linking trust, time, and community across the world.\n\nIn the crypto industry, true brand power comes not from chasing fleeting trends, but from standing the test of time. CoinEx has proven itself to be not a sprinter chasing short-term wins, but a marathoner dedicated to long-term success.\n\nAbout CoinEx\n\nEstablished in 2017, CoinEx is an award-winning cryptocurrency exchange designed with users in mind. Since its launch by the industry-leading mining pool ViaBTC, the platform has been one of the earliest crypto exchanges to release proof-of-reserves to protect 100% of user assets. CoinEx provides over 1400 coins, supported by professional-grade features and services, for its 10+ million users across 200+ countries and regions. CoinEx is also home to its native token, CET, incentivizing user activities while empowering its ecosystem.\n\nTo learn more about CoinEx, visit: Website | Twitter | Telegram | LinkedIn | Facebook | Instagram | YouTube\n\nContact:\n\nCoinEx\n\n[email protected]\n\nDisclaimer: This content is provided by CoinEx. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice. Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility. Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nPhotos accompanying this announcement are available at",
+      "source": {
+        "uri": "manilatimes.net",
+        "dataType": "news",
+        "title": "The Manila times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Transparency_(behavior)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Transparency (behavior)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Philosophy",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Philosophy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining_pool",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining pool"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_exchange",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_Cash",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin Cash"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Proprietary_software",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Proprietary software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Manila_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "The Manila Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terms_of_service",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Terms of service"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Startup_company",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Startup company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Survival_of_the_fittest",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Survival of the fittest"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Latin_America",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Latin America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Africa",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Africa"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/FTX",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "FTX"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Starlink",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Starlink"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Copy_trading",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Copy trading"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_maker",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market maker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internationalization_and_localization",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Internationalization and localization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Southeast_Asia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Southeast Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lithuania",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Lithuania"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Lithuania"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Middle_East",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Middle East"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hong_Kong",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Hong Kong"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Hong Kong"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vietnam",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Vietnam"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Vietnam"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Philippines",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Philippines"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Philippines"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Facebook",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Facebook"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Twitter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paris",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Paris"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Paris"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "France"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Singapore",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Singapore"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Singapore"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Society/Issues",
+          "label": "dmoz/Society/Issues",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Marketing_and_Advertising/Branding",
+          "label": "dmoz/Business/Marketing and Advertising/Branding",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Investing/Associations",
+          "label": "dmoz/Business/Investing/Associations",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Society/Politics/Globalization",
+          "label": "dmoz/Society/Politics/Globalization",
+          "wgt": 22
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 84
+        }
+      ],
+      "image": "https://www.manilatimes.net/manilatimes/uploads/images/2025/09/19/753832.png",
+      "eventUri": null,
+      "sentiment": 0.2862745098039217,
+      "wgt": 495978482,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-838203394",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "11:46:07",
+      "dateTime": "2025-09-19T11:46:07Z",
+      "dateTimePub": "2025-09-19T11:39:42Z",
+      "dataType": "news",
+      "sim": 0.5882353186607361,
+      "url": "https://www.manilatimes.net/2025/09/19/tmt-newswire/globenewswire/ethereum-market-reports-acknowledge-magacoin-finance-in-early-presale-coverage/2187276",
+      "title": "Ethereum Market Reports Acknowledge MAGACOIN FINANCE in Early Presale Coverage",
+      "body": "NEW YORK, Sept. 19, 2025 (GLOBE NEWSWIRE) -- MAGACOIN FINANCE, an Ethereum-based cryptocurrency project, today confirmed that its presale has surpassed $14 million in commitments from more than 13,500 investors worldwide. The update coincides with Ethereum-linked market reports beginning to acknowledge the project in early presale coverage.\n\nPresale Metrics\n\nGet the latest news\n\ndelivered to your inbox\n\nSign up for The Manila Times newsletters\n\nBy signing up with an email address, I acknowledge that I have read and agree to the Terms of Service and Privacy Policy.\n\n* Funds raised: $14 million+\n\n* Investor participation: 13,500+ global backers\n\n* Tokens sold: Over 75% of presale allocation\n\n* Confirmed launch price: $0.007 This structured rollout is designed to reward early-stage participants while gradually tightening supply across each presale round.\n\nAdvertisement\n\nEthereum as Market Backdrop\n\nEthereum remains the leading network for decentralized finance and token launches. Market reports tracking Ethereum activity have started to reference MAGACOIN FINANCE as an emerging presale, highlighting its traction among smaller-cap entrants.\n\nAdvertisement\n\nWhy Analysts Are Taking Note\n\n* Milestone funding - $14 million raised.\n\n* Global investor base - 13,500+ contributors.\n\n* Recognition in Ethereum reports - mentions in presale commentary.Conclusion\n\nEthereum continues to shape blockchain adoption, and the inclusion of MAGACOIN FINANCE in related reports underscores its early presence in the 2025 presale cycle.\n\nAbout MAGACOIN FINANCE\n\nMAGACOIN FINANCE is an Ethereum-based cryptocurrency project designed to combine cultural relevance with scalable blockchain utility. With strong early-stage traction, a growing community, and scarcity-driven tokenomics, the project aims to position itself as one of the leading altcoin entrants of 2025.\n\nAdvertisement\n\nLearn more:\n\nWebsite:https://magacoinfinance.com\n\nAccess:https://magacoinfinance.com/access\n\nTwitter/X:https://x.com/magacoinfinance\n\nAdvertisement\n\nTelegram:https://t.me/magacoinfinance\n\nContact Details\n\nPR Specialist: Rebecca Miles\n\nEmail: [email protected]\n\nDisclaimer: This content is provided by MAGACOIN FINANCE. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice. Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector-including cryptocurrency, NFTs, and mining-complete accuracy cannot always be guaranteed. Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility. Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at",
+      "source": {
+        "uri": "manilatimes.net",
+        "dataType": "news",
+        "title": "The Manila times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethereum",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Ethereum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_finance",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Decentralized finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Manila_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "The Manila Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terms_of_service",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Terms of service"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Newsletter",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Newsletter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenomics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Tokenomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Scalability",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Scalability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_relations",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Public relations"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Twitter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_film",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Independent film"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Investing/Socially_Responsible",
+          "label": "dmoz/Business/Investing/Socially Responsible",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Information_Services",
+          "label": "dmoz/Business/Financial Services/Information Services",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Commercial_Lending",
+          "label": "dmoz/Business/Financial Services/Commercial Lending",
+          "wgt": 20
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 49
+        }
+      ],
+      "image": "https://www.manilatimes.net/manilatimes/uploads/images/2025/09/19/753823.jpg",
+      "eventUri": "eng-10973232",
+      "sentiment": 0.1529411764705881,
+      "wgt": 495978367,
+      "relevance": 35
+    },
+    {
+      "uri": "2025-09-838203721",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-19",
+      "time": "11:44:34",
+      "dateTime": "2025-09-19T11:44:34Z",
+      "dateTimePub": "2025-09-19T11:44:25Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://uk.yahoo.com/finance/news/liability-dream-come-true-redditor-131605505.html",
+      "title": "From 'Liability' to 'Dream Come True' - Redditor Who Invested $36,000 in Nvidia 8 Years Ago Sells Entire Position After Reaching $1 Million Profit",
+      "body": "Nvidia (NASDAQ:NVDA) has emerged as the biggest beneficiary of the generative AI boom that started with the launch of ChatGPT in November 2022. Since the AI tool's launch, the stock has surged over 900%, rewarding investors who got in early.\n\nIn July, an investor on Reddit shared how he got in early on Nvidia, turning an initial investment of $36,352 into more than $1 million in profits by patiently holding the stock for eight years.\n\nDon't Miss:\n\n* Would You Have Invested in eBay or Uber Early? The Same Backers Are Betting on This Vacation Home Platform\n\n* They Sold Their Last Real Estate Company for Nearly $1B -- Now They're Building the Future of U.S. Industrial Growth\n\nThe investor said that he began buying Nvidia shares back in 2017 because he believed the company's graphics processing units would be used for mining cryptocurrencies. Bitcoin hit $20,000 for the first time that year, but soon \"collapsed,\" introducing the Redditor to the volatility of the crypto world, he said. However, he did not sell Nvidia because he believed crypto was in its \"early adoption stage.\"\n\nFrom Crypto to Electric Vehicles\n\nThe Redditor said he kept slowly adding to his Nvidia stake over the next couple of years, and by 2019, he owned about 6,000 shares of the company. In 2019 and 2020, the investor began to feel that Nvidia GPUs were not as closely tied to the crypto industry as once thought. However, there was a new reason for him to keep holding Nvidia in his portfolio.\n\n\"The hype around Tesla was growing and crypto mining started moving away from personal computers and I learned GPUs were falling out of favor for more powerful ASIC mining rigs,\" he said. \"So my mentality moved from crypto to electric vehicles.\"\n\nTrending: 'Scrolling To UBI' -- Deloitte's #1 fastest-growing software company allows users to earn money on their phones. You can invest today for just $0.30/share.\n\n'Temptation' to Sell\n\nThen came 2023, and the world started to see the impact of generative AI, thanks to the launch of ChatGPT in the previous year. The Redditor said he started seeing \"mainstream use cases\" for AI because he worked in the photography and videography industry.\n\nThe investor said his portfolio started to \"skyrocket\" because of Nvidia. His position in the chip maker was up 4000% and the \"temptation\" to sell was growing.\n\n\"Once a liability, Nvidia now made up 10%, 20%, and 30% of my entire investment account and retirement funds,\" he wrote. \"There were days when I would log in to see I had made $100,000 that day and a week later it would swing down -$105,000. It was pretty crazy to see a full year's worth of income bouncing around day by day in my account.\"",
+      "source": {
+        "uri": "uk.yahoo.com",
+        "dataType": "news",
+        "title": "uk.yahoo.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reddit",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Reddit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Generative artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/ChatGPT",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "ChatGPT"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Uber",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Uber"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/EBay",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "EBay"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Tesla, Inc."
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_vehicle",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electric vehicle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Personal_computer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Personal computer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Software",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Photography",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Photography"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Deloitte",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Deloitte"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Venture_Capital",
+          "label": "dmoz/Business/Financial Services/Venture Capital",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 50
+        }
+      ],
+      "image": "https://media.zenfs.com/en/Benzinga/1d814dc68b8ed6d0ef349575b21dbbdd",
+      "eventUri": null,
+      "sentiment": 0.3411764705882352,
+      "wgt": 495978274,
+      "relevance": 19
+    },
+    {
+      "uri": "2025-09-838203388",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "11:44:17",
+      "dateTime": "2025-09-19T11:44:17Z",
+      "dateTimePub": "2025-09-19T11:40:09Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.manilatimes.net/2025/09/19/tmt-newswire/globenewswire/coinex-charity-launches-global-blockchain-powered-social-impact-campaign-for-2025/2187282",
+      "title": "CoinEx Charity Launches Global Blockchain-Powered Social Impact Campaign for 2025",
+      "body": "The Social Warmth of Blockchain Empowerment - The Long-Term Mission of CoinEx Charity\n\nHONG KONG, Sept. 19, 2025 (GLOBE NEWSWIRE) -- CoinEx Charity has announced the launch of its 2025 global social impact campaign, furthering its mission to use blockchain technology as a force for good. Building on initiatives in education, climate action, and disaster relief, the campaign will expand efforts to bridge the digital divide, promote ecological restoration, and deliver faster, more transparent aid worldwide. Since its establishment in 2021, CoinEx Charity has embraced the theme \"Bridge to Hope,\" transforming blockchain's core values-transparency, inclusivity, and borderless accessibility-into real-world solutions for some of today's most pressing social challenges.\n\nOver the past decade, global discourse has been dominated by pressing social issues such as educational equity, climate change, the digital divide, and social resilience. In each of these areas, blockchain is beginning to demonstrate its potential-not just as a tool for financial innovation, but as a new kind of infrastructure for driving sustainable development.\n\nSince its establishment in 2021, CoinEx Charity has embraced the theme \"Bridge to Hope,\" channeling the core values of blockchain-transparency, inclusivity, and borderless accessibility-into tangible impact across education, environmental protection, and disaster relief initiatives worldwide.\n\nGet the latest news\n\ndelivered to your inbox\n\nSign up for The Manila Times newsletters\n\nBy signing up with an email address, I acknowledge that I have read and agree to the Terms of Service and Privacy Policy.\n\nEducational Equity and the Digital Divide: Giving Visibility to the Marginalized\n\nAdvertisement\n\nEducational equity is a cornerstone of the UN's Sustainable Development Goal 4 (SDG 4). Yet in the Global South, hundreds of millions of children still lack access to basic educational resources. Leveraging blockchain's ability to move funds across borders quickly and transparently, CoinEx Charity ensures that aid flows directly to those who need it most.\n\nIn the Philippines, between 2023 and 2025, CoinEx Charity donated five Starlink satellite internet terminals, along with printers and other resources, to schools in remote areas such as the Agusuhin School in Subic. For many students, this was their first time accessing high-speed internet and digital education tools. Blockchain's transparent ledger ensures that every dollar donated can be tracked from source to delivery, addressing the inefficiencies and trust gaps often found in traditional charitable systems.\n\nThis is more than charity-it is a technological response to the global digital divide.\n\nClimate Change and Ecological Restoration: A New Model for Community Participation\n\nAdvertisement\n\nClimate change is among the most urgent global challenges. Traditional environmental projects often face limited oversight and accountability. Blockchain's traceability and transparency bring new possibilities for long-term monitoring and public trust.\n\nIn 2025, CoinEx Charity partnered with India's Central Reserve Police Force (CRPF) to plant 2,000 palm seeds along the Ambattur Lake in Chennai, supporting the \"Green India Mission\" and the Tamil Nadu Wetland Protection Program. CoinEx is working to record these planting activities on blockchain, creating a transparent \"seed-to-forest\" lifecycle that can be tracked and verified by the public.\n\nThis model is also expanding into Africa, where CoinEx Charity plans to plant 100,000 trees over the next three years, making ecological restoration measurable and accountable. Here, blockchain evolves from being a financial ledger into becoming an ecological ledger, supporting the global fight against climate change.\n\nDisaster Response and Social Resilience: Faster and More Transparent Aid\n\nAdvertisement\n\nIn an era of increasingly frequent natural disasters, social resilience is more important than ever. When disasters strike, speed and transparency in aid delivery can make all the difference.\n\nDuring the devastating typhoon in the Philippines in 2024, CoinEx Charity utilized blockchain's ability to facilitate low-cost, cross-border payments to mobilize resources almost instantly. Funds were quickly converted into equipment and supplies, including internet devices, which were delivered to disaster-stricken schools to restore connectivity and resume classes. Compared to traditional aid models, blockchain-enabled transfers cut delays significantly, enhancing both the efficiency and credibility of relief efforts.\n\nFrom Social Challenges to Blockchain Value: A Case of Technology for Good\n\nWhether it is educational equity, environmental protection, or disaster relief, CoinEx Charity demonstrates a unifying principle: blockchain can make social solutions more direct, more transparent, and more trustworthy.\n\nAdvertisement\n\n* It removes geographic barriers, enabling global resources to flow where they are needed most.\n\n* It ensures transparency in charitable processes, rebuilding public trust in philanthropy.\n\n* It increases the efficiency of aid, delivering support to vulnerable groups more quickly.\n\n* It transforms corporate responsibility into long-term commitment, reshaping how the crypto industry is perceived. CoinEx Charity is showing the world that blockchain is not just a cold financial instrument-it is a new kind of social infrastructure capable of serving humanity. Between global social challenges and the crypto industry, it builds a genuine \"Bridge to Hope.\"\n\nAbout CoinEx\n\nEstablished in 2017, CoinEx is an award-winning cryptocurrency exchange designed with users in mind. Since its launch by the industry-leading mining pool ViaBTC, the platform has been one of the earliest crypto exchanges to release proof-of-reserves to protect 100% of user assets. CoinEx provides over 1400 coins, supported by professional-grade features and services, for its 10+ million users across 200+ countries and regions. CoinEx is also home to its native token, CET, incentivizing user activities while empowering its ecosystem.\n\nTo learn more about CoinEx, visit: Website | Twitter | Telegram | LinkedIn | Facebook | Instagram | YouTube\n\nAdvertisement\n\nContact:\n\nCoinEx\n\n[email protected]\n\nDisclaimer: This content is provided by CoinEx. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice.Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions.Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility. Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/ac1fe162-cb6e-4a9d-a381-5d5f4aa43104",
+      "source": {
+        "uri": "manilatimes.net",
+        "dataType": "news",
+        "title": "The Manila times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Educational_equity",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Educational equity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_divide",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital divide"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Climate_change",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Climate change"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Emergency_management",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Emergency management"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_Development_Goal_4",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Sustainable Development Goal 4"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Climate_resilience",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Climate resilience"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Restoration_ecology",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Restoration ecology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Global_North_and_Global_South",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Global North and Global South"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social_issue",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Social issue"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Transparency_(behavior)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Transparency (behavior)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Manila_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "The Manila Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terms_of_service",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Terms of service"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Climate_change_mitigation",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Climate change mitigation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bridge",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bridge"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_development",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Sustainable development"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Environmental_protection",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Environmental protection"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Nations",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "United Nations"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Internet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Philippines",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Philippines"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Philippines"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/India",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "India"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "India"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ambattur_Lake",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ambattur Lake"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Africa",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Africa"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chennai",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Chennai"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Chennai"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "India"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tamil_Nadu",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Tamil Nadu"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Tamil Nadu"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "India"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_politician",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Independent politician"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Facebook",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Facebook"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Twitter"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Environment",
+          "label": "dmoz/Society/Issues/Environment",
+          "wgt": 23
+        },
+        {
+          "uri": "dmoz/Business/Investing/Socially_Responsible",
+          "label": "dmoz/Business/Investing/Socially Responsible",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Philanthropy",
+          "label": "dmoz/Home/Personal Finance/Philanthropy",
+          "wgt": 25
+        },
+        {
+          "uri": "dmoz/Society/Philanthropy/Disaster_Relief_and_Recovery",
+          "label": "dmoz/Society/Philanthropy/Disaster Relief and Recovery",
+          "wgt": 26
+        },
+        {
+          "uri": "dmoz/Society/Politics/Globalization",
+          "label": "dmoz/Society/Politics/Globalization",
+          "wgt": 22
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 93
+        }
+      ],
+      "image": "https://www.manilatimes.net/manilatimes/uploads/images/2025/09/19/753839.png",
+      "eventUri": null,
+      "sentiment": 0.419607843137255,
+      "wgt": 495978257,
+      "relevance": 2
     }
   ]
 }
