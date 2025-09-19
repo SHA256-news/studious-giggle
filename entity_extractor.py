@@ -79,6 +79,14 @@ class EntityExtractor:
     
     def extract_entities(self, headline: str) -> Dict[str, List[str]]:
         """Extract all relevant entities from a headline"""
+        if not headline:
+            return {
+                'locations': [],
+                'companies': [],
+                'regulatory': [],
+                'concepts': []
+            }
+        
         headline_lower = headline.lower()
         
         entities = {

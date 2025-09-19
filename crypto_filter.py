@@ -179,7 +179,14 @@ def get_unwanted_crypto_found(text):
     text_lower = text.lower()
     found = []
     
-    for keyword in UNWANTED_CRYPTO_SET:
+    # Sort keywords by length (longest first) to avoid overlapping matches
+    sorted_keywords = sorted(UNWANTED_CRYPTO_SET, key=len, reverse=True)
+    
+    for keyword in sorted_keywords:
+        # Skip if we already found a longer keyword that contains this one
+        if any(keyword in found_keyword for found_keyword in found):
+            continue
+            
         if ' ' in keyword:
             # Multi-word phrase - use exact phrase matching
             if keyword in text_lower:
