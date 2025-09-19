@@ -1,0 +1,212 @@
+name: Maintain Image Library
+
+on:
+  schedule:
+    # Run daily at 6:00 AM UTC to maintain image library
+    - cron: '0 6 * * *'
+  workflow_dispatch:  # Allows manual triggering
+    inputs:
+      force_update:
+        description: 'Force re-download of all images'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  maintain-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Clean up stale images (if force update)
+        if: ${{ github.event.inputs.force_update == 'true' }}
+        run: |
+          echo "Force update requested - cleaning up existing images..."
+          rm -rf images/*.png || true
+          # Reset local_path values in config files
+          python -c "
+          import json
+          
+          # Reset image library config
+          try:
+              with open('image_library.json', 'r') as f:
+                  config = json.load(f)
+              for img in config.get('default_bitcoin_images', []):
+                  img['local_path'] = None
+              with open('image_library.json', 'w') as f:
+                  json.dump(config, f, indent=2)
+          except: pass
+          
+          # Reset entity mapping
+          try:
+              with open('entity_image_mapping.json', 'r') as f:
+                  mapping = json.load(f)
+              for entity_type in mapping.values():
+                  for entity in entity_type.values():
+                      entity['local_path'] = None
+              with open('entity_image_mapping.json', 'w') as f:
+                  json.dump(mapping, f, indent=2)
+          except: pass
+          "
+
+      - name: Run image library maintenance
+        run: python maintain_image_library.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add .
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes to commit"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected:"
+            git diff --staged --name-only
+          fi
+
+      - name: Display maintenance report
+        if: always()
+        run: |
+          if [ -f "image_maintenance_report.json" ]; then
+            echo "📊 Image Library Maintenance Report:"
+            python -c "
+            import json
+            with open('image_maintenance_report.json', 'r') as f:
+                report = json.load(f)
+            
+            print(f\"📊 Images processed: {report['images_processed']}\")
+            print(f\"⬇️  Images downloaded: {report['images_downloaded']}\")
+            print(f\"🔄 Images updated: {report['images_updated']}\")
+            print(f\"❌ Images failed: {report['images_failed']}\")
+            print(f\"🏆 Total available: {report['summary']['total_available_images']}\")
+            print(f\"   - Bitcoin: {report['summary']['available_bitcoin_images']}\")
+            print(f\"   - Entities: {report['summary']['available_entity_images']}\")
+            
+            if report['new_images']:
+                print(f\"🆕 New images: {', '.join(report['new_images'])}\")
+            
+            if report['broken_urls']:
+                print(f\"🔗 Broken URLs ({len(report['broken_urls'])}):\"
+                for url in report['broken_urls']:
+                    print(f\"   - {url}\")
+            "
+          else
+            echo "❌ No maintenance report generated"
+          fi
+
+      - name: Commit image library updates
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          
+          # Create a meaningful commit message
+          DOWNLOADED=$(python -c "
+          try:
+              import json
+              with open('image_maintenance_report.json', 'r') as f:
+                  report = json.load(f)
+              print(report['images_downloaded'])
+          except:
+              print('0')
+          ")
+          
+          FAILED=$(python -c "
+          try:
+              import json
+              with open('image_maintenance_report.json', 'r') as f:
+                  report = json.load(f)
+              print(report['images_failed'])
+          except:
+              print('0')
+          ")
+          
+          if [ "$DOWNLOADED" -gt 0 ] && [ "$FAILED" -eq 0 ]; then
+            git commit -m "🖼️ Update image library: $DOWNLOADED new images downloaded"
+          elif [ "$DOWNLOADED" -gt 0 ] && [ "$FAILED" -gt 0 ]; then
+            git commit -m "🖼️ Update image library: $DOWNLOADED downloaded, $FAILED failed"
+          elif [ "$FAILED" -gt 0 ]; then
+            git commit -m "🖼️ Image library maintenance: $FAILED download failures"
+          else
+            git commit -m "🖼️ Image library maintenance: configuration updates"
+          fi
+          
+          git push
+
+      - name: Create issue for broken URLs
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f "image_maintenance_report.json" ]; then
+            BROKEN_COUNT=$(python -c "
+            try:
+                import json
+                with open('image_maintenance_report.json', 'r') as f:
+                    report = json.load(f)
+                print(len(report['broken_urls']))
+            except:
+                print('0')
+            ")
+            
+            if [ "$BROKEN_COUNT" -gt 0 ]; then
+              echo "🔗 Found $BROKEN_COUNT broken image URLs - creating issue..."
+              
+              python -c "
+              import json, os
+              with open('image_maintenance_report.json', 'r') as f:
+                  report = json.load(f)
+              
+              if report['broken_urls']:
+                  issue_body = '## 🔗 Broken Image URLs Detected\\n\\n'
+                  issue_body += f'The automated image library maintenance found {len(report[\"broken_urls\"])} broken image URLs:\\n\\n'
+                  
+                  for url in report['broken_urls']:
+                      issue_body += f'- **{url}**\\n'
+                  
+                  issue_body += '\\n## Action Required\\n\\n'
+                  issue_body += '1. Update the broken URLs in `entity_image_mapping.json` or `image_library.json`\\n'
+                  issue_body += '2. Test the new URLs manually\\n'
+                  issue_body += '3. Run the image maintenance workflow again\\n\\n'
+                  issue_body += '## Generated by\\n'
+                  issue_body += 'Automated Image Library Maintenance workflow'
+                  
+                  # Save issue body to file for gh cli
+                  with open('/tmp/issue_body.md', 'w') as f:
+                      f.write(issue_body)
+              "
+              
+              # Check if issue already exists
+              EXISTING_ISSUE=$(gh issue list --label "image-maintenance" --state open --json number --jq '.[0].number' || echo "")
+              
+              if [ -z "$EXISTING_ISSUE" ]; then
+                gh issue create \
+                  --title "🔗 Broken Image URLs in Image Library" \
+                  --body-file /tmp/issue_body.md \
+                  --label "image-maintenance,bug" \
+                  --assignee "@me"
+                echo "✅ Created new issue for broken URLs"
+              else
+                gh issue comment "$EXISTING_ISSUE" \
+                  --body-file /tmp/issue_body.md
+                echo "✅ Updated existing issue #$EXISTING_ISSUE with new broken URLs"
+              fi
+            else
+              echo "✅ No broken URLs found"
+            fi
+          fi

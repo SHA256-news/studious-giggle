@@ -116,6 +116,87 @@ def check_posted_articles():
         logger.error("❌ posted_articles.json is corrupted")
         return None
 
+def check_image_library():
+    """Check image library status"""
+    logger.info("\n=== CHECKING IMAGE LIBRARY STATUS ===")
+    
+    try:
+        # Check if image functionality is available
+        from image_library import ImageLibrary
+        from image_selector import ImageSelector
+        
+        library = ImageLibrary()
+        
+        # Count available images
+        bitcoin_images = library.get_bitcoin_images()
+        
+        available_entities = 0
+        total_entities = 0
+        entity_breakdown = {}
+        
+        for entity_type, entities in library.entity_mapping.items():
+            entity_count = len(entities)
+            total_entities += entity_count
+            
+            available_count = 0
+            for entity_name, entity_config in entities.items():
+                local_path = entity_config.get("local_path")
+                if local_path and os.path.exists(local_path):
+                    available_count += 1
+            
+            available_entities += available_count
+            entity_breakdown[entity_type] = {"available": available_count, "total": entity_count}
+        
+        total_available = len(bitcoin_images) + available_entities
+        total_configured = len(library.library_config.get("default_bitcoin_images", [])) + total_entities
+        
+        logger.info(f"📊 Image Library Summary:")
+        logger.info(f"   🏆 Total available images: {total_available}/{total_configured}")
+        logger.info(f"   🔸 Bitcoin images: {len(bitcoin_images)}/{len(library.library_config.get('default_bitcoin_images', []))}")
+        logger.info(f"   🗺️  Entity images: {available_entities}/{total_entities}")
+        
+        for entity_type, counts in entity_breakdown.items():
+            if counts["total"] > 0:
+                logger.info(f"     - {entity_type}: {counts['available']}/{counts['total']}")
+        
+        # Check for recent maintenance
+        if os.path.exists("image_maintenance_report.json"):
+            try:
+                with open("image_maintenance_report.json", 'r') as f:
+                    report = json.load(f)
+                    
+                if report.get("broken_urls"):
+                    logger.warning(f"   ⚠️  {len(report['broken_urls'])} broken URLs detected")
+                    logger.warning("   Run 'python maintain_image_library.py' to update")
+                else:
+                    logger.info("   ✅ No broken URLs detected in last maintenance")
+                    
+            except Exception:
+                pass
+        else:
+            logger.info("   ℹ️  No maintenance report found (run 'python maintain_image_library.py')")
+        
+        # Test image selection
+        try:
+            selector = ImageSelector()
+            test_images = selector.select_images_for_headline("Bitcoin mining in Texas reaches new heights")
+            if test_images:
+                logger.info(f"   ✅ Image selection working - found {len(test_images)} images for test headline")
+            else:
+                logger.warning("   ⚠️  Image selection returned no images for test headline")
+        except Exception as e:
+            logger.warning(f"   ⚠️  Image selection test failed: {str(e)}")
+        
+        return True
+        
+    except ImportError as e:
+        logger.warning(f"⚠️  Image functionality not available: {str(e)}")
+        logger.info("   Bot will work without images (text-only tweets)")
+        return False
+    except Exception as e:
+        logger.error(f"❌ Image library check failed: {str(e)}")
+        return False
+
 def test_twitter_connection():
     """Test Twitter API connection"""
     logger.info("\n=== TESTING TWITTER CONNECTION ===")
@@ -273,6 +354,9 @@ def main():
     
     # Check posted articles
     posted_articles = check_posted_articles()
+    
+    # Check image library status
+    image_library_ok = check_image_library()
     
     # Determine root cause and provide appropriate messaging
     if rate_limited:

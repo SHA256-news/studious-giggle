@@ -1,0 +1,42 @@
+{
+  "locations": {
+    "michigan": {
+      "type": "state_flag",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Flag_of_Michigan.svg/320px-Flag_of_Michigan.svg.png",
+      "local_path": "images/locations_michigan.png"
+    },
+    "texas": {
+      "type": "state_flag",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Flag_of_Texas.svg/320px-Flag_of_Texas.svg.png",
+      "local_path": "images/locations_texas.png"
+    },
+    "california": {
+      "type": "state_flag",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Flag_of_California.svg/320px-Flag_of_California.svg.png",
+      "local_path": "images/locations_california.png"
+    },
+    "united states": {
+      "type": "country_flag",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png",
+      "local_path": "images/locations_united_states.png"
+    },
+    "china": {
+      "type": "country_flag",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/320px-Flag_of_the_People%27s_Republic_of_China.svg.png",
+      "local_path": "images/locations_china.png"
+    }
+  },
+  "companies": {
+    "coinbase": {
+      "type": "company_logo",
+      "image_url": "https://logo.clearbit.com/coinbase.com",
+      "local_path": "images/companies_coinbase.png"
+    },
+    "microstrategy": {
+      "type": "company_logo",
+      "image_url": "https://logo.clearbit.com/microstrategy.com",
+      "local_path": "images/companies_microstrategy.png"
+    }
+  },
+  "regulatory": {}
+}
