@@ -2,7 +2,8 @@
   "posted_uris": [
     "test-article-1",
     "8869866053",
-    "8869932309"
+    "8869932309",
+    "8870094920"
   ],
   "queued_articles": [
     {
@@ -9432,6 +9433,1902 @@
       "sentiment": 0.2862745098039217,
       "wgt": 495928252,
       "relevance": 90
+    },
+    {
+      "uri": "8870086086",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "06:21:53",
+      "dateTime": "2025-09-19T06:21:53Z",
+      "dateTimePub": "2025-09-19T06:17:01Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.marketscreener.com/news/the9-announces-jv-acquisition-to-operate-proprietary-mobile-games-ultraman-hero-beyond-time-and-glo-ce7d58d9d08dfe24",
+      "title": "The9 Announces JV Acquisition to Operate Proprietary Mobile Games Ultraman:  Hero Beyond Time and Glory All Stars",
+      "body": "SHANGHAI, Sept. 19, 2025 /PRNewswire/ -- The9 Limited (Nasdaq: NCTY) (\"The9\"), an established Internet company, today announced that its wholly-owned subsidiary Shanghai The9 Information Technology Co., Ltd. has entered into a definitive agreement with Shanghai ZhongShun HengXin Network Technology Co., Ltd. (\"ZhongShun\") to acquire 51% equity of ZhongShun's wholly-owned subsidiary, Shanghai ZhongXinShun Network Technology Co., Ltd. (the \"Joint Venture\"). ZhongShun will contribute the exclusive rights of its two proprietary mobile games into the Joint Venture:\n\nAll after-tax profits of the Joint Venture will be distributed as dividends every quarter according to the shareholding ratio of the Joint Venture partners. The consideration of the Joint Venture's 51% equity includes RMB69 million (approximately US$9.7 million) and The9 restricted shares with a value of RMB46 million (approximately US$6.5 million). Both payment of cash and restricted shares are based on instalments and are only payable according to the actual achievement of the Joint Venture's profits as committed by ZhongShun in the coming 3 years.\n\n\"We are very excited to join forces with The9. Glory All Stars has already proven itself as a blockbuster title, generating more than RMB2 billion cumulative gross revenue over the past 4 years with a healthy 40% gross margin. Building on this foundation, Ultraman: Hero Beyond Time is positioned to become the next blockbuster success. With the Ultraman franchise massive global fan base and our data-driven design, we believe this title has the potential to surpass Glory All Star's lifetime performance within 3 years after launch. So far, we have over 2.5 million registered users since close beta test.\n\n\"Beyond these two titles, the Joint Venture with The9 is also preparing additional proprietary games in our pipeline, in order to build a long-term franchise ecosystem. Together with The9's proven publishing strength and our development expertise, we are confident that the Joint Venture will continue to deliver more blockbuster games and create tremendous value to the shareholders,\" said Yu Su, CEO of ZhongShun.\n\nSafe Harbor Statement\n\nThis current report contains forward-looking statements. These statements are made under the \"safe harbor\" provisions of the United States Private Securities Litigation Reform Act of 1995. These forward-looking statements can be identified by terminology such as \"will,\" \"expects,\" \"anticipates,\" \"future,\" \"intends,\" \"plans,\" \"believes,\" \"estimates\" and similar statements. Such statements are based upon management's current expectations and current market and operating conditions and relate to events that involve known or unknown risks, uncertainties and other factors, all of which are difficult to predict and many of which are beyond The9's control. The9 may also make written or oral forward-looking statements in its periodic reports to the U.S. Securities and Exchange Commission (\"SEC\"), in its annual report to shareholders, in press releases and other written materials and in oral statements made by its officers, directors or employees to third parties. Statements that are not historical facts, including statements about The9's beliefs and expectations, are forward-looking statements. Forward-looking statements involve inherent risks and uncertainties. A number of factors could cause actual results to differ materially from those contained in any forward-looking statement, including but not limited to the following: The9's goal and strategies; The9's expansion plans; The9's future business development, financial condition and results of operations; The9's expectations regarding demand for, and market acceptance of, its products and services; The9's expectations regarding keeping and strengthening its relationships with business partners it collaborates with; general economic and business conditions; and assumptions underlying or related to any of the foregoing. Further information regarding these and other risks is included in The9's filings with the SEC. All information provided in this announcement is as of the date hereof, and The9 does not undertake any obligation to update any forward-looking statement, except as required under applicable law.\n\nThe9 Limited (The9) is an Internet company listed on Nasdaq in 2004. The9 is committed to become a global diversified high-tech Internet company and is engaged in online games operation and Bitcoin mining business.\n\nWebsite: www.the9.com",
+      "source": {
+        "uri": "marketscreener.com",
+        "dataType": "news",
+        "title": "Market Screener"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/The9",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "The9"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joint_venture",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Joint venture"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shanghai",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Shanghai"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Shanghai"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "China"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Proprietary_software",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Proprietary software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Safe_harbor_(law)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Safe harbor (law)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/PR_Newswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "PR Newswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_game",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mobile game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dividend",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Dividend"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Private_Securities_Litigation_Reform_Act",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Private Securities Litigation Reform Act"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Software_release_life_cycle",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Software release life cycle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Internet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Revenue",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Revenue"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Online_game",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Online game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Press_release",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Press release"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities/Opposing_Views",
+          "label": "dmoz/Business/Opportunities/Opposing Views",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 56
+        }
+      ],
+      "image": "https://www.marketscreener.com/images/twitter_MS_fdblanc.png",
+      "eventUri": null,
+      "sentiment": 0.4745098039215687,
+      "wgt": 495958913,
+      "relevance": 2
+    },
+    {
+      "uri": "2025-09-837868606",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "05:23:51",
+      "dateTime": "2025-09-19T05:23:51Z",
+      "dateTimePub": "2025-09-19T04:43:32Z",
+      "dataType": "news",
+      "sim": 0.6039215922355652,
+      "url": "https://cryptonews.com.au/news/founders-of-sydney-headquartered-iren-cash-out-66m-as-firm-becomes-worlds-most-valuable-bitcoin-miner-130907/",
+      "title": "Founders of Sydney-Headquartered IREN Cash Out $66M as Firm Becomes World's Most Valuable Bitcoin Miner",
+      "body": "The company, which has seen its market capitalisation soar beyond US$10 billion, reported a 168% increase in revenue for the fiscal year, with a net profit of US$86 million.\n\nIREN co-founders Dan and Will Roberts sold one million shares each last week, cashing out about US$33 million (AU$49.5 million) apiece as the company's stock reached record highs, according to filings with the US Securities and Exchange Commission.\n\nThe transactions come during a sharp rally in IREN's share price, which has climbed 50% since September 8. The surge followed news that the Sydney-headquartered, Nasdaq-listed company had purchased roughly 9,000 Nvidia Blackwell chips to expand its AI-focused data center services.\n\nThe gains have lifted IREN's market capitalisation beyond US$10 billion (AU$15 billion), making it the world's most valuable publicly traded Bitcoin miner.\n\nBitcoin Miner Expands Into AI Sector\n\nThe stock has surged over 350% in the past year, hitting new all-time highs. That rally has everyone at the edge of their seats, mostly because they're trying to figure out if the valuation is stretched or if the bull run will continue.\n\nThe Roberts brothers retain significant holdings, each controlling approximately 6% of the company, as per Capital Brief.\n\nIREN reported revenue of US$501 million (AU$766 million) for this fiscal year ending, and that's a massive 168% increase year-on-year, alongside net profit of US$86 million (AU$131 million), with US$165 million (AU$252 million) in revenue generated during July and August alone.\n\nFounded in 2018 as Iris Energy Limited, IREN initially focused on Bitcoin mining before expanding into renewable-powered data centers and AI infrastructure. Its operations are concentrated in North America, while its corporate headquarters remain in Australia.",
+      "source": {
+        "uri": "cryptonews.com.au",
+        "dataType": "news",
+        "title": "Crypto News Australia"
+      },
+      "authors": [
+        {
+          "uri": "jose_oramas@cryptonews.com.au",
+          "name": "Jos\u00e9 Oramas",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australian_dollar",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Australian dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Net_income",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Net income"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fiscal_year",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Fiscal year"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/North_America",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "North America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Science/Earth_Sciences/Geology",
+          "label": "dmoz/Science/Earth Sciences/Geology",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 10
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 13
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 94
+        }
+      ],
+      "image": "https://cdn.cryptonews.com.au/2025/09/19144229/91925IREN.jpeg",
+      "eventUri": "eng-10969866",
+      "sentiment": 0.3960784313725489,
+      "wgt": 495955431,
+      "relevance": 35
+    },
+    {
+      "uri": "8869998055",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "05:20:48",
+      "dateTime": "2025-09-19T05:20:48Z",
+      "dateTimePub": "2025-09-19T04:47:25Z",
+      "dataType": "news",
+      "sim": 0.8666666746139526,
+      "url": "https://finance.yahoo.com/news/eric-trump-touts-crypto-potential-044725868.html",
+      "title": "Eric Trump Touts Crypto as Potential Lifeline for the US Dollar",
+      "body": "The President's son also said crypto challenges Wall Street, calling it \"the ultimate revenge against big banks\" and arguing digital assets make lenders unnecessary.\n\nEric Trump has claimed that surging demand for cryptocurrencies could \"save the US dollar\" by drawing global investment flows into America, tying the fortunes of digital assets to the strength of the nation's currency.\n\nThe president's son and outspoken crypto supporter told the Financial Times this week that the digital assets boom would funnel \"trillions from around the world in wonky currencies\" into the US.\n\nHe argued that Bitcoin mining and financial independence could power \"a kind of financial revolution\" rooted in America, adding, \"I think it arguably saves the US dollar.\"\n\nTrump's remarks came hours after he rang Nasdaq's opening bell to celebrate the market debut of American Bitcoin Corp, a company where he holds a stake valued at more than $500m, according to FT.\n\nThe firm emerged earlier this year from a merger between his family-backed American Bitcoin venture and Gryphon Digital Mining, and now trades under the ticker ABTC.\n\nThe comments land at a time when the US dollar has weakened. President Donald Trump's trade battles, along with his frequent clashes with the Federal Reserve, have unsettled investors.\n\nThe Fed cut interest rates on Wednesday for the first time this year, reinforcing concerns over inflation and debt levels that continue to pressure the greenback.\n\nDonald Trump has repeatedly argued for lower rates since taking office, saying the US benefits more from a weaker currency. He has also pledged to make America the \"crypto capital\" of the world and encouraged regulators to take a lighter approach to digital assets, fueling record highs in bitcoin and other tokens.\n\nThe Trump family's interests in crypto now span a Truth Social Bitcoin ETF, memecoins named after Donald and Melania Trump, and a stablecoin venture tied to Trump Media & Technology Group.\n\nSpeaking at the Bitcoin 2025 Asia conference in Hong Kong last month, Eric Trump predicted Bitcoin would inevitably reach $1m. He pointed to mounting demand from governments, corporations and wealthy families. \"Everybody wants Bitcoin. Everybody is buying Bitcoin,\" he said.\n\nFurther, Trump cast crypto as a challenge to Wall Street. He said he took pride in building companies without the help of America's biggest banks, describing it as \"the ultimate revenge against the big banks and modern finance.\"\n\nThe Trump Organization is currently suing Capital One, alleging it closed its accounts in 2021 for political reasons, which the bank denies.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Currency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Independence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Eric_Trump",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Eric Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Financial Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Inflation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Inflation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trump_Media_&_Technology_Group",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Trump Media & Technology Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Truth_Social",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Truth Social"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_One",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Capital One"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Trump_Organization",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "The Trump Organization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Melania_Trump",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Melania Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Corporation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hong_Kong",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Hong Kong"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Hong Kong"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Government/Finance",
+          "label": "dmoz/Society/Government/Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Money_Management",
+          "label": "dmoz/Home/Personal Finance/Money Management",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Employment",
+          "label": "dmoz/Business/Financial Services/Employment",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 95
+        }
+      ],
+      "image": "https://media.zenfs.com/en/cryptonews_us_711/181e0772638489918123b56a066df8b4",
+      "eventUri": "eng-10977845",
+      "sentiment": -0.09019607843137256,
+      "wgt": 495955248,
+      "relevance": 69
+    },
+    {
+      "uri": "2025-09-837861006",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "05:07:25",
+      "dateTime": "2025-09-19T05:07:25Z",
+      "dateTimePub": "2025-09-19T04:47:25Z",
+      "dataType": "news",
+      "sim": 0.8980392217636108,
+      "url": "https://cryptonews.com/news/eric-trump-touts-crypto-potential-lifeline-us-dollar-2/",
+      "title": "Eric Trump Touts Crypto as Potential Lifeline for the US Dollar",
+      "body": "Shalini is a crypto reporter who provides in-depth reports on daily developments and regulatory shifts in the cryptocurrency sector.\n\nEric Trump has claimed that surging demand for cryptocurrencies could \"save the US dollar\" by drawing global investment flows into America, tying the fortunes of digital assets to the strength of the nation's currency.\n\nThe president's son and outspoken crypto supporter told the Financial Times this week that the digital assets boom would funnel \"trillions from around the world in wonky currencies\" into the US.\n\nHe argued that Bitcoin mining and financial independence could power \"a kind of financial revolution\" rooted in America, adding, \"I think it arguably saves the US dollar.\"\n\nTrump's remarks came hours after he rang Nasdaq's opening bell to celebrate the market debut of American Bitcoin Corp, a company where he holds a stake valued at more than $500m, according to FT.\n\nThe firm emerged earlier this year from a merger between his family-backed American Bitcoin venture and Gryphon Digital Mining, and now trades under the ticker ABTC.\n\nWeaker Dollar Reflects Fed's Cautious Easing and Mounting Debt Fears\n\nThe comments land at a time when the US dollar has weakened. President Donald Trump's trade battles, along with his frequent clashes with the Federal Reserve, have unsettled investors.\n\nThe Fed cut interest rates on Wednesday for the first time this year, reinforcing concerns over inflation and debt levels that continue to pressure the greenback.\n\nDonald Trump has repeatedly argued for lower rates since taking office, saying the US benefits more from a weaker currency. He has also pledged to make America the \"crypto capital\" of the world and encouraged regulators to take a lighter approach to digital assets, fueling record highs in bitcoin and other tokens.\n\nTrump Family Expands Crypto Interests From ETFs to Memecoins and Stablecoins\n\nThe Trump family's interests in crypto now span a Truth Social Bitcoin ETF, memecoins named after Donald and Melania Trump, and a stablecoin venture tied to Trump Media & Technology Group.\n\nSpeaking at the Bitcoin 2025 Asia conference in Hong Kong last month, Eric Trump predicted Bitcoin would inevitably reach $1m. He pointed to mounting demand from governments, corporations and wealthy families. \"Everybody wants Bitcoin. Everybody is buying Bitcoin,\" he said.\n\nFurther, Trump cast crypto as a challenge to Wall Street. He said he took pride in building companies without the help of America's biggest banks, describing it as \"the ultimate revenge against the big banks and modern finance.\"\n\nThe Trump Organization is currently suing Capital One, alleging it closed its accounts in 2021 for political reasons, which the bank denies.\n\nHe added that crypto has changed perceptions of financial access. \"You realise you just don't need them. And frankly, you don't miss them,\" he said, referring broadly to Wall Street lenders.\n\nTrump Ties to Stablecoins Add Political Weight to Financial Debate\n\nStablecoins in particular are emerging as a flashpoint between crypto and banking. US banking executives have warned they could drain deposits if they offer higher yields than savings accounts.\n\nAt the same time, the White House has encouraged issuers such as Tether and Circle to buy US Treasury debt, a move seen as key to supporting the bond market as Washington issues trillions of dollars in new debt each year.\n\nEric Trump has his own stake in that trend. Last year, he co-founded World Liberty Financial Inc, which runs a stablecoin pegged to the US dollar. According to disclosures, his father held more than 15b WLFI tokens at the end of 2024, a position worth more than $3b at recent prices.\n\nThe younger Trump, however, downplayed the financial windfall. \"If my father cared about monetizing his life, the last thing he would have done is run for president, where all we've done is un-monetize our life,\" he said.",
+      "source": {
+        "uri": "cryptonews.com",
+        "dataType": "news",
+        "title": "cryptonews.com"
+      },
+      "authors": [
+        {
+          "uri": "shalini_nagarajan@cryptonews.com",
+          "name": "Shalini Nagarajan",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Eric_Trump",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Eric Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Currency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Independence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Financial Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trump_Media_&_Technology_Group",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Trump Media & Technology Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Truth_Social",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Truth Social"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Melania_Trump",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Melania Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Inflation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Inflation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_One",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Capital One"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Trump_Organization",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "The Trump Organization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States Department of the Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liberty",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Liberty"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bank",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bank"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Washington,_D.C.",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Washington, D.C."
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Washington, D.C."
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hong_Kong",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Hong Kong"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Hong Kong"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Financial_Services",
+          "label": "dmoz/Business/Financial Services",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Financial_Planning",
+          "label": "dmoz/Business/Financial Services/Financial Planning",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Information_Services",
+          "label": "dmoz/Business/Financial Services/Information Services",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Computers/Hacking/Cryptography",
+          "label": "dmoz/Computers/Hacking/Cryptography",
+          "wgt": 13
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 96
+        }
+      ],
+      "image": "https://cimg.co/wp-content/uploads/2025/09/19041432/1758255271-image-1758254959130_optimized.jpg",
+      "eventUri": "eng-10977845",
+      "sentiment": 0.2,
+      "wgt": 495954445,
+      "relevance": 85
+    },
+    {
+      "uri": "8870006289",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "05:05:53",
+      "dateTime": "2025-09-19T05:05:53Z",
+      "dateTimePub": "2025-09-19T05:05:31Z",
+      "dataType": "news",
+      "sim": 0.9254902005195618,
+      "url": "https://cryptorank.io/news/feed/63649-eric-trump-touts-crypto-potential-lifeline-us-dollar-2",
+      "title": "Eric Trump Touts Crypto as Potential Lifeline for the US Dollar | Blockchain Eric Trump | CryptoRank.io",
+      "body": "Eric Trump has claimed that surging demand for cryptocurrencies could \"save the US dollar\" by drawing global investment flows into America, tying the fortunes of digital assets to the strength of the nation's currency.\n\nThe president's son and outspoken crypto supporter told the Financial Times this week that the digital assets boom would funnel \"trillions from around the world in wonky currencies\" into the US.\n\nHe argued that Bitcoin mining and financial independence could power \"a kind of financial revolution\" rooted in America, adding, \"I think it arguably saves the US dollar.\"\n\nTrump's remarks came hours after he rang Nasdaq's opening bell to celebrate the market debut of American Bitcoin Corp, a company where he holds a stake valued at more than $500m, according to FT.\n\nThe firm emerged earlier this year from a merger between his family-backed American Bitcoin venture and Gryphon Digital Mining, and now trades under the ticker ABTC.\n\nThe comments land at a time when the US dollar has weakened. President Donald Trump's trade battles, along with his frequent clashes with the Federal Reserve, have unsettled investors.\n\nThe Fed cut interest rates on Wednesday for the first time this year, reinforcing concerns over inflation and debt levels that continue to pressure the greenback.\n\nDonald Trump has repeatedly argued for lower rates since taking office, saying the US benefits more from a weaker currency. He has also pledged to make America the \"crypto capital\" of the world and encouraged regulators to take a lighter approach to digital assets, fueling record highs in bitcoin and other tokens.\n\nThe Trump family's interests in crypto now span a Truth Social Bitcoin ETF, memecoins named after Donald and Melania Trump, and a stablecoin venture tied to Trump Media & Technology Group.\n\nSpeaking at the Bitcoin 2025 Asia conference in Hong Kong last month, Eric Trump predicted Bitcoin would inevitably reach $1m. He pointed to mounting demand from governments, corporations and wealthy families. \"Everybody wants Bitcoin. Everybody is buying Bitcoin,\" he said.\n\nFurther, Trump cast crypto as a challenge to Wall Street. He said he took pride in building companies without the help of America's biggest banks, describing it as \"the ultimate revenge against the big banks and modern finance.\"\n\nThe Trump Organization is currently suing Capital One, alleging it closed its accounts in 2021 for political reasons, which the bank denies.\n\nHe added that crypto has changed perceptions of financial access. \"You realise you just don't need them. And frankly, you don't miss them,\" he said, referring broadly to Wall Street lenders.\n\nStablecoins in particular are emerging as a flashpoint between crypto and banking. US banking executives have warned they could drain deposits if they offer higher yields than savings accounts.\n\nAt the same time, the White House has encouraged issuers such as Tether and Circle to buy US Treasury debt, a move seen as key to supporting the bond market as Washington issues trillions of dollars in new debt each year.\n\nEric Trump has his own stake in that trend. Last year, he co-founded World Liberty Financial Inc, which runs a stablecoin pegged to the US dollar. According to disclosures, his father held more than 15b WLFI tokens at the end of 2024, a position worth more than $3b at recent prices.\n\nThe younger Trump, however, downplayed the financial windfall. \"If my father cared about monetizing his life, the last thing he would have done is run for president, where all we've done is un-monetize our life,\" he said.",
+      "source": {
+        "uri": "cryptorank.io",
+        "dataType": "news",
+        "title": "CryptoRank"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Currency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Eric_Trump",
+          "type": "person",
+          "score": 4,
+          "label": {
+            "eng": "Eric Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Independence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Financial Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trump_Media_&_Technology_Group",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Trump Media & Technology Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Truth_Social",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Truth Social"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Melania_Trump",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Melania Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Inflation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Inflation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hong_Kong",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Hong Kong"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Hong Kong"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_One",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Capital One"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Trump_Organization",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "The Trump Organization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Savings_account",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Savings account"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States Department of the Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liberty",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Liberty"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Washington,_D.C.",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Washington, D.C."
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Washington, D.C."
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Money_Management",
+          "label": "dmoz/Home/Personal Finance/Money Management",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Employment",
+          "label": "dmoz/Business/Financial Services/Employment",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 97
+        }
+      ],
+      "image": "https://cryptorank.io/static/logo.png",
+      "eventUri": "eng-10977845",
+      "sentiment": -0.05882352941176472,
+      "wgt": 495954353,
+      "relevance": 69
+    },
+    {
+      "uri": "2025-09-837856742",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "05:02:12",
+      "dateTime": "2025-09-19T05:02:12Z",
+      "dateTimePub": "2025-09-19T05:01:47Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.yahoo.com/finance/news/liability-dream-come-true-redditor-131605505.html",
+      "title": "From 'Liability' to 'Dream Come True' - Redditor Who Invested $36,000 in Nvidia 8 Years Ago Sells Entire Position After Reaching $1 Million Profit",
+      "body": "Nvidia (NASDAQ:NVDA) has emerged as the biggest beneficiary of the generative AI boom that started with the launch of ChatGPT in November 2022. Since the AI tool's launch, the stock has surged over 900%, rewarding investors who got in early.\n\nIn July, an investor on Reddit shared how he got in early on Nvidia, turning an initial investment of $36,352 into more than $1 million in profits by patiently holding the stock for eight years.\n\nDon't Miss:\n\n* Would You Have Invested in eBay or Uber Early? The Same Backers Are Betting on This Vacation Home Platform\n\n* They Sold Their Last Real Estate Company for Nearly $1B -- Now They're Building the Future of U.S. Industrial Growth\n\nThe investor said that he began buying Nvidia shares back in 2017 because he believed the company's graphics processing units would be used for mining cryptocurrencies. Bitcoin hit $20,000 for the first time that year, but soon \"collapsed,\" introducing the Redditor to the volatility of the crypto world, he said. However, he did not sell Nvidia because he believed crypto was in its \"early adoption stage.\"\n\nFrom Crypto to Electric Vehicles\n\nThe Redditor said he kept slowly adding to his Nvidia stake over the next couple of years, and by 2019, he owned about 6,000 shares of the company. In 2019 and 2020, the investor began to feel that Nvidia GPUs were not as closely tied to the crypto industry as once thought. However, there was a new reason for him to keep holding Nvidia in his portfolio.\n\n\"The hype around Tesla was growing and crypto mining started moving away from personal computers and I learned GPUs were falling out of favor for more powerful ASIC mining rigs,\" he said. \"So my mentality moved from crypto to electric vehicles.\"\n\nTrending: 'Scrolling To UBI' -- Deloitte's #1 fastest-growing software company allows users to earn money on their phones. You can invest today for just $0.30/share.\n\n'Temptation' to Sell\n\nThen came 2023, and the world started to see the impact of generative AI, thanks to the launch of ChatGPT in the previous year. The Redditor said he started seeing \"mainstream use cases\" for AI because he worked in the photography and videography industry.\n\nThe investor said his portfolio started to \"skyrocket\" because of Nvidia. His position in the chip maker was up 4000% and the \"temptation\" to sell was growing.\n\n\"Once a liability, Nvidia now made up 10%, 20%, and 30% of my entire investment account and retirement funds,\" he wrote. \"There were days when I would log in to see I had made $100,000 that day and a week later it would swing down -$105,000. It was pretty crazy to see a full year's worth of income bouncing around day by day in my account.\"",
+      "source": {
+        "uri": "yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reddit",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Reddit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Generative_artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Generative artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/ChatGPT",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "ChatGPT"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Uber",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Uber"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/EBay",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "EBay"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Tesla, Inc."
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_vehicle",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electric vehicle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Personal_computer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Personal computer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Software",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Software"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Photography",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Photography"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Deloitte",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Deloitte"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Venture_Capital",
+          "label": "dmoz/Business/Financial Services/Venture Capital",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 50
+        }
+      ],
+      "image": "https://media.zenfs.com/en/Benzinga/1d814dc68b8ed6d0ef349575b21dbbdd",
+      "eventUri": null,
+      "sentiment": 0.3411764705882352,
+      "wgt": 495954132,
+      "relevance": 19
+    },
+    {
+      "uri": "2025-09-837764782",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "01:56:16",
+      "dateTime": "2025-09-19T01:56:16Z",
+      "dateTimePub": "2025-09-19T01:47:20Z",
+      "dataType": "news",
+      "sim": 0.7098039388656616,
+      "url": "https://cryptonews.com/news/bitcoin-price-prediction-will-secs-first-multi-asset-etp-push-btc-past-120k/",
+      "title": "Bitcoin Price Prediction: Will SEC's First Multi-Asset ETP Push BTC Past $120K?",
+      "body": "Disclaimer: Crypto is a high-risk asset class. This article is provided for informational purposes and does not constitute investment advice. You could lose all of your capital.\n\nBitcoin trades near $117,321 with a 24-hour volume of $49.4 billion and a market cap of $2.33 trillion. Despite global volatility, BTC remains the anchor of institutional portfolios. The Federal Reserve's latest 25-basis-point rate cut, the first since December, gave fresh momentum to risk assets. Lower borrowing costs typically support Bitcoin as investors look for alternatives to traditional assets.\n\nAdding cultural weight, memecoin traders unveiled a 12-foot golden statue of Donald Trump holding a Bitcoin near the U.S. Capitol. Though a stunt, it underscores how crypto continues to blend politics, memes, and financial markets.\n\n* Bitcoin market cap: $2.33 trillion\n\n* Current BTC price: $117,321\n\n* Trading volume: $49.4 billion (24 hours)\n\nSEC Clears Grayscale's First Multi-Asset ETP\n\nThe SEC has approved Grayscale's Digital Large Cap Fund (GLDC), the first U.S. multi-asset crypto exchange-traded product. The ETP provides exposure to Bitcoin, Ethereum, XRP, Solana, and Cardano without requiring investors to manage wallets or exchange accounts.\n\nThis move follows the success of spot Bitcoin ETFs and reflects regulators' new listing standards, which are designed to simplify crypto fund approvals on Nasdaq and NYSE Arca. Grayscale CEO Peter Mintzberg called the launch a milestone for mainstream adoption.\n\nApproval strengthens Bitcoin's role as the cornerstone of institutional crypto strategies, even as investor interest broadens into altcoins.\n\nLaos Turns to Bitcoin Mining for Debt Relief\n\nLaos, known as the \"battery of Southeast Asia,\" is exploring Bitcoin mining to ease its $1.3 billion annual hydropower debt. By using surplus electricity for mining, Laos could convert unused power into globally liquid assets.\n\nThe country experimented with mining in 2021 but halted new projects in 2023 due to drought and grid stress. Now, as repayment pressures mount, officials are re-evaluating crypto mining as a way to monetize stranded energy.\n\nThis strategy mirrors Bhutan and Ethiopia, where renewables are being redirected to crypto. It reinforces Bitcoin's growing narrative as \"digital energy money.\"\n\nBitcoin Price Forecast - Technical Outlook\n\nOn the 4-hour chart, Bitcoin consolidates inside a rising wedge, trading near $117,366. The 50-SMA at $116,000 and the 200-SMA at $113,243 provide firm support.\n\nCandlestick rejections near $115,800 suggest buyers continue to defend key levels, while the RSI at 59 shows cooling momentum without signaling overbought conditions.\n\nIf BTC closes above $117,978, a climb toward $119,287 and $120,298 is likely, with room for $125K-$130K in the weeks ahead.\n\nA break below $116,000 could trigger a pullback toward $114,400 or even $113,200. For now, the bias stays cautiously bullish, with long-term potential for a $500,000 supercycle if liquidity and macro tailwinds align.\n\nPresale Bitcoin Hyper ($HYPER) Combines BTC Security With Solana Speed\n\nBitcoin Hyper ($HYPER) is positioning itself as the first Bitcoin-native Layer 2 powered by the Solana Virtual Machine (SVM). Its goal is to expand the BTC ecosystem by enabling lightning-fast, low-cost smart contracts, decentralized apps, and even meme coin creation.\n\nBy combining BTC's unmatched security with Solana's high-performance framework, the project opens the door to entirely new use cases, including seamless BTC bridging and scalable dApp development.\n\nThe team has put strong emphasis on trust and scalability, with the project audited by Consult to give investors confidence in its foundations.\n\nMomentum is building quickly. The presale has already crossed $16.8 million, leaving only a limited allocation still available. At today's stage, HYPER tokens are priced at just $0.012945 -- but that figure will increase as the presale progresses.\n\nYou can buy HYPER tokens on the official Bitcoin Hyper website using crypto or a bank card.",
+      "source": {
+        "uri": "cryptonews.com",
+        "dataType": "news",
+        "title": "cryptonews.com"
+      },
+      "authors": [
+        {
+          "uri": "arslan_butt@cryptonews.com",
+          "name": "Arslan Butt",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Laos",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "Laos"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Laos"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Solana_(blockchain_platform)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Solana (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Capitol",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "United States Capitol"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet_meme",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Internet meme"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_market",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Financial market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cardano_(blockchain_platform)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cardano (blockchain platform)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_battery",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electric battery"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethereum",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ethereum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ripple (payment protocol)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydropower",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hydropower"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/NYSE_Arca",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "NYSE Arca"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Southeast_Asia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Southeast Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethiopia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Ethiopia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Ethiopia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bhutan",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Bhutan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Bhutan"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 12
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 10
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 10
+        },
+        {
+          "uri": "dmoz/Computers/Hacking/Cryptography",
+          "label": "dmoz/Computers/Hacking/Cryptography",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 10
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 89
+        }
+      ],
+      "image": "https://cimg.co/wp-content/uploads/2025/08/26105642/1756205801-bitcoin-price-prediction-7.jpg",
+      "eventUri": "eng-10971923",
+      "sentiment": 0.01960784313725483,
+      "wgt": 495942976,
+      "relevance": 56
     }
   ]
 }
