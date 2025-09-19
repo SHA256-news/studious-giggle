@@ -173,8 +173,7 @@ class TweetPoster:
         if isinstance(response, TweepyTooManyRequests):
             return True
 
-        response_type = type(response)
-        if "TooManyRequests" in getattr(response_type, "__name__", ""):
+        if "TooManyRequests" in getattr(type(response), "__name__", ""):
             return True
 
         try:
