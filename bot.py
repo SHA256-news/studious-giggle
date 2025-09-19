@@ -14,6 +14,14 @@ from datetime import datetime, timedelta
 
 import tweepy
 
+# Configure logging before any modules attempt to use the shared logger
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger('bitcoin_mining_bot')
+
 try:
     from tweepy.errors import TooManyRequests as TweepyTooManyRequests  # type: ignore
 except (ImportError, AttributeError):
@@ -24,10 +32,10 @@ except (ImportError, AttributeError):
             # Extract known attributes before calling super()
             response = kwargs.pop('response', None)
             api_errors = kwargs.pop('api_errors', None)
-            
+
             # Call super with only positional args (avoid kwargs issue)
             super().__init__(*args)
-            
+
             # Store additional attributes for compatibility
             self.response = response
             self.api_errors = api_errors
@@ -49,14 +57,6 @@ except ImportError as e:
     logger.warning(f"Image support not available: {e}")
     ImageSelector = None
     IMAGE_SUPPORT_AVAILABLE = False
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class BitcoinMiningNewsBot:

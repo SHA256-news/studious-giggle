@@ -10,8 +10,14 @@ import logging
 import requests
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urlparse
-from PIL import Image
 import io
+
+try:
+    from PIL import Image  # type: ignore
+    PIL_AVAILABLE = True
+except ImportError:  # pragma: no cover - exercised indirectly via bot
+    Image = None  # type: ignore
+    PIL_AVAILABLE = False
 
 logger = logging.getLogger('image_library')
 
@@ -144,6 +150,10 @@ class ImageLibrary:
     
     def download_image(self, url: str, filename: str) -> Optional[str]:
         """Download an image from URL and save locally"""
+        if not PIL_AVAILABLE:
+            logger.warning("Pillow not available - skipping image download")
+            return None
+
         try:
             headers = {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
