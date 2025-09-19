@@ -99,8 +99,8 @@ def test_full_working_scenario():
                 print(f"   - Second tweet: {second_call_text[:50]}...")
                 
                 # Verify the reply structure
-                assert 'reply' in calls[1][1], "Second tweet should be a reply"
-                assert calls[1][1]['reply']['in_reply_to_tweet_id'] == "tweet_123", "Reply should reference first tweet"
+                assert 'in_reply_to_tweet_id' in calls[1][1], "Second tweet should be a reply"
+                assert calls[1][1]['in_reply_to_tweet_id'] == "tweet_123", "Reply should reference first tweet"
                 
                 print("✅ All verifications passed!")
                 print("\n🎉 THIS IS WHAT SUCCESS LOOKS LIKE!")

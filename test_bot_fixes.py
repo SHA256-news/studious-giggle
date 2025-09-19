@@ -212,7 +212,7 @@ def test_both_tweets_success():
                     calls = mock_twitter_client.create_tweet.call_args_list
                     assert "Test Bitcoin Mining Article" in calls[0][1]['text']
                     assert "Read more: https://example.com/article" in calls[1][1]['text']
-                    assert calls[1][1]['reply']['in_reply_to_tweet_id'] == "12345"
+                    assert calls[1][1]['in_reply_to_tweet_id'] == "12345"
                     
                     return True
                 else:
