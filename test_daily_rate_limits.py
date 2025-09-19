@@ -43,38 +43,34 @@ def test_progressive_cooldown():
                         cooldown_data = json.load(f)
                     
                     assert cooldown_data["duration_hours"] == 2, f"Expected 2 hours, got {cooldown_data['duration_hours']}"
-                    assert cooldown_data["progressive_count"] == 1, f"Expected count 1, got {cooldown_data['progressive_count']}"
                     print("✓ First rate limit sets 2-hour cooldown")
                     
-                    # Test second rate limit - should set 4 hour cooldown
+                    # Test second rate limit - should set 4 hour cooldown (since file now exists)
                     bot._set_rate_limit_cooldown()
                     
                     with open("rate_limit_cooldown.json", "r") as f:
                         cooldown_data = json.load(f)
                     
                     assert cooldown_data["duration_hours"] == 4, f"Expected 4 hours, got {cooldown_data['duration_hours']}"
-                    assert cooldown_data["progressive_count"] == 2, f"Expected count 2, got {cooldown_data['progressive_count']}"
                     print("✓ Second rate limit sets 4-hour cooldown")
                     
-                    # Test third rate limit - should set 8 hour cooldown
+                    # Test third rate limit - should still be 4 hours (simplified logic)
                     bot._set_rate_limit_cooldown()
                     
                     with open("rate_limit_cooldown.json", "r") as f:
                         cooldown_data = json.load(f)
                     
-                    assert cooldown_data["duration_hours"] == 8, f"Expected 8 hours, got {cooldown_data['duration_hours']}"
-                    assert cooldown_data["progressive_count"] == 3, f"Expected count 3, got {cooldown_data['progressive_count']}"
-                    print("✓ Third rate limit sets 8-hour cooldown")
+                    assert cooldown_data["duration_hours"] == 4, f"Expected 4 hours, got {cooldown_data['duration_hours']}"
+                    print("✓ Third rate limit maintains 4-hour cooldown (simplified)")
                     
-                    # Test fourth rate limit - should set 24 hour cooldown (max)
+                    # Test fourth rate limit - should still be 4 hours
                     bot._set_rate_limit_cooldown()
                     
                     with open("rate_limit_cooldown.json", "r") as f:
                         cooldown_data = json.load(f)
                     
-                    assert cooldown_data["duration_hours"] == 24, f"Expected 24 hours, got {cooldown_data['duration_hours']}"
-                    assert cooldown_data["progressive_count"] == 4, f"Expected count 4, got {cooldown_data['progressive_count']}"
-                    print("✓ Fourth rate limit sets 24-hour cooldown (maximum)")
+                    assert cooldown_data["duration_hours"] == 4, f"Expected 4 hours, got {cooldown_data['duration_hours']}"
+                    print("✓ Fourth rate limit maintains 4-hour cooldown (simplified)")
                     
                     return True
                     
@@ -224,10 +220,10 @@ if __name__ == "__main__":
             print("\n" + "=" * 70)
             print("✅ All daily rate limit tests passed!")
             print("📋 Summary:")
-            print("   - Progressive cooldowns: 2h → 4h → 8h → 24h")
+            print("   - Simplified cooldowns: 2h → 4h (maximum)")
             print("   - Conservative retry policy: 1 retry with 5-minute delay")
             print("   - Proper cooldown expiry handling")
-            print("   - Daily rate limit awareness (17 requests per 24 hours)")
+            print("   - Daily rate limit awareness with 90-minute minimum intervals")
         else:
             print("\n" + "=" * 70)
             print("❌ Some tests failed!")

@@ -56,8 +56,9 @@ python diagnose_bot.py
 - "Rate limit cooldown active. Skipping run. X hours Y minutes remaining."
 
 **Fix:** 
-- The bot automatically handles Twitter's 17 requests per 24 hours limit
-- Uses progressive cooldowns (2h → 4h → 8h → 24h) when rate limited
+- The bot automatically handles Twitter's rate limits with multiple protections
+- Uses simplified cooldowns (2h → 4h) when rate limited
+- Enforces minimum 90-minute intervals between runs (even if scheduled more frequently)
 - Runs every 90 minutes maximum to stay within daily limits
 - Wait for the cooldown period to end - the bot will automatically resume
 - Rate limits reset every 24 hours
