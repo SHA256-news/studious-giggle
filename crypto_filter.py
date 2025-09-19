@@ -127,8 +127,18 @@ UNWANTED_CRYPTO_KEYWORDS = [
     'several altcoins', 'many altcoins',
 ]
 
-# Convert to lowercase and create set for efficient lookup
+# Convert to lowercase and create sets for efficient lookup
 UNWANTED_CRYPTO_SET = set(keyword.lower() for keyword in UNWANTED_CRYPTO_KEYWORDS)
+
+# Separate single words from phrases for optimized matching
+SINGLE_WORDS = {keyword for keyword in UNWANTED_CRYPTO_SET if ' ' not in keyword}
+PHRASES = {keyword for keyword in UNWANTED_CRYPTO_SET if ' ' in keyword}
+
+# Pre-compile regex patterns for single words
+SINGLE_WORD_PATTERNS = {
+    word: re.compile(r'\b' + re.escape(word) + r'\b', re.IGNORECASE)
+    for word in SINGLE_WORDS
+}
 
 
 def contains_unwanted_crypto(text):
@@ -146,18 +156,15 @@ def contains_unwanted_crypto(text):
         
     text_lower = text.lower()
     
-    # Check for word boundary matches to avoid false positives
-    for keyword in UNWANTED_CRYPTO_SET:
-        # Use word boundaries for single words, but allow phrase matching for multi-word names
-        if ' ' in keyword:
-            # Multi-word phrase - use exact phrase matching
-            if keyword in text_lower:
-                return True
-        else:
-            # Single word - use word boundaries to avoid partial matches
-            pattern = r'\b' + re.escape(keyword) + r'\b'
-            if re.search(pattern, text_lower):
-                return True
+    # Check phrases first (faster string containment)
+    for phrase in PHRASES:
+        if phrase in text_lower:
+            return True
+    
+    # Check single words with pre-compiled patterns
+    for word, pattern in SINGLE_WORD_PATTERNS.items():
+        if pattern.search(text):
+            return True
             
     return False
 
@@ -179,16 +186,15 @@ def get_unwanted_crypto_found(text):
     text_lower = text.lower()
     found = []
     
-    for keyword in UNWANTED_CRYPTO_SET:
-        if ' ' in keyword:
-            # Multi-word phrase - use exact phrase matching
-            if keyword in text_lower:
-                found.append(keyword)
-        else:
-            # Single word - use word boundaries
-            pattern = r'\b' + re.escape(keyword) + r'\b'
-            if re.search(pattern, text_lower):
-                found.append(keyword)
+    # Check phrases first 
+    for phrase in PHRASES:
+        if phrase in text_lower:
+            found.append(phrase)
+    
+    # Check single words with pre-compiled patterns
+    for word, pattern in SINGLE_WORD_PATTERNS.items():
+        if pattern.search(text):
+            found.append(word)
             
     return found
 
