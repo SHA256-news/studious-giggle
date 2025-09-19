@@ -9,7 +9,8 @@
     "8870856005",
     "8871105214",
     "8871183548",
-    "8871135442"
+    "8871135442",
+    "8870997066"
   ],
   "queued_articles": [
     {
@@ -5482,6 +5483,228 @@
       "sentiment": -0.003921568627450966,
       "wgt": 496004998,
       "relevance": 95
+    },
+    {
+      "uri": "8870881114",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "15:35:28",
+      "dateTime": "2025-09-19T15:35:28Z",
+      "dateTimePub": "2025-09-19T15:29:27Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.livebitcoinnews.com/most-missed-bitcoin-mining-profits-in-2025-will-bitfracs-new-crypto-presale-be-the-markets-fix/",
+      "title": "Most Missed Bitcoin Mining Profits in 2025 - Will Bitfrac's New Crypto Presale Be the Market's Fix?",
+      "body": "Institutions with high capital reserves have long dominated the global crypto mining industry. With a new crypto presale in the market, long-term individual investors often miss potential gains due to barriers such as hardware costs, technical knowledge, and operational complexity. Reports show that nearly 97% of investors have been unable to access direct mining profits, despite Bitcoin's record highs. A new crypto presale now positions itself as a possible solution, merging real-world asset ownership with tokenized access.\n\nThe Bitfrac token presale began with Stage 1 priced at $0.017. The round sold out, and early buyers already secured profits. Stage 2 is currently live, offering tokens at $0.024 with a 20% bonus for those using code BFT20. Investors are actively participating, with $1,89M raised from a $3.5 million target, filling 54% of the allocation.\n\nThe current stage has four days before the bonus closes. Stage 3 is expected at $0.042, increasing potential returns for early entrants. The structured approach demonstrates steady demand for the project. By introducing fractional ownership of industrial mining, the new crypto presale reduces entry barriers. Investors can participate with as little as $100, while a cap of $100,000 ensures wide distribution.\n\nTangible assets, including ASIC miners and facility ownership, back each Bitfrac Token (BFT). The presale has already raised over $4 million, confirming investor interest. Mining operations target a hash rate capacity of 2.5 EH/s powered by 75 MW facilities. With industrial electricity rates as low as $0.034/kWh, operating efficiency is maintained.\n\nCurrent estimates project daily Bitcoin production of 8.2 BTC. Monthly net profit is calculated at around $14.2 million, with hosting services adding nearly $892,000. This combined model delivers $15.1 million monthly revenue potential. Through smart contracts, distributions begin in November 2025, with expected APY ranging from 15% to 35%.\n\nA buyback-and-burn mechanism further strengthens the token model, reducing supply over time. For investors, the new crypto presale provides monthly profit distribution without technical management responsibilities.\n\nThe token presale introduces key differentiators compared to traditional mining models. Transparency is provided through on-chain asset records, including mining equipment serial numbers and verified property deeds. Tokenomics allocate 40% of the supply to public presale, 25% to mining reserves, and 15% to the team with vesting.\n\nLiquidity and DAO treasury allocations ensure long-term ecosystem growth. Early investors have a chance to secure 4x returns as the presale progresses, with over 2,000 participants already onboard. The new crypto presale positions itself as a way to access industrial-scale mining profits without complexity. The combination of low entry barriers, fractional ownership, and legally backed assets sets the project apart.\n\nThe current presale round offers investors entry at $0.024 per token with limited availability. With industrial Bitcoin mining profits typically reserved for institutions, the Bitfrac new crypto presale provides broader access. Its structure, asset backing, and distribution model present a path to potential 4x returns in 12 months. For many, this could represent a fix to missed opportunities in Bitcoin mining.\n\nMore Details:\n\nWebsite: https://bitfrac.com/\n\nTelegram: t.me/BitFracCommunity\n\nX: https://x.com/BitFracProtocol\n\nWhitePaper: https://bitfrac.com/docs/bitfrac-whitepaper.pdf\n\nDisclaimer: This is a paid post and should not be treated as news/advice. LiveBitcoinNews is not responsible for any loss or damage resulting from the content, products, or services referenced in this press release.",
+      "source": {
+        "uri": "livebitcoinnews.com",
+        "dataType": "news",
+        "title": "Live Bitcoin News"
+      },
+      "authors": [
+        {
+          "uri": "pr_room@livebitcoinnews.com",
+          "name": "Pr Room",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenization_(data_security)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Tokenization (data security)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smart_contract",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Smart contract"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fractional_ownership",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fractional ownership"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hash_function",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hash function"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/English_Heritage",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "English Heritage"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Net_income",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Net income"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenomics",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tokenomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_autonomous_organization",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Decentralized autonomous organization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Serial_code",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Serial code"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Deed",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Deed"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vesting",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Vesting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Consulting",
+          "label": "dmoz/Business/Mining and Drilling/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 93
+        }
+      ],
+      "image": "https://www.livebitcoinnews.com/wp-content/uploads/2025/09/lbn1-368.png",
+      "eventUri": null,
+      "sentiment": 0.3333333333333333,
+      "wgt": 495992128,
+      "relevance": 103
     }
-  ]
+  ],
+  "last_run_time": null
 }
