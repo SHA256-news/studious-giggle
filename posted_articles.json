@@ -6,7 +6,8 @@
     "8870094920",
     "8870333890",
     "8870684491",
-    "8870856005"
+    "8870856005",
+    "8871105214"
   ],
   "queued_articles": [
     {
@@ -6221,6 +6222,1003 @@
       "sentiment": -0.03529411764705881,
       "wgt": 495981781,
       "relevance": 2
+    },
+    {
+      "uri": "8870997066",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "17:04:27",
+      "dateTime": "2025-09-19T17:04:27Z",
+      "dateTimePub": "2025-09-19T11:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.benzinga.com/pressreleases/25/09/n47758264/the-future-of-logistics-technology-meets-high-touch-solutions",
+      "title": "The Future of Logistics: Technology Meets High-Touch Solutions",
+      "body": "JUPITER, Fla., Sept. 19, 2025 /PRNewswire/ -- Discoveries Today proudly announces the upcoming production of a segment focusing on how innovation and customer-centric solutions are reshaping logistics and supply-chain compliance.\n\nGlobal trade is evolving rapidly. With new tariff adjustments, shifting trade agreements, and heightened scrutiny of compliance requirements, companies face mounting pressure to adapt quickly while maintaining reliability and cost efficiency across borders.\n\nAn upcoming segment of Discoveries Today will highlight how Compass Logistics & Marine (CLM) combines AI-driven data integration, comprehensive compliance checks, and smart visibility tools with a people-driven approach. Audiences will learn how, from navigating complex customs requirements to managing time-sensitive cargo for niche industries like Bitcoin mining, yacht, marine, and aviation, CLM partners with organizations to unlock value beyond moving goods from A to B.\n\nThe show will share how CLM operates at the intersection of these challenges, combining advanced logistics capabilities with a service model built on close collaboration, and how this balance of smart tools, deep compliance expertise, and customer-first support can help organizations navigate global trade with confidence.\n\n\"At CLM, we believe technology alone isn't enough. Our systems equip clients with timely insights to navigate complexity, but it's our people who turn that into action -- anticipating challenges, communicating clearly, and handling every shipment with precision and care,\" said Danny James, CEO and Founder of Compass Logistics & Marine.\n\nViewers will also learn about CLM's dedication to focusing on what matters most: building trust, fostering collaboration, and delivering hands-on expertise with a personal commitment to each client's goals.\n\n\"We look forward to exploring how companies like CLM are applying logistics technology in real-world settings to strengthen global trade, simplify complexity, and keep supply chains moving,\" said Dustin Schwarz, Programming Director for Discoveries Today.\n\nAbout Compass Logistics & Marine:\n\nCompass Logistics & Marine (CLM) is a veteran-owned logistics company based in South Florida that specializes in customs brokerage, import/export, trucking, and warehousing services. As a licensed U.S. Customs Broker and International Freight Forwarder (IATA, FMC, NVOCC, NCBFAA) with a worldwide agent and partner network, CLM provides customized, cost-effective, and compliant logistics solutions through its dedicated divisions -- CLM Tech, Yacht, Marine, and Aviation, General, and Industrial.\n\nAbout Discoveries Today:\n\nDiscoveries Today is an information-based educational television series dedicated to highlighting recent advances taking place across several industries and economies. Featuring an array of cutting-edge improvements, state-of-the-art technologies, and groundbreaking environmental and sustainable solutions, the program shines a light on several important issues and topics. Backed by an award-winning team of writers, directors, and producers, the series remains dedicated to producing commercial-free, educational programming for viewers and networks.\n\nFor more information, please visit www.DiscoveriesToday.com or call 866-992-0665.\n\nSOURCE Discoveries Today\n\nMarket News and Data brought to you by Benzinga APIs",
+      "source": {
+        "uri": "benzinga.com",
+        "dataType": "news",
+        "title": "Benzinga"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Logistics",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Logistics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Compass",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Compass"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customer_satisfaction",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Customer satisfaction"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Niche_market",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Niche market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trade_agreement",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Trade agreement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supply_chain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Supply chain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/PR_Newswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "PR Newswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jupiter",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Jupiter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/International_trade",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "International trade"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customs",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Customs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ocean",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ocean"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Yacht",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Yacht"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Aviation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Aviation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/API",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "API"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Customs_broker",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Customs broker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Customs_and_Border_Protection",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "U.S. Customs and Border Protection"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Freight_forwarder",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Freight forwarder"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business",
+          "label": "dmoz/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Business_Services",
+          "label": "dmoz/Business/Business Services",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Employment/Recruitment_and_Staffing",
+          "label": "dmoz/Business/Employment/Recruitment and Staffing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Human_Resources/Employee_Relations",
+          "label": "dmoz/Business/Human Resources/Employee Relations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 80
+        }
+      ],
+      "image": "https://www.benzinga.com/next-assets/images/schema-image-default.png",
+      "eventUri": null,
+      "sentiment": 0.4039215686274509,
+      "wgt": 495997467,
+      "relevance": 40
+    },
+    {
+      "uri": "8870881114",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "15:35:28",
+      "dateTime": "2025-09-19T15:35:28Z",
+      "dateTimePub": "2025-09-19T15:29:27Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.livebitcoinnews.com/most-missed-bitcoin-mining-profits-in-2025-will-bitfracs-new-crypto-presale-be-the-markets-fix/",
+      "title": "Most Missed Bitcoin Mining Profits in 2025 - Will Bitfrac's New Crypto Presale Be the Market's Fix?",
+      "body": "Institutions with high capital reserves have long dominated the global crypto mining industry. With a new crypto presale in the market, long-term individual investors often miss potential gains due to barriers such as hardware costs, technical knowledge, and operational complexity. Reports show that nearly 97% of investors have been unable to access direct mining profits, despite Bitcoin's record highs. A new crypto presale now positions itself as a possible solution, merging real-world asset ownership with tokenized access.\n\nThe Bitfrac token presale began with Stage 1 priced at $0.017. The round sold out, and early buyers already secured profits. Stage 2 is currently live, offering tokens at $0.024 with a 20% bonus for those using code BFT20. Investors are actively participating, with $1,89M raised from a $3.5 million target, filling 54% of the allocation.\n\nThe current stage has four days before the bonus closes. Stage 3 is expected at $0.042, increasing potential returns for early entrants. The structured approach demonstrates steady demand for the project. By introducing fractional ownership of industrial mining, the new crypto presale reduces entry barriers. Investors can participate with as little as $100, while a cap of $100,000 ensures wide distribution.\n\nTangible assets, including ASIC miners and facility ownership, back each Bitfrac Token (BFT). The presale has already raised over $4 million, confirming investor interest. Mining operations target a hash rate capacity of 2.5 EH/s powered by 75 MW facilities. With industrial electricity rates as low as $0.034/kWh, operating efficiency is maintained.\n\nCurrent estimates project daily Bitcoin production of 8.2 BTC. Monthly net profit is calculated at around $14.2 million, with hosting services adding nearly $892,000. This combined model delivers $15.1 million monthly revenue potential. Through smart contracts, distributions begin in November 2025, with expected APY ranging from 15% to 35%.\n\nA buyback-and-burn mechanism further strengthens the token model, reducing supply over time. For investors, the new crypto presale provides monthly profit distribution without technical management responsibilities.\n\nThe token presale introduces key differentiators compared to traditional mining models. Transparency is provided through on-chain asset records, including mining equipment serial numbers and verified property deeds. Tokenomics allocate 40% of the supply to public presale, 25% to mining reserves, and 15% to the team with vesting.\n\nLiquidity and DAO treasury allocations ensure long-term ecosystem growth. Early investors have a chance to secure 4x returns as the presale progresses, with over 2,000 participants already onboard. The new crypto presale positions itself as a way to access industrial-scale mining profits without complexity. The combination of low entry barriers, fractional ownership, and legally backed assets sets the project apart.\n\nThe current presale round offers investors entry at $0.024 per token with limited availability. With industrial Bitcoin mining profits typically reserved for institutions, the Bitfrac new crypto presale provides broader access. Its structure, asset backing, and distribution model present a path to potential 4x returns in 12 months. For many, this could represent a fix to missed opportunities in Bitcoin mining.\n\nMore Details:\n\nWebsite: https://bitfrac.com/\n\nTelegram: t.me/BitFracCommunity\n\nX: https://x.com/BitFracProtocol\n\nWhitePaper: https://bitfrac.com/docs/bitfrac-whitepaper.pdf\n\nDisclaimer: This is a paid post and should not be treated as news/advice. LiveBitcoinNews is not responsible for any loss or damage resulting from the content, products, or services referenced in this press release.",
+      "source": {
+        "uri": "livebitcoinnews.com",
+        "dataType": "news",
+        "title": "Live Bitcoin News"
+      },
+      "authors": [
+        {
+          "uri": "pr_room@livebitcoinnews.com",
+          "name": "Pr Room",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenization_(data_security)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Tokenization (data security)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smart_contract",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Smart contract"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fractional_ownership",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fractional ownership"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hash_function",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hash function"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/English_Heritage",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "English Heritage"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Net_income",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Net income"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tokenomics",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tokenomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_autonomous_organization",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Decentralized autonomous organization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Serial_code",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Serial code"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Deed",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Deed"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vesting",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Vesting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Consulting",
+          "label": "dmoz/Business/Mining and Drilling/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 93
+        }
+      ],
+      "image": "https://www.livebitcoinnews.com/wp-content/uploads/2025/09/lbn1-368.png",
+      "eventUri": null,
+      "sentiment": 0.3333333333333333,
+      "wgt": 495992128,
+      "relevance": 103
+    },
+    {
+      "uri": "8870875376",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "15:33:02",
+      "dateTime": "2025-09-19T15:33:02Z",
+      "dateTimePub": "2025-09-19T15:25:35Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://techbullion.com/dr-phillip-frost-barry-honig-and-the-sec-what-really-happened/",
+      "title": "Dr. Phillip Frost, Barry Honig, and the  SEC: What Really Happened",
+      "body": "From Medicine to Millions: The Making of a Legend\n\nThere aren't many American business legends who have earned as much respect and recognition as Dr. Phillip Frost. The billionaire doctor-turned-businessman has changed the way Americans think about healthcare, built pharmaceutical empires, and mentored the next generation of visionary leaders over five decades. His story is connected to that of financier Barry Honig, and together they represent a story of innovation, weaponization, and eventual vindication at the heart of modern American entrepreneurship.\n\nDr. Frost's rise from dermatologist to pharmaceutical giant is a great example of how American innovation works. After finishing his medical training at Albert Einstein College of Medicine, he realized that the best way to improve people's health was not to treat each patient one at a time, but to create revolutionary therapies that could be used on a large scale. This idea would turn out to be prophetic, starting a career that has changed millions of lives around the world.\n\nDr. Frost and the Honig Connection\n\nDr. Frost first met Barry Honig around the time Honig was the Chairman and co-founder of an internet company he had founded and taken public, called Interclick. Dr. Frost had made an investment in the internet company that soon after became acquired by Yahoo for 270 million. During the same time period, he invited the two co-chairmen, Barry Honig and serial entrepreneur Michael Brauser, to take office space in his Miami building.\n\nHonig and Brauser would then co-invest alongside Dr. Frost in various companies. One particular company they invested in was called MabVax Therapeutics.\n\nParallel Persecution: When Success Becomes Suspicious\n\nTheir careers are similar in that they both have invested in companies non-traditionally via reverse mergers. They have both been persecuted by regulatory agencies that don't like disruptive innovation. In September 2018, Dr. Frost, Honig, and Brauser were all charged by the SEC after an overreaching and witch-hunting investigation that targeted their involvement in two small-cap biotech companies and a Bitcoin mining venture.\n\nFrost, like his prot\u00e9g\u00e9 Honig, had to defend legal business activities against prosecutors who seemed more interested in getting headlines than doing the right thing. In the end, the charges against Dr. Frost were dropped without him admitting to any wrongdoing. However, they took a personal and professional toll on him that was similar to what Honig later went through when regulators went too far.\n\nThe Pattern of Innovation Under Attack\n\nBoth men have an uncanny ability to spot game-changing technologies before they become popular, and both found out that this gift often makes you a target. Dr. Frost's early investments in biotechnology companies like Ivax Corporation and Opko Health showed that he could spot scientific breakthroughs with business potential decades before his competitors could.\n\nThe way both men were treated by the government shows worrying trends in how American agencies deal with visionary business owners. Instead of using their knowledge to create smarter oversight, bureaucrats chose to pursue investigations rather than collaboration. Dr. Frost's decades of work on new drugs and Honig's work on digital asset markets could have led to better ways for regulators to do their jobs, but prosecutors chose punishment over partnership.\n\nSix Years Later: The Truth Comes Out\n\nThis email reveals the real story: how the CEO of MabVax either lied to the government or lied for the government. It underscores the flaws in our judicial system -- where wrongful prosecutions can cost individuals millions, damage reputations, and cause irreparable harm.\n\nAll,\n\nHere is a quick summary of how we exposed David Hansen as a bald-faced liar.\n\nMabVax accused Barry and the other defendants of pumping-and-dumping MabVax stock. The heart of the argument was that Barry directed John O'Rourke to publish a false article about MabVax on April 8, 2015, on Seeking Alpha. The O'Rourke article is attached. During discovery, we served an interrogatory asking MabVax to identify with specificity which statements in the O'Rourke article were materially false. In response to that (see interrogatory Response No. 14, at page 20, attached). MabVax identified the following four statements: \"MabVax's lead antibody program, HuMab 5B1, targets metastatic pancreatic and colon cancers with anticipated early Phase I data coming out by the end of 2015, for both therapeutic and diagnostic indications.\" \"This is a billion-dollar annual market opportunity with a critical unmet medical need, as there are very poor 5-year survival rates for metastatic pancreatic and colon cancer.\" \"The neuroblastoma vaccine will enter Phase II trials by the end of 2015.\" \"Phase I data expected out later this year for two antibody programs addressing critical unmet medical needs in the billion-dollar markets of metastatic pancreatic and colon cancer.\" Somehow, remarkably, both David Hansen and his lawyers didn't realize that every one of these four statements from the O'Rourke article, which MabVax/Hansen alleged were materially false, had actually been copied nearly verbatim from a PowerPoint presentation that David Hansen helped to create, and which he himself presented to a room full of investors at the Roth Conference in Dana Point, CA in March 2015 - about three weeks before O'Rourke published his article in Seeking Alpha. A copy of the March 2015 presentation is attached. We obtained evidence during discovery that MabVax had forwarded this very PowerPoint to John Stetson, who presumably shared it with O'Rourke. It can be clearly seen how each of the four \"false\" statements in the O'Rourke article were simply cribbed from Hansen's PowerPoint. Compare the statements above with pages 24, 24, and 39. Indeed, one can see that O'Rourke copied the chart from page 39 straight into his article. David Hansen's duplicity came crashing down on him during cross-examination. First, I got him to state under oath that each of the four statements above from the O'Rourke article were materially false. I then got him to confirm that he had sworn the same thing under oath when he verified the interrogatory response. After that, I confronted him with the fact that those statements which he just testified to be materially false . . . were actually his own words. Serious eye-rolling from the jury followed. See attached transcript at pages 109 to 142.\n\nIn other words, David Hansen claimed for over five years that Barry had pumped and dumped MabVax stock by causing O'Rourke to publish \"falsehoods\" about MabVax, but the precise statements that Hansen claimed were false in had originally written and presented to the public by Hansen himself. I can't recall finding a smokier Smoking Gun than this in all more years of practice.\n\nLet me know if you need more. Robert D. Weber | Partner\n\nDavid Hansen crafted the original investor presentation -- later repeated in the article -- with assertions that were flatly misleading: March 2015 Presentation David Hansen's own admissions in discovery exposed the absence of any evidence supporting claims of Honig's control: Interrogatory Response At the heart of the 'pump and dump' allegation lies an article that merely recycled David Hansen's original investor language: O'Rourke Article Court-certified records document David Hansen's testimony crumbling under the pressure of cross-examination: Mabvax CERTIFIED: Read 109-142\n\nBarry Honig and Dr. Philip Frost stand as visionaries who revolutionized their respective industries. Dr. Frost's pioneering work in healthcare has been nothing short of transformative -- building companies, advancing groundbreaking therapies, and leaving an irrefutable mark on how medicine improves lives worldwide.\n\nIn parallel, Barry Honig's early conviction in Bitcoin and digital assets reshaped the financial landscape, bringing legitimacy and public market acceptance to an entirely new asset class. Without Honig's foresight in crypto and Frost's unparalleled achievements in healthcare, two of today's most vital industries would look profoundly different. Together, their impact underscores how bold vision and decisive action can transform markets -- and people's lives -- for generations.\n\nRelated Items:Barry Honig, Dr. Phillip Frost",
+      "source": {
+        "uri": "techbullion.com",
+        "dataType": "news",
+        "title": "TechBullion"
+      },
+      "authors": [
+        {
+          "uri": "angela_scott_briggs@techbullion.com",
+          "name": "Angela Scott-Briggs",
+          "type": "author",
+          "isAgency": false
+        },
+        {
+          "uri": "anamta_shehzadi@techbullion.com",
+          "name": "Anamta Shehzadi",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dr._Frost_(TV_series)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Dr. Frost (TV series)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Entrepreneurship",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Entrepreneurship"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pharmaceutical_industry",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Pharmaceutical industry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/David_Hansen_(countertenor)",
+          "type": "person",
+          "score": 4,
+          "label": {
+            "eng": "David Hansen (countertenor)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Biotechnology",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Biotechnology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Internet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Albert_Einstein_College_of_Medicine",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Albert Einstein College of Medicine"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorectal_cancer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Colorectal cancer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Yahoo!",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Yahoo!"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dermatology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Dermatology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investor",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Investor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Miami",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Miami"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Miami"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Truth_(Sydney_newspaper)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Truth (Sydney newspaper)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Antibody",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Antibody"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Health_care",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Health care"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smoking_Gun_(TV_series)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Smoking Gun (TV series)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pump_and_dump",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pump and dump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vaccine",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Vaccine"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Medicine",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Medicine"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Work",
+          "label": "dmoz/Society/Work",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Health",
+          "label": "dmoz/Society/Issues/Health",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities/Opposing_Views",
+          "label": "dmoz/Business/Opportunities/Opposing Views",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 85
+        }
+      ],
+      "image": "https://techbullion.com/wp-content/uploads/2025/09/unnamed-42-2.jpg",
+      "eventUri": null,
+      "sentiment": 0.2862745098039217,
+      "wgt": 495991982,
+      "relevance": 27
+    },
+    {
+      "uri": "8870595576",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "12:14:23",
+      "dateTime": "2025-09-19T12:14:23Z",
+      "dateTimePub": "2025-09-19T00:00:00Z",
+      "dataType": "news",
+      "sim": 0.8352941274642944,
+      "url": "https://www.4ni.co.uk/northern-ireland-news/322906/rmc-mining-launches-ai-powered-cloud-mining-platform-with-green-energy-focus",
+      "title": "RMC MINING Launches AI-Powered Cloud Mining Platform With Green Energy Focus",
+      "body": "RMC MINING, a Northern Ireland-based company, has announced the launch of an AI-optimised cloud mining platform that it claims will set a new benchmark for accessibility and profitability in the sector.\n\nBy automating complex processes, powering its operations with renewable energy, and offering simplified contracts, the firm aims to make participation in cryptocurrency mining possible for both seasoned investors and those without technical experience. The company promotes returns of up to $5,000 per day, while removing the need for expensive hardware and specialist knowledge.\n\nAs digital currencies continue to find their place in the UK economy, their use is broadening into areas far beyond trading. In leisure, for example, cryptocurrencies are now central to online casinos, with a wide pool of options for UK players who prefer the added privacy and flexibility of wagering with digital assets. The spread of such services illustrates how demand for crypto solutions is growing in multiple directions, creating an environment in which cloud mining platforms are seeking to capture the attention of both investors and everyday users.\n\nThat demand is measurable. According to official cloud mining statistics for 2025, the global market has reached $14.8 billion, placing RMC MINING's expansion against a sector already attracting substantial international investment. With new companies entering a space of that size, the ability to distinguish themselves through efficiency, security, and accessibility has become essential. RMC MINING presents its use of artificial intelligence as the defining feature that will separate its contracts from those offered by more established providers.\n\nBehind these claims lies significant operational capacity of the company that runs 50 mining farms supported by more than 2 million rigs and reports over 10 million users worldwide. Its contracts are structured to accommodate different levels of participation, ranging from a short-term trial plan worth $18 to large-scale commitments of $200,000 with the promise of daily profits in the thousands. By allowing accounts to be opened with nothing more than an email address, RMC MINING argues that it has lowered the barriers to entry for people who might previously have considered cryptocurrency mining inaccessible.\n\nThat operational reach is closely linked to its emphasis on clean energy. Research on sustainable energy and bitcoin mining by Cambridge Judge Business School indicates that 52.4% of global mining now runs on sustainable sources, compared with 37.6% in 2022. The figures point to a rapid change in how mining is powered, and RMC MINING presents its reliance on renewable energy as a signal that profitability and environmental responsibility can advance together.\n\nSecurity features are also central to the company's narrative. It uses protocols developed by McAfee and Cloudflare to protect user data and transactions, provides a 100% uptime guarantee, and maintains customer support around the clock. Combined with transparent pricing and daily payouts, these measures are intended to reinforce investor confidence. The region's fintech sector has been strengthened by advances in RegTech in Northern Ireland, and RMC MINING reflects how those strengths are extending into digital assets and blockchain.\n\nWith cloud mining valued in the billions and the proportion of sustainable operations rising sharply, the launch of RMC MINING shows how artificial intelligence, renewable energy, and strict security measures are redefining digital asset services. Rather than presenting as speculative side ventures, platforms of this kind are being positioned as structured investment opportunities that attract both everyday users and large financial players.",
+      "source": {
+        "uri": "4ni.co.uk",
+        "dataType": "news",
+        "title": "4NI - Internet Directory and Portal"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accessibility",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Accessibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "United Kingdom"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Kingdom"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Benchmarking",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Benchmarking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gambling",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Gambling"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Casino",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Casino"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Privacy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Privacy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fintech",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fintech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloudflare",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Cloudflare"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cambridge_Judge_Business_School",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Cambridge Judge Business School"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/McAfee",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "McAfee"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Barriers_to_entry",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Barriers to entry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Environmentalism",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Environmentalism"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Northern_Ireland",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Northern Ireland"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Northern Ireland"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Kingdom"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Consulting",
+          "label": "dmoz/Business/Mining and Drilling/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 67
+        }
+      ],
+      "image": "https://www.4ni.co.uk/images/4ni-news-logo.jpg",
+      "eventUri": "eng-10971693",
+      "sentiment": 0.3411764705882352,
+      "wgt": 495980063,
+      "relevance": 52
     }
   ]
 }
