@@ -60,6 +60,10 @@ class TweetPoster:
         else:
             logger.info("Image support disabled - tweets will be text-only")
     
+    def _sleep(self, seconds: float) -> None:
+        """Sleep for the specified number of seconds - provides uniform behavior and easier testing"""
+        time.sleep(seconds)
+    
     def post_to_twitter(self, article: Dict[str, Any]) -> Optional[str]:
         """Post article as a single tweet on Twitter"""
         return self._post_with_retry(article, max_retries=BotConstants.MAX_RETRIES)
@@ -119,7 +123,7 @@ class TweetPoster:
                 if attempt < max_retries:
                     logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {BotConstants.RETRY_DELAY_SECONDS} seconds before retry...")
                     logger.warning(f"Daily rate limit is {BotConstants.DAILY_REQUEST_LIMIT} requests per 24 hours - being conservative with retries")
-                    time.sleep(BotConstants.RETRY_DELAY_SECONDS)
+                    self._sleep(BotConstants.RETRY_DELAY_SECONDS)
                     continue
                 else:
                     logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
@@ -134,7 +138,7 @@ class TweetPoster:
                 logger.error(f"Error posting to Twitter on attempt {attempt + 1}: {str(e)}")
                 if attempt < max_retries:
                     logger.info(f"Retrying in {BotConstants.RETRY_DELAY_SECONDS} seconds...")
-                    time.sleep(BotConstants.RETRY_DELAY_SECONDS)
+                    self._sleep(BotConstants.RETRY_DELAY_SECONDS)
                     continue
                 else:
                     logger.error(f"Failed to post after {max_retries + 1} attempts")

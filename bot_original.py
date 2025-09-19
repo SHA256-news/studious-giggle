@@ -134,6 +134,11 @@ class BitcoinMiningNewsBot:
         logger.warning(f"Rate limit cooldown set for {cooldown_hours} hours. Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
         logger.warning("This prevents the bot from exceeding Twitter's rate limits.")
     
+    def _sleep(self, seconds: float) -> None:
+        """Sleep for the specified number of seconds - provides uniform behavior and easier testing"""
+        import time
+        time.sleep(seconds)
+    
     def fetch_bitcoin_mining_articles(self, max_articles=10):
         """Fetch latest articles about Bitcoin mining"""
         try:
@@ -324,7 +329,7 @@ class BitcoinMiningNewsBot:
                         delay = 300  # 5 minutes - conservative for daily limits
                         logger.warning(f"Rate limit hit on attempt {attempt + 1}. Waiting {delay} seconds before retry...")
                         logger.warning("Daily rate limit is 17 requests per 24 hours - being conservative with retries")
-                        time.sleep(delay)
+                        self._sleep(delay)
                         continue
                     else:
                         logger.error(f"Rate limit exceeded after {max_retries + 1} attempts. Skipping this article.")
@@ -337,7 +342,7 @@ class BitcoinMiningNewsBot:
                     # For other errors, shorter delay
                     delay = 60  # 1 minute for non-rate-limit errors
                     logger.info(f"Retrying in {delay} seconds...")
-                    time.sleep(delay)
+                    self._sleep(delay)
                     continue
                 else:
                     logger.error(f"Failed to post after {max_retries + 1} attempts")
