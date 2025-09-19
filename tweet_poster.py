@@ -210,8 +210,7 @@ class TweetPoster:
         if isinstance(error, TweepyTooManyRequests):
             return True
 
-        error_type = type(error)
-        if "TooManyRequests" in getattr(error_type, "__name__", ""):
+        if "TooManyRequests" in getattr(type(error), "__name__", ""):
             return True
 
         error_message = str(error)
