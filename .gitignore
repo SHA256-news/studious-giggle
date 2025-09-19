@@ -213,3 +213,6 @@ rate_limit_cooldown.json
 images/
 image_library.json
 entity_image_mapping.json
+# Temporary files
+cleaned_queue.json
+temp.json
