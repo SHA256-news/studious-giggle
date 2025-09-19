@@ -143,14 +143,17 @@ class BitcoinMiningNewsBot:
         try:
             with open("posted_articles.json", "r") as f:
                 data = json.load(f)
-                # Auto-upgrade old format to include queued_articles
+                # Auto-upgrade old format to include queued_articles and last_run_time
                 if "queued_articles" not in data:
                     data["queued_articles"] = []
                     logger.info("Auto-upgrading posted_articles.json to include queued_articles")
+                if "last_run_time" not in data:
+                    data["last_run_time"] = None
+                    logger.info("Auto-upgrading posted_articles.json to include last_run_time")
                 return data
         except (FileNotFoundError, json.JSONDecodeError):
             logger.info("No existing posted articles file found, creating new one")
-            return {"posted_uris": [], "queued_articles": []}
+            return {"posted_uris": [], "queued_articles": [], "last_run_time": None}
 
     def _save_posted_articles(self):
         """Save the list of posted article URIs and queued articles"""
@@ -158,7 +161,29 @@ class BitcoinMiningNewsBot:
             json.dump(self.posted_articles, f, indent=2)
         queued_count = len(self.posted_articles.get("queued_articles", []))
         posted_count = len(self.posted_articles["posted_uris"])
+        # Update last run time
+        self.posted_articles["last_run_time"] = datetime.now().isoformat()
         logger.info(f"Saved {posted_count} posted article URIs and {queued_count} queued articles")
+
+    def _is_minimum_interval_respected(self):
+        """Check if at least 90 minutes have passed since the last successful run"""
+        last_run_time = self.posted_articles.get("last_run_time")
+        if not last_run_time:
+            return True  # No previous run recorded
+        
+        try:
+            last_run = datetime.fromisoformat(last_run_time)
+            time_since_last_run = datetime.now() - last_run
+            minimum_interval = timedelta(minutes=90)
+            
+            if time_since_last_run < minimum_interval:
+                remaining_minutes = int((minimum_interval - time_since_last_run).total_seconds() / 60)
+                logger.warning(f"Minimum 90-minute interval not respected. Last run was {int(time_since_last_run.total_seconds() / 60)} minutes ago. Waiting {remaining_minutes} more minutes.")
+                return False
+            return True
+        except (ValueError, TypeError):
+            logger.warning("Invalid last_run_time format, proceeding with run")
+            return True
 
     def _is_rate_limit_cooldown_active(self):
         """Check if we're still in rate limit cooldown period"""
@@ -172,13 +197,10 @@ class BitcoinMiningNewsBot:
                     remaining_hours = int(remaining_seconds / 3600)
                     remaining_minutes = int((remaining_seconds % 3600) / 60)
                     
-                    duration_hours = cooldown_data.get("duration_hours", "unknown")
-                    progressive_count = cooldown_data.get("progressive_count", 1)
-                    
                     if remaining_hours > 0:
-                        logger.warning(f"Rate limit cooldown active ({duration_hours}h period, attempt #{progressive_count}). Skipping run. {remaining_hours}h {remaining_minutes}m remaining.")
+                        logger.warning(f"Rate limit cooldown active. Skipping run. {remaining_hours}h {remaining_minutes}m remaining.")
                     else:
-                        logger.warning(f"Rate limit cooldown active ({duration_hours}h period, attempt #{progressive_count}). Skipping run. {remaining_minutes} minutes remaining.")
+                        logger.warning(f"Rate limit cooldown active. Skipping run. {remaining_minutes} minutes remaining.")
                     return True
                 else:
                     # Cooldown period has passed, remove the file
@@ -190,64 +212,25 @@ class BitcoinMiningNewsBot:
             return False
     
     def _set_rate_limit_cooldown(self):
-        """Set a progressive cooldown period due to rate limiting"""
-        # Check if there's an existing cooldown to implement progressive delays
-        existing_cooldown = self._get_existing_cooldown_data()
-        
-        if existing_cooldown:
-            # Progressive cooldown: 2h -> 4h -> 8h -> 24h
-            previous_duration = self._get_cooldown_duration_hours(existing_cooldown)
-            if previous_duration >= 24:
-                cooldown_hours = 24  # Max 24 hours
-            elif previous_duration >= 8:
-                cooldown_hours = 24
-            elif previous_duration >= 4:
-                cooldown_hours = 8
-            elif previous_duration >= 2:
-                cooldown_hours = 4
-            else:
-                cooldown_hours = 4  # Start with 4 hours for daily rate limits
-        else:
-            # First rate limit hit - use 2 hours for daily rate limits
-            cooldown_hours = 2
+        """Set a simple cooldown period due to rate limiting"""
+        # Simple cooldown: Start with 2 hours, then 4 hours for subsequent hits
+        existing_cooldown_exists = os.path.exists(self.rate_limit_cooldown_file)
+        cooldown_hours = 4 if existing_cooldown_exists else 2
         
         cooldown_until = datetime.now() + timedelta(hours=cooldown_hours)
         cooldown_data = {
             "cooldown_until": cooldown_until.isoformat(),
-            "reason": "Twitter API daily rate limit exceeded (17 requests/24h)",
+            "reason": "Twitter API rate limit exceeded (17 requests per 24 hours)",
             "created_at": datetime.now().isoformat(),
-            "duration_hours": cooldown_hours,
-            "progressive_count": (existing_cooldown.get("progressive_count", 0) if existing_cooldown else 0) + 1
+            "duration_hours": cooldown_hours
         }
         
         with open(self.rate_limit_cooldown_file, "w") as f:
             json.dump(cooldown_data, f, indent=2)
         
         logger.warning(f"Rate limit cooldown set for {cooldown_hours} hours. Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.warning(f"This prevents automation from running due to Twitter's 17 requests per 24 hours limit.")
+        logger.warning("This prevents the bot from exceeding Twitter's rate limits.")
     
-    def _get_existing_cooldown_data(self):
-        """Get existing cooldown data if present"""
-        try:
-            with open(self.rate_limit_cooldown_file, "r") as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            return None
-    
-    def _get_cooldown_duration_hours(self, cooldown_data):
-        """Extract cooldown duration from existing data"""
-        if "duration_hours" in cooldown_data:
-            return cooldown_data["duration_hours"]
-        
-        # Fallback: calculate from timestamps
-        try:
-            created = datetime.fromisoformat(cooldown_data["created_at"])
-            cooldown_until = datetime.fromisoformat(cooldown_data["cooldown_until"])
-            duration = cooldown_until - created
-            return duration.total_seconds() / 3600
-        except (KeyError, ValueError):
-            return 1  # Default fallback
-
     def fetch_bitcoin_mining_articles(self, max_articles=10):
         """Fetch latest articles about Bitcoin mining"""
         try:
@@ -521,6 +504,10 @@ class BitcoinMiningNewsBot:
         """Main function to run the bot"""
         try:
             logger.info("Starting Bitcoin Mining News Bot")
+
+            # Check minimum interval first (90 minutes between runs)
+            if not self._is_minimum_interval_respected():
+                return
 
             # Check if we're in rate limit cooldown period
             if self._is_rate_limit_cooldown_active():
