@@ -40,6 +40,7 @@ class InvalidTweetResponse(Exception):
 
 from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 from crypto_filter import filter_bitcoin_only_articles
+from runtime_logger import RuntimeLogger
 
 # Import image functionality
 try:
@@ -69,6 +70,9 @@ class BitcoinMiningNewsBot:
         """
         # Define cooldown file path
         self.rate_limit_cooldown_file = "rate_limit_cooldown.json"
+        
+        # Initialize runtime logger
+        self.runtime_logger = RuntimeLogger()
         
         if safe_mode:
             logger.info("Running in safe mode - API clients not initialized")
@@ -312,6 +316,8 @@ class BitcoinMiningNewsBot:
                 if excluded_count > 0:
                     logger.info(f"Filtered out {excluded_count} articles mentioning non-Bitcoin cryptocurrencies")
                     logger.debug(f"Excluded articles: {[detail['title'] for detail in excluded_details[:3]]}")
+                    # Log filtered articles to runtime logs
+                    self.runtime_logger.log_crypto_filtered_articles(excluded_details)
                 
                 logger.info(f"Final count: {len(filtered_articles)} Bitcoin-only mining articles")
                 return filtered_articles
@@ -562,6 +568,8 @@ class BitcoinMiningNewsBot:
 
                 if article_uri in self.posted_articles["posted_uris"]:
                     logger.info(f"Skipping already posted article: {article.get('title', 'Unknown')[:50]}...")
+                    # Log duplicate articles to runtime logs
+                    self.runtime_logger.log_duplicate_article(article)
                     already_posted_count += 1
                     continue
                 
@@ -611,6 +619,11 @@ class BitcoinMiningNewsBot:
                         # This was from queue, put it back at the front
                         self.posted_articles["queued_articles"].insert(0, article_to_post)
                         logger.info(f"Returned failed article to front of queue")
+                        # Log as rate limited (most likely cause of failure)
+                        self.runtime_logger.log_rate_limited_article(article_to_post)
+                    else:
+                        # This was a new article that failed to post
+                        self.runtime_logger.log_failed_post(article_to_post, "Failed to post - likely rate limited")
                     rate_limited_count += 1
                     logger.warning(f"Failed to post article (likely rate limited): {article_to_post.get('title', 'Unknown')[:50]}...")
 
@@ -643,9 +656,19 @@ class BitcoinMiningNewsBot:
                     logger.info(f"Successfully posted 1 article from queue ({queued_articles_count} articles remain in queue)")
                 else:
                     logger.info(f"Successfully posted 1 article ({total_new_articles} new articles available, {already_posted_count} already posted)")
+            
+            # Finalize runtime logs
+            blocked_count = self.runtime_logger.finalize_logs()
+            if blocked_count > 0:
+                logger.info(f"Runtime logs generated with {blocked_count} blocked items. Check artifacts for details.")
 
         except Exception as e:
             logger.error(f"Error running bot: {str(e)}")
+            # Still finalize logs even if there was an error
+            try:
+                self.runtime_logger.finalize_logs()
+            except Exception as log_error:
+                logger.error(f"Failed to finalize runtime logs: {log_error}")
 
 
 if __name__ == "__main__":

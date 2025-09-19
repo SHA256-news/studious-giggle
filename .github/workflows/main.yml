@@ -36,6 +36,14 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
 
+      - name: Upload runtime logs
+        uses: actions/upload-artifact@v3
+        if: always()  # Upload logs even if bot fails
+        with:
+          name: runtime-logs
+          path: /home/runner/work/_temp/runtime-logs/
+          retention-days: 7
+
       - name: Commit changes to posted articles
         run: |
           git config --global user.name 'GitHub Actions Bot'
