@@ -208,3 +208,8 @@ __marimo__/
 
 # Bot runtime files
 rate_limit_cooldown.json
+
+# Image functionality files
+images/
+image_library.json
+entity_image_mapping.json

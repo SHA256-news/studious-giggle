@@ -30,6 +30,15 @@ class InvalidTweetResponse(Exception):
 from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 from crypto_filter import filter_bitcoin_only_articles
 
+# Import image functionality
+try:
+    from image_selector import ImageSelector
+    IMAGE_SUPPORT_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"Image support not available: {e}")
+    ImageSelector = None
+    IMAGE_SUPPORT_AVAILABLE = False
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -54,6 +63,7 @@ class BitcoinMiningNewsBot:
             logger.info("Running in safe mode - API clients not initialized")
             self.twitter_client = None
             self.er_client = None
+            self.image_selector = None
             self.posted_articles = self._load_posted_articles()
             return
             
@@ -64,6 +74,18 @@ class BitcoinMiningNewsBot:
         # Load history of posted articles
         self.posted_articles = self._load_posted_articles()
         logger.info(f"Loaded {len(self.posted_articles['posted_uris'])} previously posted articles")
+        
+        # Initialize image selector if available
+        if IMAGE_SUPPORT_AVAILABLE:
+            try:
+                self.image_selector = ImageSelector()
+                logger.info("Image support enabled - images will be attached to tweets")
+            except Exception as e:
+                logger.warning(f"Failed to initialize image selector: {e}")
+                self.image_selector = None
+        else:
+            self.image_selector = None
+            logger.info("Image support disabled - tweets will be text-only")
 
     def _init_twitter_client(self):
         """Initialize Twitter API client with OAuth 1.0a"""
@@ -347,8 +369,22 @@ class BitcoinMiningNewsBot:
                 tweet_text = self.create_tweet_text(article)
                 logger.info(f"Posting tweet (attempt {attempt + 1}): {tweet_text[:50]}...")
 
-                # Post the first tweet
-                first_tweet = self.twitter_client.create_tweet(text=tweet_text)
+                # Select and upload images if image support is available
+                media_ids = []
+                if self.image_selector:
+                    try:
+                        images = self._select_and_upload_images(article)
+                        media_ids = images
+                    except Exception as e:
+                        logger.warning(f"Failed to upload images, posting text-only tweet: {e}")
+
+                # Post the first tweet with images (if available)
+                tweet_params = {"text": tweet_text}
+                if media_ids:
+                    tweet_params["media_ids"] = media_ids
+                    logger.info(f"Posting tweet with {len(media_ids)} images")
+                
+                first_tweet = self.twitter_client.create_tweet(**tweet_params)
 
                 # Some mocked Twitter clients return a TooManyRequests sentinel
                 # object instead of raising the exception. Detect these cases and
@@ -421,6 +457,37 @@ class BitcoinMiningNewsBot:
                     return None
         
         return None
+
+    def _select_and_upload_images(self, article):
+        """Select and upload images for an article"""
+        headline = article.get("title", "")
+        if not headline:
+            return []
+        
+        # Select appropriate images
+        image_paths = self.image_selector.select_images_for_headline(headline)
+        
+        # Validate images for Twitter
+        valid_images = self.image_selector.validate_images_for_twitter(image_paths)
+        
+        if not valid_images:
+            logger.info("No valid images found for article")
+            return []
+        
+        # Upload images to Twitter
+        media_ids = []
+        for image_path in valid_images[:4]:  # Twitter allows max 4 images
+            try:
+                media = self.twitter_client.create_media(media=image_path)
+                if hasattr(media, 'media_id'):
+                    media_ids.append(media.media_id)
+                    logger.info(f"Uploaded image: {image_path}")
+                else:
+                    logger.warning(f"Failed to get media ID for: {image_path}")
+            except Exception as e:
+                logger.error(f"Failed to upload image {image_path}: {e}")
+        
+        return media_ids
 
     def _looks_like_rate_limit_response(self, response):
         """Detect mocked rate limit responses that aren't raised as exceptions"""
