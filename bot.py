@@ -2,7 +2,7 @@
 Bitcoin Mining News Twitter Bot
 -------------------------------
 This bot fetches the latest Bitcoin mining news from EventRegistry (NewsAPI.ai)
-and posts them to Twitter/X as threaded tweets.
+and posts them to Twitter/X as single tweets with catchy headlines.
 """
 
 import os
@@ -358,7 +358,7 @@ class BitcoinMiningNewsBot:
             return "New Bitcoin mining article: " + fallback_title[:240]
 
     def post_to_twitter(self, article):
-        """Post article as a thread on Twitter"""
+        """Post article as a single tweet on Twitter"""
         return self._post_with_retry(article, max_retries=1)  # Reduced retries for daily rate limits
         
     def _post_with_retry(self, article, max_retries=1):
@@ -378,49 +378,30 @@ class BitcoinMiningNewsBot:
                     except Exception as e:
                         logger.warning(f"Failed to upload images, posting text-only tweet: {e}")
 
-                # Post the first tweet with images (if available)
+                # Post the tweet with images (if available)
                 tweet_params = {"text": tweet_text}
                 if media_ids:
                     tweet_params["media_ids"] = media_ids
                     logger.info(f"Posting tweet with {len(media_ids)} images")
                 
-                first_tweet = self.twitter_client.create_tweet(**tweet_params)
+                tweet = self.twitter_client.create_tweet(**tweet_params)
 
                 # Some mocked Twitter clients return a TooManyRequests sentinel
                 # object instead of raising the exception. Detect these cases and
                 # convert them into a proper Tweepy exception so the retry logic
                 # can respond consistently.
-                if self._looks_like_rate_limit_response(first_tweet):
+                if self._looks_like_rate_limit_response(tweet):
                     raise TweepyTooManyRequests(
-                        response=getattr(first_tweet, "response", None),
-                        api_errors=getattr(first_tweet, "api_errors", None) or []
+                        response=getattr(tweet, "response", None),
+                        api_errors=getattr(tweet, "api_errors", None) or []
                     )
 
-                first_tweet_id = self._extract_tweet_id(first_tweet)
-                if not first_tweet_id:
+                tweet_id = self._extract_tweet_id(tweet)
+                if not tweet_id:
                     raise InvalidTweetResponse("missing tweet ID in response")
-                logger.info(f"Posted first tweet with ID: {first_tweet_id}")
+                logger.info(f"Posted tweet with ID: {tweet_id}")
 
-                # Create the second tweet with the article link
-                article_url = article.get("url", "")
-                if article_url:
-                    try:
-                        # Post as a reply to create a thread using the supported reply parameter
-                        reply_parameters = {"in_reply_to_tweet_id": first_tweet_id}
-                        second_tweet = self.twitter_client.create_tweet(
-                            text=f"Read more: {article_url}",
-                            reply=reply_parameters
-                        )
-                        second_tweet_id = self._extract_tweet_id(second_tweet)
-                        if not second_tweet_id:
-                            logger.error("Reply tweet response missing ID; treating as failure")
-                            raise InvalidTweetResponse("missing reply tweet ID")
-                        logger.info(f"Posted second tweet (reply) with ID: {second_tweet_id}")
-                    except Exception as e:
-                        logger.error(f"Error posting second tweet: {str(e)}")
-                        logger.info("First tweet was successful, continuing...")
-
-                return first_tweet_id
+                return tweet_id
 
             except InvalidTweetResponse as invalid_response:
                 logger.error(f"Twitter client returned an invalid response: {invalid_response}")

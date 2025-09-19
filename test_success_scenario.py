@@ -86,22 +86,17 @@ def test_full_working_scenario():
                 print("   - New articles available: 2 (new-article-1, new-article-2)")
                 print("   - Already posted articles: 1 (old-article-1)")
                 print("   - Expected posts: 1 (bot only posts one article per run)")
-                print("   - Expected tweet calls: 2 (first tweet + reply with link)")
+                print("   - Expected tweet calls: 1 (single tweet only)")
                 
                 # Verify Twitter was called correctly
-                assert mock_twitter_client.create_tweet.call_count == 2, f"Expected 2 tweet calls, got {mock_twitter_client.create_tweet.call_count}"
+                assert mock_twitter_client.create_tweet.call_count == 1, f"Expected 1 tweet call, got {mock_twitter_client.create_tweet.call_count}"
                 
-                calls = mock_twitter_client.create_tweet.call_args_list
-                first_call_text = calls[0][1]['text']
-                second_call_text = calls[1][1]['text']
+                call = mock_twitter_client.create_tweet.call_args_list[0]
+                tweet_text = call[1]['text']
                 
-                print(f"   - First tweet: {first_call_text[:50]}...")
-                print(f"   - Second tweet: {second_call_text[:50]}...")
+                print(f"   - Tweet: {tweet_text[:50]}...")
                 
                 # Verify the reply structure
-                assert 'reply' in calls[1][1], "Second tweet should be a reply"
-                assert calls[1][1]['reply']['in_reply_to_tweet_id'] == "tweet_123", "Reply should reference first tweet"
-                
                 print("✅ All verifications passed!")
                 print("\n🎉 THIS IS WHAT SUCCESS LOOKS LIKE!")
                 print("    When the bot works correctly, you'll see:")

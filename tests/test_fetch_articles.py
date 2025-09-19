@@ -48,16 +48,13 @@ def mocked_dependencies(monkeypatch):
         yield mock_twitter_client
 
 
-def test_post_to_twitter_posts_reply_with_in_reply_to(mocked_dependencies):
+def test_post_to_twitter_posts_single_tweet(mocked_dependencies):
     mock_twitter_client = mocked_dependencies
 
-    first_tweet = mock.Mock()
-    first_tweet.data = {"id": "123"}
+    tweet = mock.Mock()
+    tweet.data = {"id": "123"}
 
-    second_tweet = mock.Mock()
-    second_tweet.data = {"id": "456"}
-
-    mock_twitter_client.create_tweet.side_effect = [first_tweet, second_tweet]
+    mock_twitter_client.create_tweet.return_value = tweet
 
     bot = BitcoinMiningNewsBot()
 
@@ -70,10 +67,7 @@ def test_post_to_twitter_posts_reply_with_in_reply_to(mocked_dependencies):
     result = bot.post_to_twitter(article)
 
     assert result == "123"
-    assert mock_twitter_client.create_tweet.call_count == 2
-
-    _, reply_kwargs = mock_twitter_client.create_tweet.call_args_list[1]
-    assert reply_kwargs["reply"] == {"in_reply_to_tweet_id": "123"}
+    assert mock_twitter_client.create_tweet.call_count == 1
 
 
 def test_post_to_twitter_without_url_does_not_post_reply(mocked_dependencies):

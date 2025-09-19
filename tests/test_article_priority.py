@@ -81,11 +81,11 @@ def test_bot_prioritizes_most_recent_and_queues_older_articles(mocked_dependenci
             bot.run()
 
             # Verify that only the most recent article was actually posted to Twitter
-            assert mock_twitter_client.create_tweet.call_count == 2  # Main tweet + reply with URL
+            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
 
             # Verify which article was posted
-            first_call_args = mock_twitter_client.create_tweet.call_args_list[0]
-            posted_text = first_call_args[1]['text']
+            call_args = mock_twitter_client.create_tweet.call_args_list[0]
+            posted_text = call_args[1]['text']
             assert "Most Recent News" in posted_text
 
             # Verify that only the posted article is in posted_uris
@@ -122,7 +122,7 @@ def test_bot_works_normally_with_single_article(mocked_dependencies):
             bot.run()
 
             # Should post the single article normally
-            assert mock_twitter_client.create_tweet.call_count == 2  # Main tweet + reply
+            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
             assert len(bot.posted_articles["posted_uris"]) == 1
             assert bot.posted_articles["posted_uris"][0] == "uri-1"
             assert len(bot.posted_articles["queued_articles"]) == 0  # No articles queued
@@ -157,7 +157,7 @@ def test_bot_posts_from_queue_when_no_new_articles(mocked_dependencies):
             bot.run()
 
             # Should post from queue
-            assert mock_twitter_client.create_tweet.call_count == 2  # Main tweet + reply
+            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
             assert len(bot.posted_articles["posted_uris"]) == 1
             assert bot.posted_articles["posted_uris"][0] == "queued-uri-1"
             assert len(bot.posted_articles["queued_articles"]) == 1  # One article remains in queue
