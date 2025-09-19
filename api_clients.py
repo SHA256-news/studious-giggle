@@ -2,11 +2,11 @@
 API clients for Bitcoin Mining News Bot
 """
 
+import importlib
 import logging
 from datetime import datetime, timedelta
-from typing import List, Dict, Any, Optional
+from typing import Dict, List, Optional, Any
 
-import importlib
 import tweepy
 
 from config import TwitterConfig, EventRegistryConfig, BotConstants

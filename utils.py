@@ -3,8 +3,9 @@ Utility functions for Bitcoin Mining News Bot
 """
 
 import json
-import os
 import logging
+import os
+import random
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, Tuple
 
@@ -151,8 +152,6 @@ class TextUtils:
     @staticmethod
     def create_tweet_text(article: Dict[str, Any]) -> str:
         """Create catchy tweet text for the article"""
-        import random
-        
         try:
             # Choose a catchy prefix
             prefix = random.choice(BotConstants.TWEET_PREFIXES)

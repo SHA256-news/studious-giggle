@@ -21,26 +21,25 @@ except (ImportError, AttributeError):
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
+from config import BotConstants
+from utils import TextUtils
+from api_clients import TwitterClient
+
+logger = logging.getLogger('bitcoin_mining_bot')
+
 
 class InvalidTweetResponse(Exception):
     """Raised when the Twitter client returns an unexpected response."""
 
-
-from config import BotConstants
-from utils import TextUtils
-from api_clients import TwitterClient
 
 # Import image functionality
 try:
     from image_selector import ImageSelector
     IMAGE_SUPPORT_AVAILABLE = True
 except ImportError as e:
-    logger = logging.getLogger('bitcoin_mining_bot')
     logger.warning(f"Image support not available: {e}")
     ImageSelector = None
     IMAGE_SUPPORT_AVAILABLE = False
-
-logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class TweetPoster:
