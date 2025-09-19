@@ -41,6 +41,14 @@ class InvalidTweetResponse(Exception):
 from eventregistry import EventRegistry, QueryArticles, QueryItems, RequestArticlesInfo, ReturnInfo, ArticleInfoFlags
 from crypto_filter import filter_bitcoin_only_articles
 
+# Configure logging first to avoid undefined logger errors
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
+)
+logger = logging.getLogger('bitcoin_mining_bot')
+
 # Import image functionality
 try:
     from image_selector import ImageSelector
@@ -49,14 +57,6 @@ except ImportError as e:
     logger.warning(f"Image support not available: {e}")
     ImageSelector = None
     IMAGE_SUPPORT_AVAILABLE = False
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class BitcoinMiningNewsBot:
@@ -601,8 +601,10 @@ class BitcoinMiningNewsBot:
                 tweet_id = self.post_to_twitter(article_to_post)
 
                 if tweet_id:
-                    # Add to posted articles
-                    self.posted_articles["posted_uris"].append(article_to_post.get("uri"))
+                    # Add to posted articles (only if URI is not None)
+                    article_uri = article_to_post.get("uri")
+                    if article_uri:
+                        self.posted_articles["posted_uris"].append(article_uri)
                     posted_count += 1
                     logger.info(f"Posted article: {article_to_post.get('title', 'Unknown')[:50]}...")
                 else:
