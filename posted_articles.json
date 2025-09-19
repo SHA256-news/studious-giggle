@@ -7,7 +7,8 @@
     "8870333890",
     "8870684491",
     "8870856005",
-    "8871105214"
+    "8871105214",
+    "8871183548"
   ],
   "queued_articles": [
     {
@@ -5354,6 +5355,132 @@
       "sentiment": 0.2862745098039217,
       "wgt": 495991982,
       "relevance": 27
+    },
+    {
+      "uri": "8871135442",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-19",
+      "time": "19:09:58",
+      "dateTime": "2025-09-19T19:09:58Z",
+      "dateTimePub": "2025-09-19T19:05:11Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://todayheadline.co/bitcoin-difficulty-hits-another-time-181438523-html/",
+      "title": "Bitcoin Difficulty Hits Another All-Time High -- Here's What It Means for Miners | Today Headline",
+      "body": "Bitcoin's mining difficulty has hit a new all-time high of 142.3 trillion, marking a 29.6% increase since the beginning of the year.\n\nMining difficulty is an average measure of how many hash functions miners need to calculate to mine one block, with a rising figure indicating that mining is becoming more computationally intensive.\n\nDifficulty is recalibrated every 2,0116 blocks in order to ensure a ten-minute block time, adapting to any increases (or decreases) in the Bitcoin network's hash power.\n\nAccordingly, Bitcoin's hashrate has also set a new record high, moving to 1.09 ZH/s, or 1,090,000,000,000,000,000 hashes.\n\nThe latest milestone comes just a week after Bitcoin's mining difficulty shot to a record high of 136.04 trillion.\n\nBitcoin Hash Rate, Difficulty Hit Record Highs as Miner Supply Spikes\n\nThese peaks are taken as a hugely positive sign as far as the health of Bitcoin and its network is concerned, with CJ Burnett, chief revenue officer at Compass Mining, telling Decrypt that difficulty adjustment is one of Bitcoin's \"most elegant and underappreciated\" features.\n\n\"It allows the network to recalibrate itself, almost making it akin to a living organism that self-regulates,\" he said.\n\nFor Burnett, a rising difficulty measure is a sign of a healthy and competitive mining sector.\n\nLike the Bitcoin halving, he said, rising difficulty \"often forces less efficient miners to go offline, while professionalized miners with strong infrastructure and low-cost energy can thrive.\"\n\nWhile there are often concerns that rising difficulty can make mining less cost-effective for some firms, a high and rising Bitcoin price usually offsets any increase in operating costs, experts argued.\n\nDigiconomist founder Alex de Vries told Decrypt that improvements in hardware efficiency can weaken any correlation between difficulty and electricity consumption, thereby keeping costs down for miners.\n\n\"As new generations of mining equipment come online, the amount of electricity consumed per unit of computation goes down,\" he explained. \"This means there is only an indirect relationship between hashrate and electricity consumption, and technically it's possible for hashrate to keep rising while overall electricity consumption remains constant.\"\n\nAs such, the increase in Bitcoin's difficulty may not result in professional miners going offline anytime soon, especially if Bitcoin's price continues to set new record highs, as it did last month.\n\n\"There is a more direct relationship between mining revenues and electricity consumption, as increasing revenues will enable miners to spend more on electricity regardless of equipment efficiency (higher efficiency just means they can run more machines on the same budget),\" added de Vries.",
+      "source": {
+        "uri": "todayheadline.co",
+        "dataType": "news",
+        "title": "Inside The Star-Studded World"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hash_function",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Hash function"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Encryption",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Encryption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Compass",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Compass"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Correlation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Correlation"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Marketplaces",
+          "label": "dmoz/Business/Mining and Drilling/Marketplaces",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 71
+        }
+      ],
+      "image": "https://todayheadline.co/wp-content/uploads/2024/10/logo-1.png",
+      "eventUri": null,
+      "sentiment": -0.003921568627450966,
+      "wgt": 496004998,
+      "relevance": 95
     }
   ]
 }
