@@ -22,10 +22,11 @@ This bot automatically tweets about the latest Bitcoin mining news every 90 minu
 
 ## Rate Limiting & Error Handling
 
-The bot includes robust handling for Twitter API daily rate limits (17 requests per 24 hours):
+The bot includes robust handling for Twitter API daily rate limits with multiple layers of protection:
 
 - **Conservative scheduling**: Runs every 90 minutes (16 times max per day) to stay under limits
-- **Progressive cooldowns**: 2h → 4h → 8h → 24h cooldowns when rate limited
+- **Minimum interval enforcement**: Runtime check prevents runs within 90 minutes of the last execution
+- **Simplified cooldowns**: 2h → 4h cooldowns when rate limited (simplified from complex progressive system)
 - **Single retry policy**: Uses 1 retry with 5-minute delay to conserve daily quota
 - **Clear logging**: Distinguishes between "no new articles" and "rate limited" scenarios
 - **Smart reporting**: Provides detailed information about why posting succeeded or failed
