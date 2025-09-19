@@ -73,7 +73,7 @@ def test_post_to_twitter_posts_reply_with_in_reply_to(mocked_dependencies):
     assert mock_twitter_client.create_tweet.call_count == 2
 
     _, reply_kwargs = mock_twitter_client.create_tweet.call_args_list[1]
-    assert reply_kwargs["reply"] == {"in_reply_to_tweet_id": "123"}
+    assert reply_kwargs["in_reply_to_tweet_id"] == "123"
 
 
 def test_post_to_twitter_without_url_does_not_post_reply(mocked_dependencies):

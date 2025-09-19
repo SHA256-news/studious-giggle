@@ -405,11 +405,10 @@ class BitcoinMiningNewsBot:
                 article_url = article.get("url", "")
                 if article_url:
                     try:
-                        # Post as a reply to create a thread using the supported reply parameter
-                        reply_parameters = {"in_reply_to_tweet_id": first_tweet_id}
+                        # Post as a reply to create a thread using the correct Tweepy API parameter
                         second_tweet = self.twitter_client.create_tweet(
                             text=f"Read more: {article_url}",
-                            reply=reply_parameters
+                            in_reply_to_tweet_id=first_tweet_id
                         )
                         second_tweet_id = self._extract_tweet_id(second_tweet)
                         if not second_tweet_id:
