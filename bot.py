@@ -7,7 +7,7 @@ and posts them to Twitter/X as single tweets with catchy headlines.
 
 import logging
 import sys
-from typing import List, Dict, Any, Optional
+from typing import Dict, List, Optional, Any
 
 # Configure logging before any modules attempt to use the shared logger
 logging.basicConfig(
@@ -108,7 +108,51 @@ class BitcoinMiningNewsBot:
             return self.tweet_poster.twitter_client.client
         return None
 
+    def _process_queued_article(self) -> bool:
+        """Process the next queued article (FIFO) if available"""
+        queued_articles = self.posted_articles.get("queued_articles", [])
+        if not queued_articles:
+            logger.info("No queued articles to process")
+            return False
+            
+        logger.info(f"Processing oldest of {len(queued_articles)} queued articles...")
+        # Take the oldest queued article (FIFO)
+        article_to_post = queued_articles.pop(0)
+        
+        # Try to post it
+        success = self._post_article(article_to_post)
+        if success:
+            logger.info("Successfully posted 1 queued article")
+            # Save updated queue after successful posting
+            FileManager.save_posted_articles(self.posted_articles)
+        else:
+            # Return article to queue if posting failed
+            queued_articles.insert(0, article_to_post)
+            logger.info("Returned failed article to queue")
+            
+        # Save updated queue state
+        FileManager.save_posted_articles(self.posted_articles)
+        return success
+
     def _post_article(self, article: Dict[str, Any]) -> bool:
+        """Post a single article and update posted articles list"""
+        if not self.tweet_poster:
+            logger.error("Tweet poster not initialized")
+            return False
+            
+        tweet_id = self.tweet_poster.post_to_twitter(article)
+        
+        if tweet_id:
+            # Add to posted articles
+            uri = article.get("uri")
+            if uri:
+                self.posted_articles["posted_uris"].append(uri)
+            
+            title = article.get("title", "Unknown title")[:50] + "..."
+            logger.info(f"Posted article: {title}")
+            return True
+        
+        return False
         """Post a single article and update posted articles list"""
         if not self.tweet_poster:
             logger.error("Tweet poster not initialized")
@@ -151,24 +195,7 @@ class BitcoinMiningNewsBot:
             if not articles:
                 logger.warning("No articles found from EventRegistry")
                 # Even if no new articles, check queue for pending articles
-                queued_articles = self.posted_articles.get("queued_articles", [])
-                if queued_articles:
-                    logger.info(f"No new articles found. Processing {len(queued_articles)} queued articles...")
-                    # Take the oldest queued article (FIFO)
-                    article_to_post = queued_articles.pop(0)
-                    # Save updated queue
-                    FileManager.save_posted_articles(self.posted_articles)
-                    # Try to post it
-                    success = self._post_article(article_to_post)
-                    if success:
-                        logger.info("Successfully posted 1 queued article")
-                    else:
-                        # Return article to queue if posting failed
-                        queued_articles.insert(0, article_to_post)
-                        FileManager.save_posted_articles(self.posted_articles)
-                        logger.info("Returned failed article to queue")
-                else:
-                    logger.info("No new articles to post (all articles were already posted)")
+                self._process_queued_article()
                 return
 
             logger.info(f"Found {len(articles)} total articles")
@@ -189,24 +216,7 @@ class BitcoinMiningNewsBot:
 
             if not new_articles:
                 # Check if we have queued articles to post
-                queued_articles = self.posted_articles.get("queued_articles", [])
-                if queued_articles:
-                    logger.info(f"No new articles found. Processing {len(queued_articles)} queued articles...")
-                    # Take the oldest queued article (FIFO)
-                    article_to_post = queued_articles.pop(0)
-                    # Save updated queue
-                    FileManager.save_posted_articles(self.posted_articles)
-                    # Try to post it
-                    success = self._post_article(article_to_post)
-                    if success:
-                        logger.info("Successfully posted 1 queued article")
-                    else:
-                        # Return article to queue if posting failed
-                        queued_articles.insert(0, article_to_post)
-                        FileManager.save_posted_articles(self.posted_articles)
-                        logger.info("Returned failed article to queue")
-                else:
-                    logger.info("No new articles to post (all articles were already posted)")
+                self._process_queued_article()
                 return
 
             # Sort by publication date (newest first) 
