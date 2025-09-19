@@ -3,7 +3,8 @@
     "test-article-1",
     "8869866053",
     "8869932309",
-    "8870094920"
+    "8870094920",
+    "8870333890"
   ],
   "queued_articles": [
     {
@@ -11329,6 +11330,2441 @@
       "sentiment": 0.01960784313725483,
       "wgt": 495942976,
       "relevance": 56
+    },
+    {
+      "uri": "8870309639",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "09:03:27",
+      "dateTime": "2025-09-19T09:03:27Z",
+      "dateTimePub": "2025-09-19T07:39:17Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.benzinga.com/pressreleases/25/09/g47756298/toobit-hosts-exclusive-presale-for-mechaconquest-mcq-on-its-upgraded-speed-zone",
+      "title": "Toobit Hosts Exclusive Presale for MechaConquest ($MCQ) on its Upgraded Speed Zone",
+      "body": "Enter your email to get Benzinga's ultimate morning update: The PreMarket Activity Newsletter\n\nGEORGE TOWN, Cayman Islands, Sept. 19, 2025 (GLOBE NEWSWIRE) -- Toobit, the award-winning global cryptocurrency exchange, today announces it will host the official presale for MechaConquest ($MCQ), a community-driven meme token poised to bring a unique, mech-themed experience to the BNB Smart Chain (BSC).\n\nThe presale will take place on Toobit's newly upgraded Speed Zone from September 26, 2025, 16:00 (UTC) to September 27, 2025, 14:00 (UTC). It will provide traders the opportunity to acquire $MCQ tokens at a special price before they are officially listed for public trading.\n\n\"We're excited to partner with MechaConquest and bring their presale to our platform,\" said Mike Williams, Chief Communication Officer at Toobit. \"Their project's unique blend of community and narrative is exactly what we seek for our traders. Launching $MCQ on our Speed Zone gives our traders a direct route to a project with strong momentum, securing their position before it becomes widely available.\"\n\nMechaConquest is building a dynamic ecosystem inspired by mech warfare, where steel titans clash for glory and every meme is a weapon. As a community-driven project, 50% of the total 10 billion $MCQ supply is dedicated to the community and liquidity pool.\n\nThe BNB Chain is currently a top player in the digital asset space, seeing significant growth in 2025. The network's average daily transactions surged to over 12.4 million in the first half of the year, with a peak of 17.6 million in a single day. This impressive activity highlights its robust infrastructure and user adoption.\n\nThe meme coin sector is a major driver of this growth, with its market cap reaching a projected $75 billion in 2025, fueled by strong community narratives and speculative demand.\n\nAbout Toobit\n\nToobit is where the future of crypto trading unfolds -- an award-winning cryptocurrency derivatives exchange built for those who thrive exploring new frontiers. With deep liquidity and cutting-edge technology, Toobit empowers traders worldwide to navigate the digital asset markets with confidence. We offer a fair, secure, seamless, and transparent trading experience, ensuring every trade is an opportunity to discover what's next.\n\nFor more information about Toobit, visit: Website | X | Telegram | LinkedIn | Discord | Instagram\n\nContact: Davin C.\n\nEmail: market@toobit.com\n\nWebsite: www.toobit.com\n\nDisclaimer: This content is provided by Toobit. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice.Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector -- including cryptocurrency, NFTs, and mining -- complete accuracy cannot always be guaranteed.Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility.Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/e6d1e706-ce98-4d5e-bd0d-692daaa5aaa7\n\nMarket News and Data brought to you by Benzinga APIs",
+      "source": {
+        "uri": "benzinga.com",
+        "dataType": "news",
+        "title": "Benzinga"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mathematical_Reviews",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mathematical Reviews"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coordinated_Universal_Time",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Coordinated Universal Time"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet_meme",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Internet meme"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_exchange",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Steel",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Steel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/George_Town,_Cayman_Islands",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "George Town, Cayman Islands"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "George Town, Cayman Islands"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Cayman Islands"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Meme_coin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Meme coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Discord",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Discord"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Futures_exchange",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Futures exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/API",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "API"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_film",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Independent film"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_adviser",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial adviser"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Fraud",
+          "label": "dmoz/Society/Issues/Fraud",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities/Opposing_Views",
+          "label": "dmoz/Business/Opportunities/Opposing Views",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 90
+        }
+      ],
+      "image": "https://www.benzinga.com/next-assets/images/schema-image-default.png",
+      "eventUri": null,
+      "sentiment": 0.419607843137255,
+      "wgt": 495968607,
+      "relevance": 27
+    },
+    {
+      "uri": "8870287932",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "08:48:23",
+      "dateTime": "2025-09-19T08:48:23Z",
+      "dateTimePub": "2025-09-19T08:47:26Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://cryptorank.io/news/feed/f9b77-michigan-lawmakers-advance-bill-to-allocate-state-funds-into-bitcoin",
+      "title": "Michigan Lawmakers Advance Bill to Allocate State Funds Into Bitcoin | Bitcoin Adoption | CryptoRank.io",
+      "body": "Michigan's push to become a Bitcoin-holding state is back in motion after months of dormancy.\n\nHouse Bill 4087, which would authorize the state to allocate up to 10% of its general and stabilization funds into Bitcoin and other cryptocurrencies, has been formally referred to the Government Operations Committee.\n\nIntroduced in February by Republican Representatives Bryan Posthumus and Ron Robinson, the bill cleared procedural hurdles on Thursday and was placed on the House's second reading calendar.\n\nThe move positions Michigan alongside a growing list of states eyeing Bitcoin as a hedge and strategic reserve asset, joining early movers like Texas, New Hampshire, and Arizona.\n\nThe timing may be notable. With Bitcoin trading around $117,000, critics have warned that Michigan could be buying at a market peak.\n\nIf passed, Michigan's move could accelerate regional pressure. States like Illinois, Ohio, and Pennsylvania, once exploring their own digital asset reserves, may feel compelled to revive their efforts to avoid falling behind.\n\nMore than 25 U.S. states are actively reviewing similar proposals, according to BitcoinLaws.io. In early August, the US House advanced a federal bill that directs the Treasury Department to study the feasibility of a national Bitcoin reserve, focusing on custody, cybersecurity, and accounting standards.\n\nInternational momentum is building as well. The Philippines recently introduced a bill to establish a strategic Bitcoin reserve with a 20-year lockup period.\n\nMeanwhile, El Salvador, the first country to adopt Bitcoin as legal tender, is reportedly adding gold to its national reserves.\n\nPakistan has also taken a major policy turn with its plans to establish a government-led Strategic Bitcoin Reserve, announced in May 2025 by Bilal Bin Saqib, head of the Pakistan Crypto Council.\n\nThe reserve is intended to be held indefinitely, not for speculation, and forms part of a broader push to build crypto regulation, harness surplus energy, and attract investment in digital infrastructure.\n\nThe government has pledged 2,000 megawatts of electricity toward Bitcoin mining and AI data centers, and it is setting up a dedicated regulatory authority (PVARA) to oversee digital asset activity.\n\nA report by K33 Research reveals that 25% of public companies holding Bitcoin now trade at market values lower than their actual BTC reserves, highlighting a growing disconnect between corporate treasuries and investor confidence.\n\nSmaller firms like NAKA, Semler Scientific, and Twenty One are trading well below net asset value (NAV), raising concerns about dilution and limited capital-raising ability.\n\nK33's Vetle Lunde warns that trading below NAV hampers funding, as issuing new shares becomes increasingly dilutive.\n\nWhile giants like MicroStrategy still trade at a premium, average NAV multiples have dropped from 3.76 in April to 2.8, and BTC accumulation by treasury firms is slowing, with September seeing the lowest daily inflows since May.\n\nDespite treasury demand cooling, spot ETFs and retail investors are stepping in as the new demand engines.",
+      "source": {
+        "uri": "cryptorank.io",
+        "dataType": "news",
+        "title": "CryptoRank"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Michigan",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Michigan"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Michigan"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ron_Robinson_(baseball)",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Ron Robinson (baseball)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hedge_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hedge (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Republican Party (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Arizona",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Arizona"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Arizona"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_Hampshire",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "New Hampshire"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New Hampshire"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accounting",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Accounting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Legal_tender",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Legal tender"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "United States Department of the Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._state",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "U.S. state"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computer_security",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Computer security"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Gold"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pennsylvania",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Pennsylvania"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Pennsylvania"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ohio",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Ohio"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Ohio"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Illinois",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Illinois"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Illinois"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/El_Salvador",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "El Salvador"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "El Salvador"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pakistan",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Pakistan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Pakistan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Philippines",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Philippines"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Philippines"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Circuito_de_Navarra",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Circuito de Navarra"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/MicroStrategy",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "MicroStrategy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Regulatory_agency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Regulatory agency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Treasury",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Net_asset_value",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Net asset value"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investor",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investor"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Economic",
+          "label": "dmoz/Society/Issues/Economic",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Accounting/Tax_Negotiation_and_Representation",
+          "label": "dmoz/Business/Accounting/Tax Negotiation and Representation",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 99
+        }
+      ],
+      "image": "https://cryptorank.io/static/logo.png",
+      "eventUri": null,
+      "sentiment": 0.1294117647058823,
+      "wgt": 495967703,
+      "relevance": 52
+    },
+    {
+      "uri": "8870227706",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "08:10:22",
+      "dateTime": "2025-09-19T08:10:22Z",
+      "dateTimePub": "2025-09-19T07:53:09Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finance.yahoo.com/news/michigan-lawmakers-advance-bill-allocate-075309893.html",
+      "title": "Michigan Lawmakers Advance Bill to Allocate State Funds Into Bitcoin",
+      "body": "The bill cleared procedural hurdles on Thursday and was placed on the House's second reading calendar.\n\nMichigan's push to become a Bitcoin-holding state is back in motion after months of dormancy.\n\nKey Takeaways:\n\nHouse Bill 4087, which would authorize the state to allocate up to 10% of its general and stabilization funds into Bitcoin and other cryptocurrencies, has been formally referred to the Government Operations Committee.\n\nIntroduced in February by Republican Representatives Bryan Posthumus and Ron Robinson, the bill cleared procedural hurdles on Thursday and was placed on the House's second reading calendar.\n\nThe move positions Michigan alongside a growing list of states eyeing Bitcoin as a hedge and strategic reserve asset, joining early movers like Texas, New Hampshire, and Arizona.\n\nThe timing may be notable. With Bitcoin trading around $117,000, critics have warned that Michigan could be buying at a market peak.\n\nIf passed, Michigan's move could accelerate regional pressure. States like Illinois, Ohio, and Pennsylvania, once exploring their own digital asset reserves, may feel compelled to revive their efforts to avoid falling behind.\n\nMore than 25 U.S. states are actively reviewing similar proposals, according to BitcoinLaws.io. In early August, the US House advanced a federal bill that directs the Treasury Department to study the feasibility of a national Bitcoin reserve, focusing on custody, cybersecurity, and accounting standards.\n\nInternational momentum is building as well. The Philippines recently introduced a bill to establish a strategic Bitcoin reserve with a 20-year lockup period.\n\nMeanwhile, El Salvador, the first country to adopt Bitcoin as legal tender, is reportedly adding gold to its national reserves.\n\nPakistan has also taken a major policy turn with its plans to establish a government-led Strategic Bitcoin Reserve, announced in May 2025 by Bilal Bin Saqib, head of the Pakistan Crypto Council.\n\nThe reserve is intended to be held indefinitely, not for speculation, and forms part of a broader push to build crypto regulation, harness surplus energy, and attract investment in digital infrastructure.\n\nThe government has pledged 2,000 megawatts of electricity toward Bitcoin mining and AI data centers, and it is setting up a dedicated regulatory authority (PVARA) to oversee digital asset activity.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Michigan",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Michigan"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Michigan"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bryan_Posthumus",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bryan Posthumus"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ron_Robinson_(baseball)",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Ron Robinson (baseball)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Republican Party (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hedge_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hedge (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._state",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "U.S. state"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pennsylvania",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Pennsylvania"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Pennsylvania"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Arizona",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Arizona"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Arizona"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ohio",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Ohio"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Ohio"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_Hampshire",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "New Hampshire"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New Hampshire"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Illinois",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Illinois"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Illinois"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accounting",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Accounting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Legal_tender",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Legal tender"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Regulatory_agency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Regulatory agency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States Department of the Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computer_security",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computer security"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Gold"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/El_Salvador",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "El Salvador"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "El Salvador"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pakistan",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Pakistan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Pakistan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Philippines",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Philippines"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Philippines"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Immigration",
+          "label": "dmoz/Society/Issues/Immigration",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Real_Estate/Residential",
+          "label": "dmoz/Business/Real Estate/Residential",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Government_Operations",
+          "label": "dmoz/Society/Issues/Government Operations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 66
+        }
+      ],
+      "image": "https://media.zenfs.com/en/cryptonews_us_711/41a09dee2d5233a895a80261b68b7414",
+      "eventUri": null,
+      "sentiment": 0.0980392156862746,
+      "wgt": 495965422,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-837992914",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "08:03:59",
+      "dateTime": "2025-09-19T08:03:59Z",
+      "dateTimePub": "2025-09-19T07:57:59Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.manilatimes.net/2025/09/19/tmt-newswire/globenewswire/toobit-hosts-exclusive-presale-for-mechaconquest-mcq-on-its-upgraded-speed-zone/2187179",
+      "title": "Toobit Hosts Exclusive Presale for MechaConquest ($MCQ) on its Upgraded Speed Zone",
+      "body": "GEORGE TOWN, Cayman Islands, Sept. 19, 2025 (GLOBE NEWSWIRE) -- Toobit, the award-winning global cryptocurrency exchange, today announces it will host the official presale for MechaConquest ($MCQ), a community-driven meme token poised to bring a unique, mech-themed experience to the BNB Smart Chain (BSC).\n\nThe presale will take place on Toobit's newly upgraded Speed Zone from September 26, 2025, 16:00 (UTC) to September 27, 2025, 14:00 (UTC). It will provide traders the opportunity to acquire $MCQ tokens at a special price before they are officially listed for public trading.\n\n\"We're excited to partner with MechaConquest and bring their presale to our platform,\" said Mike Williams, Chief Communication Officer at Toobit. \"Their project's unique blend of community and narrative is exactly what we seek for our traders. Launching $MCQ on our Speed Zone gives our traders a direct route to a project with strong momentum, securing their position before it becomes widely available.\"\n\nGet the latest news\n\ndelivered to your inbox\n\nSign up for The Manila Times newsletters\n\nBy signing up with an email address, I acknowledge that I have read and agree to the Terms of Service and Privacy Policy.\n\nMechaConquest is building a dynamic ecosystem inspired by mech warfare, where steel titans clash for glory and every meme is a weapon. As a community-driven project, 50% of the total 10 billion $MCQ supply is dedicated to the community and liquidity pool.\n\nThe BNB Chain is currently a top player in the digital asset space, seeing significant growth in 2025. The network's average daily transactions surged to over 12.4 million in the first half of the year, with a peak of 17.6 million in a single day. This impressive activity highlights its robust infrastructure and user adoption.\n\nAdvertisement\n\nThe meme coin sector is a major driver of this growth, with its market cap reaching a projected $75 billion in 2025, fueled by strong community narratives and speculative demand.\n\nAbout Toobit\n\nToobit is where the future of crypto trading unfolds-an award-winning cryptocurrency derivatives exchange built for those who thrive exploring new frontiers. With deep liquidity and cutting-edge technology, Toobit empowers traders worldwide to navigate the digital asset markets with confidence. We offer a fair, secure, seamless, and transparent trading experience, ensuring every trade is an opportunity to discover what's next.\n\nFor more information about Toobit, visit: Website | X | Telegram | LinkedIn | Discord | Instagram\n\nAdvertisement\n\nContact: Davin C.\n\nEmail: [email protected]\n\nWebsite: www.toobit.com\n\nDisclaimer: This content is provided by Toobit. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice.Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector-including cryptocurrency, NFTs, and mining-complete accuracy cannot always be guaranteed.Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility.Globenewswire does not endorse any content on this page.\n\nAdvertisement\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/e6d1e706-ce98-4d5e-bd0d-692daaa5aaa7",
+      "source": {
+        "uri": "manilatimes.net",
+        "dataType": "news",
+        "title": "The Manila times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mathematical_Reviews",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mathematical Reviews"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coordinated_Universal_Time",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Coordinated Universal Time"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet_meme",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Internet meme"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_exchange",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/The_Manila_Times",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "The Manila Times"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Newsletter",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Newsletter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/George_Town,_Cayman_Islands",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "George Town, Cayman Islands"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "George Town, Cayman Islands"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Cayman Islands"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Meme_coin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Meme coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Discord",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Discord"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terms_of_service",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Terms of service"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Futures_exchange",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Futures exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Steel",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Steel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Completeness_(logic)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Completeness (logic)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_film",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Independent film"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Investing/Day_Trading",
+          "label": "dmoz/Business/Investing/Day Trading",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Investing/Commodities_and_Futures",
+          "label": "dmoz/Business/Investing/Commodities and Futures",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 73
+        }
+      ],
+      "image": "https://www.manilatimes.net/manilatimes/uploads/images/2025/09/19/753559.png",
+      "eventUri": null,
+      "sentiment": 0.3019607843137255,
+      "wgt": 495965039,
+      "relevance": 27
+    },
+    {
+      "uri": "8870223145",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "08:02:08",
+      "dateTime": "2025-09-19T08:02:08Z",
+      "dateTimePub": "2025-09-19T07:55:49Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://coinfomania.com/get-100-for-free-sim-mining-launches-global-xrp-cloud-mining-app/",
+      "title": "Get $100 for Free  --  SIM Mining Launches Global XRP Cloud Mining App",
+      "body": "As cryptocurrency adoption continues to grow, cloud mining has become an increasingly popular entry point for everyday users. SIM Mining, a provider of crypto mining services, announced the worldwide launch of its new XRP Cloud Mining App, designed to give users a low-cost and accessible way to earn digital assets.\n\nStarting today, all new SIM Mining users will receive $100 in complimentary mining power upon registration. This bonus can be used daily to purchase contracts and generate up to $1 in profit per day. New users also gain an introductory benefit: with their first $150 contract purchase, they receive an additional $12 reward, earning a potential daily profit of $3 (including the $1 from the free $100 contract). All earnings can be withdrawn at any time.\n\nThe SIM Mining XRP Cloud Mining App lowers the barrier to entry. Users don't need expensive hardware or to worry about electricity bills and maintenance costs. Mining can be started in just three easy steps:\n\nExample Contracts\n\nTraditional mining requires costly hardware and ongoing maintenance. SIM Mining uses cloud computing and its own data centers to provide mining power directly through the app. This reduces costs and makes participation more efficient and user-friendly.\n\nXRP is widely recognized for its speed and low transaction costs in global payments and cross-border settlements. Unlike Bitcoin or Dogecoin, XRP is not mined traditionally. The SIM Mining XRP Cloud Mining App introduces a new model by rewarding users with XRP through cloud contracts, creating opportunities to access the asset beyond trading and holding.\n\nThe platform includes multiple features to safeguard users and maximize profitability:\n\nWith its XRP Cloud Mining App, SIM Mining aims to make crypto mining more accessible, transparent, and eco-friendly. By simplifying the process and lowering costs, the platform helps users participate in the blockchain economy while earning daily rewards in a straightforward way.",
+      "source": {
+        "uri": "coinfomania.com",
+        "dataType": "news",
+        "title": "Coinfomania"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/SIM_card",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "SIM card"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Ripple (payment protocol)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Barriers_to_entry",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Barriers to entry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dogecoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Dogecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Usability",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Usability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_app",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mobile app"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 54
+        }
+      ],
+      "image": "https://coinfomania.com/wp-content/uploads/Screenshot-2025-09-19-at-1.39.11-PM.webp",
+      "eventUri": null,
+      "sentiment": 0.2392156862745098,
+      "wgt": 495964928,
+      "relevance": 54
+    },
+    {
+      "uri": "2025-09-837987865",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "07:57:00",
+      "dateTime": "2025-09-19T07:57:00Z",
+      "dateTimePub": "2025-09-19T07:46:11Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.marketscreener.com/news/the9-to-acquire-51-stake-in-game-studio-behind-glory-all-stars-ultraman-rpg-ce7d58ded98cf025",
+      "title": "The9 to Acquire 51% Stake in Game Studio Behind Glory All Stars, Ultraman RPG",
+      "body": "The9 Ltd is a China-based holding company principally engaged in the Internet game business. The Company's main businesses are the operation and development of mobile phones and computer games. The Company offers online games, including massively multiplayer online role playing games (MMORPGs), massively multiplayer online first-person shooter games (MMOFPSs), Web games, social games, mobile games and television games. The Company's main products include Legend of Immortals, The World of Kings, CrossFire and others. The Company is also engaged in cryptocurrency mining and operations, as well as the development of non-fungible token platform NFTSTAR. The Company conducts business through subsidiaries in mainland China, the United States, Singapore and Hong Kong.",
+      "source": {
+        "uri": "marketscreener.com",
+        "dataType": "news",
+        "title": "Market Screener"
+      },
+      "authors": [
+        {
+          "uri": "mt_newswires@marketscreener.com",
+          "name": "Mt Newswires",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/The9",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "The9"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Online_game",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Online game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Role-playing_video_game",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Role-playing video game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Massively_multiplayer_online_first-person_shooter_game",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Massively multiplayer online first-person shooter game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Massively_multiplayer_online_role-playing_game",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Massively multiplayer online role-playing game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Massively_multiplayer_online_game",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Massively multiplayer online game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Role-playing_game",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Role-playing game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/PC_game",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "PC game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_phone",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mobile phone"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social-network_game",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Social-network game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mainland_China",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Mainland China"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_game",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mobile game"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hong_Kong",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Hong Kong"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Hong Kong"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Singapore",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Singapore"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Singapore"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Games/Video_Games/Browser_Based",
+          "label": "dmoz/Games/Video Games/Browser Based",
+          "wgt": 53
+        },
+        {
+          "uri": "dmoz/Games/Video_Games/Downloads",
+          "label": "dmoz/Games/Video Games/Downloads",
+          "wgt": 49
+        },
+        {
+          "uri": "dmoz/Games/Video_Games/Game_Design",
+          "label": "dmoz/Games/Video Games/Game Design",
+          "wgt": 50
+        },
+        {
+          "uri": "dmoz/Games/Roleplaying/Developers_and_Publishers",
+          "label": "dmoz/Games/Roleplaying/Developers and Publishers",
+          "wgt": 49
+        },
+        {
+          "uri": "dmoz/Games/Board_Games/Developers_and_Publishers",
+          "label": "dmoz/Games/Board Games/Developers and Publishers",
+          "wgt": 52
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 52
+        }
+      ],
+      "image": null,
+      "eventUri": null,
+      "sentiment": 0.3098039215686275,
+      "wgt": 495964620,
+      "relevance": 2
+    },
+    {
+      "uri": "2025-09-837984622",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "07:53:30",
+      "dateTime": "2025-09-19T07:53:30Z",
+      "dateTimePub": "2025-09-19T07:53:18Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.streetinsider.com/Globe+Newswire/Toobit+Hosts+Exclusive+Presale+for+MechaConquest+($MCQ)+on+its+Upgraded+Speed+Zone/25352859.html",
+      "title": "Toobit Hosts Exclusive Presale for MechaConquest ($MCQ) on its Upgraded Speed Zone",
+      "body": "GEORGE TOWN, Cayman Islands, Sept. 19, 2025 (GLOBE NEWSWIRE) -- Toobit, the award-winning global cryptocurrency exchange, today announces it will host the official presale for MechaConquest ($MCQ), a community-driven meme token poised to bring a unique, mech-themed experience to the BNB Smart Chain (BSC).\n\nThe presale will take place on Toobit's newly upgraded Speed Zone from September 26, 2025, 16:00 (UTC) to September 27, 2025, 14:00 (UTC). It will provide traders the opportunity to acquire $MCQ tokens at a special price before they are officially listed for public trading.\n\n\"We're excited to partner with MechaConquest and bring their presale to our platform,\" said Mike Williams, Chief Communication Officer at Toobit. \"Their project's unique blend of community and narrative is exactly what we seek for our traders. Launching $MCQ on our Speed Zone gives our traders a direct route to a project with strong momentum, securing their position before it becomes widely available.\"\n\nMechaConquest is building a dynamic ecosystem inspired by mech warfare, where steel titans clash for glory and every meme is a weapon. As a community-driven project, 50% of the total 10 billion $MCQ supply is dedicated to the community and liquidity pool.\n\nThe BNB Chain is currently a top player in the digital asset space, seeing significant growth in 2025. The network's average daily transactions surged to over 12.4 million in the first half of the year, with a peak of 17.6 million in a single day. This impressive activity highlights its robust infrastructure and user adoption.\n\nThe meme coin sector is a major driver of this growth, with its market cap reaching a projected $75 billion in 2025, fueled by strong community narratives and speculative demand.\n\nAbout Toobit\n\nToobit is where the future of crypto trading unfolds -- an award-winning cryptocurrency derivatives exchange built for those who thrive exploring new frontiers. With deep liquidity and cutting-edge technology, Toobit empowers traders worldwide to navigate the digital asset markets with confidence. We offer a fair, secure, seamless, and transparent trading experience, ensuring every trade is an opportunity to discover what's next.\n\nFor more information about Toobit, visit: Website | X | Telegram | LinkedIn | Discord | Instagram\n\nContact: Davin C.\n\nEmail: [email protected]\n\nWebsite: www.toobit.com\n\nDisclaimer: This content is provided by Toobit. The statements, views, and opinions expressed in this content are solely those of the content provider and do not necessarily reflect the views of this media platform or its publisher. We do not endorse, verify, or guarantee the accuracy, completeness, or reliability of any information presented. We do not guarantee any claims, statements, or promises made in this article. This content is for informational purposes only and should not be considered financial, investment, or trading advice.Investing in crypto and mining-related opportunities involves significant risks, including the potential loss of capital. It is possible to lose all your capital. These products may not be suitable for everyone, and you should ensure that you understand the risks involved. Seek independent advice if necessary. Speculate only with funds that you can afford to lose. Readers are strongly encouraged to conduct their own research and consult with a qualified financial advisor before making any investment decisions. However, due to the inherently speculative nature of the blockchain sector -- including cryptocurrency, NFTs, and mining -- complete accuracy cannot always be guaranteed.Neither the media platform nor the publisher shall be held responsible for any fraudulent activities, misrepresentations, or financial losses arising from the content of this press release. In the event of any legal claims or charges against this article, we accept no liability or responsibility.Globenewswire does not endorse any content on this page.\n\nLegal Disclaimer: This media platform provides the content of this article on an \"as-is\" basis, without any warranties or representations of any kind, express or implied. We assume no responsibility for any inaccuracies, errors, or omissions. We do not assume any responsibility or liability for the accuracy, content, images, videos, licenses, completeness, legality, or reliability of the information presented herein. Any concerns, complaints, or copyright issues related to this article should be directed to the content provider mentioned above.\n\nA photo accompanying this announcement is available at https://www.globenewswire.com/NewsRoom/AttachmentNg/e6d1e706-ce98-4d5e-bd0d-692daaa5aaa7",
+      "source": {
+        "uri": "streetinsider.com",
+        "dataType": "news",
+        "title": "StreetInsider.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mathematical_Reviews",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mathematical Reviews"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coordinated_Universal_Time",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Coordinated Universal Time"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet_meme",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Internet meme"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency_exchange",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Steel",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Steel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/GlobeNewswire",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "GlobeNewswire"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/George_Town,_Cayman_Islands",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "George Town, Cayman Islands"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "George Town, Cayman Islands"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Cayman Islands"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Meme_coin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Meme coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Discord",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Discord"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Futures_exchange",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Futures exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Email"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-fungible_token",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Non-fungible token"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Completeness_(logic)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Completeness (logic)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Independent_film",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Independent film"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_adviser",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial adviser"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Society/Activism",
+          "label": "dmoz/Society/Activism",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Business/Investing/Day_Trading",
+          "label": "dmoz/Business/Investing/Day Trading",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Investing/Commodities_and_Futures",
+          "label": "dmoz/Business/Investing/Commodities and Futures",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 90
+        }
+      ],
+      "image": "http://www.streetinsider.com/images/silogo-new.png",
+      "eventUri": null,
+      "sentiment": 0.3019607843137255,
+      "wgt": 495964410,
+      "relevance": 27
+    },
+    {
+      "uri": "8870201634",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "07:46:37",
+      "dateTime": "2025-09-19T07:46:37Z",
+      "dateTimePub": "2025-09-19T07:25:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.bangkokpost.com/business/general/3107341/mea-cracks-down-on-illegal-cable-cutting",
+      "title": "MEA Cracks Down on Illegal Cable Cutting",
+      "body": "The Metropolitan Electricity Authority warns offenders that cable theft, electricity tampering, and meter fraud are life-threatening crimes that will lead to arrest and prosecution.\n\nThe Metropolitan Electricity Authority (MEA) has issued a warning against illegal activities such as cutting power cables, using stolen electricity for Bitcoin mining, and tampering with electricity meters, all of which are considered MEA property.\n\nRecently, MEA's Yannawa District Office, in collaboration with local police, arrested a suspect attempting to cut underground power cables near Narathiwas Soi 11. MEA emphasises that it takes these matters seriously, deploying teams to regularly inspect power lines, working closely with local police stations, and pursuing legal action against offenders.\n\nSuch actions violate both civil and criminal laws and can cause severe damage -- not only endangering the perpetrator's life but also putting the public at risk. These illegal acts may lead to fatal accidents such as electrocution or fires, disrupt the power distribution system, cause widespread blackouts, and impact thousands of electricity users, in addition to damaging MEA-owned public infrastructure.\n\nMEA urges the public to remain vigilant and report any suspicious activities, such as illegal cable cutting, electricity theft, or unsafe electrical equipment. Reports can be made via the MEA Smart Life Application, available free on iOS and Android, or through MEA's official social media channels, including Line: MEA Connect (@MEAthailand) (with the green shield badge), by selecting \"Contact MEA Call Centre Online.\" Reports may also be submitted through the MEA Call Centre 1130, available 24 hours a day.",
+      "source": {
+        "uri": "bangkokpost.com",
+        "dataType": "news",
+        "title": "Bangkok Post"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Metropolitan_Electricity_Authority",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Metropolitan Electricity Authority"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Meadowlands_Grand_Prix",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Meadowlands Grand Prix"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Power_cable",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Power cable"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity_meter",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity meter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cable_television",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cable television"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Yan_Nawa_district",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Yan Nawa district"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Soi",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Soi"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/District",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "District"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_power_transmission",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electric power transmission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Police_station",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Police station"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electrocution",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electrocution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_power_distribution",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electric power distribution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Call_centre",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Call centre"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Power_outage",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Power outage"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/IOS",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "IOS"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Android_(operating_system)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Android (operating system)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social_media",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Social media"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Electronics_and_Electrical/Substation_and_Transmission",
+          "label": "dmoz/Business/Electronics and Electrical/Substation and Transmission",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Electricity",
+          "label": "dmoz/Business/Energy/Electricity",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Shopping/Home_and_Garden/Emergency_Supplies",
+          "label": "dmoz/Shopping/Home and Garden/Emergency Supplies",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Electronics_and_Electrical/Associations",
+          "label": "dmoz/Business/Electronics and Electrical/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Home_Improvement/Electrical",
+          "label": "dmoz/Home/Home Improvement/Electrical",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 76
+        }
+      ],
+      "image": "https://static.bangkokpost.com/media/content/20250919/c1_3107341_700.png",
+      "eventUri": null,
+      "sentiment": -0.5686274509803921,
+      "wgt": 495963997,
+      "relevance": 35
+    },
+    {
+      "uri": "8870198963",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-19",
+      "time": "07:44:20",
+      "dateTime": "2025-09-19T07:44:20Z",
+      "dateTimePub": "2025-09-19T07:43:59Z",
+      "dataType": "news",
+      "sim": 0.5568627715110779,
+      "url": "https://www.cointribune.com/en/nvidia-joins-britains-ai-race-with-bold-investment/",
+      "title": "Nvidia Joins Britain's AI Race With Bold Investment",
+      "body": "Nvidia joins the UK AI plan with a check for 683 million dollars. By betting on Nscale, an entity stemming from crypto mining, the American giant bets on a sovereign infrastructure at the heart of Europe. This operation, as much economic as geopolitical, marks a turning point, as artificial intelligence is no longer an experimental field but a strategic lever of national power.\n\nWhile the firm found itself in great difficulty in China, Nvidia officially announced on September 18 an investment of 683 million dollars in Nscale, a British company specializing in AI infrastructure.\n\nFounded in May 2024, Nscale is a spin-off of Arkon Energy, a company known until now for its crypto mining activities. Nvidia therefore wants to partner with Nscale to build a national large-scale AI processing capacity in the UK.\n\nHere are the main key elements of this operation :\n\nIn a statement, Josh Payne, CEO of Nscale, declared : \"sovereign AI infrastructure is essential to national resilience, economic growth, and strategic autonomy\".\n\nThis operation confirms the emergence of new players in the artificial intelligence value chain, coming from technologically initially distant worlds.\n\nThe technical skills developed in the mining sector, especially in energy management, intensive cooling, and high-density operations, are now finding an outlet in deploying AI infrastructures, without implying a total abandonment of the crypto sector.\n\nBeyond the financial agreement between Nvidia and Nscale, this partnership fits into a framework driven by the British government. As early as January 2025, Prime Minister Keir Starmer presented a national plan for artificial intelligence structured around 50 key recommendations, aiming to capture the economic and technological opportunities of this sector.\n\nIn this context, Nscale, alongside Vantage Data Centres and Kyndryl, took part in a collective commitment representing $17 billion in investments aimed at building robust AI infrastructure on British soil.\n\nNvidia's participation in the British effort reflects a dual challenge: consolidating its hegemony in the AI market while anchoring in strategic national industrial policies. It is not just about computing power, but also geopolitical positioning in the race for digital autonomy.\n\nBeyond the technical aspect, the economic implications are significant. The project could generate new jobs, attract additional investments, and reposition the UK as a reference hub for AI in Europe, which is tightening the noose more and more.",
+      "source": {
+        "uri": "cointribune.com",
+        "dataType": "news",
+        "title": "Cointribune"
+      },
+      "authors": [
+        {
+          "uri": "luc_jose_adjinacou@cointribune.com",
+          "name": "Luc Jose Adjinacou",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United Kingdom"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Kingdom"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sovereignty",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Sovereignty"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Geopolitics",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Geopolitics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Spin-off_(media)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Spin-off (media)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/China",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "China"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "China"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Josh_Payne_(darts_player)",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Josh Payne (darts player)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Autonomy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Autonomy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Economic_growth",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Economic growth"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Europe",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Europe"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Kyndryl",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Kyndryl"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Keir_Starmer",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Keir Starmer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Industrial_policy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Industrial policy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hegemony",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hegemony"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Government_of_the_United_Kingdom",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Government of the United Kingdom"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business",
+          "label": "dmoz/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Real_Estate/Commercial",
+          "label": "dmoz/Business/Real Estate/Commercial",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Business_and_Society",
+          "label": "dmoz/Business/Business and Society",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Agriculture_and_Forestry/Consulting",
+          "label": "dmoz/Business/Agriculture and Forestry/Consulting",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 69
+        }
+      ],
+      "image": "https://www.cointribune.com/app/uploads/2025/09/IA-Nvidia-nScale.png?nowebp",
+      "eventUri": "eng-10972635",
+      "sentiment": 0.2941176470588236,
+      "wgt": 495963860,
+      "relevance": 37
     }
   ]
 }
