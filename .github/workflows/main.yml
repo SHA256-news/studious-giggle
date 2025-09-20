@@ -45,12 +45,13 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
 
-      - name: Commit changes to posted articles
+      - name: Commit changes to posted articles and reports
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
           git add posted_articles.json
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles"
+          git add files/reports/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles and analysis reports"
           git push
 
       - name: Finalize runtime logs
