@@ -6,8 +6,9 @@ import json
 import logging
 import os
 import random
+import re
 from datetime import datetime, timedelta
-from typing import Dict, Any, Optional, Tuple
+from typing import Dict, Any, Optional, Tuple, List
 
 from config import BotConstants
 
@@ -149,9 +150,264 @@ class TimeUtils:
 class TextUtils:
     """Text processing utility functions"""
     
+    # Abbreviations to save characters
+    ABBREVIATIONS = {
+        "Bitcoin": "BTC",
+        "bitcoin": "BTC", 
+        "with": "w/",
+        "year": "yr",
+        "years": "yrs",
+        "million": "M",
+        "Million": "M", 
+        "billion": "B",
+        "Billion": "B",
+        "thousand": "K",
+        "Thousand": "K",
+        "mining": "mining",  # Keep this as is since it's key
+        "company": "co",
+        "Company": "Co",
+        "investment": "invest",
+        "Investment": "Invest"
+    }
+    
+    @staticmethod
+    def extract_key_info(article: Dict[str, Any]) -> Dict[str, Any]:
+        """Extract key information from article for creating informative tweets"""
+        from entity_extractor import EntityExtractor
+        
+        title = article.get("title", "") or ""
+        body = article.get("body", "") or ""
+        text = f"{title} {body}"
+        
+        # Initialize entity extractor
+        extractor = EntityExtractor()
+        entities = extractor.extract_entities(title)
+        
+        # Enhanced company detection patterns
+        companies = list(entities.get("companies", []))
+        
+        # Look for additional company patterns in the text
+        company_patterns = [
+            r'\b([A-Z][a-zA-Z]+ Holdings?)\b',  # "DL Holdings", "ABC Holding"
+            r'\b([A-Z][a-zA-Z]+ (?:Corporation|Corp|Inc|LLC|Ltd|Co))\b',  # Corporate entities
+            r'\b([A-Z][a-zA-Z]+ [A-Z][a-zA-Z]+)\b(?=.*(?:invest|mining|company|announces))',  # Two-word company names
+            r'\b(Fortune Peak|CleanSpark|Riot Platforms)\b',  # Specific companies from examples
+        ]
+        
+        for pattern in company_patterns:
+            matches = re.findall(pattern, text)
+            for match in matches:
+                if match and match.lower() not in [c.lower() for c in companies]:
+                    companies.append(match)
+        
+        # Extract financial amounts (dollars, BTC amounts)
+        financial_amounts = []
+        amount_patterns = [
+            r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|M|B))?',  # $1.5M, $21.85M
+            r'[\d,]+\s*BTC',  # 200 BTC
+            r'[\d,]+\s*Bitcoin',  # 200 Bitcoin
+            r'[\d,]+\s*(?:million|billion)\s*(?:dollars?)?',  # 21.85 million dollars
+        ]
+        
+        for pattern in amount_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            financial_amounts.extend(matches)
+        
+        # Extract numbers and technical specs
+        technical_specs = []
+        tech_patterns = [
+            r'[\d,]+\+?\s*(?:miners?|rigs?)',  # 2,200+ miners
+            r'[\d,]+\s*(?:MW|GW|TH/s|EH/s)',  # power/hashrate specs
+            r'[\d,]+\s*(?:annually|per year|/yr)',  # annual targets
+        ]
+        
+        for pattern in tech_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            technical_specs.extend(matches)
+        
+        return {
+            "companies": companies,
+            "locations": entities.get("locations", []),
+            "regulatory": entities.get("regulatory", []),
+            "financial_amounts": financial_amounts,
+            "technical_specs": technical_specs,
+            "concepts": entities.get("concepts", [])
+        }
+    
+    @staticmethod
+    def create_enhanced_tweet_text(article: Dict[str, Any]) -> str:
+        """Create informative, concise tweet text prioritizing key details"""
+        try:
+            title = article.get("title", "") or ""
+            if not title.strip():
+                return TextUtils.create_original_tweet_text(article)  # fallback to original
+            
+            # Extract key information
+            info = TextUtils.extract_key_info(article)
+            
+            # Determine the primary structure based on content
+            title_lower = title.lower()
+            
+            # Strategy 1: Company-focused format (like the example)
+            if info["companies"] and info["financial_amounts"]:
+                return TextUtils._create_company_focused_tweet(info, title, title_lower)
+            
+            # Strategy 2: News-focused format for regulatory/general news
+            elif info["regulatory"] or any(word in title_lower for word in ["approve", "regulation", "legal"]):
+                return TextUtils._create_news_focused_tweet(info, title)
+            
+            # Strategy 3: Enhanced generic format
+            else:
+                return TextUtils._create_enhanced_generic_tweet(info, title)
+            
+        except Exception as e:
+            logger.error(f"Error creating enhanced tweet text: {str(e)}")
+            # Fallback to original method
+            return TextUtils.create_original_tweet_text(article)
+    
+    @staticmethod
+    def _create_company_focused_tweet(info: Dict[str, Any], title: str, title_lower: str) -> str:
+        """Create company-focused tweet format: 'Company invests $X in BTC mining via Partner. Target: Y'"""
+        components = []
+        
+        # Primary company
+        primary_company = info["companies"][0]
+        components.append(primary_company)
+        
+        # Action verb
+        action = "invests"
+        if any(word in title_lower for word in ["expand", "expansion"]):
+            action = "expands"
+        elif any(word in title_lower for word in ["launch", "start"]):
+            action = "launches"
+        elif any(word in title_lower for word in ["partner", "partnership"]):
+            action = "partners w/"
+        elif any(word in title_lower for word in ["acquire", "acquisition"]):
+            action = "acquires"
+        
+        components.append(action)
+        
+        # Financial amount (prioritize dollar amounts)
+        financial_detail = ""
+        if info["financial_amounts"]:
+            dollar_amounts = [a for a in info["financial_amounts"] if '$' in a]
+            if dollar_amounts:
+                financial_detail = dollar_amounts[0]
+            else:
+                financial_detail = info["financial_amounts"][0]
+            components.append(financial_detail)
+        
+        components.append("in BTC mining")
+        
+        # Partner company
+        if len(info["companies"]) > 1:
+            components.append(f"via {info['companies'][1]}")
+        
+        # Technical specs as target
+        if info["technical_specs"]:
+            # Add period and start new sentence for technical details
+            base_text = " ".join(components) + "."
+            tech_detail = info["technical_specs"][0]
+            if "annually" in tech_detail or "/yr" in tech_detail or "per year" in tech_detail:
+                full_text = f"{base_text} Target: {tech_detail}"
+            else:
+                full_text = f"{base_text} Specs: {tech_detail}"
+            
+            # Apply abbreviations and check length
+            full_text = TextUtils._apply_abbreviations(full_text)
+            if len(full_text) <= BotConstants.TWEET_MAX_LENGTH:
+                return full_text
+        
+        # If tech specs make it too long, return base without tech details
+        base_text = " ".join(components)
+        return TextUtils._apply_abbreviations(base_text)
+    
+    @staticmethod
+    def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
+        """Create news-focused format for regulatory/general news"""
+        # For regulatory news, keep the authoritative structure but enhance with abbreviations
+        enhanced_title = title
+        
+        # Add financial context if available and not already in title
+        if info["financial_amounts"] and not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+            amount = info["financial_amounts"][0]
+            enhanced_title = f"{amount}: {enhanced_title}"
+        
+        # Apply abbreviations
+        enhanced_title = TextUtils._apply_abbreviations(enhanced_title)
+        
+        # Ensure length compliance
+        if len(enhanced_title) > BotConstants.TWEET_MAX_LENGTH:
+            enhanced_title = enhanced_title[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+        
+        return enhanced_title
+    
+    @staticmethod
+    def _create_enhanced_generic_tweet(info: Dict[str, Any], title: str) -> str:
+        """Create enhanced generic format"""
+        components = []
+        
+        # Add location if available and significant
+        if info["locations"]:
+            location = info["locations"][0].title()
+            if location.lower() not in title.lower():
+                components.append(f"{location}:")
+        
+        # Add financial amount if available and not in title
+        if info["financial_amounts"]:
+            amount = info["financial_amounts"][0]
+            if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+                components.append(f"{amount}:")
+        
+        # Add the title
+        components.append(title)
+        
+        # Combine and apply abbreviations
+        tweet_text = " ".join(components)
+        tweet_text = TextUtils._apply_abbreviations(tweet_text)
+        
+        # Ensure length compliance
+        if len(tweet_text) > BotConstants.TWEET_MAX_LENGTH:
+            tweet_text = tweet_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+        
+        return tweet_text
+    
+    @staticmethod
+    def _enhance_generic_title(title: str, info: Dict[str, Any]) -> str:
+        """Enhance a generic title with extracted information"""
+        # Remove common prefixes that don't add value
+        title = re.sub(r'^(Breaking|News|Update|Alert):\s*', '', title, flags=re.IGNORECASE)
+        
+        # If we have financial info, try to incorporate it
+        if info["financial_amounts"]:
+            amount = info["financial_amounts"][0]
+            if amount not in title:
+                title = f"{amount}: {title}"
+        
+        # Add location if significant and not already mentioned
+        if info["locations"] and info["locations"][0] not in title:
+            location = info["locations"][0]
+            title = f"{location}: {title}"
+        
+        return title
+    
+    @staticmethod
+    def _apply_abbreviations(text: str) -> str:
+        """Apply abbreviations to save characters"""
+        for full_word, abbrev in TextUtils.ABBREVIATIONS.items():
+            # Use word boundaries to avoid partial replacements
+            text = re.sub(r'\b' + re.escape(full_word) + r'\b', abbrev, text)
+        return text
+    
     @staticmethod
     def create_tweet_text(article: Dict[str, Any]) -> str:
-        """Create catchy tweet text for the article"""
+        """Create catchy tweet text for the article (enhanced version)"""
+        # Use the enhanced method by default
+        return TextUtils.create_enhanced_tweet_text(article)
+    
+    @staticmethod
+    def create_original_tweet_text(article: Dict[str, Any]) -> str:
+        """Original tweet text creation method (kept for fallback)"""
         try:
             # Choose a catchy prefix
             prefix = random.choice(BotConstants.TWEET_PREFIXES)
