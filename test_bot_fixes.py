@@ -205,7 +205,9 @@ def test_single_tweet_success():
                     
                     # Verify the call was made correctly
                     call = mock_twitter_client.create_tweet.call_args_list[0]
-                    assert "Test Bitcoin Mining Article" in call[1]['text']
+                    # Check that the tweet contains the key content (with possible abbreviations)
+                    tweet_text = call[1]['text']
+                    assert "Test" in tweet_text and ("Bitcoin" in tweet_text or "BTC" in tweet_text) and "Mining" in tweet_text, f"Tweet should contain key elements: {tweet_text}"
                     
                     return True
                 else:

@@ -179,6 +179,13 @@ class BitcoinMiningNewsBot:
                 logger.error("Cannot run bot in safe mode")
                 return
 
+            # Initialize runtime logs
+            try:
+                from utils import RuntimeLogger
+                RuntimeLogger.initialize_runtime_logs()
+            except ImportError:
+                pass  # Runtime logging not available
+
             logger.info("Starting Bitcoin Mining News Bot")
 
             # Check minimum interval since last run

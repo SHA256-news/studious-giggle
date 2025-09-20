@@ -213,6 +213,13 @@ def filter_bitcoin_only_articles(articles):
     if not articles:
         return [], 0, []
     
+    # Import here to avoid circular imports
+    try:
+        from utils import RuntimeLogger
+        RuntimeLogger.initialize_runtime_logs()
+    except ImportError:
+        pass  # Runtime logging not available
+    
     filtered_articles = []
     excluded_details = []
     
@@ -233,6 +240,15 @@ def filter_bitcoin_only_articles(articles):
                 'found_in_title': title_cryptos,
                 'found_in_body': body_cryptos[:5]  # Limit to first 5 found in body
             })
+            
+            # Log blocked content
+            try:
+                from utils import RuntimeLogger
+                reason = f"Contains non-Bitcoin cryptocurrencies: {', '.join(title_cryptos + body_cryptos[:3])}"
+                RuntimeLogger.log_blocked_content("article", title, reason)
+            except ImportError:
+                pass  # Runtime logging not available
+            
             logger.info(f"Filtering out non-Bitcoin article: {title[:50]}... (mentions: {', '.join(title_cryptos + body_cryptos[:3])})")
         else:
             # Article appears to be Bitcoin-only - include it
