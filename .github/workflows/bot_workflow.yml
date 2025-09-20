@@ -74,9 +74,30 @@ jobs:
       - name: Finalize runtime logs
         run: |
           echo "Bot execution completed at: $(date)" >> ${{ runner.temp }}/runtime-logs/blocked.md
+          # Debug: Check what files exist and their sizes
+          echo "Debug: runner.temp is: ${{ runner.temp }}"
+          echo "Debug: Contents of ${{ runner.temp }}/runtime-logs:"
+          ls -la ${{ runner.temp }}/runtime-logs/ || echo "Directory does not exist"
+          echo "Debug: Contents of /tmp/runtime-logs (fallback location):"
+          ls -la /tmp/runtime-logs/ || echo "Fallback directory does not exist"
+          echo "Debug: Checking file sizes:"
+          stat ${{ runner.temp }}/runtime-logs/blocked.jsonl || echo "blocked.jsonl not found in main location"
+          stat ${{ runner.temp }}/runtime-logs/blocked.md || echo "blocked.md not found in main location"
+          stat /tmp/runtime-logs/blocked.jsonl || echo "blocked.jsonl not found in fallback location"
+          stat /tmp/runtime-logs/blocked.md || echo "blocked.md not found in fallback location"
           # Ensure files exist even if nothing was logged
           if [ ! -s ${{ runner.temp }}/runtime-logs/blocked.jsonl ]; then
+            echo "Creating/recreating blocked.jsonl"
             echo "[]" > ${{ runner.temp }}/runtime-logs/blocked.jsonl
+          fi
+          # Copy from fallback location if files exist there
+          if [ -f /tmp/runtime-logs/blocked.jsonl ]; then
+            echo "Copying blocked.jsonl from fallback location"
+            cp /tmp/runtime-logs/blocked.jsonl ${{ runner.temp }}/runtime-logs/blocked.jsonl
+          fi
+          if [ -f /tmp/runtime-logs/blocked.md ]; then
+            echo "Copying blocked.md from fallback location"
+            cp /tmp/runtime-logs/blocked.md ${{ runner.temp }}/runtime-logs/blocked.md
           fi
         if: always()
         
