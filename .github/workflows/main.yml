@@ -28,6 +28,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create runtime logs directory
+        run: |
+          mkdir -p /home/runner/work/_temp/runtime-logs
+          echo "[]" > /home/runner/work/_temp/runtime-logs/blocked.jsonl
+          echo "# Runtime Logs" > /home/runner/work/_temp/runtime-logs/blocked.md
+          echo "Bot execution started at: $(date)" >> /home/runner/work/_temp/runtime-logs/blocked.md
+          echo "" >> /home/runner/work/_temp/runtime-logs/blocked.md
+
       - name: Run bot
         run: python bot.py
         env:
@@ -44,14 +52,15 @@ jobs:
           git add posted_articles.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles"
           git push
-      
-      - name: Create runtime logs directory
+
+      - name: Finalize runtime logs
         run: |
-          mkdir -p /home/runner/work/_temp/runtime-logs
-          echo "[]" > /home/runner/work/_temp/runtime-logs/blocked.jsonl
-          echo "# Runtime Logs" > /home/runner/work/_temp/runtime-logs/blocked.md
-          echo "No content was blocked during this run." >> /home/runner/work/_temp/runtime-logs/blocked.md
-          echo "Generated at: $(date)" >> /home/runner/work/_temp/runtime-logs/blocked.md
+          echo "Bot execution completed at: $(date)" >> /home/runner/work/_temp/runtime-logs/blocked.md
+          # Ensure files exist even if nothing was logged
+          if [ ! -s /home/runner/work/_temp/runtime-logs/blocked.jsonl ]; then
+            echo "[]" > /home/runner/work/_temp/runtime-logs/blocked.jsonl
+          fi
+        if: always()
         
       - name: Upload runtime logs
         uses: actions/upload-artifact@v3

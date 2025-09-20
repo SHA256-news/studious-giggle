@@ -22,58 +22,74 @@ class RuntimeLogger:
     def ensure_runtime_logs_dir():
         """Ensure the runtime logs directory exists"""
         log_dir = "/home/runner/work/_temp/runtime-logs"
-        os.makedirs(log_dir, exist_ok=True)
+        try:
+            os.makedirs(log_dir, exist_ok=True)
+        except Exception as e:
+            logger.warning(f"Could not create runtime logs directory: {e}")
+            # Fallback to temp directory
+            log_dir = "/tmp/runtime-logs"
+            os.makedirs(log_dir, exist_ok=True)
         return log_dir
     
     @staticmethod
     def log_blocked_content(content_type: str, title: str, reason: str):
         """Log blocked content to the runtime logs"""
-        log_dir = RuntimeLogger.ensure_runtime_logs_dir()
-        
-        # Log to JSONL file
-        jsonl_file = os.path.join(log_dir, "blocked.jsonl")
-        log_entry = {
-            "timestamp": datetime.now().isoformat(),
-            "content_type": content_type,
-            "title": title,
-            "reason": reason
-        }
-        
-        with open(jsonl_file, "a") as f:
-            f.write(json.dumps(log_entry) + "\n")
-        
-        # Log to markdown file
-        md_file = os.path.join(log_dir, "blocked.md")
-        if not os.path.exists(md_file):
-            with open(md_file, "w") as f:
-                f.write("# Blocked Content Log\n\n")
-                f.write("This file tracks content that was filtered or blocked during bot execution.\n\n")
-        
-        with open(md_file, "a") as f:
-            f.write(f"## {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"- **Type**: {content_type}\n")
-            f.write(f"- **Title**: {title}\n")
-            f.write(f"- **Reason**: {reason}\n\n")
+        try:
+            log_dir = RuntimeLogger.ensure_runtime_logs_dir()
+            
+            # Log to JSONL file
+            jsonl_file = os.path.join(log_dir, "blocked.jsonl")
+            log_entry = {
+                "timestamp": datetime.now().isoformat(),
+                "content_type": content_type,
+                "title": title,
+                "reason": reason
+            }
+            
+            with open(jsonl_file, "a") as f:
+                f.write(json.dumps(log_entry) + "\n")
+            
+            # Log to markdown file
+            md_file = os.path.join(log_dir, "blocked.md")
+            if not os.path.exists(md_file):
+                with open(md_file, "w") as f:
+                    f.write("# Blocked Content Log\n\n")
+                    f.write("This file tracks content that was filtered or blocked during bot execution.\n\n")
+            
+            with open(md_file, "a") as f:
+                f.write(f"## {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+                f.write(f"- **Type**: {content_type}\n")
+                f.write(f"- **Title**: {title}\n")
+                f.write(f"- **Reason**: {reason}\n\n")
+                
+        except Exception as e:
+            logger.warning(f"Could not write to runtime logs: {e}")
+            # Continue execution - logging failure shouldn't break the bot
     
     @staticmethod
     def initialize_runtime_logs():
         """Initialize runtime log files if they don't exist"""
-        log_dir = RuntimeLogger.ensure_runtime_logs_dir()
-        
-        jsonl_file = os.path.join(log_dir, "blocked.jsonl")
-        md_file = os.path.join(log_dir, "blocked.md")
-        
-        # Create empty JSONL file if it doesn't exist
-        if not os.path.exists(jsonl_file):
-            with open(jsonl_file, "w") as f:
-                pass  # Create empty file
-        
-        # Create markdown header if file doesn't exist
-        if not os.path.exists(md_file):
-            with open(md_file, "w") as f:
-                f.write("# Runtime Logs\n\n")
-                f.write(f"Bot execution started at: {datetime.now().isoformat()}\n\n")
-                f.write("No content was blocked during this run.\n")
+        try:
+            log_dir = RuntimeLogger.ensure_runtime_logs_dir()
+            
+            jsonl_file = os.path.join(log_dir, "blocked.jsonl")
+            md_file = os.path.join(log_dir, "blocked.md")
+            
+            # Create empty JSONL file if it doesn't exist
+            if not os.path.exists(jsonl_file):
+                with open(jsonl_file, "w") as f:
+                    pass  # Create empty file
+            
+            # Create markdown header if file doesn't exist
+            if not os.path.exists(md_file):
+                with open(md_file, "w") as f:
+                    f.write("# Runtime Logs\n\n")
+                    f.write(f"Bot execution started at: {datetime.now().isoformat()}\n\n")
+                    f.write("No content was blocked during this run.\n")
+                    
+        except Exception as e:
+            logger.warning(f"Could not initialize runtime logs: {e}")
+            # Continue execution - logging initialization failure shouldn't break the bot
 
 
 class FileManager:
