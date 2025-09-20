@@ -3,9 +3,9 @@ name: Tweet Bitcoin Mining News
 on:
   schedule:
     # Run every 90 minutes (16 times per day) to respect 17 requests per 24 hours rate limit
-    # Schedule: 00:00, 01:30, 03:00, 04:30, 06:00, 07:30, 09:00, 10:30, 12:00, 13:30, 15:00, 16:30, 18:00, 19:30, 21:00, 22:30
-    - cron: '0 0,3,6,9,12,15,18,21 * * *'
-    - cron: '30 1,4,7,10,13,16,19,22 * * *'
+    # Times: 00:00, 01:30, 03:00, 04:30, 06:00, 07:30, 09:00, 10:30, 12:00, 13:30, 15:00, 16:30, 18:00, 19:30, 21:00, 22:30
+    - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight  
+    - cron: '30 1,4,7,10,13,16,19,22 * * *'    # Every 3 hours starting at 1:30 AM
   workflow_dispatch:  # Allows manual triggering
 
 permissions:

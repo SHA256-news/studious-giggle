@@ -158,6 +158,7 @@ class APIClientManager:
         try:
             twitter_config = TwitterConfig.from_env()
             self.twitter_client = TwitterClient(twitter_config)
+            logger.info("Twitter client initialized successfully")
         except ValueError as e:
             logger.error(f"Failed to initialize Twitter client: {str(e)}")
             raise
@@ -165,6 +166,7 @@ class APIClientManager:
         try:
             eventregistry_config = EventRegistryConfig.from_env()
             self.eventregistry_client = EventRegistryClient(eventregistry_config)
+            logger.info("EventRegistry client initialized successfully")
         except ValueError as e:
             logger.error(f"Failed to initialize EventRegistry client: {str(e)}")
             raise
@@ -173,6 +175,7 @@ class APIClientManager:
             # Initialize Gemini client (non-blocking)
             gemini_config = GeminiConfig.from_env()
             self.gemini_client = GeminiClient(gemini_config)
+            logger.info("Gemini client initialized successfully")
         except ValueError as e:
             logger.warning(f"Gemini client not initialized: {str(e)}")
     
