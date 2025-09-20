@@ -12,106 +12,10 @@
     "8871135442",
     "8870997066",
     "8871357824",
-    "2025-09-838768377"
+    "2025-09-838768377",
+    "8869543745"
   ],
   "queued_articles": [
-    {
-      "uri": "8869543745",
-      "lang": "eng",
-      "isDuplicate": false,
-      "date": "2025-09-18",
-      "time": "20:10:39",
-      "dateTime": "2025-09-18T20:10:39Z",
-      "dateTimePub": "2025-09-18T19:54:30Z",
-      "dataType": "news",
-      "sim": 0,
-      "url": "https://www.vcpost.com/articles/129754/20250917/bemine-launches-golden-harvest-autumn-promo-campaign-70-discounts-cloud-mining-equipment.htm",
-      "title": "BeMine Launches \"Golden Harvest\" Autumn Promo Campaign with Up to 70% Discounts on Cloud Mining Equipment",
-      "body": "BeMine, a global leader in cloud mining services, is excited to announce the launch of its Golden HarvestAutumn Campaign, running from September 15 to November 30, 2025. This seasonal promotion is designed to empower both new and existing users with unprecedented opportunities to expand their mining power, maximize returns, and prepare for the historically bullish winter months in the cryptocurrency market.\n\nAutumn has always been a symbol of harvest and preparation for winter. In the same way, BeMine users can now \"sow\" their mining seeds by acquiring new or upgraded mining capacities -- and then \"harvest\" their results as the crypto market enters one of its strongest growth cycles.\n\nBeMine stands out in the cloud mining industry by offering one of the lowest entry barriers on the market. Users can purchase mining equipment in shares, gradually building up a full device, while all costs are distributed proportionally. This unique model opens the door for both newcomers and experienced miners to participate without heavy upfront investments.\n\nAutumn is statistically the best season to enter crypto mining -- as the winter and spring months historically bring increased demand for hardware and rising network difficulty, making early preparation a crucial advantage.",
-      "source": {
-        "uri": "vcpost.com",
-        "dataType": "news",
-        "title": "IVCPOST"
-      },
-      "authors": [],
-      "concepts": [
-        {
-          "uri": "http://en.wikipedia.org/wiki/Mining",
-          "type": "wiki",
-          "score": 5,
-          "label": {
-            "eng": "Mining"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
-          "type": "wiki",
-          "score": 4,
-          "label": {
-            "eng": "Cloud computing"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Harvest",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Harvest"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Cryptocurrency"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Market_trend",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Market trend"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Seed",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Seed"
-          }
-        }
-      ],
-      "categories": [
-        {
-          "uri": "dmoz/Science/Technology/Mining",
-          "label": "dmoz/Science/Technology/Mining",
-          "wgt": 100
-        },
-        {
-          "uri": "dmoz/Business/Mining_and_Drilling",
-          "label": "dmoz/Business/Mining and Drilling",
-          "wgt": 100
-        },
-        {
-          "uri": "dmoz/Science/Environment/Mining",
-          "label": "dmoz/Science/Environment/Mining",
-          "wgt": 100
-        },
-        {
-          "uri": "news/Business",
-          "label": "news/Business",
-          "wgt": 65
-        }
-      ],
-      "image": "https://d.vcpost.com/en/full/1726465/autumn-bemine.jpg",
-      "eventUri": null,
-      "sentiment": 0.2705882352941176,
-      "wgt": 495922239,
-      "relevance": 43
-    },
     {
       "uri": "8869542805",
       "lang": "eng",
@@ -5708,5 +5612,5 @@
       "relevance": 103
     }
   ],
-  "last_run_time": "2025-09-20T04:44:38.209348"
+  "last_run_time": "2025-09-20T06:45:56.714258"
 }
