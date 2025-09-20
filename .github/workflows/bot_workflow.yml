@@ -37,12 +37,12 @@ jobs:
 
       - name: Create runtime logs directory
         run: |
-          mkdir -p ${{ runner.temp }}/bot-runtime-logs
-          echo "[]" > ${{ runner.temp }}/bot-runtime-logs/execution.jsonl
-          echo "# Bot Workflow Runtime Logs" > ${{ runner.temp }}/bot-runtime-logs/execution.md
-          echo "Bot execution started at: $(date)" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
-          echo "Workflow: bot_workflow.yml" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
-          echo "" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+          mkdir -p ${{ runner.temp }}/runtime-logs
+          echo "[]" > ${{ runner.temp }}/runtime-logs/blocked.jsonl
+          echo "# Runtime Logs" > ${{ runner.temp }}/runtime-logs/blocked.md
+          echo "Bot execution started at: $(date)" >> ${{ runner.temp }}/runtime-logs/blocked.md
+          echo "Workflow: bot_workflow.yml" >> ${{ runner.temp }}/runtime-logs/blocked.md
+          echo "" >> ${{ runner.temp }}/runtime-logs/blocked.md
 
       - name: Run diagnostics
         run: python bot.py --diagnose
@@ -73,10 +73,10 @@ jobs:
 
       - name: Finalize runtime logs
         run: |
-          echo "Bot execution completed at: $(date)" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+          echo "Bot execution completed at: $(date)" >> ${{ runner.temp }}/runtime-logs/blocked.md
           # Ensure files exist even if nothing was logged
-          if [ ! -s ${{ runner.temp }}/bot-runtime-logs/execution.jsonl ]; then
-            echo "[]" > ${{ runner.temp }}/bot-runtime-logs/execution.jsonl
+          if [ ! -s ${{ runner.temp }}/runtime-logs/blocked.jsonl ]; then
+            echo "[]" > ${{ runner.temp }}/runtime-logs/blocked.jsonl
           fi
         if: always()
         
@@ -84,7 +84,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bot-workflow-logs
-          path: ${{ runner.temp }}/bot-runtime-logs/
+          path: ${{ runner.temp }}/runtime-logs/
           retention-days: 7
           if-no-files-found: ignore
         if: always()
