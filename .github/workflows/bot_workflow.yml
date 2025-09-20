@@ -1,0 +1,90 @@
+name: Bitcoin Mining News Bot
+
+on:
+  schedule:
+    # Alternative schedule: Run every 90 minutes with different timing offset
+    # Times: 00:45, 02:15, 03:45, 05:15, 06:45, 08:15, 09:45, 11:15, 12:45, 14:15, 15:45, 17:15, 18:45, 20:15, 21:45, 23:15
+    - cron: '45 0,2,4,6,8,10,12,14,16,18,20,22 * * *'   # Every 2 hours starting at 00:45
+    - cron: '15 1,3,5,7,9,11,13,15,17,19,21,23 * * *'   # Every 2 hours starting at 01:15
+  workflow_dispatch:  # Allows manual triggering
+    inputs:
+      force_run:
+        description: 'Force run even if within minimum interval'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create runtime logs directory
+        run: |
+          mkdir -p ${{ runner.temp }}/bot-runtime-logs
+          echo "[]" > ${{ runner.temp }}/bot-runtime-logs/execution.jsonl
+          echo "# Bot Workflow Runtime Logs" > ${{ runner.temp }}/bot-runtime-logs/execution.md
+          echo "Bot execution started at: $(date)" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+          echo "Workflow: bot_workflow.yml" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+          echo "" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+
+      - name: Run diagnostics
+        run: python bot.py --diagnose
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
+
+      - name: Run bot
+        run: python bot.py
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
+          FORCE_RUN: ${{ github.event.inputs.force_run }}
+
+      - name: Commit changes to posted articles
+        run: |
+          git config --global user.name 'Bitcoin Bot Actions'
+          git config --global user.email 'bot-actions@github.com'
+          git add posted_articles.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles [bot_workflow]"
+          git push
+
+      - name: Finalize runtime logs
+        run: |
+          echo "Bot execution completed at: $(date)" >> ${{ runner.temp }}/bot-runtime-logs/execution.md
+          # Ensure files exist even if nothing was logged
+          if [ ! -s ${{ runner.temp }}/bot-runtime-logs/execution.jsonl ]; then
+            echo "[]" > ${{ runner.temp }}/bot-runtime-logs/execution.jsonl
+          fi
+        if: always()
+        
+      - name: Upload runtime logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: bot-workflow-logs
+          path: ${{ runner.temp }}/bot-runtime-logs/
+          retention-days: 7
+          if-no-files-found: ignore
+        if: always()
