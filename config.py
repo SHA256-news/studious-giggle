@@ -85,6 +85,7 @@ class BotConstants:
     TWEET_TRUNCATE_LENGTH = 277
     TITLE_MAX_LENGTH = 240
     TWEET_PREFIXES = ["BREAKING: ", "JUST IN: ", "ALERT: ", "NEWS: ", "UPDATE: "]
+    TWEET_CALL_TO_ACTION = "Read more:"
     
     # Rate limiting
     MINIMUM_INTERVAL_MINUTES = 90

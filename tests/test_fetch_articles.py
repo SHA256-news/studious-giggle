@@ -12,6 +12,7 @@ if "eventregistry" not in sys.modules:
     sys.modules["eventregistry"] = mock.MagicMock()
 
 from bot import BitcoinMiningNewsBot
+from utils import TextUtils
 
 
 @pytest.fixture(autouse=True)
@@ -48,7 +49,7 @@ def mocked_dependencies(monkeypatch):
         yield mock_twitter_client
 
 
-def test_post_to_twitter_posts_single_tweet(mocked_dependencies):
+def test_post_to_twitter_posts_thread(mocked_dependencies):
     mock_twitter_client = mocked_dependencies
 
     tweet = mock.Mock()
@@ -64,10 +65,24 @@ def test_post_to_twitter_posts_single_tweet(mocked_dependencies):
         "url": "https://example.com/article",
     }
 
-    result = bot.post_to_twitter(article)
+    hook_text = "Hook tweet"
+    link_text = f"{TextUtils.create_link_tweet(article)}"
+
+    with mock.patch("tweet_poster.TextUtils.create_thread_texts", return_value=(hook_text, link_text)) as mock_thread_texts:
+        result = bot.post_to_twitter(article)
 
     assert result == "123"
-    assert mock_twitter_client.create_tweet.call_count == 1
+    mock_thread_texts.assert_called_once_with(article)
+    assert mock_twitter_client.create_tweet.call_count == 2
+
+    first_call = mock_twitter_client.create_tweet.call_args_list[0]
+    assert first_call.kwargs == {"text": hook_text}
+
+    second_call = mock_twitter_client.create_tweet.call_args_list[1]
+    assert second_call.kwargs == {
+        "text": link_text,
+        "in_reply_to_tweet_id": "123",
+    }
 
 
 def test_post_to_twitter_without_url_does_not_post_reply(mocked_dependencies):
@@ -85,7 +100,8 @@ def test_post_to_twitter_without_url_does_not_post_reply(mocked_dependencies):
         # No URL should skip replying
     }
 
-    result = bot.post_to_twitter(article)
+    with mock.patch("tweet_poster.TextUtils.create_thread_texts", return_value=("Hook", "")):
+        result = bot.post_to_twitter(article)
 
     assert result == "abc"
-    mock_twitter_client.create_tweet.assert_called_once()
+    mock_twitter_client.create_tweet.assert_called_once_with(text="Hook")

@@ -68,8 +68,9 @@ class TweetPoster:
         """Post to Twitter with conservative retry logic for daily rate limits"""
         for attempt in range(max_retries + 1):
             try:
-                # Create the first tweet with a catchy summary
-                tweet_text = TextUtils.create_tweet_text(article)
+                # Create the tweets that will make up the thread
+                hook_text, link_text = TextUtils.create_thread_texts(article)
+                tweet_text = hook_text
                 logger.info(f"Posting tweet (attempt {attempt + 1}): {tweet_text[:50]}...")
 
                 # Select and upload images if image support is available
@@ -103,6 +104,24 @@ class TweetPoster:
                 if not tweet_id:
                     raise InvalidTweetResponse("missing tweet ID in response")
                 logger.info(f"Posted tweet with ID: {tweet_id}")
+
+                if link_text:
+                    reply_params = {
+                        "text": link_text,
+                        "in_reply_to_tweet_id": tweet_id,
+                    }
+                    try:
+                        reply = self.twitter_client.create_tweet(**reply_params)
+                        if self._looks_like_rate_limit_response(reply):
+                            logger.warning("Reply tweet response resembles rate limit; skipping thread reply.")
+                        else:
+                            reply_id = self._extract_tweet_id(reply)
+                            if reply_id:
+                                logger.info(f"Posted reply tweet with ID: {reply_id}")
+                    except TweepyTooManyRequests:
+                        logger.warning("Rate limited while posting reply tweet; continuing with first tweet only.")
+                    except Exception as reply_error:
+                        logger.error(f"Error posting reply tweet: {reply_error}")
 
                 return tweet_id
 
