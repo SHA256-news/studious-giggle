@@ -1,24 +1,12 @@
 # AI Analysis Reports
 
-This directory contains AI-generated analysis reports for Bitcoin mining news articles.
+> **Note:** Generated reports are now written to `docs/reports/` so they can be picked up by the GitHub Pages workflow. This directory only contains legacy documentation about the reporting feature.
 
-## Structure
+## Report Structure
 
-Each report is saved as a Markdown file with the following naming convention:
-- `YYYYMMDD_HHMMSS_article_title_slug.md`
+Each generated report saved under `docs/reports/` follows the naming convention `YYYYMMDD_HHMMSS_title_slug.md` and includes:
 
-## Content
+- YAML front matter describing the article metadata (title, permalink, source link, AI model).
+- A Markdown body with the analysis summary, supporting sections, and generation notice.
 
-Each report includes:
-- Article title and URL
-- Analysis timestamp and AI model used
-- Comprehensive analysis covering:
-  - Key points summary
-  - Bitcoin mining impact
-  - Market implications
-  - Technical analysis
-  - Regulatory/policy implications
-  - Future outlook
-  - Investment considerations
-
-Reports are automatically generated when the bot processes new articles.
+Reports are automatically created when the bot processes new articles or when `generate_reports.py` is run as part of the publishing workflow.

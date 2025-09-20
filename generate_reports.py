@@ -73,13 +73,13 @@ class GeminiReportGenerator:
         # Check if report already exists for this article
         # Simple check: look for report files with similar title
         try:
-            reports_dir = "files/reports"
+            reports_dir = self.report_generator.reports_dir
             if not os.path.exists(reports_dir):
                 return True
-                
+
             # Create a simple slug from the title for matching
             title_slug = self._create_title_slug(title)
-            
+
             # Check if any report file contains this slug
             for filename in os.listdir(reports_dir):
                 if title_slug in filename.lower():
