@@ -30,6 +30,10 @@ def check_environment_variables():
         'EVENTREGISTRY_API_KEY'
     ]
     
+    optional_vars = [
+        'GEMINI_API_KEY'
+    ]
+    
     missing_vars = []
     for var in required_vars:
         value = os.environ.get(var)
@@ -38,6 +42,15 @@ def check_environment_variables():
             logger.error(f"❌ {var}: NOT SET")
         else:
             # Show first/last few characters for security
+            masked_value = f"{value[:4]}...{value[-4:]}" if len(value) > 8 else "***"
+            logger.info(f"✅ {var}: {masked_value}")
+    
+    # Check optional variables
+    for var in optional_vars:
+        value = os.environ.get(var)
+        if not value:
+            logger.warning(f"⚠️  {var}: NOT SET (optional - AI analysis disabled)")
+        else:
             masked_value = f"{value[:4]}...{value[-4:]}" if len(value) > 8 else "***"
             logger.info(f"✅ {var}: {masked_value}")
     
