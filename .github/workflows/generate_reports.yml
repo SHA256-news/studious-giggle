@@ -1,0 +1,81 @@
+name: Generate Gemini Reports
+
+on:
+  schedule:
+    # Run 5 minutes after the main workflow to analyze posted articles
+    # Times: 00:05, 01:35, 03:05, 04:35, 06:05, 07:35, 09:05, 10:35, 12:05, 13:35, 15:05, 16:35, 18:05, 19:35, 21:05, 22:35
+    - cron: '5 0,3,6,9,12,15,18,21 * * *'      # 5 minutes after main schedule
+    - cron: '35 1,4,7,10,13,16,19,22 * * *'     # 5 minutes after main schedule
+  workflow_dispatch:  # Allows manual triggering
+
+permissions:
+  contents: write
+
+jobs:
+  generate-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create runtime logs directory
+        run: |
+          mkdir -p ${{ runner.temp }}/runtime-logs
+          echo "[]" > ${{ runner.temp }}/runtime-logs/gemini-blocked.jsonl
+          echo "# Runtime Logs - Gemini Reports" > ${{ runner.temp }}/runtime-logs/gemini-blocked.md
+          echo "Gemini report generation started at: $(date)" >> ${{ runner.temp }}/runtime-logs/gemini-blocked.md
+          echo ""  >> ${{ runner.temp }}/runtime-logs/gemini-blocked.md
+
+      - name: Generate analysis reports for recent articles
+        run: python generate_reports.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        continue-on-error: true
+
+      - name: Commit new analysis reports
+        run: |
+          git config --global user.name 'Bitcoin Bot Actions'
+          git config --global user.email 'bot-actions@github.com'
+          # Check for new files in reports directory
+          if [ -d "files/reports" ]; then
+            git add files/reports/
+            if ! git diff --quiet --staged files/reports/; then
+              echo "New report files detected"
+              git commit -m "docs: Add new Gemini analysis reports"
+              git push
+            else
+              echo "No new report files to commit"
+            fi
+          else
+            echo "Reports directory does not exist"
+          fi
+
+      - name: Finalize runtime logs
+        run: |
+          echo "Gemini report generation completed at: $(date)" >> ${{ runner.temp }}/runtime-logs/gemini-blocked.md
+          # Ensure files exist even if nothing was logged
+          if [ ! -s ${{ runner.temp }}/runtime-logs/gemini-blocked.jsonl ]; then
+            echo "[]" > ${{ runner.temp }}/runtime-logs/gemini-blocked.jsonl
+          fi
+          # Verify files exist
+          ls -la ${{ runner.temp }}/runtime-logs/
+        if: always()
+        
+      - name: Upload runtime logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: gemini-reports-logs
+          path: ${{ runner.temp }}/runtime-logs/
+          retention-days: 7
+          if-no-files-found: warn
+        if: always()

@@ -26,14 +26,16 @@ from gemini_client import ReportGenerator
 
 
 class BitcoinMiningNewsBot:
-    def __init__(self, safe_mode: bool = False):
+    def __init__(self, safe_mode: bool = False, skip_gemini_analysis: bool = False):
         """
         Initialize the bot
         
         Args:
             safe_mode (bool): If True, skip API initialization for diagnostics
+            skip_gemini_analysis (bool): If True, skip Gemini analysis during posting
         """
         self.safe_mode = safe_mode
+        self.skip_gemini_analysis = skip_gemini_analysis
         
         # File compatibility attributes expected by the legacy tests
         self.rate_limit_cooldown_file = BotConstants.RATE_LIMIT_COOLDOWN_FILE
@@ -142,8 +144,9 @@ class BitcoinMiningNewsBot:
             logger.error("Tweet poster not initialized")
             return False
         
-        # Analyze article with Gemini AI if available
-        self._analyze_and_save_report(article)
+        # Analyze article with Gemini AI if available and not skipped
+        if not self.skip_gemini_analysis:
+            self._analyze_and_save_report(article)
         
         tweet_id = self.tweet_poster.post_to_twitter(article)
         
