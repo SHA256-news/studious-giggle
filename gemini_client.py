@@ -7,7 +7,8 @@ import os
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 from config import GeminiConfig
 
@@ -15,13 +16,14 @@ logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class GeminiClient:
-    """Wrapper for Google Gemini AI client"""
+    """Wrapper for Google Gemini AI client using the new google-genai SDK"""
     
     def __init__(self, config: GeminiConfig):
         """Initialize Gemini client"""
-        genai.configure(api_key=config.api_key)
-        self.model = genai.GenerativeModel('gemini-1.5-flash')
-        logger.info("Gemini AI client initialized successfully")
+        # The new SDK automatically picks up GEMINI_API_KEY from environment
+        # No need to manually configure the API key
+        self.client = genai.Client()
+        logger.info("Gemini AI client initialized successfully with new SDK")
     
     def analyze_article(self, article: Dict[str, Any]) -> Dict[str, Any]:
         """
@@ -42,9 +44,15 @@ class GeminiClient:
             # Create analysis prompt
             prompt = self._create_analysis_prompt(title, body, url)
             
-            # Generate analysis
+            # Generate analysis using new API
             logger.info(f"Analyzing article: {title[:50]}...")
-            response = self.model.generate_content(prompt)
+            response = self.client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    thinking_config=types.ThinkingConfig(thinking_budget=0)  # Disable thinking for speed
+                )
+            )
             
             # Return structured analysis
             analysis = {
@@ -52,7 +60,7 @@ class GeminiClient:
                 'article_url': url,
                 'analysis_text': response.text,
                 'analysis_timestamp': datetime.now().isoformat(),
-                'model_used': 'gemini-1.5-flash'
+                'model_used': 'gemini-2.5-flash'
             }
             
             logger.info("Article analysis completed successfully")
@@ -65,7 +73,7 @@ class GeminiClient:
                 'article_url': article.get('url', article.get('uri', 'No URL')),
                 'analysis_text': f"Analysis failed: {str(e)}",
                 'analysis_timestamp': datetime.now().isoformat(),
-                'model_used': 'gemini-1.5-flash',
+                'model_used': 'gemini-2.5-flash',
                 'error': True
             }
     

@@ -1,3 +1,10 @@
+# DISABLED: This workflow is disabled to prevent conflicts with main.yml
+# Both workflows were running at different times and could cause issues
+# All functionality has been merged into main.yml
+#
+# This file has been renamed to .disabled to prevent GitHub from running it
+# while preserving the content for reference
+
 name: Bitcoin Mining News Bot
 
 on:

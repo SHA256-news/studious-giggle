@@ -1,4 +1,4 @@
-name: Tweet Bitcoin Mining News
+name: Bitcoin Mining News Bot
 
 on:
   schedule:
@@ -7,6 +7,12 @@ on:
     - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight  
     - cron: '30 1,4,7,10,13,16,19,22 * * *'    # Every 3 hours starting at 1:30 AM
   workflow_dispatch:  # Allows manual triggering
+    inputs:
+      force_run:
+        description: 'Force run even if within minimum interval'
+        required: false
+        default: 'false'
+        type: boolean
 
 permissions:
   contents: write
@@ -34,7 +40,18 @@ jobs:
           echo "[]" > runtime-logs/blocked.jsonl
           echo "# Runtime Logs" > runtime-logs/blocked.md
           echo "Bot execution started at: $(date)" >> runtime-logs/blocked.md
-          echo "" >> runtime-logs/blocked.md
+          echo ""  >> runtime-logs/blocked.md
+
+      - name: Run diagnostics
+        run: python bot.py --diagnose
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+          EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        continue-on-error: true
 
       - name: Run bot
         run: python bot.py
@@ -44,14 +61,33 @@ jobs:
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FORCE_RUN: ${{ github.event.inputs.force_run }}
 
-      - name: Commit changes to posted articles and reports
+      - name: Commit new analysis reports
         run: |
-          git config --global user.name 'GitHub Actions Bot'
-          git config --global user.email 'actions@github.com'
+          git config --global user.name 'Bitcoin Bot Actions'
+          git config --global user.email 'bot-actions@github.com'
+          # Check for new files in reports directory
+          if [ -d "files/reports" ]; then
+            git add files/reports/
+            if ! git diff --quiet --staged files/reports/; then
+              echo "New report files detected"
+              git commit -m "docs: Add new analysis report"
+              git push
+            else
+              echo "No new report files to commit"
+            fi
+          else
+            echo "Reports directory does not exist"
+          fi
+
+      - name: Commit changes to posted articles
+        run: |
+          git config --global user.name 'Bitcoin Bot Actions'
+          git config --global user.email 'bot-actions@github.com'
           git add posted_articles.json
-          git add files/reports/
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles and analysis reports"
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update posted articles [main_workflow]"
           git push
 
       - name: Finalize runtime logs
