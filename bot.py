@@ -197,22 +197,24 @@ class BitcoinMiningNewsBot:
 
             # Check minimum interval since last run
             if not self._is_minimum_interval_respected():
+                logger.info("Bot execution skipped: minimum 90-minute interval not yet reached")
                 return
 
             # Check if we're in rate limit cooldown
             if self._is_rate_limit_cooldown_active():
+                logger.info("Bot execution skipped: rate limit cooldown still active")
                 return
 
             # Fetch articles
             articles = self.fetch_bitcoin_mining_articles()
 
             if not articles:
-                logger.warning("No articles found from EventRegistry")
+                logger.info("No new articles from EventRegistry - checking queue for pending articles")
                 # Even if no new articles, check queue for pending articles
                 self._process_queued_article()
                 return
 
-            logger.info(f"Found {len(articles)} total articles")
+            logger.info(f"Found {len(articles)} total articles from EventRegistry")
 
             # Filter out already posted articles and extract new ones
             new_articles = []
@@ -307,8 +309,38 @@ def main():
         from diagnose_bot import main as diagnose_main
         diagnose_main()
     else:
-        bot = BitcoinMiningNewsBot()
-        bot.run()
+        try:
+            bot = BitcoinMiningNewsBot()
+            bot.run()
+        except ValueError as e:
+            # If API initialization fails, check if we can process queued articles
+            if "environment variables" in str(e).lower():
+                logger.warning("API keys missing, checking for queued articles to process...")
+                try:
+                    from utils import FileManager
+                    posted_articles = FileManager.load_posted_articles()
+                    queued_count = len(posted_articles.get("queued_articles", []))
+                    
+                    if queued_count > 0:
+                        logger.error(f"ISSUE IDENTIFIED: {queued_count} queued articles waiting to be posted")
+                        logger.error("Cannot proceed without valid API keys. The scheduled GitHub Actions may be failing due to:")
+                        logger.error("  1. Missing or invalid repository secrets")
+                        logger.error("  2. GitHub Actions not triggering on schedule")
+                        logger.error("  3. Workflow execution failures")
+                        logger.error("")
+                        logger.error("Required environment variables:")
+                        logger.error("  - TWITTER_API_KEY")
+                        logger.error("  - TWITTER_API_SECRET") 
+                        logger.error("  - TWITTER_ACCESS_TOKEN")
+                        logger.error("  - TWITTER_ACCESS_TOKEN_SECRET")
+                        logger.error("  - EVENTREGISTRY_API_KEY")
+                    else:
+                        logger.info("No queued articles to process")
+                except Exception as load_error:
+                    logger.error(f"Failed to check queued articles: {load_error}")
+            else:
+                logger.error(f"Bot initialization failed: {e}")
+            raise
 
 
 if __name__ == "__main__":
