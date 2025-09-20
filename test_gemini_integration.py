@@ -117,8 +117,8 @@ def test_bot_integration():
     
     try:
         # Mock the Gemini API to avoid actual API calls
-        with patch('google.generativeai.configure'), \
-             patch('google.generativeai.GenerativeModel'):
+        with patch('google.genai.Client'), \
+             patch('google.genai.types'):
             
             from bot import BitcoinMiningNewsBot
             from gemini_client import GeminiClient, ReportGenerator
