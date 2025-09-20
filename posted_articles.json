@@ -13,151 +13,10 @@
     "8870997066",
     "8871357824",
     "2025-09-838768377",
-    "8869543745"
+    "8869543745",
+    "8869542805"
   ],
   "queued_articles": [
-    {
-      "uri": "8869542805",
-      "lang": "eng",
-      "isDuplicate": false,
-      "date": "2025-09-18",
-      "time": "20:10:06",
-      "dateTime": "2025-09-18T20:10:06Z",
-      "dateTimePub": "2025-09-18T19:24:21Z",
-      "dataType": "news",
-      "sim": 0,
-      "url": "https://www.coindesk.com/markets/2025/09/18/are-pure-play-bitcoin-miners-going-to-reprice-like-ai-hpc-miners",
-      "title": "Are Pure Play BTC Miners Going to Reprice Like AI/HPC Miners?",
-      "body": "Potential rotation from AI/HPC miners into pure-play bitcoin miners\n\nPure-play bitcoin BTC$117,536.96 mining stocks are waking up from their slumber after lagging behind those pivoting to the red-hot data center business.\n\nPure-play miners such as MARA Holdings (MARA) and CleanSpark (CLSK) surged 10% and 17% on Thursday, leading gains among the CoinShares Bitcoin Mining ETF members.\n\nThere are two key factors that may be driving the sharp gains.\n\nThe first is the idea that investors could be front-running expectations of a strong year-end for bitcoin, a period that has historically delivered some of its most bullish returns. BTC is climbing towards $118,000 following the Federal Reserve's interest rate cut, up 2.2% on Thursday and trading only 5% below its all-time high.\n\nWith sentiment improving, miners with significant BTC stash on the balance sheet could be leveraged plays on bitcoin's potential rally to new records. MARA and CleanSpark remain the sector's largest BTC holders with 52,477 ($6.2 billion) and 12,703 ($1.5 billion) tokens, respectively. Strategy (MSTR), the world's largest corporate owner of BTC, is up 7% as well today.\n\nThe second driver could be investors rotating profits from stocks in high-performance computing (HPC) and artificial intelligence (AI), which have enjoyed outsized gains over the past months. Iren Energy (IREN), Cipher Mining (CIFR), and Bitfarms (BITF) have all surged, with Bitfarms up 150% in September alone, IREN gaining over 600% since April and CIFR advancing 500% during the same period. However, to reinforce the rotation thesis, CIFR is down 7% and IREN has slipped 4% on Thursday.",
-      "source": {
-        "uri": "coindesk.com",
-        "dataType": "news",
-        "title": "CoinDesk"
-      },
-      "authors": [],
-      "concepts": [
-        {
-          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
-          "type": "wiki",
-          "score": 5,
-          "label": {
-            "eng": "Bitcoin"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "High-performance computing"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Exchange-traded fund"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Data_center",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Data center"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Artificial intelligence"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Mining",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Mining"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Stock",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Stock"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
-          "type": "org",
-          "score": 2,
-          "label": {
-            "eng": "Federal Reserve"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Interest rate"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Cipher",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Cipher"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Token_coin",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Token coin"
-          }
-        }
-      ],
-      "categories": [
-        {
-          "uri": "dmoz/Science/Earth_Sciences/Geology",
-          "label": "dmoz/Science/Earth Sciences/Geology",
-          "wgt": 100
-        },
-        {
-          "uri": "dmoz/Health/Alternative/Crystals",
-          "label": "dmoz/Health/Alternative/Crystals",
-          "wgt": 100
-        },
-        {
-          "uri": "dmoz/Business/Mining_and_Drilling/Marketplaces",
-          "label": "dmoz/Business/Mining and Drilling/Marketplaces",
-          "wgt": 100
-        },
-        {
-          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
-          "label": "dmoz/Business/Mining and Drilling/Associations",
-          "wgt": 100
-        },
-        {
-          "uri": "news/Business",
-          "label": "news/Business",
-          "wgt": 70
-        }
-      ],
-      "image": "https://cdn.sanity.io/images/s3y3vcno/production/8f3ebedb9543a24decf4b31119cd6d4fe00930cb-1500x844.jpg",
-      "eventUri": null,
-      "sentiment": 0.3803921568627451,
-      "wgt": 495922206,
-      "relevance": 52
-    },
     {
       "uri": "8869401767",
       "lang": "eng",
@@ -5612,5 +5471,5 @@
       "relevance": 103
     }
   ],
-  "last_run_time": "2025-09-20T06:45:56.714258"
+  "last_run_time": "2025-09-20T09:30:03.273905"
 }
