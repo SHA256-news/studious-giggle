@@ -27,14 +27,14 @@ Created **separate workflows** for better separation of concerns and clarity:
 
 ### 2. Generate Reports Workflow (`generate_reports.yml`)
 **Purpose:** Generate Gemini AI analysis reports for posted articles
-**Schedule:** Runs 15 minutes after the main workflow
+**Schedule:** Runs 5 minutes after the main workflow
 **Components:**
 - Analyzes recently posted articles with Gemini AI
 - Generates comprehensive markdown reports
 - Saves reports to `files/reports/` directory
 - Commits new reports automatically
 
-**Times:** 00:15, 01:45, 03:15, 04:45, 06:15, 07:45, 09:15, 10:45, 12:15, 13:45, 15:15, 16:45, 18:15, 19:45, 21:15, 22:45
+**Times:** 00:05, 01:35, 03:05, 04:35, 06:05, 07:35, 09:05, 10:35, 12:05, 13:35, 15:05, 16:35, 18:05, 19:35, 21:05, 22:35
 
 ## New Files Created
 
@@ -67,7 +67,7 @@ Created **separate workflows** for better separation of concerns and clarity:
 
 ### 2. Independent Scheduling
 - Tweet posting every 90 minutes (respects Twitter rate limits)
-- Report generation offset by 15 minutes (ensures articles are available)
+- Report generation offset by 5 minutes (ensures articles are available)
 
 ### 3. Better Error Handling
 - If Gemini API fails, Twitter posting still works
