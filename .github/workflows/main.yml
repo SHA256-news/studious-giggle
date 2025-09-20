@@ -30,11 +30,11 @@ jobs:
 
       - name: Create runtime logs directory
         run: |
-          mkdir -p ${{ runner.temp }}/runtime-logs
-          echo "[]" > ${{ runner.temp }}/runtime-logs/blocked.jsonl
-          echo "# Runtime Logs" > ${{ runner.temp }}/runtime-logs/blocked.md
-          echo "Bot execution started at: $(date)" >> ${{ runner.temp }}/runtime-logs/blocked.md
-          echo "" >> ${{ runner.temp }}/runtime-logs/blocked.md
+          mkdir -p runtime-logs
+          echo "[]" > runtime-logs/blocked.jsonl
+          echo "# Runtime Logs" > runtime-logs/blocked.md
+          echo "Bot execution started at: $(date)" >> runtime-logs/blocked.md
+          echo "" >> runtime-logs/blocked.md
 
       - name: Run bot
         run: python bot.py
@@ -56,18 +56,20 @@ jobs:
 
       - name: Finalize runtime logs
         run: |
-          echo "Bot execution completed at: $(date)" >> ${{ runner.temp }}/runtime-logs/blocked.md
+          echo "Bot execution completed at: $(date)" >> runtime-logs/blocked.md
           # Ensure files exist even if nothing was logged
-          if [ ! -s ${{ runner.temp }}/runtime-logs/blocked.jsonl ]; then
-            echo "[]" > ${{ runner.temp }}/runtime-logs/blocked.jsonl
+          if [ ! -s runtime-logs/blocked.jsonl ]; then
+            echo "[]" > runtime-logs/blocked.jsonl
           fi
+          # Verify files exist
+          ls -la runtime-logs/
         if: always()
         
       - name: Upload runtime logs
         uses: actions/upload-artifact@v4
         with:
           name: runtime-logs
-          path: ${{ runner.temp }}/runtime-logs/
+          path: runtime-logs/
           retention-days: 7
-          if-no-files-found: ignore
+          if-no-files-found: warn
         if: always()
