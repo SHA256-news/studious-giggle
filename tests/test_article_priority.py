@@ -16,6 +16,7 @@ if "eventregistry" not in sys.modules:
     sys.modules["eventregistry"] = mock.MagicMock()
 
 from bot import BitcoinMiningNewsBot
+from config import BotConstants
 
 
 @pytest.fixture(autouse=True)
@@ -72,21 +73,33 @@ def test_bot_prioritizes_most_recent_and_queues_older_articles(mocked_dependenci
     bot = BitcoinMiningNewsBot()
     
     # Mock the fetch method to return our sample articles
+    def build_thread_texts(article):
+        url = article.get("url", "")
+        hook = f"Hook: {article.get('title', '')}"
+        link = f"{BotConstants.TWEET_CALL_TO_ACTION} {url}".strip() if url else ""
+        return hook, link
+
     with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
         with mock.patch.object(bot, '_save_posted_articles'):
             # Reset posted articles to empty with new structure
             bot.posted_articles = {"posted_uris": [], "queued_articles": []}
-            
+
             # Run the bot
-            bot.run()
+            with mock.patch("tweet_poster.TextUtils.create_thread_texts", side_effect=build_thread_texts):
+                bot.run()
 
             # Verify that only the most recent article was actually posted to Twitter
-            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
+            assert mock_twitter_client.create_tweet.call_count == 2  # Threaded tweet
 
             # Verify which article was posted
-            call_args = mock_twitter_client.create_tweet.call_args_list[0]
-            posted_text = call_args[1]['text']
-            assert "Most Recent News" in posted_text
+            first_call = mock_twitter_client.create_tweet.call_args_list[0]
+            assert first_call.kwargs == {"text": "Hook: Most Recent News"}
+
+            second_call = mock_twitter_client.create_tweet.call_args_list[1]
+            assert second_call.kwargs == {
+                "text": f"{BotConstants.TWEET_CALL_TO_ACTION} https://example.com/1",
+                "in_reply_to_tweet_id": "tweet123",
+            }
 
             # Verify that only the posted article is in posted_uris
             assert len(bot.posted_articles["posted_uris"]) == 1
@@ -115,14 +128,19 @@ def test_bot_works_normally_with_single_article(mocked_dependencies):
 
     bot = BitcoinMiningNewsBot()
     
+    def build_thread_texts(article):
+        url = article.get("url", "")
+        return f"Hook: {article.get('title', '')}", f"{BotConstants.TWEET_CALL_TO_ACTION} {url}".strip() if url else ""
+
     with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
         with mock.patch.object(bot, '_save_posted_articles'):
             bot.posted_articles = {"posted_uris": [], "queued_articles": []}
-            
-            bot.run()
+
+            with mock.patch("tweet_poster.TextUtils.create_thread_texts", side_effect=build_thread_texts):
+                bot.run()
 
             # Should post the single article normally
-            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
+            assert mock_twitter_client.create_tweet.call_count == 2  # Threaded tweet
             assert len(bot.posted_articles["posted_uris"]) == 1
             assert bot.posted_articles["posted_uris"][0] == "uri-1"
             assert len(bot.posted_articles["queued_articles"]) == 0  # No articles queued
@@ -152,12 +170,17 @@ def test_bot_posts_from_queue_when_no_new_articles(mocked_dependencies):
         ]
     }
     
+    def build_thread_texts(article):
+        url = article.get("url", "")
+        return f"Hook: {article.get('title', '')}", f"{BotConstants.TWEET_CALL_TO_ACTION} {url}".strip() if url else ""
+
     with mock.patch.object(bot, 'fetch_bitcoin_mining_articles', return_value=sample_articles):
         with mock.patch.object(bot, '_save_posted_articles'):
-            bot.run()
+            with mock.patch("tweet_poster.TextUtils.create_thread_texts", side_effect=build_thread_texts):
+                bot.run()
 
             # Should post from queue
-            assert mock_twitter_client.create_tweet.call_count == 1  # Single tweet only
+            assert mock_twitter_client.create_tweet.call_count == 2  # Threaded tweet
             assert len(bot.posted_articles["posted_uris"]) == 1
             assert bot.posted_articles["posted_uris"][0] == "queued-uri-1"
             assert len(bot.posted_articles["queued_articles"]) == 1  # One article remains in queue

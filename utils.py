@@ -475,12 +475,44 @@ class TextUtils:
             # Use word boundaries to avoid partial replacements
             text = re.sub(r'\b' + re.escape(full_word) + r'\b', abbrev, text)
         return text
-    
+
+    @staticmethod
+    def create_hook_tweet(article: Dict[str, Any]) -> str:
+        """Create the hook/benefit tweet that leads the thread."""
+        return TextUtils.create_enhanced_tweet_text(article)
+
+    @staticmethod
+    def create_link_tweet(article: Dict[str, Any]) -> str:
+        """Create the succinct link tweet with a call-to-action."""
+        url = (article.get("url") or article.get("uri") or "").strip()
+        if not url:
+            return ""
+
+        call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+        if call_to_action:
+            link_tweet = f"{call_to_action} {url}".strip()
+        else:
+            link_tweet = url
+
+        if len(link_tweet) > BotConstants.TWEET_MAX_LENGTH:
+            if len(url) <= BotConstants.TWEET_MAX_LENGTH:
+                return url[:BotConstants.TWEET_MAX_LENGTH]
+            return url[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+
+        return link_tweet
+
+    @staticmethod
+    def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
+        """Return both tweets for a two-part thread."""
+        hook_tweet = TextUtils.create_hook_tweet(article)
+        link_tweet = TextUtils.create_link_tweet(article)
+        return hook_tweet, link_tweet
+
     @staticmethod
     def create_tweet_text(article: Dict[str, Any]) -> str:
         """Create catchy tweet text for the article (enhanced version)"""
         # Use the enhanced method by default
-        return TextUtils.create_enhanced_tweet_text(article)
+        return TextUtils.create_hook_tweet(article)
     
     @staticmethod
     def create_original_tweet_text(article: Dict[str, Any]) -> str:
