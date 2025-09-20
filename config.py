@@ -59,6 +59,20 @@ class EventRegistryConfig:
         return cls(api_key=api_key)
 
 
+@dataclass
+class GeminiConfig:
+    """Gemini AI API configuration"""
+    api_key: str
+    
+    @classmethod
+    def from_env(cls) -> 'GeminiConfig':
+        """Load Gemini config from environment variables"""
+        api_key = os.environ.get("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("Missing environment variable: GEMINI_API_KEY")
+        return cls(api_key=api_key)
+
+
 class BotConstants:
     """Bot configuration constants"""
     

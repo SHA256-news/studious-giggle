@@ -1,12 +1,14 @@
 # Bitcoin Mining News Twitter Bot
 
-This bot automatically tweets about the latest Bitcoin mining news every 90 minutes. It posts single tweets with catchy headlines.
+This bot automatically tweets about the latest Bitcoin mining news every 90 minutes. It posts single tweets with catchy headlines and generates AI-powered analysis reports.
 
 ## Features
 
 - Automatically fetches news about Bitcoin mining from EventRegistry (NewsAPI.ai)
 - Posts tweets with catchy prefixes like "BREAKING:" or "JUST IN:"
 - Posts single tweets with headlines (no links)
+- **AI-Powered Analysis**: Uses Google Gemini AI to analyze news articles and generate comprehensive reports
+- **Automated Report Generation**: Saves detailed Markdown analysis reports to the `reports/` directory
 - Runs every 90 minutes via GitHub Actions
 - Tracks posted articles to avoid duplicates
 - **Smart rate limiting handling** with exponential backoff retry logic
@@ -17,7 +19,10 @@ This bot automatically tweets about the latest Bitcoin mining news every 90 minu
 1. The bot runs every 90 minutes via GitHub Actions
 2. It connects to EventRegistry API to find new articles about Bitcoin mining
 3. It filters out articles that have already been posted
-4. For each new article, it posts a single tweet with a catchy headline
+4. For each new article, it:
+   - Analyzes the article using Google Gemini AI (if configured)
+   - Generates a comprehensive analysis report saved as Markdown
+   - Posts a single tweet with a catchy headline
 5. It updates the tracking file to avoid posting duplicates
 
 ## Rate Limiting & Error Handling
@@ -126,11 +131,45 @@ If a manual workflow trigger doesn't post anything, check the logs for:
 ## API Keys and Secrets
 
 The bot requires the following API keys set as GitHub repository secrets:
-- `TWITTER_API_KEY`
-- `TWITTER_API_SECRET`
-- `TWITTER_ACCESS_TOKEN`
-- `TWITTER_ACCESS_TOKEN_SECRET`
-- `EVENTREGISTRY_API_KEY`
+
+### Required Keys
+- `TWITTER_API_KEY` - Twitter API key
+- `TWITTER_API_SECRET` - Twitter API secret
+- `TWITTER_ACCESS_TOKEN` - Twitter access token
+- `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
+- `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
+
+### Optional Keys
+- `GEMINI_API_KEY` - Google Gemini AI API key (for article analysis and report generation)
+
+### How to Get API Keys
+
+#### Twitter API Keys
+1. Go to https://developer.twitter.com/
+2. Create a developer account and app
+3. Generate API keys and access tokens
+
+#### EventRegistry API Key
+1. Go to https://newsapi.ai/dashboard
+2. Sign up for an account
+3. Get your API key from the dashboard
+
+#### Google Gemini API Key
+1. Go to https://ai.google.dev/
+2. Sign up for Google AI Studio
+3. Create an API key for Gemini
+
+### Setting Up Repository Secrets
+1. Go to your GitHub repository **Settings > Secrets and variables > Actions**
+2. Add each API key as a new repository secret
+3. Use the exact names listed above
+
+## Reports Directory
+
+The bot generates AI-powered analysis reports for each article in the `reports/` directory:
+- Reports are saved as Markdown files with timestamped filenames
+- Each report includes comprehensive analysis covering market impact, technical aspects, and future outlook
+- Reports are automatically generated when the `GEMINI_API_KEY` is configured
 
 ## License
 

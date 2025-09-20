@@ -3,3 +3,4 @@ eventregistry>=9.1
 requests>=2.27.0
 Pillow>=8.0.0
 spacy>=3.4.0
+google-generativeai>=0.3.0

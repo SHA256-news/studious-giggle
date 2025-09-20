@@ -9,8 +9,9 @@ from typing import Dict, List, Optional, Any
 
 import tweepy
 
-from config import TwitterConfig, EventRegistryConfig, BotConstants
+from config import TwitterConfig, EventRegistryConfig, GeminiConfig, BotConstants
 from crypto_filter import filter_bitcoin_only_articles
+from gemini_client import GeminiClient
 
 logger = logging.getLogger('bitcoin_mining_bot')
 
@@ -147,6 +148,7 @@ class APIClientManager:
         self.safe_mode = safe_mode
         self.twitter_client: Optional[TwitterClient] = None
         self.eventregistry_client: Optional[EventRegistryClient] = None
+        self.gemini_client: Optional[GeminiClient] = None
         
         if not safe_mode:
             self._initialize_clients()
@@ -166,6 +168,13 @@ class APIClientManager:
         except ValueError as e:
             logger.error(f"Failed to initialize EventRegistry client: {str(e)}")
             raise
+        
+        try:
+            # Initialize Gemini client (non-blocking)
+            gemini_config = GeminiConfig.from_env()
+            self.gemini_client = GeminiClient(gemini_config)
+        except ValueError as e:
+            logger.warning(f"Gemini client not initialized: {str(e)}")
     
     def get_twitter_client(self) -> TwitterClient:
         """Get Twitter client"""
@@ -178,3 +187,7 @@ class APIClientManager:
         if not self.eventregistry_client:
             raise RuntimeError("EventRegistry client not initialized")
         return self.eventregistry_client
+    
+    def get_gemini_client(self) -> Optional[GeminiClient]:
+        """Get Gemini client (optional)"""
+        return self.gemini_client

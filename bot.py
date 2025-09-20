@@ -22,6 +22,7 @@ from config import BotConstants
 from utils import FileManager, TimeUtils
 from api_clients import APIClientManager
 from tweet_poster import TweetPoster
+from gemini_client import ReportGenerator
 
 
 class BitcoinMiningNewsBot:
@@ -48,6 +49,7 @@ class BitcoinMiningNewsBot:
         # Initialize tweet poster if not in safe mode
         self.tweet_poster: Optional[TweetPoster] = None
         self.image_selector = None
+        self.report_generator = ReportGenerator()
 
         if not safe_mode:
             twitter_client = self.api_manager.get_twitter_client()
@@ -139,7 +141,10 @@ class BitcoinMiningNewsBot:
         if not self.tweet_poster:
             logger.error("Tweet poster not initialized")
             return False
-            
+        
+        # Analyze article with Gemini AI if available
+        self._analyze_and_save_report(article)
+        
         tweet_id = self.tweet_poster.post_to_twitter(article)
         
         if tweet_id:
@@ -153,24 +158,26 @@ class BitcoinMiningNewsBot:
             return True
         
         return False
-        """Post a single article and update posted articles list"""
-        if not self.tweet_poster:
-            logger.error("Tweet poster not initialized")
-            return False
+
+    def _analyze_and_save_report(self, article: Dict[str, Any]) -> None:
+        """Analyze article with Gemini AI and save report"""
+        try:
+            gemini_client = self.api_manager.get_gemini_client()
+            if not gemini_client:
+                logger.info("Gemini client not available, skipping analysis")
+                return
             
-        tweet_id = self.tweet_poster.post_to_twitter(article)
-        
-        if tweet_id:
-            # Add to posted articles
-            uri = article.get("uri")
-            if uri:
-                self.posted_articles["posted_uris"].append(uri)
+            # Analyze article
+            analysis = gemini_client.analyze_article(article)
             
-            title = article.get("title", "Unknown title")[:50] + "..."
-            logger.info(f"Posted article: {title}")
-            return True
-        
-        return False
+            # Save report
+            report_path = self.report_generator.save_analysis_report(analysis)
+            if report_path:
+                title = article.get("title", "Unknown")[:30]
+                logger.info(f"Saved analysis report for: {title}... -> {report_path}")
+            
+        except Exception as e:
+            logger.warning(f"Failed to analyze article: {str(e)}")
 
     def run(self):
         """Main method to run the bot"""
