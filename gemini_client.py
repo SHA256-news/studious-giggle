@@ -104,7 +104,7 @@ Format your response in clear, well-structured markdown with appropriate heading
 class ReportGenerator:
     """Generates and saves markdown reports for analyzed articles"""
     
-    def __init__(self, reports_dir: str = "reports"):
+    def __init__(self, reports_dir: str = "files/reports"):
         """Initialize report generator"""
         self.reports_dir = reports_dir
         self._ensure_reports_directory()
