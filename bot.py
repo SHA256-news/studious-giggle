@@ -78,11 +78,22 @@ class BitcoinMiningNewsBot:
         return self.tweet_poster.post_to_twitter(article)
     
     def _save_posted_articles(self) -> None:
-        """Save the list of posted article URIs and queued articles (backward compatibility)"""
+        """Save the list of posted article URIs and queued articles (backward compatibility)
+        
+        Note: This method exists solely for backward compatibility with existing tests.
+        The main bot logic uses FileManager.save_posted_articles() directly.
+        This wrapper is preserved to avoid breaking existing test infrastructure.
+        """
         FileManager.save_posted_articles(self.posted_articles)
     
     def _set_rate_limit_cooldown(self) -> None:
-        """Set a simple cooldown period due to rate limiting (backward compatibility)"""
+        """Set a simple cooldown period due to rate limiting (backward compatibility)
+        
+        Note: This method exists solely for backward compatibility with existing tests.
+        The main bot logic uses TimeUtils.create_rate_limit_cooldown() and 
+        FileManager.save_rate_limit_cooldown() directly. This wrapper is preserved 
+        to avoid breaking existing test infrastructure.
+        """
         cooldown_data = TimeUtils.create_rate_limit_cooldown()
         FileManager.save_rate_limit_cooldown(cooldown_data)
 
