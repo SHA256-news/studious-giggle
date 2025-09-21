@@ -81,9 +81,9 @@ class BotConstants:
     RATE_LIMIT_COOLDOWN_FILE = "rate_limit_cooldown.json"
     
     # Tweet settings
-    TWEET_MAX_LENGTH = 280
-    TWEET_TRUNCATE_LENGTH = 277
-    TITLE_MAX_LENGTH = 240
+    TWEET_MAX_LENGTH = 289  # Updated for new Gemini Thinking command requirements
+    TWEET_TRUNCATE_LENGTH = 286
+    TITLE_MAX_LENGTH = 250  # Increased to accommodate longer tweets
     TWEET_PREFIXES = ["BREAKING: ", "JUST IN: ", "ALERT: ", "NEWS: ", "UPDATE: "]
     TWEET_CALL_TO_ACTION = "Read more:"
     
