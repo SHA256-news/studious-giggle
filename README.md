@@ -1,14 +1,12 @@
 # Bitcoin Mining News Twitter Bot
 
-This bot automatically tweets about the latest Bitcoin mining news every 90 minutes. It posts single tweets with catchy headlines and generates AI-powered analysis reports.
+This bot automatically tweets about the latest Bitcoin mining news every 90 minutes.
 
 ## Features
 
 - Automatically fetches news about Bitcoin mining from EventRegistry (NewsAPI.ai)
 - Posts tweets with catchy prefixes like "BREAKING:" or "JUST IN:"
-- Posts single tweets with headlines (no links)
-- **AI-Powered Analysis**: Uses Google Gemini AI to analyze news articles and generate comprehensive reports
-- **Static Site Publishing**: Saves long-form articles and detailed analysis reports into the `docs/` site tree with GitHub Pages-ready front matter
+- **AI-Enhanced Headlines**: Uses Google Gemini AI to generate engaging tweet headlines (when configured)
 - Runs every 90 minutes via GitHub Actions
 - Tracks posted articles to avoid duplicates
 - **Smart rate limiting handling** with exponential backoff retry logic
@@ -20,21 +18,10 @@ This bot automatically tweets about the latest Bitcoin mining news every 90 minu
 2. It connects to EventRegistry API to find new articles about Bitcoin mining
 3. It filters out articles that have already been posted
 4. For each new article, it:
-   - Analyzes the article using Google Gemini AI (if configured)
-   - Generates a comprehensive analysis report saved as Markdown under `docs/reports/`
-   - Publishes a long-form article saved under `docs/articles/`
-   - Posts a single tweet with a catchy headline
+   - Generates an engaging tweet headline using Google Gemini AI (if configured)
+   - Posts the tweet to Twitter/X
 5. It updates the tracking file to avoid posting duplicates
 
-## Publishing Pipeline
-
-The project ships with a static site pipeline that makes every generated artifact publicly accessible:
-
-1. **Generation** – When Gemini produces an article or analysis report, the bot writes Markdown files into `docs/articles/` and `docs/reports/`. Each file contains Jekyll-compatible front matter with metadata (title, permalink, timestamps, source URL, AI model).
-2. **Version Control** – Generated content is committed automatically by your automation (outside the scope of this repository) or stored locally for review.
-3. **Deployment** – The `publish_site.yml` GitHub Actions workflow builds the `docs/` directory with Jekyll, uploads the static site artifact, and deploys it to GitHub Pages (`gh-pages` environment). Once the workflow completes, the new content is live at predictable URLs derived from the front matter permalink values.
-
-Integration tests in `tests/test_article_generation.py` validate that generated files land in the correct site directories with the expected metadata so that Pages deployments do not miss any artifacts.
 
 ## Rate Limiting & Error Handling
 
@@ -151,7 +138,7 @@ The bot requires the following API keys set as GitHub repository secrets:
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
 
 ### Optional Keys
-- `GEMINI_API_KEY` - Google Gemini AI API key (for article analysis and report generation)
+- `GEMINI_API_KEY` - Google Gemini AI API key (for enhanced tweet headlines)
 
 ### How to Get API Keys
 
@@ -174,13 +161,6 @@ The bot requires the following API keys set as GitHub repository secrets:
 1. Go to your GitHub repository **Settings > Secrets and variables > Actions**
 2. Add each API key as a new repository secret
 3. Use the exact names listed above
-
-## Reports Directory
-
-The bot generates AI-powered analysis reports for each article in the `reports/` directory:
-- Reports are saved as Markdown files with timestamped filenames
-- Each report includes comprehensive analysis covering market impact, technical aspects, and future outlook
-- Reports are automatically generated when the `GEMINI_API_KEY` is configured
 
 ## License
 
