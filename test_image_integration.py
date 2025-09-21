@@ -86,8 +86,8 @@ def test_image_attachment_integration():
                     # Verify tweet was posted
                     assert result == "123456", "Should return tweet ID"
                     
-                    # Verify create_tweet was called once (single tweet only)
-                    assert mock_twitter_client.create_tweet.call_count == 1, "Should call create_tweet once (single tweet only)"
+                    # Verify create_tweet was called twice (threaded tweet: main + reply)
+                    assert mock_twitter_client.create_tweet.call_count == 2, "Should call create_tweet twice (threaded tweet with URL)"
                     
                     # Check the call (main tweet with images)
                     call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
@@ -152,8 +152,8 @@ def test_image_fallback_without_images():
                 # Verify tweet was posted without images
                 assert result == "123456", "Should return tweet ID even without images"
                 
-                # Verify create_tweet was called once (single tweet only)
-                assert mock_twitter_client.create_tweet.call_count == 1, "Should call create_tweet once (single tweet only)"
+                # Verify create_tweet was called twice (threaded tweet: main + reply)
+                assert mock_twitter_client.create_tweet.call_count == 2, "Should call create_tweet twice (threaded tweet with URL)"
                 
                 # Check the call (main tweet without images)
                 call_args = mock_twitter_client.create_tweet.call_args_list[0][1]
