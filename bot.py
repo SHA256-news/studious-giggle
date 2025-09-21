@@ -184,6 +184,7 @@ class BitcoinMiningNewsBot:
         
         if cleaned_count > 0:
             logger.info(f"Cleaned {cleaned_count} stale articles from queue (older than {max_age_hours}h)")
+            # Don't update last_run_time for cleaning operations
             FileManager.save_posted_articles(self.posted_articles)
 
     def _process_queued_article(self) -> bool:
@@ -201,15 +202,16 @@ class BitcoinMiningNewsBot:
         success = self._post_article(article_to_post)
         if success:
             logger.info("Successfully posted 1 queued article")
-            # Save updated queue after successful posting
-            FileManager.save_posted_articles(self.posted_articles)
+            # Save updated queue after successful posting and update last_run_time
+            FileManager.save_posted_articles(self.posted_articles, update_last_run_time=True)
         else:
             # Return article to queue if posting failed
             queued_articles.insert(0, article_to_post)
             logger.info("Returned failed article to queue")
             
-        # Save updated queue state
-        FileManager.save_posted_articles(self.posted_articles)
+        # Save updated queue state (without updating last_run_time for failures)
+        if not success:
+            FileManager.save_posted_articles(self.posted_articles)
         return success
 
     def _post_article(self, article: Dict[str, Any]) -> bool:
@@ -358,7 +360,7 @@ class BitcoinMiningNewsBot:
             # Post the most recent article
             success = self._post_article(article_to_post)
             
-            # Save posted articles list
+            # Save posted articles list (without updating last_run_time yet)
             FileManager.save_posted_articles(self.posted_articles)
 
             if success:
@@ -368,6 +370,9 @@ class BitcoinMiningNewsBot:
                     logger.info(f"Successfully posted 1 article. Queued {len(articles_to_queue)} newer articles for later ({len(new_articles)} new articles available, {len(articles) - len(new_articles)} already posted{total_in_queue_msg})")
                 else:
                     logger.info(f"Successfully posted 1 article ({len(new_articles)} new articles available, {len(articles) - len(new_articles)} already posted{total_in_queue_msg})")
+                
+                # Update last_run_time only after successful posting
+                FileManager.save_posted_articles(self.posted_articles, update_last_run_time=True)
             else:
                 # Set rate limit cooldown since posting failed
                 cooldown_data = TimeUtils.create_rate_limit_cooldown()

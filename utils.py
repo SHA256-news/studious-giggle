@@ -148,10 +148,16 @@ class FileManager:
         return data
     
     @staticmethod
-    def save_posted_articles(posted_articles: Dict[str, Any]) -> None:
-        """Save the list of posted article URIs and queued articles"""
-        # Update last run time before saving
-        posted_articles["last_run_time"] = datetime.now().isoformat()
+    def save_posted_articles(posted_articles: Dict[str, Any], update_last_run_time: bool = False) -> None:
+        """Save the list of posted article URIs and queued articles
+        
+        Args:
+            posted_articles: The data to save
+            update_last_run_time: Whether to update the last_run_time (only on successful bot completion)
+        """
+        # Only update last run time if explicitly requested
+        if update_last_run_time:
+            posted_articles["last_run_time"] = datetime.now().isoformat()
         
         FileManager._save_json_file(BotConstants.POSTED_ARTICLES_FILE, posted_articles)
         queued_count = len(posted_articles.get("queued_articles", []))
