@@ -22,8 +22,8 @@ def main():
         return bot_main()
     
     try:
-        # Initialize bot with Gemini analysis disabled
-        bot = BitcoinMiningNewsBot(skip_gemini_analysis=True)
+        # Initialize bot with Gemini analysis enabled
+        bot = BitcoinMiningNewsBot(skip_gemini_analysis=False)
         
         # Run the bot
         return bot.run()
