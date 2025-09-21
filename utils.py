@@ -30,6 +30,16 @@ class RuntimeLogger:
             except Exception as e:
                 logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
         
+        # For GitHub Actions, use the current directory's runtime-logs folder
+        # This matches where the workflow creates and expects to find the files
+        if os.environ.get("GITHUB_ACTIONS"):
+            log_dir = "./runtime-logs"
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
         # Fallback to GitHub Actions runner temp directory if available
         runner_temp = os.environ.get("RUNNER_TEMP")
         if runner_temp:
@@ -351,9 +361,14 @@ class TextUtils:
     def create_enhanced_tweet_text(article: Dict[str, Any]) -> str:
         """Create informative, concise tweet text prioritizing key details"""
         try:
+            # Handle None article input defensively
+            if article is None:
+                logger.warning("Received None article, using fallback text")
+                return "Bitcoin mining news update"
+                
             # Prefer Gemini-generated headline over original title
-            gemini_headline = article.get("gemini_headline", "")
-            original_title = article.get("title", "")
+            gemini_headline = article.get("gemini_headline", "") or ""
+            original_title = article.get("title", "") or ""
             
             # Use Gemini headline if it's meaningful, otherwise fall back to original title
             if gemini_headline and gemini_headline.strip():
@@ -361,7 +376,8 @@ class TextUtils:
             else:
                 title = original_title
             
-            if not title or not title.strip():
+            # Handle None title explicitly before calling strip()
+            if not title or (title is not None and not title.strip()):
                 return TextUtils.create_original_tweet_text(article)  # fallback to original
             
             # Extract key information
@@ -541,11 +557,21 @@ class TextUtils:
     @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
         """Create the hook/benefit tweet that leads the thread."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_hook_tweet, using fallback")
+            return "Bitcoin mining news update"
+            
         return TextUtils.create_enhanced_tweet_text(article)
 
     @staticmethod
     def create_link_tweet(article: Dict[str, Any]) -> str:
         """Create the succinct link tweet with a call-to-action."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_link_tweet, returning empty")
+            return ""
+            
         url = (article.get("url") or article.get("uri") or "").strip()
         if not url:
             return ""
@@ -566,6 +592,11 @@ class TextUtils:
     @staticmethod
     def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
         """Return both tweets for a two-part thread."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_thread_texts, using fallback")
+            return "Bitcoin mining news update", ""
+            
         hook_tweet = TextUtils.create_hook_tweet(article)
         
         # Check if hook tweet already contains a URL
@@ -583,6 +614,11 @@ class TextUtils:
     @staticmethod
     def create_tweet_text(article: Dict[str, Any]) -> str:
         """Create catchy tweet text for the article (enhanced version)"""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_tweet_text, using fallback")
+            return "Bitcoin mining news update"
+            
         # Use the enhanced method by default
         return TextUtils.create_hook_tweet(article)
     
@@ -590,12 +626,17 @@ class TextUtils:
     def create_original_tweet_text(article: Dict[str, Any]) -> str:
         """Original tweet text creation method (kept for fallback)"""
         try:
+            # Handle None article input defensively
+            if article is None:
+                logger.warning("Received None article in original tweet text creation, using fallback")
+                return "Bitcoin mining news update"
+                
             # Choose a catchy prefix
             prefix = random.choice(BotConstants.TWEET_PREFIXES)
 
             # Create a summary (use Gemini headline if available and meaningful, otherwise article title)
-            gemini_headline = article.get("gemini_headline", "")
-            original_title = article.get("title", "")
+            gemini_headline = article.get("gemini_headline", "") or ""
+            original_title = article.get("title", "") or ""
             
             # Use Gemini headline if it's meaningful, otherwise fall back to original title
             if gemini_headline and gemini_headline.strip():
