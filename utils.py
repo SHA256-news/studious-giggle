@@ -542,7 +542,17 @@ class TextUtils:
     def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
         """Return both tweets for a two-part thread."""
         hook_tweet = TextUtils.create_hook_tweet(article)
-        link_tweet = TextUtils.create_link_tweet(article)
+        
+        # Check if hook tweet already contains a URL
+        article_url = (article.get("url") or article.get("uri") or "").strip()
+        if article_url and article_url in hook_tweet:
+            # If hook tweet already has the URL, create a link tweet without the URL
+            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+            link_tweet = call_to_action if call_to_action else ""
+        else:
+            # Normal case: create link tweet with URL
+            link_tweet = TextUtils.create_link_tweet(article)
+        
         return hook_tweet, link_tweet
 
     @staticmethod
