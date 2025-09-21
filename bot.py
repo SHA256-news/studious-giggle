@@ -275,11 +275,8 @@ class BitcoinMiningNewsBot:
                 return
 
             # Initialize runtime logs
-            try:
-                from utils import RuntimeLogger
-                RuntimeLogger.initialize_runtime_logs()
-            except ImportError:
-                pass  # Runtime logging not available
+            from utils import RuntimeLogger
+            RuntimeLogger.initialize_runtime_logs()
 
             logger.info("🤖 Starting Bitcoin Mining News Bot")
             logger.info(f"📊 Execution started at: {time.strftime('%Y-%m-%d %H:%M:%S')}")

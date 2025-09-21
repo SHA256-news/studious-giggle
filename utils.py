@@ -14,6 +14,17 @@ from config import BotConstants
 logger = logging.getLogger('bitcoin_mining_bot')
 
 
+class RuntimeLogger:
+    """Simplified runtime logger stub for compatibility"""
+    
+    @staticmethod
+    def initialize_runtime_logs():
+        """Initialize runtime logs - simplified stub"""
+        # This is a stub for compatibility with the GitHub Actions workflow
+        # The workflow creates the runtime-logs directory and files
+        pass
+
+
 class FileManager:
     """Manages file operations for the bot"""
     
