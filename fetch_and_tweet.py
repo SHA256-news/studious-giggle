@@ -2,8 +2,8 @@
 """
 Fetch News and Tweet Script
 ---------------------------
-This script fetches Bitcoin mining news from EventRegistry and posts tweets,
-but skips Gemini analysis (which is handled by a separate workflow).
+This script fetches Bitcoin mining news from EventRegistry and posts tweets
+with AI-generated headlines and summaries using Gemini analysis.
 """
 
 import sys
@@ -31,8 +31,8 @@ def main():
         return bot_main()
     
     try:
-        # Initialize bot with Gemini analysis disabled for this workflow
-        bot = BitcoinMiningNewsBot(skip_gemini_analysis=True)
+        # Initialize bot with Gemini analysis enabled for enhanced tweet content
+        bot = BitcoinMiningNewsBot(skip_gemini_analysis=False)
         
         # Run the bot
         return bot.run()
