@@ -209,6 +209,27 @@ class TimeUtils:
             return True
     
     @staticmethod
+    def create_rate_limit_cooldown() -> Dict[str, Any]:
+        """Create a new rate limit cooldown period"""
+        # Simple cooldown: Start with 2 hours, then 4 hours for subsequent hits
+        existing_cooldown_exists = os.path.exists(BotConstants.RATE_LIMIT_COOLDOWN_FILE)
+        cooldown_hours = BotConstants.RATE_LIMIT_SUBSEQUENT_HOURS if existing_cooldown_exists else BotConstants.RATE_LIMIT_INITIAL_HOURS
+        
+        cooldown_until = datetime.now() + timedelta(hours=cooldown_hours)
+        cooldown_data = {
+            "cooldown_until": cooldown_until.isoformat(),
+            "reason": f"Twitter API rate limit exceeded ({BotConstants.DAILY_REQUEST_LIMIT} requests per 24 hours)",
+            "created_at": datetime.now().isoformat(),
+            "duration_hours": cooldown_hours
+        }
+        
+        logger.warning(f"Rate limit cooldown set for {cooldown_hours} hours. "
+                      f"Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
+        logger.warning("This prevents the bot from exceeding Twitter's rate limits.")
+        
+        return cooldown_data
+    
+    @staticmethod
     def is_rate_limit_cooldown_active(cooldown_data: Optional[Dict[str, Any]]) -> bool:
         """Check if we're still in rate limit cooldown period"""
         if not cooldown_data:
@@ -235,27 +256,6 @@ class TimeUtils:
         except (KeyError, ValueError):
             # Invalid format - proceed normally
             return False
-    
-    @staticmethod
-    def create_rate_limit_cooldown() -> Dict[str, Any]:
-        """Create a new rate limit cooldown period"""
-        # Simple cooldown: Start with 2 hours, then 4 hours for subsequent hits
-        existing_cooldown_exists = os.path.exists(BotConstants.RATE_LIMIT_COOLDOWN_FILE)
-        cooldown_hours = BotConstants.RATE_LIMIT_SUBSEQUENT_HOURS if existing_cooldown_exists else BotConstants.RATE_LIMIT_INITIAL_HOURS
-        
-        cooldown_until = datetime.now() + timedelta(hours=cooldown_hours)
-        cooldown_data = {
-            "cooldown_until": cooldown_until.isoformat(),
-            "reason": f"Twitter API rate limit exceeded ({BotConstants.DAILY_REQUEST_LIMIT} requests per 24 hours)",
-            "created_at": datetime.now().isoformat(),
-            "duration_hours": cooldown_hours
-        }
-        
-        logger.warning(f"Rate limit cooldown set for {cooldown_hours} hours. "
-                      f"Bot will not run until: {cooldown_until.strftime('%Y-%m-%d %H:%M:%S')}")
-        logger.warning("This prevents the bot from exceeding Twitter's rate limits.")
-        
-        return cooldown_data
 
 
 class TextUtils:
