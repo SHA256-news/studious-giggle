@@ -12,6 +12,25 @@ This bot automatically tweets about the latest Bitcoin mining news every 90 minu
 - **Smart rate limiting handling** with exponential backoff retry logic
 - **Improved error reporting** to distinguish between different failure types
 
+## Preview Next Tweet
+
+To see what the next tweet will look like before it's posted:
+
+```bash
+python show_next_tweet.py
+```
+
+This shows:
+- The exact tweet text that will be posted
+- Character count and formatting
+- Whether it will be posted as a thread (2 tweets)
+- Article source and URL
+- Timing information
+
+Other preview options:
+- `python show_queue_simple.py` - Simple list of queued tweets
+- `python show_queued_tweets.py` - Detailed queue analysis with metrics
+
 ## How It Works
 
 1. The bot runs every 90 minutes via GitHub Actions
