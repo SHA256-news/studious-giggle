@@ -22,7 +22,6 @@ from config import BotConstants
 from utils import FileManager, TimeUtils
 from api_clients import APIClientManager
 from tweet_poster import TweetPoster
-from gemini_client import ArticleContentManager, ReportGenerator
 
 
 class BitcoinMiningNewsBot:
@@ -32,7 +31,7 @@ class BitcoinMiningNewsBot:
         
         Args:
             safe_mode (bool): If True, skip API initialization for diagnostics
-            skip_gemini_analysis (bool): If True, skip Gemini analysis during posting
+            skip_gemini_analysis (bool): If True, skip Gemini AI headline generation during posting
         """
         self.safe_mode = safe_mode
         self.skip_gemini_analysis = skip_gemini_analysis
@@ -51,8 +50,6 @@ class BitcoinMiningNewsBot:
         # Initialize tweet poster if not in safe mode
         self.tweet_poster: Optional[TweetPoster] = None
         self.image_selector = None
-        self.report_generator = ReportGenerator()
-        self.article_content_manager = ArticleContentManager()
 
         if not safe_mode:
             twitter_client = self.api_manager.get_twitter_client()
@@ -148,12 +145,8 @@ class BitcoinMiningNewsBot:
         # Create a copy of the article to potentially enhance with Gemini-generated content
         enhanced_article = article.copy()
         
-        # Analyze article with Gemini AI if available and not skipped
+        # Generate enhanced tweet headline with Gemini AI if available and not skipped
         if not self.skip_gemini_analysis:
-            self._analyze_and_save_report(article)
-            self._generate_and_save_article(article)
-            
-            # Generate tweet headline with Gemini Thinking (new requirement)
             gemini_client = self.api_manager.get_gemini_client()
             if gemini_client:
                 try:
@@ -177,50 +170,6 @@ class BitcoinMiningNewsBot:
             return True
         
         return False
-
-    def _analyze_and_save_report(self, article: Dict[str, Any]) -> None:
-        """Analyze article with Gemini AI and save report"""
-        try:
-            gemini_client = self.api_manager.get_gemini_client()
-            if not gemini_client:
-                logger.info("Gemini client not available, skipping analysis")
-                return
-            
-            # Analyze article
-            analysis = gemini_client.analyze_article(article)
-            
-            # Save report
-            report_path = self.report_generator.save_analysis_report(analysis)
-            if report_path:
-                title = article.get("title", "Unknown")[:30]
-                logger.info(f"Saved analysis report for: {title}... -> {report_path}")
-            
-        except Exception as e:
-            logger.warning(f"Failed to analyze article: {str(e)}")
-
-    def _generate_and_save_article(self, article: Dict[str, Any]) -> Optional[Dict[str, Any]]:
-        """Generate a full-length article using Gemini AI and save it."""
-        try:
-            gemini_client = self.api_manager.get_gemini_client()
-            if not gemini_client or not hasattr(gemini_client, "generate_article"):
-                logger.info("Gemini client not available for article generation")
-                return None
-
-            structured_article = gemini_client.generate_article(article)
-            if not structured_article:
-                logger.info("Gemini returned no article content")
-                return None
-
-            saved_path = self.article_content_manager.save_article(structured_article, article)
-            if saved_path:
-                title = structured_article.get('headline', article.get('title', 'Unknown'))[:30]
-                logger.info(f"Saved generated article for: {title}... -> {saved_path}")
-
-            return structured_article
-
-        except Exception as e:  # pragma: no cover - defensive logging
-            logger.warning(f"Failed to generate article content: {str(e)}")
-            return None
 
     def run(self):
         """Main method to run the bot"""
