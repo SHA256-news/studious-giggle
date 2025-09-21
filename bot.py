@@ -145,16 +145,32 @@ class BitcoinMiningNewsBot:
         # Create a copy of the article to potentially enhance with Gemini-generated content
         enhanced_article = article.copy()
         
-        # Generate enhanced tweet headline with Gemini AI if available and not skipped
+        # Generate enhanced tweet content with Gemini AI if available and not skipped
         if not self.skip_gemini_analysis:
             gemini_client = self.api_manager.get_gemini_client()
             if gemini_client:
                 try:
+                    # Generate headline
                     tweet_headline = gemini_client.generate_tweet_headline(article)
                     enhanced_article['gemini_headline'] = tweet_headline
-                    logger.info(f"Using Gemini-generated tweet headline ({len(tweet_headline)} chars): {tweet_headline[:50]}...")
+                    logger.info(f"Generated Gemini headline ({len(tweet_headline)} chars): {tweet_headline[:50]}...")
+                    
+                    # Generate 3-point summary
+                    tweet_summary = gemini_client.generate_tweet_summary(article)
+                    enhanced_article['gemini_summary'] = tweet_summary
+                    logger.info(f"Generated Gemini summary ({len(tweet_summary)} chars): {tweet_summary[:50]}...")
+                    
+                    # Combine headline and summary for final tweet content
+                    combined_content = f"{tweet_headline}\n\n{tweet_summary}"
+                    if len(combined_content) <= 280:
+                        enhanced_article['gemini_headline'] = combined_content
+                        logger.info(f"Using combined Gemini content ({len(combined_content)} chars)")
+                    else:
+                        # If combined content is too long, use headline only
+                        logger.warning(f"Combined content too long ({len(combined_content)} chars), using headline only")
+                        
                 except Exception as e:
-                    logger.warning(f"Failed to generate tweet headline with Gemini: {e}")
+                    logger.warning(f"Failed to generate tweet content with Gemini: {e}")
                     logger.info("Falling back to original article title for tweet")
         
         tweet_id = self.tweet_poster.post_to_twitter(enhanced_article)
