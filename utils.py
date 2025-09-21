@@ -21,13 +21,33 @@ class RuntimeLogger:
     @staticmethod
     def ensure_runtime_logs_dir():
         """Ensure the runtime logs directory exists"""
-        log_dir = "/home/runner/work/_temp/runtime-logs"
+        # Use environment variable if set, otherwise fall back to default locations
+        log_dir = os.environ.get("RUNTIME_LOGS_DIR")
+        if log_dir:
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
+        # Fallback to GitHub Actions runner temp directory if available
+        runner_temp = os.environ.get("RUNNER_TEMP")
+        if runner_temp:
+            log_dir = os.path.join(runner_temp, "runtime-logs")
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
+        # Final fallback to temp directory
+        log_dir = "/tmp/runtime-logs"
         try:
             os.makedirs(log_dir, exist_ok=True)
         except Exception as e:
-            logger.warning(f"Could not create runtime logs directory: {e}")
-            # Fallback to temp directory
-            log_dir = "/tmp/runtime-logs"
+            logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+            # If even /tmp fails, use current directory
+            log_dir = "./runtime-logs"
             os.makedirs(log_dir, exist_ok=True)
         return log_dir
     
