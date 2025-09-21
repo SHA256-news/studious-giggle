@@ -337,20 +337,46 @@ class BitcoinMiningNewsBot:
 
 def _show_api_key_error(queued_count: int) -> None:
     """Show detailed error message for missing API keys"""
+    logger.error("="*80)
+    logger.error("🔍 DIAGNOSIS: GitHub Action 'Success' but No Tweets Posted")
+    logger.error("="*80)
+    logger.error("")
+    logger.error("✅ WHAT WORKED:")
+    logger.error("   - Dependencies installed successfully")
+    logger.error("   - Bot code executed without errors")
+    logger.error("   - Python imports and initialization completed")
+    logger.error("   - Error handling worked correctly")
+    logger.error("")
+    logger.error("❌ WHAT FAILED:")
+    logger.error("   - Missing required API credentials")
+    logger.error("   - Unable to connect to Twitter API")
+    logger.error("   - Unable to connect to EventRegistry API")
+    logger.error("   - Cannot post tweets without valid authentication")
+    logger.error("")
     if queued_count > 0:
-        logger.error(f"ISSUE IDENTIFIED: {queued_count} queued articles waiting to be posted")
-        logger.error("Cannot proceed without valid API keys. The scheduled GitHub Actions may be failing due to:")
-        for reason in ["Missing or invalid repository secrets", 
-                      "GitHub Actions not triggering on schedule", 
-                      "Workflow execution failures"]:
-            logger.error(f"  {reason}")
+        logger.error(f"📋 ARTICLES WAITING: {queued_count} articles are queued for posting")
+        logger.error("   These articles will be posted automatically once API keys are configured.")
         logger.error("")
-        logger.error("Required environment variables:")
-        for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
-                   "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
-            logger.error(f"  - {var}")
-    else:
-        logger.info("No queued articles to process")
+    logger.error("🔧 SOLUTION: Configure GitHub Repository Secrets")
+    logger.error("   1. Go to your repository Settings > Secrets and variables > Actions")
+    logger.error("   2. Add these repository secrets:")
+    for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
+               "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
+        logger.error(f"      - {var}")
+    logger.error("")
+    logger.error("💡 WHY GITHUB ACTIONS SHOW 'SUCCESS':")
+    logger.error("   - The workflow completes all steps without exceptions")
+    logger.error("   - Dependencies install successfully")
+    logger.error("   - The bot gracefully handles missing credentials")
+    logger.error("   - No Python errors or crashes occur")
+    logger.error("   - 'Success' means the code ran, not that tweets were posted")
+    logger.error("")
+    logger.error("📖 For API key setup guides:")
+    logger.error("   - Twitter: https://developer.twitter.com/")
+    logger.error("   - EventRegistry: https://newsapi.ai/dashboard")
+    logger.error("")
+    logger.error("🔍 Run diagnostics: python bot.py --diagnose")
+    logger.error("="*80)
 
 
 def main():
