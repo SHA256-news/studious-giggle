@@ -1,4 +1,4 @@
-"""Gemini AI client utilities for the Bitcoin Mining News Bot."""
+"""Gemini AI client utilities for the Bitcoin Mining News Bot with URL context support."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ logger = logging.getLogger('bitcoin_mining_bot')
 
 
 class GeminiClient:
-    """Wrapper for Google Gemini AI client using the google-genai SDK."""
+    """Wrapper for Google Gemini AI client using the google-genai SDK with URL context support."""
 
     def __init__(self, config: GeminiConfig):
         """Initialize Gemini client."""
@@ -23,7 +23,7 @@ class GeminiClient:
         logger.info("Gemini AI client initialized successfully with new SDK")
 
     def generate_tweet_headline(self, article: Dict[str, Any]) -> str:
-        """Generate a tweet headline using Gemini Thinking."""
+        """Generate a tweet headline using Gemini with URL context."""
         title = article.get('title', 'Untitled Article')
         body = article.get('body', article.get('summary', ''))
         url = article.get('url', article.get('uri', ''))
@@ -31,17 +31,28 @@ class GeminiClient:
         prompt = self._create_tweet_headline_prompt(title, body, url)
 
         try:
-            logger.info(f"Generating tweet headline: {title[:50]}...")
+            logger.info(f"Generating tweet headline with URL context: {title[:50]}...")
+            
+            # Configure tools to include URL context for better analysis
+            tools = [{"url_context": {}}]
+            
             response = self.client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
+                    tools=tools,
                     thinking_config=types.ThinkingConfig(thinking_budget=10000)
                 ),
             )
 
             # Extract the headline from the response
             headline = response.text.strip()
+            
+            # Log URL context metadata if available
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
+                    logger.info(f"URL context used for headline generation: {len(candidate.url_context_metadata.url_metadata) if candidate.url_context_metadata.url_metadata else 0} URLs retrieved")
             
             # Validate character count for headline only
             if len(headline) > 140:  # Leave room for summary
@@ -52,13 +63,13 @@ class GeminiClient:
             return headline
 
         except Exception as exc:
-            logger.error(f"Failed to generate tweet headline: {exc}")
+            logger.error(f"Failed to generate tweet headline with URL context: {exc}")
             # Fallback to original title with truncation
             fallback = title[:147] + "..." if len(title) > 147 else title
             return fallback
 
     def generate_tweet_summary(self, article: Dict[str, Any]) -> str:
-        """Generate a 3-point summary for the tweet content."""
+        """Generate a 3-point summary for the tweet content using URL context."""
         title = article.get('title', 'Untitled Article')
         body = article.get('body', article.get('summary', ''))
         url = article.get('url', article.get('uri', ''))
@@ -66,17 +77,28 @@ class GeminiClient:
         prompt = self._create_tweet_summary_prompt(title, body, url)
 
         try:
-            logger.info(f"Generating tweet summary: {title[:50]}...")
+            logger.info(f"Generating tweet summary with URL context: {title[:50]}...")
+            
+            # Configure tools to include URL context for better analysis
+            tools = [{"url_context": {}}]
+            
             response = self.client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
+                    tools=tools,
                     thinking_config=types.ThinkingConfig(thinking_budget=10000)
                 ),
             )
 
             # Extract the summary from the response
             summary = response.text.strip()
+            
+            # Log URL context metadata if available
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
+                    logger.info(f"URL context used for summary generation: {len(candidate.url_context_metadata.url_metadata) if candidate.url_context_metadata.url_metadata else 0} URLs retrieved")
             
             # Validate character count for summary
             if len(summary) > 110:  # Leave room for headline
@@ -87,17 +109,17 @@ class GeminiClient:
             return summary
 
         except Exception as exc:
-            logger.error(f"Failed to generate tweet summary: {exc}")
+            logger.error(f"Failed to generate tweet summary with URL context: {exc}")
             # Fallback to a simple summary
             return "• Key development • Impact on mining • Market implications"
 
     def _create_tweet_headline_prompt(self, title: str, body: str, url: str) -> str:
-        """Create prompt for generating engaging tweet headlines."""
+        """Create prompt for generating engaging tweet headlines with URL context."""
         trimmed_body = body[:3000]
         prompt = f"""
 You are a Bitcoin mining news expert creating engaging Twitter content.
 
-Using the source article provided, create a catchy, engaging headline for a tweet that accurately represents the news.
+Using the source article provided and the full content from the URL, create a catchy, engaging headline for a tweet that accurately represents the news.
 
 Requirements:
 - Create a compelling headline that captures the essence of the news
@@ -110,22 +132,23 @@ Requirements:
 - For scandal/crime news: be factual but not sensational
 - Do NOT include bullet points, summaries, or additional content
 - Do NOT use excessive emojis (maximum 1-2 if appropriate)
+- Leverage the actual article content from the URL for accuracy and depth
 
 Source Article Title: {title}
 Source Article URL: {url}
-Source Article Content: {trimmed_body}
+Source Article Summary: {trimmed_body}
 
-Generate only the headline now:
+Analyze the full article content from the URL above and generate only the headline now:
 """
         return prompt
 
     def _create_tweet_summary_prompt(self, title: str, body: str, url: str) -> str:
-        """Create prompt for generating 3-point summaries."""
+        """Create prompt for generating 3-point summaries with URL context."""
         trimmed_body = body[:3000]
         prompt = f"""
 You are a Bitcoin mining news expert creating engaging Twitter content.
 
-Using the source article provided, create exactly 3 concise bullet points that summarize the key aspects of this Bitcoin mining news:
+Using the source article provided and the full content from the URL, create exactly 3 concise bullet points that summarize the key aspects of this Bitcoin mining news:
 
 Requirements:
 - Create exactly 3 bullet points using • symbol
@@ -134,6 +157,7 @@ Requirements:
 - Use professional, clear language
 - Total summary should be under 110 characters including bullet points
 - Do NOT include a headline, introduction, or additional content
+- Leverage the actual article content from the URL for accuracy and depth
 - Examples of good bullet points:
   • $50M investment announced
   • 2,200 mining rigs deployed  
@@ -141,9 +165,9 @@ Requirements:
 
 Source Article Title: {title}
 Source Article URL: {url}
-Source Article Content: {trimmed_body}
+Source Article Summary: {trimmed_body}
 
-Generate only the 3 bullet points now:
+Analyze the full article content from the URL above and generate only the 3 bullet points now:
 """
         return prompt
 

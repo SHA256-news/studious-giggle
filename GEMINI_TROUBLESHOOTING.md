@@ -53,14 +53,44 @@ To get proper AI-generated headlines and 3-point summaries:
 ## Expected Behavior
 
 **With Gemini API configured:**
-- Headlines: AI-generated engaging headlines
-- Summaries: 3-point bulleted summaries
+- Headlines: AI-generated engaging headlines using URL context analysis
+- Summaries: 3-point bulleted summaries based on full article content
 - Format: "Headline\n\n• Point 1 • Point 2 • Point 3"
+- Enhanced accuracy: Analyzes actual article content from URLs for better insights
 
 **Without Gemini API (fallback):**
 - Headlines: Enhanced processing with financial amounts
 - Format: "$12 M: Original Article Title" or similar
 - No 3-point summaries
+
+## New URL Context Feature
+
+The bot now uses Gemini's **URL Context tool** to provide enhanced analysis:
+
+### What It Does
+- Fetches and analyzes the full content of news article URLs
+- Provides more accurate headlines based on complete article context
+- Generates better summaries using actual article data
+- Combines title/summary with deep URL content analysis
+
+### How It Works
+```python
+# The bot automatically enables URL context for every article
+tools = [{"url_context": {}}]
+
+# Gemini analyzes the full article content from the URL
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=prompt_with_url_reference,
+    config=GenerateContentConfig(tools=tools)
+)
+```
+
+### Benefits
+- **Higher Accuracy**: Analysis based on complete article content
+- **Better Context**: Understanding of nuanced financial/technical details  
+- **Improved Headlines**: More engaging and precise tweet content
+- **Real-time Content**: Access to the latest article updates
 
 ## Validation
 
