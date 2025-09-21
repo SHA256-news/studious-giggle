@@ -210,6 +210,13 @@ def filter_bitcoin_only_articles(articles: Optional[List[Dict[str, Any]]]) -> Tu
         
     Returns:
         tuple: (filtered_articles, excluded_count, excluded_details)
+            - filtered_articles (list): Articles that only mention Bitcoin
+            - excluded_count (int): Number of articles filtered out
+            - excluded_details (list): Details of excluded articles with reasons
+            
+    Note:
+        This function MUST return a tuple to maintain compatibility with
+        existing calling code that expects tuple unpacking.
     """
     if not articles:
         return [], 0, []
