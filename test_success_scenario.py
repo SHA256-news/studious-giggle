@@ -86,15 +86,23 @@ def test_full_working_scenario():
                 print("   - New articles available: 2 (new-article-1, new-article-2)")
                 print("   - Already posted articles: 1 (old-article-1)")
                 print("   - Expected posts: 1 (bot only posts one article per run)")
-                print("   - Expected tweet calls: 1 (single tweet only)")
+                print("   - Expected tweet calls: 2 (threaded tweet: main + reply with URL)")
                 
-                # Verify Twitter was called correctly
-                assert mock_twitter_client.create_tweet.call_count == 1, f"Expected 1 tweet call, got {mock_twitter_client.create_tweet.call_count}"
+                # Verify Twitter was called correctly (2 calls for article with URL)
+                assert mock_twitter_client.create_tweet.call_count == 2, f"Expected 2 tweet calls (threaded tweet with URL), got {mock_twitter_client.create_tweet.call_count}"
                 
-                call = mock_twitter_client.create_tweet.call_args_list[0]
-                tweet_text = call[1]['text']
+                # Verify both tweets were posted
+                first_call = mock_twitter_client.create_tweet.call_args_list[0]
+                second_call = mock_twitter_client.create_tweet.call_args_list[1]
                 
-                print(f"   - Tweet: {tweet_text[:50]}...")
+                # Check main tweet content
+                tweet_text = first_call[1]['text']
+                print(f"   - Main tweet: {tweet_text[:50]}...")
+                
+                # Check reply tweet has URL
+                reply_text = second_call[1]['text']
+                print(f"   - Reply tweet: {reply_text[:50]}...")
+                assert "https://example.com/bitcoin-mining-texas" in reply_text, "Reply tweet should contain the article URL"
                 
                 # Verify the reply structure
                 print("✅ All verifications passed!")
