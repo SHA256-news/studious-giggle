@@ -30,6 +30,16 @@ class RuntimeLogger:
             except Exception as e:
                 logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
         
+        # For GitHub Actions, use the current directory's runtime-logs folder
+        # This matches where the workflow creates and expects to find the files
+        if os.environ.get("GITHUB_ACTIONS"):
+            log_dir = "./runtime-logs"
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
         # Fallback to GitHub Actions runner temp directory if available
         runner_temp = os.environ.get("RUNNER_TEMP")
         if runner_temp:
