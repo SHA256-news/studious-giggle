@@ -146,6 +146,20 @@ class TweetPoster:
                         continue
                     return None
 
+                # Check for duplicate content error
+                if self._is_duplicate_content_error(e):
+                    logger.warning(f"Duplicate content detected on attempt {attempt + 1}: {e}")
+                    if attempt < max_retries:
+                        logger.info("Generating new tweet variation to avoid duplicate content...")
+                        # Regenerate tweet with new variation
+                        hook_text, link_text = TextUtils.create_thread_texts(article)
+                        tweet_text = hook_text
+                        logger.info(f"Retrying with new variation: {tweet_text[:50]}...")
+                        continue
+                    else:
+                        logger.error(f"Failed to post after {max_retries + 1} attempts due to duplicate content")
+                        return None
+
                 logger.error(f"Error posting to Twitter on attempt {attempt + 1}: {str(e)}")
                 if attempt < max_retries:
                     logger.info(f"Retrying in {BotConstants.RETRY_DELAY_SECONDS} seconds...")
@@ -248,6 +262,37 @@ class TweetPoster:
                 if code in (88, 429):
                     return True
 
+        return False
+
+    def _is_duplicate_content_error(self, error: Exception) -> bool:
+        """Determine if an exception represents a duplicate content error."""
+        error_message = str(error).lower()
+        
+        # Check for Twitter's duplicate content error messages
+        duplicate_indicators = [
+            "duplicate",
+            "duplicate content", 
+            "you are not allowed to create a tweet with duplicate content",
+            "403 forbidden",
+            "status is a duplicate"
+        ]
+        
+        for indicator in duplicate_indicators:
+            if indicator in error_message:
+                return True
+        
+        # Check HTTP status code
+        if hasattr(error, 'response'):
+            response = error.response
+            if hasattr(response, 'status_code') and response.status_code == 403:
+                # Check response text for duplicate content
+                try:
+                    response_text = response.text if hasattr(response, 'text') else str(response)
+                    if "duplicate" in response_text.lower():
+                        return True
+                except:
+                    pass
+        
         return False
 
     def _extract_tweet_id(self, tweet_response: Any) -> Optional[str]:

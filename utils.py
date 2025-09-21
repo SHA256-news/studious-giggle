@@ -516,7 +516,87 @@ class TextUtils:
     @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
         """Create the hook/benefit tweet that leads the thread."""
-        return TextUtils.create_enhanced_tweet_text(article)
+        # Generate base tweet
+        base_tweet = TextUtils.create_enhanced_tweet_text(article)
+        
+        # Add variation to prevent duplicate content issues
+        return TextUtils.add_content_variation(base_tweet)
+
+    @staticmethod
+    def add_content_variation(base_text: str) -> str:
+        """Add subtle variations to tweet content to prevent duplicate content errors"""
+        # Variation strategies (choose randomly to ensure uniqueness)
+        variation_strategies = [
+            TextUtils._add_time_context,
+            TextUtils._vary_punctuation,
+            TextUtils._add_industry_context,
+            TextUtils._vary_structure,
+        ]
+        
+        # Apply a random variation strategy
+        strategy = random.choice(variation_strategies)
+        varied_text = strategy(base_text)
+        
+        # Ensure we're still within Twitter's character limit
+        if len(varied_text) > BotConstants.TWEET_MAX_LENGTH:
+            varied_text = varied_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+            
+        return varied_text
+    
+    @staticmethod
+    def _add_time_context(text: str) -> str:
+        """Add subtle time context to make content unique"""
+        time_contexts = [
+            "🚨 ",
+            "📈 ",
+            "⚡ ",
+            "🔥 ",
+            "💡 ",
+        ]
+        
+        # Only add if the text doesn't already start with an emoji
+        if not text.startswith(("🚨", "📈", "⚡", "🔥", "💡")):
+            emoji = random.choice(time_contexts)
+            return f"{emoji}{text}"
+        return text
+    
+    @staticmethod
+    def _vary_punctuation(text: str) -> str:
+        """Vary punctuation slightly for uniqueness"""
+        # Add emphasis occasionally
+        if not text.endswith(("!", "?")) and random.random() < 0.3:
+            if "mining" in text.lower() or "btc" in text.lower():
+                text = text.rstrip(".") + "!"
+        return text
+    
+    @staticmethod
+    def _add_industry_context(text: str) -> str:
+        """Add subtle industry context"""
+        industry_contexts = [
+            " #Bitcoin",
+            " #BTC", 
+            " #Mining",
+            " #Crypto",
+        ]
+        
+        # Only add if there's room and no hashtag already exists
+        if "#" not in text and len(text) < (BotConstants.TWEET_MAX_LENGTH - 10):
+            hashtag = random.choice(industry_contexts)
+            return f"{text}{hashtag}"
+        return text
+    
+    @staticmethod 
+    def _vary_structure(text: str) -> str:
+        """Make minor structural variations"""
+        # Occasionally rephrase "invests" to "puts"
+        if "invests" in text and random.random() < 0.5:
+            text = text.replace("invests", "puts")
+        
+        # Vary "via" to "through" occasionally
+        if " via " in text and random.random() < 0.5:
+            text = text.replace(" via ", " through ")
+            
+        return text
 
     @staticmethod
     def create_link_tweet(article: Dict[str, Any]) -> str:
