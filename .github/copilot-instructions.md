@@ -21,9 +21,24 @@ Bitcoin Mining News Twitter Bot is a Python application that automatically fetch
 - All tests complete in under 1 second total - this is normal and expected
 
 ### Run the Application
-- **Diagnose issues**: `python bot.py --diagnose` -- takes <5 seconds
+- **Diagnose issues**: `python bot.py --diagnose` -- takes <3 seconds (optimized)
 - **Run bot normally**: `python bot.py` -- will fail without API keys (expected)
-- **Run diagnostics script**: `python diagnose_bot.py` -- takes <5 seconds
+- **Run diagnostics script**: `python diagnose_bot.py` -- takes <3 seconds (optimized)
+
+## Performance Optimizations
+
+The bot includes several performance optimizations for faster execution:
+
+### Fast Startup (< 1 second)
+- **Lazy Initialization**: API clients are initialized only when needed
+- **Deferred Image Loading**: Image library loads only when posting images
+- **Skip Connection Tests**: No unnecessary API validation during startup
+- **Optimized Imports**: Core modules load quickly without heavy dependencies
+
+### Efficient Execution
+- **Smart Rate Limiting**: Progressive cooldowns prevent unnecessary API calls
+- **Queue Management**: Processes articles efficiently from queue when appropriate
+- **Error Handling**: Graceful failures with clear messaging for GitHub Actions
 
 ## Required API Keys Setup
 

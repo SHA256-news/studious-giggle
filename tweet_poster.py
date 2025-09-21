@@ -48,17 +48,25 @@ class TweetPoster:
     def __init__(self, twitter_client: TwitterClient):
         self.twitter_client = twitter_client
         self.image_selector = None
+        self._image_selector_initialized = False
         
-        # Initialize image selector if available
+        # Don't initialize image selector immediately for faster startup
         if IMAGE_SUPPORT_AVAILABLE:
+            logger.info("Image support available - will initialize when needed")
+        else:
+            logger.info("Image support disabled - tweets will be text-only")
+    
+    def _ensure_image_selector(self):
+        """Lazy initialization of image selector"""
+        if IMAGE_SUPPORT_AVAILABLE and not self._image_selector_initialized:
             try:
                 self.image_selector = ImageSelector()
-                logger.info("Image support enabled - images will be attached to tweets")
+                logger.info("Image selector initialized successfully")
             except Exception as e:
                 logger.warning(f"Failed to initialize image selector: {e}")
                 self.image_selector = None
-        else:
-            logger.info("Image support disabled - tweets will be text-only")
+            finally:
+                self._image_selector_initialized = True
     
     def post_to_twitter(self, article: Dict[str, Any]) -> Optional[str]:
         """Post article as a single tweet on Twitter"""
@@ -75,6 +83,7 @@ class TweetPoster:
 
                 # Select and upload images if image support is available
                 media_ids = []
+                self._ensure_image_selector()  # Lazy initialization
                 if self.image_selector:
                     try:
                         images = self._select_and_upload_images(article)

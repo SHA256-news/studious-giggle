@@ -20,13 +20,19 @@ class TwitterClient:
     """Wrapper for Twitter API client"""
     
     def __init__(self, config: TwitterConfig):
-        self.client = tweepy.Client(
-            consumer_key=config.api_key,
-            consumer_secret=config.api_secret,
-            access_token=config.access_token,
-            access_token_secret=config.access_token_secret
-        )
-        logger.info("Twitter client initialized successfully")
+        # Initialize client with minimal configuration for faster startup
+        try:
+            self.client = tweepy.Client(
+                consumer_key=config.api_key,
+                consumer_secret=config.api_secret,
+                access_token=config.access_token,
+                access_token_secret=config.access_token_secret,
+                wait_on_rate_limit=False  # Don't wait for rate limits during initialization
+            )
+            # Don't test the connection during initialization to speed up startup
+        except Exception as e:
+            logger.error(f"Failed to initialize Twitter client: {e}")
+            raise
     
     def create_tweet(self, **kwargs) -> Any:
         """Create a tweet"""
@@ -41,12 +47,20 @@ class EventRegistryClient:
     """Wrapper for EventRegistry API client"""
 
     def __init__(self, config: EventRegistryConfig):
-        self.client = self._create_eventregistry_client(config)
-        logger.info("EventRegistry client initialized successfully")
+        self.config = config
+        self.client = None  # Lazy initialization for faster startup
+        
+    def _ensure_client(self):
+        """Lazy initialization of EventRegistry client"""
+        if self.client is None:
+            self.client = self._create_eventregistry_client(self.config)
 
     def fetch_bitcoin_mining_articles(self, max_articles: int = BotConstants.DEFAULT_MAX_ARTICLES) -> List[Dict[str, Any]]:
         """Fetch latest articles about Bitcoin mining"""
         try:
+            # Ensure client is initialized
+            self._ensure_client()
+            
             er_module = self._get_eventregistry_module()
             QueryArticles = getattr(er_module, "QueryArticles")
             QueryItems = getattr(er_module, "QueryItems")
