@@ -34,11 +34,11 @@ class InvalidTweetResponse(Exception):
 
 # Import image functionality
 try:
-    from image_selector import ImageSelector
+    from image_handler import ImageHandler
     IMAGE_SUPPORT_AVAILABLE = True
 except ImportError as e:
     logger.warning(f"Image support not available: {e}")
-    ImageSelector = None
+    ImageHandler = None
     IMAGE_SUPPORT_AVAILABLE = False
 
 
@@ -47,26 +47,26 @@ class TweetPoster:
     
     def __init__(self, twitter_client: TwitterClient):
         self.twitter_client = twitter_client
-        self.image_selector = None
-        self._image_selector_initialized = False
+        self.image_handler = None
+        self._image_handler_initialized = False
         
-        # Don't initialize image selector immediately for faster startup
+        # Don't initialize image handler immediately for faster startup
         if IMAGE_SUPPORT_AVAILABLE:
             logger.info("Image support available - will initialize when needed")
         else:
             logger.info("Image support disabled - tweets will be text-only")
     
-    def _ensure_image_selector(self):
-        """Lazy initialization of image selector"""
-        if IMAGE_SUPPORT_AVAILABLE and not self._image_selector_initialized:
+    def _ensure_image_handler(self):
+        """Lazy initialization of image handler"""
+        if IMAGE_SUPPORT_AVAILABLE and not self._image_handler_initialized:
             try:
-                self.image_selector = ImageSelector()
-                logger.info("Image selector initialized successfully")
+                self.image_handler = ImageHandler()
+                logger.info("Image handler initialized successfully")
             except Exception as e:
-                logger.warning(f"Failed to initialize image selector: {e}")
-                self.image_selector = None
+                logger.warning(f"Failed to initialize image handler: {e}")
+                self.image_handler = None
             finally:
-                self._image_selector_initialized = True
+                self._image_handler_initialized = True
     
     def post_to_twitter(self, article: Dict[str, Any]) -> Optional[str]:
         """Post article as a single tweet on Twitter"""
@@ -83,8 +83,8 @@ class TweetPoster:
 
                 # Select and upload images if image support is available
                 media_ids = []
-                self._ensure_image_selector()  # Lazy initialization
-                if self.image_selector:
+                self._ensure_image_handler()  # Lazy initialization
+                if self.image_handler:
                     try:
                         images = self._select_and_upload_images(article)
                         media_ids = images
@@ -168,7 +168,7 @@ class TweetPoster:
     
     def _select_and_upload_images(self, article: Dict[str, Any]) -> List[str]:
         """Select and upload images for the article"""
-        if not self.image_selector:
+        if not self.image_handler:
             return []
         
         title = article.get("title", "")
@@ -177,7 +177,7 @@ class TweetPoster:
             return []
         
         # Select relevant images
-        selected_images = self.image_selector.select_images_for_headline(title)
+        selected_images = self.image_handler.select_images_for_headline(title)
         if not selected_images:
             logger.info("No valid images found for article")
             return []
