@@ -21,13 +21,33 @@ class RuntimeLogger:
     @staticmethod
     def ensure_runtime_logs_dir():
         """Ensure the runtime logs directory exists"""
-        log_dir = "/home/runner/work/_temp/runtime-logs"
+        # Use environment variable if set, otherwise fall back to default locations
+        log_dir = os.environ.get("RUNTIME_LOGS_DIR")
+        if log_dir:
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
+        # Fallback to GitHub Actions runner temp directory if available
+        runner_temp = os.environ.get("RUNNER_TEMP")
+        if runner_temp:
+            log_dir = os.path.join(runner_temp, "runtime-logs")
+            try:
+                os.makedirs(log_dir, exist_ok=True)
+                return log_dir
+            except Exception as e:
+                logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+        
+        # Final fallback to temp directory
+        log_dir = "/tmp/runtime-logs"
         try:
             os.makedirs(log_dir, exist_ok=True)
         except Exception as e:
-            logger.warning(f"Could not create runtime logs directory: {e}")
-            # Fallback to temp directory
-            log_dir = "/tmp/runtime-logs"
+            logger.warning(f"Could not create runtime logs directory at {log_dir}: {e}")
+            # If even /tmp fails, use current directory
+            log_dir = "./runtime-logs"
             os.makedirs(log_dir, exist_ok=True)
         return log_dir
     
@@ -323,8 +343,17 @@ class TextUtils:
     def create_enhanced_tweet_text(article: Dict[str, Any]) -> str:
         """Create informative, concise tweet text prioritizing key details"""
         try:
-            title = article.get("title", "") or ""
-            if not title.strip():
+            # Prefer Gemini-generated headline over original title
+            gemini_headline = article.get("gemini_headline", "")
+            original_title = article.get("title", "")
+            
+            # Use Gemini headline if it's meaningful, otherwise fall back to original title
+            if gemini_headline and gemini_headline.strip():
+                title = gemini_headline
+            else:
+                title = original_title
+            
+            if not title or not title.strip():
                 return TextUtils.create_original_tweet_text(article)  # fallback to original
             
             # Extract key information
@@ -529,8 +558,16 @@ class TextUtils:
             # Choose a catchy prefix
             prefix = random.choice(BotConstants.TWEET_PREFIXES)
 
-            # Create a summary (use article title if it's concise enough)
-            title = article.get("title", "") or ""  # Handle None values
+            # Create a summary (use Gemini headline if available and meaningful, otherwise article title)
+            gemini_headline = article.get("gemini_headline", "")
+            original_title = article.get("title", "")
+            
+            # Use Gemini headline if it's meaningful, otherwise fall back to original title
+            if gemini_headline and gemini_headline.strip():
+                title = gemini_headline
+            else:
+                title = original_title or ""
+                
             title = title.strip() if title else ""
 
             # Clean up and shorten the title if needed
@@ -556,5 +593,7 @@ class TextUtils:
         except Exception as e:
             logger.error(f"Error creating tweet text: {str(e)}")
             # Return a fallback tweet text with proper None handling
-            fallback_title = article.get("title", "") or ""
+            gemini_headline = article.get("gemini_headline", "")
+            original_title = article.get("title", "")
+            fallback_title = gemini_headline if gemini_headline and gemini_headline.strip() else original_title or ""
             return "New Bitcoin mining article: " + fallback_title[:BotConstants.TITLE_MAX_LENGTH]

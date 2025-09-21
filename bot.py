@@ -145,12 +145,20 @@ class BitcoinMiningNewsBot:
             logger.error("Tweet poster not initialized")
             return False
         
+        # Create a copy of the article to potentially enhance with Gemini-generated content
+        enhanced_article = article.copy()
+        
         # Analyze article with Gemini AI if available and not skipped
         if not self.skip_gemini_analysis:
             self._analyze_and_save_report(article)
-            self._generate_and_save_article(article)
+            structured_article = self._generate_and_save_article(article)
+            
+            # If Gemini generated a headline, use it for the tweet
+            if structured_article and structured_article.get('headline'):
+                enhanced_article['gemini_headline'] = structured_article['headline']
+                logger.info(f"Using Gemini-generated headline for tweet: {structured_article['headline'][:50]}...")
         
-        tweet_id = self.tweet_poster.post_to_twitter(article)
+        tweet_id = self.tweet_poster.post_to_twitter(enhanced_article)
         
         if tweet_id:
             # Add to posted articles
@@ -158,7 +166,7 @@ class BitcoinMiningNewsBot:
             if uri:
                 self.posted_articles["posted_uris"].append(uri)
             
-            title = article.get("title", "Unknown title")[:50] + "..."
+            title = enhanced_article.get("gemini_headline", article.get("title", "Unknown title"))[:50] + "..."
             logger.info(f"Posted article: {title}")
             return True
         
@@ -184,26 +192,29 @@ class BitcoinMiningNewsBot:
         except Exception as e:
             logger.warning(f"Failed to analyze article: {str(e)}")
 
-    def _generate_and_save_article(self, article: Dict[str, Any]) -> None:
+    def _generate_and_save_article(self, article: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         """Generate a full-length article using Gemini AI and save it."""
         try:
             gemini_client = self.api_manager.get_gemini_client()
             if not gemini_client or not hasattr(gemini_client, "generate_article"):
                 logger.info("Gemini client not available for article generation")
-                return
+                return None
 
             structured_article = gemini_client.generate_article(article)
             if not structured_article:
                 logger.info("Gemini returned no article content")
-                return
+                return None
 
             saved_path = self.article_content_manager.save_article(structured_article, article)
             if saved_path:
                 title = structured_article.get('headline', article.get('title', 'Unknown'))[:30]
                 logger.info(f"Saved generated article for: {title}... -> {saved_path}")
 
+            return structured_article
+
         except Exception as e:  # pragma: no cover - defensive logging
             logger.warning(f"Failed to generate article content: {str(e)}")
+            return None
 
     def run(self):
         """Main method to run the bot"""
