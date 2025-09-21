@@ -29,7 +29,7 @@ def test_none_handling():
             none_article = {"title": None, "url": "https://example.com", "uri": "test-uri"}
             tweet_text = bot.create_tweet_text(none_article)
             assert isinstance(tweet_text, str), "Tweet text should be a string"
-            assert len(tweet_text) <= 289, f"Tweet text too long: {len(tweet_text)} chars"
+            assert len(tweet_text) <= 280, f"Tweet text too long: {len(tweet_text)} chars"
             print("✓ None title handled correctly")
             
             # Test empty article
@@ -102,7 +102,7 @@ def test_tweet_length():
             }
             
             tweet_text = bot.create_tweet_text(long_article)
-            assert len(tweet_text) <= 289, f"Tweet too long: {len(tweet_text)} chars"
+            assert len(tweet_text) <= 280, f"Tweet too long: {len(tweet_text)} chars"
             print(f"✓ Long title truncated to {len(tweet_text)} chars")
             
             return True

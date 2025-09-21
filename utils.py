@@ -584,7 +584,7 @@ class TextUtils:
             # Create the tweet text with the prefix
             tweet_text = f"{prefix}{summary}"
 
-            # Truncate if too long for Twitter (289 character limit for new Gemini Thinking format)
+            # Truncate if too long for Twitter (280 character limit)
             if len(tweet_text) > BotConstants.TWEET_MAX_LENGTH:
                 tweet_text = tweet_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
 

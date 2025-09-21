@@ -96,9 +96,9 @@ class GeminiClient:
             tweet_text = response.text.strip()
             
             # Validate character count
-            if len(tweet_text) > 289:
-                logger.warning(f"Generated tweet headline exceeds 289 characters ({len(tweet_text)}), truncating...")
-                tweet_text = tweet_text[:286] + "..."
+            if len(tweet_text) > 280:
+                logger.warning(f"Generated tweet headline exceeds 280 characters ({len(tweet_text)}), truncating...")
+                tweet_text = tweet_text[:277] + "..."
             
             logger.info(f"Generated tweet headline ({len(tweet_text)} chars): {tweet_text[:100]}...")
             return tweet_text
@@ -106,7 +106,7 @@ class GeminiClient:
         except Exception as exc:
             logger.error(f"Failed to generate tweet headline: {exc}")
             # Fallback to original title with truncation
-            fallback = title[:285] + "..." if len(title) > 285 else title
+            fallback = title[:277] + "..." if len(title) > 277 else title
             return fallback
 
     def generate_article(self, article: Dict[str, Any]) -> Dict[str, Any]:
@@ -198,7 +198,7 @@ You are a Bitcoin mining news expert creating engaging Twitter content.
 Using the source article provided, create a single tweet that includes:
 1. A relevant, engaging headline 
 2. Three concise bullet points summarizing the key aspects of the article
-3. The entire tweet must be exactly 289 characters or less
+3. The entire tweet must be exactly 280 characters or less
 
 Format your response as plain text ready to post on Twitter. Use bullet points (•) for the three summary points.
 
@@ -207,7 +207,7 @@ Requirements:
 - Follow with exactly 3 bullet points using • symbol
 - Keep it informative but concise for Twitter audience
 - Focus on Bitcoin mining impact, financial figures, and key developments
-- Must fit within 289 character limit total
+- Must fit within 280 character limit total
 
 Source Article Title: {title}
 Source Article URL: {url}

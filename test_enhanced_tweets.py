@@ -57,7 +57,7 @@ def test_enhanced_tweet_formatting():
         
         # Validate constraints
         assert isinstance(tweet_text, str), "Tweet text should be a string"
-        assert len(tweet_text) <= 289, f"Tweet text too long: {len(tweet_text)} chars"
+        assert len(tweet_text) <= 280, f"Tweet text too long: {len(tweet_text)} chars"
         assert len(tweet_text) > 0, "Tweet text should not be empty"
         
         # Check that abbreviations are applied
@@ -136,7 +136,7 @@ def test_backward_compatibility():
     print(f"Minimal article tweet: {tweet_text}")
     
     assert isinstance(tweet_text, str), "Should return string"
-    assert len(tweet_text) <= 289, "Should respect character limit"
+    assert len(tweet_text) <= 280, "Should respect character limit"
     assert len(tweet_text) > 0, "Should not be empty"
     
     # Test with None title (should fall back gracefully)
