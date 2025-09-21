@@ -21,11 +21,45 @@ def main():
     if "--diagnose" in sys.argv:
         return bot_main()
     
-    # Initialize bot with Gemini analysis disabled
-    bot = BitcoinMiningNewsBot(skip_gemini_analysis=True)
-    
-    # Run the bot
-    return bot.run()
+    try:
+        # Initialize bot with Gemini analysis disabled
+        bot = BitcoinMiningNewsBot(skip_gemini_analysis=True)
+        
+        # Run the bot
+        return bot.run()
+        
+    except ValueError as e:
+        # Handle missing API keys gracefully in GitHub Actions
+        if "environment variables" in str(e).lower():
+            print("="*80)
+            print("🔍 FETCH AND TWEET: Missing API Keys Detected")
+            print("="*80)
+            print("")
+            print("❌ ISSUE: Required API keys are not configured in GitHub repository secrets")
+            print("✅ SOLUTION: This workflow step should fail until API keys are properly set up")
+            print("")
+            print("🔧 TO FIX THIS:")
+            print("   1. Go to repository Settings > Secrets and variables > Actions")
+            print("   2. Add these repository secrets:")
+            for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
+                       "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
+                print(f"      - {var}")
+            print("")
+            print("💡 EXPECTED BEHAVIOR:")
+            print("   - This GitHub Action step should FAIL when API keys are missing")
+            print("   - This prevents false 'Success' status when no tweets are posted")
+            print("   - Once API keys are added, this step will succeed and post tweets")
+            print("")
+            print("📖 API Key Setup Guides:")
+            print("   - Twitter API: https://developer.twitter.com/")
+            print("   - EventRegistry API: https://newsapi.ai/dashboard")
+            print("="*80)
+            
+            # Exit with error code to make GitHub Action fail
+            return 1
+        else:
+            # Re-raise other ValueError types
+            raise
 
 
 if __name__ == "__main__":

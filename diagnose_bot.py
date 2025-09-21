@@ -297,6 +297,8 @@ def main():
             logger.info(f"   {queued_count} articles are queued and will be posted after cooldown")
     elif not env_ok:
         logger.error("🔍 ROOT CAUSE: Missing environment variables prevent bot operation")
+        logger.info("   This explains why GitHub Actions show 'Success' but no tweets are posted")
+        logger.info("   The bot gracefully handles missing credentials without throwing exceptions")
     else:
         # Only proceed with API tests if environment is set up and no active rate limit
         # Test connections
@@ -329,12 +331,39 @@ def main():
             logger.info("\n⚠️  NOTE: API keys are also missing in this local environment")
             logger.info("   However, they are configured in GitHub Actions (hence the successful runs)")
     elif not env_ok:
+        logger.info("\n💡 EXPLANATION: Why GitHub Actions show 'Success' but no tweets were posted:")
+        logger.info("   - ✅ Dependencies installed successfully")
+        logger.info("   - ✅ Python imports worked correctly")
+        logger.info("   - ✅ Bot code executed without crashing")
+        logger.info("   - ❌ Missing API keys prevent actual tweet posting")
+        logger.info("   - ✅ Bot exits gracefully with clear error messages")
+        logger.info("   - ✅ No exceptions thrown (hence 'Success' status)")
+        logger.info("")
+        logger.info("   This is NOT a bug - the bot is working correctly!")
+        logger.info("   GitHub Actions show 'Success' because no code errors occurred.")
+        logger.info("   The bot safely detects missing configuration and stops.")
+        
+        if posted_articles and posted_articles.get("queued_articles"):
+            queued_count = len(posted_articles["queued_articles"])
+            logger.info(f"\n📋 ARTICLES WAITING: {queued_count} articles are queued for posting")
+            logger.info("   These will be posted automatically once API keys are configured.")
+    elif not env_ok:
         logger.info("\n💡 SOLUTION: Set up the required environment variables:")
         logger.info("   - TWITTER_API_KEY")
         logger.info("   - TWITTER_API_SECRET")
         logger.info("   - TWITTER_ACCESS_TOKEN")
         logger.info("   - TWITTER_ACCESS_TOKEN_SECRET")
         logger.info("   - EVENTREGISTRY_API_KEY")
+        logger.info("")
+        logger.info("🔧 HOW TO SET UP GITHUB REPOSITORY SECRETS:")
+        logger.info("   1. Go to your repository on GitHub")
+        logger.info("   2. Click Settings > Secrets and variables > Actions")
+        logger.info("   3. Click 'New repository secret' for each required variable")
+        logger.info("   4. After setup, the next GitHub Action run will post tweets")
+        logger.info("")
+        logger.info("📖 For detailed API key setup instructions, see:")
+        logger.info("   - Twitter API: https://developer.twitter.com/")
+        logger.info("   - EventRegistry API: https://newsapi.ai/dashboard")
 
 if __name__ == "__main__":
     main()
