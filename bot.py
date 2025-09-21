@@ -151,12 +151,18 @@ class BitcoinMiningNewsBot:
         # Analyze article with Gemini AI if available and not skipped
         if not self.skip_gemini_analysis:
             self._analyze_and_save_report(article)
-            structured_article = self._generate_and_save_article(article)
+            self._generate_and_save_article(article)
             
-            # If Gemini generated a headline, use it for the tweet
-            if structured_article and structured_article.get('headline'):
-                enhanced_article['gemini_headline'] = structured_article['headline']
-                logger.info(f"Using Gemini-generated headline for tweet: {structured_article['headline'][:50]}...")
+            # Generate tweet headline with Gemini Thinking (new requirement)
+            gemini_client = self.api_manager.get_gemini_client()
+            if gemini_client:
+                try:
+                    tweet_headline = gemini_client.generate_tweet_headline(article)
+                    enhanced_article['gemini_headline'] = tweet_headline
+                    logger.info(f"Using Gemini-generated tweet headline ({len(tweet_headline)} chars): {tweet_headline[:50]}...")
+                except Exception as e:
+                    logger.warning(f"Failed to generate tweet headline with Gemini: {e}")
+                    logger.info("Falling back to original article title for tweet")
         
         tweet_id = self.tweet_poster.post_to_twitter(enhanced_article)
         
