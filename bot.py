@@ -49,14 +49,14 @@ class BitcoinMiningNewsBot:
         
         # Initialize tweet poster if not in safe mode
         self.tweet_poster: Optional[TweetPoster] = None
-        self.image_selector = None
+        self.image_handler = None
 
         if not safe_mode:
             twitter_client = self.api_manager.get_twitter_client()
             self.tweet_poster = TweetPoster(twitter_client)
             # Expose the image selector directly for backward compatibility
-            if hasattr(self.tweet_poster, "image_selector"):
-                self.image_selector = self.tweet_poster.image_selector
+            if hasattr(self.tweet_poster, "image_handler"):
+                self.image_handler = self.tweet_poster.image_handler
 
     # Backward compatibility methods for tests
     def fetch_bitcoin_mining_articles(self, max_articles: int = BotConstants.DEFAULT_MAX_ARTICLES) -> List[Dict[str, Any]]:
@@ -93,8 +93,7 @@ class BitcoinMiningNewsBot:
 
     def _is_minimum_interval_respected(self) -> bool:
         """Compatibility wrapper around the minimum interval check"""
-        last_run_time = self.posted_articles.get("last_run_time")
-        return TimeUtils.is_minimum_interval_respected(last_run_time)
+        return TimeUtils.is_minimum_interval_respected(self.posted_articles)
 
     def _post_with_retry(self, article: Dict[str, Any], max_retries: int = BotConstants.MAX_RETRIES) -> Optional[str]:
         """Expose TweetPoster's retry helper for backwards compatibility"""
