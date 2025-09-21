@@ -75,6 +75,11 @@ def show_tweet_preview(article: Dict[str, Any], index: int) -> None:
             extracted_features.append(f"Technical: {', '.join(info['technical_specs'][:2])}")
         if info.get("locations"):
             extracted_features.append(f"Locations: {', '.join(info['locations'][:2])}")
+        
+        # Add concepts with clear fallback for better readability in logs
+        concepts = info.get("concepts", [])
+        concepts_str = ', '.join(concepts) if concepts else 'none'
+        extracted_features.append(f"Concepts: {concepts_str}")
             
         if extracted_features:
             print(f"\n📊 Key Information Extracted:")
