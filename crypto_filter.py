@@ -6,6 +6,7 @@ Filters out articles mentioning non-Bitcoin cryptocurrencies.
 
 import re
 import logging
+from typing import List, Dict, Any, Tuple
 
 logger = logging.getLogger('bitcoin_mining_bot')
 
@@ -141,7 +142,7 @@ SINGLE_WORD_PATTERNS = {
 }
 
 
-def contains_unwanted_crypto(text):
+def contains_unwanted_crypto(text: str) -> bool:
     """
     Check if text contains mentions of non-Bitcoin cryptocurrencies.
     
@@ -169,7 +170,7 @@ def contains_unwanted_crypto(text):
     return False
 
 
-def get_unwanted_crypto_found(text):
+def get_unwanted_crypto_found(text: str) -> List[str]:
     """
     Get list of unwanted cryptocurrencies found in text.
     Useful for debugging/logging.
@@ -199,7 +200,7 @@ def get_unwanted_crypto_found(text):
     return found
 
 
-def filter_bitcoin_only_articles(articles):
+def filter_bitcoin_only_articles(articles: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], int, List[Dict[str, Any]]]:
     """
     Filter articles to only include Bitcoin mining related content.
     Removes articles that mention other cryptocurrencies.
@@ -209,6 +210,13 @@ def filter_bitcoin_only_articles(articles):
         
     Returns:
         tuple: (filtered_articles, excluded_count, excluded_details)
+            - filtered_articles (list): Articles that only mention Bitcoin
+            - excluded_count (int): Number of articles filtered out
+            - excluded_details (list): Details of excluded articles with reasons
+            
+    Note:
+        This function MUST return a tuple to maintain compatibility with
+        existing calling code that expects tuple unpacking.
     """
     if not articles:
         return [], 0, []

@@ -156,6 +156,33 @@ def test_bitcoin_variants_allowed():
     return True
 
 
+def test_function_signature_protection():
+    """Test that filter_bitcoin_only_articles maintains its tuple return signature"""
+    print("Testing function signature protection...")
+    
+    test_articles = [
+        {"title": "Bitcoin Mining News", "body": "Bitcoin mining content", "url": "test.com"},
+        {"title": "Ethereum News", "body": "Ethereum content", "url": "test2.com"}
+    ]
+    
+    result = filter_bitcoin_only_articles(test_articles)
+    
+    # Critical: Must be a tuple with exactly 3 elements
+    assert isinstance(result, tuple), "filter_bitcoin_only_articles MUST return a tuple"
+    assert len(result) == 3, "filter_bitcoin_only_articles MUST return exactly 3 elements"
+    
+    # Test tuple unpacking works (this is what calling code expects)
+    filtered_articles, excluded_count, excluded_details = result
+    
+    # Verify types
+    assert isinstance(filtered_articles, list), "First element must be a list"
+    assert isinstance(excluded_count, int), "Second element must be an int"
+    assert isinstance(excluded_details, list), "Third element must be a list"
+    
+    print("✓ Function signature protection test passed")
+    return True
+
+
 if __name__ == "__main__":
     print("=" * 60)
     print("CRYPTOCURRENCY FILTERING TESTS")
@@ -166,6 +193,7 @@ if __name__ == "__main__":
     success &= test_individual_crypto_detection() 
     success &= test_edge_cases()
     success &= test_bitcoin_variants_allowed()
+    success &= test_function_signature_protection()  # New signature protection test
     
     print("\n" + "=" * 60)
     if success:
