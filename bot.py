@@ -244,17 +244,21 @@ class BitcoinMiningNewsBot:
 
             # Filter out already posted articles and extract new ones
             new_articles = []
+            queued_uris = {article.get("uri") for article in self.posted_articles.get("queued_articles", [])}
             for article in articles:
                 uri = article.get("uri")
                 if not uri:
                     logger.warning("Skipping article with missing URI")
                     continue
 
-                if uri not in self.posted_articles["posted_uris"]:
+                if uri not in self.posted_articles["posted_uris"] and uri not in queued_uris:
                     new_articles.append(article)
                 else:
                     title = article.get("title", "Unknown title")[:50] + "..."
-                    logger.info(f"Skipping already posted article: {title}")
+                    if uri in self.posted_articles["posted_uris"]:
+                        logger.info(f"Skipping already posted article: {title}")
+                    else:
+                        logger.info(f"Skipping already queued article: {title}")
 
             if not new_articles:
                 # Check if we have queued articles to post
@@ -320,6 +324,24 @@ class BitcoinMiningNewsBot:
                 raise
 
 
+def _show_api_key_error(queued_count: int) -> None:
+    """Show detailed error message for missing API keys"""
+    if queued_count > 0:
+        logger.error(f"ISSUE IDENTIFIED: {queued_count} queued articles waiting to be posted")
+        logger.error("Cannot proceed without valid API keys. The scheduled GitHub Actions may be failing due to:")
+        for reason in ["Missing or invalid repository secrets", 
+                      "GitHub Actions not triggering on schedule", 
+                      "Workflow execution failures"]:
+            logger.error(f"  {reason}")
+        logger.error("")
+        logger.error("Required environment variables:")
+        for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
+                   "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
+            logger.error(f"  - {var}")
+    else:
+        logger.info("No queued articles to process")
+
+
 def main():
     """Main entry point"""
     import argparse
@@ -346,22 +368,7 @@ def main():
                     from utils import FileManager
                     posted_articles = FileManager.load_posted_articles()
                     queued_count = len(posted_articles.get("queued_articles", []))
-                    
-                    if queued_count > 0:
-                        logger.error(f"ISSUE IDENTIFIED: {queued_count} queued articles waiting to be posted")
-                        logger.error("Cannot proceed without valid API keys. The scheduled GitHub Actions may be failing due to:")
-                        logger.error("  1. Missing or invalid repository secrets")
-                        logger.error("  2. GitHub Actions not triggering on schedule")
-                        logger.error("  3. Workflow execution failures")
-                        logger.error("")
-                        logger.error("Required environment variables:")
-                        logger.error("  - TWITTER_API_KEY")
-                        logger.error("  - TWITTER_API_SECRET") 
-                        logger.error("  - TWITTER_ACCESS_TOKEN")
-                        logger.error("  - TWITTER_ACCESS_TOKEN_SECRET")
-                        logger.error("  - EVENTREGISTRY_API_KEY")
-                    else:
-                        logger.info("No queued articles to process")
+                    _show_api_key_error(queued_count)
                 except Exception as load_error:
                     logger.error(f"Failed to check queued articles: {load_error}")
             else:
