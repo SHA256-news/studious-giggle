@@ -26,28 +26,113 @@ def show_next_tweet():
         # Get the next article (first in queue)
         next_article = queued_articles[0]
         
+        # Try to generate Gemini content like the bot does
+        enhanced_article = next_article.copy()
+        gemini_content_available = False
+        
+        try:
+            # Try to import and initialize Gemini client directly
+            from gemini_client import GeminiClient
+            from config import GeminiConfig
+            import os
+            
+            if os.getenv('GEMINI_API_KEY'):
+                gemini_config = GeminiConfig.from_env()
+                gemini_client = GeminiClient(gemini_config)
+                
+                print("🤖 Generating Gemini AI content...")
+                
+                # Generate headline and summary like the bot does
+                tweet_headline = gemini_client.generate_tweet_headline(next_article)
+                tweet_summary = gemini_client.generate_tweet_summary(next_article)
+                
+                # Combine like the bot does
+                combined_content = f"{tweet_headline}\n\n{tweet_summary}"
+                
+                if len(combined_content) <= 280:
+                    enhanced_article['gemini_headline'] = combined_content
+                    enhanced_article['gemini_summary'] = tweet_summary
+                    gemini_content_available = True
+                    print(f"✅ Generated Gemini content ({len(combined_content)} chars)")
+                else:
+                    enhanced_article['gemini_headline'] = tweet_headline
+                    enhanced_article['gemini_summary'] = tweet_summary
+                    gemini_content_available = True
+                    print(f"✅ Generated Gemini content (headline only, combined too long: {len(combined_content)} chars)")
+            else:
+                print("⚠️  GEMINI_API_KEY not found in environment")
+                print("💡 To see 3-point summaries, configure GEMINI_API_KEY in GitHub secrets")
+                print("   The bot will then generate AI-enhanced headlines and bullet point summaries")
+                    
+        except Exception as e:
+            print(f"⚠️  Gemini AI not available: {e}")
+            print("💡 When GEMINI_API_KEY is configured, this preview will show:")
+            print("   • AI-generated engaging headlines")
+            print("   • 3-point bullet summaries")
+            print("   • Combined content optimization")
+            print("📝 Currently showing fallback format without AI enhancement")
+        
         # Generate the tweet text using the same method the bot uses
-        tweet_text = TextUtils.create_tweet_text(next_article)
+        original_tweet_text = TextUtils.create_tweet_text(next_article)
+        enhanced_tweet_text = TextUtils.create_tweet_text(enhanced_article) if gemini_content_available else original_tweet_text
         
         # Show the preview
-        print("🐦 NEXT TWEET PREVIEW")
-        print("=" * 50)
+        print("\n🐦 NEXT TWEET PREVIEW")
+        print("=" * 70)
         print()
         print(f"📰 Article: {next_article.get('title', 'Unknown Title')}")
         print(f"📅 Source: {next_article.get('source', {}).get('title', 'Unknown')}")
         print()
-        print("🚀 THIS WILL BE POSTED:")
-        # Adjust box width based on tweet length
-        box_width = max(50, len(tweet_text) + 4)
-        print("┌" + "─" * (box_width - 2) + "┐")
-        print(f"│ {tweet_text} │")
-        print("└" + "─" * (box_width - 2) + "┘")
-        print(f"   Characters: {len(tweet_text)}/280")
+        
+        if gemini_content_available:
+            print("🚀 THIS WILL BE POSTED (WITH GEMINI AI):")
+            # Show the enhanced version
+            print("┌" + "─" * 68 + "┐")
+            # Split long tweets into multiple lines for display
+            if len(enhanced_tweet_text) > 65:
+                lines = []
+                current_line = ""
+                words = enhanced_tweet_text.split()
+                for word in words:
+                    if len(current_line + " " + word) <= 65:
+                        current_line += (" " + word) if current_line else word
+                    else:
+                        if current_line:
+                            lines.append(current_line)
+                        current_line = word
+                if current_line:
+                    lines.append(current_line)
+                
+                for line in lines:
+                    print(f"│ {line:<66} │")
+            else:
+                print(f"│ {enhanced_tweet_text:<66} │")
+            print("└" + "─" * 68 + "┘")
+            print(f"   Characters: {len(enhanced_tweet_text)}/280")
+            
+            # Show the 3-point summary if available
+            if enhanced_article.get('gemini_summary'):
+                print(f"\n📋 3-POINT SUMMARY:")
+                print(f"   {enhanced_article['gemini_summary']}")
+            
+            print(f"\n📜 FALLBACK VERSION (if Gemini fails):")
+            print(f"   {original_tweet_text}")
+            print(f"   Characters: {len(original_tweet_text)}/280")
+        else:
+            print("🚀 THIS WILL BE POSTED:")
+            # Adjust box width based on tweet length
+            box_width = max(50, len(original_tweet_text) + 4)
+            print("┌" + "─" * (box_width - 2) + "┐")
+            print(f"│ {original_tweet_text} │")
+            print("└" + "─" * (box_width - 2) + "┘")
+            print(f"   Characters: {len(original_tweet_text)}/280")
+        
         print()
         
         # Check if it's a thread (2-part tweet)
         try:
-            hook_tweet, link_tweet = TextUtils.create_thread_texts(next_article)
+            article_for_thread = enhanced_article if gemini_content_available else next_article
+            hook_tweet, link_tweet = TextUtils.create_thread_texts(article_for_thread)
             if hook_tweet and link_tweet and hook_tweet != link_tweet:
                 print("📝 THREAD FORMAT (2 tweets):")
                 print()
