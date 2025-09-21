@@ -27,9 +27,19 @@ This shows:
 - Article source and URL
 - Timing information
 
-Other preview options:
-- `python show_queue_simple.py` - Simple list of queued tweets
-- `python show_queued_tweets.py` - Detailed queue analysis with metrics
+**Queue Management Tools:**
+- `python queue_manager.py simple` - Simple list of queued tweets  
+- `python queue_manager.py detailed` - Detailed queue analysis with metrics
+- `python queue_manager.py next` - Preview the very next tweet to be published
+- `python queue_manager.py analyze` - Analyze cryptocurrency content in queue
+- `python queue_manager.py clean` - Remove non-Bitcoin content from queue
+- `python queue_manager.py debug` - Debug queue processing issues
+
+**Demo & Testing Tools:**
+- `python demo_runner.py tests` - Run critical test scenarios
+- `python demo_runner.py tweets` - Demo enhanced tweet formatting  
+- `python demo_runner.py performance` - Performance benchmarks
+- `python demo_runner.py all` - Run all demos and tests
 
 ## How It Works
 
