@@ -96,22 +96,36 @@ class FileManager:
     """Manages file operations for the bot"""
     
     @staticmethod
+    def _load_json_file(file_path: str) -> Optional[Dict[str, Any]]:
+        """Generic JSON file loader with error handling"""
+        try:
+            with open(file_path, "r") as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return None
+    
+    @staticmethod
+    def _save_json_file(file_path: str, data: Dict[str, Any]) -> None:
+        """Generic JSON file saver"""
+        with open(file_path, "w") as f:
+            json.dump(data, f, indent=2)
+
+    @staticmethod
     def load_posted_articles() -> Dict[str, Any]:
         """Load the list of already posted article URIs and queued articles"""
-        try:
-            with open(BotConstants.POSTED_ARTICLES_FILE, "r") as f:
-                data = json.load(f)
-                # Auto-upgrade old format to include queued_articles and last_run_time
-                if "queued_articles" not in data:
-                    data["queued_articles"] = []
-                    logger.info("Auto-upgrading posted_articles.json to include queued_articles")
-                if "last_run_time" not in data:
-                    data["last_run_time"] = None
-                    logger.info("Auto-upgrading posted_articles.json to include last_run_time")
-                return data
-        except (FileNotFoundError, json.JSONDecodeError):
+        data = FileManager._load_json_file(BotConstants.POSTED_ARTICLES_FILE)
+        if data is None:
             logger.info("No existing posted articles file found, creating new one")
             return {"posted_uris": [], "queued_articles": [], "last_run_time": None}
+        
+        # Auto-upgrade old format to include queued_articles and last_run_time
+        if "queued_articles" not in data:
+            data["queued_articles"] = []
+            logger.info("Auto-upgrading posted_articles.json to include queued_articles")
+        if "last_run_time" not in data:
+            data["last_run_time"] = None
+            logger.info("Auto-upgrading posted_articles.json to include last_run_time")
+        return data
     
     @staticmethod
     def save_posted_articles(posted_articles: Dict[str, Any]) -> None:
@@ -119,8 +133,7 @@ class FileManager:
         # Update last run time before saving
         posted_articles["last_run_time"] = datetime.now().isoformat()
         
-        with open(BotConstants.POSTED_ARTICLES_FILE, "w") as f:
-            json.dump(posted_articles, f, indent=2)
+        FileManager._save_json_file(BotConstants.POSTED_ARTICLES_FILE, posted_articles)
         queued_count = len(posted_articles.get("queued_articles", []))
         posted_count = len(posted_articles["posted_uris"])
         logger.info(f"Saved {posted_count} posted article URIs and {queued_count} queued articles")
@@ -128,17 +141,12 @@ class FileManager:
     @staticmethod
     def load_rate_limit_cooldown() -> Optional[Dict[str, Any]]:
         """Load rate limit cooldown data"""
-        try:
-            with open(BotConstants.RATE_LIMIT_COOLDOWN_FILE, "r") as f:
-                return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
-            return None
+        return FileManager._load_json_file(BotConstants.RATE_LIMIT_COOLDOWN_FILE)
     
     @staticmethod
     def save_rate_limit_cooldown(cooldown_data: Dict[str, Any]) -> None:
         """Save rate limit cooldown data"""
-        with open(BotConstants.RATE_LIMIT_COOLDOWN_FILE, "w") as f:
-            json.dump(cooldown_data, f, indent=2)
+        FileManager._save_json_file(BotConstants.RATE_LIMIT_COOLDOWN_FILE, cooldown_data)
     
     @staticmethod
     def remove_rate_limit_cooldown() -> None:

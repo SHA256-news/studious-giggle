@@ -200,13 +200,13 @@ def test_single_tweet_success():
                 if result == "12345":
                     print("✓ Single tweet posted successfully, tweet ID returned")
                     
-                    # Verify that create_tweet was called once
-                    assert mock_twitter_client.create_tweet.call_count == 1
+                    # Verify that create_tweet was called twice (threaded tweet: hook + link)
+                    assert mock_twitter_client.create_tweet.call_count == 2, f"Expected 2 calls (threaded tweet), got {mock_twitter_client.create_tweet.call_count}"
                     
-                    # Verify the call was made correctly
-                    call = mock_twitter_client.create_tweet.call_args_list[0]
+                    # Verify the first call (hook tweet) was made correctly
+                    first_call = mock_twitter_client.create_tweet.call_args_list[0]
                     # Check that the tweet contains the key content (with possible abbreviations)
-                    tweet_text = call[1]['text']
+                    tweet_text = first_call[1]['text']
                     assert "Test" in tweet_text and ("Bitcoin" in tweet_text or "BTC" in tweet_text) and "Mining" in tweet_text, f"Tweet should contain key elements: {tweet_text}"
                     
                     return True
@@ -243,9 +243,8 @@ def test_no_url_article():
                 bot = BitcoinMiningNewsBot()
                 
                 article = {
-                    "title": "Test Bitcoin Mining Article",
-                    "uri": "test-uri"
-                    # No URL provided
+                    "title": "Test Bitcoin Mining Article"
+                    # No URL or URI provided
                 }
                 
                 result = bot.post_to_twitter(article)
