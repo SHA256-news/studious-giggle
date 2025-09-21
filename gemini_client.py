@@ -44,9 +44,9 @@ class GeminiClient:
             headline = response.text.strip()
             
             # Validate character count for headline only
-            if len(headline) > 150:  # Leave room for summary
-                logger.warning(f"Generated headline exceeds 150 characters ({len(headline)}), truncating...")
-                headline = headline[:147] + "..."
+            if len(headline) > 140:  # Leave room for summary
+                logger.warning(f"Generated headline exceeds 140 characters ({len(headline)}), truncating...")
+                headline = headline[:137] + "..."
             
             logger.info(f"Generated tweet headline ({len(headline)} chars): {headline[:100]}...")
             return headline
@@ -79,9 +79,9 @@ class GeminiClient:
             summary = response.text.strip()
             
             # Validate character count for summary
-            if len(summary) > 120:  # Leave room for headline
-                logger.warning(f"Generated summary exceeds 120 characters ({len(summary)}), truncating...")
-                summary = summary[:117] + "..."
+            if len(summary) > 110:  # Leave room for headline
+                logger.warning(f"Generated summary exceeds 110 characters ({len(summary)}), truncating...")
+                summary = summary[:107] + "..."
             
             logger.info(f"Generated tweet summary ({len(summary)} chars): {summary[:50]}...")
             return summary
@@ -97,15 +97,19 @@ class GeminiClient:
         prompt = f"""
 You are a Bitcoin mining news expert creating engaging Twitter content.
 
-Using the source article provided, create a catchy, engaging headline for a tweet:
+Using the source article provided, create a catchy, engaging headline for a tweet that accurately represents the news.
 
 Requirements:
 - Create a compelling headline that captures the essence of the news
 - Make it attention-grabbing and informative
-- Keep it under 150 characters to leave room for additional content
+- Keep it under 140 characters to leave room for additional content
 - Focus on Bitcoin mining impact, financial figures, and key developments
-- Use emojis sparingly and appropriately
-- Do NOT include bullet points or additional summary content
+- Use clear, professional language with proper grammar
+- For business news: highlight company actions, investments, expansions
+- For regulatory news: highlight policy changes, approvals, restrictions
+- For scandal/crime news: be factual but not sensational
+- Do NOT include bullet points, summaries, or additional content
+- Do NOT use excessive emojis (maximum 1-2 if appropriate)
 
 Source Article Title: {title}
 Source Article URL: {url}
@@ -121,15 +125,19 @@ Generate only the headline now:
         prompt = f"""
 You are a Bitcoin mining news expert creating engaging Twitter content.
 
-Using the source article provided, create exactly 3 concise bullet points that summarize the key aspects:
+Using the source article provided, create exactly 3 concise bullet points that summarize the key aspects of this Bitcoin mining news:
 
 Requirements:
 - Create exactly 3 bullet points using • symbol
-- Each point should be very concise (under 40 characters each)
-- Focus on Bitcoin mining impact, financial figures, and key developments
-- Keep it informative but brief for Twitter audience
-- Total summary should be under 120 characters
-- Do NOT include a headline or additional content
+- Each point should be very concise (under 35 characters each)
+- Focus on the most important aspects: financial impact, technical details, market implications
+- Use professional, clear language
+- Total summary should be under 110 characters including bullet points
+- Do NOT include a headline, introduction, or additional content
+- Examples of good bullet points:
+  • $50M investment announced
+  • 2,200 mining rigs deployed  
+  • Operations in Texas facility
 
 Source Article Title: {title}
 Source Article URL: {url}

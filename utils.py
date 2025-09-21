@@ -288,22 +288,24 @@ class TextUtils:
         extractor = EntityExtractor()
         entities = extractor.extract_entities(title)
         
-        # Enhanced company detection patterns
+        # Enhanced company detection patterns - improved to avoid false positives
         companies = list(entities.get("companies", []))
         
         # Look for additional company patterns in the text
         company_patterns = [
-            r'\b([A-Z][a-zA-Z]+ Holdings?)\b',  # "DL Holdings", "ABC Holding"
-            r'\b([A-Z][a-zA-Z]+ (?:Corporation|Corp|Inc|LLC|Ltd|Co))\b',  # Corporate entities
-            r'\b([A-Z][a-zA-Z]+ [A-Z][a-zA-Z]+)\b(?=.*(?:invest|mining|company|announces))',  # Two-word company names
-            r'\b(Fortune Peak|CleanSpark|Riot Platforms)\b',  # Specific companies from examples
+            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd|Co\.?)\b',  # Corporate entities
+            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN)\b',  # Known mining companies
+            r'\b([A-Z][a-zA-Z]+)\s+(?:Holdings?)\b',  # "DL Holdings", "ABC Holding"
         ]
         
         for pattern in company_patterns:
-            matches = re.findall(pattern, text)
+            matches = re.findall(pattern, text, re.IGNORECASE)
             for match in matches:
-                if match and match.lower() not in [c.lower() for c in companies]:
-                    companies.append(match)
+                # Clean up the match and avoid nonsensical extractions
+                if match and len(match) > 2 and match.lower() not in [c.lower() for c in companies]:
+                    # Don't add if it contains words that suggest it's not a real company
+                    if not any(word in match.lower() for word in ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 'million', 'investment']):
+                        companies.append(match)
         
         # Extract financial amounts (dollars, BTC amounts)
         financial_amounts = []
@@ -362,17 +364,23 @@ class TextUtils:
             # Determine the primary structure based on content
             title_lower = title.lower()
             
-            # Strategy 1: Company-focused format (like the example)
-            if info["companies"] and info["financial_amounts"]:
-                return TextUtils._create_company_focused_tweet(info, title, title_lower)
+            # Check for negative news that shouldn't use company investment format
+            negative_keywords = ['stole', 'steal', 'theft', 'arrest', 'charge', 'scandal', 'illegal', 'fraud', 'crime']
+            is_negative_news = any(word in title_lower for word in negative_keywords)
+            
+            # Strategy 1: Company-focused format (only for positive business news)
+            if not is_negative_news and info["companies"] and info["financial_amounts"]:
+                # Further check that it's actually about business investments
+                business_keywords = ['invest', 'expand', 'launch', 'partner', 'acquire', 'announce', 'facility', 'operation']
+                if any(word in title_lower for word in business_keywords):
+                    return TextUtils._create_company_focused_tweet(info, title, title_lower)
             
             # Strategy 2: News-focused format for regulatory/general news
-            elif info["regulatory"] or any(word in title_lower for word in ["approve", "regulation", "legal"]):
+            if info["regulatory"] or any(word in title_lower for word in ["approve", "regulation", "legal"]):
                 return TextUtils._create_news_focused_tweet(info, title)
             
-            # Strategy 3: Enhanced generic format
-            else:
-                return TextUtils._create_enhanced_generic_tweet(info, title)
+            # Strategy 3: Enhanced generic format (fallback for all other cases)
+            return TextUtils._create_enhanced_generic_tweet(info, title)
             
         except Exception as e:
             logger.error(f"Error creating enhanced tweet text: {str(e)}")
@@ -382,6 +390,17 @@ class TextUtils:
     @staticmethod
     def _create_company_focused_tweet(info: Dict[str, Any], title: str, title_lower: str) -> str:
         """Create company-focused tweet format: 'Company invests $X in BTC mining via Partner. Target: Y'"""
+        
+        # Check if this is actually about company investments/business actions
+        # If it's about crime, scandal, or negative news, fall back to generic format
+        negative_keywords = ['stole', 'steal', 'theft', 'arrest', 'charge', 'scandal', 'illegal', 'fraud', 'crime']
+        if any(word in title_lower for word in negative_keywords):
+            return TextUtils._create_enhanced_generic_tweet(info, title)
+        
+        # Only proceed with company format if we have legitimate companies
+        if not info["companies"] or len(info["companies"]) < 1:
+            return TextUtils._create_enhanced_generic_tweet(info, title)
+            
         components = []
         
         # Primary company
