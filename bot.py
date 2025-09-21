@@ -110,6 +110,82 @@ class BitcoinMiningNewsBot:
             return self.tweet_poster.twitter_client.client
         return None
 
+    def _is_queue_stale(self, max_age_hours: int = 48) -> bool:
+        """Check if queued articles are too old to be worth posting"""
+        from datetime import datetime, timedelta
+        
+        queued_articles = self.posted_articles.get("queued_articles", [])
+        if not queued_articles:
+            return False
+        
+        cutoff_time = datetime.now() - timedelta(hours=max_age_hours)
+        
+        stale_count = 0
+        articles_with_dates = 0
+        
+        for article in queued_articles:
+            # Check publication date
+            date_time_str = article.get("dateTimePub") or article.get("dateTime", "")
+            if date_time_str:
+                try:
+                    # Parse ISO format date
+                    article_date = datetime.fromisoformat(date_time_str.replace('Z', '+00:00'))
+                    articles_with_dates += 1
+                    if article_date.replace(tzinfo=None) < cutoff_time:
+                        stale_count += 1
+                except ValueError:
+                    # If we can't parse the date, don't count it as stale
+                    pass
+        
+        # Only consider staleness if we have date information for most articles
+        if articles_with_dates == 0:
+            # No date information available, don't consider stale
+            return False
+        
+        # If more than half the articles with dates are stale, consider the whole queue stale
+        staleness_ratio = stale_count / articles_with_dates
+        is_stale = staleness_ratio > 0.5
+        
+        if is_stale:
+            logger.info(f"Queue is stale: {stale_count}/{articles_with_dates} dated articles older than {max_age_hours}h")
+        
+        return is_stale
+    
+    def _clean_stale_articles(self, max_age_hours: int = 48):
+        """Remove stale articles from the queue"""
+        from datetime import datetime, timedelta
+        
+        queued_articles = self.posted_articles.get("queued_articles", [])
+        if not queued_articles:
+            return
+        
+        cutoff_time = datetime.now() - timedelta(hours=max_age_hours)
+        original_count = len(queued_articles)
+        
+        # Filter out stale articles
+        fresh_articles = []
+        for article in queued_articles:
+            date_time_str = article.get("dateTimePub") or article.get("dateTime", "")
+            if date_time_str:
+                try:
+                    article_date = datetime.fromisoformat(date_time_str.replace('Z', '+00:00'))
+                    if article_date.replace(tzinfo=None) >= cutoff_time:
+                        fresh_articles.append(article)
+                    # If the article is stale, don't add it (remove it)
+                except ValueError:
+                    # If we can't parse the date, keep the article (assume fresh)
+                    fresh_articles.append(article)
+            else:
+                # If no date info, keep the article (we don't know how old it is)
+                fresh_articles.append(article)
+        
+        self.posted_articles["queued_articles"] = fresh_articles
+        cleaned_count = original_count - len(fresh_articles)
+        
+        if cleaned_count > 0:
+            logger.info(f"Cleaned {cleaned_count} stale articles from queue (older than {max_age_hours}h)")
+            FileManager.save_posted_articles(self.posted_articles)
+
     def _process_queued_article(self) -> bool:
         """Process the next queued article (FIFO) if available"""
         queued_articles = self.posted_articles.get("queued_articles", [])
@@ -213,6 +289,9 @@ class BitcoinMiningNewsBot:
                 logger.info("Bot execution skipped: rate limit cooldown still active")
                 return
 
+            # Clean any stale articles from the queue before processing
+            self._clean_stale_articles()
+
             # Fetch articles
             articles = self.fetch_bitcoin_mining_articles()
 
@@ -242,10 +321,21 @@ class BitcoinMiningNewsBot:
                     else:
                         logger.info(f"Skipping already queued article: {title}")
 
+            # Prioritize fresh content over stale queued articles
             if not new_articles:
-                # Check if we have queued articles to post
-                self._process_queued_article()
-                return
+                # No new articles available, check if queue has fresh content
+                if self._is_queue_stale():
+                    logger.info("No new articles and queue is stale - waiting for fresh content")
+                    return
+                else:
+                    # Queue has fresh content, process it
+                    self._process_queued_article()
+                    return
+            else:
+                # We have new articles - always prioritize these over queued content
+                if self.posted_articles.get("queued_articles"):
+                    queue_count = len(self.posted_articles["queued_articles"])
+                    logger.info(f"Found {len(new_articles)} fresh articles - prioritizing over {queue_count} queued articles")
 
             # Sort by publication date (newest first) 
             new_articles.sort(key=lambda x: x.get("dateTime", ""), reverse=True)
