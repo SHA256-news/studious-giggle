@@ -31,7 +31,7 @@ class BitcoinMiningNewsBot:
         
         Args:
             safe_mode (bool): If True, skip API initialization for diagnostics
-            skip_gemini_analysis (bool): If True, skip Gemini analysis during posting
+            skip_gemini_analysis (bool): If True, skip Gemini AI headline generation during posting
         """
         self.safe_mode = safe_mode
         self.skip_gemini_analysis = skip_gemini_analysis
@@ -145,9 +145,8 @@ class BitcoinMiningNewsBot:
         # Create a copy of the article to potentially enhance with Gemini-generated content
         enhanced_article = article.copy()
         
-        # Analyze article with Gemini AI if available and not skipped
+        # Generate enhanced tweet headline with Gemini AI if available and not skipped
         if not self.skip_gemini_analysis:
-            # Generate tweet headline with Gemini Thinking (new requirement)
             gemini_client = self.api_manager.get_gemini_client()
             if gemini_client:
                 try:
