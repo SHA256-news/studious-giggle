@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 
 # Import the tweet creation utilities
 from utils import TextUtils, FileManager
+from config import BotConstants
 
 
 def load_queued_articles() -> List[Dict[str, Any]]:
@@ -47,7 +48,7 @@ def show_tweet_preview(article: Dict[str, Any], index: int) -> None:
     print(f"   Title: {title}")
     print(f"   Source: {source}")
     print(f"   Date: {date}")
-    print(f"   URL: {url[:60]}{'...' if len(url) > 60 else ''}")
+    print(f"   URL: {url[:BotConstants.URL_PREVIEW_LENGTH]}{'...' if len(url) > BotConstants.URL_PREVIEW_LENGTH else ''}")
     
     # Generate both tweet formats for comparison
     try:
@@ -92,7 +93,8 @@ def show_tweet_preview(article: Dict[str, Any], index: int) -> None:
         
         print(f"\n📈 Article Metrics:")
         print(f"   • Relevance Score: {relevance}/100")
-        print(f"   • Sentiment: {sentiment:.2f} ({'Positive' if sentiment > 0.1 else 'Negative' if sentiment < -0.1 else 'Neutral'})")
+        print(f"   • Sentiment: {sentiment:.2f} "
+              f"({'Positive' if sentiment > 0.1 else 'Negative' if sentiment < -0.1 else 'Neutral'})")
         
     except Exception as e:
         logger.error(f"Error generating tweet preview for article {index + 1}: {e}")

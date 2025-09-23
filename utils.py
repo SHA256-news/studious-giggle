@@ -268,6 +268,286 @@ class TimeUtils:
             return False
 
 
+class TextPatterns:
+    """Centralized text patterns for consistent text processing"""
+    
+    FINANCIAL_PATTERNS = [
+        r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|m|b))?',
+        r'[\d,]+\s*(?:million|billion)',
+        r'[\d,]+\s*btc',
+        r'[\d,]+\s*bitcoin'
+    ]
+    
+    COMPANY_PATTERNS = [
+        r'\b(cleanspark|marathon|riot|microstrategy|tesla|coinbase|binance|bitfarms|hive|core\s*scientific)\b',
+    ]
+    
+    TECH_PATTERNS = [
+        r'[\d,]+\s*(?:eh/s|th/s|mw|gw)',
+        r'[\d,]+\s*(?:miners?|rigs?)',
+        r'[\d,]+\s*(?:annually|per\s*year)'
+    ]
+    
+    KEY_TERMS = ['credit', 'line', 'investment', 'facility', 'partnership', 'expansion', 'mining', 'bitcoin', 'btc']
+    
+    TRAILING_WORDS = ["at", "from", "on", "in", "via", "to", "by"]
+
+
+class ContentFilter:
+    """Handles filtering of repetitive content in tweets"""
+    
+    @staticmethod
+    def filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
+        """Filter out content from summary that's already mentioned in hook tweet"""
+        if not summary or not hook_tweet:
+            return summary
+            
+        summary_lines = ContentFilter._split_summary_lines(summary)
+        if not summary_lines:
+            return summary
+            
+        hook_keywords, hook_tech_specs = ContentFilter._extract_hook_keywords(hook_tweet)
+        filtered_lines = ContentFilter._filter_summary_lines(summary_lines, hook_keywords, hook_tech_specs)
+        
+        return '\n'.join(filtered_lines) if filtered_lines else TextUtils._extract_unique_summary_info(article, hook_tweet)
+
+    @staticmethod
+    def _split_summary_lines(summary: str) -> List[str]:
+        """Split summary into clean lines"""
+        return [line.strip() for line in summary.split('\n') if line.strip()]
+
+    @staticmethod
+    def _extract_hook_keywords(hook_tweet: str) -> Tuple[set, set]:
+        """Extract keywords and technical specs from hook tweet"""
+        hook_lower = hook_tweet.lower()
+        hook_keywords = set()
+        
+        # Extract financial amounts
+        for pattern in TextPatterns.FINANCIAL_PATTERNS:
+            matches = re.findall(pattern, hook_lower)
+            for match in matches:
+                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
+                hook_keywords.add(normalized)
+                hook_keywords.add(match.replace('$', '').replace(',', '').lower())
+        
+        # Extract company names
+        for pattern in TextPatterns.COMPANY_PATTERNS:
+            matches = re.findall(pattern, hook_lower)
+            hook_keywords.update(matches)
+        
+        # Extract key terms
+        hook_keywords.update(term for term in TextPatterns.KEY_TERMS if term in hook_lower)
+        
+        # Extract technical specifications
+        hook_tech_specs = set()
+        for pattern in TextPatterns.TECH_PATTERNS:
+            matches = re.findall(pattern, hook_lower)
+            for match in matches:
+                normalized = re.sub(r'\s+', ' ', match.strip().lower())
+                hook_tech_specs.add(normalized)
+        
+        return hook_keywords, hook_tech_specs
+
+    @staticmethod
+    def _filter_summary_lines(summary_lines: List[str], hook_keywords: set, hook_tech_specs: set) -> List[str]:
+        """Filter summary lines to remove repetitive content"""
+        filtered_lines = []
+        
+        for line in summary_lines:
+            line_lower = line.lower()
+            is_repetitive = False
+            
+            # Check for financial amount repetition
+            if ContentFilter._has_repetitive_financial_amounts(line_lower, hook_keywords):
+                filtered_line = ContentFilter._remove_financial_amounts_if_additional_content(line, line_lower)
+                if filtered_line:
+                    filtered_line = re.sub(r'^[▪•-]\s*', '▪ ', filtered_line)
+                    if len(filtered_line) > BotConstants.MIN_MEANINGFUL_CONTENT_LENGTH:
+                        filtered_lines.append(filtered_line)
+                is_repetitive = True
+            
+            # Check for company name repetition
+            if not is_repetitive:
+                for pattern in TextPatterns.COMPANY_PATTERNS:
+                    if re.search(pattern, line_lower) and any(company in hook_keywords for company in re.findall(pattern, line_lower)):
+                        is_repetitive = True
+                        break
+            
+            # If line is not repetitive, keep it
+            if not is_repetitive:
+                filtered_lines.append(line)
+        
+        return filtered_lines
+
+    @staticmethod
+    def _has_repetitive_financial_amounts(line_lower: str, hook_keywords: set) -> bool:
+        """Check if line contains financial amounts already in hook"""
+        line_amounts = []
+        for pattern in TextPatterns.FINANCIAL_PATTERNS:
+            matches = re.findall(pattern, line_lower)
+            for match in matches:
+                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
+                line_amounts.append(normalized)
+                line_amounts.append(match.replace('$', '').replace(',', '').lower())
+        
+        return line_amounts and any(amount in hook_keywords for amount in line_amounts)
+
+    @staticmethod
+    def _remove_financial_amounts_if_additional_content(line: str, line_lower: str) -> Optional[str]:
+        """Remove financial amounts from line if it has additional meaningful content"""
+        line_without_amounts = line_lower
+        for pattern in TextPatterns.FINANCIAL_PATTERNS:
+            line_without_amounts = re.sub(pattern, '', line_without_amounts)
+        
+        line_words = [w for w in line_without_amounts.split() if len(w) > BotConstants.MIN_WORD_LENGTH]
+        if len(line_words) >= BotConstants.MIN_ADDITIONAL_WORDS:  # Has additional meaningful content
+            filtered_line = line
+            for pattern in TextPatterns.FINANCIAL_PATTERNS:
+                filtered_line = re.sub(pattern, '', filtered_line, flags=re.IGNORECASE)
+            filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
+            return filtered_line if len(filtered_line) > BotConstants.MIN_FILTERED_LINE_LENGTH else None
+        return None
+
+
+class TweetFormatter:
+    """Handles tweet text formatting and enhancement"""
+    
+    @staticmethod
+    def create_enhanced_tweet_text(article: Dict[str, Any]) -> str:
+        """Create enhanced tweet text using Gemini headline or fallback formatting"""
+        if article is None:
+            logger.warning("Received None article in create_enhanced_tweet_text, using fallback")
+            return "Bitcoin mining news update"
+        
+        # If we have Gemini-generated content, use it with minimal enhancement
+        gemini_headline = article.get("gemini_headline", "") or ""
+        
+        if gemini_headline and gemini_headline.strip():
+            enhanced_gemini = TweetFormatter._enhance_gemini_headline(gemini_headline, article)
+            if len(enhanced_gemini) <= BotConstants.TWEET_MAX_LENGTH:
+                return enhanced_gemini
+        
+        # Fallback to enhanced title processing
+        return TweetFormatter._create_enhanced_generic_tweet(article)
+
+    @staticmethod
+    def _enhance_gemini_headline(gemini_headline: str, article: Dict[str, Any]) -> str:
+        """Enhance a Gemini-generated headline with minimal formatting"""
+        if not gemini_headline:
+            return ""
+            
+        enhanced_headline = gemini_headline.strip()
+        
+        # Add emoji prefix if not already present
+        if not any(char in enhanced_headline[:5] for char in ["⚡", "💰", "📈", "🏭", "🎯"]):
+            prefix = random.choice(BotConstants.TWEET_PREFIXES)
+            enhanced_headline = f"{prefix}{enhanced_headline}"
+        
+        # Ensure proper sentence case and punctuation
+        if enhanced_headline and not enhanced_headline[len(enhanced_headline.split()[0]):].strip().startswith(enhanced_headline.split()[0]):
+            if enhanced_headline[-1] not in ".!?":
+                enhanced_headline += "..."
+        
+        return enhanced_headline[:BotConstants.TWEET_MAX_LENGTH]
+
+    @staticmethod
+    def _create_enhanced_generic_tweet(article: Dict[str, Any]) -> str:
+        """Create enhanced tweet using article info when Gemini content is not available"""
+        # Extract key information for intelligent formatting
+        info = TextUtils.extract_key_info(article)
+        
+        # Choose formatting strategy based on content
+        if info.get("companies"):
+            return TweetFormatter._create_company_focused_tweet(article, info)
+        elif info.get("financial_amounts") or info.get("technical_specs"):
+            return TweetFormatter._create_news_focused_tweet(article, info)
+        else:
+            return TweetFormatter._create_basic_tweet(article)
+
+    @staticmethod
+    def _create_company_focused_tweet(article: Dict[str, Any], info: Dict[str, Any]) -> str:
+        """Create company-focused tweet format"""
+        title = (article.get("title") or "").strip()
+        companies = info.get("companies", [])
+        financial_amounts = info.get("financial_amounts", [])
+        
+        if not title:
+            return "Bitcoin mining news update"
+        
+        # Use the first company as focus
+        main_company = companies[0] if companies else ""
+        
+        # Create enhanced title with company focus
+        if main_company and main_company.lower() not in title.lower():
+            # Company not in title, add it
+            if financial_amounts:
+                enhanced_title = f"{main_company} {financial_amounts[0]} {title}"
+            else:
+                enhanced_title = f"{main_company}: {title}"
+        else:
+            enhanced_title = title
+        
+        # Add emoji and ensure length compliance
+        prefix = random.choice(BotConstants.TWEET_PREFIXES)
+        
+        # Calculate available space for title
+        max_title_length = BotConstants.TWEET_MAX_LENGTH - len(prefix)
+        
+        if len(enhanced_title) > max_title_length:
+            enhanced_title = enhanced_title[:max_title_length - 3] + "..."
+        
+        return f"{prefix}{enhanced_title}"
+
+    @staticmethod
+    def _create_news_focused_tweet(article: Dict[str, Any], info: Dict[str, Any]) -> str:
+        """Create news-focused tweet with financial/technical highlights"""
+        title = (article.get("title") or "").strip()
+        financial_amounts = info.get("financial_amounts", [])
+        technical_specs = info.get("technical_specs", [])
+        
+        if not title:
+            return "Bitcoin mining news update"
+        
+        # Enhance title with key metrics
+        enhancements = []
+        if financial_amounts:
+            enhancements.extend(financial_amounts[:1])  # Use first financial amount
+        if technical_specs:
+            enhancements.extend(technical_specs[:1])   # Use first technical spec
+        
+        if enhancements:
+            key_info = " | ".join(enhancements)
+            enhanced_title = f"{title} - {key_info}"
+        else:
+            enhanced_title = title
+        
+        # Add emoji and ensure length compliance
+        prefix = random.choice(BotConstants.TWEET_PREFIXES)
+        max_title_length = BotConstants.TWEET_MAX_LENGTH - len(prefix)
+        
+        if len(enhanced_title) > max_title_length:
+            enhanced_title = enhanced_title[:max_title_length - 3] + "..."
+        
+        return f"{prefix}{enhanced_title}"
+
+    @staticmethod
+    def _create_basic_tweet(article: Dict[str, Any]) -> str:
+        """Create basic enhanced tweet when no special info is available"""
+        title = (article.get("title") or "").strip()
+        
+        if not title:
+            return "Bitcoin mining news update"
+        
+        # Add emoji prefix
+        prefix = random.choice(BotConstants.TWEET_PREFIXES)
+        max_title_length = BotConstants.TWEET_MAX_LENGTH - len(prefix)
+        
+        if len(title) > max_title_length:
+            title = title[:max_title_length - 3] + "..."
+        
+        return f"{prefix}{title}"
+
+
 class TextUtils:
     """Text processing utility functions"""
     
@@ -378,78 +658,10 @@ class TextUtils:
     @staticmethod
     def create_enhanced_tweet_text(article: Dict[str, Any]) -> str:
         """Create informative, concise tweet text prioritizing key details"""
-        try:
-            # Handle None article input defensively
-            if article is None:
-                logger.warning("Received None article, using fallback text")
-                return "Bitcoin mining news update"
-                
-            # Prefer Gemini-generated headline over original title
-            gemini_headline = article.get("gemini_headline", "") or ""
-            original_title = article.get("title", "") or ""
-            
-            # Use Gemini headline if it's meaningful, otherwise fall back to original title
-            if gemini_headline and gemini_headline.strip():
-                title = gemini_headline
-            else:
-                title = original_title
-            
-            # Handle None title explicitly before calling strip()
-            if not title or (title is not None and not title.strip()):
-                return TextUtils.create_original_tweet_text(article)  # fallback to original
-            
-            # Extract key information
-            info = TextUtils.extract_key_info(article)
-            
-            # Determine the primary structure based on content
-            title_lower = title.lower()
-            
-            # Check for negative news that shouldn't use company investment format
-            negative_keywords = ['stole', 'steal', 'theft', 'arrest', 'charge', 'scandal', 'illegal', 'fraud', 'crime']
-            is_negative_news = any(word in title_lower for word in negative_keywords)
-            
-            # Strategy 1: Company-focused format (only for positive business news)
-            if not is_negative_news and info["companies"] and info["financial_amounts"]:
-                # Further check that it's actually about business investments
-                business_keywords = ['invest', 'expand', 'launch', 'partner', 'acquire', 'announce', 'facility', 'operation']
-                if any(word in title_lower for word in business_keywords):
-                    return TextUtils._create_company_focused_tweet(info, title, title_lower)
-            
-            # Strategy 2: News-focused format for regulatory/general news
-            if info["regulatory"] or any(word in title_lower for word in ["approve", "regulation", "legal"]):
-                return TextUtils._create_news_focused_tweet(info, title)
-            
-            # Strategy 3: Enhanced generic format (fallback for all other cases)
-            return TextUtils._create_enhanced_generic_tweet(info, title)
-            
-        except Exception as e:
-            logger.error(f"Error creating enhanced tweet text: {str(e)}")
-            # Fallback to original method
-            return TextUtils.create_original_tweet_text(article)
-    
+        return TweetFormatter.create_enhanced_tweet_text(article)
+
     @staticmethod
-    def _create_company_focused_tweet(info: Dict[str, Any], title: str, title_lower: str) -> str:
-        """Create company-focused tweet format with better readability: '🏢 Company invests $X in BTC mining'"""
-        
-        # Check if this is actually about company investments/business actions
-        # If it's about crime, scandal, or negative news, fall back to generic format
-        negative_keywords = ['stole', 'steal', 'theft', 'arrest', 'charge', 'scandal', 'illegal', 'fraud', 'crime']
-        if any(word in title_lower for word in negative_keywords):
-            return TextUtils._create_enhanced_generic_tweet(info, title)
-        
-        # Only proceed with company format if we have legitimate companies
-        if not info["companies"] or len(info["companies"]) < 1:
-            return TextUtils._create_enhanced_generic_tweet(info, title)
-            
-        # Get primary company - ensure we get a reasonable length company name
-        primary_company = info["companies"][0]
-        if len(primary_company) > 40:  # Skip overly long extracted names
-            return TextUtils._create_enhanced_generic_tweet(info, title)
-            
-        components = []
-        
-        # Add appropriate emoji based on action type
-        emoji = "🏢"
+    def _filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
         if any(word in title_lower for word in ["expand", "expansion"]):
             emoji = "📈"
             action = "expands"
@@ -651,153 +863,7 @@ class TextUtils:
     @staticmethod
     def _filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
         """Filter out content from summary that's already mentioned in hook tweet"""
-        if not summary or not hook_tweet:
-            return summary
-            
-        # Split summary into lines/bullet points
-        summary_lines = []
-        for line in summary.split('\n'):
-            line = line.strip()
-            if line:
-                summary_lines.append(line)
-        
-        if not summary_lines:
-            return summary
-            
-        # Extract key terms from hook tweet for comparison
-        hook_lower = hook_tweet.lower()
-        
-        # Define keywords that indicate repetitive content
-        hook_keywords = set()
-        
-        # Extract financial amounts from hook
-        financial_patterns = [
-            r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|m|b))?',
-            r'[\d,]+\s*(?:million|billion)',
-            r'[\d,]+\s*btc',
-            r'[\d,]+\s*bitcoin'
-        ]
-        
-        for pattern in financial_patterns:
-            matches = re.findall(pattern, hook_lower)
-            for match in matches:
-                # Normalize the match
-                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
-                hook_keywords.add(normalized)
-                # Also add the raw match
-                hook_keywords.add(match.replace('$', '').replace(',', '').lower())
-        
-        # Extract company names from hook
-        company_patterns = [
-            r'\b(cleanspark|marathon|riot|microstrategy|tesla|coinbase|binance|bitfarms|hive|core\s*scientific)\b',
-        ]
-        
-        for pattern in company_patterns:
-            matches = re.findall(pattern, hook_lower)
-            hook_keywords.update(matches)
-        
-        # Extract other key terms 
-        key_terms = ['credit', 'line', 'investment', 'facility', 'partnership', 'expansion', 'mining', 'bitcoin', 'btc']
-        for term in key_terms:
-            if term in hook_lower:
-                hook_keywords.add(term)
-        
-        # Extract technical specifications from hook
-        tech_patterns = [
-            r'[\d,]+\s*(?:eh/s|th/s|mw|gw)',
-            r'[\d,]+\s*(?:miners?|rigs?)',
-            r'[\d,]+\s*(?:annually|per\s*year)'
-        ]
-        
-        hook_tech_specs = set()
-        for pattern in tech_patterns:
-            matches = re.findall(pattern, hook_lower)
-            for match in matches:
-                # Normalize tech specs
-                normalized = re.sub(r'\s+', ' ', match.strip().lower())
-                hook_tech_specs.add(normalized)
-        
-        # Filter summary lines
-        filtered_lines = []
-        for line in summary_lines:
-            line_lower = line.lower()
-            
-            # Check if this line contains information already in hook
-            is_repetitive = False
-            
-            # Check for financial amount repetition
-            line_amounts = []
-            for pattern in financial_patterns:
-                matches = re.findall(pattern, line_lower)
-                for match in matches:
-                    normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
-                    line_amounts.append(normalized)
-                    line_amounts.append(match.replace('$', '').replace(',', '').lower())
-            
-            # If line contains same financial amounts as hook, it's repetitive
-            if line_amounts and any(amount in hook_keywords for amount in line_amounts):
-                # Check if there's additional non-financial info in this line
-                line_without_amounts = line_lower
-                for pattern in financial_patterns:
-                    line_without_amounts = re.sub(pattern, '', line_without_amounts)
-                
-                # If the line has substantial additional content, keep it but remove the amount
-                line_words = [w for w in line_without_amounts.split() if len(w) > 2]
-                if len(line_words) >= 2:  # Has additional meaningful content
-                    # Remove the financial amounts but keep the rest
-                    filtered_line = line
-                    for pattern in financial_patterns:
-                        filtered_line = re.sub(pattern, '', filtered_line, flags=re.IGNORECASE)
-                    filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
-                    if filtered_line and len(filtered_line) > 5:
-                        filtered_lines.append(filtered_line)
-                is_repetitive = True
-            
-            # Check for technical specification repetition
-            line_tech_specs = set()
-            for pattern in tech_patterns:
-                matches = re.findall(pattern, line_lower)
-                for match in matches:
-                    normalized = re.sub(r'\s+', ' ', match.strip().lower())
-                    line_tech_specs.add(normalized)
-            
-            # If line contains same tech specs as hook, filter them out or skip the line
-            if line_tech_specs and line_tech_specs.intersection(hook_tech_specs):
-                # Check if there's additional non-tech info in this line
-                line_without_tech = line_lower
-                for pattern in tech_patterns:
-                    line_without_tech = re.sub(pattern, '', line_without_tech)
-                
-                # If the line has substantial additional content, keep it but remove the tech specs
-                line_words = [w for w in line_without_tech.split() if len(w) > 2 and w not in ['new', 'the', 'and', 'for', 'with']]
-                if len(line_words) >= 2:  # Has additional meaningful content
-                    # Remove the tech specs but keep the rest
-                    filtered_line = line
-                    for pattern in tech_patterns:
-                        filtered_line = re.sub(pattern, '', filtered_line, flags=re.IGNORECASE)
-                    filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
-                    # Clean up bullet points and extra spaces
-                    filtered_line = re.sub(r'^[▪•-]\s*', '▪ ', filtered_line)
-                    if filtered_line and len(filtered_line) > 8:  # Must have meaningful content
-                        filtered_lines.append(filtered_line)
-                is_repetitive = True
-            
-            # Check for company name repetition
-            for pattern in company_patterns:
-                if re.search(pattern, line_lower) and re.search(pattern, hook_lower):
-                    is_repetitive = True
-                    break
-            
-            # If line is not repetitive, keep it
-            if not is_repetitive:
-                filtered_lines.append(line)
-        
-        # Reconstruct the summary
-        if filtered_lines:
-            return '\n'.join(filtered_lines)
-        else:
-            # If everything was filtered out, try to extract unique information
-            return TextUtils._extract_unique_summary_info(article, hook_tweet)
+        return ContentFilter.filter_repetitive_content(summary, hook_tweet, article)
     
     @staticmethod
     def _extract_unique_summary_info(article: Dict[str, Any], hook_tweet: str) -> str:
@@ -971,7 +1037,6 @@ class TextUtils:
     @staticmethod
     def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
         """Return both tweets for a two-part thread (for backward compatibility)."""
-        # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_thread_texts, using fallback")
             return "Bitcoin mining news update", ""
@@ -979,25 +1044,30 @@ class TextUtils:
         # Create hook tweet and check for URL duplication
         hook_tweet = TextUtils.create_hook_tweet(article)
         
-        # Check if hook tweet contains the URL and remove it if present
-        url = (article.get("url") or article.get("uri") or "").strip()
-        if url and url in hook_tweet:
-            # Remove URL from hook tweet - find URL and everything after it
-            url_index = hook_tweet.find(url)
-            if url_index != -1:
-                # Keep everything before the URL, strip trailing whitespace and prepositions
-                hook_tweet = hook_tweet[:url_index].strip()
-                # Remove trailing prepositions like "at", "from", "on", etc.
-                trailing_words = ["at", "from", "on", "in", "via", "to", "by"]
-                for word in trailing_words:
-                    if hook_tweet.lower().endswith(f" {word}"):
-                        hook_tweet = hook_tweet[:-len(word)-1].strip()
-                        break
+        # Remove URL from hook tweet if present
+        hook_tweet = TextUtils._remove_url_from_text(hook_tweet, article)
         
         # Create link tweet 
         link_tweet = TextUtils.create_link_tweet(article)
         
         return hook_tweet, link_tweet
+
+    @staticmethod
+    def _remove_url_from_text(text: str, article: Dict[str, Any]) -> str:
+        """Remove URL from text if present"""
+        url = (article.get("url") or article.get("uri") or "").strip()
+        if url and url in text:
+            # Remove URL from text - find URL and everything after it
+            url_index = text.find(url)
+            if url_index != -1:
+                # Keep everything before the URL, strip trailing whitespace and prepositions
+                text = text[:url_index].strip()
+                # Remove trailing prepositions
+                for word in TextPatterns.TRAILING_WORDS:
+                    if text.lower().endswith(f" {word}"):
+                        text = text[:-len(word)-1].strip()
+                        break
+        return text
 
     @staticmethod
     def _create_intelligent_thread(article: Dict[str, Any]) -> Tuple[str, str]:
