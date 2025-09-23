@@ -271,7 +271,7 @@ class TimeUtils:
 class TextUtils:
     """Text processing utility functions"""
     
-    # Abbreviations to save characters
+    # Abbreviations to save characters - optimized for Twitter readability
     ABBREVIATIONS = {
         "Bitcoin": "BTC",
         "bitcoin": "BTC", 
@@ -284,11 +284,20 @@ class TextUtils:
         "Billion": "B",
         "thousand": "K",
         "Thousand": "K",
-        "mining": "mining",  # Keep this as is since it's key
         "company": "co",
         "Company": "Co",
         "investment": "invest",
-        "Investment": "Invest"
+        "Investment": "Invest",
+        "operations": "ops",
+        "Operations": "Ops",
+        "facility": "facility",  # Keep this readable
+        "mining": "mining",  # Keep this as key term
+        "announce": "announces",
+        "announces": "announces",  # Keep for clarity
+        "partnership": "partnership",  # Keep for clarity
+        "United States": "US",
+        "government": "govt",
+        "Government": "Govt"
     }
     
     @staticmethod
@@ -309,18 +318,27 @@ class TextUtils:
         
         # Look for additional company patterns in the text
         company_patterns = [
-            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd|Co\.?)\b',  # Corporate entities
-            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN)\b',  # Known mining companies
-            r'\b([A-Z][a-zA-Z]+)\s+(?:Holdings?)\b',  # "DL Holdings", "ABC Holding"
+            # Known companies first (highest priority)
+            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN|DL Holdings?)\b',  
+            # Corporate entities - be more restrictive
+            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,2})\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd)\b',  
+            # Simple holding pattern
+            r'\b([A-Z][a-zA-Z]{2,15})\s+Holdings?\b',  
         ]
         
         for pattern in company_patterns:
             matches = re.findall(pattern, text, re.IGNORECASE)
             for match in matches:
                 # Clean up the match and avoid nonsensical extractions
-                if match and len(match) > 2 and match.lower() not in [c.lower() for c in companies]:
-                    # Don't add if it contains words that suggest it's not a real company
-                    if not any(word in match.lower() for word in ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 'million', 'investment']):
+                if (match and len(match) > 2 and len(match) <= 30 and 
+                    match.lower() not in [c.lower() for c in companies]):
+                    
+                    # Filter out words that aren't company names
+                    skip_words = ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
+                                'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
+                                'facility', 'energy', 'strategic', 'partnership']
+                    
+                    if not any(word in match.lower() for word in skip_words):
                         companies.append(match)
         
         # Extract financial amounts (dollars, BTC amounts)
@@ -411,7 +429,7 @@ class TextUtils:
     
     @staticmethod
     def _create_company_focused_tweet(info: Dict[str, Any], title: str, title_lower: str) -> str:
-        """Create company-focused tweet format: 'Company invests $X in BTC mining via Partner. Target: Y'"""
+        """Create company-focused tweet format with better readability: '🏢 Company invests $X in BTC mining'"""
         
         # Check if this is actually about company investments/business actions
         # If it's about crime, scandal, or negative news, fall back to generic format
@@ -423,75 +441,101 @@ class TextUtils:
         if not info["companies"] or len(info["companies"]) < 1:
             return TextUtils._create_enhanced_generic_tweet(info, title)
             
+        # Get primary company - ensure we get a reasonable length company name
+        primary_company = info["companies"][0]
+        if len(primary_company) > 40:  # Skip overly long extracted names
+            return TextUtils._create_enhanced_generic_tweet(info, title)
+            
         components = []
         
-        # Primary company
-        primary_company = info["companies"][0]
-        components.append(primary_company)
-        
-        # Action verb
-        action = "invests"
+        # Add appropriate emoji based on action type
+        emoji = "🏢"
         if any(word in title_lower for word in ["expand", "expansion"]):
+            emoji = "📈"
             action = "expands"
         elif any(word in title_lower for word in ["launch", "start"]):
+            emoji = "🚀"
             action = "launches"
         elif any(word in title_lower for word in ["partner", "partnership"]):
+            emoji = "🤝"
             action = "partners w/"
         elif any(word in title_lower for word in ["acquire", "acquisition"]):
+            emoji = "💰"
             action = "acquires"
+        else:
+            action = "invests"
         
-        components.append(action)
+        components.extend([emoji, primary_company, action])
         
         # Financial amount (prioritize dollar amounts)
-        financial_detail = ""
         if info["financial_amounts"]:
             dollar_amounts = [a for a in info["financial_amounts"] if '$' in a]
             if dollar_amounts:
-                financial_detail = dollar_amounts[0]
+                components.append(dollar_amounts[0])
             else:
-                financial_detail = info["financial_amounts"][0]
-            components.append(financial_detail)
+                components.append(info["financial_amounts"][0])
         
         components.append("in BTC mining")
         
-        # Partner company
+        # Partner company (only if we have a second distinct company)
         if len(info["companies"]) > 1:
-            components.append(f"via {info['companies'][1]}")
+            second_company = info["companies"][1]
+            if len(second_company) <= 20 and second_company.lower() != primary_company.lower():
+                components.append(f"w/ {second_company}")
         
-        # Technical specs as target
+        # Technical specs as additional context
         if info["technical_specs"]:
-            # Add period and start new sentence for technical details
-            base_text = " ".join(components) + "."
+            base_text = " ".join(components)
             tech_detail = info["technical_specs"][0]
+            
+            # Choose appropriate label
             if "annually" in tech_detail or "/yr" in tech_detail or "per year" in tech_detail:
-                full_text = f"{base_text} Target: {tech_detail}"
+                full_text = f"{base_text}. Target: {tech_detail}"
             else:
-                full_text = f"{base_text} Specs: {tech_detail}"
+                full_text = f"{base_text}. Specs: {tech_detail}"
             
             # Apply abbreviations and check length
             full_text = TextUtils._apply_abbreviations(full_text)
             if len(full_text) <= BotConstants.TWEET_MAX_LENGTH:
                 return full_text
         
-        # If tech specs make it too long, return base without tech details
+        # Return base text with abbreviations and hashtags applied
         base_text = " ".join(components)
-        return TextUtils._apply_abbreviations(base_text)
+        base_text = TextUtils._apply_abbreviations(base_text)
+        return TextUtils._add_strategic_hashtags(base_text, info)
     
     @staticmethod
     def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create news-focused format for regulatory/general news"""
-        # For regulatory news, keep the authoritative structure but enhance with abbreviations
-        enhanced_title = title
+        """Create news-focused format for regulatory/general news with better readability"""
+        # Add appropriate emoji for news type
+        title_lower = title.lower()
+        emoji = "📰"
         
-        # Add financial context if available and not already in title
-        if info["financial_amounts"] and not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+        if any(word in title_lower for word in ["approve", "approved", "approval"]):
+            emoji = "✅"
+        elif any(word in title_lower for word in ["regulation", "regulatory", "rule"]):
+            emoji = "⚖️"
+        elif any(word in title_lower for word in ["ban", "banned", "restrict"]):
+            emoji = "🚫"
+        elif any(word in title_lower for word in ["sec", "cftc", "government"]):
+            emoji = "🏛️"
+        
+        # Start with emoji
+        enhanced_title = f"{emoji} {title}"
+        
+        # Add financial context if available and significant
+        if info["financial_amounts"]:
+            # Only add if it's a significant amount not already prominently featured
             amount = info["financial_amounts"][0]
-            enhanced_title = f"{amount}: {enhanced_title}"
+            if '$' in amount and 'million' in amount.lower() or 'billion' in amount.lower():
+                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+                    enhanced_title = f"{emoji} {amount}: {title}"
         
-        # Apply abbreviations
+        # Apply abbreviations and add hashtags
         enhanced_title = TextUtils._apply_abbreviations(enhanced_title)
+        enhanced_title = TextUtils._add_strategic_hashtags(enhanced_title, info)
         
-        # Ensure length compliance
+        # Ensure length compliance after hashtags
         if len(enhanced_title) > BotConstants.TWEET_MAX_LENGTH:
             enhanced_title = enhanced_title[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
         
@@ -499,29 +543,48 @@ class TextUtils:
     
     @staticmethod
     def _create_enhanced_generic_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create enhanced generic format"""
-        components = []
+        """Create enhanced generic format with better readability and structure"""
+        title_lower = title.lower()
         
-        # Add location if available and significant
+        # Determine appropriate emoji based on content
+        emoji = "📰"  # Default news emoji
+        
+        if any(word in title_lower for word in ["milestone", "reaches", "production"]):
+            emoji = "🎯"
+        elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
+            emoji = "🌍"
+        elif any(word in title_lower for word in ["facility", "farm", "center"]):
+            emoji = "🏭"
+        elif any(word in title_lower for word in ["invest", "fund", "capital"]):
+            emoji = "💰"
+        elif any(word in title_lower for word in ["tech", "hash", "power", "energy"]):
+            emoji = "⚡"
+        
+        components = [emoji]
+        
+        # Add location context if significant and not already in title
         if info["locations"]:
             location = info["locations"][0].title()
-            if location.lower() not in title.lower():
+            if location.lower() not in title_lower and len(location) <= 15:
                 components.append(f"{location}:")
         
-        # Add financial amount if available and not in title
+        # Add financial amount if significant and not prominently featured
         if info["financial_amounts"]:
             amount = info["financial_amounts"][0]
-            if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
-                components.append(f"{amount}:")
+            # Only add if it's a substantial amount
+            if ('$' in amount and ('million' in amount.lower() or 'billion' in amount.lower())) or 'BTC' in amount:
+                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"][:1]):
+                    components.append(f"{amount}:")
         
         # Add the title
         components.append(title)
         
-        # Combine and apply abbreviations
+        # Combine and apply abbreviations and hashtags
         tweet_text = " ".join(components)
         tweet_text = TextUtils._apply_abbreviations(tweet_text)
+        tweet_text = TextUtils._add_strategic_hashtags(tweet_text, info)
         
-        # Ensure length compliance
+        # Ensure length compliance after hashtags
         if len(tweet_text) > BotConstants.TWEET_MAX_LENGTH:
             tweet_text = tweet_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
         
@@ -553,6 +616,54 @@ class TextUtils:
             # Use word boundaries to avoid partial replacements
             text = re.sub(r'\b' + re.escape(full_word) + r'\b', abbrev, text)
         return text
+
+    @staticmethod
+    def _add_strategic_hashtags(text: str, info: Dict[str, Any], max_length: int = 280) -> str:
+        """Add strategic hashtags if there's space, prioritizing engagement"""
+        # Calculate available space for hashtags
+        available_space = max_length - len(text)
+        
+        # Don't add hashtags if we don't have enough space
+        if available_space < 10:
+            return text
+            
+        hashtags = []
+        text_lower = text.lower()
+        
+        # Priority hashtags based on content
+        if info.get("companies"):
+            hashtags.append("#Bitcoin")
+        
+        if any(word in text_lower for word in ["mining", "miner", "hashrate"]):
+            hashtags.append("#BitcoinMining")
+        elif "btc" in text_lower:
+            hashtags.append("#BTC")
+            
+        if any(word in text_lower for word in ["investment", "invest", "$"]):
+            hashtags.append("#Crypto")
+            
+        if any(word in text_lower for word in ["energy", "renewable", "solar", "wind"]):
+            hashtags.append("#GreenEnergy")
+            
+        if any(word in text_lower for word in ["regulation", "sec", "approve", "legal"]):
+            hashtags.append("#CryptoNews")
+            
+        # Add location-based hashtags for significant locations
+        if info.get("locations"):
+            location = info["locations"][0]
+            if location.lower() in ["texas", "china", "kazakhstan", "us", "usa"]:
+                hashtags.append(f"#{location.title()}")
+        
+        # Add hashtags that fit within space
+        hashtag_text = ""
+        for hashtag in hashtags[:3]:  # Maximum 3 hashtags
+            test_text = f"{text}{hashtag_text} {hashtag}"
+            if len(test_text) <= max_length:
+                hashtag_text += f" {hashtag}"
+            else:
+                break
+                
+        return f"{text}{hashtag_text}".strip() if hashtag_text else text
 
     @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
