@@ -15,6 +15,128 @@ from config import BotConstants
 logger = logging.getLogger('bitcoin_mining_bot')
 
 
+class FormattingUtils:
+    """Common formatting utilities to reduce code duplication"""
+    
+    @staticmethod
+    def format_article_title(article: Dict[str, Any], max_length: int = 50, add_ellipsis: bool = True) -> str:
+        """Format article title with consistent truncation logic
+        
+        Args:
+            article: Article dictionary that may contain 'title' or 'gemini_headline'
+            max_length: Maximum length before truncation
+            add_ellipsis: Whether to add '...' after truncation
+        
+        Returns:
+            Formatted title string
+        """
+        # Try gemini_headline first, then title, then fallback
+        title = article.get("gemini_headline") or article.get("title", "Unknown title")
+        
+        if len(title) <= max_length:
+            return title + ("..." if add_ellipsis else "")
+        else:
+            return title[:max_length] + ("..." if add_ellipsis else "")
+    
+    @staticmethod 
+    def get_queue_count_message(queued_articles: List[Dict[str, Any]]) -> str:
+        """Generate consistent queue count message"""
+        queue_count = len(queued_articles)
+        return f", {queue_count} total in queue" if queue_count > 0 else ""
+    
+    @staticmethod
+    def format_execution_time_message(execution_time: float, status: str) -> str:
+        """Format consistent execution time logging"""
+        return f"⏱️  Total execution time: {execution_time:.2f} seconds"
+
+
+class ErrorHandlingUtils:
+    """Centralized error handling utilities"""
+    
+    @staticmethod
+    def log_missing_api_keys_error():
+        """Log the standard missing API keys error message"""
+        logger.error("🚨 CONFIGURATION ERROR: Missing required environment variables")
+        logger.error("This error occurs when the bot cannot find the required API keys.")
+        logger.error("")
+        logger.error("To fix this issue:")
+        logger.error("1. Go to your GitHub repository settings")
+        logger.error("2. Navigate to Settings > Secrets and variables > Actions")
+        logger.error("3. Add the following repository secrets:")
+        for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
+                   "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
+            logger.error(f"   • {var}")
+        logger.error("")
+        logger.error("For detailed setup instructions, see the README.md file.")
+    
+    @staticmethod
+    def log_comprehensive_api_key_diagnosis(queued_count: int):
+        """Show comprehensive diagnosis for missing API keys (GitHub Actions context)"""
+        logger.error("="*80)
+        logger.error("🔍 DIAGNOSIS: GitHub Action 'Success' but No Tweets Posted")
+        logger.error("="*80)
+        logger.error("")
+        logger.error("✅ WHAT WORKED:")
+        logger.error("   - Dependencies installed successfully")
+        logger.error("   - Bot code executed without errors")
+        logger.error("   - Python imports and initialization completed")
+        logger.error("   - Error handling worked correctly")
+        logger.error("")
+        logger.error("❌ WHAT FAILED:")
+        logger.error("   - Missing required API credentials")
+        logger.error("   - Unable to connect to Twitter API")
+        logger.error("   - Unable to connect to EventRegistry API")
+        logger.error("   - Cannot post tweets without valid authentication")
+        logger.error("")
+        if queued_count > 0:
+            logger.error(f"📋 ARTICLES WAITING: {queued_count} articles are queued for posting")
+            logger.error("   These articles will be posted automatically once API keys are configured.")
+            logger.error("")
+        logger.error("🔧 SOLUTION: Configure GitHub Repository Secrets")
+        logger.error("   1. Go to your repository Settings > Secrets and variables > Actions")
+        logger.error("   2. Add these repository secrets:")
+        for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
+                   "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
+            logger.error(f"      - {var}")
+        logger.error("")
+        logger.error("💡 WHY GITHUB ACTIONS SHOW 'SUCCESS':")
+        logger.error("   - The workflow completes all steps without exceptions")
+        logger.error("   - Dependencies install successfully")
+        logger.error("   - The bot gracefully handles missing credentials")
+        logger.error("   - No Python errors or crashes occur")
+        logger.error("   - 'Success' means the code ran, not that tweets were posted")
+        logger.error("")
+        logger.error("📖 For API key setup guides:")
+        logger.error("   - Twitter: https://developer.twitter.com/")
+        logger.error("   - EventRegistry: https://newsapi.ai/dashboard")
+        logger.error("")
+        logger.error("🔍 Run diagnostics: python bot.py --diagnose")
+        logger.error("="*80)
+    
+    @staticmethod
+    def log_execution_status(execution_time: float, status: str, success: bool = True):
+        """Log consistent execution status"""
+        time_msg = FormattingUtils.format_execution_time_message(execution_time, status)
+        status_symbol = "✅" if success else "❌"
+        logger.info(f"{time_msg}")
+        logger.info(f"{status_symbol} Status: {status}")
+
+
+class QueueUtils:
+    """Utilities for queue management to reduce repetitive patterns"""
+    
+    @staticmethod
+    def get_queued_articles(posted_articles: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Get queued articles with consistent access pattern"""
+        return posted_articles.get("queued_articles", [])
+    
+    @staticmethod
+    def set_queued_articles(posted_articles: Dict[str, Any], articles: List[Dict[str, Any]]) -> None:
+        """Set queued articles with consistent pattern"""
+        posted_articles.setdefault("queued_articles", []).clear()
+        posted_articles["queued_articles"].extend(articles)
+
+
 class RuntimeLogger:
     """Handles runtime logging for content filtering and blocking"""
     
