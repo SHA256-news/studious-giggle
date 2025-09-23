@@ -649,6 +649,192 @@ class TextUtils:
         return gemini_headline
 
     @staticmethod
+    def _filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
+        """Filter out content from summary that's already mentioned in hook tweet"""
+        if not summary or not hook_tweet:
+            return summary
+            
+        # Split summary into lines/bullet points
+        summary_lines = []
+        for line in summary.split('\n'):
+            line = line.strip()
+            if line:
+                summary_lines.append(line)
+        
+        if not summary_lines:
+            return summary
+            
+        # Extract key terms from hook tweet for comparison
+        hook_lower = hook_tweet.lower()
+        
+        # Define keywords that indicate repetitive content
+        hook_keywords = set()
+        
+        # Extract financial amounts from hook
+        financial_patterns = [
+            r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|m|b))?',
+            r'[\d,]+\s*(?:million|billion)',
+            r'[\d,]+\s*btc',
+            r'[\d,]+\s*bitcoin'
+        ]
+        
+        for pattern in financial_patterns:
+            matches = re.findall(pattern, hook_lower)
+            for match in matches:
+                # Normalize the match
+                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
+                hook_keywords.add(normalized)
+                # Also add the raw match
+                hook_keywords.add(match.replace('$', '').replace(',', '').lower())
+        
+        # Extract company names from hook
+        company_patterns = [
+            r'\b(cleanspark|marathon|riot|microstrategy|tesla|coinbase|binance|bitfarms|hive|core\s*scientific)\b',
+        ]
+        
+        for pattern in company_patterns:
+            matches = re.findall(pattern, hook_lower)
+            hook_keywords.update(matches)
+        
+        # Extract other key terms 
+        key_terms = ['credit', 'line', 'investment', 'facility', 'partnership', 'expansion', 'mining', 'bitcoin', 'btc']
+        for term in key_terms:
+            if term in hook_lower:
+                hook_keywords.add(term)
+        
+        # Extract technical specifications from hook
+        tech_patterns = [
+            r'[\d,]+\s*(?:eh/s|th/s|mw|gw)',
+            r'[\d,]+\s*(?:miners?|rigs?)',
+            r'[\d,]+\s*(?:annually|per\s*year)'
+        ]
+        
+        hook_tech_specs = set()
+        for pattern in tech_patterns:
+            matches = re.findall(pattern, hook_lower)
+            for match in matches:
+                # Normalize tech specs
+                normalized = re.sub(r'\s+', ' ', match.strip().lower())
+                hook_tech_specs.add(normalized)
+        
+        # Filter summary lines
+        filtered_lines = []
+        for line in summary_lines:
+            line_lower = line.lower()
+            
+            # Check if this line contains information already in hook
+            is_repetitive = False
+            
+            # Check for financial amount repetition
+            line_amounts = []
+            for pattern in financial_patterns:
+                matches = re.findall(pattern, line_lower)
+                for match in matches:
+                    normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
+                    line_amounts.append(normalized)
+                    line_amounts.append(match.replace('$', '').replace(',', '').lower())
+            
+            # If line contains same financial amounts as hook, it's repetitive
+            if line_amounts and any(amount in hook_keywords for amount in line_amounts):
+                # Check if there's additional non-financial info in this line
+                line_without_amounts = line_lower
+                for pattern in financial_patterns:
+                    line_without_amounts = re.sub(pattern, '', line_without_amounts)
+                
+                # If the line has substantial additional content, keep it but remove the amount
+                line_words = [w for w in line_without_amounts.split() if len(w) > 2]
+                if len(line_words) >= 2:  # Has additional meaningful content
+                    # Remove the financial amounts but keep the rest
+                    filtered_line = line
+                    for pattern in financial_patterns:
+                        filtered_line = re.sub(pattern, '', filtered_line, flags=re.IGNORECASE)
+                    filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
+                    if filtered_line and len(filtered_line) > 5:
+                        filtered_lines.append(filtered_line)
+                is_repetitive = True
+            
+            # Check for technical specification repetition
+            line_tech_specs = set()
+            for pattern in tech_patterns:
+                matches = re.findall(pattern, line_lower)
+                for match in matches:
+                    normalized = re.sub(r'\s+', ' ', match.strip().lower())
+                    line_tech_specs.add(normalized)
+            
+            # If line contains same tech specs as hook, filter them out or skip the line
+            if line_tech_specs and line_tech_specs.intersection(hook_tech_specs):
+                # Check if there's additional non-tech info in this line
+                line_without_tech = line_lower
+                for pattern in tech_patterns:
+                    line_without_tech = re.sub(pattern, '', line_without_tech)
+                
+                # If the line has substantial additional content, keep it but remove the tech specs
+                line_words = [w for w in line_without_tech.split() if len(w) > 2 and w not in ['new', 'the', 'and', 'for', 'with']]
+                if len(line_words) >= 2:  # Has additional meaningful content
+                    # Remove the tech specs but keep the rest
+                    filtered_line = line
+                    for pattern in tech_patterns:
+                        filtered_line = re.sub(pattern, '', filtered_line, flags=re.IGNORECASE)
+                    filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
+                    # Clean up bullet points and extra spaces
+                    filtered_line = re.sub(r'^[▪•-]\s*', '▪ ', filtered_line)
+                    if filtered_line and len(filtered_line) > 8:  # Must have meaningful content
+                        filtered_lines.append(filtered_line)
+                is_repetitive = True
+            
+            # Check for company name repetition
+            for pattern in company_patterns:
+                if re.search(pattern, line_lower) and re.search(pattern, hook_lower):
+                    is_repetitive = True
+                    break
+            
+            # If line is not repetitive, keep it
+            if not is_repetitive:
+                filtered_lines.append(line)
+        
+        # Reconstruct the summary
+        if filtered_lines:
+            return '\n'.join(filtered_lines)
+        else:
+            # If everything was filtered out, try to extract unique information
+            return TextUtils._extract_unique_summary_info(article, hook_tweet)
+    
+    @staticmethod
+    def _extract_unique_summary_info(article: Dict[str, Any], hook_tweet: str) -> str:
+        """Extract unique information for summary when Gemini summary is too repetitive"""
+        info = TextUtils.extract_key_info(article)
+        hook_lower = hook_tweet.lower()
+        
+        unique_points = []
+        
+        # Look for technical specs not mentioned in hook
+        for spec in info.get("technical_specs", []):
+            if spec.lower() not in hook_lower:
+                unique_points.append(f"▪ {spec}")
+        
+        # Look for locations not mentioned in hook
+        for location in info.get("locations", []):
+            if location.lower() not in hook_lower:
+                unique_points.append(f"▪ {location}")
+        
+        # Look for regulatory info not mentioned in hook
+        for reg in info.get("regulatory", []):
+            if reg.lower() not in hook_lower:
+                unique_points.append(f"▪ {reg}")
+        
+        # Look for additional financial amounts not in hook
+        for amount in info.get("financial_amounts", []):
+            amount_normalized = amount.replace('$', '').replace(',', '').lower()
+            if amount_normalized not in hook_lower and amount.lower() not in hook_lower:
+                unique_points.append(f"▪ {amount}")
+        
+        # Return up to 3 unique points
+        if unique_points:
+            return '\n'.join(unique_points[:3])
+        else:
+            return ""
+
+    @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
         """Create the hook/benefit tweet that leads the thread, using Gemini AI when available."""
         # Handle None article input defensively
@@ -670,26 +856,35 @@ class TextUtils:
 
     @staticmethod
     def create_summary_tweet(article: Dict[str, Any]) -> str:
-        """Create a summary tweet with Gemini summary (no URL)."""
+        """Create a summary tweet with Gemini summary (no URL), avoiding repetition with hook tweet."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_summary_tweet, returning empty")
             return ""
 
+        # Get the hook tweet to check for repetition
+        hook_tweet = TextUtils.create_hook_tweet(article)
+        
         # Use Gemini-generated summary for the summary tweet (no URL)
         gemini_summary = article.get("gemini_summary", "") or ""
         
         if gemini_summary and gemini_summary.strip():
-            # Use Gemini summary without URL
             # Clean up the summary format (remove bullet points for better readability)
             clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
             
-            # Ensure summary fits within character limit
-            if len(clean_summary) <= BotConstants.TWEET_MAX_LENGTH:
-                return clean_summary
+            # Check for repetition and create a filtered summary
+            filtered_summary = TextUtils._filter_repetitive_content(clean_summary, hook_tweet, article)
+            
+            if filtered_summary:
+                # Ensure summary fits within character limit
+                if len(filtered_summary) <= BotConstants.TWEET_MAX_LENGTH:
+                    return filtered_summary
+                else:
+                    # Truncate summary to fit
+                    return filtered_summary[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
             else:
-                # Truncate summary to fit
-                return clean_summary[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+                # If everything was filtered out, return empty
+                return ""
         else:
             # No Gemini summary available, return empty string
             return ""

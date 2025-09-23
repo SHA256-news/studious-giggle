@@ -188,7 +188,7 @@ Generate only the 3 bullet points now:
         return prompt
 
     def _clean_response_text(self, text: str) -> str:
-        """Clean up Gemini response text to remove any debugging content."""
+        """Clean up Gemini response text to remove any debugging content and generic openings."""
         if not text:
             return text
             
@@ -205,6 +205,18 @@ Generate only the 3 bullet points now:
             "Here are the",
             "Based on the URL content",
             "Let me analyze"
+        ]
+        
+        # Generic opening phrases to remove or replace
+        generic_openings = [
+            "The article states that ",
+            "The article mentions that ",
+            "According to the article, ",
+            "The report states that ",
+            "The news states that ",
+            "It is reported that ",
+            "The article discusses how ",
+            "The piece explains that "
         ]
         
         # Remove lines that start with debugging phrases
@@ -227,7 +239,20 @@ Generate only the 3 bullet points now:
             if not is_debugging:
                 clean_lines.append(line)
         
-        # Join back and return the first non-empty result
+        # Join back and get the result
+        result = '\n'.join(clean_lines).strip()
+        
+        # Remove generic openings from the final result
+        for opening in generic_openings:
+            if result.lower().startswith(opening.lower()):
+                result = result[len(opening):].strip()
+                # Capitalize the first letter after removing the opening
+                if result:
+                    result = result[0].upper() + result[1:] if len(result) > 1 else result.upper()
+                logger.info(f"Removed generic opening: '{opening}'")
+                break
+        
+        return result
         result = '\n'.join(clean_lines).strip()
         
         # If we filtered everything out, return a safe fallback instead of problematic original
