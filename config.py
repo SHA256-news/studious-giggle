@@ -114,3 +114,12 @@ class BotConstants:
     
     # Image support
     IMAGES_DIRECTORY = "images"
+    
+    # Text processing constants
+    MIN_MEANINGFUL_CONTENT_LENGTH = 8
+    MIN_WORD_LENGTH = 2
+    MIN_ADDITIONAL_WORDS = 2
+    MIN_FILTERED_LINE_LENGTH = 5
+    
+    # URL truncation
+    URL_PREVIEW_LENGTH = 60
