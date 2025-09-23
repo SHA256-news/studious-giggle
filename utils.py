@@ -597,7 +597,14 @@ class TextUtils:
             logger.warning("Received None article in create_thread_texts, using fallback")
             return "Bitcoin mining news update", ""
             
+        # First, try to create a hook tweet as normal
         hook_tweet = TextUtils.create_hook_tweet(article)
+        
+        # Check if the hook tweet would be too long (would get truncated)
+        # We need to detect if the original content was truncated by looking for "..."
+        if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
+            # Content was truncated, so we need to create a proper thread
+            return TextUtils._create_intelligent_thread(article)
         
         # Check if hook tweet already contains a URL
         article_url = (article.get("url") or article.get("uri") or "").strip()
@@ -610,6 +617,127 @@ class TextUtils:
             link_tweet = TextUtils.create_link_tweet(article)
         
         return hook_tweet, link_tweet
+
+    @staticmethod
+    def _create_intelligent_thread(article: Dict[str, Any]) -> Tuple[str, str]:
+        """Create an intelligent thread when content is too long to fit in a single tweet."""
+        # Get the title and URL
+        title = article.get("title", "").strip()
+        url = (article.get("url") or article.get("uri") or "").strip()
+        
+        # Extract key information for context
+        info = TextUtils.extract_key_info(article)
+        
+        # Strategy: Split title intelligently at natural break points
+        # Try to create a compelling first tweet that doesn't get cut off
+        
+        # Remove excessive punctuation and normalize spaces
+        clean_title = re.sub(r'\s+', ' ', title).strip()
+        
+        # Apply abbreviations first to save space
+        abbreviated_title = TextUtils._apply_abbreviations(clean_title)
+        
+        # If abbreviated title fits, use it as is
+        if len(abbreviated_title) <= BotConstants.TWEET_MAX_LENGTH:
+            first_tweet = abbreviated_title
+            # Create informative second tweet with URL
+            second_tweet = TextUtils.create_link_tweet(article)
+            return first_tweet, second_tweet
+        
+        # Title is still too long even with abbreviations
+        # Find intelligent split points (prefer after sentences, then clauses, then words)
+        
+        # Try splitting at sentence boundaries first
+        sentences = re.split(r'[.!?]\s+', abbreviated_title)
+        if len(sentences) > 1:
+            first_part = sentences[0]
+            if len(first_part) <= BotConstants.TWEET_MAX_LENGTH - 10:  # Leave room for "... (1/2)"
+                remaining = ' '.join(sentences[1:])
+                first_tweet = f"{first_part}... (1/2)"
+                
+                # Create second tweet with remaining content and URL
+                if url:
+                    if len(remaining) + len(url) + 15 <= BotConstants.TWEET_MAX_LENGTH:  # Room for "(2/2) " and " "
+                        second_tweet = f"(2/2) {remaining} {url}"
+                    else:
+                        # Truncate remaining if needed
+                        max_remaining = BotConstants.TWEET_MAX_LENGTH - len(url) - 15
+                        if len(remaining) > max_remaining:
+                            remaining = remaining[:max_remaining].rsplit(' ', 1)[0] + "..."
+                        second_tweet = f"(2/2) {remaining} {url}"
+                else:
+                    second_tweet = f"(2/2) {remaining}"
+                
+                return first_tweet, second_tweet
+        
+        # No good sentence break, try splitting at clause boundaries (commas, "with", "and")
+        clause_patterns = [r'\s+with\s+', r'\s+and\s+', r',\s+', r'\s+including\s+', r'\s+across\s+']
+        for pattern in clause_patterns:
+            parts = re.split(pattern, abbreviated_title, maxsplit=1)
+            if len(parts) == 2:
+                first_part = parts[0]
+                if len(first_part) <= BotConstants.TWEET_MAX_LENGTH - 10:
+                    remaining = parts[1]
+                    first_tweet = f"{first_part}... (1/2)"
+                    
+                    # Create second tweet with remaining content and URL
+                    if url:
+                        if len(remaining) + len(url) + 15 <= BotConstants.TWEET_MAX_LENGTH:
+                            second_tweet = f"(2/2) {remaining} {url}"
+                        else:
+                            max_remaining = BotConstants.TWEET_MAX_LENGTH - len(url) - 15
+                            if len(remaining) > max_remaining:
+                                remaining = remaining[:max_remaining].rsplit(' ', 1)[0] + "..."
+                            second_tweet = f"(2/2) {remaining} {url}"
+                    else:
+                        second_tweet = f"(2/2) {remaining}"
+                    
+                    return first_tweet, second_tweet
+        
+        # Last resort: split at word boundary
+        words = abbreviated_title.split()
+        if len(words) > 1:
+            # Find the longest prefix that fits
+            first_words = []
+            char_count = 0
+            for word in words:
+                if char_count + len(word) + 1 + 10 <= BotConstants.TWEET_MAX_LENGTH:  # +1 for space, +10 for "... (1/2)"
+                    first_words.append(word)
+                    char_count += len(word) + 1
+                else:
+                    break
+            
+            if first_words:
+                first_part = ' '.join(first_words)
+                remaining_words = words[len(first_words):]
+                remaining = ' '.join(remaining_words)
+                
+                first_tweet = f"{first_part}... (1/2)"
+                
+                # Create second tweet with remaining content and URL
+                if url:
+                    if len(remaining) + len(url) + 15 <= BotConstants.TWEET_MAX_LENGTH:
+                        second_tweet = f"(2/2) {remaining} {url}"
+                    else:
+                        max_remaining = BotConstants.TWEET_MAX_LENGTH - len(url) - 15
+                        if len(remaining) > max_remaining:
+                            remaining = remaining[:max_remaining].rsplit(' ', 1)[0] + "..."
+                        second_tweet = f"(2/2) {remaining} {url}"
+                else:
+                    if len(remaining) + 6 > BotConstants.TWEET_MAX_LENGTH:  # +6 for "(2/2) "
+                        remaining = remaining[:BotConstants.TWEET_MAX_LENGTH - 9].rsplit(' ', 1)[0] + "..."  # +9 for "(2/2) ..."
+                    second_tweet = f"(2/2) {remaining}"
+                
+                return first_tweet, second_tweet
+        
+        # Fallback: Just truncate and add URL to second tweet
+        first_tweet = abbreviated_title[:BotConstants.TWEET_MAX_LENGTH - 10] + "... (1/2)"
+        if url:
+            second_tweet = f"(2/2) {url}"
+        else:
+            second_tweet = "(2/2) [continued]"
+        
+        return first_tweet, second_tweet
 
     @staticmethod
     def create_tweet_text(article: Dict[str, Any]) -> str:
