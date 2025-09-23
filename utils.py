@@ -1110,7 +1110,7 @@ class TextUtils:
         
         if gemini_headline and gemini_headline.strip():
             # Gemini content is already optimized, just apply minimal enhancements
-            enhanced_gemini = TextUtils._enhance_gemini_headline(gemini_headline, article)
+            enhanced_gemini = TweetFormatter._enhance_gemini_headline(gemini_headline, article)
             if len(enhanced_gemini) <= BotConstants.TWEET_MAX_LENGTH:
                 return enhanced_gemini
         
