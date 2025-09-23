@@ -669,6 +669,47 @@ class TextUtils:
         return TextUtils.create_enhanced_tweet_text(article)
 
     @staticmethod
+    def create_summary_tweet(article: Dict[str, Any]) -> str:
+        """Create a summary tweet with Gemini summary (no URL)."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_summary_tweet, returning empty")
+            return ""
+
+        # Use Gemini-generated summary for the summary tweet (no URL)
+        gemini_summary = article.get("gemini_summary", "") or ""
+        
+        if gemini_summary and gemini_summary.strip():
+            # Use Gemini summary without URL
+            # Clean up the summary format (remove bullet points for better readability)
+            clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
+            
+            # Ensure summary fits within character limit
+            if len(clean_summary) <= BotConstants.TWEET_MAX_LENGTH:
+                return clean_summary
+            else:
+                # Truncate summary to fit
+                return clean_summary[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+        else:
+            # No Gemini summary available, return empty string
+            return ""
+
+    @staticmethod  
+    def create_url_tweet(article: Dict[str, Any]) -> str:
+        """Create a standalone URL tweet."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_url_tweet, returning empty")
+            return ""
+            
+        url = (article.get("url") or article.get("uri") or "").strip()
+        if not url:
+            return ""
+
+        # Return just the URL
+        return url
+
+    @staticmethod
     def create_link_tweet(article: Dict[str, Any]) -> str:
         """Create the succinct link tweet with Gemini summary or call-to-action."""
         # Handle None article input defensively
@@ -714,35 +755,64 @@ class TextUtils:
         return link_tweet
 
     @staticmethod
+    def create_three_part_thread(article: Dict[str, Any]) -> Tuple[str, str, str]:
+        """Return three tweets for a three-part thread: hook, summary, url."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_three_part_thread, using fallback")
+            return "Bitcoin mining news update", "", ""
+            
+        # Create hook tweet (headline with emoji)
+        hook_tweet = TextUtils.create_hook_tweet(article)
+        
+        # Create summary tweet (Gemini summary without URL)
+        summary_tweet = TextUtils.create_summary_tweet(article)
+        
+        # Create URL tweet (just the URL)
+        url_tweet = TextUtils.create_url_tweet(article)
+        
+        return hook_tweet, summary_tweet, url_tweet
+
+    @staticmethod
     def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
-        """Return both tweets for a two-part thread."""
+        """Return both tweets for a two-part thread (for backward compatibility)."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_thread_texts, using fallback")
             return "Bitcoin mining news update", ""
             
-        # First, try to create a hook tweet as normal
-        hook_tweet = TextUtils.create_hook_tweet(article)
+        # Get three-part thread
+        hook_tweet, summary_tweet, url_tweet = TextUtils.create_three_part_thread(article)
         
-        # Check if the hook tweet would be too long (would get truncated)
-        # We need to detect if the original content was truncated by looking for "..."
-        if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
-            # Content was truncated, so we need to create a proper thread
-            return TextUtils._create_intelligent_thread(article)
-        
-        # Check if hook tweet already contains a URL
-        article_url = (article.get("url") or article.get("uri") or "").strip()
-        if article_url and article_url in hook_tweet:
-            # If hook tweet already has the URL, remove it from the hook and ensure it's in the last tweet
-            hook_tweet = hook_tweet.replace(article_url, "").strip()
-            # Clean up any extra spaces or punctuation left behind
-            hook_tweet = re.sub(r'\s+', ' ', hook_tweet).strip()
-            hook_tweet = re.sub(r'\s*at\s*$', '', hook_tweet).strip()  # Remove trailing "at"
-            # Create link tweet with URL (URL should ALWAYS be in the last tweet)
-            link_tweet = TextUtils.create_link_tweet(article)
+        # If we have both summary and URL, combine them for backward compatibility
+        if summary_tweet and url_tweet:
+            # Combine summary and URL as before
+            if len(summary_tweet) + len(url_tweet) + 5 <= BotConstants.TWEET_MAX_LENGTH:  # +5 for spacing
+                link_tweet = f"{summary_tweet}\n\n{url_tweet}"
+            else:
+                # Truncate summary to fit with URL
+                max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url_tweet) - 5
+                if len(summary_tweet) > max_summary_length:
+                    truncated_summary = summary_tweet[:max_summary_length - 3] + "..."
+                    link_tweet = f"{truncated_summary}\n\n{url_tweet}"
+                else:
+                    link_tweet = f"{summary_tweet}\n\n{url_tweet}"
+        elif summary_tweet:
+            # Only summary available
+            link_tweet = summary_tweet
+        elif url_tweet:
+            # Only URL available, use traditional format
+            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+            if call_to_action:
+                link_tweet = f"{call_to_action} {url_tweet}".strip()
+            else:
+                link_tweet = url_tweet
         else:
-            # Normal case: create link tweet with URL
-            link_tweet = TextUtils.create_link_tweet(article)
+            # No summary or URL, check if hook tweet was truncated
+            if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
+                # Content was truncated, so we need to create a proper thread
+                return TextUtils._create_intelligent_thread(article)
+            link_tweet = ""
         
         return hook_tweet, link_tweet
 

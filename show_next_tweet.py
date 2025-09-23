@@ -129,21 +129,38 @@ def show_next_tweet():
         
         print()
         
-        # Check if it's a thread (2-part tweet)
+        # Check if it's a thread (show new 3-part format)
         try:
             article_for_thread = enhanced_article if gemini_content_available else next_article
-            hook_tweet, link_tweet = TextUtils.create_thread_texts(article_for_thread)
-            if hook_tweet and link_tweet and hook_tweet != link_tweet:
-                print("📝 THREAD FORMAT (2 tweets):")
+            hook_tweet, summary_tweet, url_tweet = TextUtils.create_three_part_thread(article_for_thread)
+            
+            # Determine how many tweets in the thread
+            tweet_count = 1  # Hook always exists
+            if summary_tweet:
+                tweet_count += 1
+            if url_tweet:
+                tweet_count += 1
+            
+            if tweet_count > 1:
+                print(f"📝 THREAD FORMAT ({tweet_count} tweets):")
                 print()
                 print("Tweet 1 (Hook):")
                 print(f"  {hook_tweet}")
                 print(f"  Characters: {len(hook_tweet)}/280")
                 print()
-                print("Tweet 2 (Link):")
-                print(f"  {link_tweet}")
-                print(f"  Characters: {len(link_tweet)}/280")
-                print()
+                
+                if summary_tweet:
+                    print("Tweet 2 (Summary):")
+                    print(f"  {summary_tweet}")
+                    print(f"  Characters: {len(summary_tweet)}/280")
+                    print()
+                
+                if url_tweet:
+                    tweet_num = 3 if summary_tweet else 2
+                    print(f"Tweet {tweet_num} (URL):")
+                    print(f"  {url_tweet}")
+                    print(f"  Characters: {len(url_tweet)}/280")
+                    print()
         except Exception:
             # Single tweet format (not a thread)
             pass
