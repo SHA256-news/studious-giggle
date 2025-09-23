@@ -123,13 +123,14 @@ class BitcoinMiningNewsBot:
 
     def _is_queue_stale(self, max_age_hours: int = 48) -> bool:
         """Check if queued articles are too old to be worth posting"""
-        from datetime import datetime, timedelta
+        from datetime import datetime, timedelta, timezone
         
         queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
         if not queued_articles:
             return False
         
-        cutoff_time = datetime.now() - timedelta(hours=max_age_hours)
+        # Use UTC for consistent timezone handling
+        cutoff_time = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
         
         stale_count = 0
         articles_with_dates = 0
@@ -139,10 +140,14 @@ class BitcoinMiningNewsBot:
             date_time_str = article.get("dateTimePub") or article.get("dateTime", "")
             if date_time_str:
                 try:
-                    # Parse ISO format date
+                    # Parse ISO format date and ensure it's timezone-aware
                     article_date = datetime.fromisoformat(date_time_str.replace('Z', '+00:00'))
+                    # Ensure article_date is timezone-aware for comparison
+                    if article_date.tzinfo is None:
+                        article_date = article_date.replace(tzinfo=timezone.utc)
+                    
                     articles_with_dates += 1
-                    if article_date.replace(tzinfo=None) < cutoff_time:
+                    if article_date < cutoff_time:
                         stale_count += 1
                 except ValueError:
                     # If we can't parse the date, don't count it as stale
@@ -164,13 +169,14 @@ class BitcoinMiningNewsBot:
     
     def _clean_stale_articles(self, max_age_hours: int = 48):
         """Remove stale articles from the queue"""
-        from datetime import datetime, timedelta
+        from datetime import datetime, timedelta, timezone
         
         queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
         if not queued_articles:
             return
         
-        cutoff_time = datetime.now() - timedelta(hours=max_age_hours)
+        # Use UTC for consistent timezone handling
+        cutoff_time = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
         original_count = len(queued_articles)
         
         # Filter out stale articles
@@ -179,8 +185,13 @@ class BitcoinMiningNewsBot:
             date_time_str = article.get("dateTimePub") or article.get("dateTime", "")
             if date_time_str:
                 try:
+                    # Parse ISO format date and ensure it's timezone-aware
                     article_date = datetime.fromisoformat(date_time_str.replace('Z', '+00:00'))
-                    if article_date.replace(tzinfo=None) >= cutoff_time:
+                    # Ensure article_date is timezone-aware for comparison
+                    if article_date.tzinfo is None:
+                        article_date = article_date.replace(tzinfo=timezone.utc)
+                    
+                    if article_date >= cutoff_time:
                         fresh_articles.append(article)
                     # If the article is stale, don't add it (remove it)
                 except ValueError:
