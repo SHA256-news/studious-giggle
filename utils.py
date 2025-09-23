@@ -236,8 +236,11 @@ class RuntimeLogger:
                 "reason": reason
             }
             
-            with open(jsonl_file, "a") as f:
-                f.write(json.dumps(log_entry) + "\n")
+            try:
+                with open(jsonl_file, "a") as f:
+                    f.write(json.dumps(log_entry) + "\n")
+            except (IOError, OSError) as e:
+                logger.warning(f"Failed to write to blocked content log: {e}")
             
             # Log to markdown file
             md_file = os.path.join(log_dir, "blocked.md")
@@ -291,14 +294,20 @@ class FileManager:
         try:
             with open(file_path, "r") as f:
                 return json.load(f)
-        except (FileNotFoundError, json.JSONDecodeError):
+        except (FileNotFoundError, ValueError):
+            # ValueError covers JSON decode errors in Python
             return None
     
     @staticmethod
     def _save_json_file(file_path: str, data: Dict[str, Any]) -> None:
-        """Generic JSON file saver"""
-        with open(file_path, "w") as f:
-            json.dump(data, f, indent=2)
+        """Generic JSON file saver with error handling"""
+        try:
+            with open(file_path, "w") as f:
+                json.dump(data, f, indent=2)
+        except (IOError, OSError, ValueError) as e:
+            # ValueError is the base class for JSON encoding errors in older Python versions
+            logger.error(f"Failed to save JSON file {file_path}: {e}")
+            raise
 
     @staticmethod
     def load_posted_articles() -> Dict[str, Any]:
@@ -1009,89 +1018,9 @@ class TextUtils:
 
 
     
-    @staticmethod
-    def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create news-focused format for regulatory/general news with better readability"""
-        # Add appropriate emoji for news type
-        title_lower = title.lower()
-        emoji = "📰"
-        
-        if any(word in title_lower for word in ["approve", "approved", "approval"]):
-            emoji = "✅"
-        elif any(word in title_lower for word in ["regulation", "regulatory", "rule"]):
-            emoji = "⚖️"
-        elif any(word in title_lower for word in ["ban", "banned", "restrict"]):
-            emoji = "🚫"
-        elif any(word in title_lower for word in ["sec", "cftc", "government"]):
-            emoji = "🏛️"
-        
-        # Start with emoji
-        enhanced_title = f"{emoji} {title}"
-        
-        # Add financial context if available and significant
-        if info["financial_amounts"]:
-            # Only add if it's a significant amount not already prominently featured
-            amount = info["financial_amounts"][0]
-            if '$' in amount and 'million' in amount.lower() or 'billion' in amount.lower():
-                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
-                    enhanced_title = f"{emoji} {amount}: {title}"
-        
-        # Apply abbreviations (no hashtags)
-        enhanced_title = TextUtils._apply_abbreviations(enhanced_title)
-        
-        # Ensure length compliance
-        if len(enhanced_title) > BotConstants.TWEET_MAX_LENGTH:
-            enhanced_title = enhanced_title[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
-        
-        return enhanced_title
+
     
-    @staticmethod
-    def _create_enhanced_generic_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create enhanced generic format with better readability and structure"""
-        title_lower = title.lower()
-        
-        # Determine appropriate emoji based on content
-        emoji = "📰"  # Default news emoji
-        
-        if any(word in title_lower for word in ["milestone", "reaches", "production"]):
-            emoji = "🎯"
-        elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
-            emoji = "🌍"
-        elif any(word in title_lower for word in ["facility", "farm", "center"]):
-            emoji = "🏭"
-        elif any(word in title_lower for word in ["invest", "fund", "capital"]):
-            emoji = "💰"
-        elif any(word in title_lower for word in ["tech", "hash", "power", "energy"]):
-            emoji = "⚡"
-        
-        components = [emoji]
-        
-        # Add location context if significant and not already in title
-        if info["locations"]:
-            location = info["locations"][0].title()
-            if location.lower() not in title_lower and len(location) <= 15:
-                components.append(f"{location}:")
-        
-        # Add financial amount if significant and not prominently featured
-        if info["financial_amounts"]:
-            amount = info["financial_amounts"][0]
-            # Only add if it's a substantial amount
-            if ('$' in amount and ('million' in amount.lower() or 'billion' in amount.lower())) or 'BTC' in amount:
-                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"][:1]):
-                    components.append(f"{amount}:")
-        
-        # Add the title
-        components.append(title)
-        
-        # Combine and apply abbreviations (no hashtags)
-        tweet_text = " ".join(components)
-        tweet_text = TextUtils._apply_abbreviations(tweet_text)
-        
-        # Ensure length compliance
-        if len(tweet_text) > BotConstants.TWEET_MAX_LENGTH:
-            tweet_text = tweet_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
-        
-        return tweet_text
+
     
     @staticmethod
     def _enhance_generic_title(title: str, info: Dict[str, Any]) -> str:
@@ -1126,39 +1055,7 @@ class TextUtils:
             text = _pattern_cache[pattern_key].sub(abbrev, text)
         return text
 
-    @staticmethod
-    def _enhance_gemini_headline(gemini_headline: str, article: Dict[str, Any]) -> str:
-        """Add minimal visual enhancements to Gemini-generated headlines (1 emoji max, no hashtags)"""
-        # Extract info for context-aware emoji selection
-        info = TextUtils.extract_key_info(article)
-        title_lower = gemini_headline.lower()
-        
-        # Add appropriate emoji based on content (only if not already present and max 1)
-        if not any(emoji in gemini_headline for emoji in ['🏢', '🤝', '✅', '🎯', '🌍', '📰', '⚡', '🏭', '💰', '📈']):
-            emoji = ""
-            if any(word in title_lower for word in ["partner", "partnership", "collaborate"]):
-                emoji = "🤝 "
-            elif any(word in title_lower for word in ["invest", "fund", "capital", "million", "billion"]):
-                emoji = "💰 "
-            elif any(word in title_lower for word in ["expand", "expansion", "growth", "increase"]):
-                emoji = "📈 "
-            elif any(word in title_lower for word in ["approve", "approved", "approval"]):
-                emoji = "✅ "
-            elif any(word in title_lower for word in ["milestone", "reaches", "achievement"]):
-                emoji = "🎯 "
-            elif any(word in title_lower for word in ["facility", "farm", "center", "plant"]):
-                emoji = "🏭 "
-            elif any(word in title_lower for word in ["energy", "power", "hashrate", "mining"]):
-                emoji = "⚡ "
-            elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
-                emoji = "🌍 "
-            else:
-                emoji = "📰 "
-            
-            gemini_headline = f"{emoji}{gemini_headline}"
-        
-        # No hashtags as per user request
-        return gemini_headline
+
 
     @staticmethod
     def _filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
