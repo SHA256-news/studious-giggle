@@ -46,7 +46,7 @@ def test_create_thread_texts_uses_helpers(monkeypatch):
 
 
 def test_create_thread_texts_prevents_duplicate_urls(monkeypatch):
-    """Test that create_thread_texts prevents duplicate URLs in both tweets"""
+    """Test that create_thread_texts ensures URL is always in the last tweet (preventing duplication)"""
     article = {"url": "https://example.com/article"}
 
     # Mock hook tweet to contain the URL (simulating case where URL is in title/content)
@@ -55,14 +55,17 @@ def test_create_thread_texts_prevents_duplicate_urls(monkeypatch):
 
     hook, link = TextUtils.create_thread_texts(article)
 
-    # Hook tweet should contain the URL
-    assert "https://example.com/article" in hook
+    # Hook tweet should NOT contain the URL (it should be moved to last tweet)
+    assert "https://example.com/article" not in hook
     
-    # Link tweet should NOT contain the URL to prevent duplication
-    assert "https://example.com/article" not in link
+    # Link tweet should contain the URL (URLs always go in the last tweet)
+    assert "https://example.com/article" in link
     
-    # Link tweet should only contain the call to action
-    assert link == BotConstants.TWEET_CALL_TO_ACTION
+    # Link tweet should contain both the call to action and the URL
+    assert BotConstants.TWEET_CALL_TO_ACTION in link
+    
+    # Hook tweet should have clean content without the URL
+    assert hook == "Bitcoin news"
 
 
 def test_create_thread_texts_normal_case_without_url_in_hook(monkeypatch):
