@@ -40,13 +40,20 @@ class GeminiClient:
                 model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    tools=tools,
-                    thinking_config=types.ThinkingConfig(thinking_budget=10000)
+                    tools=tools
                 ),
             )
 
             # Extract the headline from the response
             headline = response.text.strip()
+            
+            # Clean up any debugging content that might have leaked through
+            headline = self._clean_response_text(headline)
+            
+            # If headline was completely filtered out (all debugging), use fallback
+            if not headline:
+                logger.warning("Gemini headline was entirely debugging content, using title fallback")
+                headline = title[:140] if title else "Bitcoin mining news"
             
             # Log URL context metadata if available
             if hasattr(response, 'candidates') and response.candidates:
@@ -86,13 +93,20 @@ class GeminiClient:
                 model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
-                    tools=tools,
-                    thinking_config=types.ThinkingConfig(thinking_budget=10000)
+                    tools=tools
                 ),
             )
 
             # Extract the summary from the response
             summary = response.text.strip()
+            
+            # Clean up any debugging content that might have leaked through
+            summary = self._clean_response_text(summary)
+            
+            # If summary was completely filtered out (all debugging), use fallback
+            if not summary:
+                logger.warning("Gemini summary was entirely debugging content, using simple fallback")
+                summary = "• Key development • Impact on mining • Market implications"
             
             # Log URL context metadata if available
             if hasattr(response, 'candidates') and response.candidates:
@@ -133,12 +147,13 @@ Requirements:
 - Do NOT include bullet points, summaries, or additional content
 - Do NOT use excessive emojis (maximum 1-2 if appropriate)
 - Leverage the actual article content from the URL for accuracy and depth
+- IMPORTANT: Return ONLY the headline text, no explanation or analysis
 
 Source Article Title: {title}
 Source Article URL: {url}
 Source Article Summary: {trimmed_body}
 
-Analyze the full article content from the URL above and generate only the headline now:
+Generate only the headline now:
 """
         return prompt
 
@@ -158,6 +173,7 @@ Requirements:
 - Total summary should be under 110 characters including bullet points
 - Do NOT include a headline, introduction, or additional content
 - Leverage the actual article content from the URL for accuracy and depth
+- IMPORTANT: Return ONLY the 3 bullet points, no explanation or analysis
 - Examples of good bullet points:
   • $50M investment announced
   • 2,200 mining rigs deployed  
@@ -167,7 +183,58 @@ Source Article Title: {title}
 Source Article URL: {url}
 Source Article Summary: {trimmed_body}
 
-Analyze the full article content from the URL above and generate only the 3 bullet points now:
+Generate only the 3 bullet points now:
 """
         return prompt
+
+    def _clean_response_text(self, text: str) -> str:
+        """Clean up Gemini response text to remove any debugging content."""
+        if not text:
+            return text
+            
+        # Remove common debugging phrases that Gemini might output
+        debugging_phrases = [
+            "The article content was provided in the prompt, so",
+            "Let's analyze the provided source",
+            "I will use that",
+            "Based on the article content",
+            "Looking at the source article",
+            "From the provided information",
+            "Analyzing the article",
+            "Here's the",
+            "Here are the",
+            "Based on the URL content",
+            "Let me analyze"
+        ]
+        
+        # Remove lines that start with debugging phrases
+        lines = text.split('\n')
+        clean_lines = []
+        
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+                
+            # Skip lines that contain debugging phrases
+            is_debugging = False
+            for phrase in debugging_phrases:
+                if phrase.lower() in line.lower():
+                    is_debugging = True
+                    logger.warning(f"Filtering out debugging text: {line[:50]}...")
+                    break
+                    
+            if not is_debugging:
+                clean_lines.append(line)
+        
+        # Join back and return the first non-empty result
+        result = '\n'.join(clean_lines).strip()
+        
+        # If we filtered everything out, return a safe fallback instead of problematic original
+        if not result and text:
+            logger.warning("All text was filtered as debugging content, using fallback")
+            # Return a safe fallback instead of the problematic debugging text
+            return ""  # Let the calling function handle the empty response with its own fallback
+            
+        return result
 
