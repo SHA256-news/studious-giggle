@@ -428,6 +428,11 @@ class ContentFilter:
         if not summary_lines:
             return summary
             
+        # First, filter out any bullet points that exactly match content in the hook tweet
+        summary_lines = ContentFilter._filter_matching_bullet_points(summary_lines, hook_tweet)
+        if not summary_lines:
+            return ""
+            
         hook_keywords, hook_tech_specs = ContentFilter._extract_hook_keywords(hook_tweet)
         filtered_lines = ContentFilter._filter_summary_lines(summary_lines, hook_keywords, hook_tech_specs)
         
@@ -437,6 +442,101 @@ class ContentFilter:
     def _split_summary_lines(summary: str) -> List[str]:
         """Split summary into clean lines"""
         return [line.strip() for line in summary.split('\n') if line.strip()]
+
+    @staticmethod
+    def _filter_matching_bullet_points(summary_lines: List[str], hook_tweet: str) -> List[str]:
+        """Filter out summary bullet points that exactly match content in hook tweet bullet points"""
+        if not summary_lines or not hook_tweet:
+            return summary_lines
+        
+        # Extract bullet point content from hook tweet
+        hook_bullet_contents = ContentFilter._extract_bullet_point_contents(hook_tweet)
+        if not hook_bullet_contents:
+            return summary_lines
+        
+        # Filter summary lines to remove matching bullet points
+        filtered_lines = []
+        for line in summary_lines:
+            # Extract content from this summary line (removing bullet markers)
+            summary_content = ContentFilter._extract_bullet_content_from_line(line)
+            
+            # Check if this content matches any hook bullet point content
+            is_duplicate = False
+            for hook_content in hook_bullet_contents:
+                if ContentFilter._is_bullet_content_match(summary_content, hook_content):
+                    is_duplicate = True
+                    break
+            
+            # Keep the line only if it's not a duplicate
+            if not is_duplicate:
+                filtered_lines.append(line)
+        
+        return filtered_lines
+
+    @staticmethod
+    def _extract_bullet_point_contents(text: str) -> List[str]:
+        """Extract the content of bullet points from text, normalized for comparison"""
+        bullet_contents = []
+        
+        # Look for bullet points marked with • or ▪
+        for bullet_char in ['•', '▪']:
+            if bullet_char in text:
+                parts = text.split(bullet_char)[1:]  # Skip the first part (before first bullet)
+                for part in parts:
+                    # Clean up the bullet content for comparison
+                    content = part.strip()
+                    # Remove trailing punctuation and normalize whitespace
+                    content = re.sub(r'[.!?]+$', '', content).strip()
+                    content = re.sub(r'\s+', ' ', content).lower()
+                    if content and len(content) > 3:  # Ignore very short bullet points
+                        bullet_contents.append(content)
+        
+        return bullet_contents
+
+    @staticmethod
+    def _extract_bullet_content_from_line(line: str) -> str:
+        """Extract and normalize bullet point content from a single line"""
+        # Remove bullet markers and clean up
+        content = line
+        for bullet_char in ['•', '▪', '-']:
+            # Only remove if it's at the beginning of the line (after whitespace)
+            content = re.sub(f'^\\s*{re.escape(bullet_char)}\\s*', '', content).strip()
+        
+        # Remove trailing punctuation and normalize whitespace
+        content = re.sub(r'[.!?]+$', '', content).strip()
+        content = re.sub(r'\s+', ' ', content).lower()
+        
+        return content
+
+    @staticmethod  
+    def _is_bullet_content_match(content1: str, content2: str) -> bool:
+        """Check if two bullet point contents are essentially the same"""
+        if not content1 or not content2:
+            return False
+        
+        # Exact match
+        if content1 == content2:
+            return True
+        
+        # Similarity match - check if one is contained in the other and they're similar length
+        shorter, longer = (content1, content2) if len(content1) <= len(content2) else (content2, content1)
+        
+        # If the shorter content is at least 80% of the longer and the shorter is contained in the longer
+        if len(shorter) >= 0.8 * len(longer) and shorter in longer:
+            return True
+        
+        # Check for word-level similarity for short phrases
+        words1 = set(content1.split())
+        words2 = set(content2.split())
+        
+        # If at least 75% of words match and both have at least 2 words
+        if len(words1) >= 2 and len(words2) >= 2:
+            common_words = words1 & words2
+            total_words = len(words1 | words2)
+            if total_words > 0 and len(common_words) / total_words >= 0.75:
+                return True
+        
+        return False
 
     @staticmethod
     def _extract_hook_keywords(hook_tweet: str) -> Tuple[set, set]:
