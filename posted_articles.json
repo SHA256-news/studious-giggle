@@ -38,7 +38,8 @@
     "2025-09-841111124",
     "8875979560",
     "8875142792",
-    "8876655982"
+    "8876655982",
+    "8876776825"
   ],
   "queued_articles": [
     {
@@ -2213,7 +2214,649 @@
       "sentiment": 0.1607843137254903,
       "wgt": 496320132,
       "relevance": 64
+    },
+    {
+      "uri": "2025-09-841674370",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "13:41:19",
+      "dateTime": "2025-09-23T13:41:19Z",
+      "dateTimePub": "2025-09-23T13:03:11Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.benzinga.com/trading-ideas/movers/25/09/47816606/cleanspark-shares-are-rising-tuesday-whats-going-on",
+      "title": "CleanSpark Shares Are Rising Tuesday: What's Going On? - Cleanspark (NASDAQ:CLSK)",
+      "body": "Shares of CleanSpark Inc CLSK are moving higher Tuesday after the company announced an expanded credit facility to invest in high-performance computing capabilities and expand its energy portfolio.\n\nWhat Happened: Bitcoin BTC/USD miner CleanSpark said it increased its Bitcoin-backed credit facility with Coinbase Prime by $100 million.\n\nThe company plans to use the additional $100 million financing to expand its energy portfolio, scale mining operations and invest in high-performance computing capabilities.\n\n\"Delivering accretive growth using non-dilutive financing is at the core of CleanSpark's capital strategy. We are excited to expand our strategic relationship with Coinbase as our business continues to evolve, and our Digital Asset Management team will continue to drive growth and efficiency,\" said Gary Vecchiarelli, president and CFO of CleanSpark.\n\nCleanSpark's data center business previously focused on Bitcoin mining. The company's move into more diversified compute opportunities is being applauded by investors on Tuesday.\n\nHow To Buy CLSK Stock\n\nBy now you're likely curious about how to participate in the market for CleanSpark - be it to purchase shares, or even attempt to bet against the company.\n\nBuying shares is typically done through a brokerage account. You can find a list of possible trading platforms here. Many will allow you to buy \"fractional shares,\" which allows you to own portions of stock without buying an entire share.\n\nIf you're looking to bet against a company, the process is more complex. You'll need access to an options trading platform, or a broker who will allow you to \"go short\" a share of stock by lending you the shares to sell. The process of shorting a stock can be found at this resource. Otherwise, if your broker allows you to trade options, you can either buy a put option, or sell a call option at a strike price above where shares are currently trading - either way it allows you to profit off of the share price decline.\n\nCLSK Price Action: CleanSpark shares were up 6.99% at $14.70 at the time of publication on Tuesday, according to Benzinga Pro.\n\nCLSKCleanspark Inc\n\n$14.636.48%\n\nOverview\n\n$BTCBitcoin - United States dollar\n\n$112970.000.21%\n\nMarket News and Data brought to you by Benzinga APIs",
+      "source": {
+        "uri": "benzinga.com",
+        "dataType": "news",
+        "title": "Benzinga"
+      },
+      "authors": [
+        {
+          "uri": "adam_eckert@benzinga.com",
+          "name": "Adam Eckert",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coinbase",
+          "type": "org",
+          "score": 4,
+          "label": {
+            "eng": "Coinbase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_financial_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief financial officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/API",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "API"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Call_option",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Call option"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electronic_trading_platform",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electronic trading platform"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Broker",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Broker"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Short_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Short (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Strike_price",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Strike price"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 29
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 28
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 26
+        },
+        {
+          "uri": "dmoz/Business/Investing/Derivatives",
+          "label": "dmoz/Business/Investing/Derivatives",
+          "wgt": 26
+        },
+        {
+          "uri": "dmoz/Society/Work/Job_Sharing",
+          "label": "dmoz/Society/Work/Job Sharing",
+          "wgt": 28
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 55
+        }
+      ],
+      "image": "https://cdn.benzinga.com/files/images/story/2025/09/23/MSTR-Lags-Bitcoin.jpeg?width=1200&height=800&fit=crop",
+      "eventUri": null,
+      "sentiment": 0.5372549019607844,
+      "wgt": 496330879,
+      "relevance": 76
+    },
+    {
+      "uri": "2025-09-841639931",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "13:07:20",
+      "dateTime": "2025-09-23T13:07:20Z",
+      "dateTimePub": "2025-09-23T12:38:23Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.marketscreener.com/news/roth-capital-adjusts-price-target-on-iren-to-82-from-35-maintains-buy-rating-ce7d58dcde8cf623",
+      "title": "Roth Capital Adjusts Price Target on Iren to $82 From $35, Maintains Buy Rating",
+      "body": "IREN Limited, formerly Iris Energy Limited, is an Australia-based company, which owns and operates data centers powered by 100% renewable energy. Its facilities are optimized for Bitcoin mining, artificial intelligence (AI) cloud services, and other power-dense compute. Its data center mining facilities are in Canal Flats, Mackenzie, Prince George and Childress. Bitcoin Mining provides security to the Bitcoin network. Al Cloud Services provides cloud compute to Al customers, 1,896 NVIDIA H100 and H200 GPUs. Its Canal Flats facility is in the Canadian Rockies, 100 kilometers (km) from Cranbrook regional airport and 500km east of Vancouver. Its facility is in Prince George, the city in northern British Columbia, located 500 km north of Vancouver. Its facility is located in Childress County, Texas, over 250 miles northwest of Dallas and in close proximity to multiple wind and solar generating facilities in the region. Its Childress operations comprise 200MW of operating data centers.",
+      "source": {
+        "uri": "marketscreener.com",
+        "dataType": "news",
+        "title": "Market Screener"
+      },
+      "authors": [
+        {
+          "uri": "mt_newswires@marketscreener.com",
+          "name": "Mt Newswires",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canal_Flats",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Canal Flats"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Canal Flats"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/100%_renewable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "100% renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Target_Corporation",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Target Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Prince_George,_British_Columbia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Prince George, British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Prince George, British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Childress_County,_Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Childress County, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Childress County, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canadian_Rockies",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Canadian Rockies"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vancouver",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Vancouver"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Vancouver"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cranbrook,_British_Columbia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Cranbrook, British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Cranbrook, British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/British_Columbia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dallas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Dallas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Dallas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy",
+          "label": "dmoz/Business/Energy",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 76
+        }
+      ],
+      "image": "https://www.marketscreener.com/images/twitter_MS_fdblanc.png",
+      "eventUri": null,
+      "sentiment": 0.1137254901960785,
+      "wgt": 496328840,
+      "relevance": 66
+    },
+    {
+      "uri": "2025-09-841621000",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-23",
+      "time": "12:49:57",
+      "dateTime": "2025-09-23T12:49:57Z",
+      "dateTimePub": "2025-09-23T12:49:44Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.rttnews.com/3576419/innovation-beverage-to-merge-with-blockfuel-energy-stock-surge-in-pre-market.aspx",
+      "title": "Innovation Beverage To Merge With BlockFuel Energy; Stock Surge In Pre-market",
+      "body": "Innovation Beverage Group Ltd. (IBG), on Tuesday, announced that it has entered into a non-binding letter of intent to merge with BlockFuel Energy Inc., a Texas-based company that combines oil and gas exploration with power generation to support bitcoin mining operations and high-performance data centers in North America.\n\nShares of Innovation Beverage Group are skyrocketing by around 268.46% higher at 1.3600 on the Nasdaq.\n\nThe deal is structured as a reverse triangular merger, with a newly formed Innovation Beverage Group subsidiary merging into BlockFuel Energy, leaving BlockFuel Energy as the surviving entity.\n\nBlockFuel Energy owners would receive Innovation Beverage Group common stock equal to 90% of the issued and outstanding Innovation Beverage Group shares on a post-transaction basis.\n\nFollowing the transaction, BlockFuel Energy CEO Daniel Joseph Lanskey is expected to become Chairman and CEO of Innovation Beverage Group, while current Innovation Beverage Group CEO Sahil Beri would become President of a new Australian beverage subsidiary and remain on Innovation Beverage Group's board for six months.\n\nThe company said that BlockFuel Energy has also signed an exclusive engagement with Needham & Co. as its investment banking partner.",
+      "source": {
+        "uri": "rttnews.com",
+        "dataType": "news",
+        "title": "RTTNews"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity_generation",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity generation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydrocarbon_exploration",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydrocarbon exploration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/North_America",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "North America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Needham_&_Company",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Needham & Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Energy",
+          "label": "dmoz/Science/Technology/Energy",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Energy/Management",
+          "label": "dmoz/Business/Energy/Management",
+          "wgt": 22
+        },
+        {
+          "uri": "dmoz/Business/Energy/Consulting",
+          "label": "dmoz/Business/Energy/Consulting",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Home/Home_Improvement/Energy_Efficiency",
+          "label": "dmoz/Home/Home Improvement/Energy Efficiency",
+          "wgt": 23
+        },
+        {
+          "uri": "dmoz/Business/Energy/Associations",
+          "label": "dmoz/Business/Energy/Associations",
+          "wgt": 20
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 84
+        }
+      ],
+      "image": "https://cdn.rttnews.com/images/v4/RTTNews-logo-512x512.png",
+      "eventUri": null,
+      "sentiment": 0.7333333333333334,
+      "wgt": 496327797,
+      "relevance": 27
     }
   ],
-  "last_run_time": "2025-09-23T13:21:11.926338"
+  "last_run_time": "2025-09-23T15:02:07.560233"
 }
