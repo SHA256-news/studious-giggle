@@ -39,7 +39,8 @@
     "8875979560",
     "8875142792",
     "8876655982",
-    "8876776825"
+    "8876776825",
+    "8876867782"
   ],
   "queued_articles": [
     {
@@ -2856,7 +2857,939 @@
       "sentiment": 0.7333333333333334,
       "wgt": 496327797,
       "relevance": 27
+    },
+    {
+      "uri": "2025-09-841791468",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-23",
+      "time": "15:37:29",
+      "dateTime": "2025-09-23T15:37:29Z",
+      "dateTimePub": "2025-09-23T14:50:06Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://uk.investing.com/news/stock-market-news/innovation-beverage-group-stock-soars-on-merger-plan-with-blockfuel-energy-93CH-4274667",
+      "title": "Innovation Beverage Group stock soars on merger plan with BlockFuel Energy By Investing.com",
+      "body": "Investing.com -- Innovation Beverage Group Ltd (NASDAQ:IBG) stock surged over 100% on Tuesday after the beverage company announced a non-binding letter of intent to merge with BlockFuel Energy Inc., a Texas-based firm that combines oil and gas exploration with bitcoin mining operations.\n\nThe proposed reverse triangular merger would result in BlockFuel shareholders receiving 90% of IBG's outstanding common stock post-transaction. Daniel Joseph Lanskey, currently BlockFuel's President and CEO, would become IBG's Chairman and CEO, while current IBG CEO Sahil Beri would transition to President of a newly formed Australian beverage subsidiary.\n\nAccording to an independent fairness analysis by Marshall & Stevens Transaction Advisory Services, the combined company is expected to have an equity valuation between $220 million and $343 million. This implies a post-transaction equity value for IBG ranging from $22 million to $34.3 million, significantly higher than its pre-transaction valuation of $2.9 million to $6.3 million.\n\n\"We are thrilled to partner with BlockFuel through this reverse merger, providing a public vehicle for their exceptional business in the oil/gas and crypto mining sectors,\" said Beri. \"They are expanding an age old oil and gas mining industry to the new digital age of crypto mining and we are delighted to partner with them.\"\n\nThe letter of intent is non-binding, with both parties planning to enter good faith negotiations toward a definitive agreement. The merger would require stockholder approval from both companies, regulatory clearances, and Nasdaq approval for listing BlockFuel common stock.\n\nBlockFuel has engaged Needham & Company as its investment banking partner for the transaction.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+      "source": {
+        "uri": "uk.investing.com",
+        "dataType": "news",
+        "title": "Investing.com UK"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investing.com",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Investing.com"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Letter_of_intent",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Letter of intent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydrocarbon_exploration",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydrocarbon exploration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_valuation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock valuation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reverse_takeover",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Reverse takeover"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Needham_&_Company",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Needham & Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fossil_fuel",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fossil fuel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Petroleum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Petroleum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy/Oil_and_Gas",
+          "label": "dmoz/Business/Energy/Oil and Gas",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 95
+        }
+      ],
+      "image": "https://i-invdn-com.investing.com/news/CrudeOil_800x533_L_1629566077.jpg",
+      "eventUri": null,
+      "sentiment": 0.3647058823529412,
+      "wgt": 496337849,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-841750241",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-23",
+      "time": "14:58:31",
+      "dateTime": "2025-09-23T14:58:31Z",
+      "dateTimePub": "2025-09-23T14:50:07Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://za.investing.com/news/stock-market-news/innovation-beverage-group-stock-soars-on-merger-plan-with-blockfuel-energy-93CH-3891335",
+      "title": "Innovation Beverage Group stock soars on merger plan with BlockFuel Energy By Investing.com",
+      "body": "Investing.com -- Innovation Beverage Group Ltd (NASDAQ:IBG) stock surged over 100% on Tuesday after the beverage company announced a non-binding letter of intent to merge with BlockFuel Energy Inc., a Texas-based firm that combines oil and gas exploration with bitcoin mining operations.\n\nThe proposed reverse triangular merger would result in BlockFuel shareholders receiving 90% of IBG's outstanding common stock post-transaction. Daniel Joseph Lanskey, currently BlockFuel's President and CEO, would become IBG's Chairman and CEO, while current IBG CEO Sahil Beri would transition to President of a newly formed Australian beverage subsidiary.\n\nAccording to an independent fairness analysis by Marshall & Stevens Transaction Advisory Services, the combined company is expected to have an equity valuation between $220 million and $343 million. This implies a post-transaction equity value for IBG ranging from $22 million to $34.3 million, significantly higher than its pre-transaction valuation of $2.9 million to $6.3 million.\n\n\"We are thrilled to partner with BlockFuel through this reverse merger, providing a public vehicle for their exceptional business in the oil/gas and crypto mining sectors,\" said Beri. \"They are expanding an age old oil and gas mining industry to the new digital age of crypto mining and we are delighted to partner with them.\"\n\nThe letter of intent is non-binding, with both parties planning to enter good faith negotiations toward a definitive agreement. The merger would require stockholder approval from both companies, regulatory clearances, and Nasdaq approval for listing BlockFuel common stock.\n\nBlockFuel has engaged Needham & Company as its investment banking partner for the transaction.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+      "source": {
+        "uri": "za.investing.com",
+        "dataType": "news",
+        "title": "Investing.com South Africa"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investing.com",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Investing.com"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Letter_of_intent",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Letter of intent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydrocarbon_exploration",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydrocarbon exploration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_valuation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock valuation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reverse_takeover",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Reverse takeover"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Needham_&_Company",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Needham & Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fossil_fuel",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fossil fuel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Petroleum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Petroleum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy/Oil_and_Gas",
+          "label": "dmoz/Business/Energy/Oil and Gas",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 95
+        }
+      ],
+      "image": "https://i-invdn-com.investing.com/news/CrudeOil_800x533_L_1629566077.jpg",
+      "eventUri": null,
+      "sentiment": 0.3647058823529412,
+      "wgt": 496335511,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-841750437",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "14:57:21",
+      "dateTime": "2025-09-23T14:57:21Z",
+      "dateTimePub": "2025-09-23T14:48:09Z",
+      "dataType": "news",
+      "sim": 0.7137255072593689,
+      "url": "https://www.investing.com/news/stock-market-news/innovation-beverage-group-stock-soars-on-merger-plan-with-blockfuel-energy-93CH-4251645",
+      "title": "Innovation Beverage Group stock soars on merger plan with BlockFuel Energy By Investing.com",
+      "body": "Investing.com -- Innovation Beverage Group Ltd (NASDAQ:IBG) stock surged over 100% on Tuesday after the beverage company announced a non-binding letter of intent to merge with BlockFuel Energy Inc., a Texas-based firm that combines oil and gas exploration with bitcoin mining operations.\n\nThe proposed reverse triangular merger would result in BlockFuel shareholders receiving 90% of IBG's outstanding common stock post-transaction. Daniel Joseph Lanskey, currently BlockFuel's President and CEO, would become IBG's Chairman and CEO, while current IBG CEO Sahil Beri would transition to President of a newly formed Australian beverage subsidiary.\n\nAccording to an independent fairness analysis by Marshall & Stevens Transaction Advisory Services, the combined company is expected to have an equity valuation between $220 million and $343 million. This implies a post-transaction equity value for IBG ranging from $22 million to $34.3 million, significantly higher than its pre-transaction valuation of $2.9 million to $6.3 million.\n\n\"We are thrilled to partner with BlockFuel through this reverse merger, providing a public vehicle for their exceptional business in the oil/gas and crypto mining sectors,\" said Beri. \"They are expanding an age old oil and gas mining industry to the new digital age of crypto mining and we are delighted to partner with them.\"\n\nThe letter of intent is non-binding, with both parties planning to enter good faith negotiations toward a definitive agreement. The merger would require stockholder approval from both companies, regulatory clearances, and Nasdaq approval for listing BlockFuel common stock.\n\nBlockFuel has engaged Needham & Company as its investment banking partner for the transaction.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+      "source": {
+        "uri": "investing.com",
+        "dataType": "news",
+        "title": "Investing.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investing.com",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Investing.com"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Letter_of_intent",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Letter of intent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydrocarbon_exploration",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydrocarbon exploration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_valuation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock valuation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reverse_takeover",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Reverse takeover"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Needham_&_Company",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Needham & Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fossil_fuel",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fossil fuel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Petroleum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Petroleum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy/Oil_and_Gas",
+          "label": "dmoz/Business/Energy/Oil and Gas",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 95
+        }
+      ],
+      "image": "https://i-invdn-com.investing.com/news/CrudeOil_800x533_L_1629566077.jpg",
+      "eventUri": "eng-10989597",
+      "sentiment": 0.3647058823529412,
+      "wgt": 496335441,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-841748757",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-23",
+      "time": "14:54:12",
+      "dateTime": "2025-09-23T14:54:12Z",
+      "dateTimePub": "2025-09-23T14:50:07Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://in.investing.com/news/stock-market-news/innovation-beverage-group-stock-soars-on-merger-plan-with-blockfuel-energy-93CH-5016114",
+      "title": "Innovation Beverage Group stock soars on merger plan with BlockFuel Energy By Investing.com",
+      "body": "Investing.com -- Innovation Beverage Group Ltd (NASDAQ:IBG) stock surged over 100% on Tuesday after the beverage company announced a non-binding letter of intent to merge with BlockFuel Energy Inc., a Texas-based firm that combines oil and gas exploration with bitcoin mining operations.\n\nThe proposed reverse triangular merger would result in BlockFuel shareholders receiving 90% of IBG's outstanding common stock post-transaction. Daniel Joseph Lanskey, currently BlockFuel's President and CEO, would become IBG's Chairman and CEO, while current IBG CEO Sahil Beri would transition to President of a newly formed Australian beverage subsidiary.\n\nAccording to an independent fairness analysis by Marshall & Stevens Transaction Advisory Services, the combined company is expected to have an equity valuation between $220 million and $343 million. This implies a post-transaction equity value for IBG ranging from $22 million to $34.3 million, significantly higher than its pre-transaction valuation of $2.9 million to $6.3 million.\n\n\"We are thrilled to partner with BlockFuel through this reverse merger, providing a public vehicle for their exceptional business in the oil/gas and crypto mining sectors,\" said Beri. \"They are expanding an age old oil and gas mining industry to the new digital age of crypto mining and we are delighted to partner with them.\"\n\nThe letter of intent is non-binding, with both parties planning to enter good faith negotiations toward a definitive agreement. The merger would require stockholder approval from both companies, regulatory clearances, and Nasdaq approval for listing BlockFuel common stock.\n\nBlockFuel has engaged Needham & Company as its investment banking partner for the transaction.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+      "source": {
+        "uri": "in.investing.com",
+        "dataType": "news",
+        "title": "Investing.com India"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investing.com",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Investing.com"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Letter_of_intent",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Letter of intent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydrocarbon_exploration",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydrocarbon exploration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_valuation",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock valuation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Australia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Australia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Australia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Reverse_takeover",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Reverse takeover"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Needham_&_Company",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Needham & Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fossil_fuel",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Fossil fuel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_banking",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment banking"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Petroleum",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Petroleum"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy/Oil_and_Gas",
+          "label": "dmoz/Business/Energy/Oil and Gas",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 95
+        }
+      ],
+      "image": "https://i-invdn-com.investing.com/news/CrudeOil_800x533_L_1629566077.jpg",
+      "eventUri": null,
+      "sentiment": 0.3647058823529412,
+      "wgt": 496335252,
+      "relevance": 52
     }
   ],
-  "last_run_time": "2025-09-23T15:02:07.560233"
+  "last_run_time": "2025-09-23T16:52:11.992445"
 }
