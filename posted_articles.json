@@ -33,7 +33,8 @@
     "8874758208",
     "8874933607",
     "8875150279",
-    "8875375420"
+    "8875375420",
+    "8875593073"
   ],
   "queued_articles": [
     {
@@ -205,7 +206,403 @@
       "sentiment": 0.04313725490196085,
       "wgt": 496257662,
       "relevance": 27
+    },
+    {
+      "uri": "8875580072",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-22",
+      "time": "22:45:36",
+      "dateTime": "2025-09-22T22:45:36Z",
+      "dateTimePub": "2025-09-22T22:41:08Z",
+      "dataType": "news",
+      "sim": 0.8235294222831726,
+      "url": "https://financefeeds.com/bakkt-shares-up-43-after-adding-tech-investor-mike-alfred-to-board/",
+      "title": "Bakkt Shares Up 43% After Adding Tech Investor Mike Alfred To Board - FinanceFeeds",
+      "body": "Bakkt Holdings (BKKT) surged more than 40% on Monday after the crypto platform named technology investor Mike Alfred to its board of directors. Shares were last up 43% at $14.95 as of 2:23 p.m. ET, according to Yahoo Finance.\n\nAlfred, founder and managing partner of Alpine Fox, is a longtime participant in digital assets. He co-founded Digital Assets Data, acquired by New York Digital Investment Group in 2020, and sits on the board of bitcoin miner Iren.\n\n\"Mike's proven track record and reputation in the digital asset and fintech ecosystem brings unparalleled expertise, a powerful network and institutional credibility,\" Chief Executive Akshay Naheta said in a statement. \"His perspectives will be critical as we execute with precision on our strategy and deliver long-term value for our shareholders.\"\n\nAlfred said Bakkt could play a role in four \"transformative trends\" over the next decade: digital asset trading, stablecoin payments, AI-driven agents and bitcoin. \"I look forward to partnering with the board and leadership to advance Bakkt's strategy and value creation,\" he said.\n\nFounded in 2018, Bakkt offers enterprise solutions for businesses operating in crypto. The company has been raising capital to expand its bitcoin holdings. In June, it filed plans to raise up to $1 billion through equity and debt offerings, followed in July by a $75 million public share sale. Its stock fell 40% after the offering was announced.\n\nEarlier this year, Bakkt acquired a 30% stake in Marusho Hotta, a publicly listed Japanese textile company, as it pushes further into its strategy of becoming a Bitcoin-backed treasury business.\n\nBakkt already has a presence in Latin America and Asia, and the Marusho Hotta acquisition gives it a new foothold in Japan -- a market known for strict crypto regulations but growing corporate interest in digital assets.\n\nThe move puts Bakkt among a growing list of companies holding crypto on their balance sheets. What started with MicroStrategy's high-profile Bitcoin buys in 2020 has since turned into a trend, with hundreds of public and private firms now allocating part of their treasury to digital assets.\n\nEarlier in July, Bakkt Holdings sold off its loyalty business as it moves to become a focused crypto infrastructure firm.\n\nThe Nasdaq-listed platform signed a deal to sell the unit to Project Labrador Holdco, a subsidiary of Roman DBDR Technology Advisors. The sale is expected to close in the third quarter of 2025, priced at $11 million in cash, with additional adjustments for working capital and debt. The deal also includes a short-term restricted cash loan to help complete the transition.\n\nMeanwhile, Bakkt is facing a class-action lawsuit filed by a group of investors who claim the firm misled shareholders by failing to disclose the full extent of its financial dependence on two major clients: Webull and Bank of America.\n\nThe complaint seeks a jury trial and names several top Bakkt executives, including former CEO Gavin Michael, current CEO Andrew Main, and interim CFO Karen Alexander.\n\nBank of America, which accounted for about 16% of Bakkt's loyalty service revenue in 2023 saw its contract expired on April 22. Webull, which represented a larger 74% of Bakkt's crypto service revenue last year, ended its agreement on June 14.\n\nWhen both companies disclosed in March that they would not renew their contracts beyond 2025, Bakkt's share price plummeted over 27% in a single day, prompting accusations that the firm failed to properly communicate the fragility of its revenue model.\n\nAdding to the turbulence, Bakkt's stock previously jumped by over 160% in November 2024 following reports that Trump Media & Technology Group was considering acquiring the firm. No formal deal has been confirmed.",
+      "source": {
+        "uri": "financefeeds.com",
+        "dataType": "news",
+        "title": "FinanceFeeds"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bakkt",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bakkt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Marusho",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Marusho"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fintech",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Fintech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Yahoo!_Finance",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Yahoo! Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fox_Broadcasting_Company",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Fox Broadcasting Company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Board_of_directors",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Board of directors"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_York_City",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "New York City"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New York City"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Japan",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Japan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Japan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Textile",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Textile"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Balance_sheet",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Balance sheet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Latin_America",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Latin America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trump_Media_&_Technology_Group",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Trump Media & Technology Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Webull",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Webull"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Class_action",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Class action"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Working_capital",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Working capital"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jury_trial",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Jury trial"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bank_of_America",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Bank of America"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services",
+          "label": "dmoz/Business/Financial Services",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Cash_Flow",
+          "label": "dmoz/Business/Financial Services/Cash Flow",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 96
+        }
+      ],
+      "image": "https://financefeeds.com/wp-content/uploads/2022/11/Bakkt.png",
+      "eventUri": "eng-10987087",
+      "sentiment": 0.2470588235294118,
+      "wgt": 496277136,
+      "relevance": 77
+    },
+    {
+      "uri": "2025-09-840996660",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-22",
+      "time": "21:42:55",
+      "dateTime": "2025-09-22T21:42:55Z",
+      "dateTimePub": "2025-09-22T21:21:02Z",
+      "dataType": "news",
+      "sim": 0.7137255072593689,
+      "url": "https://cryptobriefing.com/cleanspark-coinbase-prime-100m-credit-expansion/",
+      "title": "CleanSpark expands capital strategy with $100M Bitcoin-backed credit from Coinbase Prime",
+      "body": "The new credit facility provides non-dilutive financing, allowing CleanSpark to raise capital without issuing new shares.\n\nCleanSpark, a US-based sustainable Bitcoin mining company, secured a $100 million credit facility from Coinbase Prime, an institutional-grade platform for advanced trading and custody services.\n\nThe credit arrangement allows the mining company to leverage its Bitcoin holdings as collateral for non-dilutive financing, reflecting a broader trend among crypto companies accessing capital without issuing new shares.",
+      "source": {
+        "uri": "cryptobriefing.com",
+        "dataType": "news",
+        "title": "Crypto Briefing"
+      },
+      "authors": [
+        {
+          "uri": "estefano_gomez@cryptobriefing.com",
+          "name": "Estefano Gomez",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coinbase",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Coinbase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Collateral_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Collateral (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Leverage_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Leverage (finance)"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Financial_Services",
+          "label": "dmoz/Business/Financial Services",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Credit_and_Collection",
+          "label": "dmoz/Business/Financial Services/Credit and Collection",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Money_Management",
+          "label": "dmoz/Home/Personal Finance/Money Management",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Automobile_Buying_and_Financing",
+          "label": "dmoz/Business/Financial Services/Automobile Buying and Financing",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Commercial_Lending",
+          "label": "dmoz/Business/Financial Services/Commercial Lending",
+          "wgt": 23
+        }
+      ],
+      "image": "https://static.cryptobriefing.com/wp-content/uploads/2025/09/22171951/0ad0a36b-a9e4-45cc-8c2a-06944515308a-800x420.jpg",
+      "eventUri": "eng-10987232",
+      "sentiment": 0.388235294117647,
+      "wgt": 496273375,
+      "relevance": 27
     }
   ],
-  "last_run_time": "2025-09-22T21:28:45.169244"
+  "last_run_time": "2025-09-23T01:49:32.889232"
 }
