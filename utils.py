@@ -12,7 +12,45 @@ from typing import Dict, Any, Optional, Tuple, List
 
 from config import BotConstants
 
+# Move entity extractor import to top level for better performance
+try:
+    from entity_extractor import EntityExtractor
+    _entity_extractor = None  # Will be initialized on first use
+except ImportError:
+    EntityExtractor = None
+    _entity_extractor = None
+
 logger = logging.getLogger('bitcoin_mining_bot')
+
+
+# Compiled regex patterns for better performance
+class CompiledPatterns:
+    """Pre-compiled regex patterns for better performance"""
+    
+    # Content filtering patterns
+    BULLET_MARKER = re.compile(r'^[\s•▪\-]+')
+    TRAILING_PUNCTUATION = re.compile(r'[.!?]+$')
+    WHITESPACE_NORMALIZE = re.compile(r'\s+')
+    FINANCIAL_AMOUNT_EXTRACT = re.compile(r'^(\d+(?:\.\d+)?)\s*(m|million|b|billion)?$')
+    WORD_BOUNDARY_REPLACE = re.compile(r'\b')
+    
+    # News content patterns
+    NEWS_PREFIX_REMOVE = re.compile(r'^(Breaking|News|Update|Alert):\s*', re.IGNORECASE)
+    
+    # Company patterns
+    KNOWN_COMPANIES = re.compile(
+        r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|'
+        r'Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN|DL Holdings?)\b', 
+        re.IGNORECASE
+    )
+    CORPORATE_ENTITIES = re.compile(
+        r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,2})\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd)\b'
+    )
+    HOLDINGS_PATTERN = re.compile(r'\b([A-Z][a-zA-Z]{2,15})\s+Holdings?\b')
+
+
+# Cache for dynamically compiled patterns
+_pattern_cache = {}
 
 
 class FormattingUtils:
@@ -454,18 +492,20 @@ class ContentFilter:
         if not hook_bullet_contents:
             return summary_lines
         
+        # Convert hook bullet contents to a set for faster lookup
+        hook_bullet_contents_set = set(hook_bullet_contents)
+        
         # Filter summary lines to remove matching bullet points
         filtered_lines = []
         for line in summary_lines:
             # Extract content from this summary line (removing bullet markers)
             summary_content = ContentFilter._extract_bullet_content_from_line(line)
             
-            # Check if this content matches any hook bullet point content
-            is_duplicate = False
-            for hook_content in hook_bullet_contents:
-                if ContentFilter._is_bullet_content_match(summary_content, hook_content):
-                    is_duplicate = True
-                    break
+            # Check if this content matches any hook bullet point content using set lookup
+            is_duplicate = any(
+                ContentFilter._is_bullet_content_match(summary_content, hook_content)
+                for hook_content in hook_bullet_contents_set
+            )
             
             # Keep the line only if it's not a duplicate
             if not is_duplicate:
@@ -496,15 +536,14 @@ class ContentFilter:
     @staticmethod
     def _extract_bullet_content_from_line(line: str) -> str:
         """Extract and normalize bullet point content from a single line"""
-        # Remove bullet markers and clean up
-        content = line
-        for bullet_char in ['•', '▪', '-']:
-            # Only remove if it's at the beginning of the line (after whitespace)
-            content = re.sub(f'^\\s*{re.escape(bullet_char)}\\s*', '', content).strip()
+        # Remove bullet markers using compiled pattern
+        content = CompiledPatterns.BULLET_MARKER.sub('', line).strip()
         
-        # Remove trailing punctuation and normalize whitespace
-        content = re.sub(r'[.!?]+$', '', content).strip()
-        content = re.sub(r'\s+', ' ', content).lower()
+        # Remove trailing punctuation and normalize whitespace using compiled patterns
+        content = CompiledPatterns.TRAILING_PUNCTUATION.sub('', content).strip()
+        content = CompiledPatterns.WHITESPACE_NORMALIZE.sub(' ', content).lower()
+        
+        return content
         
         return content
 
@@ -680,9 +719,8 @@ class ContentFilter:
         # Clean up the amount string
         amount_lower = amount_str.lower().replace('$', '').replace(',', '').strip()
         
-        # Extract the number and suffix
-        import re
-        match = re.match(r'^(\d+(?:\.\d+)?)\s*(m|million|b|billion)?$', amount_lower)
+        # Extract the number and suffix using compiled pattern
+        match = CompiledPatterns.FINANCIAL_AMOUNT_EXTRACT.match(amount_lower)
         if not match:
             return None
             
@@ -878,67 +916,81 @@ class TextUtils:
     @staticmethod
     def extract_key_info(article: Dict[str, Any]) -> Dict[str, Any]:
         """Extract key information from article for creating informative tweets"""
-        from entity_extractor import EntityExtractor
+        global _entity_extractor
         
         title = article.get("title", "") or ""
         body = article.get("body", "") or ""
         text = f"{title} {body}"
         
-        # Initialize entity extractor
-        extractor = EntityExtractor()
-        entities = extractor.extract_entities(title)
+        # Initialize entity extractor once and reuse it
+        if EntityExtractor and _entity_extractor is None:
+            _entity_extractor = EntityExtractor()
+        
+        # Extract entities if available
+        entities = {}
+        if _entity_extractor:
+            entities = _entity_extractor.extract_entities(title)
         
         # Enhanced company detection patterns - improved to avoid false positives
         companies = list(entities.get("companies", []))
         
-        # Look for additional company patterns in the text
+        # Create a set of existing company names in lowercase for faster lookup
+        existing_companies_lower = {c.lower() for c in companies}
+        
+        # Pre-define skip words set for faster lookup
+        skip_words = {'stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
+                     'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
+                     'facility', 'energy', 'strategic', 'partnership'}
+        
+        # Look for additional company patterns in the text using compiled patterns
         company_patterns = [
-            # Known companies first (highest priority)
-            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN|DL Holdings?)\b',  
-            # Corporate entities - be more restrictive
-            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,2})\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd)\b',  
-            # Simple holding pattern
-            r'\b([A-Z][a-zA-Z]{2,15})\s+Holdings?\b',  
+            CompiledPatterns.KNOWN_COMPANIES,
+            CompiledPatterns.CORPORATE_ENTITIES, 
+            CompiledPatterns.HOLDINGS_PATTERN,  
         ]
         
         for pattern in company_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
+            matches = pattern.findall(text)
             for match in matches:
                 # Clean up the match and avoid nonsensical extractions
+                match_lower = match.lower()
                 if (match and len(match) > 2 and len(match) <= 30 and 
-                    match.lower() not in [c.lower() for c in companies]):
+                    match_lower not in existing_companies_lower):
                     
-                    # Filter out words that aren't company names
-                    skip_words = ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
-                                'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
-                                'facility', 'energy', 'strategic', 'partnership']
-                    
-                    if not any(word in match.lower() for word in skip_words):
+                    # Filter out words that aren't company names using set lookup
+                    if not any(word in match_lower for word in skip_words):
                         companies.append(match)
+                        existing_companies_lower.add(match_lower)  # Update the set
         
-        # Extract financial amounts (dollars, BTC amounts)
+        # Extract financial amounts (dollars, BTC amounts) using compiled patterns
         financial_amounts = []
-        amount_patterns = [
-            r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|M|B))?',  # $1.5M, $21.85M
-            r'[\d,]+\s*BTC',  # 200 BTC
-            r'[\d,]+\s*Bitcoin',  # 200 Bitcoin
-            r'[\d,]+\s*(?:million|billion)\s*(?:dollars?)?',  # 21.85 million dollars
-        ]
         
-        for pattern in amount_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
+        # Add financial patterns to CompiledPatterns if not already there
+        if not hasattr(CompiledPatterns, 'FINANCIAL_AMOUNTS'):
+            CompiledPatterns.FINANCIAL_AMOUNTS = [
+                re.compile(r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|M|B))?', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*BTC', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*Bitcoin', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:million|billion)\s*(?:dollars?)?', re.IGNORECASE),
+            ]
+        
+        for pattern in CompiledPatterns.FINANCIAL_AMOUNTS:
+            matches = pattern.findall(text)
             financial_amounts.extend(matches)
         
-        # Extract numbers and technical specs
+        # Extract numbers and technical specs using compiled patterns
         technical_specs = []
-        tech_patterns = [
-            r'[\d,]+\+?\s*(?:miners?|rigs?)',  # 2,200+ miners
-            r'[\d,]+\s*(?:MW|GW|TH/s|EH/s)',  # power/hashrate specs
-            r'[\d,]+\s*(?:annually|per year|/yr)',  # annual targets
-        ]
         
-        for pattern in tech_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
+        # Add technical patterns to CompiledPatterns if not already there
+        if not hasattr(CompiledPatterns, 'TECHNICAL_SPECS'):
+            CompiledPatterns.TECHNICAL_SPECS = [
+                re.compile(r'[\d,]+\+?\s*(?:miners?|rigs?)', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:MW|GW|TH/s|EH/s)', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:annually|per year|/yr)', re.IGNORECASE),
+            ]
+        
+        for pattern in CompiledPatterns.TECHNICAL_SPECS:
+            matches = pattern.findall(text)
             technical_specs.extend(matches)
         
         return {
@@ -955,60 +1007,7 @@ class TextUtils:
         """Create informative, concise tweet text prioritizing key details"""
         return TweetFormatter.create_enhanced_tweet_text(article)
 
-    @staticmethod
-    def _filter_repetitive_content(summary: str, hook_tweet: str, article: Dict[str, Any]) -> str:
-        if any(word in title_lower for word in ["expand", "expansion"]):
-            emoji = "📈"
-            action = "expands"
-        elif any(word in title_lower for word in ["launch", "start"]):
-            emoji = "🚀"
-            action = "launches"
-        elif any(word in title_lower for word in ["partner", "partnership"]):
-            emoji = "🤝"
-            action = "partners w/"
-        elif any(word in title_lower for word in ["acquire", "acquisition"]):
-            emoji = "💰"
-            action = "acquires"
-        else:
-            action = "invests"
-        
-        components.extend([emoji, primary_company, action])
-        
-        # Financial amount (prioritize dollar amounts)
-        if info["financial_amounts"]:
-            dollar_amounts = [a for a in info["financial_amounts"] if '$' in a]
-            if dollar_amounts:
-                components.append(dollar_amounts[0])
-            else:
-                components.append(info["financial_amounts"][0])
-        
-        components.append("in BTC mining")
-        
-        # Partner company (only if we have a second distinct company)
-        if len(info["companies"]) > 1:
-            second_company = info["companies"][1]
-            if len(second_company) <= 20 and second_company.lower() != primary_company.lower():
-                components.append(f"w/ {second_company}")
-        
-        # Technical specs as additional context
-        if info["technical_specs"]:
-            base_text = " ".join(components)
-            tech_detail = info["technical_specs"][0]
-            
-            # Choose appropriate label
-            if "annually" in tech_detail or "/yr" in tech_detail or "per year" in tech_detail:
-                full_text = f"{base_text}. Target: {tech_detail}"
-            else:
-                full_text = f"{base_text}. Specs: {tech_detail}"
-            
-            # Apply abbreviations and check length
-            full_text = TextUtils._apply_abbreviations(full_text)
-            if len(full_text) <= BotConstants.TWEET_MAX_LENGTH:
-                return full_text
-        
-        # Return base text with abbreviations applied (no hashtags)
-        base_text = " ".join(components)
-        return TextUtils._apply_abbreviations(base_text)
+
     
     @staticmethod
     def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
@@ -1097,8 +1096,8 @@ class TextUtils:
     @staticmethod
     def _enhance_generic_title(title: str, info: Dict[str, Any]) -> str:
         """Enhance a generic title with extracted information"""
-        # Remove common prefixes that don't add value
-        title = re.sub(r'^(Breaking|News|Update|Alert):\s*', '', title, flags=re.IGNORECASE)
+        # Remove common prefixes that don't add value using compiled pattern
+        title = CompiledPatterns.NEWS_PREFIX_REMOVE.sub('', title)
         
         # If we have financial info, try to incorporate it
         if info["financial_amounts"]:
@@ -1115,10 +1114,16 @@ class TextUtils:
     
     @staticmethod
     def _apply_abbreviations(text: str) -> str:
-        """Apply abbreviations to save characters"""
+        """Apply abbreviations to save characters using cached compiled patterns"""
+        global _pattern_cache
+        
         for full_word, abbrev in TextUtils.ABBREVIATIONS.items():
-            # Use word boundaries to avoid partial replacements
-            text = re.sub(r'\b' + re.escape(full_word) + r'\b', abbrev, text)
+            # Use cached compiled patterns for better performance
+            pattern_key = f"abbrev_{full_word}"
+            if pattern_key not in _pattern_cache:
+                _pattern_cache[pattern_key] = re.compile(r'\b' + re.escape(full_word) + r'\b')
+            
+            text = _pattern_cache[pattern_key].sub(abbrev, text)
         return text
 
     @staticmethod
