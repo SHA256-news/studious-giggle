@@ -35,7 +35,8 @@
     "8875150279",
     "8875375420",
     "8875593073",
-    "2025-09-841111124"
+    "2025-09-841111124",
+    "8875979560"
   ],
   "queued_articles": [
     {
@@ -1062,7 +1063,356 @@
       "sentiment": 0.07450980392156858,
       "wgt": 496285127,
       "relevance": 77
+    },
+    {
+      "uri": "2025-09-841182638",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "04:45:08",
+      "dateTime": "2025-09-23T04:45:08Z",
+      "dateTimePub": "2025-09-23T04:44:29Z",
+      "dataType": "news",
+      "sim": 0.800000011920929,
+      "url": "https://www.theblock.co/post/371773/cleanspark-secures-100-million-credit-financing-coinbase",
+      "title": "CleanSpark secures $100 million in Bitcoin-backed financing from Coinbase Prime",
+      "body": "The company plans to utilize the additional funding to expand its energy infrastructure and scale up its mining operations.\n\nU.S.-based bitcoin miner CleanSpark announced Monday that it has secured an additional $100 million in credit line through an expanded Bitcoin-backed lending arrangement with Coinbase Prime, the institutional arm of crypto exchange Coinbase.\n\nIn a statement released Monday, CleanSpark said that the company plans to use the added funding for capital expenditures across three key areas: expanding its energy infrastructure, scaling bitcoin mining operations, and developing high-performance computing capabilities at select facilities.\n\n\"Delivering accretive growth using non-dilutive financing is at the core of CleanSpark's capital strategy,\" Gary Vecchiarelli, chief financial officer and president of CleanSpark, said in the statement.\n\nCleanSpark CEO Matt Schultz indicated the company sees \"tremendous opportunity\" to accelerate mining growth while simultaneously optimizing our assets. \"We are proud to expand our relationship with Coinbase Prime as we continue to add megawatts to our portfolio and take steps toward alternative use cases for some of our data centers,\" said Schultz.\n\nCleanSpark operates multiple data centers across the U.S., positioning itself in markets with favorable electricity pricing. The company reached 50 EH/s of operational hashrate in June, according to its latest earnings report. It has also grown its bitcoin treasury to over $1 billion in value as of the end of June.\n\nCleanSpark's stock closed up 0.88% at $13.74 on Monday and gained another 5% in extended trading, according to Google Finance data.",
+      "source": {
+        "uri": "theblock.co",
+        "dataType": "news",
+        "title": "The Block"
+      },
+      "authors": [
+        {
+          "uri": "timmy_shen@theblock.co",
+          "name": "Timmy Shen",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coinbase",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Coinbase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Energy_development",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Energy development"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Matt_Schultz",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Matt Schultz"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_expenditure",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Capital expenditure"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_financial_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief financial officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Automobile_Buying_and_Financing",
+          "label": "dmoz/Business/Financial Services/Automobile Buying and Financing",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Commercial_Lending",
+          "label": "dmoz/Business/Financial Services/Commercial Lending",
+          "wgt": 19
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 52
+        }
+      ],
+      "image": "https://www.tbstat.com/cdn-cgi/image/format=webp,q=75/wp/uploads/2022/12/20221227_CleanSpark-News.jpg",
+      "eventUri": "eng-10987232",
+      "sentiment": 0.4745098039215687,
+      "wgt": 496298708,
+      "relevance": 66
+    },
+    {
+      "uri": "8875929233",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "04:24:41",
+      "dateTime": "2025-09-23T04:24:41Z",
+      "dateTimePub": "2025-09-23T04:13:54Z",
+      "dataType": "news",
+      "sim": 0.886274516582489,
+      "url": "https://www.cryptotimes.io/2025/09/23/bakkt-shares-jump-40-after-mike-alfred-joins-board/",
+      "title": "Bakkt Shares Jump 40% After Mike Alfred Joins Board",
+      "body": "Bakkt Holdings (NASDAQ: BKKT) shares surged more than 40% on Monday after the company announced that tech entrepreneur Mike Alfred will join its board of directors. The stock was trading 43% higher at $15.25 as of 8:00 p.m. ET, according to GoogleFinance.\n\nBakkt CEO Akshay Naheta welcomed Alfred, calling him a leader with \"unparalleled expertise, a powerful network and institutional credibility.\" Naheta said in an official site statement. He added that Alfred's input would be vital as the company sharpens its strategy and works to deliver long-term value to shareholders.\n\nAlfred is a well-known figure in the digital assets industry. He is the managing partner and founder of Alpine Fox, as well as a board member in Bitcoin miner Iren. He had earlier co-founded Digital Assets Data, which was purchased by NYDIG in 2020.\n\nIn his statement, Alfred highlighted Bakkt's opportunity to build a trusted fintech platform for institutions. He pointed to four key growth areas: digital asset trading, stablecoin payments, AI agents, and Bitcoin. \"I look forward to partnering with the Board and leadership to advance Bakkt's strategy and value creation.,\" Alfred said.\n\nFounded in 2018, Bakkt provides enterprise crypto solutions for businesses. In June, the company declared that it would raise up to $1 billion by way of equity and debt issues to finance a strategy to acquire Bitcoin. A month after that, Bakkt announced a $75 million public offering, and the shares went down 40% at that time.\n\nThe appointment of Mike Alfred marks a fresh chapter for Bakkt as it works to strengthen its position in digital assets, though the market will be watching closely to see how the strategy unfolds.",
+      "source": {
+        "uri": "cryptotimes.io",
+        "dataType": "news",
+        "title": "The Crypto Times"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bakkt",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bakkt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Entrepreneurship",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Entrepreneurship"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Board_of_directors",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Board of directors"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fintech",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fintech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Funds",
+          "label": "dmoz/Business/Investing/Funds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 87
+        }
+      ],
+      "image": "https://www.cryptotimes.io/wp-content/uploads/2025/09/Bakkt-Shares-Jump-40-After-Mike-Alfred-Joins-Board.png",
+      "eventUri": "eng-10987087",
+      "sentiment": 0.3098039215686275,
+      "wgt": 496297481,
+      "relevance": 40
     }
   ],
-  "last_run_time": "2025-09-23T03:22:13.583699"
+  "last_run_time": "2025-09-23T06:52:34.484431"
 }
