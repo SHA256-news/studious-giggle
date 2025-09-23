@@ -666,18 +666,64 @@ class TextUtils:
         return f"{text}{hashtag_text}".strip() if hashtag_text else text
 
     @staticmethod
+    def _enhance_gemini_headline(gemini_headline: str, article: Dict[str, Any]) -> str:
+        """Add minimal visual enhancements to Gemini-generated headlines"""
+        # Extract info for context-aware emoji and hashtags
+        info = TextUtils.extract_key_info(article)
+        title_lower = gemini_headline.lower()
+        
+        # Add appropriate emoji based on content (only if not already present)
+        if not any(emoji in gemini_headline for emoji in ['🏢', '🤝', '✅', '🎯', '🌍', '📰', '⚡', '🏭', '💰', '📈']):
+            emoji = ""
+            if any(word in title_lower for word in ["partner", "partnership", "collaborate"]):
+                emoji = "🤝 "
+            elif any(word in title_lower for word in ["invest", "fund", "capital", "million", "billion"]):
+                emoji = "💰 "
+            elif any(word in title_lower for word in ["expand", "expansion", "growth", "increase"]):
+                emoji = "📈 "
+            elif any(word in title_lower for word in ["approve", "approved", "approval"]):
+                emoji = "✅ "
+            elif any(word in title_lower for word in ["milestone", "reaches", "achievement"]):
+                emoji = "🎯 "
+            elif any(word in title_lower for word in ["facility", "farm", "center", "plant"]):
+                emoji = "🏭 "
+            elif any(word in title_lower for word in ["energy", "power", "hashrate", "mining"]):
+                emoji = "⚡ "
+            elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
+                emoji = "🌍 "
+            else:
+                emoji = "📰 "
+            
+            gemini_headline = f"{emoji}{gemini_headline}"
+        
+        # Add strategic hashtags if there's space
+        enhanced_headline = TextUtils._add_strategic_hashtags(gemini_headline, info)
+        
+        return enhanced_headline
+
+    @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
-        """Create the hook/benefit tweet that leads the thread."""
+        """Create the hook/benefit tweet that leads the thread, using Gemini AI when available."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_hook_tweet, using fallback")
             return "Bitcoin mining news update"
-            
+        
+        # If we have Gemini-generated content, use it directly with light formatting
+        gemini_headline = article.get("gemini_headline", "") or ""
+        
+        if gemini_headline and gemini_headline.strip():
+            # Gemini content is already optimized, just apply minimal enhancements
+            enhanced_gemini = TextUtils._enhance_gemini_headline(gemini_headline, article)
+            if len(enhanced_gemini) <= BotConstants.TWEET_MAX_LENGTH:
+                return enhanced_gemini
+        
+        # Fallback to our enhanced formatting for non-Gemini content
         return TextUtils.create_enhanced_tweet_text(article)
 
     @staticmethod
     def create_link_tweet(article: Dict[str, Any]) -> str:
-        """Create the succinct link tweet with a call-to-action."""
+        """Create the succinct link tweet with Gemini summary or call-to-action."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_link_tweet, returning empty")
@@ -687,12 +733,32 @@ class TextUtils:
         if not url:
             return ""
 
-        call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
-        if call_to_action:
-            link_tweet = f"{call_to_action} {url}".strip()
+        # Prefer Gemini-generated summary for the second tweet
+        gemini_summary = article.get("gemini_summary", "") or ""
+        
+        if gemini_summary and gemini_summary.strip():
+            # Use Gemini summary with URL
+            # Clean up the summary format (remove bullet points for better readability)
+            clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
+            
+            # Try to fit summary + URL within character limit
+            max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url) - 10  # Reserve space for URL and spacing
+            
+            if len(clean_summary) <= max_summary_length:
+                link_tweet = f"{clean_summary}\n\n{url}"
+            else:
+                # Truncate summary to fit with URL
+                truncated_summary = clean_summary[:max_summary_length - 3] + "..."
+                link_tweet = f"{truncated_summary}\n\n{url}"
         else:
-            link_tweet = url
+            # Fallback to traditional call-to-action format
+            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+            if call_to_action:
+                link_tweet = f"{call_to_action} {url}".strip()
+            else:
+                link_tweet = url
 
+        # Final length check
         if len(link_tweet) > BotConstants.TWEET_MAX_LENGTH:
             if len(url) <= BotConstants.TWEET_MAX_LENGTH:
                 return url[:BotConstants.TWEET_MAX_LENGTH]
