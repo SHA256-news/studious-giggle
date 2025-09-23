@@ -444,13 +444,16 @@ class ContentFilter:
         hook_lower = hook_tweet.lower()
         hook_keywords = set()
         
-        # Extract financial amounts
+        # Extract financial amounts with better normalization
         for pattern in TextPatterns.FINANCIAL_PATTERNS:
             matches = re.findall(pattern, hook_lower)
             for match in matches:
-                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
-                hook_keywords.add(normalized)
-                hook_keywords.add(match.replace('$', '').replace(',', '').lower())
+                # Normalize financial amounts to handle M/million equivalence
+                normalized = ContentFilter._normalize_financial_amount(match)
+                if normalized:
+                    hook_keywords.add(normalized)
+                    # Also add the original form
+                    hook_keywords.add(match.replace('$', '').replace(',', '').replace(' ', '').lower())
         
         # Extract company names
         for pattern in TextPatterns.COMPANY_PATTERNS:
@@ -483,10 +486,18 @@ class ContentFilter:
             if ContentFilter._has_repetitive_financial_amounts(line_lower, hook_keywords):
                 filtered_line = ContentFilter._remove_financial_amounts_if_additional_content(line, line_lower)
                 if filtered_line:
-                    filtered_line = re.sub(r'^[▪•-]\s*', '▪ ', filtered_line)
-                    if len(filtered_line) > BotConstants.MIN_MEANINGFUL_CONTENT_LENGTH:
-                        filtered_lines.append(filtered_line)
-                is_repetitive = True
+                    # Check if the remaining content after removing financial amounts is still repetitive
+                    remaining_lower = filtered_line.lower()
+                    if ContentFilter._has_repetitive_key_terms(remaining_lower, hook_keywords):
+                        # Skip this line entirely if it's still repetitive
+                        is_repetitive = True
+                    else:
+                        filtered_line = re.sub(r'^[▪•-]\s*', '▪ ', filtered_line)
+                        if len(filtered_line) > BotConstants.MIN_MEANINGFUL_CONTENT_LENGTH:
+                            filtered_lines.append(filtered_line)
+                        is_repetitive = True  # Mark as processed
+                else:
+                    is_repetitive = True  # Skip if no content remains after removing financial amounts
             
             # Check for company name repetition
             if not is_repetitive:
@@ -494,6 +505,10 @@ class ContentFilter:
                     if re.search(pattern, line_lower) and any(company in hook_keywords for company in re.findall(pattern, line_lower)):
                         is_repetitive = True
                         break
+            
+            # Check for key terms repetition (more aggressive)
+            if not is_repetitive and ContentFilter._has_repetitive_key_terms(line_lower, hook_keywords):
+                is_repetitive = True
             
             # If line is not repetitive, keep it
             if not is_repetitive:
@@ -508,11 +523,37 @@ class ContentFilter:
         for pattern in TextPatterns.FINANCIAL_PATTERNS:
             matches = re.findall(pattern, line_lower)
             for match in matches:
-                normalized = match.replace('$', '').replace(',', '').replace(' ', '').lower()
-                line_amounts.append(normalized)
-                line_amounts.append(match.replace('$', '').replace(',', '').lower())
+                # Normalize financial amounts to handle M/million equivalence
+                normalized = ContentFilter._normalize_financial_amount(match)
+                if normalized:
+                    line_amounts.append(normalized)
+                # Also add the original form
+                line_amounts.append(match.replace('$', '').replace(',', '').replace(' ', '').lower())
         
         return line_amounts and any(amount in hook_keywords for amount in line_amounts)
+
+    @staticmethod
+    def _has_repetitive_key_terms(line_lower: str, hook_keywords: set) -> bool:
+        """Check if line contains key terms already prominently mentioned in hook"""
+        # Count how many key terms overlap
+        overlapping_terms = []
+        for term in TextPatterns.KEY_TERMS:
+            if term in line_lower and term in hook_keywords:
+                overlapping_terms.append(term)
+        
+        # If multiple key terms overlap, consider it repetitive
+        # This is more aggressive filtering to avoid content repetition
+        if len(overlapping_terms) >= 2:
+            return True
+        
+        # Additional check: if line contains both a company name and a financial term, it's likely repetitive
+        has_company = any(company in line_lower for company in ['cleanspark', 'coinbase', 'marathon', 'riot'])
+        has_financial_term = any(term in line_lower for term in ['credit', 'line', 'investment', 'facility'])
+        
+        if has_company and has_financial_term and any(company in hook_keywords for company in ['cleanspark', 'coinbase', 'marathon', 'riot']):
+            return True
+        
+        return False
 
     @staticmethod
     def _remove_financial_amounts_if_additional_content(line: str, line_lower: str) -> Optional[str]:
@@ -529,6 +570,38 @@ class ContentFilter:
             filtered_line = re.sub(r'\s+', ' ', filtered_line).strip()
             return filtered_line if len(filtered_line) > BotConstants.MIN_FILTERED_LINE_LENGTH else None
         return None
+
+    @staticmethod
+    def _normalize_financial_amount(amount_str: str) -> Optional[str]:
+        """Normalize financial amounts to handle M/million, B/billion equivalence"""
+        if not amount_str:
+            return None
+            
+        # Clean up the amount string
+        amount_lower = amount_str.lower().replace('$', '').replace(',', '').strip()
+        
+        # Extract the number and suffix
+        import re
+        match = re.match(r'^(\d+(?:\.\d+)?)\s*(m|million|b|billion)?$', amount_lower)
+        if not match:
+            return None
+            
+        number = match.group(1)
+        suffix = match.group(2) or ''
+        
+        # Normalize the suffix
+        if suffix in ['m', 'million']:
+            normalized_suffix = 'million'
+        elif suffix in ['b', 'billion']:
+            normalized_suffix = 'billion'
+        else:
+            normalized_suffix = ''
+        
+        # Return normalized form
+        if normalized_suffix:
+            return f"{number}{normalized_suffix}"
+        else:
+            return number
 
 
 class TweetFormatter:
@@ -1108,19 +1181,33 @@ class TextUtils:
         gemini_summary = article.get("gemini_summary", "") or ""
         
         if gemini_summary and gemini_summary.strip():
+            # Get the hook tweet to check for repetition
+            hook_tweet = TextUtils.create_hook_tweet(article)
+            
             # Use Gemini summary with URL
             # Clean up the summary format (remove bullet points for better readability)
             clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
             
-            # Try to fit summary + URL within character limit
-            max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url) - 10  # Reserve space for URL and spacing
+            # Check for repetition and create a filtered summary
+            filtered_summary = TextUtils._filter_repetitive_content(clean_summary, hook_tweet, article)
             
-            if len(clean_summary) <= max_summary_length:
-                link_tweet = f"{clean_summary}\n\n{url}"
+            if filtered_summary:
+                # Try to fit filtered summary + URL within character limit
+                max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url) - 10  # Reserve space for URL and spacing
+                
+                if len(filtered_summary) <= max_summary_length:
+                    link_tweet = f"{filtered_summary}\n\n{url}"
+                else:
+                    # Truncate filtered summary to fit with URL
+                    truncated_summary = filtered_summary[:max_summary_length - 3] + "..."
+                    link_tweet = f"{truncated_summary}\n\n{url}"
             else:
-                # Truncate summary to fit with URL
-                truncated_summary = clean_summary[:max_summary_length - 3] + "..."
-                link_tweet = f"{truncated_summary}\n\n{url}"
+                # If everything was filtered out, fallback to just URL with call-to-action
+                call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+                if call_to_action:
+                    link_tweet = f"{call_to_action} {url}".strip()
+                else:
+                    link_tweet = url
         else:
             # Fallback to traditional call-to-action format
             call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
