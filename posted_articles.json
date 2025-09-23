@@ -34,7 +34,8 @@
     "8874933607",
     "8875150279",
     "8875375420",
-    "8875593073"
+    "8875593073",
+    "2025-09-841111124"
   ],
   "queued_articles": [
     {
@@ -602,7 +603,466 @@
       "sentiment": 0.388235294117647,
       "wgt": 496273375,
       "relevance": 27
+    },
+    {
+      "uri": "8875770706",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "01:59:51",
+      "dateTime": "2025-09-23T01:59:51Z",
+      "dateTimePub": "2025-09-23T01:46:31Z",
+      "dataType": "news",
+      "sim": 0.7960784435272217,
+      "url": "https://decrypt.co/340807/coinbase-100-million-bitcoin-backed-credit-miner-cleanspark",
+      "title": "Coinbase Extends $100 Million Bitcoin-Backed Credit to Miner CleanSpark - Decrypt",
+      "body": "Rising difficulty, low fees, and tariffs have added pressure to mining margins.\n\nBitcoin miner CleanSpark said Monday it has secured a new $100 million credit line from Coinbase Prime, extending its existing financing arrangements with the exchange.\n\nThe credit is backed by the miner's Bitcoin holdings and is intended to strengthen liquidity while the firm pursues \"accretive growth using non-dilutive financing,\" Gary A. Vecchiarelli, Chief Financial Officer and President at CleanSpark, wrote in a statement.\n\nThe funds will support energy expansion, mining growth, and new high-performance computing projects, with the move building on earlier steps, the company said.\n\nIn an earlier earnings call for its second quarter results released in May, Vecchiarelli said that CleanSpark's balance sheet strategy has matured to an extent that it has allowed the Bitcoin miner to pursue \"non-dilutive funding options\" that support both its operations and long-term growth.\n\nNon-dilutive funding options are ways for a company to raise money without issuing new shares, so existing shareholders don't lose ownership.\n\nThis represents a \"meaningful strategic distinction\" from its peers, who Vecchiarelli said \"continue to rely on equity dilution to fund operating costs\" while some still rely on increasing leverage to grow their Bitcoin reserves.\n\nTo date, CleanSpark holds 12,703 BTC worth about $1.43 billion at current prices, and is the 10th largest holder of the asset among public companies, according to data from Bitcoin Treasuries.\n\nCleanSpark had already expanded its facility with Coinbase Prime by up to $200 million in April earlier this year.\n\nThe move aligns with several others in the crypto mining sector who are also shifting toward using Bitcoin-backed credit as an alternative to equity issuance or direct sales of mined coins. Hut 8 doubled its line to $130 million in June, while Riot Platforms tapped Coinbase for a $100 million arrangement in April.\n\nThese credit lines come as evolving network conditions make mining more capital-intensive. Bitcoin's hashrate and difficulty have both reached records, while transaction fees fell below 1% percent of block rewards in August for the first time.\n\nThat shift means miners are more dependent on fixed subsidies to cover rising energy and equipment costs, with observers warning last month that increasing hardware costs and logistical hurdles could accelerate shifts in mining locations, supply chains, and capital expenditure strategies, as well as deepen the strain on miners.\n\nAs early as March, tariffs on imported rigs from Asia have added to the burden, with U.S. firms including CleanSpark facing potential liabilities for past shipments.\n\nCleanSpark stock is up 33% over the past five days, according to Google Finance data.",
+      "source": {
+        "uri": "decrypt.co",
+        "dataType": "news",
+        "title": "Decrypt"
+      },
+      "authors": [
+        {
+          "uri": "vince_dioquino@decrypt.co",
+          "name": "Vince Dioquino",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coinbase",
+          "type": "org",
+          "score": 4,
+          "label": {
+            "eng": "Coinbase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Line_of_credit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Line of credit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supercomputer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Supercomputer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_financial_officer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Chief financial officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_dilution",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock dilution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Treasury_security",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "United States Treasury security"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Balance_sheet",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Balance sheet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Leverage_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Leverage (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_expenditure",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Capital expenditure"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liability_(financial_accounting)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Liability (financial accounting)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supply_chain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Supply chain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Subsidy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Asia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Google"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 84
+        }
+      ],
+      "image": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/09/bitcoin-miners-decrypt-style-01-gID_7.jpg",
+      "eventUri": "eng-10987232",
+      "sentiment": 0.3803921568627451,
+      "wgt": 496288791,
+      "relevance": 105
+    },
+    {
+      "uri": "2025-09-841078699",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "00:58:47",
+      "dateTime": "2025-09-23T00:58:47Z",
+      "dateTimePub": "2025-09-23T00:45:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.fool.ca/2025/09/22/bitcoin-in-a-tfsa-the-sensible-way-id-size-it/",
+      "title": "Bitcoin in a TFSA? The Sensible Way I'd Size It",
+      "body": "Hut 8 adds higher risk and upside, with Bitcoin-linked mining plus growing infrastructure revenues and a sizable BTC reserve for diversification.\n\nBitcoin continues to be that black sheep of an investment. The one that seems to surge one day and collapse the next. However, while risky, there are certainly some points that many investors may want to consider when it comes to a long-term investment. But, how to do it safely?\n\nOne option is to combine Bitcoin-adjacent investments inside a Tax-Free Savings Account (TFSA). So let's look at the most sensible ways for investors to get in on Bitcoin growth on the TSX today.\n\nGetting started\n\nTo get started, investors will want to consider a small target allocation. For instance, if you're beginning with Bitcoin, then you'll probably only want to allocate around 1% to 5% of your total TFSA, or up to 10% if you handle a large drawdown. After all, cryptocurrency like Bitcoin can fall 50% or more, so keep it as a fun option. Not a core investment.\n\nFurthermore, consider dollar-cost averaging, rebalancing on a regular basis, whether it's monthly or quarterly. This can reduce timing risk and allow you to trim if your crypto investment starts to take above 25% of your target 5% range. This will help so that a surge or slump doesn't dominate your TFSA.\n\nThen, use limit orders to trade thoughtfully. Crypto runs 24/7, but the TSX doesn't, so there can be gaps. But overall, if you follow these strategies, then your TFSA can certainly help by shielding gains from taxes.\n\nBTCC\n\nA good option for getting started could be the Purpose Bitcoin ETF (TSX:BTCC.B). This gives investors direct, physically settled Bitcoin exposure held in cold storage, rather than in futures. It's TSX-listed, TFSA eligible, with $3.3 billion in assets under management. The management fee is at 1%, with the management expense ratio (MER) capped at 1.5%.\n\nThis ETF tracks BTC closely, with the recent one-year performance up 79% as of writing. However, still expect volatility from the price of Bitcoin. What's more, it's unhedged, so you can also get USD/CAD currency moves as well. All considered, it's a simple and regulated investment that's easy to buy and sell for straightforward Bitcoin investing.\n\nHut 8\n\nThen we have Hut 8 (TSX:HUT), which is more Bitcoin adjacent, but high beta from its equity leveraged to Bitcoin. However, it's also developing power and digital infrastructure under its platform. This gives the bitcoin miner more diversification while still providing a connection to the cryptocurrency.\n\nIn the second quarter, Hut 8 pivoted towards contracted revenues, with nearly 90% of managed energy under agreements longer than one year. That's a huge increase from about 30% a year ago. Furthermore, it holds a strategic Bitcoin reserve of about 10,667 BTC, worth around $1.1 billion as of the second quarter. While it too is connected to the cost of Bitcoin, it has support from its infrastructure business as well.\n\nBottom line\n\nBy using your TFSA to put around 5% of your investment into Bitcoin stocks, this keeps it fun and interesting rather than risky and terrifying. Just make sure that percentage range stays constant, moving your core investment into safer options. Overall, a small satellite allocation could be enough to allow investors to benefit, while small enough to shrug off a loss.",
+      "source": {
+        "uri": "fool.ca",
+        "dataType": "news",
+        "title": "The Motley Fool Canada"
+      },
+      "authors": [
+        {
+          "uri": "amy_legate_wolfe@fool.ca",
+          "name": "Amy Legate-Wolfe",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tax-free_savings_account",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Tax-free savings account"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hut_8",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Hut 8"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Toronto_Stock_Exchange",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Toronto Stock Exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Assets_under_management",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Assets under management"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Refrigeration",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Refrigeration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Futures_contract",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Futures contract"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Beta_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Beta (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Expense_ratio",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Expense ratio"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canadian_dollar",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Canadian dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hedge_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hedge (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Satellite",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Satellite"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Currency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Investing/Socially_Responsible",
+          "label": "dmoz/Business/Investing/Socially Responsible",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 22
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Services",
+          "label": "dmoz/Business/Financial Services/Investment Services",
+          "wgt": 19
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 96
+        }
+      ],
+      "image": "https://www.fool.ca/wp-content/uploads/2022/05/GettyImages-1310459406.jpg",
+      "eventUri": null,
+      "sentiment": 0.07450980392156858,
+      "wgt": 496285127,
+      "relevance": 77
     }
   ],
-  "last_run_time": "2025-09-23T01:49:32.889232"
+  "last_run_time": "2025-09-23T03:22:13.583699"
 }
