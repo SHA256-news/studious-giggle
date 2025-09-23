@@ -125,24 +125,6 @@ def test_entity_extractor_optimization():
     print("✓ Entity extractor optimization working")
     return True
 
-def test_abbreviation_caching():
-    """Test abbreviation pattern caching"""
-    print("Testing abbreviation caching...")
-    
-    # Test that abbreviations work with caching
-    test_text = "partnership with investment in bitcoin mining facility"
-    abbreviated = TextUtils._apply_abbreviations(test_text)
-    
-    # Should apply abbreviations
-    assert len(abbreviated) <= len(test_text)
-    
-    # Test again to ensure caching works
-    abbreviated2 = TextUtils._apply_abbreviations(test_text)
-    assert abbreviated == abbreviated2
-    
-    print("✓ Abbreviation caching working")
-    return True
-
 def test_no_redundant_imports():
     """Test that redundant imports were removed"""
     print("Testing import cleanup...")
@@ -162,6 +144,54 @@ def test_no_redundant_imports():
     print("✓ Import cleanup successful")
     return True
 
+def test_performance_optimizations():
+    """Test performance optimizations"""
+    print("Testing performance optimizations...")
+    
+    # Test compiled patterns for financial amounts and technical specs
+    # These should be created dynamically when first used
+    test_article = {
+        "title": "CleanSpark and Marathon Digital announce $100M investment with 2000 miners",
+        "body": "The companies will deploy advanced mining equipment."
+    }
+    
+    info = TextUtils.extract_key_info(test_article)
+    
+    # Should extract companies efficiently
+    assert "companies" in info
+    # Note: may not find specific companies depending on entity extractor availability
+    
+    # Should extract financial amounts efficiently  
+    assert "financial_amounts" in info
+    
+    # Should extract technical specs efficiently
+    assert "technical_specs" in info
+    
+    # Test that patterns were created dynamically
+    assert hasattr(CompiledPatterns, 'FINANCIAL_AMOUNTS'), "Financial amount patterns not created"
+    assert hasattr(CompiledPatterns, 'TECHNICAL_SPECS'), "Technical spec patterns not created"
+    
+    print("✓ Performance optimizations working correctly")
+    return True
+
+def test_abbreviation_caching():
+    """Test abbreviation pattern caching"""
+    print("Testing abbreviation caching...")
+    
+    # Test that abbreviations work with caching
+    test_text = "partnership with investment in bitcoin mining facility"
+    abbreviated = TextUtils._apply_abbreviations(test_text)
+    
+    # Should apply abbreviations
+    assert len(abbreviated) <= len(test_text)
+    
+    # Test again to ensure caching works
+    abbreviated2 = TextUtils._apply_abbreviations(test_text)
+    assert abbreviated == abbreviated2
+    
+    print("✓ Abbreviation caching working")
+    return True
+
 def run_all_tests():
     """Run all bug fix validation tests"""
     print("🔍 Running comprehensive bug fix validation...")
@@ -173,6 +203,7 @@ def run_all_tests():
         test_timezone_fixes,
         test_entity_extractor_optimization,
         test_abbreviation_caching,
+        test_performance_optimizations,
         test_no_redundant_imports
     ]
     

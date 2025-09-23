@@ -492,18 +492,20 @@ class ContentFilter:
         if not hook_bullet_contents:
             return summary_lines
         
+        # Convert hook bullet contents to a set for faster lookup
+        hook_bullet_contents_set = set(hook_bullet_contents)
+        
         # Filter summary lines to remove matching bullet points
         filtered_lines = []
         for line in summary_lines:
             # Extract content from this summary line (removing bullet markers)
             summary_content = ContentFilter._extract_bullet_content_from_line(line)
             
-            # Check if this content matches any hook bullet point content
-            is_duplicate = False
-            for hook_content in hook_bullet_contents:
-                if ContentFilter._is_bullet_content_match(summary_content, hook_content):
-                    is_duplicate = True
-                    break
+            # Check if this content matches any hook bullet point content using set lookup
+            is_duplicate = any(
+                ContentFilter._is_bullet_content_match(summary_content, hook_content)
+                for hook_content in hook_bullet_contents_set
+            )
             
             # Keep the line only if it's not a duplicate
             if not is_duplicate:
@@ -932,6 +934,14 @@ class TextUtils:
         # Enhanced company detection patterns - improved to avoid false positives
         companies = list(entities.get("companies", []))
         
+        # Create a set of existing company names in lowercase for faster lookup
+        existing_companies_lower = {c.lower() for c in companies}
+        
+        # Pre-define skip words set for faster lookup
+        skip_words = {'stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
+                     'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
+                     'facility', 'energy', 'strategic', 'partnership'}
+        
         # Look for additional company patterns in the text using compiled patterns
         company_patterns = [
             CompiledPatterns.KNOWN_COMPANIES,
@@ -943,40 +953,44 @@ class TextUtils:
             matches = pattern.findall(text)
             for match in matches:
                 # Clean up the match and avoid nonsensical extractions
+                match_lower = match.lower()
                 if (match and len(match) > 2 and len(match) <= 30 and 
-                    match.lower() not in [c.lower() for c in companies]):
+                    match_lower not in existing_companies_lower):
                     
-                    # Filter out words that aren't company names
-                    skip_words = ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
-                                'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
-                                'facility', 'energy', 'strategic', 'partnership']
-                    
-                    if not any(word in match.lower() for word in skip_words):
+                    # Filter out words that aren't company names using set lookup
+                    if not any(word in match_lower for word in skip_words):
                         companies.append(match)
+                        existing_companies_lower.add(match_lower)  # Update the set
         
-        # Extract financial amounts (dollars, BTC amounts)
+        # Extract financial amounts (dollars, BTC amounts) using compiled patterns
         financial_amounts = []
-        amount_patterns = [
-            r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|M|B))?',  # $1.5M, $21.85M
-            r'[\d,]+\s*BTC',  # 200 BTC
-            r'[\d,]+\s*Bitcoin',  # 200 Bitcoin
-            r'[\d,]+\s*(?:million|billion)\s*(?:dollars?)?',  # 21.85 million dollars
-        ]
         
-        for pattern in amount_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
+        # Add financial patterns to CompiledPatterns if not already there
+        if not hasattr(CompiledPatterns, 'FINANCIAL_AMOUNTS'):
+            CompiledPatterns.FINANCIAL_AMOUNTS = [
+                re.compile(r'\$[\d,]+(?:\.\d+)?(?:\s*(?:million|billion|M|B))?', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*BTC', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*Bitcoin', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:million|billion)\s*(?:dollars?)?', re.IGNORECASE),
+            ]
+        
+        for pattern in CompiledPatterns.FINANCIAL_AMOUNTS:
+            matches = pattern.findall(text)
             financial_amounts.extend(matches)
         
-        # Extract numbers and technical specs
+        # Extract numbers and technical specs using compiled patterns
         technical_specs = []
-        tech_patterns = [
-            r'[\d,]+\+?\s*(?:miners?|rigs?)',  # 2,200+ miners
-            r'[\d,]+\s*(?:MW|GW|TH/s|EH/s)',  # power/hashrate specs
-            r'[\d,]+\s*(?:annually|per year|/yr)',  # annual targets
-        ]
         
-        for pattern in tech_patterns:
-            matches = re.findall(pattern, text, re.IGNORECASE)
+        # Add technical patterns to CompiledPatterns if not already there
+        if not hasattr(CompiledPatterns, 'TECHNICAL_SPECS'):
+            CompiledPatterns.TECHNICAL_SPECS = [
+                re.compile(r'[\d,]+\+?\s*(?:miners?|rigs?)', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:MW|GW|TH/s|EH/s)', re.IGNORECASE),
+                re.compile(r'[\d,]+\s*(?:annually|per year|/yr)', re.IGNORECASE),
+            ]
+        
+        for pattern in CompiledPatterns.TECHNICAL_SPECS:
+            matches = pattern.findall(text)
             technical_specs.extend(matches)
         
         return {
