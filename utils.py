@@ -413,6 +413,23 @@ class TextPatterns:
     KEY_TERMS = ['credit', 'line', 'investment', 'facility', 'partnership', 'expansion', 'mining', 'bitcoin', 'btc']
     
     TRAILING_WORDS = ["at", "from", "on", "in", "via", "to", "by"]
+    
+    # Generic phrases that should be removed from summary tweets
+    GENERIC_OPENINGS = [
+        "the article confirms the key details",
+        "the article states that",
+        "the article confirms that",
+        "the article reports that",
+        "according to the article",
+        "the report states that",
+        "it is reported that",
+        "the news confirms",
+        "news:",
+        "update:",
+        "breaking:",
+        "announcement:",
+        "details:"
+    ]
 
 
 class ContentFilter:
@@ -423,10 +440,13 @@ class ContentFilter:
         """Filter out content from summary that's already mentioned in hook tweet"""
         if not summary or not hook_tweet:
             return summary
-            
-        summary_lines = ContentFilter._split_summary_lines(summary)
+        
+        # First remove generic openings from the summary
+        cleaned_summary = ContentFilter._remove_generic_openings(summary)
+        
+        summary_lines = ContentFilter._split_summary_lines(cleaned_summary)
         if not summary_lines:
-            return summary
+            return ""
             
         hook_keywords, hook_tech_specs = ContentFilter._extract_hook_keywords(hook_tweet)
         filtered_lines = ContentFilter._filter_summary_lines(summary_lines, hook_keywords, hook_tech_specs)
@@ -437,6 +457,27 @@ class ContentFilter:
     def _split_summary_lines(summary: str) -> List[str]:
         """Split summary into clean lines"""
         return [line.strip() for line in summary.split('\n') if line.strip()]
+
+    @staticmethod
+    def _remove_generic_openings(summary: str) -> str:
+        """Remove generic openings from summary text"""
+        if not summary:
+            return summary
+        
+        result = summary.strip()
+        
+        # Check for generic openings and remove them
+        for opening in TextPatterns.GENERIC_OPENINGS:
+            if result.lower().startswith(opening.lower()):
+                result = result[len(opening):].strip()
+                # Remove leading punctuation like periods, colons, etc.
+                result = re.sub(r'^[.:;,-]\s*', '', result)
+                # Capitalize the first letter after removing the opening
+                if result:
+                    result = result[0].upper() + result[1:] if len(result) > 1 else result.upper()
+                break
+        
+        return result
 
     @staticmethod
     def _extract_hook_keywords(hook_tweet: str) -> Tuple[set, set]:
@@ -1111,6 +1152,9 @@ class TextUtils:
             # Use Gemini summary with URL
             # Clean up the summary format (remove bullet points for better readability)
             clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
+            
+            # Remove generic openings from the summary
+            clean_summary = ContentFilter._remove_generic_openings(clean_summary)
             
             # Try to fit summary + URL within character limit
             max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url) - 10  # Reserve space for URL and spacing
