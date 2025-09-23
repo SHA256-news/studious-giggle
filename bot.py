@@ -19,7 +19,7 @@ logger = logging.getLogger('bitcoin_mining_bot')
 
 # Import new modular components
 from config import BotConstants
-from utils import FileManager, TimeUtils
+from utils import FileManager, TimeUtils, FormattingUtils, QueueUtils, ErrorHandlingUtils
 from api_clients import APIClientManager
 from tweet_poster import TweetPoster
 
@@ -125,7 +125,7 @@ class BitcoinMiningNewsBot:
         """Check if queued articles are too old to be worth posting"""
         from datetime import datetime, timedelta
         
-        queued_articles = self.posted_articles.get("queued_articles", [])
+        queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
         if not queued_articles:
             return False
         
@@ -166,7 +166,7 @@ class BitcoinMiningNewsBot:
         """Remove stale articles from the queue"""
         from datetime import datetime, timedelta
         
-        queued_articles = self.posted_articles.get("queued_articles", [])
+        queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
         if not queued_articles:
             return
         
@@ -200,7 +200,7 @@ class BitcoinMiningNewsBot:
 
     def _process_queued_article(self) -> bool:
         """Process the next queued article (FIFO) if available"""
-        queued_articles = self.posted_articles.get("queued_articles", [])
+        queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
         if not queued_articles:
             logger.info("No queued articles to process")
             return False
@@ -270,7 +270,7 @@ class BitcoinMiningNewsBot:
             if uri:
                 self.posted_articles["posted_uris"].append(uri)
             
-            title = enhanced_article.get("gemini_headline", article.get("title", "Unknown title"))[:50] + "..."
+            title = FormattingUtils.format_article_title(enhanced_article)
             logger.info(f"Posted article: {title}")
             return True
         
@@ -333,7 +333,7 @@ class BitcoinMiningNewsBot:
 
             # Filter out already posted articles and extract new ones
             new_articles = []
-            queued_uris = {article.get("uri") for article in self.posted_articles.get("queued_articles", [])}
+            queued_uris = {article.get("uri") for article in QueueUtils.get_queued_articles(self.posted_articles)}
             for article in articles:
                 uri = article.get("uri")
                 if not uri:
@@ -343,7 +343,7 @@ class BitcoinMiningNewsBot:
                 if uri not in self.posted_articles["posted_uris"] and uri not in queued_uris:
                     new_articles.append(article)
                 else:
-                    title = article.get("title", "Unknown title")[:50] + "..."
+                    title = FormattingUtils.format_article_title(article)
                     if uri in self.posted_articles["posted_uris"]:
                         logger.info(f"🔄 Skipping already posted article: {title}")
                     else:
@@ -367,8 +367,8 @@ class BitcoinMiningNewsBot:
                     return
             else:
                 # We have new articles - always prioritize these over queued content
-                if self.posted_articles.get("queued_articles"):
-                    queue_count = len(self.posted_articles["queued_articles"])
+                if QueueUtils.get_queued_articles(self.posted_articles):
+                    queue_count = len(QueueUtils.get_queued_articles(self.posted_articles))
                     logger.info(f"🆕 Found {len(new_articles)} fresh articles - prioritizing over {queue_count} queued articles")
 
             # Sort by publication date (newest first) 
@@ -381,7 +381,7 @@ class BitcoinMiningNewsBot:
             if articles_to_queue:
                 logger.info(f"📝 Found {len(new_articles)} new articles. Posting most recent, queueing {len(articles_to_queue)} older articles for later.")
                 for i, article in enumerate(articles_to_queue, 1):
-                    title = article.get("title", "Unknown title")[:50] + "..."
+                    title = FormattingUtils.format_article_title(article)
                     logger.info(f"  📋 Queueing #{i}: {title}")
                 
                 # Add to queue
@@ -400,8 +400,8 @@ class BitcoinMiningNewsBot:
 
             execution_time = time.time() - start_time
             if success:
-                queued_count = len(self.posted_articles.get("queued_articles", []))
-                total_in_queue_msg = f", {queued_count} total in queue" if queued_count > 0 else ""
+                queued_articles = QueueUtils.get_queued_articles(self.posted_articles)
+                total_in_queue_msg = FormattingUtils.get_queue_count_message(queued_articles)
                 if articles_to_queue:
                     logger.info(f"🎉 Successfully posted 1 article. Queued {len(articles_to_queue)} newer articles for later ({len(new_articles)} new articles available, {len(articles) - len(new_articles)} already posted{total_in_queue_msg})")
                 else:
@@ -409,84 +409,23 @@ class BitcoinMiningNewsBot:
                 
                 # Update last_run_time only after successful posting
                 FileManager.save_posted_articles(self.posted_articles, update_last_run_time=True)
-                logger.info(f"⏱️  Total execution time: {execution_time:.2f} seconds")
-                logger.info("✅ Status: SUCCESS (Tweet Posted)")
+                ErrorHandlingUtils.log_execution_status(execution_time, "SUCCESS (Tweet Posted)")
             else:
                 # Set rate limit cooldown since posting failed
                 cooldown_data = TimeUtils.create_rate_limit_cooldown()
                 FileManager.save_rate_limit_cooldown(cooldown_data)
-                logger.info(f"⏱️  Total execution time: {execution_time:.2f} seconds")
-                logger.info("⚠️  Status: SUCCESS (Rate Limited - Cooldown Active)")
+                ErrorHandlingUtils.log_execution_status(execution_time, "SUCCESS (Rate Limited - Cooldown Active)")
 
         except Exception as e:
             execution_time = time.time() - start_time
             if "Missing environment variable" in str(e):
-                logger.error("🚨 CONFIGURATION ERROR: Missing required environment variables")
-                logger.error("This error occurs when the bot cannot find the required API keys.")
-                logger.error("")
-                logger.error("To fix this issue:")
-                logger.error("1. Go to your GitHub repository settings")
-                logger.error("2. Navigate to Settings > Secrets and variables > Actions")
-                logger.error("3. Add the following repository secrets:")
-                logger.error("   • TWITTER_API_KEY")
-                logger.error("   • TWITTER_API_SECRET")
-                logger.error("   • TWITTER_ACCESS_TOKEN")
-                logger.error("   • TWITTER_ACCESS_TOKEN_SECRET")
-                logger.error("   • EVENTREGISTRY_API_KEY")
-                logger.error("")
-                logger.error("For detailed setup instructions, see the README.md file.")
-                logger.error(f"⏱️  Execution time: {execution_time:.2f} seconds")
-                logger.error("❌ Status: FAILED (Missing Configuration)")
+                ErrorHandlingUtils.log_missing_api_keys_error()
+                ErrorHandlingUtils.log_execution_status(execution_time, "FAILED (Missing Configuration)", success=False)
                 raise
             else:
                 logger.error(f"🚨 Unexpected error during bot execution: {str(e)}")
-                logger.error(f"⏱️  Execution time: {execution_time:.2f} seconds")
-                logger.error("❌ Status: FAILED (Unexpected Error)")
+                ErrorHandlingUtils.log_execution_status(execution_time, "FAILED (Unexpected Error)", success=False)
                 raise
-
-
-def _show_api_key_error(queued_count: int) -> None:
-    """Show detailed error message for missing API keys"""
-    logger.error("="*80)
-    logger.error("🔍 DIAGNOSIS: GitHub Action 'Success' but No Tweets Posted")
-    logger.error("="*80)
-    logger.error("")
-    logger.error("✅ WHAT WORKED:")
-    logger.error("   - Dependencies installed successfully")
-    logger.error("   - Bot code executed without errors")
-    logger.error("   - Python imports and initialization completed")
-    logger.error("   - Error handling worked correctly")
-    logger.error("")
-    logger.error("❌ WHAT FAILED:")
-    logger.error("   - Missing required API credentials")
-    logger.error("   - Unable to connect to Twitter API")
-    logger.error("   - Unable to connect to EventRegistry API")
-    logger.error("   - Cannot post tweets without valid authentication")
-    logger.error("")
-    if queued_count > 0:
-        logger.error(f"📋 ARTICLES WAITING: {queued_count} articles are queued for posting")
-        logger.error("   These articles will be posted automatically once API keys are configured.")
-        logger.error("")
-    logger.error("🔧 SOLUTION: Configure GitHub Repository Secrets")
-    logger.error("   1. Go to your repository Settings > Secrets and variables > Actions")
-    logger.error("   2. Add these repository secrets:")
-    for var in ["TWITTER_API_KEY", "TWITTER_API_SECRET", "TWITTER_ACCESS_TOKEN", 
-               "TWITTER_ACCESS_TOKEN_SECRET", "EVENTREGISTRY_API_KEY"]:
-        logger.error(f"      - {var}")
-    logger.error("")
-    logger.error("💡 WHY GITHUB ACTIONS SHOW 'SUCCESS':")
-    logger.error("   - The workflow completes all steps without exceptions")
-    logger.error("   - Dependencies install successfully")
-    logger.error("   - The bot gracefully handles missing credentials")
-    logger.error("   - No Python errors or crashes occur")
-    logger.error("   - 'Success' means the code ran, not that tweets were posted")
-    logger.error("")
-    logger.error("📖 For API key setup guides:")
-    logger.error("   - Twitter: https://developer.twitter.com/")
-    logger.error("   - EventRegistry: https://newsapi.ai/dashboard")
-    logger.error("")
-    logger.error("🔍 Run diagnostics: python bot.py --diagnose")
-    logger.error("="*80)
 
 
 def main():
@@ -514,10 +453,9 @@ def main():
         if "environment variables" in str(e).lower():
             logger.warning("API keys missing, checking for queued articles to process...")
             try:
-                from utils import FileManager
                 posted_articles = FileManager.load_posted_articles()
-                queued_count = len(posted_articles.get("queued_articles", []))
-                _show_api_key_error(queued_count)
+                queued_count = len(QueueUtils.get_queued_articles(posted_articles))
+                ErrorHandlingUtils.log_comprehensive_api_key_diagnosis(queued_count)
                 
                 # Exit gracefully for GitHub Actions
                 logger.info("🔧 GitHub Actions Status: SUCCESS (Configuration Required)")
