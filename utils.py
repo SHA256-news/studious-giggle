@@ -609,9 +609,13 @@ class TextUtils:
         # Check if hook tweet already contains a URL
         article_url = (article.get("url") or article.get("uri") or "").strip()
         if article_url and article_url in hook_tweet:
-            # If hook tweet already has the URL, create a link tweet without the URL
-            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
-            link_tweet = call_to_action if call_to_action else ""
+            # If hook tweet already has the URL, remove it from the hook and ensure it's in the last tweet
+            hook_tweet = hook_tweet.replace(article_url, "").strip()
+            # Clean up any extra spaces or punctuation left behind
+            hook_tweet = re.sub(r'\s+', ' ', hook_tweet).strip()
+            hook_tweet = re.sub(r'\s*at\s*$', '', hook_tweet).strip()  # Remove trailing "at"
+            # Create link tweet with URL (URL should ALWAYS be in the last tweet)
+            link_tweet = TextUtils.create_link_tweet(article)
         else:
             # Normal case: create link tweet with URL
             link_tweet = TextUtils.create_link_tweet(article)
