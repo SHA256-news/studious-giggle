@@ -271,7 +271,7 @@ class TimeUtils:
 class TextUtils:
     """Text processing utility functions"""
     
-    # Abbreviations to save characters
+    # Abbreviations to save characters - optimized for Twitter readability
     ABBREVIATIONS = {
         "Bitcoin": "BTC",
         "bitcoin": "BTC", 
@@ -284,11 +284,20 @@ class TextUtils:
         "Billion": "B",
         "thousand": "K",
         "Thousand": "K",
-        "mining": "mining",  # Keep this as is since it's key
         "company": "co",
         "Company": "Co",
         "investment": "invest",
-        "Investment": "Invest"
+        "Investment": "Invest",
+        "operations": "ops",
+        "Operations": "Ops",
+        "facility": "facility",  # Keep this readable
+        "mining": "mining",  # Keep this as key term
+        "announce": "announces",
+        "announces": "announces",  # Keep for clarity
+        "partnership": "partnership",  # Keep for clarity
+        "United States": "US",
+        "government": "govt",
+        "Government": "Govt"
     }
     
     @staticmethod
@@ -309,18 +318,27 @@ class TextUtils:
         
         # Look for additional company patterns in the text
         company_patterns = [
-            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)*)\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd|Co\.?)\b',  # Corporate entities
-            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN)\b',  # Known mining companies
-            r'\b([A-Z][a-zA-Z]+)\s+(?:Holdings?)\b',  # "DL Holdings", "ABC Holding"
+            # Known companies first (highest priority)
+            r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN|DL Holdings?)\b',  
+            # Corporate entities - be more restrictive
+            r'\b([A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+){0,2})\s+(?:Holdings?|Corporation|Corp|Inc|LLC|Ltd)\b',  
+            # Simple holding pattern
+            r'\b([A-Z][a-zA-Z]{2,15})\s+Holdings?\b',  
         ]
         
         for pattern in company_patterns:
             matches = re.findall(pattern, text, re.IGNORECASE)
             for match in matches:
                 # Clean up the match and avoid nonsensical extractions
-                if match and len(match) > 2 and match.lower() not in [c.lower() for c in companies]:
-                    # Don't add if it contains words that suggest it's not a real company
-                    if not any(word in match.lower() for word in ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 'million', 'investment']):
+                if (match and len(match) > 2 and len(match) <= 30 and 
+                    match.lower() not in [c.lower() for c in companies]):
+                    
+                    # Filter out words that aren't company names
+                    skip_words = ['stole', 'steal', 'boss', 'chief', 'head', 'arrest', 'charge', 
+                                'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
+                                'facility', 'energy', 'strategic', 'partnership']
+                    
+                    if not any(word in match.lower() for word in skip_words):
                         companies.append(match)
         
         # Extract financial amounts (dollars, BTC amounts)
@@ -411,7 +429,7 @@ class TextUtils:
     
     @staticmethod
     def _create_company_focused_tweet(info: Dict[str, Any], title: str, title_lower: str) -> str:
-        """Create company-focused tweet format: 'Company invests $X in BTC mining via Partner. Target: Y'"""
+        """Create company-focused tweet format with better readability: '🏢 Company invests $X in BTC mining'"""
         
         # Check if this is actually about company investments/business actions
         # If it's about crime, scandal, or negative news, fall back to generic format
@@ -423,72 +441,96 @@ class TextUtils:
         if not info["companies"] or len(info["companies"]) < 1:
             return TextUtils._create_enhanced_generic_tweet(info, title)
             
+        # Get primary company - ensure we get a reasonable length company name
+        primary_company = info["companies"][0]
+        if len(primary_company) > 40:  # Skip overly long extracted names
+            return TextUtils._create_enhanced_generic_tweet(info, title)
+            
         components = []
         
-        # Primary company
-        primary_company = info["companies"][0]
-        components.append(primary_company)
-        
-        # Action verb
-        action = "invests"
+        # Add appropriate emoji based on action type
+        emoji = "🏢"
         if any(word in title_lower for word in ["expand", "expansion"]):
+            emoji = "📈"
             action = "expands"
         elif any(word in title_lower for word in ["launch", "start"]):
+            emoji = "🚀"
             action = "launches"
         elif any(word in title_lower for word in ["partner", "partnership"]):
+            emoji = "🤝"
             action = "partners w/"
         elif any(word in title_lower for word in ["acquire", "acquisition"]):
+            emoji = "💰"
             action = "acquires"
+        else:
+            action = "invests"
         
-        components.append(action)
+        components.extend([emoji, primary_company, action])
         
         # Financial amount (prioritize dollar amounts)
-        financial_detail = ""
         if info["financial_amounts"]:
             dollar_amounts = [a for a in info["financial_amounts"] if '$' in a]
             if dollar_amounts:
-                financial_detail = dollar_amounts[0]
+                components.append(dollar_amounts[0])
             else:
-                financial_detail = info["financial_amounts"][0]
-            components.append(financial_detail)
+                components.append(info["financial_amounts"][0])
         
         components.append("in BTC mining")
         
-        # Partner company
+        # Partner company (only if we have a second distinct company)
         if len(info["companies"]) > 1:
-            components.append(f"via {info['companies'][1]}")
+            second_company = info["companies"][1]
+            if len(second_company) <= 20 and second_company.lower() != primary_company.lower():
+                components.append(f"w/ {second_company}")
         
-        # Technical specs as target
+        # Technical specs as additional context
         if info["technical_specs"]:
-            # Add period and start new sentence for technical details
-            base_text = " ".join(components) + "."
+            base_text = " ".join(components)
             tech_detail = info["technical_specs"][0]
+            
+            # Choose appropriate label
             if "annually" in tech_detail or "/yr" in tech_detail or "per year" in tech_detail:
-                full_text = f"{base_text} Target: {tech_detail}"
+                full_text = f"{base_text}. Target: {tech_detail}"
             else:
-                full_text = f"{base_text} Specs: {tech_detail}"
+                full_text = f"{base_text}. Specs: {tech_detail}"
             
             # Apply abbreviations and check length
             full_text = TextUtils._apply_abbreviations(full_text)
             if len(full_text) <= BotConstants.TWEET_MAX_LENGTH:
                 return full_text
         
-        # If tech specs make it too long, return base without tech details
+        # Return base text with abbreviations applied (no hashtags)
         base_text = " ".join(components)
         return TextUtils._apply_abbreviations(base_text)
     
     @staticmethod
     def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create news-focused format for regulatory/general news"""
-        # For regulatory news, keep the authoritative structure but enhance with abbreviations
-        enhanced_title = title
+        """Create news-focused format for regulatory/general news with better readability"""
+        # Add appropriate emoji for news type
+        title_lower = title.lower()
+        emoji = "📰"
         
-        # Add financial context if available and not already in title
-        if info["financial_amounts"] and not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+        if any(word in title_lower for word in ["approve", "approved", "approval"]):
+            emoji = "✅"
+        elif any(word in title_lower for word in ["regulation", "regulatory", "rule"]):
+            emoji = "⚖️"
+        elif any(word in title_lower for word in ["ban", "banned", "restrict"]):
+            emoji = "🚫"
+        elif any(word in title_lower for word in ["sec", "cftc", "government"]):
+            emoji = "🏛️"
+        
+        # Start with emoji
+        enhanced_title = f"{emoji} {title}"
+        
+        # Add financial context if available and significant
+        if info["financial_amounts"]:
+            # Only add if it's a significant amount not already prominently featured
             amount = info["financial_amounts"][0]
-            enhanced_title = f"{amount}: {enhanced_title}"
+            if '$' in amount and 'million' in amount.lower() or 'billion' in amount.lower():
+                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
+                    enhanced_title = f"{emoji} {amount}: {title}"
         
-        # Apply abbreviations
+        # Apply abbreviations (no hashtags)
         enhanced_title = TextUtils._apply_abbreviations(enhanced_title)
         
         # Ensure length compliance
@@ -499,25 +541,43 @@ class TextUtils:
     
     @staticmethod
     def _create_enhanced_generic_tweet(info: Dict[str, Any], title: str) -> str:
-        """Create enhanced generic format"""
-        components = []
+        """Create enhanced generic format with better readability and structure"""
+        title_lower = title.lower()
         
-        # Add location if available and significant
+        # Determine appropriate emoji based on content
+        emoji = "📰"  # Default news emoji
+        
+        if any(word in title_lower for word in ["milestone", "reaches", "production"]):
+            emoji = "🎯"
+        elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
+            emoji = "🌍"
+        elif any(word in title_lower for word in ["facility", "farm", "center"]):
+            emoji = "🏭"
+        elif any(word in title_lower for word in ["invest", "fund", "capital"]):
+            emoji = "💰"
+        elif any(word in title_lower for word in ["tech", "hash", "power", "energy"]):
+            emoji = "⚡"
+        
+        components = [emoji]
+        
+        # Add location context if significant and not already in title
         if info["locations"]:
             location = info["locations"][0].title()
-            if location.lower() not in title.lower():
+            if location.lower() not in title_lower and len(location) <= 15:
                 components.append(f"{location}:")
         
-        # Add financial amount if available and not in title
+        # Add financial amount if significant and not prominently featured
         if info["financial_amounts"]:
             amount = info["financial_amounts"][0]
-            if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
-                components.append(f"{amount}:")
+            # Only add if it's a substantial amount
+            if ('$' in amount and ('million' in amount.lower() or 'billion' in amount.lower())) or 'BTC' in amount:
+                if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"][:1]):
+                    components.append(f"{amount}:")
         
         # Add the title
         components.append(title)
         
-        # Combine and apply abbreviations
+        # Combine and apply abbreviations (no hashtags)
         tweet_text = " ".join(components)
         tweet_text = TextUtils._apply_abbreviations(tweet_text)
         
@@ -555,18 +615,103 @@ class TextUtils:
         return text
 
     @staticmethod
+    def _enhance_gemini_headline(gemini_headline: str, article: Dict[str, Any]) -> str:
+        """Add minimal visual enhancements to Gemini-generated headlines (1 emoji max, no hashtags)"""
+        # Extract info for context-aware emoji selection
+        info = TextUtils.extract_key_info(article)
+        title_lower = gemini_headline.lower()
+        
+        # Add appropriate emoji based on content (only if not already present and max 1)
+        if not any(emoji in gemini_headline for emoji in ['🏢', '🤝', '✅', '🎯', '🌍', '📰', '⚡', '🏭', '💰', '📈']):
+            emoji = ""
+            if any(word in title_lower for word in ["partner", "partnership", "collaborate"]):
+                emoji = "🤝 "
+            elif any(word in title_lower for word in ["invest", "fund", "capital", "million", "billion"]):
+                emoji = "💰 "
+            elif any(word in title_lower for word in ["expand", "expansion", "growth", "increase"]):
+                emoji = "📈 "
+            elif any(word in title_lower for word in ["approve", "approved", "approval"]):
+                emoji = "✅ "
+            elif any(word in title_lower for word in ["milestone", "reaches", "achievement"]):
+                emoji = "🎯 "
+            elif any(word in title_lower for word in ["facility", "farm", "center", "plant"]):
+                emoji = "🏭 "
+            elif any(word in title_lower for word in ["energy", "power", "hashrate", "mining"]):
+                emoji = "⚡ "
+            elif any(word in title_lower for word in ["relocat", "move", "transfer"]):
+                emoji = "🌍 "
+            else:
+                emoji = "📰 "
+            
+            gemini_headline = f"{emoji}{gemini_headline}"
+        
+        # No hashtags as per user request
+        return gemini_headline
+
+    @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
-        """Create the hook/benefit tweet that leads the thread."""
+        """Create the hook/benefit tweet that leads the thread, using Gemini AI when available."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_hook_tweet, using fallback")
             return "Bitcoin mining news update"
-            
+        
+        # If we have Gemini-generated content, use it directly with light formatting
+        gemini_headline = article.get("gemini_headline", "") or ""
+        
+        if gemini_headline and gemini_headline.strip():
+            # Gemini content is already optimized, just apply minimal enhancements
+            enhanced_gemini = TextUtils._enhance_gemini_headline(gemini_headline, article)
+            if len(enhanced_gemini) <= BotConstants.TWEET_MAX_LENGTH:
+                return enhanced_gemini
+        
+        # Fallback to our enhanced formatting for non-Gemini content
         return TextUtils.create_enhanced_tweet_text(article)
 
     @staticmethod
+    def create_summary_tweet(article: Dict[str, Any]) -> str:
+        """Create a summary tweet with Gemini summary (no URL)."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_summary_tweet, returning empty")
+            return ""
+
+        # Use Gemini-generated summary for the summary tweet (no URL)
+        gemini_summary = article.get("gemini_summary", "") or ""
+        
+        if gemini_summary and gemini_summary.strip():
+            # Use Gemini summary without URL
+            # Clean up the summary format (remove bullet points for better readability)
+            clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
+            
+            # Ensure summary fits within character limit
+            if len(clean_summary) <= BotConstants.TWEET_MAX_LENGTH:
+                return clean_summary
+            else:
+                # Truncate summary to fit
+                return clean_summary[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
+        else:
+            # No Gemini summary available, return empty string
+            return ""
+
+    @staticmethod  
+    def create_url_tweet(article: Dict[str, Any]) -> str:
+        """Create a standalone URL tweet."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_url_tweet, returning empty")
+            return ""
+            
+        url = (article.get("url") or article.get("uri") or "").strip()
+        if not url:
+            return ""
+
+        # Return just the URL
+        return url
+
+    @staticmethod
     def create_link_tweet(article: Dict[str, Any]) -> str:
-        """Create the succinct link tweet with a call-to-action."""
+        """Create the succinct link tweet with Gemini summary or call-to-action."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_link_tweet, returning empty")
@@ -576,12 +721,32 @@ class TextUtils:
         if not url:
             return ""
 
-        call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
-        if call_to_action:
-            link_tweet = f"{call_to_action} {url}".strip()
+        # Prefer Gemini-generated summary for the second tweet
+        gemini_summary = article.get("gemini_summary", "") or ""
+        
+        if gemini_summary and gemini_summary.strip():
+            # Use Gemini summary with URL
+            # Clean up the summary format (remove bullet points for better readability)
+            clean_summary = gemini_summary.replace("Key highlights:\n", "").replace("•", "▪").strip()
+            
+            # Try to fit summary + URL within character limit
+            max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url) - 10  # Reserve space for URL and spacing
+            
+            if len(clean_summary) <= max_summary_length:
+                link_tweet = f"{clean_summary}\n\n{url}"
+            else:
+                # Truncate summary to fit with URL
+                truncated_summary = clean_summary[:max_summary_length - 3] + "..."
+                link_tweet = f"{truncated_summary}\n\n{url}"
         else:
-            link_tweet = url
+            # Fallback to traditional call-to-action format
+            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+            if call_to_action:
+                link_tweet = f"{call_to_action} {url}".strip()
+            else:
+                link_tweet = url
 
+        # Final length check
         if len(link_tweet) > BotConstants.TWEET_MAX_LENGTH:
             if len(url) <= BotConstants.TWEET_MAX_LENGTH:
                 return url[:BotConstants.TWEET_MAX_LENGTH]
@@ -590,35 +755,64 @@ class TextUtils:
         return link_tweet
 
     @staticmethod
+    def create_three_part_thread(article: Dict[str, Any]) -> Tuple[str, str, str]:
+        """Return three tweets for a three-part thread: hook, summary, url."""
+        # Handle None article input defensively
+        if article is None:
+            logger.warning("Received None article in create_three_part_thread, using fallback")
+            return "Bitcoin mining news update", "", ""
+            
+        # Create hook tweet (headline with emoji)
+        hook_tweet = TextUtils.create_hook_tweet(article)
+        
+        # Create summary tweet (Gemini summary without URL)
+        summary_tweet = TextUtils.create_summary_tweet(article)
+        
+        # Create URL tweet (just the URL)
+        url_tweet = TextUtils.create_url_tweet(article)
+        
+        return hook_tweet, summary_tweet, url_tweet
+
+    @staticmethod
     def create_thread_texts(article: Dict[str, Any]) -> Tuple[str, str]:
-        """Return both tweets for a two-part thread."""
+        """Return both tweets for a two-part thread (for backward compatibility)."""
         # Handle None article input defensively
         if article is None:
             logger.warning("Received None article in create_thread_texts, using fallback")
             return "Bitcoin mining news update", ""
             
-        # First, try to create a hook tweet as normal
-        hook_tweet = TextUtils.create_hook_tweet(article)
+        # Get three-part thread
+        hook_tweet, summary_tweet, url_tweet = TextUtils.create_three_part_thread(article)
         
-        # Check if the hook tweet would be too long (would get truncated)
-        # We need to detect if the original content was truncated by looking for "..."
-        if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
-            # Content was truncated, so we need to create a proper thread
-            return TextUtils._create_intelligent_thread(article)
-        
-        # Check if hook tweet already contains a URL
-        article_url = (article.get("url") or article.get("uri") or "").strip()
-        if article_url and article_url in hook_tweet:
-            # If hook tweet already has the URL, remove it from the hook and ensure it's in the last tweet
-            hook_tweet = hook_tweet.replace(article_url, "").strip()
-            # Clean up any extra spaces or punctuation left behind
-            hook_tweet = re.sub(r'\s+', ' ', hook_tweet).strip()
-            hook_tweet = re.sub(r'\s*at\s*$', '', hook_tweet).strip()  # Remove trailing "at"
-            # Create link tweet with URL (URL should ALWAYS be in the last tweet)
-            link_tweet = TextUtils.create_link_tweet(article)
+        # If we have both summary and URL, combine them for backward compatibility
+        if summary_tweet and url_tweet:
+            # Combine summary and URL as before
+            if len(summary_tweet) + len(url_tweet) + 5 <= BotConstants.TWEET_MAX_LENGTH:  # +5 for spacing
+                link_tweet = f"{summary_tweet}\n\n{url_tweet}"
+            else:
+                # Truncate summary to fit with URL
+                max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url_tweet) - 5
+                if len(summary_tweet) > max_summary_length:
+                    truncated_summary = summary_tweet[:max_summary_length - 3] + "..."
+                    link_tweet = f"{truncated_summary}\n\n{url_tweet}"
+                else:
+                    link_tweet = f"{summary_tweet}\n\n{url_tweet}"
+        elif summary_tweet:
+            # Only summary available
+            link_tweet = summary_tweet
+        elif url_tweet:
+            # Only URL available, use traditional format
+            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
+            if call_to_action:
+                link_tweet = f"{call_to_action} {url_tweet}".strip()
+            else:
+                link_tweet = url_tweet
         else:
-            # Normal case: create link tweet with URL
-            link_tweet = TextUtils.create_link_tweet(article)
+            # No summary or URL, check if hook tweet was truncated
+            if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
+                # Content was truncated, so we need to create a proper thread
+                return TextUtils._create_intelligent_thread(article)
+            link_tweet = ""
         
         return hook_tweet, link_tweet
 

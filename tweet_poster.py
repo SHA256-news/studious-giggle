@@ -76,8 +76,8 @@ class TweetPoster:
         """Post to Twitter with conservative retry logic for daily rate limits"""
         for attempt in range(max_retries + 1):
             try:
-                # Create the tweets that will make up the thread
-                hook_text, link_text = TextUtils.create_thread_texts(article)
+                # Create the tweets that will make up the thread (3-part format)
+                hook_text, summary_text, url_text = TextUtils.create_three_part_thread(article)
                 tweet_text = hook_text
                 logger.info(f"Posting tweet (attempt {attempt + 1}): {tweet_text[:50]}...")
 
@@ -114,23 +114,61 @@ class TweetPoster:
                     raise InvalidTweetResponse("missing tweet ID in response")
                 logger.info(f"Posted tweet with ID: {tweet_id}")
 
-                if link_text:
+                # Post summary tweet as reply if available
+                if summary_text:
                     reply_params = {
-                        "text": link_text,
+                        "text": summary_text,
                         "in_reply_to_tweet_id": tweet_id,
                     }
                     try:
                         reply = self.twitter_client.create_tweet(**reply_params)
                         if self._looks_like_rate_limit_response(reply):
-                            logger.warning("Reply tweet response resembles rate limit; skipping thread reply.")
+                            logger.warning("Summary tweet response resembles rate limit; skipping summary reply.")
                         else:
                             reply_id = self._extract_tweet_id(reply)
                             if reply_id:
-                                logger.info(f"Posted reply tweet with ID: {reply_id}")
+                                logger.info(f"Posted summary tweet with ID: {reply_id}")
+                                
+                                # Post URL tweet as final reply if available
+                                if url_text:
+                                    url_params = {
+                                        "text": url_text,
+                                        "in_reply_to_tweet_id": reply_id,
+                                    }
+                                    try:
+                                        url_reply = self.twitter_client.create_tweet(**url_params)
+                                        if self._looks_like_rate_limit_response(url_reply):
+                                            logger.warning("URL tweet response resembles rate limit; skipping URL reply.")
+                                        else:
+                                            url_reply_id = self._extract_tweet_id(url_reply)
+                                            if url_reply_id:
+                                                logger.info(f"Posted URL tweet with ID: {url_reply_id}")
+                                    except TweepyTooManyRequests:
+                                        logger.warning("Rate limited while posting URL tweet; continuing without URL.")
+                                    except Exception as url_error:
+                                        logger.error(f"Error posting URL tweet: {url_error}")
                     except TweepyTooManyRequests:
-                        logger.warning("Rate limited while posting reply tweet; continuing with first tweet only.")
+                        logger.warning("Rate limited while posting summary tweet; continuing with first tweet only.")
                     except Exception as reply_error:
-                        logger.error(f"Error posting reply tweet: {reply_error}")
+                        logger.error(f"Error posting summary tweet: {reply_error}")
+                elif url_text:
+                    # No summary, post URL directly as reply
+                    reply_params = {
+                        "text": url_text,
+                        "in_reply_to_tweet_id": tweet_id,
+                    }
+                    try:
+                        reply = self.twitter_client.create_tweet(**reply_params)
+                        if self._looks_like_rate_limit_response(reply):
+                            logger.warning("URL tweet response resembles rate limit; skipping URL reply.")
+                        else:
+                            reply_id = self._extract_tweet_id(reply)
+                            if reply_id:
+                                logger.info(f"Posted URL tweet with ID: {reply_id}")
+                    except TweepyTooManyRequests:
+                        logger.warning("Rate limited while posting URL tweet; continuing with first tweet only.")
+                    except Exception as reply_error:
+                        logger.error(f"Error posting URL tweet: {reply_error}")
 
                 return tweet_id
 
