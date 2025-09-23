@@ -976,38 +976,26 @@ class TextUtils:
             logger.warning("Received None article in create_thread_texts, using fallback")
             return "Bitcoin mining news update", ""
             
-        # Get three-part thread
-        hook_tweet, summary_tweet, url_tweet = TextUtils.create_three_part_thread(article)
+        # Create hook tweet and check for URL duplication
+        hook_tweet = TextUtils.create_hook_tweet(article)
         
-        # If we have both summary and URL, combine them for backward compatibility
-        if summary_tweet and url_tweet:
-            # Combine summary and URL as before
-            if len(summary_tweet) + len(url_tweet) + 5 <= BotConstants.TWEET_MAX_LENGTH:  # +5 for spacing
-                link_tweet = f"{summary_tweet}\n\n{url_tweet}"
-            else:
-                # Truncate summary to fit with URL
-                max_summary_length = BotConstants.TWEET_MAX_LENGTH - len(url_tweet) - 5
-                if len(summary_tweet) > max_summary_length:
-                    truncated_summary = summary_tweet[:max_summary_length - 3] + "..."
-                    link_tweet = f"{truncated_summary}\n\n{url_tweet}"
-                else:
-                    link_tweet = f"{summary_tweet}\n\n{url_tweet}"
-        elif summary_tweet:
-            # Only summary available
-            link_tweet = summary_tweet
-        elif url_tweet:
-            # Only URL available, use traditional format
-            call_to_action = getattr(BotConstants, "TWEET_CALL_TO_ACTION", "Read more:").strip()
-            if call_to_action:
-                link_tweet = f"{call_to_action} {url_tweet}".strip()
-            else:
-                link_tweet = url_tweet
-        else:
-            # No summary or URL, check if hook tweet was truncated
-            if hook_tweet.endswith("...") or len(hook_tweet) >= BotConstants.TWEET_TRUNCATE_LENGTH:
-                # Content was truncated, so we need to create a proper thread
-                return TextUtils._create_intelligent_thread(article)
-            link_tweet = ""
+        # Check if hook tweet contains the URL and remove it if present
+        url = (article.get("url") or article.get("uri") or "").strip()
+        if url and url in hook_tweet:
+            # Remove URL from hook tweet - find URL and everything after it
+            url_index = hook_tweet.find(url)
+            if url_index != -1:
+                # Keep everything before the URL, strip trailing whitespace and prepositions
+                hook_tweet = hook_tweet[:url_index].strip()
+                # Remove trailing prepositions like "at", "from", "on", etc.
+                trailing_words = ["at", "from", "on", "in", "via", "to", "by"]
+                for word in trailing_words:
+                    if hook_tweet.lower().endswith(f" {word}"):
+                        hook_tweet = hook_tweet[:-len(word)-1].strip()
+                        break
+        
+        # Create link tweet 
+        link_tweet = TextUtils.create_link_tweet(article)
         
         return hook_tweet, link_tweet
 
