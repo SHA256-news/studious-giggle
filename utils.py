@@ -499,10 +499,9 @@ class TextUtils:
             if len(full_text) <= BotConstants.TWEET_MAX_LENGTH:
                 return full_text
         
-        # Return base text with abbreviations and hashtags applied
+        # Return base text with abbreviations applied (no hashtags)
         base_text = " ".join(components)
-        base_text = TextUtils._apply_abbreviations(base_text)
-        return TextUtils._add_strategic_hashtags(base_text, info)
+        return TextUtils._apply_abbreviations(base_text)
     
     @staticmethod
     def _create_news_focused_tweet(info: Dict[str, Any], title: str) -> str:
@@ -531,11 +530,10 @@ class TextUtils:
                 if not any(amt.replace('$', '').replace(',', '') in title for amt in info["financial_amounts"]):
                     enhanced_title = f"{emoji} {amount}: {title}"
         
-        # Apply abbreviations and add hashtags
+        # Apply abbreviations (no hashtags)
         enhanced_title = TextUtils._apply_abbreviations(enhanced_title)
-        enhanced_title = TextUtils._add_strategic_hashtags(enhanced_title, info)
         
-        # Ensure length compliance after hashtags
+        # Ensure length compliance
         if len(enhanced_title) > BotConstants.TWEET_MAX_LENGTH:
             enhanced_title = enhanced_title[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
         
@@ -579,12 +577,11 @@ class TextUtils:
         # Add the title
         components.append(title)
         
-        # Combine and apply abbreviations and hashtags
+        # Combine and apply abbreviations (no hashtags)
         tweet_text = " ".join(components)
         tweet_text = TextUtils._apply_abbreviations(tweet_text)
-        tweet_text = TextUtils._add_strategic_hashtags(tweet_text, info)
         
-        # Ensure length compliance after hashtags
+        # Ensure length compliance
         if len(tweet_text) > BotConstants.TWEET_MAX_LENGTH:
             tweet_text = tweet_text[:BotConstants.TWEET_TRUNCATE_LENGTH] + "..."
         
@@ -618,61 +615,13 @@ class TextUtils:
         return text
 
     @staticmethod
-    def _add_strategic_hashtags(text: str, info: Dict[str, Any], max_length: int = 280) -> str:
-        """Add strategic hashtags if there's space, prioritizing engagement"""
-        # Calculate available space for hashtags
-        available_space = max_length - len(text)
-        
-        # Don't add hashtags if we don't have enough space
-        if available_space < 10:
-            return text
-            
-        hashtags = []
-        text_lower = text.lower()
-        
-        # Priority hashtags based on content
-        if info.get("companies"):
-            hashtags.append("#Bitcoin")
-        
-        if any(word in text_lower for word in ["mining", "miner", "hashrate"]):
-            hashtags.append("#BitcoinMining")
-        elif "btc" in text_lower:
-            hashtags.append("#BTC")
-            
-        if any(word in text_lower for word in ["investment", "invest", "$"]):
-            hashtags.append("#Crypto")
-            
-        if any(word in text_lower for word in ["energy", "renewable", "solar", "wind"]):
-            hashtags.append("#GreenEnergy")
-            
-        if any(word in text_lower for word in ["regulation", "sec", "approve", "legal"]):
-            hashtags.append("#CryptoNews")
-            
-        # Add location-based hashtags for significant locations
-        if info.get("locations"):
-            location = info["locations"][0]
-            if location.lower() in ["texas", "china", "kazakhstan", "us", "usa"]:
-                hashtags.append(f"#{location.title()}")
-        
-        # Add hashtags that fit within space
-        hashtag_text = ""
-        for hashtag in hashtags[:3]:  # Maximum 3 hashtags
-            test_text = f"{text}{hashtag_text} {hashtag}"
-            if len(test_text) <= max_length:
-                hashtag_text += f" {hashtag}"
-            else:
-                break
-                
-        return f"{text}{hashtag_text}".strip() if hashtag_text else text
-
-    @staticmethod
     def _enhance_gemini_headline(gemini_headline: str, article: Dict[str, Any]) -> str:
-        """Add minimal visual enhancements to Gemini-generated headlines"""
-        # Extract info for context-aware emoji and hashtags
+        """Add minimal visual enhancements to Gemini-generated headlines (1 emoji max, no hashtags)"""
+        # Extract info for context-aware emoji selection
         info = TextUtils.extract_key_info(article)
         title_lower = gemini_headline.lower()
         
-        # Add appropriate emoji based on content (only if not already present)
+        # Add appropriate emoji based on content (only if not already present and max 1)
         if not any(emoji in gemini_headline for emoji in ['🏢', '🤝', '✅', '🎯', '🌍', '📰', '⚡', '🏭', '💰', '📈']):
             emoji = ""
             if any(word in title_lower for word in ["partner", "partnership", "collaborate"]):
@@ -696,10 +645,8 @@ class TextUtils:
             
             gemini_headline = f"{emoji}{gemini_headline}"
         
-        # Add strategic hashtags if there's space
-        enhanced_headline = TextUtils._add_strategic_hashtags(gemini_headline, info)
-        
-        return enhanced_headline
+        # No hashtags as per user request
+        return gemini_headline
 
     @staticmethod
     def create_hook_tweet(article: Dict[str, Any]) -> str:
