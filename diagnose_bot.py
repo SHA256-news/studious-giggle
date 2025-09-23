@@ -187,6 +187,81 @@ def test_eventregistry_connection():
         logger.error(f"❌ EventRegistry connection failed: {str(e)}")
         return False
 
+def test_gemini_connection():
+    """Test Gemini API connection and validate API key"""
+    logger.info("\n=== TESTING GEMINI AI CONNECTION ===")
+    
+    gemini_api_key = os.environ.get("GEMINI_API_KEY")
+    if not gemini_api_key:
+        logger.warning("⚠️  GEMINI_API_KEY not set - AI analysis disabled")
+        logger.info("💡 To enable AI-generated headlines and summaries:")
+        logger.info("   1. Get a Gemini API key from https://aistudio.google.com/")
+        logger.info("   2. Add GEMINI_API_KEY to GitHub repository secrets")
+        return False
+    
+    try:
+        from gemini_client import GeminiClient
+        from config import GeminiConfig
+        
+        config = GeminiConfig.from_env()
+        client = GeminiClient(config)
+        
+        # Test actual API call with a simple test article
+        test_article = {
+            'title': 'Bitcoin Mining Operation Secures $100M Investment',
+            'body': 'A major Bitcoin mining company announced a significant investment...',
+            'url': 'https://example.com/test'
+        }
+        
+        logger.info("Testing Gemini API with sample article...")
+        
+        # Test headline generation
+        try:
+            headline = client.generate_tweet_headline(test_article)
+            if headline == test_article['title']:
+                logger.warning("⚠️  Gemini headline generation failed - using fallback")
+                logger.warning("🔍 DIAGNOSIS: API key might be invalid or expired")
+                return False
+            else:
+                logger.info("✅ Gemini headline generation successful")
+        except Exception as e:
+            error_msg = str(e)
+            if "API key not valid" in error_msg or "INVALID_ARGUMENT" in error_msg:
+                logger.error("❌ GEMINI API KEY INVALID OR EXPIRED")
+                logger.error("🔍 DIAGNOSIS: The GEMINI_API_KEY is set but not valid")
+                logger.error("💡 SOLUTION: Update the GEMINI_API_KEY in GitHub repository secrets")
+                logger.error("📝 IMPACT: Bot will use generic summaries instead of AI-generated content")
+                return False
+            else:
+                logger.error(f"❌ Gemini API error: {e}")
+                return False
+        
+        # Test summary generation
+        try:
+            summary = client.generate_tweet_summary(test_article)
+            if summary == "• Key development • Impact on mining • Market implications":
+                logger.warning("⚠️  Gemini summary generation failed - using fallback")
+                logger.warning("🔍 DIAGNOSIS: API key might be invalid or expired")
+                return False
+            else:
+                logger.info("✅ Gemini summary generation successful")
+                return True
+        except Exception as e:
+            error_msg = str(e)
+            if "API key not valid" in error_msg or "INVALID_ARGUMENT" in error_msg:
+                logger.error("❌ GEMINI API KEY INVALID OR EXPIRED") 
+                logger.error("🔍 DIAGNOSIS: The GEMINI_API_KEY is set but not valid")
+                logger.error("💡 SOLUTION: Update the GEMINI_API_KEY in GitHub repository secrets")
+                logger.error("📝 IMPACT: Bot will use generic summaries instead of AI-generated content")
+                return False
+            else:
+                logger.error(f"❌ Gemini API error: {e}")
+                return False
+                
+    except Exception as e:
+        logger.error(f"❌ Gemini connection failed: {str(e)}")
+        return False
+
 def test_article_fetching():
     """Test fetching articles"""
     logger.info("\n=== TESTING ARTICLE FETCHING ===")
@@ -304,6 +379,7 @@ def main():
         # Test connections
         twitter_ok = test_twitter_connection()
         eventregistry_ok = test_eventregistry_connection()
+        gemini_ok = test_gemini_connection()
         
         if twitter_ok and eventregistry_ok:
             # Test article fetching

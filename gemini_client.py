@@ -70,7 +70,14 @@ class GeminiClient:
             return headline
 
         except Exception as exc:
-            logger.error(f"Failed to generate tweet headline with URL context: {exc}")
+            error_msg = str(exc)
+            if "API key not valid" in error_msg or "INVALID_ARGUMENT" in error_msg:
+                logger.error(f"🔑 GEMINI API KEY ISSUE: {exc}")
+                logger.error("🔍 DIAGNOSIS: The GEMINI_API_KEY is configured but appears to be invalid or expired")
+                logger.error("💡 SOLUTION: Please check and update the GEMINI_API_KEY in GitHub repository secrets")
+                logger.error("📝 FALLBACK: Using original article title instead of AI-generated headline")
+            else:
+                logger.error(f"Failed to generate tweet headline with URL context: {exc}")
             # Fallback to original title with truncation
             fallback = title[:147] + "..." if len(title) > 147 else title
             return fallback
@@ -123,7 +130,14 @@ class GeminiClient:
             return summary
 
         except Exception as exc:
-            logger.error(f"Failed to generate tweet summary with URL context: {exc}")
+            error_msg = str(exc)
+            if "API key not valid" in error_msg or "INVALID_ARGUMENT" in error_msg:
+                logger.error(f"🔑 GEMINI API KEY ISSUE: {exc}")
+                logger.error("🔍 DIAGNOSIS: The GEMINI_API_KEY is configured but appears to be invalid or expired")
+                logger.error("💡 SOLUTION: Please check and update the GEMINI_API_KEY in GitHub repository secrets")
+                logger.error("📝 FALLBACK: Using generic summary format instead of AI-generated content")
+            else:
+                logger.error(f"Failed to generate tweet summary with URL context: {exc}")
             # Fallback to a simple summary
             return "• Key development • Impact on mining • Market implications"
 
