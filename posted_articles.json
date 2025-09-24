@@ -49,7 +49,8 @@
     "8877789332",
     "8877944972",
     "8878310921",
-    "8878506115"
+    "8878506115",
+    "2025-09-842858565"
   ],
   "queued_articles": [
     {
@@ -4553,7 +4554,237 @@
       "sentiment": 0.223529411764706,
       "wgt": 496416101,
       "relevance": 52
+    },
+    {
+      "uri": "2025-09-842846568",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "15:21:06",
+      "dateTime": "2025-09-24T15:21:06Z",
+      "dateTimePub": "2025-09-24T14:50:10Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.investors.com/news/bitcoin-miners-ai-iren-riot-cipher-mining-arete-coverage-buy-rating/",
+      "title": "Analysts Says These Bitcoin Miners Are A Buy On AI Demand",
+      "body": "Bitcoin miners Riot Platforms and Iren rallied early Wednesday while Cipher Mining angled higher after an analyst initiated coverage on the shares.\n\nArete on Wednesday launched coverage of Riot Platforms (RIOT), Iren (IREN) and Cipher Mining (CIFR) with buy ratings for all three of the bitcoin miners, The Fly reported. As with other recent analyst reports, Arete noted that demand for artificial intelligence computing provides long-term opportunities for the companies.\n\nArete sees Iren benefiting from its mining fleet upgrades and through its self-funding of data center construction. Riot could reach $2.3 billion in recurring earnings before interest, taxes, depreciation and amortization (EBITDA) by 2031, the researcher estimates, driven by two high-performance compute (HPC) data centers on a co-location rental model. Cipher, meanwhile, offers a lower-risk play on AI compute storage given its joint venture structure, the firm wrote.\n\nArete has a 78 price target on Iren, a 26 target for Riot and a 24 price target for Cipher.\n\nIren on Monday announced that it had doubled its AI cloud capacity, after procuring an additional 12,400 graphics processing units. The bitcoin miner during its August earnings announced that it had been named an \"Nvidia (NVDA) preferred partner.\"\n\nCipher Mining has soared since its early August announcement about its Phase II build out for its Black Pearl site in Texas, which will host AI computing power and hydropowered bitcoin mining.\n\n\"In the long run, we expect this site to be fully leased by HPC tenants,\" CEO Tyler Page said in the Q2 earnings release. \"We're well equipped to become a leading developer of HPC data centers, while continuing to set the standard in bitcoin mining.\"\n\nRiot, Iren Lead Bitcoin Mining Gains\n\nRIOT stock soared more than 15% early Wednesday, shooting to its highest level since August 2023. Shares are extended from a cup-base breakout on Sept. 10.\n\nRiot stock has vaulted nearly 93% so far this year.\n\nIREN stock popped more than 12% Wednesday, extending its record highs and adding to its 381% gain this year.\n\nCIFR stock pared its early gains to around 1%, but is still on track for four consecutive daily advances. Cipher Mining is trading at four-year highs, and approaching its record high of 15.36. Shares have rallied about 215% in 2025.\n\nThe price of bitcoin on Wednesday ticked higher to climb above $113,000. The world's top crypto is down 2.6% over the past week.\n\nYou can follow Harrison Miller for more stock news and updates on X/Twitter @IBD_Harrison",
+      "source": {
+        "uri": "investors.com",
+        "dataType": "news",
+        "title": "Investor's Business Daily"
+      },
+      "authors": [
+        {
+          "uri": "harrison_miller@investors.com",
+          "name": "Harrison Miller",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Arete",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Arete"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Earnings_before_interest,_taxes,_depreciation,_and_amortization",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Earnings before interest, taxes, depreciation, and amortization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nielsen_Media_Research",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Nielsen Media Research"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joint_venture",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Joint venture"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydropower",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hydropower"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Twitter",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Twitter"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 23
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 21
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 82
+        }
+      ],
+      "image": "https://www.investors.com/wp-content/uploads/2018/02/Stock-bitcoin-31-adobe.jpg",
+      "eventUri": null,
+      "sentiment": -0.03529411764705881,
+      "wgt": 496423266,
+      "relevance": 87
     }
   ],
-  "last_run_time": "2025-09-24T15:17:18.068566"
+  "last_run_time": "2025-09-24T16:48:54.396313"
 }
