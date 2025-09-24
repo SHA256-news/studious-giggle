@@ -50,7 +50,8 @@
     "8877944972",
     "8878310921",
     "8878506115",
-    "2025-09-842858565"
+    "2025-09-842858565",
+    "8878810760"
   ],
   "queued_articles": [
     {
@@ -4784,7 +4785,258 @@
       "sentiment": -0.03529411764705881,
       "wgt": 496423266,
       "relevance": 87
+    },
+    {
+      "uri": "8878765720",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "17:40:28",
+      "dateTime": "2025-09-24T17:40:28Z",
+      "dateTimePub": "2025-09-24T17:27:16Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://crypto.news/bepay-money-powers-dubais-bitcoin-2140-forum-bringing-10b-in-btc-holdings/",
+      "title": "bepay money powers Dubai's Bitcoin 2140 Forum, bringing $10b+ in BTC holdings",
+      "body": "Disclosure: This article does not represent investment advice. The content and materials featured on this page are for educational purposes only.\n\nBitcoin 2140 Forum debuts in Dubai, uniting $10b+ BTC holdings, 60+ speakers, and 50+ top projects on Bitcoin's future.\n\nDUBAI, UAE - October 15, 2025 - The Bitcoin 2140 Forum comes to Dubai Knowledge Park, powered by bepay money, the global cross-border payment platform. Under the theme \"Pioneering the Path to Bitcoin's Future\", the event gathers 60+ world-class speakers, 50+ leading Bitcoin projects, 200+ global experts and innovators, and 10k+ BTC representations, with over $10b+ in Bitcoin holdings under discussion.\n\nWith its 100% Bitcoin-focused agenda, the forum positions itself as the premier institutional platform for Bitcoin's evolution, sustainability, and adoption. Dubai's emergence as a global hub for Bitcoin and web3, supported by progressive regulations and substantial capital inflows, makes it the ideal venue for this milestone gathering.\n\nAs the powered-by partner, bepay money showcases its next-generation infrastructure designed for users, investors, miners, developers, and enterprises. The platform unifies fiat, stablecoins, and tokenized assets within a single super app, delivering instant, FX-free cross-border settlements, integrated DeFi yield access, and institutional-grade compliance.\n\n\"Dubai's position as a global financial hub makes it perfect for demonstrating how bepay money enables fast, compliant, and scalable cross-border transactions for funds, family offices, miners, developers and exchanges,\" said Nawal Kishor, Founder & CEO of bepay money \"This forum is the perfect stage to demonstrate how our infrastructure powers institutional adoption of Bitcoin at scale.\"\n\nKey features of bepay money include:\n\nThe Bitcoin 2140 Forum brings together a powerful mix of Bitcoin miners and mining innovators, core developers and technical experts, institutional investors and fund managers, Bitcoin-focused entrepreneurs and startups, as well as policymakers, regulatory leaders, thought leaders, and educators, all uniting to shape the future of the Bitcoin economy.\n\nAs an organizer, Giakaa Capital is a hybrid venture capital firm that builds end-to-end innovation ecosystems, supporting companies from seed to IPO. Its model combines strategic capital, corporate partnerships, and operational expertise. Giakaa invests in Digital Public Infrastructure solutions leveraging Blockchain & AI aligned with the UN Sustainable Development Goals.\n\n\"Bitcoin 2140 symbolizes the long-term vision of a decentralized and finite monetary system. Hosting this forum in Dubai reflects our mission to connect entrepreneurs, miners, and institutional capital,\" said Omika Dubey, Managing Partner at Giakaa Capital.\n\nThe forum will host 1,000+ professionals, including 60+ speakers, 50+ leading Bitcoin projects, 200+ experts, and 50+ institutional investors, with $10B+ in Bitcoin holdings under discussion.\n\nVisit the official website to register.\n\nWith Dubai as the backdrop, Bitcoin 2140 Forum 2025 sets the stage for the next wave of institutional adoption in Bitcoin, sustainable mining, and global finance.\n\nbepay money revolutionizes cross-border payments with a super app unifying fiat, stablecoins, and tokenized assets. Designed for institutional investors, family offices, enterprises, and individuals, the platform delivers instant settlements, DeFi yield access, and regulatory-grade compliance, empowering seamless capital movement worldwide.\n\nGiakaa Capital is a hybrid venture capital firm backing companies from Seed to IPO. Its integrated model connects entrepreneurs with strategic capital, corporate partnerships, and operational expertise. Our investment focus is Digital Public Infrastructure solutions using Blockchain & AI technology aligned with Sustainable Development Goals.\n\nBitcoin 2140 Forum is the premier institutional platform focused on the long-term vision of Bitcoin as a decentralized monetary system. Under the theme \"Pioneering the Path to Bitcoin's Future\", the Dubai edition brings together miners, developers, investors, and policymakers to shape the global Bitcoin economy.",
+      "source": {
+        "uri": "crypto.news",
+        "dataType": "news",
+        "title": "crypto.news"
+      },
+      "authors": [
+        {
+          "uri": "samuel_msiska@crypto.news",
+          "name": "Samuel Msiska",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dubai",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Dubai"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Dubai"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Arab Emirates"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Web3",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Web3"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Global_city",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Global city"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Progressivism",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Progressivism"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainability",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Sustainability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Payment_system",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Payment system"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Decentralized_finance",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Decentralized finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stablecoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stablecoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_centre",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Financial centre"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Family_office",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Family office"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fiat_money",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fiat money"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Scalability",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Scalability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Venture_capital",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Venture capital"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Startup_company",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Startup company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Initial_public_offering",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Initial public offering"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Entrepreneurship",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Entrepreneurship"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Institutional_investor",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Institutional investor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ecosystem",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ecosystem"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment_management",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Investment management"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_app",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mobile app"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Economic",
+          "label": "dmoz/Society/Issues/Economic",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Funds",
+          "label": "dmoz/Business/Investing/Funds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Socially_Responsible",
+          "label": "dmoz/Business/Investing/Socially Responsible",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Real_Estate/Commercial",
+          "label": "dmoz/Business/Real Estate/Commercial",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Business_and_Society",
+          "label": "dmoz/Business/Business and Society",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 51
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 48
+        }
+      ],
+      "image": "https://media.crypto.news/2025/09/crypto-news-United-Kingdom-Bitcoin-option01.webp",
+      "eventUri": null,
+      "sentiment": 0.223529411764706,
+      "wgt": 496431628,
+      "relevance": 64
     }
   ],
-  "last_run_time": "2025-09-24T16:48:54.396313"
+  "last_run_time": "2025-09-24T18:21:52.428219"
 }
