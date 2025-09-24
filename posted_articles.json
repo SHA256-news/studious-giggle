@@ -45,8 +45,1991 @@
     "8877249138",
     "8877402148",
     "test2",
-    "8877400545"
+    "8877400545",
+    "8877789332"
   ],
-  "queued_articles": [],
-  "last_run_time": "2025-09-24T04:47:33.178764"
+  "queued_articles": [
+    {
+      "uri": "8877772934",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "06:37:40",
+      "dateTime": "2025-09-24T06:37:40Z",
+      "dateTimePub": "2025-09-24T06:34:10Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://news.cision.com/quantum-blockchain-technologies-plc/r/interim-results,c4238873",
+      "title": "Interim Results",
+      "body": "(\"Quantum Blockchain Technologies\", \"the Group\" or \"the Company\")\n\nQuantum Blockchain Technologies (AIM: QBT), the AIM-listed investment company focusing on a R&D and investment programme within blockchain technology, is pleased to announce its Interim Results for the six months ended 30 June 2025.\n\nQBT (AIM: QBT) is a London Stock Exchange AIM listed Research & Development and investing company focused on an intensive R&D programme to disrupt the Blockchain Technologies sector, and which includes, cryptocurrency mining and other advanced blockchain applications. The primary goal of the R&D programme is to develop Bitcoin mining tools and techniques, via its technology-driven approach, which the Company believes will significantly outperform existing market practices.\n\nI am pleased to present the Group's Interim Report for the first half of 2025, a period that has further strengthened Quantum Blockchain Technologies' position as an innovator in the Bitcoin mining technology sector. Building on the achievements reported in and for 2024, the Company has continued to advance its research & development (\"R&D\") programme, file new patents and deepen its engagement with potential strategic commercial partners, especially in North America. These developments further reinforce QBT's ambition to commercialise its disruptive technologies and secure a strong foothold in the Bitcoin mining ecosystem.\n\nDuring the first half of 2025, Method C AI Oracle continued to be the centrepiece of QBT's innovation strategy. In January, the Company filed a patent application entitled \"Implementation of Binary Decision Trees\", protecting the hardware implementation of Method C. This followed successful field-programmable gate array (\"FPGA\") - based testing and the confirmation that Method C is able to deliver up to 30% improvement in mining efficiency on live Bitcoin blocks, either by reducing energy consumption or accelerating hash rates.\n\nQBT is currently collaborating with leading ASIC manufacturers to evaluate the implementation of the AI Oracle directly onto their chip architecture. Such a milestone could pave the way for licensing opportunities and long-term strategic partnerships.\n\nIn parallel, porting of Methods A and B (the Company's machine learning-driven optimisation techniques) onto Bitcoin mining rigs continued. QBT's implementation onto ESP-miner has been completed and live ASIC chip cryptocurrency mining commenced in the Company's Milan laboratory. In June 2025, QBT announced ongoing discussions with aftermarket control board providers to integrate these methods, which the board believes could allow rapid market penetration through existing miners worldwide.\n\nFurther, QBT's broader R&D pipeline remains active, with patent applications for ASIC UltraBoost and ASIC EnhancedBoost remaining pending, and a prototype design for an in-house ASIC mining chip preserved for potential future deployment. These initiatives collectively strengthen QBT's intellectual property base and broaden the commercialisation avenues available to the Company.\n\nQBT has actively sought to align its R&D breakthroughs with commercial opportunities. In the first half of 2025, the Company presented to potential customers at the Mining Disrupt 2025 conference in Florida, Bitcoin 2025 Las Vegas and Bitcoin Park in Nashville, where Method C's AI Oracle attracted significant attention from leading ASIC manufacturers, mining pools and large-scale miners. These demonstrations have already led, for all three Methods, to follow-up discussions with third-parties, under non-disclosure agreements, underscoring the industry's growing recognition of QBT's disruptive technology.\n\nThe Company also launched a video presentation of the AI Oracle at the Bitcoin 2025 conference providing the broader market with visibility into the progress of its technology. These steps are part of a wider strategy to establish QBT not only as an R&D leader, but also as a trusted commercial partner within the Bitcoin mining community.\n\nIn January 2025, the Company successfully raised \u00a32 million (before expenses) through a placing, ensuring it is well-funded to continue investing in its R&D pipeline, commercialisation activities and, strengthening its balance sheet. These funds have been directed towards expanding the R&D team, procuring specialist hardware and reinforcing operational resilience.\n\nWith regards to the Sipiem in Fallimento Srl (\"Sipiem\") legal case, following the 2024 confirmation by the Venice Court of Appeal of a judgment in QBT's favour, enforcement procedures are ongoing against certain of the Sipiem defendants' assets despite the defendants having lodged an appeal with the Italian Court of Cassation in January 2025. The Company, however, has not recovered any further material assets at this stage.\n\nIn May 2025, the Company announced with great sadness the passing of Peter Fuhrman, one of its non-executive directors. Peter's contribution to QBT and his international experience were highly valued and he will be greatly missed. Following this sad news, the board was pleased to appoint Vladimir Basillo Kusznirczuk as a non-executive director. Vladimir has been QBT's Marketing and Business Development Manager since 2023 and brings strong commercial experience to the board, enhancing the Company's business development capabilities.\n\nThe Group reported a total comprehensive loss and operating loss for the period of \u20ac1.5 million (30 June 2024: loss \u20ac1.3m and loss \u20ac1.1m respectively). There were no charges relating to the recognition of share options within administrative expenses for both periods and no charges for finance costs relating to the revaluation of derivatives.\n\nAt 30 June 2025, the Group had net liabilities of \u20ac4.5 million, compared to a net liabilities position of \u20ac5.4 million at 31 December 2024. The Group had net current assets of \u20ac3.2m compared to net current assets of \u20ac2.1m at 31 December 2024.\n\nThe Group's cash position at the period end was \u20ac1.7m, compared to \u20ac0.6m at 31 December 2024.\n\nThere were no subsequent events of a material nature to report.\n\nQBT enters the second half of 2025 in a position of growing strength. With live mining tests confirming the efficiency of its AI-driven methods, strategic collaborations underway with ASIC manufacturers and significant industry recognition, the Company is poised to transition from R&D validation to commercialisation.\n\nThe board remains confident that all of QBT's assets have the potential to transform the economics of Bitcoin mining by improving performance of SHA-256, the core algorithm for Bitcoin mining. The Company's commitment to innovation, combined with careful financial management and expanding commercial engagement, positions QBT to become a key enabler of next-generation Bitcoin mining solutions.\n\nQuantum Blockchain Technologies plc is a company incorporated and domiciled in England and Wales. The Company's ordinary shares are traded on the AIM market of the London Stock Exchange. The address of the registered office is First Floor, 1 Chancery Lane, London, England, WC2A 1LF.\n\nThe principal activity of the Group is that of an investment company with a portfolio of companies primarily encompassing the leisure and real estate sectors mainly in Italy and, more recently, technology sectors. The focus of management is to pursue the monetisation of all of the Company's existing assets, through selected realisations, court-led recoveries of misappropriated assets and substantial debt-recovery processes. The Company has also realigned its strategic focus to technology related investments, with special regard to interactive media, blockchain and AI sectors.\n\nThe principal accounting policies are summarised below. They have all been applied consistently throughout the period covered by these consolidated financial statements.\n\nThe interim financial statements of Quantum Blockchain Technologies Plc are unaudited consolidated financial statements for the six months ended 30 June 2025 which have been prepared in accordance with UK adopted international accounting standards. They include unaudited comparatives for the six months ended 30 June 2024 together with audited comparatives for the year ended 31 December 2024.\n\nThe interim financial statements do not constitute statutory accounts within the meaning of section 434 of the Companies Act 2006. The statutory accounts for the year ended 31 December 2024 have been reported on by the company's auditors and have been filed with the Registrar of Companies. The report of the auditors was qualified in respect of the valuation of the investment in Geosim Systems Ltd. The report of the auditor also contained an emphasis of matter paragraph in respect of a material uncertainty regarding going concern. Aside from the limitation of scope relating to Geosim Systems Ltd, the auditor's report did not contain any statement under section 498 of the Companies Act 2006.\n\nThe interim consolidated financial statements for the six months ended 30 June 2025 have been prepared on the basis of accounting policies expected to be adopted for the year ended 31 December 2025, which are consistent with the year ended 31 December 2024.\n\nThe Group's activities generated a loss of \u20ac1,537,000 (June 2024: \u20ac1,342,000) and had net current assets of \u20ac3,176,000 as at 30 June 2025 (June 2024: net current assets \u20ac3,809,000). The Group's operational existence is still dependent on the ability to raise further funding either through an equity placing on AIM, or through other external sources, to support the on-going working capital requirements.\n\nAfter making due enquiries, the Directors have formed a judgement that there is a reasonable expectation that the Group can secure further adequate resources to continue in operational existence for the foreseeable future and that adequate arrangements will be in place to enable the settlement of their financial commitments, as and when they fall due.\n\nFor this reason, the Directors continue to adopt the going concern basis in preparing the interim accounts. Whilst there are inherent uncertainties in relation to future events, and therefore no certainty over the outcome of the matters described, the Directors consider that, based upon financial projections and dependant on the success of their efforts to complete these activities, the Group will be a going concern for the next twelve months. If it is not possible for the Directors to realise their plans, over which there is significant uncertainty, the carrying value of the assets of the Group is likely to be impaired.\n\nNotwithstanding the above, the Directors note the material uncertainty in relation to the Group being unable to realise its assets and discharge its liabilities in the normal course of business.\n\nThe Board continuously assesses and monitors the key risks of the business. The key risks that could affect the Company's medium-term performance and the factors that mitigate those risks have not substantially changed from those set out in the Company's 2024 Annual Report and Financial Statements, a copy of which is available on the Company's website:\n\nwww.quantumblockchaintechnologies.com. The key financial risks are liquidity and credit risk.\n\nThe preparation of interim financial statements requires management to make estimates and assumptions that affect the reported amounts of assets and liabilities at the end of the reporting period. Significant items subject to such estimates are set out in note 3 of the Company's 2024 Annual Report and Financial Statements. The nature and amounts of such estimates have not changed significantly during the interim period.\n\nThe basic earnings per share is calculated by dividing the loss attributable to ordinary shareholders by the weighted average number of ordinary shares outstanding during the period. Diluted earnings per share is computed using the same weighted average number of shares during the period adjusted for the dilutive effect of share options and convertible loans outstanding during the period.\n\nThe loss and weighted average number of shares used in the calculation are set out below:\n\nIAS 33 requires presentation of diluted earnings per share when a company could be called upon to issue shares that would decrease earnings per share or increase net loss per share. No adjustment has been made to diluted earnings per share for out-of-the money options and warrants.\n\nThe Company invests in the technology sector, with special focus on, but not limited to, Blockchain, Artificial Intelligence, Cryptocurrencies and Quantum Computing. As well as making direct investments, the Company may also act as Investment Manager for one or more selected venture capital funds, in compliance with the FCA regulations, which identify, invest in, and acquires companies, assets and projects in the technology sector which show excellent growth potential on a stand-alone basis, and which would add value to the Company's portfolio of investments.\n\nThe Company may make investments in target businesses at all stages of development. The majority of investments will be made in unlisted companies, however listed companies may, from time to time, be considered on a selective basis. The geographical focus will be mainly Europe, but investments may also be considered in other regions to the extent the Board considers that valuable opportunities exist, and positive returns can be achieved.\n\nThe Board expects that investments will typically be held for the medium to long term, although short term disposal of assets cannot be ruled out. The Company's investments may range from a minority position with strategic influence to a controlling position. Any transaction constituting a reverse takeover under the AIM Rules will require shareholder approval and the publication by the Company of an admission document meeting the requirements of the AIM Rules.\n\nCopies of the interim results are available at the Group's website at www.quantumblockchaintechnologies.co.uk.",
+      "source": {
+        "uri": "news.cision.com",
+        "dataType": "news",
+        "title": "News Powered by Cision"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Alternative_Investment_Market",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Alternative Investment Market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Commercialization",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Commercialization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Oracle_Corporation",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Oracle Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Patent",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Patent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Research_and_development",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Research and development"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Euro",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Euro"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Field-programmable_gate_array",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Field-programmable gate array"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Current_asset",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Current asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Disruptive_innovation",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Disruptive innovation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/London_Stock_Exchange",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "London Stock Exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_statement",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Financial statement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accounting",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Accounting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Non-executive_director",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Non-executive director"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nashville,_Tennessee",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Nashville, Tennessee"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Nashville, Tennessee"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/North_America",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "North America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Las_Vegas",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Las Vegas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Las Vegas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Florida",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Florida"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Florida"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Milan",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Milan"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Milan"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Italy"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Italy",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Italy"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Italy"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/England_and_Wales",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "England and Wales"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Venice",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Venice"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Venice"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Italy"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/London",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "London"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "London"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Kingdom"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Europe",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Europe"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Kingdom",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "United Kingdom"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Kingdom"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Financial_Services/Venture_Capital",
+          "label": "dmoz/Business/Financial Services/Venture Capital",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Cash_Flow",
+          "label": "dmoz/Business/Financial Services/Cash Flow",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities/Valuation_Services",
+          "label": "dmoz/Business/Opportunities/Valuation Services",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 99
+        }
+      ],
+      "image": null,
+      "eventUri": null,
+      "sentiment": 0.3803921568627451,
+      "wgt": 496391860,
+      "relevance": 115
+    },
+    {
+      "uri": "8877715874",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:47:23",
+      "dateTime": "2025-09-24T05:47:23Z",
+      "dateTimePub": "2025-09-24T05:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.siliconluxembourg.lu/from-classroom-to-breakthrough-luxembourg-teens-awarded-eucys-prize-for-cancer-detecting-wearable/",
+      "title": "From Classroom To Breakthrough: Luxembourg Teens Awarded EUCYS Prize for Cancer-Detecting Wearable - Silicon Luxembourg",
+      "body": "A team of young Luxembourg scientists has been awarded a special prize for their wearable device for UV monitoring and early skin cancer detection.\n\nThe AURA bracelet was developed by Shaheen Aljourdi, Rodrigo Von Mayer Goulart and Yigit G\u00fcnes, who formed one of three Luxembourg teams competing at the 36th European Union Contest for Young Scientists (EUCYS) in Riga.\n\nAs recipients of the Special Prize of the Latvian Council of Science, the AURA team will receive tailored online training and mentorship to advance their work towards practical implementation, innovation, or commercialisation.\n\n\"This recognition highlights both the talent of Luxembourg's youth and the importance of providing them with platforms beyond school to explore their passions through science,\" said Fondation Jeunes Scientifiques Luxembourg (FJSL) Director Sousana Eang, adding: \"The AURA team embodies how curiosity, creativity, and collaboration can lead to solutions with real social impact.\"\n\nThis year's EUCYS gathered 144 young scientists from 37 countries, presenting 85 projects spanning biology, physics, engineering, computing, medicine and the environment. The Luxembourg delegation, coordinated by FJSL, provided a platform for two other innovations from Luxembourg: a carbon-neutral Bitcoin mining platform, developed by Lenan Du and Fanxi Jiang, and a method of producing biodegradable plastics from algae, an innovation from Noah Lindenlaub and Fr\u00e9derik Mortier.",
+      "source": {
+        "uri": "siliconluxembourg.lu",
+        "dataType": "news",
+        "title": "Silicon Luxembourg"
+      },
+      "authors": [
+        {
+          "uri": "jess_bauldry@siliconluxembourg.lu",
+          "name": "Jess Bauldry",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Luxembourg",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Luxembourg"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Luxembourg"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/European_Union_Contest_for_Young_Scientists",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "European Union Contest for Young Scientists"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wearable_technology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wearable technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ultraviolet",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Ultraviolet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Skin_cancer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Skin cancer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Riga",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Riga"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Riga"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Latvia"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Commercialization",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Commercialization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Latvia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Latvia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Latvia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Carbon_neutrality",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Carbon neutrality"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Algae",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Algae"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Biodegradable_plastic",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Biodegradable plastic"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Physics",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Physics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Engineering",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Engineering"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Biology",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Biology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Medicine",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Medicine"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science",
+          "label": "dmoz/Science",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Organizations",
+          "label": "dmoz/Science/Organizations",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Organizations/Research_Funding",
+          "label": "dmoz/Science/Organizations/Research Funding",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 70
+        }
+      ],
+      "image": "http://www.siliconluxembourg.lu/wp-content/uploads/2025/09/WhatsApp-Image-2025-09-16-at-11.08.22-3.jpeg",
+      "eventUri": null,
+      "sentiment": 0.4352941176470588,
+      "wgt": 496388843,
+      "relevance": 2
+    },
+    {
+      "uri": "8877715130",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:46:57",
+      "dateTime": "2025-09-24T05:46:57Z",
+      "dateTimePub": "2025-09-24T03:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://investingnews.com/hive-digital-technologies-reaches-2-of-global-bitcoin-network-mining-9-btc-daily-and-surpassing-20-eh-s/",
+      "title": "HIVE Digital Technologies Reaches 2% of Global Bitcoin Network, Mining 9 BTC Daily and Surpassing 20 EH/s",
+      "body": "This news release constitutes a \"designated news release\" for the purposes of the Company's amended and restated prospectus supplement dated May 14, 2025, to its short form base shelf prospectus dated September 11, 2024.\n\nHive Digital Technologies Ltd. (TSXV: HIVE) (NASDAQ: HIVE) (FSE: YO0) (the \"Company\" or \"HIVE\"), a diversified multinational digital infrastructure company, today announced it has exceeded 20 Exahash per second (\"EHs\") of global Bitcoin mining capacity following the continued successful deployment of ASICs at its Phase 3 Valenzuela facility in Paraguay.\n\nPhase 3 represents HIVE's third 100 megawatt (\"MW\") development of green energy infrastructure in Paraguay, powered by hydroelectric energy from the Itaipu Dam, reinforcing the Company's commitment to sustainable Bitcoin mining. With a year-to-date hashrate increase of approximately 233%, HIVE is now mining 9 Bitcoin per day at a global fleet efficiency of 18 Joules per Terahash (\"J/TH\"), achieving a mining margin* of 55% after electricity costs. This represents approximately 2% of the Bitcoin network, based on the current difficulty of 142 trillion, with all figures publicly verifiable through Bitcoin block explorers.\n\nWith Phase 3 construction now substantially complete, and installations progressing ahead of schedule, HIVE achieved the 19 EH/s target, with the latest additions bringing HIVE's global fleet to 20 EH/s, marking a key milestone in the Company's roadmap toward its target of 25 EH/s by U.S. Thanksgiving.\n\nUpon completion of Phase 3, HIVE anticipates reaching daily Bitcoin production of approximately 12 BTC, based on current network difficulty. At that scale, HIVE expects to be operating at an efficiency of approximately 17.5 J/TH.\n\nFigure 1: Interior of a newly energized Bitmain S21+ Hydro container, adding high-efficiency hashrate to HIVE's Phase 3 expansion.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267707_c353c5071416d91f_001full.jpg\n\nManagement Commentary\n\nFrank Holmes, Co-Founder and Executive Chairman, commented: \"I am deeply proud of the drive and resilience our team has shown as we scale HIVE's global green energy operations ahead of schedule. We are gaining strong momentum across our dual engines of Bitcoin mining and AI cloud computing, two transformative forces that complement and strengthen each other. With a Navy SEAL mindset, our teams are moving forward with focus and determination across nine time zones and three continents. Also, we have hired 40 young engineers to help manage our facilities.\"\n\nCommitment to Impact Investing in Community Education\n\nHIVE is dedicated to making a positive impact in the communities where it operates, with a particular focus on supporting educational initiatives. As part of its mission to combine technological innovation with social responsibility, HIVE has prioritized impact investing in children's education, in Paraguay, where its Phase 3 Valenzuela facility is located.\n\nFrank Holmes continued: \"Earlier this month, we were honored to celebrate the ribbon cutting of our completed Yguaz\u00fa facility, the culmination of a year of vision, strategy, and relentless execution. Just as meaningful, members of our team visited a grade school in the city of Valenzuela where we were honored by seeing the joy on students who are now learning in classrooms with air conditioning, and improvements like new chalkboards made possible through our local goal to upgrade grade school facilities and provide another level of faith and hope in young minds who are the future of Paraguay. These moments remind us that our mission goes beyond technology: it's also about creating a positive impact in the communities where we work. We are dedicated to making a difference by investing in kids' education as a key part of HIVE's mission, ensuring that our growth benefits future generations in a lasting way.\"\n\nFigure 2: Grade school students in Paraguay learning in greater comfort with new air conditioning made possible through HIVE's support.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267707_c353c5071416d91f_002full.jpg\n\nAydin Kilic, President and CEO, stated: \"We are currently 2% of the global Bitcoin mining infrastructure, which is a significant milestone considering Bitcoin's market exceeds $2 trillion capitalization. With ongoing policy discussions around digital asset adoption in the United States, HIVE is positioned as a globally distributed data center company with a focus on green energy. Reaching 20 EH/s is a major validation of our disciplined growth strategy and the hard work of our global team. We are delivering on our commitments: funding is secured, infrastructure is online, and every additional exahash is compounding value for our shareholders. We strive to lead the industry in Return on Invested Capital, thereby maximizing value for our shareholders. Additionally, we believe it is essential to maintain low-cost operations at the corporate level, as reflected in the % of general and administrative costs relative to revenue.\"\n\nKilic added: \"During my recent visit to Paraguay, I was deeply impressed by the incredible execution of our teams on the ground. Their technical skill and organization have delivered 99% uptime and strong performance. This milestone solidifies our position in the Bitcoin network and reinforces our commitment to geographic diversification, operational excellence, and long-term shareholder value. As we push toward 25 EH/s by U.S. Thanksgiving, our momentum has never been stronger.\"\n\nFigure 3: Paraguay Country President Gabriel Lamas, President & CEO Aydin Kilic, Operations Manager Carlos Torres, and Executive Chairman Frank Holmes in Valenzuela, Paraguay, home to the Company's Phase 3 expansion powered by 100 MW of green energy infrastructure.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267707_c353c5071416d91f_003full.jpg\n\nOperational Outlook\n\nAll ASIC purchases for Phase 3 are funded, and all ASICs have been shipped. Over 40% of the Phase 3 ASICs are on-site and being installed, with the rest scheduled for delivery this month. HIVE expects growth to remain aligned with the economics of its Paraguay operations. Each additional exahash contributes directly to daily Bitcoin production and revenue potential, while operating costs remain stable under fixed-rate hydroelectric power and minimal incremental labor. Power expenses scale proportionally with machine usage and remain consistent with current cost structures. Actual results may vary depending on network difficulty and prevailing Bitcoin prices.\n\n*As used herein, \"Mining Margin\" is calculated by dividing the mining profit (revenue generated from mining activities minus power costs related to those activities) by the total revenue generated from mining activities and expressed as a percentage. In mining, the most significant expense is power cost; in this estimate we are assuming an average of USD 5 cents per kilowatt hour for indicative purposes. \"ARR\", as a metric, represents revenue only, and does not represent profitability. ARR is presented here as a measure of growth. These non-GAAP measures should be read in conjunction with and should not be viewed as alternatives to or replacements for measures of operating results and liquidity presented in accordance with GAAP in HIVE's quarterly and annual financial statements. All financial projections reflect current market sentiment and public disclosures as of September 2025; actual outcomes may vary. Investors should conduct their own due diligence.\n\nAbout Hive Digital Technologies Ltd.\n\nFounded in 2017, Hive Digital Technologies Ltd. builds and operates sustainable blockchain and AI infrastructure data centers, powered exclusively by renewable hydroelectric energy. With a global footprint in Canada, Sweden, and Paraguay, HIVE is committed to operational excellence, green energy leadership, and scaling the future of digital finance and computing, while creating long-term value for its shareholders and host communities.\n\nNeither the TSX Venture Exchange nor its Regulation Services Provider (as that term is defined in policies of the TSX Venture Exchange) accepts responsibility for the adequacy or accuracy of this news release.\n\nForward-Looking Information\n\nExcept for the statements of historical fact, this news release contains \"forward-looking information\" within the meaning of the applicable Canadian and United States securities legislation and regulations that is based on expectations, estimates and projections as at the date of this news release. \"Forward-looking information\" in this news release includes but is not limited to: the performance of the Company's existing operations, the construction of the Company's Phase 3 facility in Valenzuela, Paraguay and its potential specifications and performance upon completion, the timing of it becoming operational; business goals and objectives of the Company; the acquisition, deployment and optimization of the mining fleet and equipment; the continued viability of its existing Bitcoin mining operations; and other forward-looking information concerning the intentions, plans and future actions of the parties to the transactions described herein and the terms thereon.\n\nFactors that could cause actual results to differ materially from those described in such forward-looking information include, but are not limited to: the inability to complete the construction of the Paraguay acquisition on an economic and timely basis and achieve the desired operational performance; the ongoing support and cooperation of local authorities and the Government of Paraguay; the volatility of the digital currency market; the Company's ability to successfully mine digital currency; the Company may not be able to profitably liquidate its current digital currency inventory as required, or at all; a material decline in digital currency prices may have a significant negative impact on the Company's operations; the regulatory environment for cryptocurrency in Canada, the United States and the countries where our mining facilities are located; economic dependence on regulated terms of service and electricity rates; the speculative and competitive nature of the technology sector; dependency on continued growth in blockchain and cryptocurrency usage; lawsuits and other legal proceedings and challenges; government regulations; the global economic climate; dilution; future capital needs and uncertainty of additional financing, including the Company's ability to utilize the Company's ATM Program and the prices at which the Company may sell Common Shares in the ATM Program, as well as capital market conditions in general; risks relating to the strategy of maintaining and increasing Bitcoin holdings and the impact of depreciating Bitcoin prices on working capital; the competitive nature of the industry; currency exchange risks; the need for the Company to manage its planned growth and expansion; the need for continued technology change; the ability to maintain reliable and economical sources of power to run its cryptocurrency mining assets; the impact of energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates; protection of proprietary rights; the effect of government regulation and compliance on the Company and the industry; network security risks; the ability of the Company to maintain properly working systems; reliance on key personnel; global economic and financial market deterioration impeding access to capital or increasing the cost of capital; share dilution resulting from the ATM Program and from other equity issuances; the construction and operation of facilities may not occur as currently planned, or at all; expansion may not materialize as currently anticipated, or at all; the digital currency market; the ability to successfully mine digital currency; revenue may not increase as currently anticipated, or at all; it may not be possible to profitably liquidate the current digital currency inventory, or at all; a decline in digital currency prices may have a significant negative impact on operations; an increase in network difficulty may have a significant negative impact on operations; the volatility of digital currency prices; the anticipated growth and sustainability of electricity for the purposes of cryptocurrency mining in the applicable jurisdictions; the inability to maintain reliable and economical sources of power for the Company to operate cryptocurrency mining assets; the risks of an increase in the Company's electricity costs, cost of natural gas, changes in currency exchange rates, energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates and the adverse impact on the Company's profitability; the ability to complete current and future financings, any regulations or laws that will prevent the Company from operating its business; historical prices of digital currencies and the ability to mine digital currencies that will be consistent with historical prices; an inability to predict and counteract the effects of pandemics on the business of the Company, including but not limited to the effects of pandemics on the price of digital currencies, capital market conditions, restriction on labour and international travel and supply chains; and, the adoption or expansion of any regulation or law that will prevent the Company from operating its business, or make it more costly to do so; and other related risks as more fully set out in the Company's disclosure documents under the Company's filings at www.sec.gov/EDGAR and www.sedarplus.ca.\n\nThe forward-looking information in this news release reflects the Company's current expectations, assumptions, and/or beliefs based on information currently available to the Company. In connection with the forward-looking information contained in this news release, the Company has made assumptions about the Company's objectives, goals or future plans, the timing thereof and related matters. The Company has also assumed that no significant events will occur outside of the Company's normal course of business. Although the Company believes that the assumptions inherent in the forward-looking information are reasonable, forward-looking information is not a guarantee of future performance, and accordingly, undue reliance should not be put on such information due to its inherent uncertainty. The Company disclaims any intention or obligation to update or revise any forward-looking information, whether because of new information, future events or otherwise, other than as required by law.\n\nTo view the source version of this press release, please visit https://www.newsfilecorp.com/release/267707",
+      "source": {
+        "uri": "investingnews.com",
+        "dataType": "news",
+        "title": "Investing News Network"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Frank_Holmes_(geologist)",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Frank Holmes (geologist)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valenzuela,_Metro_Manila",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Valenzuela, Metro Manila"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Valenzuela, Metro Manila"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Philippines"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Primary_school",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Primary school"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Prospectus_(finance)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Prospectus (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thailand",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Thailand"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Thailand"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paraguay",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Paraguay"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Paraguay"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thanksgiving_(United_States)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Thanksgiving (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/TSX_Venture_Exchange",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "TSX Venture Exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Air_conditioning",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Air conditioning"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitmain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitmain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Itaipu_Dam",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Itaipu Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joule",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Joule"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social_responsibility",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Social responsibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intermodal_container",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Intermodal container"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Navy_SEALs",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "United States Navy SEALs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Multinational_corporation",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Multinational corporation"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canada",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Canada"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Canada"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valenzuela,_Paraguay",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Valenzuela, Paraguay"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sweden",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Sweden"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Sweden"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business",
+          "label": "dmoz/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 91
+        }
+      ],
+      "image": "https://investingnews.com/media-library/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8yNTg1ODg1NS9vcmlnaW4ucG5nIiwiZXhwaXJlc19hdCI6MTc3MTc1MzIxOX0.OrRi7LOAQb7fieZlD4lub7fRHcpee00n1e1sjz74igw/image.png?width=210",
+      "eventUri": null,
+      "sentiment": 0.1764705882352942,
+      "wgt": 496388817,
+      "relevance": 109
+    },
+    {
+      "uri": "8877693142",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:34:13",
+      "dateTime": "2025-09-24T05:34:13Z",
+      "dateTimePub": "2025-09-24T05:17:02Z",
+      "dataType": "news",
+      "sim": 0.501960813999176,
+      "url": "https://finance.yahoo.com/news/cleanspark-inc-clsk-mines-657-051702745.html",
+      "title": "CleanSpark, Inc. (CLSK) Mines 657 BTC in August, Treasury Climbs to 12,827 Amid Leadership Shift",
+      "body": "CleanSpark, Inc. (NASDAQ:CLSK) is one of the best cryptocurrency stocks to buy according to Wall Street analysts. On September 3, the company announced that its average hash rate increased by 1.4 EH/s in August, enabling the company to mine 657 Bitcoins.\n\nPhoto by Executium on Unsplash\n\nDaily production during the month averaged 21.20 bitcoin, with a peak single-day production of 21.71 bitcoin. The operational hashrate in the month stood at 50 EH/s with an average operating hash rate of 43.3 EH/s.\n\nThe company exited the month with a bitcoin treasury of 12,827, with 3,026 of the coins posted as collateral. In August, CleanSpark took advantage of the high bitcoin prices to sell 533.5 million coins at about $60.7 million.\n\n\"While August was a month of leadership transition, CleanSpark remained unwavering in its focus on operational performance and in continuing to grow our bitcoin treasury to build long-term value for all stakeholders,\" said Matt Schultz, CEO and Chairman.\n\nCleanSpark, Inc. (NASDAQ:CLSK) is a bitcoin mining company that owns and operates infrastructure to support its mining operations. It also owns and operates data centers, capitalizing on opportunities arising from the artificial intelligence boom.\n\nWhile we acknowledge the potential of CLSK as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock.\n\nREAD NEXT: 9 Best Lidar Stocks to Buy Right Now and 7 Best Cement Stocks to Buy According to Analysts.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hash_function",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Hash function"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stakeholder_(corporate)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stakeholder (corporate)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Collateral_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Collateral (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lidar",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Lidar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cement",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 47
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 51
+        }
+      ],
+      "image": "https://s.yimg.com/ny/api/res/1.2/uewbIFPBD9dMvH.ny8Tjlw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTg7Y2Y9d2VicA--/https://media.zenfs.com/en/insidermonkey.com/b310ff3b6a11c239b9c210267efebc4d",
+      "eventUri": "eng-10985396",
+      "sentiment": 0.3176470588235294,
+      "wgt": 496388053,
+      "relevance": 52
+    },
+    {
+      "uri": "8877696613",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:31:30",
+      "dateTime": "2025-09-24T05:31:30Z",
+      "dateTimePub": "2025-09-24T05:31:03Z",
+      "dataType": "news",
+      "sim": 0.7254902124404907,
+      "url": "https://www.fxempire.com/forecasts/article/gold-vs-bitcoin-the-new-era-of-reserve-assets-and-financial-innovation-1550426",
+      "title": "Gold vs. Bitcoin: The New Era of Reserve Assets and Financial Innovation",
+      "body": "The most popular method is creating a Strategic Bitcoin Reserve (SBR). Sixteen countries have already enacted or proposed SBR policies. This shift accelerated after Donald Trump's executive order, which declared that seized federal Bitcoin should be retained rather than sold. The policy cited $17 billion in missed profits from previous liquidations.\n\nArgentina's Bitcoin mining sector is developing by using energy from flared gas in the Vaca Muerta region to power mining operations, such as those by firms like Genesis Digital Assets and Crusoe Energy. This approach provides an environmental benefit by reducing methane emissions and creates economic incentives for the oil and gas industry to capture and utilise this previously wasted gas.\n\nMoreover, the UAE leads with three active strategies: government-backed mining, ETF investments, and the acceptance of Bitcoin as a form of payment. Meanwhile, U.S. states such as Arizona, New Hampshire, and Texas have established formal state-level Bitcoin reserves.\n\nGrowing institutional adoption has pushed Bitcoin above $100,000 in 2025. This rising demand suggests that Bitcoin could join gold (XAU) in global reserve portfolios by 2030. Bitcoin and gold can coexist. Gold will likely remain dominant in official central bank reserves, while Bitcoin may expand in private and alternative holdings.\n\nA national Bitcoin reserve could signal a country's confidence in digital assets, much like gold reserves once did for monetary credibility. Bitcoin and gold won't replace the US dollar as the main reserve asset. However, both are becoming increasingly valuable tools for central banks to manage risk in a rapidly changing world.\n\nPrivate companies are now establishing Bitcoin treasuries, much like central banks have with gold. OranjeBTC, a Brazilian treasury firm, recently acquired 3,650 BTC worth approximately $385 million. This move follows the lead of MicroStrategy, which pioneered corporate Bitcoin holdings in 2020. Today, more than 190 publicly traded companies hold Bitcoin on their balance sheets.",
+      "source": {
+        "uri": "fxempire.com",
+        "dataType": "news",
+        "title": "FXEmpire.com"
+      },
+      "authors": [
+        {
+          "uri": "muhammad_umair@fxempire.com",
+          "name": "Muhammad Umair",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Executive order (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Liquidation",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Liquidation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Gold"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Argentina",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Argentina"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Argentina"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Central_bank",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Central bank"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asset",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Petroleum_industry",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Petroleum industry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Methane_emissions",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Methane emissions"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Arizona",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Arizona"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Arizona"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_Hampshire",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "New Hampshire"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New Hampshire"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "United Arab Emirates"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Arab Emirates"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold_reserve",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Gold reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/MicroStrategy",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "MicroStrategy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Privately_held_company",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Privately held company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Balance_sheet",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Balance sheet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Brazil",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Brazil"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Brazil"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Government/Finance",
+          "label": "dmoz/Society/Government/Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Investment_Banks",
+          "label": "dmoz/Business/Financial Services/Investment Banks",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Cash_Flow",
+          "label": "dmoz/Business/Financial Services/Cash Flow",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Commercial_Lending",
+          "label": "dmoz/Business/Financial Services/Commercial Lending",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 97
+        }
+      ],
+      "image": "https://responsive.fxempire.com/v7/_fxempire_/2025/09/ChatGPT-Image-Aug-18-2025-12_36_07-PM.jpg?func=cover&q=70&width=700",
+      "eventUri": "eng-10987814",
+      "sentiment": 0.3176470588235294,
+      "wgt": 496387890,
+      "relevance": 89
+    },
+    {
+      "uri": "8877693147",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:29:12",
+      "dateTime": "2025-09-24T05:29:12Z",
+      "dateTimePub": "2025-09-24T05:16:56Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finance.yahoo.com/news/hive-digital-technologies-ltd-hive-051656185.html",
+      "title": "HIVE Digital Technologies Ltd. (HIVE) Acquires Data Center to Enhance Computing Capabilities",
+      "body": "HIVE Digital Technologies Ltd. (NASDAQ:HIVE) is one of the best cryptocurrency stocks to buy according to Wall Street analysts. On September 17, the company acquired a 7.2 megawatt data center in Toronto through BUZZ High Performance Computing subsidiary, as it continues to bolster its high-performance computing capabilities.\n\nPhoto by Executium on Unsplash\n\nIt paid CAD$12 million for the facility, in addition to 1 million common shares at CAD$5.25 per share, bringing the total acquisition costs to CAD$17.25 million. The acquisition underscores Hive Digital's push for growth opportunities in the Canadian digital infrastructure market.\n\nIt plans to upgrade the facility to Tier 3 standards to support high-performance computing and artificial intelligence workloads. The acquisition comes as Hive Digital's Bitcoin mining capacity has reached 18 Exahashes per second, with plans to reach 25 Exahashes per second by year-end.\n\n\"By transforming former Bitcoin mining facilities into Tier 3, AI-ready infrastructure, we are capitalizing on one of the most exciting opportunities in the digital economy,\" said Frank Holmes, Executive Chairman of HIVE.\n\nHIVE Digital Technologies Ltd. (NASDAQ:HIVE) is a company that builds and operates sustainable data centers for both Bitcoin mining and high-performance computing (HPC) for Artificial Intelligence (AI). It focuses on utilizing renewable energy sources, such as hydroelectric power, to power its operations. It offers investors a way to gain exposure to digital assets through traditional equity markets by mining and holding Bitcoin.\n\nWhile we acknowledge the potential of HIVE as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock.\n\nREAD NEXT: 9 Best Lidar Stocks to Buy Right Now and 7 Best Cement Stocks to Buy According to Analysts.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canadian_dollar",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Canadian dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supercomputer",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Supercomputer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Toronto",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Toronto"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Toronto"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canada",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Canada"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Canada"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Lidar",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Lidar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cement",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock_market",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Retail_Trade",
+          "label": "dmoz/Business/Retail Trade",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Information_Technology",
+          "label": "dmoz/Business/Information Technology",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Information_Technology/Marketing_and_Advertising",
+          "label": "dmoz/Business/Information Technology/Marketing and Advertising",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Publicly_Traded",
+          "label": "dmoz/Business/Major Companies/Publicly Traded",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 66
+        }
+      ],
+      "image": "https://s.yimg.com/ny/api/res/1.2/upYdpz9z5a1P5x6f.OuYaA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTg7Y2Y9d2VicA--/https://media.zenfs.com/en/insidermonkey.com/18633a759c691147ca72e456bc4b8e20",
+      "eventUri": null,
+      "sentiment": 0.4666666666666666,
+      "wgt": 496387752,
+      "relevance": 6
+    },
+    {
+      "uri": "2025-09-842254438",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "05:06:38",
+      "dateTime": "2025-09-24T05:06:38Z",
+      "dateTimePub": "2025-09-24T05:06:23Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.wallstreet-online.de/nachricht/19959542-hive-digital-technologies-reaches-2-of-global-bitcoin-network-mining-9-btc-daily-and-surpassing-20-eh-s",
+      "title": "HIVE Digital Technologies Reaches 2% of Global Bitcoin Network, Mining 9 BTC Daily and Surpassing 20 EH/s",
+      "body": "San Antonio, Texas--(Newsfile Corp. - September 24, 2025) - HIVE Digital Technologies Ltd. (TSXV: HIVE) (NASDAQ: HIVE) (FSE: YO0) (the \"Company\" or \"HIVE\"), a diversified multinational digital infrastructure company, today announced it has exceeded 20 Exahash per second (\"EH/s\") of global Bitcoin mining capacity following the continued successful deployment of ASICs at its Phase 3 Valenzuela facility in Paraguay.\n\nPhase 3 represents HIVE's third 100 megawatt (\"MW\") development of green energy infrastructure in Paraguay, powered by hydroelectric energy from the Itaipu Dam, reinforcing the Company's commitment to sustainable Bitcoin mining. With a year-to-date hashrate increase of approximately 233%, HIVE is now mining 9 Bitcoin per day at a global fleet efficiency of 18 Joules per Terahash (\"J/TH\"), achieving a mining margin* of 55% after electricity costs. This represents approximately 2% of the Bitcoin network, based on the current difficulty of 142 trillion, with all figures publicly verifiable through Bitcoin block explorers.\n\nWith Phase 3 construction now substantially complete, and installations progressing ahead of schedule, HIVE achieved the 19 EH/s target, with the latest additions bringing HIVE's global fleet to 20 EH/s, marking a key milestone in the Company's roadmap toward its target of 25 EH/s by U.S. Thanksgiving.\n\nUpon completion of Phase 3, HIVE anticipates reaching daily Bitcoin production of approximately 12 BTC, based on current network difficulty. At that scale, HIVE expects to be operating at an efficiency of approximately 17.5 J/TH.\n\nFigure 1: Interior of a newly energized Bitmain S21+ Hydro container, adding high-efficiency hashrate to HIVE's Phase 3 expansion.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267707_c353c5071416d91f_001 ...\n\nManagement Commentary\n\nFrank Holmes, Co-Founder and Executive Chairman, commented: \"I am deeply proud of the drive and resilience our team has shown as we scale HIVE's global green energy operations ahead of schedule. We are gaining strong momentum across our dual engines of Bitcoin mining and AI cloud computing, two transformative forces that complement and strengthen each other. With a Navy SEAL mindset, our teams are moving forward with focus and determination across nine time zones and three continents. Also, we have hired 40 young engineers to help manage our facilities.\"",
+      "source": {
+        "uri": "wallstreet-online.de",
+        "dataType": "news",
+        "title": "wallstreet:online"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paraguay",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "Paraguay"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Paraguay"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Multinational_corporation",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Multinational corporation"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/San_Antonio",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "San Antonio"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "San Antonio"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Itaipu_Dam",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Itaipu Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joule",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Joule"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thailand",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Thailand"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Thailand"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitmain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitmain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thanksgiving_(United_States)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Thanksgiving (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Navy_SEALs",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "United States Navy SEALs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Containerization",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Containerization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Continent",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Continent"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 77
+        }
+      ],
+      "image": "https://assets.wallstreet-online.de/_media/6/newsfeeds1280/size_645/newsfile-1280x720.png",
+      "eventUri": null,
+      "sentiment": 0.3176470588235294,
+      "wgt": 496386398,
+      "relevance": 81
+    }
+  ],
+  "last_run_time": "2025-09-24T06:50:52.538476"
 }
