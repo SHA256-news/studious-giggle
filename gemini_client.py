@@ -218,7 +218,19 @@ Generate only the 3 bullet points now:
             "Here's the",
             "Here are the",
             "Based on the URL content",
-            "Let me analyze"
+            "Let me analyze",
+            "I'll analyze",
+            "I'll create",
+            "I'll generate",
+            "Let me create",
+            "Let me generate",
+            "Now I'll",
+            "I can see",
+            "I notice",
+            "Looking at this",
+            "Examining the",
+            "Given the content",
+            "From what I can see"
         ]
         
         # Generic opening phrases to remove or replace
@@ -230,7 +242,18 @@ Generate only the 3 bullet points now:
             "The news states that ",
             "It is reported that ",
             "The article discusses how ",
-            "The piece explains that "
+            "The piece explains that ",
+            "This article states that ",
+            "This article mentions that ",
+            "The source states that ",
+            "The source mentions that ",
+            "According to the report, ",
+            "According to the news, ",
+            "The content states that ",
+            "The content mentions that ",
+            "Based on the article, ",
+            "As stated in the article, ",
+            "As mentioned in the article, "
         ]
         
         # Remove lines that start with debugging phrases
@@ -265,9 +288,6 @@ Generate only the 3 bullet points now:
                     result = result[0].upper() + result[1:] if len(result) > 1 else result.upper()
                 logger.info(f"Removed generic opening: '{opening}'")
                 break
-        
-        return result
-        result = '\n'.join(clean_lines).strip()
         
         # If we filtered everything out, return a safe fallback instead of problematic original
         if not result and text:
