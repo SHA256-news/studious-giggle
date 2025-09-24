@@ -42,14 +42,511 @@
     "8876776825",
     "8876867782",
     "8876987593",
-    "8877249138"
+    "8877249138",
+    "8877402148"
   ],
   "queued_articles": [
     {
       "uri": "test2",
       "title": "Recent article",
       "dateTimePub": "2025-09-23T20:51:33.638037+00:00"
+    },
+    {
+      "uri": "8877400545",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-23",
+      "time": "23:35:59",
+      "dateTime": "2025-09-23T23:35:59Z",
+      "dateTimePub": "2025-09-23T23:30:38Z",
+      "dataType": "news",
+      "sim": 0.6352941393852234,
+      "url": "https://cryptoslate.com/bitcoin-becomes-a-macroeconomic-asset-as-countries-race-to-ramp-up-adoption/",
+      "title": "Bitcoin becomes a macroeconomic asset as countries race to ramp up adoption",
+      "body": "Cover art/illustration via CryptoSlate. Image includes combined content which may include AI-generated content.\n\nBitcoin (BTC) adoption is growing among countries, with 32 nations actively pursuing exposure through legislation, representing roughly one in six nations worldwide, according to a Bitcoin Policy Institute report published Sept. 22.\n\nThe study documents a rapid acceleration in government adoption following President Donald Trump's election and subsequent executive order establishing a US Strategic Bitcoin Reserve.\n\nThe report identified active Bitcoin exposure in 27 countries, while 13 have proposed legislation to gain such exposure.\n\nThe numbers reflect overlapping categories, as some nations pursue multiple approaches simultaneously. Argentina operates government-backed mining using flared gas while proposing legislation for a strategic reserve.\n\nThe United Arab Emirates (UAE) employs three active exposure methods: government-backed mining, sovereign wealth fund investments in Bitcoin ETFs, and tax payment acceptance.\n\nStrategic Bitcoin Reserves (SBR) represent the most common approach, with 16 countries having proposed or enacted such policies.\n\nTrump's executive order established federal policy of retaining rather than selling seized Bitcoin holdings, citing $17 billion in potential gains that would have been missed from previous liquidations.\n\nArizona, New Hampshire, and Texas have codified state-level reserves into law, with dozens more states considering similar measures.\n\nBesides the idea of an SBR, government-backed Bitcoin mining ranks as the second most prevalent method, with 14 countries actively or proposing such operations.\n\nTen nations currently mine through electricity provision arrangements that generate profit-sharing Bitcoin accumulation. Argentina, Bhutan, El Salvador, Ethiopia, Iran, North Korea, Oman, Russia, the UAE, and Venezuela all maintain or previously operated government mining programs.\n\nSeven countries hold Bitcoin through passive holdings, comprising seized cryptocurrency that governments have chosen not to sell. Bulgaria, China, Finland, Georgia, India, the United Kingdom, and Venezuela maintain such holdings, with Finland specifically retaining coins pending court rulings.\n\nFour countries accept tax payments in Bitcoin across various jurisdictions. Panama City, the Swiss cantons, Dubai, and Colorado state allow Bitcoin tax payments, with Vancouver, Canada, proposing similar legislation.\n\nGovernment pension funds and sovereign wealth funds provide additional exposure avenues. Michigan's state pension fund invested directly in Bitcoin, while 17 other state pension funds maintain indirect exposure through Strategy holdings.\n\nInternationally, Japan's government pension fund is exploring direct investment, and South Korea's fund holds substantial Strategic allocations.\n\nThe report positioned Bitcoin adoption as a \"game-theoretic race\" among nations seeking alternatives to traditional reserve assets. Countries view Bitcoin as a complement to gold reserves, providing digital portability advantages over physical assets.\n\nThe authors argue that Bitcoin offers sanctions-resistant properties and enables direct international payments without dollar intermediation.\n\nAdoption momentum has accelerated markedly since Trump's election, with exposure events spiking from sporadic pre-2020 activity to over 50 events in early 2025.\n\nThe report concluded that major powers across continents now engage with Bitcoin as a macroeconomic asset, making a reversal unlikely.",
+      "source": {
+        "uri": "cryptoslate.com",
+        "dataType": "news",
+        "title": "CryptoSlate"
+      },
+      "authors": [
+        {
+          "uri": "gino_matos@cryptoslate.com",
+          "name": "Gino Matos",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Executive order (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 4,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "United Arab Emirates"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United Arab Emirates"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sovereign_wealth_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Sovereign wealth fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Argentina",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Argentina"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Argentina"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Arizona",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Arizona"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Arizona"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_Hampshire",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "New Hampshire"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New Hampshire"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Venezuela",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Venezuela"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Venezuela"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/El_Salvador",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "El Salvador"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "El Salvador"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Russia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Russia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Russia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Oman",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Oman"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Oman"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/North_Korea",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "North Korea"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "North Korea"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Iran",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Iran"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Iran"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finland",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Finland"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Finland"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethiopia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Ethiopia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Ethiopia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bhutan",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Bhutan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Bhutan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Great_power",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Great power"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pension_fund",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pension fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Jurisdiction",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Jurisdiction"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Continent",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Continent"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pension",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pension"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Gold"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vancouver",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Vancouver"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Vancouver"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Colorado"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Michigan",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Michigan"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Michigan"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Panama_City",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Panama City"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Panama City"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Panama"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dubai",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Dubai"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Dubai"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United Arab Emirates"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/South_Korea",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "South Korea"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "South Korea"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Economic",
+          "label": "dmoz/Society/Issues/Economic",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance",
+          "label": "dmoz/Home/Personal Finance",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Government_Operations",
+          "label": "dmoz/Society/Issues/Government Operations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 83
+        }
+      ],
+      "image": "https://cryptoslate.com/wp-content/uploads/2025/01/bitcoin-strategic-reserve.jpg",
+      "eventUri": "eng-10987814",
+      "sentiment": 0.2156862745098038,
+      "wgt": 496366559,
+      "relevance": 101
     }
   ],
-  "last_run_time": "2025-09-23T21:17:37.219844"
+  "last_run_time": "2025-09-24T00:45:23.111416"
 }
