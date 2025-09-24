@@ -307,23 +307,66 @@ def create_twitter_thread(article_data, max_tweets=10):
     
     tweets.append(final_tweet)
     
-    # Number the tweets
+    # Number the tweets properly, ensuring no tweet exceeds 280 characters
     numbered_tweets = []
     total = len(tweets)
     
     for i, tweet in enumerate(tweets, 1):
         if total > 1:
-            numbered_tweet = f"{i}/{total} {tweet}"
-            # Ensure it fits in 280 characters
-            if len(numbered_tweet) > 280:
-                # Truncate and add ellipsis
-                max_text_length = 280 - len(f"{i}/{total} ") - 3
-                truncated_text = tweet[:max_text_length] + "..."
-                numbered_tweet = f"{i}/{total} {truncated_text}"
+            prefix = f"{i}/{total} "
+            max_content_length = 280 - len(prefix)
+            
+            # If the tweet content exceeds the available space after numbering,
+            # we need to re-split this tweet properly
+            if len(tweet) <= max_content_length:
+                numbered_tweet = f"{prefix}{tweet}"
+            else:
+                # This tweet is too long for numbering - split it further
+                # Use the same splitting logic but with the reduced space
+                split_chunks = split_text_for_twitter(tweet, max_length=max_content_length, thread_position=None)
+                
+                # Add the first chunk with the current number
+                if split_chunks:
+                    first_chunk = split_chunks[0]
+                    numbered_tweet = f"{prefix}{first_chunk}"
+                    numbered_tweets.append(numbered_tweet)
+                    
+                    # Add remaining chunks as additional tweets
+                    for chunk in split_chunks[1:]:
+                        tweets.insert(i, chunk)  # Insert additional tweets
+                        total += 1  # Update total count
+                    
+                    # Skip the normal append since we already added this tweet
+                    continue
+                else:
+                    # Fallback - should not happen
+                    numbered_tweet = f"{prefix}{tweet[:max_content_length]}"
         else:
             numbered_tweet = tweet
         
         numbered_tweets.append(numbered_tweet)
+    
+    # If we added tweets during numbering, we need to re-number everything
+    if len(numbered_tweets) != total:
+        # Re-number all tweets with the correct total
+        final_tweets = []
+        actual_total = len(tweets)
+        for i, tweet in enumerate(tweets, 1):
+            if actual_total > 1:
+                prefix = f"{i}/{actual_total} "
+                # Ensure each tweet still fits
+                max_content_length = 280 - len(prefix)
+                if len(tweet) <= max_content_length:
+                    final_tweet = f"{prefix}{tweet}"
+                else:
+                    # Should not happen with proper pre-splitting, but handle it
+                    final_tweet = f"{prefix}{tweet[:max_content_length-3]}..."
+            else:
+                final_tweet = tweet
+            final_tweets.append(final_tweet)
+        return final_tweets
+    
+    return numbered_tweets
     
     return numbered_tweets
 

@@ -200,17 +200,110 @@ def get_unwanted_crypto_found(text: str) -> List[str]:
     return found
 
 
+def is_bitcoin_mining_article(article: Dict[str, Any]) -> bool:
+    """
+    Strict validation that content is actually about Bitcoin mining.
+    
+    Args:
+        article (dict): Article with 'title', 'body', etc.
+        
+    Returns:
+        bool: True if content is genuinely about Bitcoin mining
+    """
+    title = article.get('title', '')
+    body = article.get('body', '')
+    text = (title + " " + body).lower()
+    
+    # Must contain Bitcoin reference
+    bitcoin_terms = ["bitcoin", "btc"]
+    has_bitcoin = any(term in text for term in bitcoin_terms)
+    
+    # Must contain mining-related terms
+    mining_terms = ["mining", "miner", "miners", "hashrate", "hash rate", 
+                   "difficulty", "asic", "mine", "mined"]
+    has_mining = any(term in text for term in mining_terms)
+    
+    # Exclude clearly unrelated content
+    unrelated_terms = [
+        # Education/research
+        "teens", "students", "classroom", "school", "university", "college", 
+        "education", "research", "scientist", "academic", "study", "course",
+        # Medical/health
+        "cancer", "medical", "healthcare", "health", "disease", "treatment",
+        "patient", "therapy", "clinical", "hospital", "doctor",
+        # Awards/competitions
+        "prize", "award", "contest", "competition", "winner", "trophy",
+        # Non-mining business
+        "grant", "donation", "charity", "foundation", "scholarship",
+        "financial services", "banking", "insurance", "loan", "credit",
+        # General tech not mining
+        "smartphone", "app store", "social media", "gaming", "software",
+        # Other industries
+        "restaurant", "food", "agriculture", "fashion", "travel", "tourism"
+    ]
+    has_unrelated = any(term in text for term in unrelated_terms)
+    
+    return has_bitcoin and has_mining and not has_unrelated
+
+
+def validate_bitcoin_mining_content(articles: Optional[List[Dict[str, Any]]]) -> Tuple[List[Dict[str, Any]], int, List[Dict[str, Any]]]:
+    """
+    Validate that articles are genuinely about Bitcoin mining.
+    
+    Args:
+        articles (list): List of article dictionaries
+        
+    Returns:
+        tuple: (valid_articles, excluded_count, excluded_details)
+    """
+    if not articles:
+        return [], 0, []
+        
+    valid_articles = []
+    excluded_details = []
+    
+    for article in articles:
+        title = article.get('title', '')
+        
+        if is_bitcoin_mining_article(article):
+            valid_articles.append(article)
+        else:
+            # Article is not genuinely about Bitcoin mining
+            excluded_details.append({
+                'title': title[:100] + '...' if len(title) > 100 else title,
+                'url': article.get('url', ''),
+                'reason': 'Not genuinely about Bitcoin mining'
+            })
+            
+            # Log blocked content
+            try:
+                from utils import RuntimeLogger
+                reason = "Not genuinely about Bitcoin mining"
+                RuntimeLogger.log_blocked_content("article", title, reason)
+            except ImportError:
+                pass  # Runtime logging not available
+            
+            logger.info(f"Filtering out non-Bitcoin mining article: {title[:50]}... (not genuine Bitcoin mining content)")
+    
+    excluded_count = len(excluded_details)
+    
+    if excluded_count > 0:
+        logger.info(f"Filtered out {excluded_count} non-Bitcoin mining articles from {len(articles)} total articles")
+    
+    return valid_articles, excluded_count, excluded_details
+
+
 def filter_bitcoin_only_articles(articles: Optional[List[Dict[str, Any]]]) -> Tuple[List[Dict[str, Any]], int, List[Dict[str, Any]]]:
     """
     Filter articles to only include Bitcoin mining related content.
-    Removes articles that mention other cryptocurrencies.
+    Removes articles that mention other cryptocurrencies AND validates genuine Bitcoin mining content.
     
     Args:
         articles (list): List of article dictionaries
         
     Returns:
         tuple: (filtered_articles, excluded_count, excluded_details)
-            - filtered_articles (list): Articles that only mention Bitcoin
+            - filtered_articles (list): Articles that only mention Bitcoin and are genuinely about mining
             - excluded_count (int): Number of articles filtered out
             - excluded_details (list): Details of excluded articles with reasons
             
@@ -228,8 +321,9 @@ def filter_bitcoin_only_articles(articles: Optional[List[Dict[str, Any]]]) -> Tu
     except ImportError:
         pass  # Runtime logging not available
     
-    filtered_articles = []
-    excluded_details = []
+    # Step 1: Filter out articles mentioning other cryptocurrencies
+    crypto_filtered_articles = []
+    crypto_excluded_details = []
     
     for article in articles:
         title = article.get('title', '')
@@ -242,11 +336,12 @@ def filter_bitcoin_only_articles(articles: Optional[List[Dict[str, Any]]]) -> Tu
         
         if title_cryptos or body_cryptos:
             # Article mentions non-Bitcoin cryptocurrencies - exclude it
-            excluded_details.append({
+            crypto_excluded_details.append({
                 'title': title[:100] + '...' if len(title) > 100 else title,
                 'url': url,
                 'found_in_title': title_cryptos,
-                'found_in_body': body_cryptos[:5]  # Limit to first 5 found in body
+                'found_in_body': body_cryptos[:5],  # Limit to first 5 found in body
+                'reason': f"Contains non-Bitcoin cryptocurrencies: {', '.join(title_cryptos + body_cryptos[:3])}"
             })
             
             # Log blocked content
@@ -257,17 +352,22 @@ def filter_bitcoin_only_articles(articles: Optional[List[Dict[str, Any]]]) -> Tu
             except ImportError:
                 pass  # Runtime logging not available
             
-            logger.info(f"Filtering out non-Bitcoin article: {title[:50]}... (mentions: {', '.join(title_cryptos + body_cryptos[:3])})")
+            logger.info(f"Filtering out non-Bitcoin article: {title[:50]}... (mentions: {', '.join(title_cryptos + body_cryptos[:3])})") 
         else:
-            # Article appears to be Bitcoin-only - include it
-            filtered_articles.append(article)
+            # Article appears to be Bitcoin-only - include it for further validation
+            crypto_filtered_articles.append(article)
     
-    excluded_count = len(excluded_details)
+    # Step 2: Validate that remaining articles are genuinely about Bitcoin mining
+    mining_validated_articles, mining_excluded_count, mining_excluded_details = validate_bitcoin_mining_content(crypto_filtered_articles)
     
-    if excluded_count > 0:
-        logger.info(f"Filtered out {excluded_count} non-Bitcoin mining articles from {len(articles)} total articles")
+    # Combine exclusion details
+    all_excluded_details = crypto_excluded_details + mining_excluded_details
+    total_excluded_count = len(all_excluded_details)
     
-    return filtered_articles, excluded_count, excluded_details
+    if total_excluded_count > 0:
+        logger.info(f"Total filtering: {len(crypto_excluded_details)} crypto-filtered + {mining_excluded_count} non-mining = {total_excluded_count} excluded from {len(articles)} articles")
+    
+    return mining_validated_articles, total_excluded_count, all_excluded_details
 
 
 if __name__ == "__main__":
