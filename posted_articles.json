@@ -48,7 +48,8 @@
     "8877400545",
     "8877789332",
     "8877944972",
-    "8878310921"
+    "8878310921",
+    "8878506115"
   ],
   "queued_articles": [
     {
@@ -4006,7 +4007,553 @@
       "sentiment": 0.388235294117647,
       "wgt": 496405094,
       "relevance": 109
+    },
+    {
+      "uri": "2025-09-842760224",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "13:58:20",
+      "dateTime": "2025-09-24T13:58:20Z",
+      "dateTimePub": "2025-09-24T13:58:10Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.streetinsider.com/Corporate+News/Natures+Miracle+raises+$2+million+via+convertible+preferred+shares/25369815.html",
+      "title": "Nature's Miracle raises $2 million via convertible preferred shares",
+      "body": "Nature's Miracle Holding Inc. (OTCQB: NMHI) signed a $2 million convertible preferred investment agreement with an Asia-based private investor, according to a company statement.\n\nThe Ontario, California-based company issued 2,000 Series D Preferred Shares that can be converted into common stock at $0.1180 per share, which was the closing price on September 18, 2025.\n\nNature's Miracle received an initial tranche of $500,000 on September 19, 2025. The remaining $1.5 million tranche is expected to close before November 15, 2025.\n\nThe company stated it will use the proceeds for working capital purposes.\n\nNature's Miracle operates as an agriculture technology company serving growers in the Controlled Environment Agriculture industry in the United States. The company also engages in electric vehicle distribution and bitcoin mining operations.\n\nThe company trades on the OTCQB market under the ticker symbol NMHI.",
+      "source": {
+        "uri": "streetinsider.com",
+        "dataType": "news",
+        "title": "StreetInsider.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Convertible"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Preferred_stock",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Preferred stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/OTC_Markets_Group",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "OTC Markets Group"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ontario",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Ontario"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Ontario"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Technology_company",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Technology company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ticker_symbol",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Ticker symbol"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Working_capital",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Working capital"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_vehicle",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electric vehicle"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Agriculture",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Agriculture"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 14
+        },
+        {
+          "uri": "dmoz/Society/Religion_and_Spirituality/Enlightenment",
+          "label": "dmoz/Society/Religion and Spirituality/Enlightenment",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Agriculture_and_Forestry/Consulting",
+          "label": "dmoz/Business/Agriculture and Forestry/Consulting",
+          "wgt": 15
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 67
+        }
+      ],
+      "image": "http://www.streetinsider.com/images/silogo-new.png",
+      "eventUri": null,
+      "sentiment": 0.4039215686274509,
+      "wgt": 496418300,
+      "relevance": 2
+    },
+    {
+      "uri": "8878412711",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "13:41:36",
+      "dateTime": "2025-09-24T13:41:36Z",
+      "dateTimePub": "2025-09-24T09:30:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finance.yahoo.com/news/3-ai-infrastructure-stocks-riding-093000094.html",
+      "title": "3 AI Infrastructure Stocks Riding the Coming Power Crunch",
+      "body": "Nvidia's (NASDAQ: NVDA) $100 billion agreement with OpenAI underscores a critical shift in artificial intelligence (AI): the limiting factor is no longer chips, but power. Each gigawatt of computing capacity draws on the scale of a nuclear reactor, making electricity the new bottleneck in AI growth. That dynamic puts fresh attention on companies working to build, supply, and optimize the infrastructure behind these energy-hungry systems.\n\nHere is an overview of three companies tackling different edges of the looming AI energy problem.\n\nIren Ltd. (NASDAQ: IREN) has transformed its roots as a Bitcoin miner into a broader play on high-performance computing. The company is redeploying its energy-intensive infrastructure to support artificial intelligence, acquiring massive GPU fleets that include Nvidia's B-series accelerators and AMD's new MI350X chips. That pivot is already showing up in the numbers: revenue climbed 226% year over year to $187 million in Q4 fiscal 2025, while gross margins improved as higher-value AI services began to supplement traditional mining.\n\nWhat sets Iren apart is its optionality. Investors get exposure to both crypto mining and AI cloud services, two markets with very different cycles but equally steep growth curves. That diversification helps cushion the downside if one segment stumbles. Just as important, Iren has been named a Nvidia preferred partner, giving it priority access to scarce GPUs when others are stuck waiting in line.\n\nThe stock has surged 326% year to date, reflecting investor enthusiasm, but the AI cloud segment is still in its early innings. The main risk is utilization: if customer demand doesn't keep pace, expensive GPUs could sit idle while fixed costs pile up. Still, Iren has so far executed well on its transition, positioning itself as one of the more credible emerging players at the intersection of compute and energy.\n\nApplied Digital (NASDAQ: APLD) designs and builds AI-optimized data centers from the ground up. Its flagship Polaris Forge campus is planned to scale to 1 gigawatt of capacity -- enough to power a small city. A marquee lease with CoreWeave validates demand for its high-density facilities, but the stock already trades at roughly 34 times trailing sales, far above peer multiples.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bottleneck_(engineering)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bottleneck (engineering)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/OpenAI",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "OpenAI"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nuclear_reactor",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nuclear reactor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/AMD",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "AMD"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy",
+          "label": "dmoz/Business/Energy",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Technology/Energy",
+          "label": "dmoz/Science/Technology/Energy",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Utilities",
+          "label": "dmoz/Business/Energy/Utilities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Management",
+          "label": "dmoz/Business/Energy/Management",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Employment",
+          "label": "dmoz/Business/Energy/Employment",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 73
+        }
+      ],
+      "image": "https://media.zenfs.com/en/motleyfool.com/986ed75a43e006202c7382e526c4bcfc",
+      "eventUri": null,
+      "sentiment": 0.2862745098039217,
+      "wgt": 496417296,
+      "relevance": 52
+    },
+    {
+      "uri": "2025-09-842726640",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-24",
+      "time": "13:21:41",
+      "dateTime": "2025-09-24T13:21:41Z",
+      "dateTimePub": "2025-09-24T09:30:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.yahoo.com/finance/news/3-ai-infrastructure-stocks-riding-093000094.html",
+      "title": "3 AI Infrastructure Stocks Riding the Coming Power Crunch",
+      "body": "Nvidia's (NASDAQ: NVDA) $100 billion agreement with OpenAI underscores a critical shift in artificial intelligence (AI): the limiting factor is no longer chips, but power. Each gigawatt of computing capacity draws on the scale of a nuclear reactor, making electricity the new bottleneck in AI growth. That dynamic puts fresh attention on companies working to build, supply, and optimize the infrastructure behind these energy-hungry systems.\n\nHere is an overview of three companies tackling different edges of the looming AI energy problem.\n\nThe pivot play\n\nIren Ltd. (NASDAQ: IREN) has transformed its roots as a Bitcoin miner into a broader play on high-performance computing. The company is redeploying its energy-intensive infrastructure to support artificial intelligence, acquiring massive GPU fleets that include Nvidia's B-series accelerators and AMD's new MI350X chips. That pivot is already showing up in the numbers: revenue climbed 226% year over year to $187 million in Q4 fiscal 2025, while gross margins improved as higher-value AI services began to supplement traditional mining.\n\nWhat sets Iren apart is its optionality. Investors get exposure to both crypto mining and AI cloud services, two markets with very different cycles but equally steep growth curves. That diversification helps cushion the downside if one segment stumbles. Just as important, Iren has been named a Nvidia preferred partner, giving it priority access to scarce GPUs when others are stuck waiting in line.\n\nThe stock has surged 326% year to date, reflecting investor enthusiasm, but the AI cloud segment is still in its early innings. The main risk is utilization: if customer demand doesn't keep pace, expensive GPUs could sit idle while fixed costs pile up. Still, Iren has so far executed well on its transition, positioning itself as one of the more credible emerging players at the intersection of compute and energy.\n\nThe infrastructure moonshot\n\nApplied Digital (NASDAQ: APLD) designs and builds AI-optimized data centers from the ground up. Its flagship Polaris Forge campus is planned to scale to 1 gigawatt of capacity -- enough to power a small city. A marquee lease with CoreWeave validates demand for its high-density facilities, but the stock already trades at roughly 34 times trailing sales, far above peer multiples.",
+      "source": {
+        "uri": "yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo"
+      },
+      "authors": [
+        {
+          "uri": "motley_fool@yahoo.com",
+          "name": "Motley Fool",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 4,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bottleneck_(engineering)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bottleneck (engineering)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/OpenAI",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "OpenAI"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nuclear_reactor",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nuclear reactor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/AMD",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "AMD"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Energy",
+          "label": "dmoz/Science/Technology/Energy",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Computers/Artificial_Intelligence/Publications",
+          "label": "dmoz/Computers/Artificial Intelligence/Publications",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Computers/Artificial_Intelligence/Games",
+          "label": "dmoz/Computers/Artificial Intelligence/Games",
+          "wgt": 23
+        },
+        {
+          "uri": "dmoz/Computers/Artificial_Intelligence/Philosophy",
+          "label": "dmoz/Computers/Artificial Intelligence/Philosophy",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Publicly_Traded",
+          "label": "dmoz/Business/Major Companies/Publicly Traded",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 73
+        }
+      ],
+      "image": "https://media.zenfs.com/en/motleyfool.com/986ed75a43e006202c7382e526c4bcfc",
+      "eventUri": null,
+      "sentiment": 0.223529411764706,
+      "wgt": 496416101,
+      "relevance": 52
     }
   ],
-  "last_run_time": "2025-09-24T12:32:52.948311"
+  "last_run_time": "2025-09-24T15:17:18.068566"
 }
