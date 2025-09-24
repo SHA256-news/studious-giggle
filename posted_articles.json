@@ -47,7 +47,8 @@
     "test2",
     "8877400545",
     "8877789332",
-    "8877944972"
+    "8877944972",
+    "8878310921"
   ],
   "queued_articles": [
     {
@@ -2729,7 +2730,1283 @@
       "sentiment": 0.3019607843137255,
       "wgt": 496393827,
       "relevance": 113
+    },
+    {
+      "uri": "8878266661",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "12:05:24",
+      "dateTime": "2025-09-24T12:05:24Z",
+      "dateTimePub": "2025-09-24T10:38:17Z",
+      "dataType": "news",
+      "sim": 0.7490196228027344,
+      "url": "https://thecryptobasic.com/2025/09/24/michael-saylor-bitcoin-will-grow-10x-larger-than-gold/",
+      "title": "Michael Saylor: Bitcoin Will Grow 10X Larger Than Gold",
+      "body": "Michael Saylor, the co-founder and executive chairman of Strategy, has once again drawn global attention with his bullish outlook on Bitcoin.\n\nIn a recent interview, Saylor predicted that the world's largest cryptocurrency could grow to ten times the size of gold. The statement reflects his long-standing conviction that Bitcoin will become the dominant global store of value.\n\nHis remarks come at a time when both assets are making headlines for reaching record highs in valuation. Additionally, Bitcoin is drawing unprecedented levels of institutional and corporate demand.\n\nThe path to such a figure would require an extraordinary rally of more than 10,000% from current trading levels. As of publication, Bitcoin is trading at $112,599, down 0.50% over the past 24 hours.\n\nThe foundation of Saylor's argument lies in the dynamics of demand versus supply. According to him, the growing appetite from corporate treasuries and institutional investors is creating a structural supply squeeze.\n\nCurrently, Bitcoin miners generate around 900 coins per day. However, reports show that demand far outstrips this output. A study from River Financial noted that businesses buy roughly 1,755 BTC per day. In addition, ETFs acquire an average of 1,430 coins. Combined, demand exceeds new supply by more than threefold, putting persistent upward pressure on prices.\n\nSaylor explained that companies adopting Bitcoin are not just accumulating. In fact, they are often buying more than the daily mining output, leaving little for the open market. He believes this steady imbalance is one of the strongest signals that Bitcoin's valuation could climb dramatically in the coming years.\n\nFor Saylor, Bitcoin's superiority over gold is not only about numbers. He stresses that Bitcoin, unlike gold, is borderless, programmable, and tariff-resistant. He often contrasts the ease of transferring Bitcoin across borders with the physical constraints of gold, famously noting, \"You can't teleport gold.\"\n\nSaylor also voiced support for the proposed U.S. strategic Bitcoin reserve bill, noting its potential benefits. He argued that holding Bitcoin can strengthen both corporate and national balance sheets. In his words: \"Bitcoin is money, everything else is credit.\"\n\nThe phrase, once associated with gold, underscores his belief that Bitcoin has become the ultimate form of digital capital.\n\nCorporate treasuries are increasingly validating Saylor's thesis. Strategy (a.k.a. MicroStrategy) itself, under his leadership, continues to expand its Bitcoin reserves.\n\nJust last week, the company announced the purchase of 850 BTC worth nearly $100 million at an average price of $117,344. This lifted MicroStrategy's total holdings to 639,835 BTC, acquired for $47.33 billion at an average price of $73,971 per coin.\n\nThe firm also reported a 26% yield on its Bitcoin holdings, cementing its status as the largest corporate holder of the cryptocurrency.\n\nOther corporations are following suit. Japan's Metaplanet recently expanded its reserves by $632 million, boosting its total holdings to nearly $3 billion.\n\nIn Latin America, Brazil's OranjeBTC purchased 3,650 coins worth $385 million ahead of its public listing. This acquisition propelled it to become the region's largest corporate Bitcoin treasury.\n\nToday, more than 190 publicly listed companies hold Bitcoin on their balance sheets. Together, their institutional holdings exceed 1.5 million BTC. ETFs led by financial giants such as BlackRock are also steadily buying on behalf of institutional clients, further tightening the market.\n\nSaylor is not alone in drawing comparisons between Bitcoin and gold. Author and investor Robert Kiyosaki, best known for Rich Dad Poor Dad, has repeatedly advised investors to diversify into Bitcoin alongside gold and silver to shield themselves from financial uncertainty.\n\nMeanwhile, traditional finance institutions are beginning to acknowledge Bitcoin's growing role. A recent Deutsche Bank report suggested that by 2030, central banks could hold both Bitcoin and gold as part of their reserves.\n\nThe report highlighted the shared qualities of scarcity, liquidity, and trust, suggesting that the two assets could complement rather than replace one another.\n\nSaylor argues that Bitcoin is evolving beyond its role as a hedge against inflation. He sees it becoming digital capital for the credit markets, similar to how gold once underpinned centuries of global trade.\n\n\"The world ran on gold-backed credit for 300 years,\" Saylor said. \"The world's going to run on digital gold-backed credit for the next 300.\"\n\nHe believes this shift positions Bitcoin not just as an alternative investment, but as the very foundation of future financial systems.",
+      "source": {
+        "uri": "thecryptobasic.com",
+        "dataType": "news",
+        "title": "The Crypto Basic - Bitcoin, Cryptocurrency, DeFi Topics And News"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Gold"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Store_of_value",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Store of value"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange-traded_fund",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Exchange-traded fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_trend",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market trend"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Institutional_investor",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Institutional investor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Treasury",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Treasury"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Balance_sheet",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Balance sheet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Robert_Kiyosaki",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Robert Kiyosaki"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Rich_Dad_Poor_Dad",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Rich Dad Poor Dad"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_company",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Public company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_system",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial system"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gold_standard",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Gold standard"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hedge_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hedge (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/International_trade",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "International trade"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Deutsche_Bank",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Deutsche Bank"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Latin_America",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Latin America"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/BlackRock",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "BlackRock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Commodities_and_Futures",
+          "label": "dmoz/Business/Investing/Commodities and Futures",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 86
+        }
+      ],
+      "image": "https://thecryptobasic.com/wp-content/uploads/2025/02/TCB-001-2025-02-11T112051516.png",
+      "eventUri": "eng-10987814",
+      "sentiment": 0.05882352941176472,
+      "wgt": 496411524,
+      "relevance": 64
+    },
+    {
+      "uri": "8878183298",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "11:27:26",
+      "dateTime": "2025-09-24T11:27:26Z",
+      "dateTimePub": "2025-09-24T11:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://san.com/cc/metas-next-step-starting-a-company-to-buy-and-sell-power-for-its-data-centers/",
+      "title": "Meta's next step: Starting a company to buy and sell power for its data centers",
+      "body": "Power trading companies profit from electricity price swings by selling power bought at lower fixed rates when wholesale prices spike.\n\nMeta is taking another step into the energy industry. A new Meta subsidiary recently filed an application with federal regulators to trade wholesale power on the electric grid.\n\nAtem Energy LLC, a company wholly owned by the tech giant that also owns Instagram, Facebook and WhatsApp, filed with the Federal Energy Regulatory Commission on Sept. 16. If approved, the company will be able to buy and sell electricity on the open market, allowing it to better manage its energy consumption.\n\nAs Big Tech grows hungry for power to fuel data centers that make artificial intelligence tools possible, Meta has already made big energy moves. The company has inked deals with nuclear power companies and signed contracts to buy renewable energy.\n\nThree new gas power plants won approval from state regulators in Louisiana to power a Meta data center. With vast energy resources under contract, experts see Meta's move into wholesale power trading as a logical next step.\n\nIn an interview with Straight Arrow News, Paul Joskow, an economics professor at the Massachusetts Institute of Technology, said Meta \"realize(s) that they're going to be big players in the electricity supply business,\" and the move into wholesale power trading \"gives them some flexibility.\"\n\nThe wholesale electricity market is where companies that generate electricity -- from nuclear, gas and coal plants, wind and solar farms, or any other power source -- sell that power to electric utility companies. Markets have structures and rules organized under a regional grid operator.\n\nSome states allow retail choice, which enables consumers to choose an electric provider, rather than having to stick with one state-backed utility company. Other states require customers to be locked into a single regulated utility company for their power.\n\n\"Day by day, we have a peak and a trough in our power demand,\" said Ed Hirs, an energy economist at the University of Houston. This oscillation causes costs to go up and down. Price also varies across geographic regions.\n\nPower trading companies take advantage of price volatility by both buying and selling electricity. They cut deals between the power generation companies and utilities, a system that adds more liquidity and risk management to the overall market.\n\nIn states with retail choice, the wholesale power trading company can also be a retail electricity provider, or it can sell power to the retail company.\n\nIt's \"not surprising\" that Meta is starting a wholesale power trading business, according to Joskow. The move could generate significant revenue for the tech giant, reducing overall electricity costs.\n\nElectricity demand is surging. According to an estimate from consulting firm Grid Strategies, the U.S. will need 16% more power during peak demand periods by 2029.\n\nData centers are a major driver of increased demand. A single 100-megawatt data center operating at full capacity for a month can consume more electricity than 81,000 homes, a SAN analysis found.\n\nMeta has numerous power purchase agreements with power-generating companies to acquire electricity for its fleet of data centers. These agreements lock in a set amount of electricity at an agreed-upon rate, outside the fluctuations of the wholesale market. Often, they are long-term deals.\n\nPower trading helps Meta in \"hedging their contractual commitments,\" Joskow said, because if Meta does not need to consume all of the power it has agreed to buy, \"they can sell it back into the market.\" Meta can also buy wholesale power if it needs more.\n\nThis type of arrangement is not unusual. Microsoft, Amazon and Google are also already involved in trading wholesale power, according to reporting by Bloomberg. Other large electric users, such as Bitcoin mining companies or manufacturers with on-site power, also sometimes sell electricity to the grid.\n\nAs electricity prices rise across the country, Hirs said power trading companies have an opportunity to sell power they bought at a lower fixed rate when wholesale prices are spiking. \"That's money that the rest of us wind up paying,\" he said.\n\nMoreover, Hirs said, \"the application of AI to trading electricity is fast and furious right now,\" which would position Meta and other Big Tech companies to optimize when they buy and sell wholesale power with swings in the market.\n\nMeta did not respond to SAN's request for comment. The company asked federal regulators to approve its application by Nov. 16.",
+      "source": {
+        "uri": "san.com",
+        "dataType": "news",
+        "title": "Straight Arrow News"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Meta_Platforms",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Meta Platforms"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wholesaling",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Wholesaling"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paul_Joskow",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Paul Joskow"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Energy_consumption",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Energy consumption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Energy_Regulatory_Commission",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Federal Energy Regulatory Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electrical_grid",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electrical grid"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nuclear_power",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nuclear power"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Public_utility",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Public utility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Energy_development",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Energy development"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Energy_industry",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Energy industry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/WhatsApp",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "WhatsApp"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Subsidiary",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Subsidiary"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Power_station",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Power station"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Facebook",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Facebook"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Louisiana",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Louisiana"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Louisiana"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Big_Tech",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Big Tech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coal-fired_power_station",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Coal-fired power station"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Energy_economics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Energy economics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity_market",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Photovoltaic_power_station",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Photovoltaic power station"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Risk_management",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Risk management"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/University_of_Houston",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "University of Houston"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Massachusetts_Institute_of_Technology",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Massachusetts Institute of Technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Amazon_(company)",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Amazon (company)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bloomberg_L.P.",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Bloomberg L.P."
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Microsoft",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Microsoft"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Google"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy",
+          "label": "dmoz/Business/Energy",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Utilities",
+          "label": "dmoz/Business/Energy/Utilities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Electronics_and_Electrical/Substation_and_Transmission",
+          "label": "dmoz/Business/Electronics and Electrical/Substation and Transmission",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Marketing_and_Advertising",
+          "label": "dmoz/Business/Energy/Marketing and Advertising",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Energy/Employment",
+          "label": "dmoz/Business/Energy/Employment",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 90
+        }
+      ],
+      "image": "https://san.com/wp-content/uploads/2025/09/AP25024521312669_AP_PhotoGodofredo_A_Vasquez_File_clean.jpg",
+      "eventUri": null,
+      "sentiment": 0.388235294117647,
+      "wgt": 496409246,
+      "relevance": 2
+    },
+    {
+      "uri": "8878148411",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-24",
+      "time": "11:04:00",
+      "dateTime": "2025-09-24T11:04:00Z",
+      "dateTimePub": "2025-09-24T08:00:00Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://investingnews.com/retransmission-hive-digital-technologies-reaches-2-of-global-bitcoin-network-mining-9-btc-daily-and-surpassing-20-eh-s/",
+      "title": "RETRANSMISSION: HIVE Digital Technologies Reaches 2% of Global Bitcoin Network, Mining 9 BTC Daily and Surpassing 20 EH/s",
+      "body": "This news release constitutes a \"designated news release\" for the purposes of the Company's amended and restated prospectus supplement dated May 14, 2025, to its short form base shelf prospectus dated September 11, 2024.\n\nHive Digital Technologies Ltd. (TSXV: HIVE) (NASDAQ: HIVE) (FSE: YO0) (the \"Company\" or \"HIVE\"), a diversified multinational digital infrastructure company, today announced it has exceeded 20 Exahash per second (\"EHs\") of global Bitcoin mining capacity following the continued successful deployment of ASICs at its Phase 3 Valenzuela facility in Paraguay.\n\nPhase 3 represents HIVE's third 100 megawatt (\"MW\") development of green energy infrastructure in Paraguay, powered by hydroelectric energy from the Itaipu Dam, reinforcing the Company's commitment to sustainable Bitcoin mining. With a year-to-date hashrate increase of approximately 233%, HIVE is now mining 9 Bitcoin per day at a global fleet efficiency of 18 Joules per Terahash (\"J/TH\"), achieving a mining margin* of 55% after electricity costs. This represents approximately 2% of the Bitcoin network, based on the current difficulty of 142 trillion, with all figures publicly verifiable through Bitcoin block explorers.\n\nWith Phase 3 construction now substantially complete, and installations progressing ahead of schedule, HIVE achieved the 19 EH/s target, with the latest additions bringing HIVE's global fleet to 20 EH/s, marking a key milestone in the Company's roadmap toward its target of 25 EH/s by U.S. Thanksgiving.\n\nUpon completion of Phase 3, HIVE anticipates reaching daily Bitcoin production of approximately 12 BTC, based on current network difficulty. At that scale, HIVE expects to be operating at an efficiency of approximately 17.5 J/TH.\n\nFigure 1: Interior of a newly energized Bitmain S21+ Hydro container, adding high-efficiency hashrate to HIVE's Phase 3 expansion.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_001full.jpg\n\nManagement Commentary\n\nFrank Holmes, Co-Founder and Executive Chairman, commented: \"I am deeply proud of the drive and resilience our team has shown as we scale HIVE's global green energy operations ahead of schedule. We are gaining strong momentum across our dual engines of Bitcoin mining and AI cloud computing, two transformative forces that complement and strengthen each other. With a Navy SEAL mindset, our teams are moving forward with focus and determination across nine time zones and three continents. Also, we have hired 40 young engineers to help manage our facilities.\"\n\nCommitment to Impact Investing in Community Education\n\nHIVE is dedicated to making a positive impact in the communities where it operates, with a particular focus on supporting educational initiatives. As part of its mission to combine technological innovation with social responsibility, HIVE has prioritized impact investing in children's education, in Paraguay, where its Phase 3 Valenzuela facility is located.\n\nFrank Holmes continued: \"Earlier this month, we were honored to celebrate the ribbon cutting of our completed Yguaz\u00fa facility, the culmination of a year of vision, strategy, and relentless execution. Just as meaningful, members of our team visited a grade school in the city of Valenzuela where we were honored by seeing the joy on students who are now learning in classrooms with air conditioning, and improvements like new chalkboards made possible through our local goal to upgrade grade school facilities and provide another level of faith and hope in young minds who are the future of Paraguay. These moments remind us that our mission goes beyond technology: it's also about creating a positive impact in the communities where we work. We are dedicated to making a difference by investing in kids' education as a key part of HIVE's mission, ensuring that our growth benefits future generations in a lasting way.\"\n\nFigure 2: Grade school students in Paraguay learning in greater comfort with new air conditioning made possible through HIVE's support.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_002full.jpg\n\nAydin Kilic, President and CEO, stated: \"We are currently 2% of the global Bitcoin mining infrastructure, which is a significant milestone considering Bitcoin's market exceeds $2 trillion capitalization. With ongoing policy discussions around digital asset adoption in the United States, HIVE is positioned as a globally distributed data center company with a focus on green energy. Reaching 20 EH/s is a major validation of our disciplined growth strategy and the hard work of our global team. We are delivering on our commitments: funding is secured, infrastructure is online, and every additional exahash is compounding value for our shareholders. We strive to lead the industry in Return on Invested Capital, thereby maximizing value for our shareholders. Additionally, we believe it is essential to maintain low-cost operations at the corporate level, as reflected in the % of general and administrative costs relative to revenue.\"\n\nKilic added: \"During my recent visit to Paraguay, I was deeply impressed by the incredible execution of our teams on the ground. Their technical skill and organization have delivered 99% uptime and strong performance. This milestone solidifies our position in the Bitcoin network and reinforces our commitment to geographic diversification, operational excellence, and long-term shareholder value. As we push toward 25 EH/s by U.S. Thanksgiving, our momentum has never been stronger.\"\n\nFigure 3: Paraguay Country President Gabriel Lamas, President & CEO Aydin Kilic, Operations Manager Carlos Torres, and Executive Chairman Frank Holmes in Valenzuela, Paraguay, home to the Company's Phase 3 expansion powered by 100 MW of green energy infrastructure.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_003full.jpg\n\nOperational Outlook\n\nAll ASIC purchases for Phase 3 are funded, and all ASICs have been shipped. Over 40% of the Phase 3 ASICs are on-site and being installed, with the rest scheduled for delivery this month. HIVE expects growth to remain aligned with the economics of its Paraguay operations. Each additional exahash contributes directly to daily Bitcoin production and revenue potential, while operating costs remain stable under fixed-rate hydroelectric power and minimal incremental labor. Power expenses scale proportionally with machine usage and remain consistent with current cost structures. Actual results may vary depending on network difficulty and prevailing Bitcoin prices.\n\n*As used herein, \"Mining Margin\" is calculated by dividing the mining profit (revenue generated from mining activities minus power costs related to those activities) by the total revenue generated from mining activities and expressed as a percentage. In mining, the most significant expense is power cost; in this estimate we are assuming an average of USD 5 cents per kilowatt hour for indicative purposes. \"ARR\", as a metric, represents revenue only, and does not represent profitability. ARR is presented here as a measure of growth. These non-GAAP measures should be read in conjunction with and should not be viewed as alternatives to or replacements for measures of operating results and liquidity presented in accordance with GAAP in HIVE's quarterly and annual financial statements. All financial projections reflect current market sentiment and public disclosures as of September 2025; actual outcomes may vary. Investors should conduct their own due diligence.\n\nAbout Hive Digital Technologies Ltd.\n\nFounded in 2017, Hive Digital Technologies Ltd. builds and operates sustainable blockchain and AI infrastructure data centers, powered exclusively by renewable hydroelectric energy. With a global footprint in Canada, Sweden, and Paraguay, HIVE is committed to operational excellence, green energy leadership, and scaling the future of digital finance and computing, while creating long-term value for its shareholders and host communities.\n\nNeither the TSX Venture Exchange nor its Regulation Services Provider (as that term is defined in policies of the TSX Venture Exchange) accepts responsibility for the adequacy or accuracy of this news release.\n\nForward-Looking Information\n\nExcept for the statements of historical fact, this news release contains \"forward-looking information\" within the meaning of the applicable Canadian and United States securities legislation and regulations that is based on expectations, estimates and projections as at the date of this news release. \"Forward-looking information\" in this news release includes but is not limited to: the performance of the Company's existing operations, the construction of the Company's Phase 3 facility in Valenzuela, Paraguay and its potential specifications and performance upon completion, the timing of it becoming operational; business goals and objectives of the Company; the acquisition, deployment and optimization of the mining fleet and equipment; the continued viability of its existing Bitcoin mining operations; and other forward-looking information concerning the intentions, plans and future actions of the parties to the transactions described herein and the terms thereon.\n\nFactors that could cause actual results to differ materially from those described in such forward-looking information include, but are not limited to: the inability to complete the construction of the Paraguay acquisition on an economic and timely basis and achieve the desired operational performance; the ongoing support and cooperation of local authorities and the Government of Paraguay; the volatility of the digital currency market; the Company's ability to successfully mine digital currency; the Company may not be able to profitably liquidate its current digital currency inventory as required, or at all; a material decline in digital currency prices may have a significant negative impact on the Company's operations; the regulatory environment for cryptocurrency in Canada, the United States and the countries where our mining facilities are located; economic dependence on regulated terms of service and electricity rates; the speculative and competitive nature of the technology sector; dependency on continued growth in blockchain and cryptocurrency usage; lawsuits and other legal proceedings and challenges; government regulations; the global economic climate; dilution; future capital needs and uncertainty of additional financing, including the Company's ability to utilize the Company's ATM Program and the prices at which the Company may sell Common Shares in the ATM Program, as well as capital market conditions in general; risks relating to the strategy of maintaining and increasing Bitcoin holdings and the impact of depreciating Bitcoin prices on working capital; the competitive nature of the industry; currency exchange risks; the need for the Company to manage its planned growth and expansion; the need for continued technology change; the ability to maintain reliable and economical sources of power to run its cryptocurrency mining assets; the impact of energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates; protection of proprietary rights; the effect of government regulation and compliance on the Company and the industry; network security risks; the ability of the Company to maintain properly working systems; reliance on key personnel; global economic and financial market deterioration impeding access to capital or increasing the cost of capital; share dilution resulting from the ATM Program and from other equity issuances; the construction and operation of facilities may not occur as currently planned, or at all; expansion may not materialize as currently anticipated, or at all; the digital currency market; the ability to successfully mine digital currency; revenue may not increase as currently anticipated, or at all; it may not be possible to profitably liquidate the current digital currency inventory, or at all; a decline in digital currency prices may have a significant negative impact on operations; an increase in network difficulty may have a significant negative impact on operations; the volatility of digital currency prices; the anticipated growth and sustainability of electricity for the purposes of cryptocurrency mining in the applicable jurisdictions; the inability to maintain reliable and economical sources of power for the Company to operate cryptocurrency mining assets; the risks of an increase in the Company's electricity costs, cost of natural gas, changes in currency exchange rates, energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates and the adverse impact on the Company's profitability; the ability to complete current and future financings, any regulations or laws that will prevent the Company from operating its business; historical prices of digital currencies and the ability to mine digital currencies that will be consistent with historical prices; an inability to predict and counteract the effects of pandemics on the business of the Company, including but not limited to the effects of pandemics on the price of digital currencies, capital market conditions, restriction on labour and international travel and supply chains; and, the adoption or expansion of any regulation or law that will prevent the Company from operating its business, or make it more costly to do so; and other related risks as more fully set out in the Company's disclosure documents under the Company's filings at www.sec.gov/EDGAR and www.sedarplus.ca.\n\nThe forward-looking information in this news release reflects the Company's current expectations, assumptions, and/or beliefs based on information currently available to the Company. In connection with the forward-looking information contained in this news release, the Company has made assumptions about the Company's objectives, goals or future plans, the timing thereof and related matters. The Company has also assumed that no significant events will occur outside of the Company's normal course of business. Although the Company believes that the assumptions inherent in the forward-looking information are reasonable, forward-looking information is not a guarantee of future performance, and accordingly, undue reliance should not be put on such information due to its inherent uncertainty. The Company disclaims any intention or obligation to update or revise any forward-looking information, whether because of new information, future events or otherwise, other than as required by law.\n\nTo view the source version of this press release, please visit https://www.newsfilecorp.com/release/267709",
+      "source": {
+        "uri": "investingnews.com",
+        "dataType": "news",
+        "title": "Investing News Network"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Frank_Holmes_(geologist)",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Frank Holmes (geologist)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valenzuela,_Metro_Manila",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Valenzuela, Metro Manila"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Valenzuela, Metro Manila"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Philippines"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Primary_school",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Primary school"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Prospectus_(finance)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Prospectus (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thailand",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Thailand"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Thailand"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paraguay",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Paraguay"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Paraguay"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thanksgiving_(United_States)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Thanksgiving (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/TSX_Venture_Exchange",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "TSX Venture Exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Air_conditioning",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Air conditioning"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitmain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitmain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Itaipu_Dam",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Itaipu Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joule",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Joule"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social_responsibility",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Social responsibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intermodal_container",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Intermodal container"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Navy_SEALs",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "United States Navy SEALs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Multinational_corporation",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Multinational corporation"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canada",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Canada"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Canada"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valenzuela,_Paraguay",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Valenzuela, Paraguay"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sweden",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Sweden"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Sweden"
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business",
+          "label": "dmoz/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 91
+        }
+      ],
+      "image": "https://investingnews.com/media-library/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8yNTg1ODg1NS9vcmlnaW4ucG5nIiwiZXhwaXJlc19hdCI6MTc3MTc1MzIxOX0.OrRi7LOAQb7fieZlD4lub7fRHcpee00n1e1sjz74igw/image.png?width=210",
+      "eventUri": null,
+      "sentiment": 0.1764705882352942,
+      "wgt": 496407840,
+      "relevance": 109
+    },
+    {
+      "uri": "2025-09-842535107",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "10:18:14",
+      "dateTime": "2025-09-24T10:18:14Z",
+      "dateTimePub": "2025-09-24T10:18:02Z",
+      "dataType": "news",
+      "sim": 0.9764705896377563,
+      "url": "https://www.streetinsider.com/Newsfile/RETRANSMISSION:+HIVE+Digital+Technologies+Reaches+2%25+of+Global+Bitcoin+Network,+Mining+9+BTC+Daily+and+Surpassing+20+EHs/25368190.html",
+      "title": "RETRANSMISSION: HIVE Digital Technologies Reaches 2% of Global Bitcoin Network, Mining 9 BTC Daily and Surpassing 20 EH/s",
+      "body": "This news release constitutes a \"designated news release\" for the purposes of the Company's amended and restated prospectus supplement dated May 14, 2025, to its short form base shelf prospectus dated September 11, 2024.\n\nSan Antonio, Texas--(Newsfile Corp. - September 24, 2025) - HIVE Digital Technologies Ltd. (TSXV: HIVE) (NASDAQ: HIVE) (FSE: YO0) (the \"Company\" or \"HIVE\"), a diversified multinational digital infrastructure company, today announced it has exceeded 20 Exahash per second (\"EH/s\") of global Bitcoin mining capacity following the continued successful deployment of ASICs at its Phase 3 Valenzuela facility in Paraguay.\n\nPhase 3 represents HIVE's third 100 megawatt (\"MW\") development of green energy infrastructure in Paraguay, powered by hydroelectric energy from the Itaipu Dam, reinforcing the Company's commitment to sustainable Bitcoin mining. With a year-to-date hashrate increase of approximately 233%, HIVE is now mining 9 Bitcoin per day at a global fleet efficiency of 18 Joules per Terahash (\"J/TH\"), achieving a mining margin* of 55% after electricity costs. This represents approximately 2% of the Bitcoin network, based on the current difficulty of 142 trillion, with all figures publicly verifiable through Bitcoin block explorers.\n\nWith Phase 3 construction now substantially complete, and installations progressing ahead of schedule, HIVE achieved the 19 EH/s target, with the latest additions bringing HIVE's global fleet to 20 EH/s, marking a key milestone in the Company's roadmap toward its target of 25 EH/s by U.S. Thanksgiving.\n\nUpon completion of Phase 3, HIVE anticipates reaching daily Bitcoin production of approximately 12 BTC, based on current network difficulty. At that scale, HIVE expects to be operating at an efficiency of approximately 17.5 J/TH.\n\nFigure 1: Interior of a newly energized Bitmain S21+ Hydro container, adding high-efficiency hashrate to HIVE's Phase 3 expansion.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_001full.jpg\n\nManagement Commentary\n\nFrank Holmes, Co-Founder and Executive Chairman, commented: \"I am deeply proud of the drive and resilience our team has shown as we scale HIVE's global green energy operations ahead of schedule. We are gaining strong momentum across our dual engines of Bitcoin mining and AI cloud computing, two transformative forces that complement and strengthen each other. With a Navy SEAL mindset, our teams are moving forward with focus and determination across nine time zones and three continents. Also, we have hired 40 young engineers to help manage our facilities.\"\n\nCommitment to Impact Investing in Community Education\n\nHIVE is dedicated to making a positive impact in the communities where it operates, with a particular focus on supporting educational initiatives. As part of its mission to combine technological innovation with social responsibility, HIVE has prioritized impact investing in children's education, in Paraguay, where its Phase 3 Valenzuela facility is located.\n\nFrank Holmes continued: \"Earlier this month, we were honored to celebrate the ribbon cutting of our completed Yguaz\u00fa facility, the culmination of a year of vision, strategy, and relentless execution. Just as meaningful, members of our team visited a grade school in the city of Valenzuela where we were honored by seeing the joy on students who are now learning in classrooms with air conditioning, and improvements like new chalkboards made possible through our local goal to upgrade grade school facilities and provide another level of faith and hope in young minds who are the future of Paraguay. These moments remind us that our mission goes beyond technology: it's also about creating a positive impact in the communities where we work. We are dedicated to making a difference by investing in kids' education as a key part of HIVE's mission, ensuring that our growth benefits future generations in a lasting way.\"\n\nFigure 2: Grade school students in Paraguay learning in greater comfort with new air conditioning made possible through HIVE's support.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_002full.jpg\n\nAydin Kilic, President and CEO, stated: \"We are currently 2% of the global Bitcoin mining infrastructure, which is a significant milestone considering Bitcoin's market exceeds $2 trillion capitalization. With ongoing policy discussions around digital asset adoption in the United States, HIVE is positioned as a globally distributed data center company with a focus on green energy. Reaching 20 EH/s is a major validation of our disciplined growth strategy and the hard work of our global team. We are delivering on our commitments: funding is secured, infrastructure is online, and every additional exahash is compounding value for our shareholders. We strive to lead the industry in Return on Invested Capital, thereby maximizing value for our shareholders. Additionally, we believe it is essential to maintain low-cost operations at the corporate level, as reflected in the % of general and administrative costs relative to revenue.\"\n\nKilic added: \"During my recent visit to Paraguay, I was deeply impressed by the incredible execution of our teams on the ground. Their technical skill and organization have delivered 99% uptime and strong performance. This milestone solidifies our position in the Bitcoin network and reinforces our commitment to geographic diversification, operational excellence, and long-term shareholder value. As we push toward 25 EH/s by U.S. Thanksgiving, our momentum has never been stronger.\"\n\nFigure 3: Paraguay Country President Gabriel Lamas, President & CEO Aydin Kilic, Operations Manager Carlos Torres, and Executive Chairman Frank Holmes in Valenzuela, Paraguay, home to the Company's Phase 3 expansion powered by 100 MW of green energy infrastructure.\n\nTo view an enhanced version of this graphic, please visit:\n\nhttps://images.newsfilecorp.com/files/5335/267709_33a2ff5b2425c95d_003full.jpg\n\nOperational Outlook\n\nAll ASIC purchases for Phase 3 are funded, and all ASICs have been shipped. Over 40% of the Phase 3 ASICs are on-site and being installed, with the rest scheduled for delivery this month. HIVE expects growth to remain aligned with the economics of its Paraguay operations. Each additional exahash contributes directly to daily Bitcoin production and revenue potential, while operating costs remain stable under fixed-rate hydroelectric power and minimal incremental labor. Power expenses scale proportionally with machine usage and remain consistent with current cost structures. Actual results may vary depending on network difficulty and prevailing Bitcoin prices.\n\n*As used herein, \"Mining Margin\" is calculated by dividing the mining profit (revenue generated from mining activities minus power costs related to those activities) by the total revenue generated from mining activities and expressed as a percentage. In mining, the most significant expense is power cost; in this estimate we are assuming an average of USD 5 cents per kilowatt hour for indicative purposes. \"ARR\", as a metric, represents revenue only, and does not represent profitability. ARR is presented here as a measure of growth. These non-GAAP measures should be read in conjunction with and should not be viewed as alternatives to or replacements for measures of operating results and liquidity presented in accordance with GAAP in HIVE's quarterly and annual financial statements. All financial projections reflect current market sentiment and public disclosures as of September 2025; actual outcomes may vary. Investors should conduct their own due diligence.\n\nAbout HIVE Digital Technologies Ltd.\n\nFounded in 2017, HIVE Digital Technologies Ltd. builds and operates sustainable blockchain and AI infrastructure data centers, powered exclusively by renewable hydroelectric energy. With a global footprint in Canada, Sweden, and Paraguay, HIVE is committed to operational excellence, green energy leadership, and scaling the future of digital finance and computing, while creating long-term value for its shareholders and host communities.\n\nFor more information, visit hivedigitaltech.com, or connect with us on:\n\nX: https://x.com/HIVEDigitalTech\n\nYouTube: https://www.youtube.com/@HIVEDigitalTech\n\nInstagram: https://www.instagram.com/hivedigitaltechnologies/\n\nLinkedIn: https://linkedin.com/company/hiveblockchain\n\nOn Behalf of HIVE Digital Technologies Ltd.,\n\n\"Frank Holmes\"\n\nExecutive Chairman\n\nNeither the TSX Venture Exchange nor its Regulation Services Provider (as that term is defined in policies of the TSX Venture Exchange) accepts responsibility for the adequacy or accuracy of this news release.\n\nForward-Looking Information\n\nExcept for the statements of historical fact, this news release contains \"forward-looking information\" within the meaning of the applicable Canadian and United States securities legislation and regulations that is based on expectations, estimates and projections as at the date of this news release. \"Forward-looking information\" in this news release includes but is not limited to: the performance of the Company's existing operations, the construction of the Company's Phase 3 facility in Valenzuela, Paraguay and its potential specifications and performance upon completion, the timing of it becoming operational; business goals and objectives of the Company; the acquisition, deployment and optimization of the mining fleet and equipment; the continued viability of its existing Bitcoin mining operations; and other forward-looking information concerning the intentions, plans and future actions of the parties to the transactions described herein and the terms thereon.\n\nFactors that could cause actual results to differ materially from those described in such forward-looking information include, but are not limited to: the inability to complete the construction of the Paraguay acquisition on an economic and timely basis and achieve the desired operational performance; the ongoing support and cooperation of local authorities and the Government of Paraguay; the volatility of the digital currency market; the Company's ability to successfully mine digital currency; the Company may not be able to profitably liquidate its current digital currency inventory as required, or at all; a material decline in digital currency prices may have a significant negative impact on the Company's operations; the regulatory environment for cryptocurrency in Canada, the United States and the countries where our mining facilities are located; economic dependence on regulated terms of service and electricity rates; the speculative and competitive nature of the technology sector; dependency on continued growth in blockchain and cryptocurrency usage; lawsuits and other legal proceedings and challenges; government regulations; the global economic climate; dilution; future capital needs and uncertainty of additional financing, including the Company's ability to utilize the Company's ATM Program and the prices at which the Company may sell Common Shares in the ATM Program, as well as capital market conditions in general; risks relating to the strategy of maintaining and increasing Bitcoin holdings and the impact of depreciating Bitcoin prices on working capital; the competitive nature of the industry; currency exchange risks; the need for the Company to manage its planned growth and expansion; the need for continued technology change; the ability to maintain reliable and economical sources of power to run its cryptocurrency mining assets; the impact of energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates; protection of proprietary rights; the effect of government regulation and compliance on the Company and the industry; network security risks; the ability of the Company to maintain properly working systems; reliance on key personnel; global economic and financial market deterioration impeding access to capital or increasing the cost of capital; share dilution resulting from the ATM Program and from other equity issuances; the construction and operation of facilities may not occur as currently planned, or at all; expansion may not materialize as currently anticipated, or at all; the digital currency market; the ability to successfully mine digital currency; revenue may not increase as currently anticipated, or at all; it may not be possible to profitably liquidate the current digital currency inventory, or at all; a decline in digital currency prices may have a significant negative impact on operations; an increase in network difficulty may have a significant negative impact on operations; the volatility of digital currency prices; the anticipated growth and sustainability of electricity for the purposes of cryptocurrency mining in the applicable jurisdictions; the inability to maintain reliable and economical sources of power for the Company to operate cryptocurrency mining assets; the risks of an increase in the Company's electricity costs, cost of natural gas, changes in currency exchange rates, energy curtailment or regulatory changes in the energy regimes in the jurisdictions in which the Company operates and the adverse impact on the Company's profitability; the ability to complete current and future financings, any regulations or laws that will prevent the Company from operating its business; historical prices of digital currencies and the ability to mine digital currencies that will be consistent with historical prices; an inability to predict and counteract the effects of pandemics on the business of the Company, including but not limited to the effects of pandemics on the price of digital currencies, capital market conditions, restriction on labour and international travel and supply chains; and, the adoption or expansion of any regulation or law that will prevent the Company from operating its business, or make it more costly to do so; and other related risks as more fully set out in the Company's disclosure documents under the Company's filings at www.sec.gov/EDGAR and www.sedarplus.ca.\n\nThe forward-looking information in this news release reflects the Company's current expectations, assumptions, and/or beliefs based on information currently available to the Company. In connection with the forward-looking information contained in this news release, the Company has made assumptions about the Company's objectives, goals or future plans, the timing thereof and related matters. The Company has also assumed that no significant events will occur outside of the Company's normal course of business. Although the Company believes that the assumptions inherent in the forward-looking information are reasonable, forward-looking information is not a guarantee of future performance, and accordingly, undue reliance should not be put on such information due to its inherent uncertainty. The Company disclaims any intention or obligation to update or revise any forward-looking information, whether because of new information, future events or otherwise, other than as required by law.\n\nTo view the source version of this press release, please visit https://www.newsfilecorp.com/release/267709",
+      "source": {
+        "uri": "streetinsider.com",
+        "dataType": "news",
+        "title": "StreetInsider.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Frank_Holmes_(geologist)",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Frank Holmes (geologist)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Primary_school",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Primary school"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainable_energy",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Sustainable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Prospectus_(finance)",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Prospectus (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thailand",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Thailand"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Thailand"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Paraguay",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Paraguay"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Paraguay"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chairperson",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Chairperson"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Thanksgiving_(United_States)",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Thanksgiving (United States)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/TSX_Venture_Exchange",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "TSX Venture Exchange"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Air_conditioning",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Air conditioning"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitmain",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitmain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Itaipu_Dam",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Itaipu Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Joule",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Joule"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Social_responsibility",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Social responsibility"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Intermodal_container",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Intermodal container"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_Navy_SEALs",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "United States Navy SEALs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Multinational_corporation",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Multinational corporation"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/San_Antonio",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "San Antonio"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "San Antonio"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canada",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Canada"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Canada"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valenzuela,_Paraguay",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Valenzuela, Paraguay"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sweden",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Sweden"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Sweden"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Instagram",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "Instagram"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/LinkedIn",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "LinkedIn"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 25
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 24
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 23
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 23
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 96
+        }
+      ],
+      "image": "http://www.streetinsider.com/images/silogo-new.png",
+      "eventUri": "eng-10991966",
+      "sentiment": 0.388235294117647,
+      "wgt": 496405094,
+      "relevance": 109
     }
   ],
-  "last_run_time": "2025-09-24T09:17:15.312615"
+  "last_run_time": "2025-09-24T12:32:52.948311"
 }
