@@ -46,7 +46,8 @@
     "8877402148",
     "test2",
     "8877400545",
-    "8877789332"
+    "8877789332",
+    "8877944972"
   ],
   "queued_articles": [
     {
@@ -2029,7 +2030,706 @@
       "sentiment": 0.3176470588235294,
       "wgt": 496386398,
       "relevance": 81
+    },
+    {
+      "uri": "8877912618",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "08:32:52",
+      "dateTime": "2025-09-24T08:32:52Z",
+      "dateTimePub": "2025-09-24T08:06:31Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finance.yahoo.com/news/wall-street-bullish-cleanspark-inc-080631302.html",
+      "title": "Wall Street Bullish on CleanSpark, Inc (CLSK)",
+      "body": "CleanSpark, Inc. (NASDAQ:CLSK) is one of the Best Performing Long Term Stocks According to Analysts. Wall Street is bullish on CleanSpark, Inc. (NASDAQ:CLSK) since the company released its fiscal third quarter results for 2025. The stock has gained more than 27% since the announcement on August 7, 2025.\n\nCleanSpark, Inc. (NASDAQ:CLSK) delivered $198.64 million in revenue, up 90.81% year-over-year but fell short of the consensus by $1.7 million. However, the EPS of $0.78 exceeded the consensus by $0.28. Management noted achieving an operational hashrate milestone of 50 exaha shes per second (EH/s) in June 2025, making it the first public Bitcoin miner to reach this scale using exclusively American infrastructure.\n\nMoreover, the company holds 12,703 bitcoins in its treasury, valued at over $1 billion, and has contracted more than 1 gigawatt of power capacity to sustain mining operations efficiently.\n\nFollowing the update several analysts have expressed bullish sentiment on the stock. Earlier on August 8, John Todaro from Needham reiterated a Buy rating on CleanSpark, Inc. (NASDAQ:CLSK) with a price target of $21. More recently, James Mcllree from Chardan Capital also reiterated a Buy rating on the stock with a price target of $20.\n\nCleanSpark, Inc. (NASDAQ:CLSK) is a vertically integrated Bitcoin mining company that owns and operates data centers across multiple US states, including Georgia, Mississippi, Tennessee, and Wyoming.\n\nWhile we acknowledge the potential of CLSK as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock.\n\nREAD NEXT: 30 Stocks That Should Double in 3 Years and 11 Hidden AI Stocks to Buy Right Now.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wall_Street",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Wall Street"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Earnings_per_share",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Earnings per share"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tariff",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Tariff"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._state",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "U.S. state"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vertical_integration",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Vertical integration"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wyoming",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Wyoming"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Wyoming"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Tennessee",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Tennessee"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Tennessee"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mississippi",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Mississippi"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Mississippi"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Georgia_(U.S._state)",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Georgia (U.S. state)"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Georgia (U.S. state)"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 88
+        }
+      ],
+      "image": "https://s.yimg.com/ny/api/res/1.2/nywEahwhMAVEl5LrT2Otnw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzM7Y2Y9d2VicA--/https://media.zenfs.com/en/insidermonkey.com/9bfd8e5b87f3288f79c34764f395e16d",
+      "eventUri": null,
+      "sentiment": 0.1764705882352942,
+      "wgt": 496398772,
+      "relevance": 54
+    },
+    {
+      "uri": "8877937245",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "08:32:52",
+      "dateTime": "2025-09-24T08:32:52Z",
+      "dateTimePub": "2025-09-24T08:23:28Z",
+      "dataType": "news",
+      "sim": 0.772549033164978,
+      "url": "https://crypto.news/siton-mining-platform-launches-mobile-app-for-cloud-mining/",
+      "title": "Siton Mining platform launches mobile app for cloud mining",
+      "body": "Disclosure: This article does not represent investment advice. The content and materials featured on this page are for educational purposes only.\n\nSiton Mining has introduced a BTC cloud mining app that makes Bitcoin mining accessible, affordable, and easy to manage directly from a smartphone.\n\nAmid volatile cryptocurrency prices, investors are seeking more convenient and secure ways to maximize their assets. Siton Mining has launched a new BTC cloud mining app, allowing users to participate in Bitcoin mining anytime, anywhere with a single tap on their phone, without having to purchase mining machines or incur high electricity costs, and easily earn daily passive income.\n\nTraditional Bitcoin mining often requires expensive mining machines and complex operations and maintenance. The Siton Mining cloud mining app revolutionizes this:\n\nThe new app simplifies the complex mining process into a few easy steps, bringing mining into the hands of everyone.\n\nThe Siton Mining app offers the following core benefits:\n\nFor ordinary investors, this means a low barrier to entry into the BTC ecosystem, allowing them to enjoy true \"passive income in the palm of their hands.\"\n\nUse the Siton Mining app to get started in just three steps:\n\n1. Register: Investors can visit the Siton Mining website and register using an email address. New users receive a bonus of $10-100 USD.\n\n2. Select a plan: Users can then select the appropriate mining plan within the app and activate with one click.\n\n3. Enjoy the benefits: The system operates automatically, with daily real-time deposits and withdrawals available.\n\nThe cryptocurrency market is volatile, often impacting returns. Siton Mining uses a USD settlement mechanism to convert invested assets into USD. Upon withdrawal, the amount is converted to the target currency based on the exchange rate. This effectively mitigates market fluctuations, ensures more regular returns, and enhances the security and sustainability of mining.\n\nThe Siton Mining BTC cloud mining app is more than just a tool; it represents an innovative starting point for the democratization of cryptocurrency mining. As more users participate in Bitcoin mining through the app, it will become even more widespread, propelling the blockchain ecosystem into a new phase.\n\nTo learn more about Siton Mining, visit the official website. Email: [email protected]",
+      "source": {
+        "uri": "crypto.news",
+        "dataType": "news",
+        "title": "crypto.news"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mobile_app",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mobile app"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Smartphone",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Smartphone"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Barriers_to_entry",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Barriers to entry"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ecosystem",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Ecosystem"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Real-time_computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Real-time computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sustainability",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Sustainability"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exchange_rate",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Exchange rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Currency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Email",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Email"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 65
+        }
+      ],
+      "image": "https://crypto.news/app/uploads/2025/07/crypto-news-cloud-mining-option09.webp",
+      "eventUri": "eng-10989742",
+      "sentiment": 0.2784313725490195,
+      "wgt": 496398772,
+      "relevance": 107
+    },
+    {
+      "uri": "8877818798",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-24",
+      "time": "07:10:27",
+      "dateTime": "2025-09-24T07:10:27Z",
+      "dateTimePub": "2025-09-24T07:00:00Z",
+      "dataType": "news",
+      "sim": 0.5490196347236633,
+      "url": "https://coingeek.com/american-bitcoin-gryphon-digital-mining-shaping-us-btc-mining/",
+      "title": "American Bitcoin, Gryphon Digital Mining: Shaping US BTC mining",
+      "body": "In a game-changing move for the digital currency world, American Bitcoin, a BTC mining company backed by Eric Trump, said in mid-August 2025 that it plans to join forces with Gryphon Digital Mining (NASDAQ: GRYP) and go public through a stock deal. With hopes of listing on Nasdaq by the third quarter of 2025, the merger fits with former President Donald Trump's big idea to make the U.S. a major player in BTC mining.\n\nEric Trump has laid out a bold plan: mine BTC at a price lower than the market price while building up a sizable store. Sounds dreamy, right? This project, using Gryphon's know-how in green mining, puts American Bitcoin in a position to handle the tough parts of BTC mining and gain from the growing interest in digital assets from big investors. As the U.S. tries to take the lead in the digital currency space, this merger could change how BTC mining works in the USA.\n\nEarning profits in mining is always a challenge. Miners encounter rising energy costs, ensure their equipment is up-to-date, and keep up with the network's increasing difficulty. The BTC network changes its difficulty approximately every two weeks, ensuring it stays competitive as additional miners participate. If we've learned anything over the past two halving events, mining profits are consistently thin. American Bitcoin will not be insulated from this fact. Teaming up with Gryphon Digital Mining, a company known for using renewable energy, could lead to higher profits. Gryphon's use of solar, wind, and hydroelectric power could cut costs by a factor, solving one of the biggest challenges in BTC profitability: energy costs.\n\nBTC mining economics are tricky and unforgiving. Electricity typically accounts for 70-80% of running costs, so securing economic power is essential. In the U.S., states like Texas have become mining hotspots due to abundant, cheap energy and a business-friendly environment. Locations such as Kazakhstan offer similar advantages, ensuring tough global competition for U.S. based businesses in the sector. American Bitcoin's plan depends on acquiring cost savings via Gryphon's green methods, which could mean using less expensive fossil fuels. Additionally, the company aims to establish a BTC reserve, holding it for a long-term time horizon instead of turning a quick buck. Eric Trump, in comments shared across X, called American Bitcoin a good investment, appealing to investors who want to get in on BTC's growth without the volatility of trading it directly. With BTC prices going north in August 2025, driven by big investors and concerns about rising U.S. debt, this strategy capitalizes on a growing trend of companies utilizing BTC as a treasury asset.\n\nEven with its potential, American Bitcoin has some significant challenges. The BTC network's rising difficulty means regular hardware upgrades, which require large capital investment. Competition for cheap energy is getting more challenging, with AI data centers also seeking the same electricity supply. Regulatory issues are also a concern. Though the U.S. Securities and Exchange Commission (SEC) recently made clear that proof-of-work mining doesn't break securities laws, local rules vary a lot. Some areas, worried about the environmental effects, have established rules that could limit growth. American Bitcoin has to deal with this mix of rules while keeping its operations running well.\n\nThe merger will work out if it's done right. Gryphon's green methods offer a base for low-cost mining, but growing operations without hurting profits takes skill. The company has to get reliable, cheap energy and keep its hardware up to date to stay competitive. Also, building a BTC reserve in a changing market requires smart planning, as price changes could affect the company's financial health.\n\nAs the Q3 2025 closing date comes closer, American Bitcoin is at a crossroads. The company could change U.S. BTC mining by combining Gryphon's operational skills with a well-known vision. Its focus on low-cost mining and BTC accumulation could draw in new big investors, supporting the industry's move toward broader acceptance. If American Bitcoin lives up to its promises, it could not only change the mining in the U.S. but also make the country a leader in the global crypto world.\n\nWatch: Untangling Bitcoin mining at the CoinGeek Weekly Livestream",
+      "source": {
+        "uri": "coingeek.com",
+        "dataType": "news",
+        "title": "CoinGeek"
+      },
+      "authors": [
+        {
+          "uri": "jacob_rozen@coingeek.com",
+          "name": "Jacob Rozen",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Eric_Trump",
+          "type": "person",
+          "score": 5,
+          "label": {
+            "eng": "Eric Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 3,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fossil_fuel",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fossil fuel"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Economics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Economics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Kazakhstan",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Kazakhstan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Kazakhstan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/National_debt_of_the_United_States",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "National debt of the United States"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_regulation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial regulation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Investment",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Investment"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Tools_and_Equipment",
+          "label": "dmoz/Business/Mining and Drilling/Tools and Equipment",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 70
+        }
+      ],
+      "image": "https://coingeek.com/wp-content/uploads/2025/09/btc-logo-network-concept.webp",
+      "eventUri": "eng-10988185",
+      "sentiment": 0.3019607843137255,
+      "wgt": 496393827,
+      "relevance": 113
     }
   ],
-  "last_run_time": "2025-09-24T06:50:52.538476"
+  "last_run_time": "2025-09-24T09:17:15.312615"
 }
