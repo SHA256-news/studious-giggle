@@ -61,7 +61,8 @@
     "2025-09-843668995",
     "8880201462",
     "8880266675",
-    "8880463616"
+    "8880463616",
+    "8880650535"
   ],
   "queued_articles": [
     {
@@ -2834,7 +2835,242 @@
       "sentiment": 0.02745098039215677,
       "wgt": 496515414,
       "relevance": 27
+    },
+    {
+      "uri": "8880481006",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "18:34:56",
+      "dateTime": "2025-09-25T18:34:56Z",
+      "dateTimePub": "2025-09-25T18:07:01Z",
+      "dataType": "news",
+      "sim": 0.6509804129600525,
+      "url": "https://crypto.news/red-alert-3-reasons-the-iren-stock-price-may-crash-soon/",
+      "title": "Red alert: 3 reasons the IREN stock price may crash soon",
+      "body": "IREN stock price is in a strong bull run this year as investors cheer its strong earnings and the ongoing diversification into the artificial intelligence industry.\n\nIREN has moved from the April low of $5.17 to $50, bringing its market capitalization to $13 billion.\n\nIREN, one of the top Bitcoin (BTC) mining companies, has jumped after it published strong results and shared his vision of becoming a major AI data center operator.\n\nThe results showed that its Bitcoin mining operations generated $180 million in Q4 2025, an increase from the $141 million it made in the same period last year. Its AI cloud revenue doubled to $7 million, and management expects its annualized run rate to hit $500 million in the current quarter.\n\nIn addition to this strong revenue growth, the company shared its vision of being a major AI data center provider. It recently announced that it had doubled its capacity to 23,000 GPUs.\n\nIREN stock has also jumped after some notable announcements that showed demand for AI computing power remains strong.\n\nFor example, Microsoft recently inked a $17 billion deal with Nebius, a company that provides similar services. OpenAI has a $12 billion deal with CoreWeave, and Nvidia is partnering with OpenAI to boost data center spending.\n\nAs such, investors believe that one or more Big Tech companies will also announce IREN as a partner in a multiyear deal. Also, there is hope that it could become a buyout target. CoreWeave recently announced a buyout of Core Scientific, a similar company.\n\nThe first main reason why the IREN share price may crash is that the data center industry is a capital\u2011intensive one. For example, it recently spent $676 million on buying GPUs from Nvidia and AMD.\n\nAs such, funds from its Bitcoin mining operations will not be enough to fund its growth. Therefore, there is a possibility that management will use the elevated stock price to raise capital. Such a move will be highly dilutive to existing investors.\n\nSecond, there are concerns about its valuation as it now trades at a forward P/E ratio of 50.\n\nMeanwhile, technical analysis suggests that the IREN stock price has become significantly overbought as the Relative Strength Index and the Stochastic Oscillator have moved to overbought levels. It is common for overbought assets to have a pullback.\n\nThe other reason is that the stock's standard deviation has soared in the past few months. As a result, it remains much higher than the 50\u2011, 100\u2011, and 200\u2011day exponential moving averages.\n\nTherefore, the stock will likely go through mean reversion, a situation where it falls back to its traditional averages. This mean reversion happens as investors start to book profits.",
+      "source": {
+        "uri": "crypto.news",
+        "dataType": "news",
+        "title": "crypto.news"
+      },
+      "authors": [
+        {
+          "uri": "jayson_derrick@crypto.news",
+          "name": "Jayson Derrick",
+          "type": "author",
+          "isAgency": false
+        },
+        {
+          "uri": "crispus_nyaga@crypto.news",
+          "name": "Crispus Nyaga",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/OpenAI",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "OpenAI"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Big_Tech",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Big Tech"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Microsoft",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Microsoft"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/AMD",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "AMD"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mean_reversion_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mean reversion (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Standard_deviation",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Standard deviation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Valuation_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Valuation (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Share_price",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Share price"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Exponential_growth",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Exponential growth"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Technical_analysis",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Technical analysis"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Moving_average",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Moving average"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Guides",
+          "label": "dmoz/Business/Investing/Guides",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 78
+        }
+      ],
+      "image": "https://crypto.news/app/uploads/2025/07/crypto-news-mining-option20.webp",
+      "eventUri": "eng-10985453",
+      "sentiment": 0.3490196078431373,
+      "wgt": 496521296,
+      "relevance": 81
     }
   ],
-  "last_run_time": "2025-09-25T18:23:27.075162"
+  "last_run_time": "2025-09-25T21:14:30.700758"
 }
