@@ -59,7 +59,8 @@
     "8877696613",
     "8877693147",
     "2025-09-843668995",
-    "8880201462"
+    "8880201462",
+    "8880266675"
   ],
   "queued_articles": [
     {
@@ -1969,7 +1970,765 @@
       "sentiment": 0.2862745098039217,
       "wgt": 496507255,
       "relevance": 31
+    },
+    {
+      "uri": "8880278155",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-25",
+      "time": "15:55:09",
+      "dateTime": "2025-09-25T15:55:09Z",
+      "dateTimePub": "2025-09-25T15:11:49Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://decrypt.co/341339/google-dives-deeper-bitcoin-mining-backstopping-ai-hosting?.tsrc=rss",
+      "title": "Google Dives Deeper Into Bitcoin Mining by Backstopping AI Hosting Deal - Decrypt",
+      "body": "This isn't the first time Google has invested in the Bitcoin mining space.\n\nGoogle is diving deeper into the Bitcoin mining world after backing a deal that gives the tech giant a more than 5% stake in Nasdaq-listed miner Cipher.\n\nCipher announced Thursday that it signed a 10-year high-performance computing colocation agreement with AI cloud platform Fluidstack, a premier AI cloud platform. The deal will see Cipher deliver 168 MW of critical IT load, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas.\n\nGoogle said it will backstop $1.4 billion of Fluidstack's lease obligations to support project-related debt financing and will receive warrants to acquire approximately 24 million shares of Cipher common stock -- or 5.4% pro forma equity ownership stake.\n\n\"We are thrilled to be working with Fluidstack to develop HPC data centers, and we look forward to welcoming Google as an investor in Cipher,\" Tyler Page, the Bitcoin miner's CEO, said.\n\n\"This transformative transaction reinforces our HPC momentum as we continue to attract attention for our large and growing pipeline of sites. We believe this transaction represents the first of several in the HPC space as we continue to scale our capabilities and strengthen our position in this rapidly growing sector.\"\n\nThe Bitcoin mining space, which uses huge amounts of energy, is increasingly intertwined with HPC data centers.\n\nBoth crypto mining and the AI industry use huge amounts of energy, and when Bitcoin's price falls and minting new digital coins isn't generating enough revenue, some miners have pivoted their infrastructure to address AI demand.\n\nLast month, the tech giant Bitcoin miner TeraWulf announced that Google was providing an incremental $1.4 billion backstop to support project-related debt financing, upping its total stake to $3.2 billion.\n\nIn exchange, Google would receive warrants to buy 32.5 million shares of the sustainable Bitcoin miner, the announcement said at the time.",
+      "source": {
+        "uri": "decrypt.co",
+        "dataType": "news",
+        "title": "Decrypt"
+      },
+      "authors": [
+        {
+          "uri": "mat_di_salvo@decrypt.co",
+          "name": "Mat Di Salvo",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Debt",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Debt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 46
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 53
+        }
+      ],
+      "image": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/07/bitcoin-mining-decrypt-style-03-gID_7.png",
+      "eventUri": null,
+      "sentiment": 0.3176470588235294,
+      "wgt": 496511709,
+      "relevance": 50
+    },
+    {
+      "uri": "8880253247",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "15:38:53",
+      "dateTime": "2025-09-25T15:38:53Z",
+      "dateTimePub": "2025-09-25T15:17:08Z",
+      "dataType": "news",
+      "sim": 0.6745098233222961,
+      "url": "https://coindoo.com/bitcoin-miner-strikes-3-billion-ai-data-center-deal-with-company-backed-by-google/",
+      "title": "Bitcoin Miner Strikes $3 Billion AI Data Center Deal With Company, Backed by Google",
+      "body": "Cipher Mining has secured one of its largest agreements to date, signing a decade-long partnership with Fluidstack to power next-generation high-performance computing (HPC) infrastructure.\n\nThe deal, valued at roughly $3 billion, will see Cipher deliver 168 megawatts (MW) of IT capacity at its Barber Lake site in Texas by September 2026.\n\nThe site, which sits on 587 acres and has the potential to scale up to 500 MW, will be dedicated to serving AI workloads and enterprise compute needs. If both five-year extension options are exercised, the agreement could ultimately generate as much as $7 billion in revenue for Cipher.\n\nAdding to the momentum, Google has committed to backstop $1.4 billion of Fluidstack's lease obligations, a move designed to support financing for the massive build-out. In return, Google will gain warrants representing around a 5.4% equity stake in Cipher. Despite the arrangement, Cipher will keep full ownership of the project and pursue capital markets for additional funding as needed.\n\nCipher's CEO Tyler Page described the deal as a \"transformative step\" that positions the company as a major player in the AI data center industry. He added that the agreement is expected to be the first of many as demand for HPC infrastructure continues to climb.\n\nFor Fluidstack, the partnership reflects its push to deliver computing capacity at scale for leading technology companies. Co-founder C\u00e9sar Maklary said the collaboration ensures critical infrastructure for AI firms that depend on ever-expanding computing power.\n\nCipher is currently advancing a 2.4-gigawatt pipeline of data center projects, prioritizing sites for HPC deployments alongside its existing bitcoin mining operations. With Google's support and Fluidstack's commitments, the company has signaled its intent to become a central force in the AI data center race.\n\nSource",
+      "source": {
+        "uri": "coindoo.com",
+        "dataType": "news",
+        "title": "Coindoo"
+      },
+      "authors": [
+        {
+          "uri": "alexander_zdravkov@coindoo.com",
+          "name": "Alexander Zdravkov",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Capital_market",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Capital market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business",
+          "label": "dmoz/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Opportunities",
+          "label": "dmoz/Business/Opportunities",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Information_Technology",
+          "label": "dmoz/Business/Information Technology",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Publicly_Traded",
+          "label": "dmoz/Business/Major Companies/Publicly Traded",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 54
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 45
+        }
+      ],
+      "image": "https://coindoo.com/wp-content/uploads/2025/06/bitcoin-miner-mining-rigs-operation.jpg",
+      "eventUri": "eng-10992092",
+      "sentiment": 0.3490196078431373,
+      "wgt": 496510733,
+      "relevance": 2
+    },
+    {
+      "uri": "8880251792",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "15:36:02",
+      "dateTime": "2025-09-25T15:36:02Z",
+      "dateTimePub": "2025-09-25T15:11:49Z",
+      "dataType": "news",
+      "sim": 0.5411764979362488,
+      "url": "https://decrypt.co/341339/google-dives-deeper-bitcoin-mining-backstopping-ai-hosting",
+      "title": "Google Dives Deeper Into Bitcoin Mining by Backstopping AI Hosting Deal - Decrypt",
+      "body": "This isn't the first time Google has invested in the Bitcoin mining space.\n\nGoogle is diving deeper into the Bitcoin mining world after backing a deal that gives the tech giant a more than 5% stake in Nasdaq-listed miner Cipher.\n\nCipher announced Thursday that it signed a 10-year high-performance computing colocation agreement with AI cloud platform Fluidstack, a premier AI cloud platform. The deal will see Cipher deliver 168 MW of critical IT load, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas.\n\nGoogle said it will backstop $1.4 billion of Fluidstack's lease obligations to support project-related debt financing and will receive warrants to acquire approximately 24 million shares of Cipher common stock -- or 5.4% pro forma equity ownership stake.\n\n\"We are thrilled to be working with Fluidstack to develop HPC data centers, and we look forward to welcoming Google as an investor in Cipher,\" Tyler Page, the Bitcoin miner's CEO, said.\n\n\"This transformative transaction reinforces our HPC momentum as we continue to attract attention for our large and growing pipeline of sites. We believe this transaction represents the first of several in the HPC space as we continue to scale our capabilities and strengthen our position in this rapidly growing sector.\"\n\nThe Bitcoin mining space, which uses huge amounts of energy, is increasingly intertwined with HPC data centers.\n\nBoth crypto mining and the AI industry use huge amounts of energy, and when Bitcoin's price falls and minting new digital coins isn't generating enough revenue, some miners have pivoted their infrastructure to address AI demand.\n\nLast month, the tech giant Bitcoin miner TeraWulf announced that Google was providing an incremental $1.4 billion backstop to support project-related debt financing, upping its total stake to $3.2 billion.\n\nIn exchange, Google would receive warrants to buy 32.5 million shares of the sustainable Bitcoin miner, the announcement said at the time.",
+      "source": {
+        "uri": "decrypt.co",
+        "dataType": "news",
+        "title": "Decrypt"
+      },
+      "authors": [
+        {
+          "uri": "mat_di_salvo@decrypt.co",
+          "name": "Mat Di Salvo",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Debt",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Debt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Coin"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 46
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 53
+        }
+      ],
+      "image": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/07/bitcoin-mining-decrypt-style-03-gID_7.png",
+      "eventUri": "eng-10992092",
+      "sentiment": 0.3176470588235294,
+      "wgt": 496510562,
+      "relevance": 50
+    },
+    {
+      "uri": "2025-09-843922265",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "15:01:41",
+      "dateTime": "2025-09-25T15:01:41Z",
+      "dateTimePub": "2025-09-25T14:23:26Z",
+      "dataType": "news",
+      "sim": 0.6431372761726379,
+      "url": "https://cryptocrunchapp.com/blockworks/cipher-mining-inks-3b-ai-hosting-deal-with-fluidstack/",
+      "title": "Cipher Mining inks $3B AI hosting deal with Fluidstack",
+      "body": "Cipher Mining Inc. has signed a 10-year high-performance computing (HPC) colocation agreement with Fluidstack, securing approximately $3 billion in contracted revenue.\n\nThe deal, announced Thursday, positions Cipher as a significant player in the artificial intelligence infrastructure sector. Cipher, traditionally known for its bitcoin mining operations, will deliver 168 megawatts of critical IT load at its Barber Lake site in Colorado City, Texas, with expected completion by September 2026. The facility could expand to 500 MW, supported by 587 acres of surrounding land.\n\nThe agreement includes two optional five-year extensions that would raise the total contract value to $7...",
+      "source": {
+        "uri": "cryptocrunchapp.com",
+        "dataType": "news",
+        "title": "CryptoCrunchApp"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colocation_centre",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Colocation centre"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 22
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 22
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 64
+        }
+      ],
+      "image": "https://cryptocrunchapp.com/wp-content/uploads/2023/10/sdfgsDFGdghd-1.png",
+      "eventUri": "eng-10992092",
+      "sentiment": 0.3725490196078431,
+      "wgt": 496508501,
+      "relevance": 2
     }
   ],
-  "last_run_time": "2025-09-25T15:17:47.859765"
+  "last_run_time": "2025-09-25T16:48:24.461360"
 }
