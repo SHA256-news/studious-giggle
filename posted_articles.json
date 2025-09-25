@@ -60,7 +60,8 @@
     "8877693147",
     "2025-09-843668995",
     "8880201462",
-    "8880266675"
+    "8880266675",
+    "8880463616"
   ],
   "queued_articles": [
     {
@@ -2728,7 +2729,112 @@
       "sentiment": 0.3725490196078431,
       "wgt": 496508501,
       "relevance": 2
+    },
+    {
+      "uri": "8880361462",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "16:56:54",
+      "dateTime": "2025-09-25T16:56:54Z",
+      "dateTimePub": "2025-09-25T16:36:52Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.forbesafrica.com/current-affairs/2025/09/25/could-bitcoin-mining-power-rural-africa",
+      "title": "Could Bitcoin Mining Power Rural Africa?",
+      "body": "It is being touted by some as an unlikely solution for Africa's power problem, backed by real-world applications.\n\nTo many, Bitcoin and electricity seem worlds apart -- about as connected as crypto and cattle. But on the north-western tip of Zambia, along a roaring Zambezi riverbank, the two have become inseparable.\n\nGridless, which works with renewable, rural, mini-grid energy generators to monetize the full capacity of their output as a buyer of last resort, has six Bitcoin mining sites in Africa, one of which is the Zengamina Hydro Power Plant. Over 15,000 locals reportedly receive power from it.",
+      "source": {
+        "uri": "forbesafrica.com",
+        "dataType": "news",
+        "title": "forbesafrica.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Zambezi",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Zambezi"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Zambia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Zambia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Zambia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Zengamina",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Zengamina"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_generator",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electric generator"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Africa",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Africa"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Energy",
+          "label": "dmoz/Science/Technology/Energy",
+          "wgt": 100
+        }
+      ],
+      "image": "https://cms.forbesafrica.com/wp-content/uploads/2019/01/RC115698ECF0.jpg",
+      "eventUri": null,
+      "sentiment": 0.02745098039215677,
+      "wgt": 496515414,
+      "relevance": 27
     }
   ],
-  "last_run_time": "2025-09-25T16:48:24.461360"
+  "last_run_time": "2025-09-25T18:23:27.075162"
 }
