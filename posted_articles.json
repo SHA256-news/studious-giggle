@@ -57,7 +57,8 @@
     "8877693142",
     "8879344487",
     "8877696613",
-    "8877693147"
+    "8877693147",
+    "2025-09-843668995"
   ],
   "queued_articles": [
     {
@@ -1238,7 +1239,354 @@
       "sentiment": 0.223529411764706,
       "wgt": 496434877,
       "relevance": 56
+    },
+    {
+      "uri": "2025-09-843665921",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "11:01:33",
+      "dateTime": "2025-09-25T11:01:33Z",
+      "dateTimePub": "2025-09-25T10:44:08Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://in.investing.com/news/sec-filings/american-bitcoin-corp-appoints-kpmg-as-new-auditor-after-dismissing-rbsm-93CH-5019086",
+      "title": "American Bitcoin Corp. appoints KPMG as new auditor after dismissing RBSM By Investing.com",
+      "body": "American Bitcoin Corp. (NASDAQ:ABTC) announced the appointment of KPMG LLP as its new independent registered public accounting firm for the fiscal year ending December 31, 2025. The decision was made by the company's Audit Committee on September 19, following the dismissal of the previous auditor, RBSM LLP.\n\nAccording to a statement filed with the Securities and Exchange Commission, RBSM's reports on American Bitcoin Corp.'s financial statements for the years ended December 31, 2024 and 2023 did not include any adverse opinions or disclaimers of opinion. The reports were not qualified or modified regarding uncertainty, audit scope, or accounting principles, except for an explanatory paragraph expressing substantial doubt about the company's ability to continue as a going concern.\n\nThe filing also stated that during the two most recent fiscal years and up to September 19, there were no disagreements between American Bitcoin Corp. and RBSM on accounting principles, financial statement disclosures, or auditing procedures that would have required disclosure. There were also no reportable events as defined by SEC regulations, except for previously reported material weaknesses in internal controls over financial reporting.\n\nThe company disclosed that the material weaknesses involved the operating effectiveness of processes to ensure timely and accurate disclosure in SEC filings, as well as controls over certain key financial reporting processes. These issues were previously discussed with the Audit Committee, and RBSM has been authorized to respond fully to inquiries from KPMG regarding these matters.\n\nThe company confirmed that, prior to KPMG's appointment, neither American Bitcoin Corp. nor its representatives had consulted with KPMG on accounting principles, audit opinions, or any reportable events.\n\nAmerican Bitcoin Corp. trades on the Nasdaq Stock Market under the ticker ABTC. This information is based on a statement filed with the Securities and Exchange Commission.\n\nIn other recent news, American Bitcoin Corp. has announced significant developments that could impact its operations and investor interest. The company has expanded its Bitcoin mining operations, increasing its installed hashrate from approximately 10 exahash per second to 24 exahash per second. This expansion was achieved through the acquisition and energization of about 16,300 ASIC servers, enhancing the company's mining fleet efficiency. Additionally, American Bitcoin Corp. has launched a $2.1 billion at-the-market equity program, allowing it to offer and sell its Class A common stock through a controlled equity offering sales agreement with several financial institutions. In another strategic move, the company appointed KPMG LLP as its new independent auditors, replacing RBSM LLP for the year ending December 31, 2025. Meanwhile, AlphaTON Capital, formerly Portage Biotech Inc., is transforming into a digital asset treasury company focused on the Telegram ecosystem. The company plans to acquire approximately $100 million in TON tokens and has appointed Brittany Kaiser as its new CEO and board member. These developments indicate a strategic shift for both companies in their respective fields.\n\nThis article was generated with the support of AI and reviewed by an editor. For more information see our T&C.",
+      "source": {
+        "uri": "in.investing.com",
+        "dataType": "news",
+        "title": "Investing.com India"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Auditor",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Auditor"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/KPMG",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "KPMG"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_statement",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Financial statement"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "U.S. Securities and Exchange Commission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accounting",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Accounting"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Audit",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Audit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fiscal_year",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Fiscal year"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Accountant",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Accountant"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internal_control",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Internal control"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Going_concern",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Going concern"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Telegram (messaging service)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_asset",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital asset"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Token_coin",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Token coin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Application-specific integrated circuit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Server_(computing)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Server (computing)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Financial_institution",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Financial institution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Equity_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Equity (finance)"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues/Business",
+          "label": "dmoz/Society/Issues/Business",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 20
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Company_Information",
+          "label": "dmoz/Business/Major Companies/Company Information",
+          "wgt": 19
+        },
+        {
+          "uri": "dmoz/Business/Accounting/Business-to-Business",
+          "label": "dmoz/Business/Accounting/Business-to-Business",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Publicly_Traded",
+          "label": "dmoz/Business/Major Companies/Publicly Traded",
+          "wgt": 14
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 69
+        }
+      ],
+      "image": "https://i-invdn-com.investing.com/news/news_pile_69x52._800x533_L_1419494209.jpg",
+      "eventUri": null,
+      "sentiment": 0.1058823529411765,
+      "wgt": 496494093,
+      "relevance": 52
+    },
+    {
+      "uri": "8879821218",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "10:45:37",
+      "dateTime": "2025-09-25T10:45:37Z",
+      "dateTimePub": "2025-09-25T09:39:00Z",
+      "dataType": "news",
+      "sim": 0.6470588445663452,
+      "url": "https://www.fool.com/investing/2025/09/25/bitcoin-mining-stock-too-dependent-on-one-thing/",
+      "title": "The Bitcoin Mining Stock That's Too Dependent on One Thing | The Motley Fool",
+      "body": "Some of these companies even end up outperforming Bitcoin. As of September 22, Strategy has gained 1,650% over the last three years, compared to Bitcoin's 522% return. However, there's also a serious risk to these types of businesses.\n\nCompanies that have a large amount of Bitcoin on their balance sheets are reliant on its price increasing, or at least holding steady. If Bitcoin crashes, which it tends to do every few years, it could bring those companies down with it.\n\nStrategy, the original Bitcoin treasury company, currently holds 639,835 BTC, worth about $72 billion today. Its market cap is $98 billion, meaning Bitcoin makes up nearly three-quarters of its value. MARA Holdings, a Bitcoin mining company, is an even more extreme case. It holds 52,477 BTC, worth about $6 billion, and has a market cap of $7 billion.\n\nCipher Mining is an example of a company that manages its holdings differently. While Strategy and MARA Holdings have focused on accumulating Bitcoin, Cipher Mining also sells Bitcoin regularly. It holds 1,414 BTC, worth about $159 million, and has a $5 billion market cap.\n\nThis doesn't necessarily mean Cipher Mining is the best of the bunch. But it takes a different approach that makes it less volatile than companies with Bitcoin-heavy balance sheets. Therefore, you may want to consider Cipher Mining if you're looking for crypto stocks that aren't simply Bitcoin treasury companies.",
+      "source": {
+        "uri": "fool.com",
+        "dataType": "news",
+        "title": "The Motley Fool"
+      },
+      "authors": [
+        {
+          "uri": "lyle_daly@fool.com",
+          "name": "Lyle Daly",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_capitalization",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market capitalization"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Volatility_(finance)",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Volatility (finance)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Financial_Services/Venture_Capital",
+          "label": "dmoz/Business/Financial Services/Venture Capital",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Marketing_and_Advertising",
+          "label": "dmoz/Business/Investing/Marketing and Advertising",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 69
+        }
+      ],
+      "image": "https://g.foolcdn.com/editorial/images/832632/data-center-technician-1346929922.jpg",
+      "eventUri": "eng-10993294",
+      "sentiment": 0.1372549019607843,
+      "wgt": 496493137,
+      "relevance": 64
     }
   ],
-  "last_run_time": "2025-09-25T09:17:09.836650"
+  "last_run_time": "2025-09-25T12:33:39.957998"
 }
