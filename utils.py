@@ -40,7 +40,8 @@ class CompiledPatterns:
     # Company patterns
     KNOWN_COMPANIES = re.compile(
         r'\b(CleanSpark|Marathon Digital|Riot Platforms|MicroStrategy|Tesla|Core Scientific|'
-        r'Hive Blockchain|Bitfarms|Argo Blockchain|Hut 8|Canaan|Bitmain|IREN|DL Holdings?)\b', 
+        r'Hive Blockchain|HIVE Digital Technologies|HIVE|Bitfarms|Argo Blockchain|Hut 8|'
+        r'Canaan|Bitmain|IREN|DL Holdings?)\b', 
         re.IGNORECASE
     )
     CORPORATE_ENTITIES = re.compile(
@@ -821,12 +822,15 @@ class TweetFormatter:
         
         # Create enhanced title with company focus
         if main_company and main_company.lower() not in title.lower():
-            # Company not in title, add it
+            # Company not in title, add it with proper formatting
             if financial_amounts:
-                enhanced_title = f"{main_company} {financial_amounts[0]} {title}"
+                # Format: "Company announces $X deal: Title"
+                enhanced_title = f"{main_company} announces {financial_amounts[0]}: {title}"
             else:
+                # Format: "Company: Title"
                 enhanced_title = f"{main_company}: {title}"
         else:
+            # Company already in title, just use the title
             enhanced_title = title
         
         # Add emoji and ensure length compliance
@@ -942,6 +946,8 @@ class TextUtils:
         
         # Enhanced company detection patterns - improved to avoid false positives
         companies = list(entities.get("companies", []))
+        title_companies = []  # Companies found in the title (should be prioritized)
+        body_companies = []   # Companies found only in body
         
         # Create a set of existing company names in lowercase for faster lookup
         existing_companies_lower = {c.lower() for c in companies}
@@ -951,25 +957,40 @@ class TextUtils:
                      'million', 'investment', 'bitcoin', 'mining', 'new', 'first', 
                      'facility', 'energy', 'strategic', 'partnership'}
         
-        # Look for additional company patterns in the text using compiled patterns
+        # Look for additional company patterns, prioritizing title matches
         company_patterns = [
             CompiledPatterns.KNOWN_COMPANIES,
             CompiledPatterns.CORPORATE_ENTITIES, 
             CompiledPatterns.HOLDINGS_PATTERN,  
         ]
         
+        # First, find companies in the title
         for pattern in company_patterns:
-            matches = pattern.findall(text)
+            matches = pattern.findall(title)
             for match in matches:
-                # Clean up the match and avoid nonsensical extractions
                 match_lower = match.lower()
                 if (match and len(match) > 2 and len(match) <= 30 and 
                     match_lower not in existing_companies_lower):
                     
-                    # Filter out words that aren't company names using set lookup
                     if not any(word in match_lower for word in skip_words):
-                        companies.append(match)
-                        existing_companies_lower.add(match_lower)  # Update the set
+                        title_companies.append(match)
+                        existing_companies_lower.add(match_lower)
+        
+        # Then find companies in the body (but prioritize title companies)
+        for pattern in company_patterns:
+            matches = pattern.findall(body)
+            for match in matches:
+                match_lower = match.lower()
+                if (match and len(match) > 2 and len(match) <= 30 and 
+                    match_lower not in existing_companies_lower):
+                    
+                    if not any(word in match_lower for word in skip_words):
+                        body_companies.append(match)
+                        existing_companies_lower.add(match_lower)
+        
+        # Prioritize title companies first, then body companies
+        companies.extend(title_companies)
+        companies.extend(body_companies)
         
         # Extract financial amounts (dollars, BTC amounts) using compiled patterns
         financial_amounts = []
