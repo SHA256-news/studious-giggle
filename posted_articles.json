@@ -58,7 +58,8 @@
     "8879344487",
     "8877696613",
     "8877693147",
-    "2025-09-843668995"
+    "2025-09-843668995",
+    "8880201462"
   ],
   "queued_articles": [
     {
@@ -1586,7 +1587,389 @@
       "sentiment": 0.1372549019607843,
       "wgt": 496493137,
       "relevance": 64
+    },
+    {
+      "uri": "8880175714",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "14:45:02",
+      "dateTime": "2025-09-25T14:45:02Z",
+      "dateTimePub": "2025-09-25T14:17:58Z",
+      "dataType": "news",
+      "sim": 0.615686297416687,
+      "url": "https://cointelegraph.com/news/google-acquires-5-4-stake-in-bitcoin-mining-company-cipher-mining-in-ai-deal",
+      "title": "Google takes 5.4% stake in Bitcoin mining company Cipher Mining in $3B deal",
+      "body": "Google has acquired a 5.4% stake in Bitcoin miner Cipher Mining by backstopping $1.4 billion of Fluidstack's obligations in a $3 billion, 10-year AI data center deal.\n\nGoogle has acquired a 5.4% stake in Bitcoin mining company Cipher Mining as part of a $3 billion multi-year data center deal with artificial intelligence data center company Fluidstack.\n\nAccording to a Thursday announcement, Google will receive its stake in Cipher Mining in exchange for guaranteeing $1.4 billion of Fluidstack's obligations in the contract with Cipher. This plays a part in a larger $3 billion Fluidstack deal with Cipher to lease computing power for 10 years.\n\nThe news follows another, similar deal between Google and Fluidstack. In late August, the internet search behemoth became the largest shareholder of Bitcoin (BTC) miner TeraWulf by acquiring 14% of the company in exchange for guaranteeing obligations in a separate Fluidstack deal.\n\nThe deal will see Cipher deliver 168 megawatts of computing power to Fluidstack, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas. The site is also capable of reaching a total capacity of 500 megawatts and possesses 587 acres of surrounding land.\n\nRelated: The $3.5B shift: How Bitcoin miners are cashing in on AI\n\nGoogle will backstop $1.4 billion of Fluidstack's lease obligations to Cipher Mining. In exchange, the internet giant will receive warrants to acquire approximately 24 million shares of Cipher common stock, equating to an approximately 5.4% pro forma equity ownership stake.\n\nCipher CEO Tyler Page said the deal reinforces the company's high-performance computing (HPC) momentum. \"We believe this transaction represents the first of several in the HPC space as we continue to scale our capabilities and strengthen our position in this rapidly growing sector,\" he said.\n\nThe deal underscores a broader trend of crypto mining firms shifting into artificial intelligence computing. Earlier this week, CleanSpark announced a $100 million financing round partly earmarked for AI infrastructure, sending its stock up 5% in after-hours trading.\n\nRelated: Hive Digital accelerates AI pivot with $100M HPC expansion -- Cointelegraph exclusive\n\nA mid-September analysis from The Miner Mag revealed that Bitcoin mining stocks extended their recovery, outpacing Bitcoin. The trend was partly explained by investors rewarding miners pursuing GPU and AI pivots.\n\nOther miners, including Hive Digital, have also expanded into GPU and AI services. In mid-August, the company reported record revenue and earnings in its fiscal first quarter.",
+      "source": {
+        "uri": "cointelegraph.com",
+        "dataType": "news",
+        "title": "Cointelegraph"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Internet",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Internet"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shareholder",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Shareholder"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Colorado"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Supercomputer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Supercomputer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 61
+        }
+      ],
+      "image": "https://images.cointelegraph.com/cdn-cgi/image/format=auto,onerror=redirect,quality=90,width=1200/https://s3.cointelegraph.com/uploads/2025-09/019980de-ca77-7b2d-82bf-0c4dc7b4351f",
+      "eventUri": "eng-10992092",
+      "sentiment": 0.1372549019607843,
+      "wgt": 496507502,
+      "relevance": 95
+    },
+    {
+      "uri": "8880169675",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-25",
+      "time": "14:40:55",
+      "dateTime": "2025-09-25T14:40:55Z",
+      "dateTimePub": "2025-09-25T14:01:33Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.benzinga.com/insights/options/25/09/47865854/a-closer-look-at-cleansparks-options-market-dynamics",
+      "title": "A Closer Look at Cleanspark's Options Market Dynamics - Cleanspark (NASDAQ:CLSK)",
+      "body": "Whales with a lot of money to spend have taken a noticeably bearish stance on Cleanspark.\n\nLooking at options history for Cleanspark (NASDAQ: CLSK) we detected 21 trades.\n\nIf we consider the specifics of each trade, it is accurate to state that 33% of the investors opened trades with bullish expectations and 52% with bearish.\n\nFrom the overall spotted trades, 5 are puts, for a total amount of $1,022,801 and 16, calls, for a total amount of $1,310,253.\n\nExpected Price Movements\n\nAfter evaluating the trading volumes and Open Interest, it's evident that the major market movers are focusing on a price band between $10.0 and $27.0 for Cleanspark, spanning the last three months.\n\nVolume & Open Interest Trends\n\nLooking at the volume and open interest is an insightful way to conduct due diligence on a stock.\n\nThis data can help you track the liquidity and interest for Cleanspark's options for a given strike price.\n\nBelow, we can observe the evolution of the volume and open interest of calls and puts, respectively, for all of Cleanspark's whale activity within a strike price range from $10.0 to $27.0 in the last 30 days.\n\nCleanspark Option Volume And Open Interest Over Last 30 DaysLargest Options Trades Observed:About Cleanspark\n\nCleanspark Inc is a bitcoin mining company. Through CleanSpark, Inc., and the Company's wholly owned subsidiaries, the company mines bitcoin. The company entered the bitcoin mining industry through its acquisition of ATL. Bitcoin mining is the sole reportable segment of the company.\n\nCleanspark's Current Market Status Currently trading with a volume of 6,472,439, the CLSK's price is down by -4.5%, now at $13.8. RSI readings suggest the stock is currently may be overbought. Anticipated earnings release is in 67 days. What Analysts Are Saying About Cleanspark\n\nOver the past month, 1 industry analysts have shared their insights on this stock, proposing an average target price of $20.0.\n\nUnusual Options Activity Detected: Smart Money on the Move\n\nBenzinga Edge's Unusual Options board spots potential market movers before they happen. See what positions big money is taking on your favorite stocks. Click here for access. * An analyst from Chardan Capital persists with their Buy rating on Cleanspark, maintaining a target price of $20.\n\nOptions are a riskier asset compared to just trading the stock, but they have higher profit potential. Serious options traders manage this risk by educating themselves daily, scaling in and out of trades, following more than one indicator, and following the markets closely.\n\nIf you want to stay updated on the latest options trades for Cleanspark, Benzinga Pro gives you real-time options trades alerts.\n\nCLSKCleanspark Inc$13.76-4.78%OverviewMarket News and Data brought to you by Benzinga APIs",
+      "source": {
+        "uri": "benzinga.com",
+        "dataType": "news",
+        "title": "Benzinga"
+      },
+      "authors": [
+        {
+          "uri": "benzinga_insights@benzinga.com",
+          "name": "Benzinga Insights",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_trend",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Market trend"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Open_interest",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Open interest"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Nasdaq"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_sentiment",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Market sentiment"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Strike_price",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Strike price"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Market_liquidity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Market liquidity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Due_diligence",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Due diligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/API",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "API"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Real-time_computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Real-time computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Investing/Day_Trading",
+          "label": "dmoz/Business/Investing/Day Trading",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Home/Personal_Finance/Investing",
+          "label": "dmoz/Home/Personal Finance/Investing",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 97
+        }
+      ],
+      "image": "https://www.benzinga.com/next-assets/images/schema-image-default.png",
+      "eventUri": null,
+      "sentiment": 0.2862745098039217,
+      "wgt": 496507255,
+      "relevance": 31
     }
   ],
-  "last_run_time": "2025-09-25T12:33:39.957998"
+  "last_run_time": "2025-09-25T15:17:47.859765"
 }
