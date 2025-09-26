@@ -69,227 +69,10 @@
     "2025-09-844421582",
     "2025-09-844833422",
     "2025-09-844950504",
-    "2025-09-845116157"
+    "2025-09-845116157",
+    "2025-09-845239815"
   ],
   "queued_articles": [
-    {
-      "uri": "2025-09-843009018",
-      "lang": "eng",
-      "isDuplicate": false,
-      "date": "2025-09-24",
-      "time": "18:34:37",
-      "dateTime": "2025-09-24T18:34:37Z",
-      "dateTimePub": "2025-09-24T18:30:00Z",
-      "dataType": "news",
-      "sim": 0.4431372582912445,
-      "url": "https://finance.yahoo.com/video/crypto-miner-capitalizing-ai-data-183000943.html",
-      "title": "This crypto miner is capitalizing on AI data center energy demands",
-      "body": "To watch more expert insights and analysis on the latest market action, check out more Market Catalysts.\n\nMicron is the latest company to benefit from strong AI demand, with data centers representing 40% of the company's total revenue in the fourth quarter. This comes after Nvidia and Open AI inked a $100 billion deal to help fund data center buildout. Joining me now is Daniel Roberts, Iren CEO. Iren is a developer, owner, and operator of data centers powered by 100% renewable energy. Obviously, you know a lot about what's going on here in this buildout that's happening, Daniel.\n\nUm, talk to us a little bit about the company and what you're seeing across the landscape here as we see all of this money just being poured into data center build out.\n\nYeah, look, Aaron, thanks for having us, Julie. Aaron was founded seven years ago by my brother and I, and our thesis was that we were the fourth industrial revolution. We're going to see the digitization of society, the emergence of all these high-performance computing applications, and that essentially the legacy data center industry, located in metropolitan areas, just wasn't geared up to satisfy the large amounts of power and capacity that this digitization thematic would require.\n\nUm, and at the time, you know, generative AI was not yet happening seven years ago. So you guys, like many in this business, sort of have, do you still have any Bitcoin mining? I know that was something that you were in. We've seen a lot of conversions or additions broadening into Gen AI. How's that path worked for you all?\n\nSo the same data centers that we built five years ago, uh, to mine Bitcoin, house Nvidia GPUs today. So we never went down a crypto pathway. We built the data centers from day one capable of supporting these applications. And the whole idea was to bootstrap the platform using Bitcoin. So we sell the Bitcoin daily, we pocket the cash, we reinvest that, and then layer in higher and better use cases over time as they emerge. We signed an MOU with Dell back in 2020. It was a bit early. Uh, but then the AI boom took off a couple of years ago, we bought some Nvidia chips, and at the moment, we're rapidly swapping out racks of Bitcoin mining ASICs and replacing them with the Nvidia GPUs.\n\nHave you seen any mitigation in demand? Any slowing down? I mean, are you able to even keep up with capacity, you know, demands on what you guys are trying to do?\n\nNo, it's accelerating. Um and it's a demand ends a supply game. And we're in this fortunate position where we've got 800 megawatts of data centers already built, which we are backfilling rapidly with the Nvidia GPUs and replacing these Bitcoin mining ASICs. And the supply side, it is hard to bring online these data centers. We built 600 megawatts in 18 months, but the time to power narrative is real. The choke point is getting grid connected power. And the benefit of grid connected power, as we were talking about off air, is that you are connected into a network where the utility guarantees you 24/7 reliable power and being able to build uptime guarantees and reliable GPU services requires that.",
-      "source": {
-        "uri": "finance.yahoo.com",
-        "dataType": "news",
-        "title": "Yahoo! Finance"
-      },
-      "authors": [
-        {
-          "uri": "yahoo_finance_video@finance.yahoo.com",
-          "name": "Yahoo Finance Video",
-          "type": "author",
-          "isAgency": false
-        }
-      ],
-      "concepts": [
-        {
-          "uri": "http://en.wikipedia.org/wiki/Data_center",
-          "type": "wiki",
-          "score": 5,
-          "label": {
-            "eng": "Data center"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
-          "type": "wiki",
-          "score": 5,
-          "label": {
-            "eng": "Artificial intelligence"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Nvidia",
-          "type": "org",
-          "score": 4,
-          "label": {
-            "eng": "Nvidia"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Artificial_general_intelligence",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Artificial general intelligence"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/100%_renewable_energy",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "100% renewable energy"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Digitization",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Digitization"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/OpenAI",
-          "type": "org",
-          "score": 3,
-          "label": {
-            "eng": "OpenAI"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Micron_Technology",
-          "type": "org",
-          "score": 3,
-          "label": {
-            "eng": "Micron Technology"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Bitcoin"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Mining",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Mining"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Chief executive officer"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "High-performance computing"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Generative_model",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Generative model"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Bitcoin network"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Graphics processing unit"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Fourth_Industrial_Revolution",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Fourth Industrial Revolution"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Bootstrapping",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Bootstrapping"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Application-specific_integrated_circuit",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Application-specific integrated circuit"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Dell",
-          "type": "org",
-          "score": 1,
-          "label": {
-            "eng": "Dell"
-          }
-        }
-      ],
-      "categories": [
-        {
-          "uri": "dmoz/Science/Technology/Mining",
-          "label": "dmoz/Science/Technology/Mining",
-          "wgt": 14
-        },
-        {
-          "uri": "dmoz/Business/Mining_and_Drilling",
-          "label": "dmoz/Business/Mining and Drilling",
-          "wgt": 14
-        },
-        {
-          "uri": "dmoz/Business/Telecommunications/Colocation",
-          "label": "dmoz/Business/Telecommunications/Colocation",
-          "wgt": 16
-        },
-        {
-          "uri": "dmoz/Science/Earth_Sciences/Data_Centers",
-          "label": "dmoz/Science/Earth Sciences/Data Centers",
-          "wgt": 21
-        },
-        {
-          "uri": "dmoz/Computers/Software/Data_Administration",
-          "label": "dmoz/Computers/Software/Data Administration",
-          "wgt": 17
-        },
-        {
-          "uri": "news/Business",
-          "label": "news/Business",
-          "wgt": 82
-        }
-      ],
-      "image": "https://s.yimg.com/ny/api/res/1.2/g1Vt9g079S20lWO_qQ2H.w--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzY7Y2Y9d2VicA--/https://s.yimg.com/os/creatr-uploaded-images/2025-09/1d29fbd0-9966-11f0-8db3-5785aff1493a",
-      "eventUri": "eng-10984936",
-      "sentiment": 0.223529411764706,
-      "wgt": 496434877,
-      "relevance": 56
-    },
     {
       "uri": "2025-09-843665921",
       "lang": "eng",
@@ -4001,7 +3784,301 @@
       "sentiment": -0.05882352941176472,
       "wgt": 496602921,
       "relevance": 95
+    },
+    {
+      "uri": "2025-09-845198514",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "19:49:34",
+      "dateTime": "2025-09-26T19:49:34Z",
+      "dateTimePub": "2025-09-26T19:10:37Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.marketscreener.com/news/iren-shares-fall-after-jpmorgan-downgrade-ce7d5bdadb80f427",
+      "title": "Iren Shares Fall After JPMorgan Downgrade",
+      "body": "IREN Limited, formerly Iris Energy Limited, is an Australia-based company, which owns and operates data centers powered by 100% renewable energy. Its facilities are optimized for Bitcoin mining, artificial intelligence (AI) cloud services, and other power-dense compute. Its data center mining facilities are in Canal Flats, Mackenzie, Prince George and Childress. Bitcoin Mining provides security to the Bitcoin network. Al Cloud Services provides cloud compute to Al customers, 1,896 NVIDIA H100 and H200 GPUs. Its Canal Flats facility is in the Canadian Rockies, 100 kilometers (km) from Cranbrook regional airport and 500km east of Vancouver. Its facility is in Prince George, the city in northern British Columbia, located 500 km north of Vancouver. Its facility is located in Childress County, Texas, over 250 miles northwest of Dallas and in close proximity to multiple wind and solar generating facilities in the region. Its Childress operations comprise 200MW of operating data centers.",
+      "source": {
+        "uri": "marketscreener.com",
+        "dataType": "news",
+        "title": "Market Screener"
+      },
+      "authors": [
+        {
+          "uri": "mt_newswires@marketscreener.com",
+          "name": "Mt Newswires",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canal_Flats",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Canal Flats"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Canal Flats"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/100%_renewable_energy",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "100% renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/JPMorgan_Chase",
+          "type": "org",
+          "score": 3,
+          "label": {
+            "eng": "JPMorgan Chase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Nvidia",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Nvidia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Prince_George,_British_Columbia",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Prince George, British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Prince George, British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Childress_County,_Texas",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Childress County, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Childress County, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Canadian_Rockies",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Canadian Rockies"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Graphics processing unit"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Vancouver",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Vancouver"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Vancouver"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cranbrook,_British_Columbia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Cranbrook, British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Cranbrook, British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/British_Columbia",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "British Columbia"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "British Columbia"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Canada"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dallas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Dallas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Dallas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Energy",
+          "label": "dmoz/Business/Energy",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 16
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 75
+        }
+      ],
+      "image": null,
+      "eventUri": null,
+      "sentiment": 0.1450980392156862,
+      "wgt": 496612174,
+      "relevance": 29
     }
   ],
-  "last_run_time": "2025-09-26T18:20:43.672487"
+  "last_run_time": "2025-09-26T21:13:40.236469"
 }
