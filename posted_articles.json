@@ -64,7 +64,8 @@
     "8880463616",
     "8880650535",
     "8880705601",
-    "2025-09-842254438"
+    "2025-09-842254438",
+    "8880989518"
   ],
   "queued_articles": [
     {
@@ -2820,7 +2821,226 @@
       "sentiment": 0.3490196078431373,
       "wgt": 496521296,
       "relevance": 81
+    },
+    {
+      "uri": "8880982727",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "04:28:04",
+      "dateTime": "2025-09-26T04:28:04Z",
+      "dateTimePub": "2025-09-26T04:16:21Z",
+      "dataType": "news",
+      "sim": 0.5137255191802979,
+      "url": "https://e-playafrica.com/bitcoin-mining-set-to-power-ethiopias-energy-expansion/",
+      "title": "Bitcoin mining set to power Ethiopia's energy expansion - E-PLAY Africa",
+      "body": "Ethiopia just inaugurated Africa's largest dam, doubling power output -- but still lacks the funds to deliver universal electricity access.\n\nEthiopia is exploring ways to generate revenue for expanding electricity access by selling its excess power to Bitcoin mining firms at rates lower than the global average.\n\nWith the recent inauguration of the Grand Ethiopian Renaissance Dam (GERD) -- Africa's largest hydroelectric project -- the country has doubled its power generation capacity. It now hopes Bitcoin miners can make use of this surplus while it works to expand transmission infrastructure to underserved areas.\n\nQuick facts\n\nTo earn money to plug these infrastructural gaps, the government of Ethiopia has been selling excess power to Bitcoin mining companies, which are flocking to the country due to the cheap electricity.\n\nWhat they're saying\n\nAccording to Ashebir Balcha, the CEO of Ethiopia Electric Power, the sale of power to Bitcoin mines is merely a stopgap to help the country raise money to distribute electricity to its citizens.\n\nHe does not expect the arrangement to be permanent. This is even though a year ago, the country earned $55 million from selling power to Bitcoin mines within ten months.\n\nBalcha, when asked if Bitcoin is given preference over other local industries in power distribution, said:\n\n\"No way...Until the people have full access and the economy starts to consume all the power, we are using Bitcoin for transmission. It's not a permanent endeavor.\"\n\nZoom in\n\nOn the other hand, Bitcoin miners are motivated to set up shop in the country because the electricity is cheaper compared to any other country that permits Bitcoin mining activities.\n\nAccording to reports, the Ethiopian government is selling power to the miners at three to four cents per kilowatt hour, much less than the global average of 15 cents per kilowatt hour.\n\nIn any case, most countries prefer not to accommodate Bitcoin mining operations because of fears that they contribute to the emission of harmful gases as well as overburden existing power structures.\n\nBefore now\n\nIn February last year, Mariblock reported that the Ethiopian government signed an agreement with 21 Bitcoin mining companies, a figure which eventually rose to 25.\n\nBy November the same year, the country had generated $55 million from these agreements and was contributing 2.5% of the global Bitcoin hash rate.\n\nHowever, the EEP announced last month that it had reached its limit and would not be issuing any more permits to data mining companies.\n\nThis was because nearly 20 additional mining firms, beyond the 25 already in operation, have been on a waitlist to secure approval to tap into Ethiopia's electricity grid for Bitcoin mining purposes.\n\nBalcha stated that the country's grid had reached its full capacity and could not accommodate any additional mining activities.",
+      "source": {
+        "uri": "e-playafrica.com",
+        "dataType": "news",
+        "title": "E-PLAY Africa"
+      },
+      "authors": [
+        {
+          "uri": "its_varieties@e-playafrica.com",
+          "name": "Its Varieties",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Ethiopia",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Ethiopia"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Ethiopia"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Grand_Ethiopian_Renaissance_Dam",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Grand Ethiopian Renaissance Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Government_of_Ethiopia",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Government of Ethiopia"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_power_transmission",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electric power transmission"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity_generation",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Electricity generation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hydroelectricity",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Hydroelectricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dam",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Dam"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Kilowatt-hour",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Kilowatt-hour"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electric_power_distribution",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electric power distribution"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States_dollar",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "United States dollar"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Hash_function",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Hash function"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electrical_grid",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Electrical grid"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Gas",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Gas"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 100
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 100
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 70
+        }
+      ],
+      "image": "https://e-playafrica.com/wp-content/uploads/2025/09/Ethiopia-bitcoin-miners.jpg",
+      "eventUri": "eng-10993294",
+      "sentiment": 0.09019607843137245,
+      "wgt": 496556884,
+      "relevance": 91
     }
   ],
-  "last_run_time": "2025-09-26T02:47:53.773364"
+  "last_run_time": "2025-09-26T04:44:06.578456"
 }
