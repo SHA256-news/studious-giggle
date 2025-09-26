@@ -68,116 +68,10 @@
     "8880989518",
     "2025-09-844421582",
     "2025-09-844833422",
-    "2025-09-844950504"
+    "2025-09-844950504",
+    "2025-09-845116157"
   ],
   "queued_articles": [
-    {
-      "uri": "2025-09-843014908",
-      "lang": "eng",
-      "isDuplicate": false,
-      "date": "2025-09-24",
-      "time": "18:43:41",
-      "dateTime": "2025-09-24T18:43:41Z",
-      "dateTimePub": "2025-09-24T18:12:55Z",
-      "dataType": "news",
-      "sim": 0.7176470756530762,
-      "url": "https://cryptocrunchapp.com/bitcoinmagazine/why-bitcoin-miner-irens-stock-is-soaring-on-ai-cloud-news/",
-      "title": "Why Bitcoin Miner IREN's Stock Is Soaring On AI Cloud News",
-      "body": "Bitcoin miner IREN Limited's stock (NASDAQ: IREN) blasted higher today as investors priced in the company's pivot from pure-play bitcoin miner to an integrated AI-cloud operator.\n\nThe stock jumped into double-digit gains after two separate analyst calls put fresh conviction behind the company's strategy, and after IREN announced a massive GPU procurement that materially changes its revenue runway.\n\nIREN has surged 110% in the past month to $48.75, including a 16.6% jump today, and is now up more than 530% over the last six months.\n\nWhy is IREN surging?\n\nThe headline drivers are straightforward: IREN says it has doubled its AI Cloud capacity to roughly 23,000 GPUs after...",
-      "source": {
-        "uri": "cryptocrunchapp.com",
-        "dataType": "news",
-        "title": "CryptoCrunchApp"
-      },
-      "authors": [],
-      "concepts": [
-        {
-          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
-          "type": "wiki",
-          "score": 5,
-          "label": {
-            "eng": "Bitcoin"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Mining",
-          "type": "wiki",
-          "score": 4,
-          "label": {
-            "eng": "Mining"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Nasdaq",
-          "type": "wiki",
-          "score": 3,
-          "label": {
-            "eng": "Nasdaq"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
-          "type": "wiki",
-          "score": 2,
-          "label": {
-            "eng": "Artificial intelligence"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Procurement",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Procurement"
-          }
-        },
-        {
-          "uri": "http://en.wikipedia.org/wiki/Graphics_processing_unit",
-          "type": "wiki",
-          "score": 1,
-          "label": {
-            "eng": "Graphics processing unit"
-          }
-        }
-      ],
-      "categories": [
-        {
-          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
-          "label": "dmoz/Business/Investing/Stocks and Bonds",
-          "wgt": 13
-        },
-        {
-          "uri": "dmoz/Science/Earth_Sciences/Geology",
-          "label": "dmoz/Science/Earth Sciences/Geology",
-          "wgt": 12
-        },
-        {
-          "uri": "dmoz/Sports/Extreme_Sports/Base_Jumping",
-          "label": "dmoz/Sports/Extreme Sports/Base Jumping",
-          "wgt": 9
-        },
-        {
-          "uri": "dmoz/Business/Investing/Education_and_Training",
-          "label": "dmoz/Business/Investing/Education and Training",
-          "wgt": 9
-        },
-        {
-          "uri": "dmoz/Sports/Track_and_Field/Jumps",
-          "label": "dmoz/Sports/Track and Field/Jumps",
-          "wgt": 10
-        },
-        {
-          "uri": "news/Business",
-          "label": "news/Business",
-          "wgt": 52
-        }
-      ],
-      "image": "https://cryptocrunchapp.com/wp-content/uploads/2025/09/IREN-Stock-Soars-Bitcoin-Mining-Firm-Surges-on-Wall-Street-AI-Cloud-Optimism.jpg",
-      "eventUri": "eng-10985453",
-      "sentiment": 0.0980392156862746,
-      "wgt": 496435421,
-      "relevance": 91
-    },
     {
       "uri": "2025-09-843009018",
       "lang": "eng",
@@ -3409,7 +3303,705 @@
       "sentiment": 0.2627450980392156,
       "wgt": 496592559,
       "relevance": 77
+    },
+    {
+      "uri": "2025-09-845112761",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-26",
+      "time": "17:35:11",
+      "dateTime": "2025-09-26T17:35:11Z",
+      "dateTimePub": "2025-09-26T17:07:15Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://decrypt.co/341563/cipher-stock-rises-bitcoin-miner-boosts-debt-offering-1-1-billion-google-deal?.tsrc=rss",
+      "title": "Cipher Stock Rises as Bitcoin Miner Boosts Debt Offering to $1.1 Billion Following Google Deal",
+      "body": "Bitcoin miners are increasingly delving into the world of AI computing, as both require immense computing power.\n\nBitcoin miner Cipher Mining on Friday announced it had upped the price of its convertible debt offering, one day after revealing a $3 billion AI cloud hosting deal backstopped by Google.\n\nThe Nasdaq-listed miner said its convertible senior notes were now priced at $1.1 billion after initially being offered for $800 million.\n\nThe notes will be for \"persons reasonably believed to be qualified institutional buyers,\" and will be due in 2031. Senior notes are a form of debt a company can issue to investors. Convertible notes can be turned into company equity by the buyer.\n\nCipher's stock (CIFR) was trading up by nearly 5% on Friday at a price around $12.20 a share, after falling sharply on Thursday following an initial spike at the start of the trading. CIFR has nearly pulled even on the week after being significantly down earlier in the day.\n\nThe company on Thursday announced that it signed a 10-year, roughly $3 billion high-performance computing colocation agreement with Fluidstack. The deal will see Cipher deliver 168 MW of critical IT load, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas.\n\nAs part of the deal, Google said it would backstop $1.4 billion of Fluidstack's lease obligations to support project-related debt financing. In return, the tech giant will receive warrants to acquire approximately 24 million shares of Cipher common stock, or a 5.4% pro forma equity ownership stake.\n\nIn the Bitcoin mining world, companies use warehouses full of computers to process transactions on the crypto network. Because they've amassed so much computing power, some miners have pivoted their infrastructure to address growing AI demand.\n\nExperts previously told Decrypt that while both industries use data centers, it can be difficult to make the swing from AI to crypto mining.\n\nBitcoin miner TeraWulf announced in August that Google was providing an incremental $1.4 billion backstop to support project-related debt financing, upping its total stake to $3.2 billion.",
+      "source": {
+        "uri": "decrypt.co",
+        "dataType": "news",
+        "title": "Decrypt"
+      },
+      "authors": [
+        {
+          "uri": "mat_di_salvo@decrypt.co",
+          "name": "Mat Di Salvo",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible_bond",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Convertible bond"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colocation_centre",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Colocation centre"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Debt",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Debt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Encryption",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Encryption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Earth_Sciences/Geology",
+          "label": "dmoz/Science/Earth Sciences/Geology",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 15
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 74
+        }
+      ],
+      "image": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/05/bitcoin-mining-decrypt-style-02-gID_7.png",
+      "eventUri": null,
+      "sentiment": -0.05882352941176472,
+      "wgt": 496604111,
+      "relevance": 95
+    },
+    {
+      "uri": "2025-09-845100670",
+      "lang": "eng",
+      "isDuplicate": true,
+      "date": "2025-09-26",
+      "time": "17:21:30",
+      "dateTime": "2025-09-26T17:21:30Z",
+      "dateTimePub": "2025-09-26T17:07:15Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://finance.yahoo.com/news/cipher-stock-rises-bitcoin-miner-170715125.html",
+      "title": "Cipher Stock Rises as Bitcoin Miner Boosts Debt Offering to $1.1 Billion Following Google Deal",
+      "body": "Bitcoin miner Cipher Mining on Friday announced it had upped the price of its convertible debt offering, one day after revealing a $3 billion AI cloud hosting deal backstopped by Google.\n\nThe Nasdaq-listed miner said its convertible senior notes were now priced at $1.1 billion after initially being offered for $800 million.\n\nThe notes will be for \"persons reasonably believed to be qualified institutional buyers,\" and will be due in 2031. Senior notes are a form of debt a company can issue to investors. Convertible notes can be turned into company equity by the buyer.\n\nCipher's stock (CIFR) was trading up by nearly 5% on Friday at a price around $12.20 a share, after falling sharply on Thursday following an initial spike at the start of the trading. CIFR has nearly pulled even on the week after being significantly down earlier in the day.\n\nThe company on Thursday announced that it signed a 10-year, roughly $3 billion high-performance computing colocation agreement with Fluidstack. The deal will see Cipher deliver 168 MW of critical IT load, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas.\n\nAs part of the deal, Google said it would backstop $1.4 billion of Fluidstack's lease obligations to support project-related debt financing. In return, the tech giant will receive warrants to acquire approximately 24 million shares of Cipher common stock, or a 5.4% pro forma equity ownership stake.\n\nIn the Bitcoin mining world, companies use warehouses full of computers to process transactions on the crypto network. Because they've amassed so much computing power, some miners have pivoted their infrastructure to address growing AI demand.\n\nBitcoin Miners' Stocks Hit New Highs in August, Thanks to AI: JP Morgan\n\nExperts previously told Decrypt that while both industries use data centers, it can be difficult to make the swing from AI to crypto mining.\n\nBitcoin miner TeraWulf announced in August that Google was providing an incremental $1.4 billion backstop to support project-related debt financing, upping its total stake to $3.2 billion.",
+      "source": {
+        "uri": "finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [
+        {
+          "uri": "mathew_di_salvo@finance.yahoo.com",
+          "name": "Mathew Di Salvo",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible_bond",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Convertible bond"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Debt",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Debt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Encryption",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Encryption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Warehouse",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Warehouse"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/JPMorgan_Chase",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "JPMorgan Chase"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Earth_Sciences/Geology",
+          "label": "dmoz/Science/Earth Sciences/Geology",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 15
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 63
+        }
+      ],
+      "image": "https://s.yimg.com/ny/api/res/1.2/AycHS31Lf01ZORjYnwZ.JQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/decrypt_157/17609fb3e61d42e3f148e09c78ba47d4",
+      "eventUri": null,
+      "sentiment": -0.0117647058823529,
+      "wgt": 496603290,
+      "relevance": 82
+    },
+    {
+      "uri": "2025-09-845097874",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "17:15:21",
+      "dateTime": "2025-09-26T17:15:21Z",
+      "dateTimePub": "2025-09-26T17:07:15Z",
+      "dataType": "news",
+      "sim": 0.5098039507865906,
+      "url": "https://decrypt.co/341563/cipher-stock-rises-bitcoin-miner-boosts-debt-offering-1-1-billion-google-deal",
+      "title": "Cipher Stock Rises as Bitcoin Miner Boosts Debt Offering to $1.1 Billion Following Google Deal",
+      "body": "Bitcoin miners are increasingly delving into the world of AI computing, as both require immense computing power.\n\nBitcoin miner Cipher Mining on Friday announced it had upped the price of its convertible debt offering, one day after revealing a $3 billion AI cloud hosting deal backstopped by Google.\n\nThe Nasdaq-listed miner said its convertible senior notes were now priced at $1.1 billion after initially being offered for $800 million.\n\nThe notes will be for \"persons reasonably believed to be qualified institutional buyers,\" and will be due in 2031. Senior notes are a form of debt a company can issue to investors. Convertible notes can be turned into company equity by the buyer.\n\nCipher's stock (CIFR) was trading up by nearly 5% on Friday at a price around $12.20 a share, after falling sharply on Thursday following an initial spike at the start of the trading. CIFR has nearly pulled even on the week after being significantly down earlier in the day.\n\nThe company on Thursday announced that it signed a 10-year, roughly $3 billion high-performance computing colocation agreement with Fluidstack. The deal will see Cipher deliver 168 MW of critical IT load, supported by a maximum of 244 MW of gross capacity, at its Barber Lake site in Colorado City, Texas.\n\nAs part of the deal, Google said it would backstop $1.4 billion of Fluidstack's lease obligations to support project-related debt financing. In return, the tech giant will receive warrants to acquire approximately 24 million shares of Cipher common stock, or a 5.4% pro forma equity ownership stake.\n\nIn the Bitcoin mining world, companies use warehouses full of computers to process transactions on the crypto network. Because they've amassed so much computing power, some miners have pivoted their infrastructure to address growing AI demand.\n\nExperts previously told Decrypt that while both industries use data centers, it can be difficult to make the swing from AI to crypto mining.\n\nBitcoin miner TeraWulf announced in August that Google was providing an incremental $1.4 billion backstop to support project-related debt financing, upping its total stake to $3.2 billion.",
+      "source": {
+        "uri": "decrypt.co",
+        "dataType": "news",
+        "title": "Decrypt"
+      },
+      "authors": [
+        {
+          "uri": "mat_di_salvo@decrypt.co",
+          "name": "Mat Di Salvo",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computing",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible_bond",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Convertible bond"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cloud_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Cloud computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colocation_centre",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Colocation centre"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin_network",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Bitcoin network"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Common_stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Common stock"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Information_technology",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Information technology"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Debt",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Debt"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Encryption",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Encryption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Computer",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Computer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Earth_Sciences/Geology",
+          "label": "dmoz/Science/Earth Sciences/Geology",
+          "wgt": 18
+        },
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 16
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 17
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 15
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 74
+        }
+      ],
+      "image": "https://cdn.decrypt.co/resize/1024/height/512/wp-content/uploads/2025/05/bitcoin-mining-decrypt-style-02-gID_7.png",
+      "eventUri": "eng-10992092",
+      "sentiment": -0.05882352941176472,
+      "wgt": 496602921,
+      "relevance": 95
     }
   ],
-  "last_run_time": "2025-09-26T15:17:23.287007"
+  "last_run_time": "2025-09-26T18:20:43.672487"
 }
