@@ -66,7 +66,8 @@
     "8880705601",
     "2025-09-842254438",
     "8880989518",
-    "2025-09-844421582"
+    "2025-09-844421582",
+    "2025-09-844833422"
   ],
   "queued_articles": [
     {
@@ -2618,7 +2619,562 @@
       "sentiment": 0.1450980392156862,
       "wgt": 496574408,
       "relevance": 93
+    },
+    {
+      "uri": "2025-09-844832354",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "12:26:35",
+      "dateTime": "2025-09-26T12:26:35Z",
+      "dateTimePub": "2025-09-26T12:20:43Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://www.thehansindia.com/business/pakistans-bitcoin-deal-defies-imf-norms-raises-money-laundering-concerns-1009974",
+      "title": "Pakistan's Bitcoin deal defies IMF norms, raises money laundering concerns",
+      "body": "New Delhi: The recent Pakistan-El Salvador Bitcoin deal has raised serious concerns as it shows that the adoption of cryptocurrency can allow emerging...\n\nNew Delhi: The recent Pakistan-El Salvador Bitcoin deal has raised serious concerns as it shows that the adoption of cryptocurrency can allow emerging economies to bypass IMF oversight at a time when money laundering and terror financing are posing a major problem worldwide, an article said.\n\nThe collaboration between Pakistan and El Salvador emerges at a critical juncture when both states operate under IMF programmes while at the same time pursuing cryptocurrency strategies that directly contravene IMF guidance.\n\nHaving narrowly averted default in 2023, Pakistan faces steep financing requirements, with the IMF estimating the country will need more than $100 billion in external funding till 2029.\n\nPakistan's $7 billion IMF agreement runs till 2027, and though the IMF restricts state-level digital asset purchases, Islamabad has allocated 2,000 megawatts of surplus electricity for Bitcoin mining and announced plans to create a Strategic Bitcoin Reserve, according to an article by Victoria Jones in 'FIPF' (Foreign Policy in Focus).\n\nEl Salvador, meanwhile, despite receiving its own pressure from the IMF to stop using public funds for Bitcoin purchases, continues expanding its publicly disclosed reserve of over 6,200 BTC valued at approximately $745 million.\n\nThe two countries' rejection of IMF guidance reflects a shared resistance to multilateral financial authority that mirrors wider geopolitical trends toward multipolarity and diminishing Western influence in global economic structures.\n\nA growing pattern of cryptocurrency adoption by sovereign states could therefore, in theory, ultimately erode the dollar-dominated international monetary system and reduce IMF influence over member countries' fiscal policies, the article states.\n\nIt also raises corruption concerns and illicit finance risks linked to government cryptocurrency adoption in countries with weak institutional oversight may pose threats to both domestic stability and international financial security.\n\nThe fact that Bitcoin is pseudonymous in nature, along with Pakistan's history of governance issues in particular, could open opportunities for money laundering and tax evasion, the article adds.\n\nPakistan's current pivot towards cryptocurrency marks a significant shift from its previous stance on the matter. As recently as 2018, the State Bank of Pakistan declared that digital currencies were not legal tender and prohibited exchange companies from facilitating cryptocurrency transactions, the article points out.\n\nIt also underlines that Pakistan's Finance Minister Muhammad Aurangzeb, and Bitcoin advocate Michael Saylor, whose firm MicroStrategy maintains Bitcoin reserves exceeding $62 billion, held high-profile discussions in June regarding how Pakistan can use crypto to build financial resilience. The involvement of private sector partners introduces concerning dependencies that make profit a key driving motivator, which means a weakening of effective governance and distortion of development priorities, the article states.\n\nThe article further highlights that Pakistan's nod to President Donald Trump in its Bitcoin strategies provides insight into some of the geopolitical aspects of this push.\n\nTwo months ago, an agreement was signed between the Pakistan Crypto Council and the Trump family's World Liberty Financial to accelerate blockchain adoption in Pakistan, in what appears to be a gesture designed as yet another exercise in strategic positioning to curry favour with the U.S. president.\n\nThis comes within the context of World Liberty Financial co-founder Zach Witkoff, the son of Trump's Special Envoy to the Middle East Steve Witkoff, securing direct access to high-ranking officials in Pakistan, including army chief Asim Munir and Prime Minister Shehbaz Sharif in April, which clearly raises major red flags surrounding conflicts of interest, the article adds.",
+      "source": {
+        "uri": "thehansindia.com",
+        "dataType": "news",
+        "title": "The Hans India"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/International_Monetary_Fund",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "International Monetary Fund"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Money_laundering",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Money laundering"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Salvador,_Bahia",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Salvador, Bahia"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_Delhi",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "New Delhi"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "New Delhi"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "India"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pakistan",
+          "type": "loc",
+          "score": 5,
+          "label": {
+            "eng": "Pakistan"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "Pakistan"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/El_Salvador",
+          "type": "loc",
+          "score": 4,
+          "label": {
+            "eng": "El Salvador"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "El Salvador"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Emerging_market",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Emerging market"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Terrorism_financing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Terrorism financing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Multilateralism",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Multilateralism"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Western_culture",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Western culture"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Sovereign_state",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Sovereign state"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Geopolitics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Geopolitics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Fiscal_policy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Fiscal policy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Corruption",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Corruption"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Foreign_Policy",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Foreign Policy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Queen_Victoria",
+          "type": "person",
+          "score": 2,
+          "label": {
+            "eng": "Queen Victoria"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Electricity",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Electricity"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Islamabad",
+          "type": "loc",
+          "score": 2,
+          "label": {
+            "eng": "Islamabad"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Islamabad"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "Pakistan"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Asim_Munir_(general)",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Asim Munir (general)"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Shehbaz_Sharif",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Shehbaz Sharif"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Blockchain",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Blockchain"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Aurangzeb",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Aurangzeb"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/State_Bank_of_Pakistan",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "State Bank of Pakistan"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Legal_tender",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Legal tender"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Dependent_territory",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Dependent territory"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Digital_currency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Digital currency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/MicroStrategy",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "MicroStrategy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Middle_East",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Middle East"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Muhammad",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Muhammad"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Donald_Trump",
+          "type": "person",
+          "score": 1,
+          "label": {
+            "eng": "Donald Trump"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Society/Issues",
+          "label": "dmoz/Society/Issues",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Society/Issues/Economic",
+          "label": "dmoz/Society/Issues/Economic",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Society/Issues/Warfare_and_Conflict",
+          "label": "dmoz/Society/Issues/Warfare and Conflict",
+          "wgt": 12
+        },
+        {
+          "uri": "dmoz/Society/Government/Finance",
+          "label": "dmoz/Society/Government/Finance",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Home/Family/Adoption",
+          "label": "dmoz/Home/Family/Adoption",
+          "wgt": 13
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 84
+        }
+      ],
+      "image": "https://assets.thehansindia.com/h-upload/2025/08/14/1576134-bitcoin.webp",
+      "eventUri": null,
+      "sentiment": -0.0980392156862745,
+      "wgt": 496585595,
+      "relevance": 64
+    },
+    {
+      "uri": "2025-09-844756072",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "11:13:17",
+      "dateTime": "2025-09-26T11:13:17Z",
+      "dateTimePub": "2025-09-26T11:02:23Z",
+      "dataType": "news",
+      "sim": 0,
+      "url": "https://ca.finance.yahoo.com/news/mara-holdings-mara-mirrors-bitcoin-110223427.html",
+      "title": "MARA Holdings (MARA) Mirrors Bitcoin Drop, Loses 8.9%",
+      "body": "We recently published 10 Big Names Investors Are Dumping. MARA Holdings, Inc. (NASDAQ:MARA) is one of the companies that heavily bled in Thursday's trading.\n\nMARA Holdings, Inc. (NASDAQ:MARA) declined for a third straight day on Thursday, shedding 8.90 percent to finish at $16.07 apiece, as investors sold off positions following the drop in prices of Bitcoin.\n\nAs of writing, Bitcoin -- highly sensitive to macroeconomic trends -- slashed 3.66 percent of its value to $109,181 apiece. Traders appeared to have parked funds in anticipation of the US inflation data for August that would determine the Federal Reserve's decisions on interest rates.\n\nThe US central bank expects headline inflation to register in line or below economists' forecast of 2.8 percent for the year.\n\nMeanwhile, MARA Holdings, Inc. (NASDAQ:MARA) announced earlier this year that it was looking to capitalize on the booming artificial intelligence sector through the development of data centers.\n\nAdditionally, MARA Holdings, Inc. (NASDAQ:MARA) was exploring ways to acquire wind farms as it seeks access to renewable energy to reduce its Bitcoin mining costs. It already owns 1.7 gigawatts of capacity, with a pipeline for multi-gigawatt expansion.\n\nWhile we acknowledge the potential of MARA as an investment, our conviction lies in the belief that some AI stocks hold greater promise for delivering higher returns and have limited downside risk. If you are looking for an extremely cheap AI stock that is also a major beneficiary of Trump tariffs and onshoring, see our free report on the best short-term AI stock.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
+      "source": {
+        "uri": "ca.finance.yahoo.com",
+        "dataType": "news",
+        "title": "Yahoo! Finance"
+      },
+      "authors": [
+        {
+          "uri": "angelica_ballesteros@ca.finance.yahoo.com",
+          "name": "Angelica Ballesteros",
+          "type": "author",
+          "isAgency": false
+        }
+      ],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Inflation",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Inflation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Federal_Reserve",
+          "type": "org",
+          "score": 2,
+          "label": {
+            "eng": "Federal Reserve"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Merchant",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Merchant"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Macroeconomics",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Macroeconomics"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Central_bank",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Central bank"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Interest_rate",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Interest rate"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Trump_tariffs",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Trump tariffs"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Wind_farm",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Wind farm"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Pipeline_transport",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Pipeline transport"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Renewable_energy",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Renewable energy"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Stock",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Stock"
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Business/Investing",
+          "label": "dmoz/Business/Investing",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Business/Investing/Stocks_and_Bonds",
+          "label": "dmoz/Business/Investing/Stocks and Bonds",
+          "wgt": 13
+        },
+        {
+          "uri": "dmoz/Business/Investing/Brokerages",
+          "label": "dmoz/Business/Investing/Brokerages",
+          "wgt": 11
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies",
+          "label": "dmoz/Business/Major Companies",
+          "wgt": 15
+        },
+        {
+          "uri": "dmoz/Business/Major_Companies/Publicly_Traded",
+          "label": "dmoz/Business/Major Companies/Publicly Traded",
+          "wgt": 17
+        },
+        {
+          "uri": "news/Business",
+          "label": "news/Business",
+          "wgt": 93
+        }
+      ],
+      "image": "https://s.yimg.com/ny/api/res/1.2/dHN5w12Cl_wWEgzQXwQRuw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD03OTg-/https://media.zenfs.com/en/insidermonkey.com/a1dd81bc0ab710995bab6793808c429d",
+      "eventUri": null,
+      "sentiment": 0.02745098039215677,
+      "wgt": 496581197,
+      "relevance": 52
     }
   ],
-  "last_run_time": "2025-09-26T06:23:15.082511"
+  "last_run_time": "2025-09-26T12:32:45.064689"
 }
