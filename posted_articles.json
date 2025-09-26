@@ -67,7 +67,8 @@
     "2025-09-842254438",
     "8880989518",
     "2025-09-844421582",
-    "2025-09-844833422"
+    "2025-09-844833422",
+    "2025-09-844950504"
   ],
   "queued_articles": [
     {
@@ -3174,7 +3175,241 @@
       "sentiment": 0.02745098039215677,
       "wgt": 496581197,
       "relevance": 52
+    },
+    {
+      "uri": "2025-09-844945772",
+      "lang": "eng",
+      "isDuplicate": false,
+      "date": "2025-09-26",
+      "time": "14:22:39",
+      "dateTime": "2025-09-26T14:22:39Z",
+      "dateTimePub": "2025-09-26T14:16:33Z",
+      "dataType": "news",
+      "sim": 0.6274510025978088,
+      "url": "https://forklog.com/en/google-acquires-stake-in-cipher-mining/",
+      "title": "Google Acquires Stake in Cipher Mining | ForkLog",
+      "body": "Google Corporation facilitated another deal with a bitcoin miner. Cipher Mining has leased its data center in Colorado City, Texas, to the UK-based AI startup Fluidstack.\n\nThe American corporation agreed to guarantee Fluidstack's lease obligations amounting to $1.4 billion in exchange for a 5.4% stake in Cipher Mining.\n\nThe mining company anticipates that the contract will generate $3 billion over the first 10 years and up to $7 billion if extended twice for five years each.\n\n\"We are excited to work with Fluidstack on developing HPC centers and look forward to welcoming Google as an investor. This transformational deal strengthens our progress in high-performance computing and confirms the growing interest in our extensive site portfolio,\" said Cipher Mining CEO Tyler Page in a press release.\n\nThe company is repurposing its mining data center in Texas for artificial intelligence services and may expand the campus to meet growing demand.\n\nThis is not Google's first such deal. In August, TeraWulf announced a $3.7 billion agreement to lease its data center in western New York to the same Fluidstack. Google agreed to guarantee $1.8 billion for this contract and received an 8% stake in TeraWulf.\n\nThe collaboration between the American corporation, Cipher Mining, and TeraWulf reflects a trend of expanding AI capabilities in partnership with mining companies, which possess the necessary infrastructure to support data center operations.\n\nCipher Mining also increased the planned volume of its private placement of convertible bonds from $800 million to $1.1 billion. The funds will be used, among other things, to finance the Texas facility.\n\nBack in March, AI startup CoreWeave, previously engaged in cryptocurrency mining, signed a partnership agreement with OpenAI worth up to $11.9 billion.",
+      "source": {
+        "uri": "forklog.com",
+        "dataType": "news",
+        "title": "forklog.com"
+      },
+      "authors": [],
+      "concepts": [
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cipher",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Cipher"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Mining",
+          "type": "wiki",
+          "score": 5,
+          "label": {
+            "eng": "Mining"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Google",
+          "type": "org",
+          "score": 5,
+          "label": {
+            "eng": "Google"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Data_center",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Data center"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Artificial_intelligence",
+          "type": "wiki",
+          "score": 4,
+          "label": {
+            "eng": "Artificial intelligence"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/High-performance_computing",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "High-performance computing"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Bitcoin",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Bitcoin"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Corporation",
+          "type": "wiki",
+          "score": 3,
+          "label": {
+            "eng": "Corporation"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Colorado_City,_Texas",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "Colorado City, Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Colorado City, Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/United_States",
+          "type": "loc",
+          "score": 3,
+          "label": {
+            "eng": "United States"
+          },
+          "location": {
+            "type": "country",
+            "label": {
+              "eng": "United States"
+            }
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Startup_company",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Startup company"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Chief_executive_officer",
+          "type": "wiki",
+          "score": 2,
+          "label": {
+            "eng": "Chief executive officer"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/OpenAI",
+          "type": "org",
+          "score": 1,
+          "label": {
+            "eng": "OpenAI"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/New_York_(state)",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "New York (state)"
+          },
+          "location": null
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Cryptocurrency",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Cryptocurrency"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Convertible_bond",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Convertible bond"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Finance",
+          "type": "wiki",
+          "score": 1,
+          "label": {
+            "eng": "Finance"
+          }
+        },
+        {
+          "uri": "http://en.wikipedia.org/wiki/Texas",
+          "type": "loc",
+          "score": 1,
+          "label": {
+            "eng": "Texas"
+          },
+          "location": {
+            "type": "place",
+            "label": {
+              "eng": "Texas"
+            },
+            "country": {
+              "type": "country",
+              "label": {
+                "eng": "United States"
+              }
+            }
+          }
+        }
+      ],
+      "categories": [
+        {
+          "uri": "dmoz/Science/Technology/Mining",
+          "label": "dmoz/Science/Technology/Mining",
+          "wgt": 37
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling",
+          "label": "dmoz/Business/Mining and Drilling",
+          "wgt": 33
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Mineral_Exploration_and_Extraction",
+          "label": "dmoz/Business/Mining and Drilling/Mineral Exploration and Extraction",
+          "wgt": 32
+        },
+        {
+          "uri": "dmoz/Business/Mining_and_Drilling/Associations",
+          "label": "dmoz/Business/Mining and Drilling/Associations",
+          "wgt": 34
+        },
+        {
+          "uri": "dmoz/Science/Environment/Mining",
+          "label": "dmoz/Science/Environment/Mining",
+          "wgt": 34
+        },
+        {
+          "uri": "news/Technology",
+          "label": "news/Technology",
+          "wgt": 65
+        }
+      ],
+      "image": "https://forklog.com/wp-content/uploads/quantum-computer.webp",
+      "eventUri": "eng-10992092",
+      "sentiment": 0.2627450980392156,
+      "wgt": 496592559,
+      "relevance": 77
     }
   ],
-  "last_run_time": "2025-09-26T12:32:45.064689"
+  "last_run_time": "2025-09-26T15:17:23.287007"
 }
