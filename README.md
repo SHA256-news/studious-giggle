@@ -184,14 +184,16 @@ python bot.py --diagnose
 
 ```
 studious-giggle/
-├── 📦 Core Architecture
+├── 📦 Core Architecture (3 files)
 │   ├── core.py                    # Complete bot engine (Config, Storage, APIs, Processing)
 │   ├── bot.py                     # Main entry point with backward compatibility
 │   └── tools.py                   # Unified management interface
 ├── 🧪 Testing & Validation  
-│   ├── test_refactored_architecture.py  # New architecture validation
-│   ├── tests/                           # Legacy test suite (still works)
-│   └── test_*.py                        # Comprehensive test coverage
+│   └── tests/                           # All test files organized in tests/ directory
+│       ├── test_refactored_architecture.py  # New architecture validation
+│       ├── test_bot_fixes.py                # Bug fix validation
+│       ├── test_success_scenario.py         # End-to-end workflow tests
+│       └── *.py                             # Comprehensive test coverage
 ├── 📋 Data & Configuration
 │   ├── requirements.txt                 # Python dependencies (streamlined)
 │   ├── posted_articles.json            # Article tracking (auto-generated)
@@ -205,7 +207,9 @@ studious-giggle/
 ```
 
 ### Architecture Benefits
-- **84% File Reduction**: From 47 to 8 Python files with no functionality loss
+- **True 3-File Core**: Clean root directory with only essential production files
+- **Organized Testing**: All 8 test files properly organized in tests/ directory
+- **77% Reduction**: From 47 to 11 total Python files (3 core + 8 tests)
 - **Consolidated Logic**: Single source of truth for all bot operations  
 - **Maintainable Code**: Clear separation of concerns and elegant interfaces
 - **Backward Compatible**: All existing tests and workflows continue to work
@@ -217,10 +221,10 @@ studious-giggle/
 ```bash
 # Full validation sequence
 pip install -r requirements.txt
-python test_refactored_architecture.py    # New architecture tests
-python -m pytest tests/ -v                # Legacy compatibility tests
-python tools.py diagnose                  # Bot health check
-python bot.py --diagnose                  # API validation
+python tests/test_refactored_architecture.py  # New architecture tests
+python -m pytest tests/ -v                   # All tests in organized directory
+python tools.py diagnose                     # Bot health check
+python bot.py --diagnose                     # API validation
 ```
 
 ### Common Development Tasks
@@ -233,11 +237,11 @@ python tools.py queue
 python tools.py clean
 
 # Architecture validation
-python test_refactored_architecture.py
+python tests/test_refactored_architecture.py
 
-# Legacy test compatibility
-python test_bot_fixes.py
-python test_success_scenario.py
+# Specific test scenarios
+python tests/test_bot_fixes.py
+python tests/test_success_scenario.py
 ```
 
 ## 📈 Performance & Reliability

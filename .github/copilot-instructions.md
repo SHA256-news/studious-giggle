@@ -26,9 +26,9 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - NEVER CANCEL: Dependency installation takes 30-60 seconds. Set timeout to 120+ seconds.
 
 ### Build and Test
-- **Quick architecture test**: `python test_refactored_architecture.py` -- comprehensive validation
+- **Quick architecture test**: `python tests/test_refactored_architecture.py` -- comprehensive validation
 - **Bot diagnostics**: `python bot.py --diagnose` -- takes <3 seconds (optimized)
-- **Legacy tests**: Original test files still work with backward compatibility layer
+- **All tests organized**: All test files now in `tests/` directory for clean structure
 
 ### Essential Tools (New Consolidated Interface)
 - **Preview next tweet**: `python tools.py preview` -- shows exact tweet text with character count
@@ -111,9 +111,9 @@ Without these keys, the bot will show clear error messages explaining what's mis
 pip install -r requirements.txt
 pip install pytest
 python -m pytest tests/ -v
-python test_bot_fixes.py
-python test_daily_rate_limits.py  
-python test_success_scenario.py
+python tests/test_bot_fixes.py
+python tests/test_daily_rate_limits.py  
+python tests/test_success_scenario.py
 python bot.py --diagnose
 python tools.py diagnose
 ```
@@ -193,13 +193,13 @@ The bot runs automatically via GitHub Actions:
 ## Development Workflow
 
 ### Always run these before committing:
-1. `python test_refactored_architecture.py` - Test new architecture
+1. `python tests/test_refactored_architecture.py` - Test new architecture
 2. `python tools.py diagnose` - Test diagnostics
 3. `python bot.py --diagnose` - Test bot diagnostics
 
 ### When modifying core functionality:
-- Always test with `python test_refactored_architecture.py`
-- Verify backward compatibility with legacy test files
+- Always test with `python tests/test_refactored_architecture.py`
+- Verify backward compatibility with organized test files in tests/
 - Check that all essential tools work: `python tools.py <command>`
 
 ### When modifying rate limiting or article processing:
@@ -219,14 +219,18 @@ The bot runs automatically via GitHub Actions:
 .
 ├── .github/
 │   └── workflows/main.yml          # GitHub Actions workflow
-├── tests/                          # Pytest test suite
-│   ├── test_fetch_articles.py     # Core posting logic tests
-│   └── test_article_priority.py   # Article prioritization tests
+├── tests/                          # All test files organized in tests/ directory
+│   ├── test_refactored_architecture.py # New architecture validation
+│   ├── test_bot_fixes.py           # Bug fix validation tests
+│   ├── test_success_scenario.py    # End-to-end workflow tests
+│   ├── test_daily_rate_limits.py   # Rate limiting tests
+│   ├── test_rate_limit_cooldown.py # Cooldown system tests
+│   ├── test_fetch_articles.py      # Core posting logic tests
+│   ├── test_article_priority.py    # Article prioritization tests
+│   └── test_text_utils_threading.py # Threading and text processing tests
 ├── core.py                         # Complete bot engine (Config, Storage, APIs, Processing)
 ├── bot.py                          # Main entry point with backward compatibility layer
 ├── tools.py                        # Unified management interface (preview, queue, clean, diagnose)
-├── test_refactored_architecture.py # New architecture validation tests
-├── test_*.py                       # Comprehensive standalone test files
 ├── requirements.txt                # Python dependencies (streamlined)
 ├── posted_articles.json            # Article tracking (auto-generated)
 ├── rate_limit_cooldown.json        # Rate limit state (auto-generated) 
@@ -236,4 +240,4 @@ The bot runs automatically via GitHub Actions:
 └── TROUBLESHOOTING.md              # Detailed troubleshooting (legacy compatibility)
 ```
 
-This is a production-ready Twitter bot with **elegant 3-file architecture**, achieving 84% file reduction while maintaining robust error handling, rate limiting, and comprehensive testing. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
+This is a production-ready Twitter bot with **clean 3-file core architecture**, achieving 77% file reduction (47→11 files) while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are properly organized in the `tests/` directory. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
