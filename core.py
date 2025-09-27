@@ -329,8 +329,9 @@ class GeminiClient:
             raise ValueError("Gemini API key is required")
         
         try:
-            from google import genai
-            self.client = genai.Client(api_key=api_key)
+            import google.generativeai as genai
+            genai.configure(api_key=api_key)
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
@@ -353,10 +354,7 @@ class GeminiClient:
         """
         
         try:
-            response = self.client.models.generate_content(
-                model="gemini-1.5-flash",
-                contents=prompt.strip()
-            )
+            response = self.model.generate_content(prompt.strip())
             
             headline = response.text.strip()
             # Ensure no emojis and length compliance
@@ -387,10 +385,7 @@ class GeminiClient:
         """
         
         try:
-            response = self.client.models.generate_content(
-                model="gemini-1.5-flash",
-                contents=prompt.strip()
-            )
+            response = self.model.generate_content(prompt.strip())
             
             summary_text = response.text.strip()
             # Parse the numbered points
