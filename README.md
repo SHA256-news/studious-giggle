@@ -69,6 +69,21 @@ Set these as GitHub repository secrets:
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
 - `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
 
+### GitHub Actions Workflows
+The bot includes two workflows:
+
+1. **Main Bot Workflow** (`.github/workflows/main.yml`)
+   - **Schedule**: Runs every 90 minutes automatically
+   - **Purpose**: Fetches articles and posts Twitter threads
+   - **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
+   - **Error handling**: Comprehensive logging and recovery
+
+2. **Test & Preview Workflow** (`.github/workflows/test-preview.yml`)
+   - **Trigger**: Manual dispatch only
+   - **Purpose**: Test APIs and preview threads without posting
+   - **Output**: Creates GitHub issue with thread previews
+   - **Benefits**: Safe testing with production API keys
+
 ## 🛠️ Usage
 
 ### Basic Operations
@@ -88,7 +103,35 @@ python tools.py queue
 
 # Clean unwanted articles
 python tools.py clean
+
+# Test live APIs (EventRegistry + Gemini)
+python tools.py test
 ```
+
+## 🧪 Live API Testing
+
+### Manual Testing Tool
+Test your API integrations locally without posting to Twitter:
+```bash
+python tools.py test
+```
+**Note**: Requires API keys in environment variables (not available in dev containers)
+
+### GitHub Actions Preview Workflow
+For testing with your production API keys stored in GitHub secrets:
+
+1. **Go to GitHub Actions** → **"Test API & Preview Threads"**
+2. **Click "Run workflow"** → Select number of articles (1-5)
+3. **Review the generated GitHub issue** with complete thread previews
+4. **Adjust prompts in `core.py`** based on preview quality
+5. **Test again** until satisfied with results
+
+**Workflow Benefits:**
+- ✅ **Uses production API keys** from GitHub secrets
+- ✅ **No rate limit conflicts** with main bot
+- ✅ **Creates detailed GitHub issues** for easy review
+- ✅ **Manual trigger only** - runs when you need it
+- ✅ **Complete thread previews** with character counts
 
 ### Development Workflow
 ```bash

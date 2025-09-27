@@ -38,6 +38,7 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - **Simple queue view**: `python tools.py queue` -- clean list of queued articles  
 - **Clean queue**: `python tools.py clean` -- interactive removal of unwanted content
 - **Full diagnostics**: `python tools.py diagnose` -- comprehensive bot health check
+- **Test live APIs**: `python tools.py test` -- test EventRegistry & Gemini APIs without posting (requires API keys)
 
 ### Run the Application
 - **Diagnose issues**: `python bot.py --diagnose` -- takes <3 seconds (optimized)
@@ -184,12 +185,22 @@ Since this repository doesn't have API keys configured by default:
 
 ## CI/GitHub Actions
 
-The bot runs automatically via GitHub Actions:
-- **Workflow file**: `.github/workflows/main.yml`
+The bot includes two GitHub Actions workflows:
+
+### Main Bot Workflow (`.github/workflows/main.yml`)
+- **Schedule**: Runs every 90 minutes automatically
+- **Purpose**: Fetches Bitcoin mining articles and posts Twitter threads
+- **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
 - **Python version**: 3.10 (but works with 3.12+)
-- **Triggers**: Scheduled (every 90 minutes) + manual dispatch
 - **Dependencies**: Installs from `requirements.txt`
 - **Commits**: Updates `posted_articles.json` after successful runs
+
+### Test & Preview Workflow (`.github/workflows/test-preview.yml`)
+- **Trigger**: Manual dispatch only (workflow_dispatch)
+- **Purpose**: Test EventRegistry & Gemini APIs without posting to Twitter
+- **Output**: Creates GitHub issue with complete thread previews
+- **Benefits**: Safe testing using production API keys from GitHub secrets
+- **Use case**: Preview thread quality before letting main workflow post
 
 ## Development Workflow
 
@@ -220,7 +231,9 @@ The bot runs automatically via GitHub Actions:
 ```
 .
 ├── .github/
-│   └── workflows/main.yml          # GitHub Actions workflow
+│   └── workflows/
+│       ├── main.yml                # Main bot workflow (90-minute schedule)
+│       └── test-preview.yml        # Manual testing workflow (creates GitHub issues)
 ├── tests/                          # Streamlined test files (2 total)
 │   ├── test_bot.py                 # Core functionality tests (9 tests) 
 │   └── test_integration.py         # Integration workflow tests (3 tests)
