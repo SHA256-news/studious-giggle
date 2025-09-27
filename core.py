@@ -459,7 +459,7 @@ class TextProcessor:
     """Advanced text processing for tweet creation with Gemini AI integration."""
     
     @staticmethod
-    def create_tweet_thread(article: Article, gemini_client: GeminiClient = None) -> list[str]:
+    def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> list[str]:
         """Create a complete tweet thread with catchy headline, summary, and URL."""
         thread = []
         
