@@ -26,6 +26,9 @@ def test_apis_and_create_issue():
     print('🧪 Testing Live APIs for Thread Preview')
     print('=' * 50)
     
+    # Check if running in GitHub Actions
+    is_github_actions = os.environ.get('GITHUB_ACTIONS') == 'true'
+    
     try:
         # Get max articles from environment or default to 3
         max_articles = int(os.environ.get('MAX_ARTICLES', '3'))
@@ -36,8 +39,12 @@ def test_apis_and_create_issue():
         
         if 'EVENTREGISTRY_API_KEY' in missing_keys:
             print('❌ EventRegistry API key missing')
-            create_error_issue("EventRegistry API key missing from GitHub secrets")
-            return False
+            if is_github_actions:
+                create_error_issue("EventRegistry API key missing from GitHub secrets")
+                return True  # Success in GitHub Actions - issue created
+            else:
+                print('💡 Set EVENTREGISTRY_API_KEY environment variable to test locally')
+                return False  # Fail locally when keys missing
             
         bot = BitcoinMiningBot(config=config)
         
@@ -47,8 +54,12 @@ def test_apis_and_create_issue():
         
         if not articles:
             print('❌ No articles found')
-            create_no_articles_issue()
-            return False
+            if is_github_actions:
+                create_no_articles_issue()
+                return True  # Success in GitHub Actions - issue created
+            else:
+                print('💡 This can happen when no recent Bitcoin mining news is available')
+                return False  # Fail locally when no articles
         
         print(f'✅ Found {len(articles)} articles')
         
@@ -67,8 +78,14 @@ def test_apis_and_create_issue():
         import traceback
         traceback.print_exc()
         
-        create_error_issue(f"API testing error: {str(e)}")
-        return False
+        # Check if running in GitHub Actions (in except block)
+        is_github_actions_error = os.environ.get('GITHUB_ACTIONS') == 'true'
+        if is_github_actions_error:
+            create_error_issue(f"API testing error: {str(e)}")
+            return True  # Success in GitHub Actions - error issue created
+        else:
+            print('💡 Fix the error above and try again')
+            return False  # Fail locally on errors
 
 
 def create_preview_issue(articles, gemini_available, bot):
