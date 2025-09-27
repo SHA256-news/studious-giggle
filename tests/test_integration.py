@@ -66,7 +66,7 @@ class TestIntegrationWorkflows:
             with patch('core.TwitterAPI') as MockTwitter, patch('core.NewsAPI') as MockNews:
                 # Setup realistic mocks
                 mock_twitter = MockTwitter.return_value
-                mock_twitter.post_tweet.return_value = "1234567890123456789"
+                mock_twitter.post_thread.return_value = True
                 
                 mock_news = MockNews.return_value
                 mock_news.fetch_articles.return_value = [
@@ -79,12 +79,16 @@ class TestIntegrationWorkflows:
 
                 # Validate production behavior
                 assert result is True
-                mock_twitter.post_tweet.assert_called_once()
+                mock_twitter.post_thread.assert_called_once()
                 
-                # Check realistic tweet content
-                call_args = mock_twitter.post_tweet.call_args[0][0]
-                assert len(call_args) <= 280  # Twitter limit
-                assert any(emoji in call_args for emoji in ["🚨", "📢", "⚡", "🔥"])
+                # Check realistic thread content
+                call_args = mock_twitter.post_thread.call_args[0][0]
+                assert isinstance(call_args, list)  # Thread is a list of tweets
+                assert len(call_args) > 1  # Should be multiple tweets in thread
+                
+                # Verify URL is in last tweet (following the user's requirement)
+                last_tweet = call_args[-1]
+                assert "https://" in last_tweet
                 
                 # Verify proper queueing
                 posted_data = bot.posted_data

@@ -75,29 +75,38 @@ class BotTools:
             else:
                 source = str(source_data) if source_data else "Unknown Source"
             
-            # Generate tweet text with error handling
+            # Generate tweet thread with error handling
             try:
-                tweet_text = TextUtils.create_tweet_text(next_article)
-                char_count = len(tweet_text)
+                # Convert dict to Article object
+                article = Article(
+                    title=next_article.get("title", ""),
+                    body=next_article.get("body", ""),
+                    url=next_article.get("url", next_article.get("uri", "")),
+                    source=source
+                )
+                
+                # Create thread using new TextProcessor
+                thread = TextProcessor.create_tweet_thread(article)
+                total_chars = sum(len(tweet) for tweet in thread)
             except Exception as e:
-                print(f"❌ Error generating tweet text: {e}")
+                print(f"❌ Error generating tweet thread: {e}")
                 return False
             
             # Display preview
             print(f"📰 Article: {title[:80]}{'...' if len(title) > 80 else ''}")
             print(f"🔗 Source: {source}")
-            print(f"📊 Characters: {char_count}/280")
+            print(f"📊 Thread tweets: {len(thread)}")
+            print(f"📊 Total characters: {total_chars}")
             
-            if char_count > 280:
-                print("⚠️  WARNING: Tweet exceeds 280 character limit!")
-            
-            print(f"📝 Tweet text:")
-            print("-" * 40)
-            print(tweet_text)
-            print("-" * 40)
-            
-            if url:
-                print(f"🌐 URL: {url}")
+            # Show each tweet in the thread
+            for i, tweet in enumerate(thread, 1):
+                char_count = len(tweet)
+                print(f"\n🧵 Tweet {i}/{len(thread)} ({char_count}/280):")
+                if char_count > 280:
+                    print("⚠️  WARNING: Tweet exceeds 280 character limit!")
+                print("-" * 40)
+                print(tweet)
+                print("-" * 40)
             
             queue_size = len(queued_articles)
             if queue_size > 1:

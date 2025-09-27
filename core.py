@@ -11,6 +11,7 @@ import os
 import re
 import time
 from dataclasses import dataclass
+import google.genai as genai
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple
 from pathlib import Path
@@ -315,46 +316,218 @@ class TimeManager:
 
 
 # =============================================================================
+# GEMINI AI CLIENT  
+# =============================================================================
+
+class GeminiClient:
+    """Gemini AI client for generating catchy headlines and summaries."""
+    
+    def __init__(self, api_key: str):
+        """Initialize Gemini client with API key."""
+        if not api_key:
+            raise ValueError("Gemini API key is required")
+        
+        try:
+            self.client = genai.Client(api_key=api_key)
+            self.model_id = "gemini-1.5-flash"  # Using recommended model
+        except Exception as e:
+            raise ValueError(f"Failed to initialize Gemini client: {e}")
+    
+    def generate_catchy_headline(self, article: 'Article') -> str:
+        """Generate a catchy, emoji-free headline for the article."""
+        prompt = f"""
+        Create a catchy, professional headline for this Bitcoin mining news article.
+        
+        Original title: {article.title}
+        Source: {article.source_name if hasattr(article, 'source_name') else 'Unknown'}
+        
+        Requirements:
+        - NO emojis or special characters
+        - Maximum 50 characters
+        - Professional and engaging tone
+        - Focus on the key news impact
+        - Suitable for Twitter/X
+        
+        Return only the headline text, nothing else.
+        """
+        
+        try:
+            response = self.client.models.generate_content(
+                model=self.model_id,
+                contents=prompt.strip()
+            )
+            
+            headline = response.text.strip()
+            # Ensure no emojis and length compliance
+            headline = self._clean_headline(headline)
+            return headline[:50] if len(headline) > 50 else headline
+            
+        except Exception as e:
+            # Fallback to cleaned original title
+            return self._clean_headline(article.title)[:50]
+    
+    def generate_thread_summary(self, article: 'Article') -> list[str]:
+        """Generate a 3-point summary thread for the article."""
+        prompt = f"""
+        Create a 3-point summary thread for this Bitcoin mining news article.
+        
+        Title: {article.title}
+        Content: {article.body[:1000]}...
+        
+        Requirements:
+        - Exactly 3 key points
+        - Each point maximum 200 characters
+        - Professional tone, no emojis
+        - Focus on Bitcoin mining implications
+        - Numbered format (1., 2., 3.)
+        
+        Format:
+        1. [First key point]
+        2. [Second key point]  
+        3. [Third key point]
+        
+        Return only the numbered points, nothing else.
+        """
+        
+        try:
+            response = self.client.models.generate_content(
+                model=self.model_id,
+                contents=prompt.strip()
+            )
+            
+            summary_text = response.text.strip()
+            # Parse the numbered points
+            points = self._parse_summary_points(summary_text)
+            return points[:3]  # Ensure exactly 3 points
+            
+        except Exception as e:
+            # Fallback to simple bullet points from title
+            return [
+                f"1. {article.title[:180]}",
+                "2. This development impacts Bitcoin mining operations",
+                "3. More details in the full article"
+            ]
+    
+    def _clean_headline(self, text: str) -> str:
+        """Remove emojis and clean headline text."""
+        import re
+        # Remove emojis and special prefixes
+        emoji_pattern = re.compile(
+            "["
+            "\U0001F600-\U0001F64F"  # emoticons
+            "\U0001F300-\U0001F5FF"  # symbols & pictographs
+            "\U0001F680-\U0001F6FF"  # transport & map symbols
+            "\U0001F1E0-\U0001F1FF"  # flags
+            "\U00002702-\U000027B0"
+            "\U000024C2-\U0001F251"
+            "]+", flags=re.UNICODE
+        )
+        text = emoji_pattern.sub('', text)
+        
+        # Remove common prefixes
+        prefixes = [
+            r"^(BREAKING:|JUST IN:|NEWS:|HOT:)\s*",
+            r"^🚨\s*", r"^📢\s*", r"^⚡\s*", r"^🔥\s*"
+        ]
+        for prefix in prefixes:
+            text = re.sub(prefix, "", text, flags=re.IGNORECASE)
+        
+        return text.strip()
+    
+    def _parse_summary_points(self, text: str) -> list[str]:
+        """Parse numbered points from Gemini response."""
+        import re
+        
+        # Look for numbered points (1., 2., 3.)
+        points = []
+        lines = text.split('\n')
+        
+        for line in lines:
+            line = line.strip()
+            # Match patterns like "1. ", "2. ", "3. "
+            if re.match(r'^\d+\.\s+', line):
+                points.append(line)
+        
+        # If parsing fails, create fallback points
+        if len(points) < 3:
+            points = [
+                "1. Key development in Bitcoin mining sector",
+                "2. Regulatory or technical implications discussed", 
+                "3. Industry impact and future outlook"
+            ]
+        
+        return points
+
+# =============================================================================
 # TEXT PROCESSING
 # =============================================================================
 
 class TextProcessor:
-    """Advanced text processing for tweet creation."""
+    """Advanced text processing for tweet creation with Gemini AI integration."""
     
-    PREFIXES = ["🚨 BREAKING:", "📢 JUST IN:", "⚡ NEWS:", "🔥 HOT:"]
+    @staticmethod
+    def create_tweet_thread(article: Article, gemini_client: GeminiClient = None) -> list[str]:
+        """Create a complete tweet thread with catchy headline, summary, and URL."""
+        thread = []
+        
+        if gemini_client:
+            try:
+                # Generate Gemini-powered content
+                headline = gemini_client.generate_catchy_headline(article)
+                summary_points = gemini_client.generate_thread_summary(article)
+                
+                # Tweet 1: Catchy headline (no URL)
+                thread.append(headline)
+                
+                # Tweets 2-4: Summary points (no URL)
+                for point in summary_points:
+                    thread.append(point)
+                
+                # Final tweet: URL only
+                if article.url:
+                    thread.append(article.url)
+                
+                return thread
+                
+            except Exception as e:
+                # Fall back to simple format if Gemini fails
+                pass
+        
+        # Fallback: Simple format without Gemini
+        return TextProcessor._create_simple_tweet(article)
+    
+    @staticmethod
+    def _create_simple_tweet(article: Article) -> list[str]:
+        """Create simple thread (fallback when Gemini unavailable)."""
+        thread = []
+        
+        # Clean title and add simple prefix (no emojis)
+        title = TextProcessor._clean_title(article.title)
+        prefixes = ["BREAKING:", "JUST IN:", "NEWS:", "HOT:"]
+        import random
+        prefix = random.choice(prefixes)
+        
+        # Tweet 1: Prefixed headline (no URL, no emojis)
+        headline = f"{prefix} {title}"
+        if len(headline) > 280:
+            headline = headline[:277] + "..."
+        thread.append(headline)
+        
+        # Tweet 2: Simple summary point (no emojis)
+        thread.append("Key details in thread below")
+        
+        # Tweet 3: URL only (following the rule)
+        if article.url:
+            thread.append(article.url)
+        
+        return thread
     
     @staticmethod
     def create_tweet_text(article: Article) -> str:
-        """Create engaging tweet text from article."""
-        import random
-        
-        # Clean and prepare title
-        title = TextProcessor._clean_title(article.title)
-        
-        # Add engaging prefix
-        prefix = random.choice(TextProcessor.PREFIXES)
-        
-        # Create tweet with URL if available
-        if article.url:
-            max_length = 240  # Leave room for URL
-            tweet_text = f"{prefix} {title}"
-            
-            if len(tweet_text) > max_length:
-                # Truncate title to fit
-                available = max_length - len(prefix) - 4  # 4 for " " and "..."
-                title = title[:available] + "..."
-                tweet_text = f"{prefix} {title}"
-            
-            return f"{tweet_text}\n\n{article.url}"
-        else:
-            # Text-only tweet
-            tweet_text = f"{prefix} {title}"
-            if len(tweet_text) > 280:
-                available = 276  # 4 for "..."
-                title = title[:available - len(prefix) - 1] + "..."
-                tweet_text = f"{prefix} {title}"
-            
-            return tweet_text
+        """Legacy method - creates simple tweet (maintained for backward compatibility)."""
+        # Use simple format for backward compatibility
+        simple_thread = TextProcessor._create_simple_tweet(article)
+        return simple_thread[0] if simple_thread else article.title
     
     @staticmethod
     def _clean_title(title: str) -> str:
@@ -415,6 +588,53 @@ class TwitterAPI:
         except Exception as e:
             logger.error(f"Failed to post tweet: {e}")
             return None
+    
+    def post_thread(self, tweets: list[str]) -> bool:
+        """Post a thread of tweets.
+        
+        Args:
+            tweets: List of tweet texts to post as a thread
+            
+        Returns:
+            True if all tweets posted successfully, False otherwise
+        """
+        if not tweets:
+            return False
+            
+        try:
+            previous_tweet_id = None
+            
+            for i, tweet_text in enumerate(tweets):
+                logger.info(f"Posting tweet {i+1}/{len(tweets)}")
+                
+                # Post tweet, replying to previous if this is part of thread
+                if previous_tweet_id:
+                    response = self.client.create_tweet(
+                        text=tweet_text,
+                        in_reply_to_tweet_id=previous_tweet_id
+                    )
+                else:
+                    response = self.client.create_tweet(text=tweet_text)
+                
+                # Extract tweet ID for next reply
+                if hasattr(response, 'data') and response.data:
+                    current_tweet_id = str(response.data.get('id', '')) if hasattr(response.data, 'get') else str(response.data)
+                    if current_tweet_id:
+                        previous_tweet_id = current_tweet_id
+                        logger.info(f"Thread tweet {i+1} posted: {current_tweet_id}")
+                    else:
+                        logger.error(f"Failed to get ID for tweet {i+1}")
+                        return False
+                else:
+                    logger.error(f"Failed to post tweet {i+1}")
+                    return False
+            
+            logger.info(f"Thread posted successfully ({len(tweets)} tweets)")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to post thread: {e}")
+            return False
 
 
 class NewsAPI:
@@ -505,6 +725,7 @@ class BitcoinMiningBot:
         # Initialize API clients (lazy)
         self._twitter = None
         self._news = None
+        self._gemini = None
         
         if not safe_mode:
             logger.info(f"Bot initialized. {len(self.posted_data['posted_uris'])} articles already posted.")
@@ -522,6 +743,20 @@ class BitcoinMiningBot:
         if self._news is None:
             self._news = NewsAPI(self.config)
         return self._news
+    
+    @property
+    def gemini(self) -> GeminiClient:
+        """Lazy-initialized Gemini AI client."""
+        if self._gemini is None:
+            if self.config.gemini_api_key:
+                try:
+                    self._gemini = GeminiClient(self.config.gemini_api_key)
+                except Exception as e:
+                    logger.warning(f"Failed to initialize Gemini client: {e}")
+                    self._gemini = None
+            else:
+                self._gemini = None
+        return self._gemini
     
     def run(self) -> bool:
         """
@@ -672,17 +907,30 @@ class BitcoinMiningBot:
         return new_articles
     
     def _post_article(self, article: Article) -> bool:
-        """Post an article to Twitter."""
-        tweet_text = TextProcessor.create_tweet_text(article)
-        logger.info(f"Posting: {article.title[:50]}...")
-        
-        tweet_id = self.twitter.post_tweet(tweet_text)
-        
-        if tweet_id:
-            # Record successful post
-            self.posted_data["posted_uris"].append(article.url)
-            return True
-        else:
+        """Post an article to Twitter as a thread."""
+        try:
+            # Generate thread using Gemini (if available) or fallback
+            thread_tweets = TextProcessor.create_tweet_thread(article, self.gemini)
+            logger.info(f"Posting thread with {len(thread_tweets)} tweets: {article.title[:50]}...")
+            
+            if len(thread_tweets) == 1:
+                # Single tweet
+                tweet_id = self.twitter.post_tweet(thread_tweets[0])
+                success = bool(tweet_id)
+            else:
+                # Multi-tweet thread
+                success = self.twitter.post_thread(thread_tweets)
+            
+            if success:
+                # Record successful post
+                self.posted_data["posted_uris"].append(article.url)
+                return True
+            else:
+                logger.error("Failed to post tweet(s)")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error posting article: {e}")
             return False
     
     def _queue_articles(self, articles: List[Article]) -> None:
