@@ -32,7 +32,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip list | grep -E "(tweepy|eventregistry|google-generativeai)"
+        pip list | grep -E "(tweepy|eventregistry|google-genai)"
         
     - name: Test APIs and Generate Preview
       env:
