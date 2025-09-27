@@ -11,9 +11,11 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - **`core.py`**: Complete core functionality (Config, Storage, API clients, TimeManager, TextProcessor)
 - **`bot.py`**: Main entry point with backward compatibility layer
 - **`tools.py`**: Essential management tools (preview, queue, clean, diagnose)
+- **`tests/test_bot.py`**: Core functionality tests (9 tests)
+- **`tests/test_integration.py`**: Integration workflow tests (3 tests)
 
 ### Key Architectural Improvements
-- **📉 Reduced Complexity**: Consolidated 8+ files into 3 elegant modules (~60% code reduction)
+- **📉 Reduced Complexity**: Consolidated 47+ files into 5 elegant modules (89% file reduction)
 - **🚀 Enhanced Performance**: Lazy loading, optimized imports, sub-second startup
 - **🧹 Eliminated Redundancy**: Removed duplicate code and unnecessary abstractions  
 - **📚 Clean Interfaces**: Simple, readable, maintainable code structure
@@ -26,7 +28,8 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - NEVER CANCEL: Dependency installation takes 30-60 seconds. Set timeout to 120+ seconds.
 
 ### Build and Test
-- **Quick architecture test**: `python tests/test_refactored_architecture.py` -- comprehensive validation
+- **Core tests**: `python tests/test_bot.py` -- comprehensive validation (9 tests)
+- **Integration tests**: `python tests/test_integration.py` -- workflow validation (3 tests)
 - **Bot diagnostics**: `python bot.py --diagnose` -- takes <3 seconds (optimized)
 - **All tests organized**: All test files now in `tests/` directory for clean structure
 
@@ -95,8 +98,8 @@ Without these keys, the bot will show clear error messages explaining what's mis
 - Verify posted articles file is readable
 
 ### Test Suite Validation**:  
-- Run `python tests/test_bot.py` and verify core bot functionality (8+ tests)
-- Run `python tests/test_integration.py` and verify integration workflows (2+ tests)
+- Run `python tests/test_bot.py` and verify core bot functionality (9 tests)
+- Run `python tests/test_integration.py` and verify integration workflows (3 tests)
 - **Streamlined testing**: Only 2 test files for elegant architecture
 
 **Error Handling Validation**:
@@ -125,8 +128,8 @@ Since this repository doesn't have API keys configured by default:
 - **Core functionality**: `core.py` (complete bot engine: Config, Storage, API clients, processing)
 - **Main entry point**: `bot.py` (execution + backward compatibility layer)
 - **Management tools**: `tools.py` (preview, queue management, diagnostics)
-- **Architecture tests**: `tests/test_bot.py` (comprehensive core tests)
-- **Legacy tests**: `tests/test_integration.py` (streamlined integration tests)
+- **Core tests**: `tests/test_bot.py` (comprehensive core tests - 9 tests)
+- **Integration tests**: `tests/test_integration.py` (streamlined integration tests - 3 tests)
 - **GitHub Actions**: `.github/workflows/main.yml`
 
 **Removed complexity**: Eliminated `api_clients.py`, `utils.py`, `config.py`, `tweet_poster.py`, `gemini_client.py`, image modules, and various diagnostic scripts - all consolidated into elegant core architecture.
@@ -140,8 +143,7 @@ Since this repository doesn't have API keys configured by default:
 - `requirements.txt` - Python dependencies (streamlined)
 - `posted_articles.json` - Tracks posted articles and queue
 - `rate_limit_cooldown.json` - Manages rate limiting state
-- `README.md` - User documentation
-- `TROUBLESHOOTING.md` - Detailed troubleshooting guide
+- `README.md` - Comprehensive user documentation
 
 **Removed files**: Image-related configs and directories eliminated for elegant simplicity
 
@@ -216,17 +218,15 @@ The bot runs automatically via GitHub Actions:
 ├── .github/
 │   └── workflows/main.yml          # GitHub Actions workflow
 ├── tests/                          # Streamlined test files (2 total)
-│   ├── test_bot.py                 # Core functionality tests (8+ tests) 
-│   └── test_integration.py         # Integration workflow tests (2+ tests)
+│   ├── test_bot.py                 # Core functionality tests (9 tests) 
+│   └── test_integration.py         # Integration workflow tests (3 tests)
 ├── core.py                         # Complete bot engine (Config, Storage, APIs, Processing)
 ├── bot.py                          # Main entry point with backward compatibility layer
 ├── tools.py                        # Unified management interface (preview, queue, clean, diagnose)
 ├── requirements.txt                # Python dependencies (streamlined)
 ├── posted_articles.json            # Article tracking (auto-generated)
 ├── rate_limit_cooldown.json        # Rate limit state (auto-generated) 
-├── README.md                       # User documentation (updated for new architecture)
-├── ARCHITECTURE_TRANSFORMATION.md  # Complete refactoring and cleanup documentation
-└── TROUBLESHOOTING.md              # Detailed troubleshooting (legacy compatibility)
+└── README.md                       # Comprehensive user documentation
 ```
 
-This is a production-ready Twitter bot with **clean 3-file core architecture**, achieving 77% file reduction (47→11 files) while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
+This is a production-ready Twitter bot with **clean 5-file core architecture**, achieving 89% file reduction (47→5 core files) while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.

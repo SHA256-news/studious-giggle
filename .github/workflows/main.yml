@@ -50,7 +50,6 @@ jobs:
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         continue-on-error: true
 
       - name: Run bot
@@ -61,26 +60,9 @@ jobs:
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           FORCE_RUN: ${{ github.event.inputs.force_run }}
 
-      - name: Commit new analysis reports
-        run: |
-          git config --global user.name 'Bitcoin Bot Actions'
-          git config --global user.email 'bot-actions@github.com'
-          # Check for new files in reports directory
-          if [ -d "files/reports" ]; then
-            git add files/reports/
-            if ! git diff --quiet --staged files/reports/; then
-              echo "New report files detected"
-              git commit -m "docs: Add new analysis report"
-              git push
-            else
-              echo "No new report files to commit"
-            fi
-          else
-            echo "Reports directory does not exist"
-          fi
+      # Reports functionality removed in architecture streamlining
 
       - name: Commit changes to posted articles
         run: |
