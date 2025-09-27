@@ -56,7 +56,7 @@ class Config:
     rate_limit_file: str = "rate_limit_cooldown.json"
     
     # Keywords
-    bitcoin_keywords: List[str] = None
+    bitcoin_keywords: Optional[List[str]] = None
     
     def __post_init__(self):
         if self.bitcoin_keywords is None:
@@ -79,7 +79,7 @@ class Config:
     
     def validate(self) -> List[str]:
         """Validate configuration and return list of missing required fields."""
-        missing = []
+        missing: List[str] = []
         required_fields = [
             ("twitter_api_key", self.twitter_api_key),
             ("twitter_api_secret", self.twitter_api_secret),
@@ -110,14 +110,47 @@ class Article:
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Article':
-        """Create Article from dictionary."""
+        """Create Article from dictionary with input validation.
+        
+        Args:
+            data: Dictionary containing article data
+            
+        Returns:
+            Article: Validated article object
+            
+        Raises:
+            ValueError: If required fields are missing or invalid
+        """
+        if not isinstance(data, dict):
+            raise ValueError("Article data must be a dictionary")
+        
+        # Validate required fields
+        title = data.get("title", "").strip()
+        if not title:
+            raise ValueError("Article title is required")
+        
+        url = data.get("url", data.get("uri", "")).strip()
+        if not url:
+            raise ValueError("Article URL is required")
+        
         return cls(
-            title=data.get("title", ""),
+            title=title,
             body=data.get("body", data.get("summary", "")),
-            url=data.get("url", data.get("uri", "")),
-            source=data.get("source", {}).get("title", "") if isinstance(data.get("source"), dict) else str(data.get("source", "")),
+            url=url,
+            source=cls._extract_source(data.get("source")),
             date_published=cls._parse_date(data.get("dateTimePub", data.get("dateTime")))
         )
+    
+    @staticmethod
+    def _extract_source(source_data: Any) -> str:
+        """Extract source name from various source data formats."""
+        if isinstance(source_data, dict):
+            title = source_data.get("title", "Unknown Source")
+            return str(title) if title else "Unknown Source"
+        elif isinstance(source_data, str):
+            return source_data if source_data.strip() else "Unknown Source"
+        else:
+            return "Unknown Source"
     
     @staticmethod
     def _parse_date(date_str: Optional[str]) -> Optional[datetime]:
@@ -139,26 +172,90 @@ class Storage:
     
     @staticmethod
     def load_json(filepath: str, default: Any = None) -> Any:
-        """Load JSON file with error handling."""
+        """Load JSON file with comprehensive error handling.
+        
+        Args:
+            filepath: Path to JSON file
+            default: Default value to return on error
+            
+        Returns:
+            Loaded data or default value
+        """
+        file_path = Path(filepath)
+        
         try:
-            if Path(filepath).exists():
-                with open(filepath, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-        except (json.JSONDecodeError, IOError) as e:
-            logger.warning(f"Error loading {filepath}: {e}")
+            if not file_path.exists():
+                logger.info(f"File {filepath} does not exist, using defaults")
+                return default if default is not None else {}
+            
+            if file_path.stat().st_size == 0:
+                logger.warning(f"File {filepath} is empty, using defaults")
+                return default if default is not None else {}
+                
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                logger.debug(f"Successfully loaded {filepath}")
+                return data
+                
+        except json.JSONDecodeError as e:
+            logger.error(f"Invalid JSON in {filepath}: {e}")
+        except PermissionError as e:
+            logger.error(f"Permission denied reading {filepath}: {e}")
+        except IOError as e:
+            logger.error(f"I/O error reading {filepath}: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error loading {filepath}: {e}")
         
         return default if default is not None else {}
     
     @staticmethod
     def save_json(filepath: str, data: Any) -> bool:
-        """Save data to JSON file with error handling."""
+        """Save data to JSON file with atomic operations and error handling.
+        
+        Args:
+            filepath: Target file path
+            data: Data to save
+            
+        Returns:
+            bool: True if save was successful, False otherwise
+        """
+        file_path = Path(filepath)
+        temp_file = None
+        
         try:
-            with open(filepath, 'w', encoding='utf-8') as f:
+            # Create parent directory if it doesn't exist
+            file_path.parent.mkdir(parents=True, exist_ok=True)
+            
+            # Use atomic write: write to temp file, then rename
+            temp_file = file_path.with_suffix(f"{file_path.suffix}.tmp")
+            
+            with open(temp_file, 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=2, ensure_ascii=False)
+                f.flush()  # Ensure data is written
+                os.fsync(f.fileno())  # Force OS to write to disk
+            
+            # Atomic rename (on most filesystems)
+            temp_file.rename(file_path)
+            logger.debug(f"Successfully saved {filepath}")
             return True
-        except (IOError, TypeError) as e:
-            logger.error(f"Error saving {filepath}: {e}")
-            return False
+            
+        except (TypeError, ValueError) as e:
+            logger.error(f"Failed to encode JSON for {filepath}: {e}")
+        except PermissionError as e:
+            logger.error(f"Permission denied writing {filepath}: {e}")
+        except OSError as e:
+            logger.error(f"OS error writing {filepath}: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error saving {filepath}: {e}")
+        finally:
+            # Clean up temp file if it exists
+            if temp_file and temp_file.exists():
+                try:
+                    temp_file.unlink()
+                except Exception as e:
+                    logger.warning(f"Failed to remove temp file {temp_file}: {e}")
+        
+        return False
     
     @staticmethod
     def load_posted_articles(filepath: str) -> Dict[str, Any]:
@@ -294,12 +391,27 @@ class TwitterAPI:
         )
     
     def post_tweet(self, text: str) -> Optional[str]:
-        """Post a tweet and return tweet ID."""
+        """Post a tweet and return tweet ID.
+        
+        Args:
+            text: Tweet content
+            
+        Returns:
+            Tweet ID if successful, None otherwise
+        """
         try:
             response = self.client.create_tweet(text=text)
-            tweet_id = response.data['id'] if response.data else None
-            logger.info(f"Tweet posted successfully: {tweet_id}")
-            return tweet_id
+            
+            # Handle different response types
+            if hasattr(response, 'data') and response.data:
+                tweet_id = str(response.data.get('id', '')) if hasattr(response.data, 'get') else str(response.data)
+                if tweet_id:
+                    logger.info(f"Tweet posted successfully: {tweet_id}")
+                    return tweet_id
+            
+            logger.warning("Tweet posted but no ID returned")
+            return None
+            
         except Exception as e:
             logger.error(f"Failed to post tweet: {e}")
             return None
@@ -416,8 +528,9 @@ class BitcoinMiningBot:
         Main execution method.
         Returns True if successful, False otherwise.
         """
+        start_time = time.time()
+        
         try:
-            start_time = time.time()
             logger.info("🤖 Starting Bitcoin Mining News Bot")
             
             # Validate configuration
@@ -436,11 +549,16 @@ class BitcoinMiningBot:
             
             # Check minimum interval
             if not self._can_run_now():
+                logger.info("Minimum interval not yet reached. Skipping run.")
                 return True
             
-            # Fetch new articles
+            # Fetch new articles with error handling
             logger.info("Fetching articles...")
-            articles = self.news.fetch_articles(self.config.max_articles)
+            try:
+                articles = self.news.fetch_articles(self.config.max_articles)
+            except Exception as e:
+                logger.error(f"Failed to fetch articles: {e}")
+                return False
             
             if not articles:
                 logger.info("No new articles found")
@@ -464,7 +582,8 @@ class BitcoinMiningBot:
                 
                 # Update last run time
                 self.posted_data["last_run_time"] = datetime.now().isoformat()
-                self._save_data()
+                if not self._save_data():
+                    logger.warning("Failed to save posted articles data")
                 
                 execution_time = time.time() - start_time
                 logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
@@ -473,8 +592,12 @@ class BitcoinMiningBot:
                 self._handle_posting_failure()
                 return False
                 
+        except KeyboardInterrupt:
+            logger.info("Bot execution interrupted by user")
+            return False
         except Exception as e:
-            logger.error(f"Bot execution failed: {e}")
+            execution_time = time.time() - start_time
+            logger.error(f"Bot execution failed after {execution_time:.2f}s: {e}")
             return False
     
     def _run_diagnostics(self) -> bool:
@@ -546,9 +669,17 @@ class BitcoinMiningBot:
         cooldown_data = TimeManager.create_cooldown_data(self.config.cooldown_hours)
         self.storage.save_json(self.config.rate_limit_file, cooldown_data)
     
-    def _save_data(self) -> None:
-        """Save posted articles data."""
-        self.storage.save_json(self.config.posted_articles_file, self.posted_data)
+    def _save_data(self) -> bool:
+        """Save posted articles data.
+        
+        Returns:
+            bool: True if save was successful, False otherwise
+        """
+        try:
+            return self.storage.save_json(self.config.posted_articles_file, self.posted_data)
+        except Exception as e:
+            logger.error(f"Failed to save data: {e}")
+            return False
 
 
 # =============================================================================
