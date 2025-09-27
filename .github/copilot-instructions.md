@@ -2,7 +2,7 @@
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
-Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X as AI-enhanced 3-tweet threads with Gemini-generated headlines and summaries. It runs every 90 minutes via GitHub Actions with sophisticated rate limiting, queue management, and comprehensive error handling.
+Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X as AI-enhanced threads with Gemini-generated headlines and summaries. It runs every 90 minutes via GitHub Actions with sophisticated rate limiting, queue management, and comprehensive error handling.
 
 ## Elegant Architecture Overview
 
@@ -34,7 +34,7 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - **All tests organized**: All test files now in `tests/` directory for clean structure
 
 ### Essential Tools (New Consolidated Interface)
-- **Preview next thread**: `python tools.py preview` -- shows complete 3-tweet thread structure with character counts
+- **Preview next thread**: `python tools.py preview` -- shows complete thread structure with character counts
 - **Simple queue view**: `python tools.py queue` -- clean list of queued articles  
 - **Clean queue**: `python tools.py clean` -- interactive removal of unwanted content
 - **Full diagnostics**: `python tools.py diagnose` -- comprehensive bot health check
@@ -46,9 +46,10 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 ## Core Features (Simplified & Elegant)
 
 ### Smart Tweet Generation
-- **AI-enhanced threads**: 3-tweet structure with Gemini-generated headlines and summaries
+- **AI-enhanced threads**: Multi-tweet structure with Gemini-generated headlines and summaries
+- **Intelligent fallback**: 2-tweet threads (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
-- **Thread structure**: Headline → 3-point summary → URL (always in final tweet)
+- **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 - **Content deduplication**: Tracks posted articles to prevent repeats
 
@@ -86,7 +87,7 @@ The bot requires these GitHub repository secrets:
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
 - `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
 
-**Note**: With Gemini API key, the bot generates AI-enhanced thread content. Without it, it falls back to simple article formatting.
+**Note**: With Gemini API key, the bot generates AI-enhanced multi-tweet threads. Without it, it falls back to clean 2-tweet threads (headline → URL).
 
 Without these keys, the bot will show clear error messages explaining what's missing.
 
@@ -139,7 +140,7 @@ Since this repository doesn't have API keys configured by default:
 ### Key Dependencies (Core)
 - `tweepy>=4.14.0` - Twitter API client  
 - `eventregistry>=9.1` - News article fetching
-- `google-generativeai>=0.8.0` - Gemini AI integration for enhanced content
+- `google-genai>=0.1.0` - Gemini AI integration for enhanced content
 - **Note**: All dependencies are required for full functionality
 
 ### Important Files (Simplified)

@@ -1,6 +1,6 @@
 # Bitcoin Mining News Twitter Bot
 
-**Elegant, production-ready Twitter bot that automatically fetches Bitcoin mining news and posts AI-enhanced 3-tweet threads to Twitter/X with Gemini-generated headlines and summaries, featuring sophisticated rate limiting and comprehensive error handling.**
+**Elegant, production-ready Twitter bot that automatically fetches Bitcoin mining news and posts AI-enhanced threads to Twitter/X with Gemini-generated headlines and summaries, featuring sophisticated rate limiting and comprehensive error handling.**
 
 ## 🏗️ Elegant Architecture
 
@@ -23,9 +23,10 @@
 
 ### Smart News Processing
 - **Bitcoin-focused filtering**: Advanced keyword matching for relevant mining content
-- **AI-enhanced threading**: 3-tweet threads with Gemini-generated headlines and summaries
+- **AI-enhanced threading**: Multi-tweet threads with Gemini-generated headlines and summaries
+- **Intelligent fallback**: Clean 2-tweet structure (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
-- **Thread structure**: Headline → 3-point summary → URL (always in final tweet)
+- **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
 - **Content deduplication**: Tracks posted articles to prevent repeats
 
 ### Production-Grade Reliability
