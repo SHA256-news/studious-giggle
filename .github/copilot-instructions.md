@@ -94,12 +94,10 @@ Without these keys, the bot will show clear error messages explaining what's mis
 - Check that it shows helpful setup instructions
 - Verify posted articles file is readable
 
-**Test Suite Validation**:  
-- Run `python -m pytest tests/ -v` and verify all 4 tests pass
-- Run `python test_bot_fixes.py` and verify all bug fix scenarios work
-- Run `python test_daily_rate_limits.py` and verify progressive cooldown logic
-- Run `python test_success_scenario.py` and verify complete bot workflow
-- Run `python test_rate_limit_cooldown.py` and verify rate limiting (NEVER CANCEL: takes 5+ minutes)
+### Test Suite Validation**:  
+- Run `python tests/test_bot.py` and verify core bot functionality (8+ tests)
+- Run `python tests/test_integration.py` and verify integration workflows (2+ tests)
+- **Streamlined testing**: Only 2 test files for elegant architecture
 
 **Error Handling Validation**:
 - Run `python bot.py` without API keys and verify clear error messages
@@ -107,13 +105,10 @@ Without these keys, the bot will show clear error messages explaining what's mis
 
 **Complete Development Workflow Validation**:
 ```bash
-# Full validation sequence - run all commands to verify setup
+# Streamlined validation sequence - elegant 2-test architecture
 pip install -r requirements.txt
-pip install pytest
-python -m pytest tests/ -v
-python tests/test_bot_fixes.py
-python tests/test_daily_rate_limits.py  
-python tests/test_success_scenario.py
+python tests/test_bot.py          # Core functionality tests (8+ tests)
+python tests/test_integration.py  # Integration workflow tests (2+ tests)  
 python bot.py --diagnose
 python tools.py diagnose
 ```
@@ -130,8 +125,8 @@ Since this repository doesn't have API keys configured by default:
 - **Core functionality**: `core.py` (complete bot engine: Config, Storage, API clients, processing)
 - **Main entry point**: `bot.py` (execution + backward compatibility layer)
 - **Management tools**: `tools.py` (preview, queue management, diagnostics)
-- **Architecture tests**: `test_refactored_architecture.py` (comprehensive validation)
-- **Legacy tests**: `tests/` directory + standalone test files (still work via compatibility layer)
+- **Architecture tests**: `tests/test_bot.py` (comprehensive core tests)
+- **Legacy tests**: `tests/test_integration.py` (streamlined integration tests)
 - **GitHub Actions**: `.github/workflows/main.yml`
 
 **Removed complexity**: Eliminated `api_clients.py`, `utils.py`, `config.py`, `tweet_poster.py`, `gemini_client.py`, image modules, and various diagnostic scripts - all consolidated into elegant core architecture.
@@ -193,13 +188,14 @@ The bot runs automatically via GitHub Actions:
 ## Development Workflow
 
 ### Always run these before committing:
-1. `python tests/test_refactored_architecture.py` - Test new architecture
-2. `python tools.py diagnose` - Test diagnostics
-3. `python bot.py --diagnose` - Test bot diagnostics
+1. `python tests/test_bot.py` - Test core functionality
+2. `python tests/test_integration.py` - Test integration workflows  
+3. `python tools.py diagnose` - Test diagnostics
+4. `python bot.py --diagnose` - Test bot diagnostics
 
 ### When modifying core functionality:
-- Always test with `python tests/test_refactored_architecture.py`
-- Verify backward compatibility with organized test files in tests/
+- Always test with `python tests/test_bot.py`
+- Verify integration with `python tests/test_integration.py`
 - Check that all essential tools work: `python tools.py <command>`
 
 ### When modifying rate limiting or article processing:
@@ -219,15 +215,9 @@ The bot runs automatically via GitHub Actions:
 .
 ├── .github/
 │   └── workflows/main.yml          # GitHub Actions workflow
-├── tests/                          # All test files organized in tests/ directory
-│   ├── test_refactored_architecture.py # New architecture validation
-│   ├── test_bot_fixes.py           # Bug fix validation tests
-│   ├── test_success_scenario.py    # End-to-end workflow tests
-│   ├── test_daily_rate_limits.py   # Rate limiting tests
-│   ├── test_rate_limit_cooldown.py # Cooldown system tests
-│   ├── test_fetch_articles.py      # Core posting logic tests
-│   ├── test_article_priority.py    # Article prioritization tests
-│   └── test_text_utils_threading.py # Threading and text processing tests
+├── tests/                          # Streamlined test files (2 total)
+│   ├── test_bot.py                 # Core functionality tests (8+ tests) 
+│   └── test_integration.py         # Integration workflow tests (2+ tests)
 ├── core.py                         # Complete bot engine (Config, Storage, APIs, Processing)
 ├── bot.py                          # Main entry point with backward compatibility layer
 ├── tools.py                        # Unified management interface (preview, queue, clean, diagnose)
@@ -239,4 +229,4 @@ The bot runs automatically via GitHub Actions:
 └── TROUBLESHOOTING.md              # Detailed troubleshooting (legacy compatibility)
 ```
 
-This is a production-ready Twitter bot with **clean 3-file core architecture**, achieving 77% file reduction (47→11 files) while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are properly organized in the `tests/` directory. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
+This is a production-ready Twitter bot with **clean 3-file core architecture**, achieving 77% file reduction (47→11 files) while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
