@@ -330,8 +330,9 @@ class GeminiClient:
             raise ValueError("Gemini API key is required")
         
         try:
-            self.client = genai.Client(api_key=api_key)
-            self.model_id = "gemini-1.5-flash"  # Using recommended model
+            import google.generativeai as genai
+            genai.configure(api_key=api_key)
+            self.model = genai.GenerativeModel('gemini-1.5-flash')
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
@@ -341,61 +342,51 @@ class GeminiClient:
         Create a catchy, professional headline for this Bitcoin mining news article.
         
         Original title: {article.title}
-        Source: {article.source_name if hasattr(article, 'source_name') else 'Unknown'}
         
         Requirements:
         - NO emojis or special characters
         - Maximum 50 characters
         - Professional and engaging tone
         - Focus on the key news impact
+        - NO source attribution or "By [source]" text
         - Suitable for Twitter/X
         
         Return only the headline text, nothing else.
         """
         
         try:
-            response = self.client.models.generate_content(
-                model=self.model_id,
-                contents=prompt.strip()
-            )
+            response = self.model.generate_content(prompt.strip())
             
             headline = response.text.strip()
             # Ensure no emojis and length compliance
             headline = self._clean_headline(headline)
-            return headline[:50] if len(headline) > 50 else headline
+            return headline[:70] if len(headline) > 70 else headline
             
         except Exception as e:
             # Fallback to cleaned original title
-            return self._clean_headline(article.title)[:50]
+            return self._clean_headline(article.title)[:70]
     
     def generate_thread_summary(self, article: 'Article') -> list[str]:
         """Generate a 3-point summary thread for the article."""
         prompt = f"""
-        Create a 3-point summary thread for this Bitcoin mining news article.
+        Create a concise 3-point summary for this Bitcoin mining article that fits in one tweet.
         
         Title: {article.title}
         Content: {article.body[:1000]}...
         
         Requirements:
-        - Exactly 3 key points
-        - Each point maximum 200 characters
+        - TOTAL summary must be under 200 characters (all 3 points combined)
+        - DO NOT repeat information from the headline
+        - Focus on NEW details not in the headline
+        - Each point 40-60 characters max
         - Professional tone, no emojis
-        - Focus on Bitcoin mining implications
-        - Numbered format (1., 2., 3.)
+        - Format: "1. Point • 2. Point • 3. Point"
         
-        Format:
-        1. [First key point]
-        2. [Second key point]  
-        3. [Third key point]
-        
-        Return only the numbered points, nothing else.
+        Return only the formatted summary line, nothing else.
         """
         
         try:
-            response = self.client.models.generate_content(
-                model=self.model_id,
-                contents=prompt.strip()
-            )
+            response = self.model.generate_content(prompt.strip())
             
             summary_text = response.text.strip()
             # Parse the numbered points
@@ -503,9 +494,19 @@ class TextProcessor:
         """Create simple thread (fallback when Gemini unavailable)."""
         thread = []
         
-        # Clean title and add simple prefix (no emojis)
+        # Clean title and add appropriate prefix based on article age
         title = TextProcessor._clean_title(article.title)
-        prefixes = ["BREAKING:", "JUST IN:", "NEWS:", "HOT:"]
+        
+        # Select prefix based on article freshness (hour-based)
+        if hasattr(article, 'is_fresh') and article.is_fresh:
+            # Fresh articles (<1 hour) get urgent prefixes
+            prefixes = ["BREAKING:", "JUST IN:"]
+        elif hasattr(article, 'hours_old') and article.hours_old <= 6:
+            # Recent articles (1-6 hours) get news prefixes
+            prefixes = ["NEWS:", "UPDATE:"]
+        else:
+            # Older articles get report prefixes
+            prefixes = ["REPORT:", "ANALYSIS:"]
         import random
         prefix = random.choice(prefixes)
         
@@ -683,14 +684,58 @@ class NewsAPI:
             logger.error(f"Failed to fetch articles: {e}")
             return []
     
+    def _add_freshness_info(self, article: 'Article') -> None:
+        """Add precise freshness information to article for smart prefix selection."""
+        article_date = article.date_published
+        if article_date:
+            try:
+                if isinstance(article_date, str):
+                    article_date = datetime.fromisoformat(article_date.replace('Z', '+00:00'))
+                
+                hours_old = (datetime.now(article_date.tzinfo) - article_date).total_seconds() / 3600
+                
+                # Mark as fresh if less than 1 hour old (for JUST IN/BREAKING)
+                article.is_fresh = hours_old <= 1.0
+                article.hours_old = hours_old
+                
+            except (ValueError, TypeError, AttributeError):
+                # If date parsing fails, mark as not fresh
+                article.is_fresh = False
+                article.hours_old = 999  # Very old
+        else:
+            article.is_fresh = False
+            article.hours_old = 999
+
     def _filter_bitcoin_articles(self, articles: List[Article]) -> List[Article]:
-        """Filter articles to ensure they're actually about Bitcoin."""
+        """Filter articles for Bitcoin mining relevance and add freshness information."""
         bitcoin_terms = ["bitcoin", "btc", "mining", "miner", "hash rate", "asic"]
         
         filtered = []
         for article in articles:
             text = f"{article.title} {article.body}".lower()
             if any(term in text for term in bitcoin_terms):
+                # Add article freshness information for smart prefix selection
+                article_date = article.date_published
+                if article_date:
+                    try:
+                        if isinstance(article_date, str):
+                            article_date = datetime.fromisoformat(article_date.replace('Z', '+00:00'))
+                        
+                        days_old = (datetime.now(article_date.tzinfo) - article_date).days
+                        
+                        # Skip articles older than 7 days completely
+                        if days_old > 7:
+                            continue
+                            
+                        # Mark freshness for prefix selection (fresh = 1 day old or less)
+                        article.is_fresh = days_old <= 1
+                        
+                    except (ValueError, TypeError, AttributeError):
+                        # If date parsing fails, mark as not fresh
+                        article.is_fresh = False
+                else:
+                    article.is_fresh = False
+                    
                 filtered.append(article)
         
         logger.info(f"Filtered {len(articles)} articles to {len(filtered)} Bitcoin-focused articles")
