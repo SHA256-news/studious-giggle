@@ -64,8 +64,27 @@ def test_apis_and_create_issue():
         print(f'✅ Found {len(articles)} articles')
         
         # Test Gemini availability
-        gemini_available = 'GEMINI_API_KEY' not in missing_keys and bot.gemini is not None
-        print(f'🤖 Gemini AI: {"Available" if gemini_available else "Not Available"}')
+        gemini_available = 'GEMINI_API_KEY' not in missing_keys
+        if gemini_available:
+            print('🤖 Testing Gemini AI integration...')
+            try:
+                gemini_client = bot.gemini
+                if gemini_client:
+                    print('✅ Gemini client initialized successfully')
+                else:
+                    print('⚠️  Gemini client failed to initialize')
+                    gemini_client = None
+                    gemini_available = False
+            except Exception as e:
+                print(f'⚠️  Gemini API warning: {e}')
+                print(f'   Error type: {type(e).__name__}')
+                import traceback
+                traceback.print_exc()
+                gemini_client = None
+                gemini_available = False
+        else:
+            print('⚠️  Gemini API key missing - will show fallback threads')
+            gemini_client = None
         
         # Generate thread previews
         create_preview_issue(articles, gemini_available, bot)
