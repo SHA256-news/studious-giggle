@@ -65,12 +65,13 @@ class TestBot:
 
     def test_text_processing(self):
         """Test text processing functionality."""
-        article = Article(
-            title="Bitcoin Mining Update",
-            url="https://example.com/test",
-            body="Test content",
-            source="Test Source"
-        )
+        article_data = {
+            "title": "Bitcoin Mining Update",
+            "url": "https://example.com/test",
+            "body": "Test content",
+            "source": {"title": "Test Source"}
+        }
+        article = Article.from_dict(article_data)
         
         tweet_text = TextProcessor.create_tweet_text(article)
         assert isinstance(tweet_text, str)
@@ -86,7 +87,9 @@ class TestBot:
         # Test cooldown creation
         cooldown_data = TimeManager.create_cooldown_data(2)  # 2 hours
         assert isinstance(cooldown_data, dict)
-        assert "end_time" in cooldown_data
+        assert "cooldown_end" in cooldown_data
+        assert "cooldown_hours" in cooldown_data
+        assert cooldown_data["cooldown_hours"] == 2
 
     def test_bot_initialization(self):
         """Test bot can be initialized."""
@@ -134,12 +137,13 @@ class TestBot:
             }, f)
             config.posted_articles_file = f.name
         
-        mock_article = Article(
-            title="Bitcoin Mining News",
-            url="https://example.com/article",
-            body="Mining update content",
-            source="Test Source"
-        )
+        mock_article_data = {
+            "title": "Bitcoin Mining News",
+            "url": "https://example.com/article",
+            "body": "Mining update content",
+            "source": {"title": "Test Source"}
+        }
+        mock_article = Article.from_dict(mock_article_data)
         
         try:
             with patch('core.TwitterAPI') as MockTwitter, patch('core.NewsAPI') as MockNews:
