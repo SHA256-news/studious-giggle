@@ -654,26 +654,26 @@ class NewsAPI:
                     verboseOutput=False
                 )
             
-            # Create query for Bitcoin mining articles
-            from eventregistry import QueryArticles, QueryItems, RequestArticlesInfo
+            # Create query for Bitcoin mining articles using complex query syntax
+            from eventregistry import QueryArticlesIter
             
-            yesterday = datetime.now() - timedelta(days=self.config.article_lookback_days)
+            # Use the correct EventRegistry API syntax as shown in sandbox
+            query = {
+                "$query": {
+                    "keyword": "bitcoin mining",
+                    "keywordLoc": "body"
+                },
+                "$filter": {
+                    "forceMaxDataTimeWindow": str(self.config.article_lookback_days)
+                }
+            }
             
-            query = QueryArticles(
-                keywords=QueryItems.OR(self.config.bitcoin_keywords),
-                dateStart=yesterday.date(),
-                dateEnd=datetime.now().date(),
-                lang="eng"
-            )
+            q = QueryArticlesIter.initWithComplexQuery(query)
             
-            query.setRequestedResult(RequestArticlesInfo(
-                count=max_articles,
-                sortBy="date",
-                sortByAsc=False
-            ))
-            
-            result = self._client.execQuery(query)
-            articles_data = result.get("articles", {}).get("results", [])
+            # Fetch articles using the iterator
+            articles_data = []
+            for article in q.execQuery(self._client, maxItems=max_articles):
+                articles_data.append(article)
             
             # Convert to Article objects and filter for Bitcoin content
             articles = [Article.from_dict(data) for data in articles_data]
