@@ -62,8 +62,10 @@ class Config:
     def __post_init__(self):
         if self.bitcoin_keywords is None:
             self.bitcoin_keywords = [
-                "Bitcoin mining", "BTC mining", "bitcoin miner", "mining pool",
-                "mining farm", "hash rate", "mining difficulty", "ASIC miner"
+                "bitcoin mining", "Bitcoin mining", "BTC mining", 
+                "bitcoin miner", "Bitcoin miner", "mining bitcoin",
+                "mining BTC", "hash rate", "mining difficulty",
+                "ASIC miner", "mining pool", "mining farm"
             ]
     
     @classmethod
