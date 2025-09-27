@@ -513,10 +513,7 @@ class TextProcessor:
             headline = headline[:277] + "..."
         thread.append(headline)
         
-        # Tweet 2: Simple summary point (no emojis)
-        thread.append("Key details in thread below")
-        
-        # Tweet 3: URL only (following the rule)
+        # Tweet 2: URL only (following the rule - no intermediate tweet)
         if article.url:
             thread.append(article.url)
         
