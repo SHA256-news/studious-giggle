@@ -235,8 +235,7 @@ The bot runs automatically via GitHub Actions:
 ├── posted_articles.json            # Article tracking (auto-generated)
 ├── rate_limit_cooldown.json        # Rate limit state (auto-generated) 
 ├── README.md                       # User documentation (updated for new architecture)
-├── REFACTORING_SUMMARY.md          # Architecture transformation details
-├── CLEANUP_SUMMARY.md              # File reduction achievements
+├── ARCHITECTURE_TRANSFORMATION.md  # Complete refactoring and cleanup documentation
 └── TROUBLESHOOTING.md              # Detailed troubleshooting (legacy compatibility)
 ```
 

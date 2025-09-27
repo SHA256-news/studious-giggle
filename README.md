@@ -202,8 +202,8 @@ studious-giggle/
 │   └── .github/workflows/main.yml       # GitHub Actions workflow  
 └── 📚 Documentation
     ├── README.md                        # This file
-    ├── REFACTORING_SUMMARY.md           # Architecture transformation details
-    └── CLEANUP_SUMMARY.md               # File reduction achievements
+    ├── ARCHITECTURE_TRANSFORMATION.md   # Complete refactoring and cleanup documentation
+    └── TROUBLESHOOTING.md               # Detailed troubleshooting guide
 ```
 
 ### Architecture Benefits
