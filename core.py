@@ -552,39 +552,75 @@ class BitcoinMiningBot:
                 logger.info("Minimum interval not yet reached. Skipping run.")
                 return True
             
-            # Fetch new articles with error handling
-            logger.info("Fetching articles...")
+            # Fetch new articles first (prioritize fresh content)
+            logger.info("Fetching new articles...")
             try:
                 articles = self.news.fetch_articles(self.config.max_articles)
             except Exception as e:
                 logger.error(f"Failed to fetch articles: {e}")
                 return False
-            
-            if not articles:
-                logger.info("No new articles found")
-                return True
-            
-            # Find new articles to post
-            new_articles = self._filter_new_articles(articles)
-            
-            if not new_articles:
-                logger.info("All articles have already been posted")
-                return True
-            
-            # Post the most recent article
-            article_to_post = new_articles[0]
-            success = self._post_article(article_to_post)
-            
-            if success:
-                # Queue remaining articles for future posts
-                if len(new_articles) > 1:
-                    self._queue_articles(new_articles[1:])
+
+            article_to_post = None
+            new_articles = []
+
+            if articles:
+                # Find new articles to post
+                new_articles = self._filter_new_articles(articles)
                 
+                if new_articles:
+                    logger.info(f"Found {len(new_articles)} new articles")
+                    # Post the most recent new article
+                    article_to_post = new_articles[0]
+                else:
+                    logger.info("All fetched articles have already been posted")
+            else:
+                logger.info("No new articles found from EventRegistry")
+
+            # Fallback to queued articles if no new articles available
+            if not article_to_post:
+                queued_articles = self.posted_data.get("queued_articles", [])
+                
+                if queued_articles:
+                    logger.info(f"No new articles available. Processing {len(queued_articles)} queued articles (newest first)")
+                    
+                    # Sort queued articles by publication date (newest first)
+                    try:
+                        sorted_queue = sorted(queued_articles, key=lambda x: x.get('dateTimePub', x.get('dateTime', '')), reverse=True)
+                        # Use most recent queued article first
+                        article_data = sorted_queue[0]
+                        # Find its index in the original queue for removal later
+                        original_index = queued_articles.index(article_data)
+                        self._posted_queue_index = original_index  # Store for later removal
+                        article_to_post = Article.from_dict(article_data)
+                        logger.info(f"Posting most recent queued article: {article_to_post.title} ({article_data.get('dateTimePub', 'unknown date')})")
+                    except Exception as e:
+                        logger.error(f"Failed to parse queued articles: {e}")
+                        # Remove invalid article from queue (first one)
+                        self.posted_data["queued_articles"].pop(0)
+                        self._save_data()
+                        return True
+                else:
+                    logger.info("No new articles and no queued articles available")
+                    return True
+            success = self._post_article(article_to_post)
+
+            if success:
+                # Handle post-success actions based on source
+                if new_articles and len(new_articles) > 1:
+                    # Queue remaining new articles for future posts
+                    self._queue_articles(new_articles[1:])
+                elif not new_articles and self.posted_data.get("queued_articles"):
+                    # Remove the posted queued article from queue (use original_index)
+                    if hasattr(self, '_posted_queue_index'):
+                        self.posted_data["queued_articles"].pop(self._posted_queue_index)
+                        logger.info("Removed posted article from queue")
+                        delattr(self, '_posted_queue_index')
+
                 # Update last run time
                 self.posted_data["last_run_time"] = datetime.now().isoformat()
                 if not self._save_data():
                     logger.warning("Failed to save posted articles data")
-                
+
                 execution_time = time.time() - start_time
                 logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
                 return True
