@@ -19,6 +19,209 @@ from pathlib import Path
 import tweepy
 
 # Configure logging
+logger = logging.getLogger('bitcoin_mining_bot')
+
+
+# =============================================================================
+# FULL CONTENT FETCHER
+# =============================================================================
+
+class FullContentFetcher:
+    """Fetches complete article content from URLs using multiple methods."""
+    
+    def __init__(self):
+        self._cache = {}  # Simple in-memory cache for article content
+        
+    def fetch_full_content(self, url: str) -> str:
+        """
+        Fetch full article content from URL with multiple fallback methods.
+        
+        Args:
+            url: The article URL to scrape
+            
+        Returns:
+            Full article content as string, or empty string if failed
+        """
+        if not url or not url.startswith(('http://', 'https://')):
+            logger.warning(f"Invalid URL provided: {url}")
+            return ""
+        
+        # Check cache first
+        if url in self._cache:
+            logger.debug(f"Using cached content for: {url}")
+            return self._cache[url]
+        
+        content = ""
+        
+        # Method 1: Try newspaper3k (best for news articles)
+        content = self._try_newspaper3k(url)
+        
+        # Method 2: Try BeautifulSoup as fallback
+        if not content:
+            content = self._try_beautifulsoup(url)
+        
+        # Method 3: Try simple requests as last resort
+        if not content:
+            content = self._try_simple_requests(url)
+        
+        # Clean and validate content
+        content = self._clean_content(content)
+        
+        # Cache the result (even empty strings to avoid retry)
+        self._cache[url] = content
+        
+        if content:
+            logger.info(f"✅ Fetched full content ({len(content)} chars) from: {url}")
+        else:
+            logger.warning(f"❌ Failed to fetch content from: {url}")
+        
+        return content
+    
+    def _try_newspaper3k(self, url: str) -> str:
+        """Try to extract content using newspaper3k library."""
+        try:
+            from newspaper import Article as NewsArticle
+            
+            article = NewsArticle(url)
+            article.download()
+            article.parse()
+            
+            if article.text and len(article.text.strip()) > 100:
+                logger.debug(f"✅ newspaper3k extracted {len(article.text)} chars")
+                return article.text.strip()
+                
+        except ImportError:
+            logger.debug("newspaper3k not available")
+        except Exception as e:
+            logger.debug(f"newspaper3k failed: {e}")
+        
+        return ""
+    
+    def _try_beautifulsoup(self, url: str) -> str:
+        """Try to extract content using BeautifulSoup."""
+        try:
+            import requests
+            from bs4 import BeautifulSoup
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+            }
+            
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Remove unwanted elements
+            for tag in soup(['script', 'style', 'nav', 'footer', 'aside', 'header']):
+                tag.decompose()
+            
+            # Try to find main content using common selectors
+            content_selectors = [
+                'article', '.article-content', '.post-content', '.entry-content',
+                '.content', 'main', '.main-content', '.story-body', '.article-body'
+            ]
+            
+            for selector in content_selectors:
+                content_elem = soup.select_one(selector)
+                if content_elem:
+                    text = content_elem.get_text().strip()
+                    if len(text) > 100:
+                        logger.debug(f"✅ BeautifulSoup extracted {len(text)} chars with selector: {selector}")
+                        return text
+            
+            # Fallback: get all paragraph text
+            paragraphs = soup.find_all('p')
+            text = ' '.join([p.get_text().strip() for p in paragraphs if p.get_text().strip()])
+            
+            if len(text) > 100:
+                logger.debug(f"✅ BeautifulSoup extracted {len(text)} chars from paragraphs")
+                return text
+                
+        except ImportError:
+            logger.debug("BeautifulSoup not available")
+        except Exception as e:
+            logger.debug(f"BeautifulSoup failed: {e}")
+        
+        return ""
+    
+    def _try_simple_requests(self, url: str) -> str:
+        """Simple text extraction using requests only."""
+        try:
+            import requests
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            }
+            
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+            
+            # Very basic HTML tag removal
+            text = re.sub(r'<[^>]+>', '', response.text)
+            text = re.sub(r'\s+', ' ', text).strip()
+            
+            if len(text) > 200:
+                logger.debug(f"✅ Simple requests extracted {len(text)} chars")
+                return text
+                
+        except Exception as e:
+            logger.debug(f"Simple requests failed: {e}")
+        
+        return ""
+    
+    def _clean_content(self, content: str) -> str:
+        """Clean and normalize extracted content."""
+        if not content:
+            return ""
+        
+        # Remove excessive whitespace
+        content = re.sub(r'\s+', ' ', content).strip()
+        
+        # Remove common junk patterns
+        junk_patterns = [
+            r'Cookie Policy.*?(?=\.|$)',
+            r'Privacy Policy.*?(?=\.|$)',
+            r'Subscribe to.*?(?=\.|$)',
+            r'Sign up for.*?(?=\.|$)',
+            r'Advertisement.*?(?=\.|$)',
+            r'Loading.*?(?=\.|$)',
+            r'Share this.*?(?=\.|$)',
+            r'Follow us.*?(?=\.|$)'
+        ]
+        
+        for pattern in junk_patterns:
+            content = re.sub(pattern, '', content, flags=re.IGNORECASE)
+        
+        # Normalize whitespace again after cleaning
+        content = re.sub(r'\s+', ' ', content).strip()
+        
+        return content
+    
+    def clear_cache(self):
+        """Clear the content cache."""
+        self._cache.clear()
+        logger.debug("Content cache cleared")
+
+
+# =============================================================================
+# CONFIGURATION
+# =============================================================================
+
+import json
+import logging
+import os
+import re
+import time
+from dataclasses import dataclass
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional, Any, Tuple
+from pathlib import Path
+
+# External dependencies
+import tweepy
+
+# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -103,19 +306,87 @@ class Config:
 
 @dataclass
 class Article:
-    """Represents a news article."""
+    """Represents a news article with optional full content fetching."""
     title: str
     body: str
     url: str
     source: str = ""
     date_published: Optional[datetime] = None
+    _full_content: Optional[str] = None  # Cached full article content
+    _content_fetcher: Optional['FullContentFetcher'] = None  # Lazy-loaded fetcher
+    
+    def __init__(self, title: str, body: str, url: str, source: str = "", 
+                 date_published: Optional[datetime] = None, content_fetcher: Optional['FullContentFetcher'] = None):
+        self.title = title
+        self.body = body
+        self.url = url
+        self.source = source
+        self.date_published = date_published
+        self._full_content = None
+        self._content_fetcher = content_fetcher
+    
+    def get_full_content(self, force_refetch: bool = False) -> str:
+        """
+        Get the full article content from the URL.
+        
+        Args:
+            force_refetch: Whether to refetch even if cached content exists
+            
+        Returns:
+            Full article content, or falls back to EventRegistry body if fetching fails
+        """
+        # Return cached content if available and not forcing refetch
+        if self._full_content and not force_refetch:
+            return self._full_content
+        
+        # Initialize content fetcher if needed
+        if not self._content_fetcher:
+            self._content_fetcher = FullContentFetcher()
+        
+        # Try to fetch full content
+        self._full_content = self._content_fetcher.fetch_full_content(self.url)
+        
+        # Fall back to EventRegistry body if fetching failed
+        if not self._full_content:
+            logger.debug(f"Using EventRegistry body as fallback for: {self.url}")
+            self._full_content = self.body
+        
+        return self._full_content
+    
+    def get_best_content(self, max_length: Optional[int] = None) -> str:
+        """
+        Get the best available content (full content preferred, EventRegistry body as fallback).
+        
+        Args:
+            max_length: Maximum length to return (truncates if longer)
+            
+        Returns:
+            Best available article content
+        """
+        # Try full content first
+        full_content = self.get_full_content()
+        
+        # Use full content if it's substantially longer than EventRegistry body
+        if len(full_content) > len(self.body) * 1.5:
+            content = full_content
+            logger.debug(f"Using full content ({len(content)} chars) vs EventRegistry ({len(self.body)} chars)")
+        else:
+            content = self.body
+            logger.debug(f"Using EventRegistry content ({len(content)} chars)")
+        
+        # Truncate if requested
+        if max_length and len(content) > max_length:
+            content = content[:max_length].rsplit(' ', 1)[0] + "..."  # Truncate at word boundary
+        
+        return content
     
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> 'Article':
+    def from_dict(cls, data: Dict[str, Any], content_fetcher: Optional['FullContentFetcher'] = None) -> 'Article':
         """Create Article from dictionary with input validation.
         
         Args:
             data: Dictionary containing article data
+            content_fetcher: Optional content fetcher for full article content
             
         Returns:
             Article: Validated article object
@@ -140,7 +411,8 @@ class Article:
             body=data.get("body", data.get("summary", "")),
             url=url,
             source=cls._extract_source(data.get("source")),
-            date_published=cls._parse_date(data.get("dateTimePub", data.get("dateTime")))
+            date_published=cls._parse_date(data.get("dateTimePub", data.get("dateTime"))),
+            content_fetcher=content_fetcher
         )
     
     @staticmethod
@@ -337,58 +609,78 @@ class GeminiClient:
     
     def generate_catchy_headline(self, article: 'Article') -> str:
         """Generate a catchy, emoji-free headline for the article."""
+        # Get best available content (full content preferred)
+        article_content = article.get_best_content(max_length=2000)
+        
         prompt = f"""
-        Create a catchy, professional headline for this Bitcoin mining news article.
+        Create a compelling, newsworthy headline for this Bitcoin mining article.
         
         Original title: {article.title}
+        Article content: {article_content}
         
         Requirements:
-        - NO emojis or special characters
-        - Maximum 50 characters
-        - Professional and engaging tone
-        - Focus on the key news impact
-        - NO source attribution or "By [source]" text
-        - Suitable for Twitter/X
+        - NO emojis, hashtags, or special characters
+        - 60-80 characters maximum  
+        - Include specific numbers, percentages, or key facts when available
+        - Use action words like "surges", "drops", "reaches", "announces", "adopts"
+        - Focus on the actual news impact, not generic statements
+        - Examples of good headlines:
+          "Bitcoin Mining Difficulty Surges 7.3% to New Record High"
+          "Marathon Digital Announces 15,000 New ASIC Miners"
+          "Texas Bitcoin Miners Cut Power Usage During Heat Wave"
+        - NO generic phrases like "key development" or "industry impact"
         
         Return only the headline text, nothing else.
         """
         
         try:
+            logger.info("🎯 Generating catchy headline with Gemini...")
             response = self.model.generate_content(prompt.strip())
             
             headline = response.text.strip()
+            logger.info(f"✅ Generated headline: '{headline}'")
             # Ensure no emojis and length compliance
             headline = self._clean_headline(headline)
             return headline[:70] if len(headline) > 70 else headline
             
         except Exception as e:
+            logger.warning(f"❌ Gemini headline generation failed: {e}")
             # Fallback to cleaned original title
             return self._clean_headline(article.title)[:70]
     
     def generate_thread_summary(self, article: 'Article') -> str:
         """Generate a concise 3-point summary that fits with headline in one tweet."""
+        # Get best available content (full content preferred)
+        article_content = article.get_best_content(max_length=3000)
+        
         prompt = f"""
-        Create a concise 3-point summary for this Bitcoin mining article that fits in one tweet.
+        Create a specific 3-point summary for this Bitcoin mining article.
         
         Title: {article.title}
-        Content: {article.body[:1000]}...
+        Content: {article_content}
         
         Requirements:
-        - TOTAL summary must be under 180 characters (to fit with headline)
-        - DO NOT repeat information from the headline
-        - Focus on NEW details not in the headline
-        - Each point 40-50 characters max
-        - Professional tone, no emojis
-        - Format: "Key point • Second point • Third point" (use bullet separators)
-        - NO numbering (1., 2., 3.) - just bullet points
+        - TOTAL summary must be under 180 characters (to fit with headline in one tweet)
+        - Include specific details like numbers, dates, company names, locations
+        - Each point should be 50-60 characters maximum
+        - Focus on concrete facts, not vague statements
+        - Good examples:
+          "Hashrate increased 12% this month • 5,000 new S19 XP miners deployed • Expected ROI within 8 months"
+          "Facility will house 50,000 miners • Located in West Texas • Operations start Q2 2024"
+        - BAD examples (too vague):
+          "Key mining development • Industry impact expected • Details in article"
+        - Format: "Specific fact • Another specific fact • Third specific fact"
+        - NO generic phrases like "industry impact", "key development", "details in article"
         
-        Return only the formatted summary line with bullet separators, nothing else.
+        Return only the formatted summary with bullet separators, nothing else.
         """
         
         try:
+            logger.info("🎯 Generating thread summary with Gemini...")
             response = self.model.generate_content(prompt.strip())
             
             summary_text = response.text.strip()
+            logger.info(f"✅ Generated summary: '{summary_text}'")
             
             # Clean up any numbering that might have been added
             import re
@@ -406,6 +698,7 @@ class GeminiClient:
             return summary_text
             
         except Exception as e:
+            logger.warning(f"❌ Gemini summary generation failed: {e}")
             # Fallback to simple summary
             return f"Key mining development • Industry impact expected • Details in full article"
     
@@ -471,8 +764,12 @@ class TextProcessor:
         """Create a complete tweet thread with catchy headline, summary, and URL."""
         thread = []
         
+        logger.info(f"🧵 Creating tweet thread for: {article.title[:100]}...")
+        logger.info(f"🤖 Gemini client available: {gemini_client is not None}")
+        
         if gemini_client:
             try:
+                logger.info("🎯 Using Gemini-powered thread generation...")
                 # Generate Gemini-powered content
                 headline = gemini_client.generate_catchy_headline(article)
                 summary_text = gemini_client.generate_thread_summary(article)
@@ -480,12 +777,15 @@ class TextProcessor:
                 # Try to combine headline and summary in first tweet
                 if summary_text:
                     combined_text = f"{headline}\n\n{summary_text}"
+                    logger.info(f"📏 Combined text length: {len(combined_text)} chars")
                     
                     if len(combined_text) <= 280:
                         # Fits in one tweet - perfect!
+                        logger.info("✅ Using combined format (headline + summary)")
                         thread.append(combined_text)
                     else:
                         # Too long - separate headline and summary
+                        logger.info("📏 Text too long, using separate tweets")
                         thread.append(headline)
                         
                         # Check if summary fits in second tweet
@@ -496,23 +796,22 @@ class TextProcessor:
                             thread.append(summary_text[:277] + "...")
                 else:
                     # No summary generated, just use headline
+                    logger.info("⚠️ No summary generated, using headline only")
                     thread.append(headline)
                 
                 # Final tweet: URL only
                 if article.url:
                     thread.append(article.url)
                 
-                # Final tweet: URL only
-                if article.url:
-                    thread.append(article.url)
-                
+                logger.info(f"✅ Generated {len(thread)}-tweet thread with Gemini")
                 return thread
                 
             except Exception as e:
-                logger.warning(f"Gemini content generation failed: {e}")
+                logger.warning(f"❌ Gemini content generation failed: {e}")
                 # Fall back to simple format if Gemini fails
         
         # Fallback: Simple format without Gemini
+        logger.info("🔄 Using fallback simple tweet format")
         return TextProcessor._create_simple_tweet(article)
     
     @staticmethod
@@ -694,7 +993,8 @@ class NewsAPI:
             unique_articles = self._deduplicate_articles(all_articles)
             
             # Convert to Article objects and filter for Bitcoin content
-            articles = [Article.from_dict(data) for data in unique_articles[:max_articles]]
+            content_fetcher = FullContentFetcher()  # Create content fetcher instance
+            articles = [Article.from_dict(data, content_fetcher) for data in unique_articles[:max_articles]]
             filtered_articles = self._filter_bitcoin_articles(articles)
             
             # Add freshness information
@@ -900,11 +1200,14 @@ class BitcoinMiningBot:
         if self._gemini is None:
             if self.config.gemini_api_key:
                 try:
+                    logger.info("Attempting to initialize Gemini client...")
                     self._gemini = GeminiClient(self.config.gemini_api_key)
+                    logger.info("✅ Gemini client initialized successfully")
                 except Exception as e:
-                    logger.warning(f"Failed to initialize Gemini client: {e}")
+                    logger.warning(f"❌ Failed to initialize Gemini client: {e}")
                     self._gemini = None
             else:
+                logger.info("⚠️  No Gemini API key provided - using fallback mode")
                 self._gemini = None
         return self._gemini
     
