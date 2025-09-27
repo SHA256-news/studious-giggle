@@ -637,14 +637,14 @@ class TwitterAPI:
 
 
 class NewsAPI:
-    """Simplified EventRegistry/NewsAPI client."""
+    """Enhanced EventRegistry/NewsAPI client with fresh content fetching."""
     
     def __init__(self, config: Config):
         self.config = config
         self._client = None
     
     def fetch_articles(self, max_articles: int = 20) -> List[Article]:
-        """Fetch Bitcoin mining articles."""
+        """Fetch fresh Bitcoin mining articles using multiple EventRegistry endpoints."""
         try:
             # Lazy import and initialization
             if self._client is None:
@@ -654,34 +654,114 @@ class NewsAPI:
                     verboseOutput=False
                 )
             
-            # Create query for Bitcoin mining articles using complex query syntax
-            from eventregistry import QueryArticlesIter
+            # Strategy 1: Try to get very recent articles (last 60 minutes)
+            recent_articles = self._fetch_minute_stream_articles(max_articles // 2)
+            logger.info(f"Fetched {len(recent_articles)} recent articles (last 60 minutes)")
             
-            # Use the correct EventRegistry API syntax as shown in sandbox
-            query = {
-                "$query": {
-                    "keyword": "bitcoin mining",
-                    "keywordLoc": "body"
-                },
-                "$filter": {
-                    "forceMaxDataTimeWindow": str(self.config.article_lookback_days)
-                }
-            }
+            # Strategy 2: Get additional articles from last 24 hours
+            daily_articles = self._fetch_daily_articles(max_articles - len(recent_articles))
+            logger.info(f"Fetched {len(daily_articles)} daily articles (last 24 hours)")
             
-            q = QueryArticlesIter.initWithComplexQuery(query)
-            
-            # Fetch articles using the iterator
-            articles_data = []
-            for article in q.execQuery(self._client, maxItems=max_articles):
-                articles_data.append(article)
+            # Combine and deduplicate
+            all_articles = recent_articles + daily_articles
+            unique_articles = self._deduplicate_articles(all_articles)
             
             # Convert to Article objects and filter for Bitcoin content
-            articles = [Article.from_dict(data) for data in articles_data]
-            return self._filter_bitcoin_articles(articles)
+            articles = [Article.from_dict(data) for data in unique_articles[:max_articles]]
+            filtered_articles = self._filter_bitcoin_articles(articles)
+            
+            # Add freshness information
+            for article in filtered_articles:
+                self._add_freshness_info(article)
+            
+            # Sort by freshness (most recent first)
+            filtered_articles.sort(key=lambda a: getattr(a, 'hours_old', 999))
+            
+            logger.info(f"Final result: {len(filtered_articles)} fresh Bitcoin mining articles")
+            return filtered_articles
             
         except Exception as e:
             logger.error(f"Failed to fetch articles: {e}")
             return []
+    
+    def _fetch_minute_stream_articles(self, max_items: int = 10) -> List[dict]:
+        """Fetch very recent articles using minuteStreamArticles endpoint."""
+        try:
+            import requests
+            
+            url = "https://eventregistry.org/api/v1/minuteStreamArticles"
+            
+            # Use the exact query structure from the provided example
+            query_data = {
+                "query": {
+                    "$query": {
+                        "keyword": "bitcoin mining",
+                        "keywordLoc": "body"
+                    }
+                },
+                "recentActivityArticlesUpdatesAfterMinsAgo": 60,
+                "apiKey": self.config.eventregistry_api_key
+            }
+            
+            response = requests.post(url, json=query_data, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            articles = data.get('articles', {}).get('results', [])
+            return articles[:max_items]
+            
+        except Exception as e:
+            logger.warning(f"Failed to fetch minute stream articles: {e}")
+            return []
+    
+    def _fetch_daily_articles(self, max_items: int = 10) -> List[dict]:
+        """Fetch recent articles using getArticles endpoint with date sorting."""
+        try:
+            import requests
+            
+            url = "https://eventregistry.org/api/v1/article/getArticles"
+            
+            # Use the exact query structure from the provided example  
+            query_data = {
+                "query": {
+                    "$query": {
+                        "keyword": "bitcoin mining",
+                        "keywordLoc": "body"
+                    },
+                    "$filter": {
+                        "forceMaxDataTimeWindow": "1"  # Last 1 day for freshness
+                    }
+                },
+                "resultType": "articles",
+                "articlesSortBy": "date",  # Sort by most recent first
+                "includeConceptSynonyms": True,
+                "includeConceptTrendingScore": True,
+                "apiKey": self.config.eventregistry_api_key
+            }
+            
+            response = requests.post(url, json=query_data, timeout=30)
+            response.raise_for_status()
+            
+            data = response.json()
+            articles = data.get('articles', {}).get('results', [])
+            return articles[:max_items]
+            
+        except Exception as e:
+            logger.warning(f"Failed to fetch daily articles: {e}")
+            return []
+    
+    def _deduplicate_articles(self, articles: List[dict]) -> List[dict]:
+        """Remove duplicate articles based on URL."""
+        seen_urls = set()
+        unique_articles = []
+        
+        for article in articles:
+            url = article.get('url', '')
+            if url and url not in seen_urls:
+                seen_urls.add(url)
+                unique_articles.append(article)
+        
+        return unique_articles
     
     def _add_freshness_info(self, article: 'Article') -> None:
         """Add precise freshness information to article for smart prefix selection."""
