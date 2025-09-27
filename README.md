@@ -1,6 +1,6 @@
 # Bitcoin Mining News Twitter Bot
 
-**Elegant, production-ready Twitter bot that automatically fetches Bitcoin mining news and posts to Twitter/X with sophisticated rate limiting and comprehensive error handling.**
+**Elegant, production-ready Twitter bot that automatically fetches Bitcoin mining news and posts AI-enhanced 3-tweet threads to Twitter/X with Gemini-generated headlines and summaries, featuring sophisticated rate limiting and comprehensive error handling.**
 
 ## 🏗️ Elegant Architecture
 
@@ -23,8 +23,9 @@
 
 ### Smart News Processing
 - **Bitcoin-focused filtering**: Advanced keyword matching for relevant mining content
-- **Dynamic tweet generation**: Engaging prefixes (🚨 BREAKING, 📢 JUST IN, ⚡ NEWS, 🔥 HOT)
-- **Character optimization**: Perfect Twitter formatting with intelligent URL handling
+- **AI-enhanced threading**: 3-tweet threads with Gemini-generated headlines and summaries
+- **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
+- **Thread structure**: Headline → 3-point summary → URL (always in final tweet)
 - **Content deduplication**: Tracks posted articles to prevent repeats
 
 ### Production-Grade Reliability
@@ -65,6 +66,7 @@ Set these as GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
+- `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
 
 ## 🛠️ Usage
 
@@ -77,7 +79,7 @@ python bot.py
 python bot.py --diagnose
 python tools.py diagnose
 
-# Preview next tweet
+# Preview next thread
 python tools.py preview
 
 # View article queue
@@ -235,8 +237,9 @@ python tests/test_bot.py && python tests/test_integration.py
 4. All tests must pass before committing
 
 ### API Dependencies
-- **Twitter API v2**: For posting tweets
+- **Twitter API v2**: For posting tweets and thread replies
 - **EventRegistry (NewsAPI.ai)**: For fetching Bitcoin mining news
+- **Google Gemini API**: For AI-generated headlines and 3-point summaries
 - **Python 3.10+**: Core runtime environment
 
 ## 📈 Roadmap

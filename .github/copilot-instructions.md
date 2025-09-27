@@ -2,13 +2,13 @@
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
-Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X with AI-enhanced headlines and intelligent image attachments. It runs every 90 minutes via GitHub Actions with sophisticated rate limiting, queue management, and comprehensive error handling.
+Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X as AI-enhanced 3-tweet threads with Gemini-generated headlines and summaries. It runs every 90 minutes via GitHub Actions with sophisticated rate limiting, queue management, and comprehensive error handling.
 
 ## Elegant Architecture Overview
 
 The bot now uses an **elegant, consolidated architecture** with clear separation of concerns:
 
-- **`core.py`**: Complete core functionality (Config, Storage, API clients, TimeManager, TextProcessor)
+- **`core.py`**: Complete core functionality (Config, Storage, API clients, GeminiClient, TimeManager, TextProcessor)
 - **`bot.py`**: Main entry point with backward compatibility layer
 - **`tools.py`**: Essential management tools (preview, queue, clean, diagnose)
 - **`tests/test_bot.py`**: Core functionality tests (9 tests)
@@ -34,7 +34,7 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - **All tests organized**: All test files now in `tests/` directory for clean structure
 
 ### Essential Tools (New Consolidated Interface)
-- **Preview next tweet**: `python tools.py preview` -- shows exact tweet text with character count
+- **Preview next thread**: `python tools.py preview` -- shows complete 3-tweet thread structure with character counts
 - **Simple queue view**: `python tools.py queue` -- clean list of queued articles  
 - **Clean queue**: `python tools.py clean` -- interactive removal of unwanted content
 - **Full diagnostics**: `python tools.py diagnose` -- comprehensive bot health check
@@ -46,9 +46,10 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 ## Core Features (Simplified & Elegant)
 
 ### Smart Tweet Generation
-- **Dynamic prefixes**: Engaging emojis (🚨 BREAKING:, 📢 JUST IN:, ⚡ NEWS:, 🔥 HOT:)
-- **Intelligent text processing**: Automatic title cleanup and optimization
-- **Character limit compliance**: Perfect Twitter formatting with URL handling
+- **AI-enhanced threads**: 3-tweet structure with Gemini-generated headlines and summaries
+- **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
+- **Thread structure**: Headline → 3-point summary → URL (always in final tweet)
+- **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 - **Content deduplication**: Tracks posted articles to prevent repeats
 
 ### Robust Article Management
@@ -83,8 +84,9 @@ The bot requires these GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token  
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
+- `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
 
-**Note**: Advanced features like Gemini AI and image attachments have been streamlined away in favor of elegant simplicity and reliability.
+**Note**: With Gemini API key, the bot generates AI-enhanced thread content. Without it, it falls back to simple article formatting.
 
 Without these keys, the bot will show clear error messages explaining what's missing.
 
@@ -134,10 +136,11 @@ Since this repository doesn't have API keys configured by default:
 
 **Removed complexity**: Eliminated `api_clients.py`, `utils.py`, `config.py`, `tweet_poster.py`, `gemini_client.py`, image modules, and various diagnostic scripts - all consolidated into elegant core architecture.
 
-### Key Dependencies (Streamlined)
-- `tweepy>=4.14.0` - Twitter API client
+### Key Dependencies (Core)
+- `tweepy>=4.14.0` - Twitter API client  
 - `eventregistry>=9.1` - News article fetching
-- **Note**: Removed optional dependencies (google-genai, Pillow) for elegant simplicity
+- `google-generativeai>=0.8.0` - Gemini AI integration for enhanced content
+- **Note**: All dependencies are required for full functionality
 
 ### Important Files (Simplified)
 - `requirements.txt` - Python dependencies (streamlined)
