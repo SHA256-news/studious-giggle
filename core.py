@@ -365,8 +365,8 @@ class GeminiClient:
             # Fallback to cleaned original title
             return self._clean_headline(article.title)[:70]
     
-    def generate_thread_summary(self, article: 'Article') -> list[str]:
-        """Generate a 3-point summary thread for the article."""
+    def generate_thread_summary(self, article: 'Article') -> str:
+        """Generate a concise 3-point summary that fits with headline in one tweet."""
         prompt = f"""
         Create a concise 3-point summary for this Bitcoin mining article that fits in one tweet.
         
@@ -374,31 +374,40 @@ class GeminiClient:
         Content: {article.body[:1000]}...
         
         Requirements:
-        - TOTAL summary must be under 200 characters (all 3 points combined)
+        - TOTAL summary must be under 180 characters (to fit with headline)
         - DO NOT repeat information from the headline
         - Focus on NEW details not in the headline
-        - Each point 40-60 characters max
+        - Each point 40-50 characters max
         - Professional tone, no emojis
-        - Format: "1. Point • 2. Point • 3. Point"
+        - Format: "Key point • Second point • Third point" (use bullet separators)
+        - NO numbering (1., 2., 3.) - just bullet points
         
-        Return only the formatted summary line, nothing else.
+        Return only the formatted summary line with bullet separators, nothing else.
         """
         
         try:
             response = self.model.generate_content(prompt.strip())
             
             summary_text = response.text.strip()
-            # Parse the numbered points
-            points = self._parse_summary_points(summary_text)
-            return points[:3]  # Ensure exactly 3 points
+            
+            # Clean up any numbering that might have been added
+            import re
+            # Remove number prefixes like "1. ", "2. ", etc.
+            summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
+            # Replace line breaks with bullet separators if needed
+            summary_text = re.sub(r'\n+', ' • ', summary_text)
+            # Clean up multiple bullets
+            summary_text = re.sub(r'\s*•\s*', ' • ', summary_text)
+            
+            # Ensure it's not too long
+            if len(summary_text) > 180:
+                summary_text = summary_text[:177] + "..."
+                
+            return summary_text
             
         except Exception as e:
-            # Fallback to simple bullet points from title
-            return [
-                f"1. {article.title[:180]}",
-                "2. This development impacts Bitcoin mining operations",
-                "3. More details in the full article"
-            ]
+            # Fallback to simple summary
+            return f"Key mining development • Industry impact expected • Details in full article"
     
     def _clean_headline(self, text: str) -> str:
         """Remove emojis and clean headline text."""
@@ -466,14 +475,32 @@ class TextProcessor:
             try:
                 # Generate Gemini-powered content
                 headline = gemini_client.generate_catchy_headline(article)
-                summary_points = gemini_client.generate_thread_summary(article)
+                summary_text = gemini_client.generate_thread_summary(article)
                 
-                # Tweet 1: Catchy headline (no URL)
-                thread.append(headline)
+                # Try to combine headline and summary in first tweet
+                if summary_text:
+                    combined_text = f"{headline}\n\n{summary_text}"
+                    
+                    if len(combined_text) <= 280:
+                        # Fits in one tweet - perfect!
+                        thread.append(combined_text)
+                    else:
+                        # Too long - separate headline and summary
+                        thread.append(headline)
+                        
+                        # Check if summary fits in second tweet
+                        if len(summary_text) <= 280:
+                            thread.append(summary_text)
+                        else:
+                            # Summary too long, truncate with ellipsis
+                            thread.append(summary_text[:277] + "...")
+                else:
+                    # No summary generated, just use headline
+                    thread.append(headline)
                 
-                # Tweets 2-4: Summary points (no URL)
-                for point in summary_points:
-                    thread.append(point)
+                # Final tweet: URL only
+                if article.url:
+                    thread.append(article.url)
                 
                 # Final tweet: URL only
                 if article.url:
@@ -482,8 +509,8 @@ class TextProcessor:
                 return thread
                 
             except Exception as e:
+                logger.warning(f"Gemini content generation failed: {e}")
                 # Fall back to simple format if Gemini fails
-                pass
         
         # Fallback: Simple format without Gemini
         return TextProcessor._create_simple_tweet(article)
