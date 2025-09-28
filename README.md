@@ -358,12 +358,19 @@ This bot underwent extensive refactoring to achieve its current elegant state:
 - Maintained full backward compatibility
 - Achieved 89% file reduction while improving functionality
 
-**Phase 4: AI Content Enhancement (Latest)**
+**Phase 4: AI Content Enhancement**
 - Implemented native Gemini URL context using Gemini 2.0 Flash Exp model
 - Added anti-repetition system ensuring complementary headline/summary content
 - Enhanced AI prompts with specific examples and quality instructions
 - Comprehensive fallback system with URL context metadata logging
 - Improved summary formatting with line-break bullet points for better readability
+
+**Phase 5: Rate Limiting & Production Hardening (LATEST)**
+- **Enhanced Twitter API error handling** with specific exception detection
+- **Improved 429 error management** preventing GitHub Actions failures  
+- **Progressive cooldown system** with detailed logging and status reporting
+- **Daily briefing system integration** with comprehensive article logging
+- **Production monitoring** with enhanced diagnostics and troubleshooting tools
 
 ### Key Technical Improvements
 
@@ -371,7 +378,9 @@ This bot underwent extensive refactoring to achieve its current elegant state:
 - Comprehensive try-catch blocks throughout codebase
 - Graceful degradation for network failures
 - Atomic file operations preventing data corruption
-- Progressive cooldown system for rate limiting
+- **Enhanced rate limiting with specific 429 error handling (IMPROVED!)**
+- Progressive cooldown system (2h → 4h → 8h → 24h)
+- Detailed logging for troubleshooting and monitoring
 
 **Performance Optimizations**
 - Lazy loading of heavy dependencies (80% faster startup)
@@ -409,10 +418,17 @@ Symptoms: "Missing required environment variables"
 Solution: Configure GitHub repository secrets as documented
 ```
 
-**Rate Limiting**
+**Rate Limiting (ENHANCED)**
 ```
-Symptoms: "429 Too Many Requests", "Rate limit cooldown active"  
-Solution: Bot handles automatically with progressive cooldowns
+Symptoms: "429 Too Many Requests", "Rate limit cooldown active"
+Solution: Bot now has enhanced rate limiting with specific error detection
+
+Features:
+- Immediate 429 error detection and cooldown activation
+- Detailed logging shows cooldown end times
+- Progressive cooldowns prevent repeated violations  
+- Clear status messages in GitHub Actions logs
+- Automatic recovery when cooldown expires
 ```
 
 **No Articles Found**
@@ -475,7 +491,8 @@ python tests/test_bot.py && python tests/test_integration.py
 - Comprehensive test suite with 100% coverage  
 - Production-ready reliability and error handling
 - GitHub Actions automation with rate limiting
-- **Daily Bitcoin Mining News Briefing System (NEW!)** 
+- **Enhanced rate limiting system with specific 429 error handling (NEW!)**
+- **Daily Bitcoin Mining News Briefing System** 
 - **AI-powered Deep Research integration with Google Agentspace API**
 - **Comprehensive article logging and 30-day historical analysis**
 - **Professional briefing generation with miner-focused insights**
