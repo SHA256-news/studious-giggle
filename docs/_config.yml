@@ -1,0 +1,79 @@
+# GitHub Pages Configuration for Bitcoin Mining News Briefings
+title: "Bitcoin Mining News Briefings"
+description: "Daily AI-powered analysis and insights for Bitcoin mining professionals"
+author: "Bitcoin Mining News Bot"
+email: "contact@sha256-news.com"
+baseurl: "/studious-giggle"
+url: "https://sha256-news.github.io"
+
+# GitHub Pages settings
+repository: "SHA256-news/studious-giggle"
+github_username: "SHA256-news"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude files from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Collections for briefings
+collections:
+  briefings:
+    output: true
+    permalink: /briefings/:year/:month/:day/
+
+# Default values
+defaults:
+  - scope:
+      path: ""
+      type: "briefings"
+    values:
+      layout: "briefing"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Site settings
+timezone: UTC
+show_excerpts: false
+future: false
+
+# Custom variables
+briefing:
+  archive_limit: 30
+  show_technical_analysis: true
+  show_market_data: true
+  
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Latest Briefing"
+    url: "/latest/"
+  - title: "Archive"
+    url: "/archive/"
+  - title: "About"
+    url: "/about/"
+
+# Social links
+social:
+  twitter: "https://twitter.com/BitcoinMiningNews"
+  github: "https://github.com/SHA256-news/studious-giggle"
+  
+# Analytics (optional)
+# google_analytics: "UA-XXXXXXXXX-X"

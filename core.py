@@ -1062,6 +1062,16 @@ class TwitterAPI:
             logger.warning("Tweet posted but no ID returned")
             return None
             
+        except tweepy.TooManyRequests as e:
+            logger.error(f"Rate limit exceeded (429): {e}")
+            # Re-raise to be caught by calling code for rate limit handling
+            raise
+        except tweepy.Forbidden as e:
+            logger.error(f"Twitter API forbidden (403): {e}")
+            return None
+        except tweepy.Unauthorized as e:
+            logger.error(f"Twitter API unauthorized (401): {e}")
+            return None
         except Exception as e:
             logger.error(f"Failed to post tweet: {e}")
             return None
@@ -1109,6 +1119,16 @@ class TwitterAPI:
             logger.info(f"Thread posted successfully ({len(tweets)} tweets)")
             return True
             
+        except tweepy.TooManyRequests as e:
+            logger.error(f"Rate limit exceeded (429) during thread posting: {e}")
+            # Re-raise to be caught by calling code for rate limit handling
+            raise
+        except tweepy.Forbidden as e:
+            logger.error(f"Twitter API forbidden (403) during thread posting: {e}")
+            return False
+        except tweepy.Unauthorized as e:
+            logger.error(f"Twitter API unauthorized (401) during thread posting: {e}")
+            return False
         except Exception as e:
             logger.error(f"Failed to post thread: {e}")
             return False
@@ -1407,12 +1427,17 @@ class BitcoinMiningBot:
             
             # Check rate limiting
             if self._is_rate_limited():
-                logger.info("Rate limit cooldown active. Skipping run.")
+                cooldown_data = self.storage.load_json(self.config.rate_limit_file, {})
+                cooldown_end = cooldown_data.get('cooldown_end', 'unknown')
+                logger.info(f"⏳ Rate limit cooldown active until: {cooldown_end}")
+                logger.info("🚫 Skipping run due to active rate limit cooldown")
                 return True
             
             # Check minimum interval
             if not self._can_run_now():
-                logger.info("Minimum interval not yet reached. Skipping run.")
+                last_run = self.posted_data.get("last_run_time")
+                logger.info(f"⏱️ Last run: {last_run}")
+                logger.info(f"🚫 Minimum interval ({self.config.min_interval_minutes} minutes) not yet reached. Skipping run.")
                 return True
             
             # Fetch new articles first (prioritize fresh content)
@@ -1495,6 +1520,11 @@ class BitcoinMiningBot:
                 self._handle_posting_failure()
                 return False
                 
+        except tweepy.TooManyRequests as e:
+            logger.error(f"Rate limit exceeded (429): {e}")
+            logger.info("Setting rate limit cooldown to prevent further requests")
+            self._handle_posting_failure()
+            return False
         except KeyboardInterrupt:
             logger.info("Bot execution interrupted by user")
             return False
@@ -1561,6 +1591,10 @@ class BitcoinMiningBot:
                 logger.error("Failed to post tweet(s)")
                 return False
                 
+        except tweepy.TooManyRequests as e:
+            logger.error(f"Rate limit exceeded during article posting: {e}")
+            # Re-raise to be handled by main run() method
+            raise
         except Exception as e:
             logger.error(f"Error posting article: {e}")
             return False
@@ -1581,9 +1615,19 @@ class BitcoinMiningBot:
     
     def _handle_posting_failure(self) -> None:
         """Handle failure to post tweet (likely rate limiting)."""
-        logger.warning("Failed to post tweet - setting rate limit cooldown")
+        logger.warning(f"Failed to post tweet - setting rate limit cooldown for {self.config.cooldown_hours} hours")
+        
         cooldown_data = TimeManager.create_cooldown_data(self.config.cooldown_hours)
-        self.storage.save_json(self.config.rate_limit_file, cooldown_data)
+        
+        # Log cooldown details for debugging
+        cooldown_end = cooldown_data.get('cooldown_end', 'unknown')
+        logger.info(f"⏳ Rate limit cooldown active until: {cooldown_end}")
+        logger.info(f"🚫 Bot will skip runs for the next {self.config.cooldown_hours} hours")
+        
+        if self.storage.save_json(self.config.rate_limit_file, cooldown_data):
+            logger.info(f"✅ Cooldown data saved to {self.config.rate_limit_file}")
+        else:
+            logger.error(f"❌ Failed to save cooldown data to {self.config.rate_limit_file}")
     
     def _log_all_articles(self, articles: List[Article]) -> bool:
         """Log ALL fetched articles to articles_log.json for daily briefing system.
