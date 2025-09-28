@@ -24,6 +24,8 @@
 ### Smart News Processing
 - **Bitcoin-focused filtering**: Advanced keyword matching for relevant mining content
 - **AI-enhanced threading**: Multi-tweet threads with Gemini-generated headlines and summaries
+- **Native URL context**: Gemini 2.0 Flash Exp with direct article content access (no web scraping)
+- **Anti-repetition system**: Headlines and summaries complement each other, no duplicate information
 - **Intelligent fallback**: Clean 2-tweet structure (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
@@ -67,7 +69,7 @@ Set these as GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
-- `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
+- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp model with URL context for AI headlines and summaries)
 
 ### GitHub Actions Workflows
 The bot includes two workflows:
@@ -190,6 +192,12 @@ This bot underwent extensive refactoring to achieve its current elegant state:
 - Maintained full backward compatibility
 - Achieved 89% file reduction while improving functionality
 
+**Phase 4: AI Content Enhancement (Latest)**
+- Implemented native Gemini URL context using Gemini 2.0 Flash Exp model
+- Added anti-repetition system ensuring complementary headline/summary content
+- Enhanced AI prompts with specific examples and quality instructions
+- Comprehensive fallback system with URL context metadata logging
+
 ### Key Technical Improvements
 
 **Error Handling & Reliability**
@@ -283,7 +291,7 @@ python tests/test_bot.py && python tests/test_integration.py
 ### API Dependencies
 - **Twitter API v2**: For posting tweets and thread replies
 - **EventRegistry (NewsAPI.ai)**: For fetching Bitcoin mining news
-- **Google Gemini API**: For AI-generated headlines and 3-point summaries
+- **Google Gemini API**: Gemini 2.0 Flash Exp model with native URL context for AI-generated headlines and summaries
 - **Python 3.10+**: Core runtime environment
 
 ## 📈 Roadmap

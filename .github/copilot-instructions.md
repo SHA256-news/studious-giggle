@@ -48,11 +48,36 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 
 ### Smart Tweet Generation
 - **AI-enhanced threads**: Multi-tweet structure with Gemini-generated headlines and summaries
+- **Native URL context**: Gemini 2.0 Flash Exp with direct article content access via Google's servers
+- **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
+- **Enhanced AI prompts**: Specific examples and instructions for quality content generation
 - **Intelligent fallback**: 2-tweet threads (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 - **Content deduplication**: Tracks posted articles to prevent repeats
+
+### Technical Implementation Details
+
+**Gemini URL Context Implementation**:
+- Uses `tools=[{"url_context": {}}]` parameter in `generate_content()` calls
+- Gemini 2.0 Flash Exp model with native URL content fetching
+- Comprehensive fallback system: URL context → EventRegistry content → generic fallback
+- URL context metadata logging for debugging and validation
+- Two-tier processing: `_process_headline_response()` and `_process_summary_response()` methods
+
+**Anti-Repetition Logic Flow**:
+1. Generate headline first using URL context
+2. Pass headline to summary generation to avoid duplication
+3. Summary prompt explicitly includes headline and instructs "DO NOT REPEAT"
+4. Enhanced prompts with specific examples of good/bad complementary content
+5. Result: Maximum information density with zero redundancy
+
+**Content Quality Enhancements**:
+- Specific character limits: Headlines 60-80 chars, summaries <180 chars
+- Professional prefixes instead of emoji decorations
+- Action-oriented language with specific facts/numbers when available
+- Multi-level validation and text processing for consistency
 
 ### Robust Article Management
 - **Bitcoin-focused filtering**: Advanced keyword matching for relevant content
@@ -86,9 +111,25 @@ The bot requires these GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token  
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
-- `GEMINI_API_KEY` - Google Gemini API key (for AI-generated headlines and summaries)
+- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp with native URL context for AI headlines and summaries)
 
-**Note**: With Gemini API key, the bot generates AI-enhanced multi-tweet threads. Without it, it falls back to clean 2-tweet threads (headline → URL).
+**Note**: With Gemini API key, the bot generates AI-enhanced multi-tweet threads using advanced URL context and anti-repetition systems. Without it, it falls back to clean 2-tweet threads (headline → URL).
+
+### Advanced AI Content Generation
+
+**Native URL Context (Latest Enhancement)**:
+- Uses Gemini 2.0 Flash Exp model with built-in URL context tool
+- Google's servers fetch article content directly (no manual web scraping)
+- Eliminates bot detection and content extraction issues
+- Enhanced content quality with full article access
+- URL context metadata logging for debugging
+
+**Anti-Repetition System**:
+- Headlines generated first, then passed to summary generation
+- Summary explicitly instructed to avoid repeating headline information
+- Enhanced prompts with specific do/don't examples
+- Results in complementary content: headline focuses on main story, summary provides additional details
+- Example: Headline "Marathon Digital Deploys 5,000 New Miners" → Summary "Located in West Texas • Q2 2024 start • 8-month ROI target"
 
 Without these keys, the bot will show clear error messages explaining what's missing.
 
@@ -141,8 +182,10 @@ Since this repository doesn't have API keys configured by default:
 ### Key Dependencies (Core)
 - `tweepy>=4.14.0` - Twitter API client  
 - `eventregistry>=9.1` - News article fetching
-- `google-genai>=0.1.0` - Gemini AI integration for enhanced content
-- **Note**: All dependencies are required for full functionality
+- `google-generativeai>=0.8.0` - Gemini 2.0 Flash Exp with native URL context
+- `beautifulsoup4>=4.12.0` - HTML parsing for fallback content extraction
+- `newspaper3k>=0.2.8` - Article extraction fallback when URL context unavailable
+- **Note**: All dependencies are required for full functionality including advanced AI content generation
 
 ### Important Files (Simplified)
 - `requirements.txt` - Python dependencies (streamlined)
