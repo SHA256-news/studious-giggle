@@ -51,6 +51,7 @@ The bot now uses an **elegant, consolidated architecture** with clear separation
 - **Native URL context**: Gemini 2.0 Flash Exp with direct article content access via Google's servers
 - **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
 - **Enhanced AI prompts**: Specific examples and instructions for quality content generation
+- **Professional formatting**: Line-break bullet points for improved readability
 - **Intelligent fallback**: 2-tweet threads (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
@@ -129,7 +130,10 @@ The bot requires these GitHub repository secrets:
 - Summary explicitly instructed to avoid repeating headline information
 - Enhanced prompts with specific do/don't examples
 - Results in complementary content: headline focuses on main story, summary provides additional details
-- Example: Headline "Marathon Digital Deploys 5,000 New Miners" → Summary "Located in West Texas • Q2 2024 start • 8-month ROI target"
+- Example: Headline "Marathon Digital Deploys 5,000 New Miners" → Summary:
+  "• Located in West Texas
+  • Q2 2024 start
+  • 8-month ROI target"
 
 Without these keys, the bot will show clear error messages explaining what's missing.
 

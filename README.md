@@ -26,6 +26,7 @@
 - **AI-enhanced threading**: Multi-tweet threads with Gemini-generated headlines and summaries
 - **Native URL context**: Gemini 2.0 Flash Exp with direct article content access (no web scraping)
 - **Anti-repetition system**: Headlines and summaries complement each other, no duplicate information
+- **Professional formatting**: Line-break bullet points for improved readability
 - **Intelligent fallback**: Clean 2-tweet structure (headline → URL) when Gemini unavailable
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Thread structure**: With Gemini: Headline → 3-point summary → URL | Without: Headline → URL
@@ -197,6 +198,7 @@ This bot underwent extensive refactoring to achieve its current elegant state:
 - Added anti-repetition system ensuring complementary headline/summary content
 - Enhanced AI prompts with specific examples and quality instructions
 - Comprehensive fallback system with URL context metadata logging
+- Improved summary formatting with line-break bullet points for better readability
 
 ### Key Technical Improvements
 

@@ -84,7 +84,10 @@ The GitHub Actions workflow "Test API & Preview Threads" was failing with:
 
 ### After (Specific & Complementary):
 - **Headline**: "Marathon Digital Deploys 5,000 New S19 XP Miners"
-- **Summary**: "Located in West Texas facility • Operations start Q2 2024 • Expected ROI within 8 months"
+- **Summary**: 
+  "• Located in West Texas facility
+  • Operations start Q2 2024
+  • Expected ROI within 8 months"
 
 ## Validation Commands
 
