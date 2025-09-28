@@ -622,16 +622,18 @@ class GeminiClient:
             Requirements:
             - NO emojis, hashtags, or special characters
             - 60-80 characters maximum  
+            - Should capture the MAIN story/takeaway from the article
             - Include specific numbers, percentages, or key facts when available
             - Use action words like "surges", "drops", "reaches", "announces", "adopts"
             - Focus on the actual news impact, not generic statements
-            - Examples of good headlines:
+            - Remember: A separate 3-point summary will provide ADDITIONAL complementary details
+            - Examples of good headlines (note: summary would add different details):
               "Bitcoin Mining Difficulty Surges 7.3% to New Record High"
-              "Marathon Digital Announces 15,000 New ASIC Miners"
+              "Marathon Digital Announces 15,000 New ASIC Miners"  
               "Texas Bitcoin Miners Cut Power Usage During Heat Wave"
             - NO generic phrases like "key development" or "industry impact"
             
-            Please read the full article content from the URL provided to extract specific details for the headline.
+            Please read the full article content from the URL provided to extract the most newsworthy aspect.
             Return only the headline text, nothing else.
             """
             
@@ -654,18 +656,16 @@ class GeminiClient:
                     url_metadata = response.candidates[0].url_context_metadata
                     logger.info(f"📄 URL context metadata: {url_metadata}")
                 
-                # Ensure no emojis and length compliance
-                headline = self._clean_headline(headline)
-                return headline[:70] if len(headline) > 70 else headline
+                # Process and clean the headline
+                return self._process_headline_response(headline)
                 
             except Exception as e:
                 logger.warning(f"URL context failed, falling back to standard approach: {e}")
                 # Fallback to original approach without URL context
                 response = self.model.generate_content(prompt.strip())
                 headline = response.text.strip()
-                headline = self._clean_headline(headline)
                 logger.info(f"✅ Generated headline (fallback): '{headline}'")
-                return headline[:70] if len(headline) > 70 else headline
+                return self._process_headline_response(headline)
             
         except Exception as e:
             logger.warning(f"❌ Gemini headline generation failed: {e}")
@@ -677,26 +677,39 @@ class GeminiClient:
         try:
             logger.info("🎯 Generating thread summary with Gemini URL context...")
             
+            # First generate the headline to avoid repetition
+            headline = self.generate_catchy_headline(article)
+            logger.info(f"📰 Using headline for context: '{headline}'")
+            
             prompt = f"""
-            Create a specific 3-point summary for this Bitcoin mining article.
+            Create a specific 3-point summary for this Bitcoin mining article that COMPLEMENTS the headline.
             
             Title: {article.title}
             Article URL: {article.url}
+            Generated Headline: {headline}
+            
+            CRITICAL: DO NOT REPEAT any information already mentioned in the headline above.
             
             Requirements:
             - TOTAL summary must be under 180 characters (to fit with headline in one tweet)
             - Include specific details like numbers, dates, company names, locations
             - Each point should be 50-60 characters maximum
-            - Focus on concrete facts, not vague statements
+            - Focus on NEW facts NOT mentioned in the headline
             - Good examples:
-              "Hashrate increased 12% this month • 5,000 new S19 XP miners deployed • Expected ROI within 8 months"
-              "Facility will house 50,000 miners • Located in West Texas • Operations start Q2 2024"
-            - BAD examples (too vague):
-              "Key mining development • Industry impact expected • Details in article"
+              If headline: "Marathon Digital Deploys 5,000 New S19 XP Miners"
+              Then summary: "Located in West Texas facility • Operations start Q2 2024 • Expected ROI within 8 months"
+              
+              If headline: "Bitcoin Mining Difficulty Surges 7.3% to Record High"  
+              Then summary: "Block 815,000 adjustment complete • Hashrate reaches 472 EH/s • Next adjustment in 14 days"
+              
+            - BAD examples (repeating headline info):
+              If headline mentions "5,000 miners" then DON'T repeat "5,000 miners" in summary
+              If headline mentions company name, focus on OTHER details like location, timeline, financial impact
+              
             - Format: "Specific fact • Another specific fact • Third specific fact"
             - NO generic phrases like "industry impact", "key development", "details in article"
             
-            Please read the full article content from the URL provided to extract specific facts and numbers.
+            Please read the full article content from the URL and extract DIFFERENT facts than those in the headline.
             Return only the formatted summary with bullet separators, nothing else.
             """
             
@@ -711,7 +724,7 @@ class GeminiClient:
                 )
                 
                 summary_text = response.text.strip()
-                logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
+                logger.info(f"✅ Generated complementary summary: '{summary_text}'")
                 
                 # Check if URL context was actually used
                 if hasattr(response.candidates[0], 'url_context_metadata'):
@@ -723,17 +736,18 @@ class GeminiClient:
                 
             except Exception as e:
                 logger.warning(f"URL context failed, falling back to EventRegistry content: {e}")
-                # Fallback to EventRegistry content approach
+                # Fallback to EventRegistry content approach with headline context
                 fallback_prompt = f"""
-                Create a specific 3-point summary for this Bitcoin mining article.
+                Create a specific 3-point summary that does NOT repeat information from this headline: "{headline}"
                 
                 Title: {article.title}
                 Content: {article.body}
                 
                 Requirements:
                 - TOTAL summary must be under 180 characters
-                - Include specific details when available
+                - Include specific details when available but NOT mentioned in headline
                 - Format: "Specific fact • Another specific fact • Third specific fact"
+                - NO repetition of headline information
                 - NO generic phrases like "industry impact", "key development"
                 
                 Return only the formatted summary with bullet separators, nothing else.
@@ -741,13 +755,26 @@ class GeminiClient:
                 
                 response = self.model.generate_content(fallback_prompt.strip())
                 summary_text = response.text.strip()
-                logger.info(f"✅ Generated summary (fallback): '{summary_text}'")
+                logger.info(f"✅ Generated complementary summary (fallback): '{summary_text}'")
                 return self._process_summary_response(summary_text)
                 
         except Exception as e:
             logger.warning(f"❌ Gemini summary generation failed: {e}")
             # Final fallback to generic summary
-            return "Mining operations update • Industry development • See article for details"
+            return "Additional mining details • Industry context • See full article"
+    
+    def _process_headline_response(self, text: str) -> str:
+        """Process and validate Gemini headline response."""
+        import re
+        
+        # Remove common unwanted prefixes/suffixes
+        text = text.replace("Here is a headline:", "").replace("Headline:", "")
+        text = re.sub(r'^[\s\-\*]*', '', text)  # Remove leading spaces, dashes, asterisks
+        text = text.strip()
+        
+        # Clean and truncate headline
+        headline = self._clean_headline(text)
+        return headline[:200] if len(headline) > 200 else headline
     
     def _process_summary_response(self, summary_text: str) -> str:
         """Process and clean the summary response from Gemini."""
