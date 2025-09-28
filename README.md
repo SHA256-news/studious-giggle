@@ -44,7 +44,139 @@
 - **Intelligent monitoring**: Detailed logging and performance metrics
 - **API compliance**: Respects Twitter rate limits (17 requests per 24 hours)
 
-## 📋 Quick Start
+## � Daily Bitcoin Mining News Briefing (NEW!)
+
+**Comprehensive daily analysis system that provides professional briefings tailored for Bitcoin miners, featuring AI-powered research and strategic insights.**
+
+### 🎯 Briefing Features
+
+**Advanced AI Analysis**
+- **Gemini URL Context**: Native content extraction using Gemini 2.0 Flash Exp with direct article access
+- **Deep Research Integration**: Google Agentspace API with Deep Research for comprehensive analysis
+- **Miner-Focused Perspective**: Content specifically tailored for Bitcoin mining professionals
+- **Counter-Argument Analysis**: Balanced reporting with opposing viewpoints and strategic considerations
+- **Market Intelligence**: Price trends, regulatory impacts, and operational insights
+
+**Comprehensive Data Access**
+- **All Daily Articles**: Reviews ALL fetched Bitcoin mining news (published and unpublished)
+- **30-Day History**: Maintains comprehensive article logs with metadata
+- **Smart Deduplication**: Prevents duplicate content across briefings
+- **Real-Time Updates**: Integrates seamlessly with existing bot article fetching
+
+**Professional Reporting**
+- **Executive Summary**: Key developments and strategic implications
+- **Market Analysis**: Price movements, hash rate trends, regulatory changes
+- **Operational Insights**: Mining efficiency, hardware updates, energy considerations
+- **Strategic Recommendations**: Actionable insights for mining operations
+- **Source Attribution**: Complete citations and credibility assessment
+
+### 🚀 Daily Briefing Usage
+
+#### Command Line Interface
+```bash
+# Generate daily briefing (console output)
+python daily_briefing.py
+
+# Specify custom parameters
+python daily_briefing.py --days-back 2 --output file --verbose
+
+# Generate comprehensive weekly briefing
+python daily_briefing.py --days-back 7 --output file
+```
+
+#### Available Options
+- `--days-back N`: Number of days to look back for articles (default: 1)
+- `--output MODE`: Output mode - `console`, `file`, or `issue` (default: console)
+- `--verbose`: Enable detailed processing logs
+- `--help`: Show all available options
+
+#### Output Formats
+- **Console**: Direct terminal output for quick review
+- **File**: Saves as `daily_brief_YYYY-MM-DD.md` for documentation
+- **Issue**: Creates GitHub issue with formatted brief (GitHub Actions only)
+
+### 🔧 Daily Briefing Configuration
+
+#### Required API Keys
+Add these GitHub repository secrets for full functionality:
+```
+# Google Agentspace API (for Deep Research)
+AGENTS_PROJECT_ID=your-project-id
+AGENTS_APP_ID=your-app-id  
+AGENTS_DATA_STORE_ID=your-data-store-id
+GOOGLE_APPLICATION_CREDENTIALS_JSON={"type": "service_account", ...}
+
+# Existing API keys (EventRegistry, Gemini) also required
+```
+
+#### Google Agentspace Setup
+1. **Apply for Allowlist**: Contact Google Cloud Support for Agentspace API access
+2. **Create Project**: Set up Google Cloud project with Agentspace enabled
+3. **Generate Credentials**: Create service account with appropriate permissions
+4. **Configure Data Store**: Set up vector database for Deep Research functionality
+
+#### Fallback Behavior
+- **Without Deep Research API**: Uses advanced Gemini URL context analysis
+- **Without Gemini API**: Uses EventRegistry content with enhanced processing
+- **Without EventRegistry API**: Shows configuration requirements and exits gracefully
+
+### 🤖 GitHub Actions Integration
+
+#### Daily Briefing Workflow
+The bot includes automated daily briefing generation:
+
+**Workflow**: `.github/workflows/daily_brief.yml`
+- **Schedule**: Daily at 7:00 AM UTC (configurable)
+- **Manual Trigger**: Supports workflow_dispatch for on-demand generation
+- **Output Options**: Console, file, or GitHub issue creation
+- **Artifact Upload**: Saves briefings and logs for 30 days
+- **Auto-commit**: Updates article logs automatically
+
+#### Configuration Examples
+```yaml
+# Manual dispatch with custom settings
+workflow_dispatch:
+  inputs:
+    output_mode: 'issue'    # Create GitHub issue
+    days_back: '3'          # Last 3 days of articles
+```
+
+#### Monitoring & Alerts
+- **Success Metrics**: Articles processed, briefing length, API usage
+- **Error Handling**: Graceful fallbacks with detailed error reporting  
+- **Artifact Storage**: All briefings archived as downloadable artifacts
+- **Integration Status**: Real-time status updates in workflow logs
+
+### 📈 Briefing Architecture
+
+#### Data Flow Integration
+```
+EventRegistry API → Articles Log → Daily Briefing System
+    ↓                    ↓              ↓
+Twitter Bot          Comprehensive   AI-Enhanced
+Processing           Article         Professional
+                     Database        Briefings
+```
+
+#### Daily Briefing File Structure
+```
+articles_log.json          # Comprehensive article database (auto-generated)
+daily_brief_YYYY-MM-DD.md  # Generated briefing files (auto-generated)
+daily_briefing.py          # Core briefing module (650+ lines)
+.github/workflows/         # Automated scheduling
+  ├── main.yml            # Twitter bot workflow (90-minute schedule)
+  ├── test-preview.yml    # Manual testing workflow
+  └── daily_brief.yml     # Daily briefing workflow (daily schedule)
+```
+
+#### Module Architecture
+- **`DailyBriefingGenerator`**: Main briefing orchestration class
+- **`GoogleAgentspaceClient`**: Deep Research API integration
+- **`ArticleProcessor`**: Enhanced content analysis with Gemini URL context
+- **`BriefingFormatter`**: Professional markdown output with citations
+- **Integration Layer**: Seamless integration with existing `core.py` infrastructure
+
+## �📋 Quick Start
 
 ### Prerequisites
 - Python 3.10+ (tested with 3.12)
@@ -64,6 +196,8 @@ python tools.py diagnose
 ```
 
 ### Configuration
+
+#### Twitter Bot API Keys (Required)
 Set these as GitHub repository secrets:
 - `TWITTER_API_KEY` - Twitter API key
 - `TWITTER_API_SECRET` - Twitter API secret  
@@ -72,8 +206,17 @@ Set these as GitHub repository secrets:
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
 - `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp model with URL context for AI headlines and summaries)
 
+#### Daily Briefing API Keys (Optional)
+For enhanced daily briefing functionality:
+- `AGENTS_PROJECT_ID` - Google Agentspace project ID for Deep Research API
+- `AGENTS_APP_ID` - Google Agentspace application ID
+- `AGENTS_DATA_STORE_ID` - Google Agentspace data store ID
+- `GOOGLE_APPLICATION_CREDENTIALS_JSON` - Service account credentials (JSON format)
+
+**Note**: Daily briefings work without these keys using fallback modes, but Deep Research requires Google Agentspace API access (allowlist required).
+
 ### GitHub Actions Workflows
-The bot includes two workflows:
+The bot includes three automated workflows:
 
 1. **Main Bot Workflow** (`.github/workflows/main.yml`)
    - **Schedule**: Runs every 90 minutes automatically
@@ -86,6 +229,13 @@ The bot includes two workflows:
    - **Purpose**: Test APIs and preview threads without posting
    - **Output**: Creates GitHub issue with thread previews
    - **Benefits**: Safe testing with production API keys
+
+3. **Daily Briefing Workflow** (`.github/workflows/daily_brief.yml`) **NEW!**
+   - **Schedule**: Daily at 7:00 AM UTC (configurable)
+   - **Purpose**: Generate comprehensive Bitcoin mining news briefings
+   - **Features**: AI-powered analysis, Deep Research integration, professional formatting
+   - **Output**: Console, file, or GitHub issue with briefing content
+   - **Manual Trigger**: Supports on-demand generation with custom parameters
 
 ## 🛠️ Usage
 
@@ -109,6 +259,21 @@ python tools.py clean
 
 # Test live APIs (EventRegistry + Gemini)
 python tools.py test
+```
+
+### Daily Briefing Operations
+```bash
+# Generate today's Bitcoin mining news brief
+python daily_briefing.py
+
+# Generate brief for last 3 days with file output
+python daily_briefing.py --days-back 3 --output file --verbose
+
+# Generate comprehensive weekly analysis
+python daily_briefing.py --days-back 7 --output file
+
+# Show all available options
+python daily_briefing.py --help
 ```
 
 ## 🧪 Live API Testing
@@ -270,18 +435,24 @@ python tests/test_bot.py && python tests/test_integration.py
 
 ## 📝 Development Notes
 
-### Repository Structure
+### Complete Repository Structure
 ```
 .
-├── core.py                    # Complete bot engine (25KB)
+├── core.py                    # Complete bot engine with article logging (60KB+)
 ├── bot.py                     # Main entry point (6KB)  
 ├── tools.py                   # Management interface (14KB)
+├── daily_briefing.py          # Daily briefing system (25KB) NEW!
 ├── tests/
-│   ├── test_bot.py           # Core functionality tests
-│   └── test_integration.py   # Integration workflow tests
-├── requirements.txt          # Python dependencies
-├── posted_articles.json      # Article tracking (auto-generated)
+│   ├── test_bot.py           # Core functionality tests (9 tests)
+│   └── test_integration.py   # Integration workflow tests (3 tests)
+├── requirements.txt          # Enhanced Python dependencies
+├── posted_articles.json      # Twitter article tracking (auto-generated)
+├── articles_log.json         # Comprehensive article database (auto-generated) NEW!
+├── daily_brief_YYYY-MM-DD.md # Generated briefing files (auto-generated) NEW!
 └── .github/workflows/        # GitHub Actions automation
+    ├── main.yml              # Twitter bot (90-minute schedule)
+    ├── test-preview.yml      # Manual testing workflow
+    └── daily_brief.yml       # Daily briefing (daily schedule) NEW!
 ```
 
 ### Contributing
@@ -290,25 +461,31 @@ python tests/test_bot.py && python tests/test_integration.py
 3. Test bot entry point: `python bot.py --diagnose`
 4. All tests must pass before committing
 
-### API Dependencies
+### Enhanced API Dependencies
 - **Twitter API v2**: For posting tweets and thread replies
 - **EventRegistry (NewsAPI.ai)**: For fetching Bitcoin mining news
 - **Google Gemini API**: Gemini 2.0 Flash Exp model with native URL context for AI-generated headlines and summaries
-- **Python 3.10+**: Core runtime environment
+- **Google Agentspace API**: Deep Research functionality for comprehensive daily briefings (allowlist required) **NEW!**
+- **Python 3.10+**: Core runtime environment with enhanced dependencies
 
 ## 📈 Roadmap
 
-**Completed ✅**
+**Recently Completed ✅**
 - Complete architecture refactoring and bug elimination
 - Comprehensive test suite with 100% coverage  
 - Production-ready reliability and error handling
 - GitHub Actions automation with rate limiting
+- **Daily Bitcoin Mining News Briefing System (NEW!)** 
+- **AI-powered Deep Research integration with Google Agentspace API**
+- **Comprehensive article logging and 30-day historical analysis**
+- **Professional briefing generation with miner-focused insights**
 
 **Future Enhancements 🎯**
 - Performance metrics collection and monitoring
 - Advanced content filtering and relevance scoring
-- Multi-platform support (additional social networks)
+- Multi-platform support (additional social networks)  
 - Enhanced analytics and reporting capabilities
+- Integration with additional AI research APIs
 
 ## 📄 License
 

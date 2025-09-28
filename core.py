@@ -1419,6 +1419,10 @@ class BitcoinMiningBot:
             logger.info("Fetching new articles...")
             try:
                 articles = self.news.fetch_articles(self.config.max_articles)
+                
+                # Log ALL fetched articles for daily briefing system
+                self._log_all_articles(articles)
+                
             except Exception as e:
                 logger.error(f"Failed to fetch articles: {e}")
                 return False
@@ -1580,6 +1584,103 @@ class BitcoinMiningBot:
         logger.warning("Failed to post tweet - setting rate limit cooldown")
         cooldown_data = TimeManager.create_cooldown_data(self.config.cooldown_hours)
         self.storage.save_json(self.config.rate_limit_file, cooldown_data)
+    
+    def _log_all_articles(self, articles: List[Article]) -> bool:
+        """Log ALL fetched articles to articles_log.json for daily briefing system.
+        
+        This method maintains a comprehensive log of all articles fetched from EventRegistry,
+        regardless of whether they are posted to Twitter. The daily briefing system uses
+        this log to generate comprehensive reports.
+        
+        Args:
+            articles: List of articles to log
+            
+        Returns:
+            bool: True if logging was successful, False otherwise
+        """
+        if not articles:
+            logger.debug("No articles to log")
+            return True
+            
+        try:
+            # Load existing articles log
+            articles_log_file = "articles_log.json"
+            existing_log = self.storage.load_json(articles_log_file, {
+                "last_updated": None,
+                "total_articles": 0,
+                "daily_articles": []
+            })
+            
+            # Get current date for daily grouping
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            today = datetime.now().date()
+            
+            # Initialize today's entries if needed
+            daily_articles = existing_log.get("daily_articles", [])
+            today_entry = None
+            
+            # Find or create today's entry
+            for entry in daily_articles:
+                if entry.get("date") == current_date:
+                    today_entry = entry
+                    break
+            
+            if not today_entry:
+                today_entry = {
+                    "date": current_date,
+                    "articles": [],
+                    "fetch_count": 0
+                }
+                daily_articles.append(today_entry)
+            
+            # Track URLs to avoid duplicates within today
+            existing_urls = {article.get("url") for article in today_entry["articles"]}
+            
+            # Add new articles to today's log
+            new_articles_count = 0
+            for article in articles:
+                if article.url not in existing_urls:
+                    article_data = {
+                        "url": article.url,
+                        "title": article.title,
+                        "description": getattr(article, 'description', '') or '',
+                        "source": getattr(article, 'source', '') or '',
+                        "dateTimePub": getattr(article, 'dateTimePub', '') or '',
+                        "fetched_at": datetime.now().isoformat(),
+                        "posted_to_twitter": article.url in self.posted_data.get("posted_uris", []),
+                        "queued_for_twitter": any(qa.get("url") == article.url for qa in self.posted_data.get("queued_articles", [])),
+                        "lang": getattr(article, 'lang', '') or '',
+                        "isDuplicate": getattr(article, 'isDuplicate', False),
+                        "wgt": getattr(article, 'wgt', 0)
+                    }
+                    today_entry["articles"].append(article_data)
+                    existing_urls.add(article.url)
+                    new_articles_count += 1
+            
+            # Update metadata
+            today_entry["fetch_count"] += 1
+            existing_log["daily_articles"] = daily_articles
+            existing_log["total_articles"] = sum(len(entry["articles"]) for entry in daily_articles)
+            existing_log["last_updated"] = datetime.now().isoformat()
+            
+            # Clean old entries (keep only last 30 days)
+            cutoff_date = today - timedelta(days=30)
+            existing_log["daily_articles"] = [
+                entry for entry in daily_articles 
+                if datetime.strptime(entry["date"], "%Y-%m-%d").date() >= cutoff_date
+            ]
+            
+            # Save the updated log
+            if self.storage.save_json(articles_log_file, existing_log):
+                logger.info(f"📊 Logged {new_articles_count} new articles for daily briefing (total today: {len(today_entry['articles'])})")
+                return True
+            else:
+                logger.error("Failed to save articles log")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Failed to log articles for daily briefing: {e}")
+            return False
     
     def _save_data(self) -> bool:
         """Save posted articles data.

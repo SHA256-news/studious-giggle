@@ -162,7 +162,7 @@ class BotTools:
             if not queue:
                 print("📭 No articles queued")
                 print("💡 Run the bot to fetch fresh articles")
-                return
+                return True
             
             next_article = queue[0]
             print(f"📰 Next Article:")
@@ -175,9 +175,11 @@ class BotTools:
             print(f"\n🐦 Tweet Preview:")
             print(f"   Text: {tweet_text}")
             print(f"   Length: {len(tweet_text)} characters")
+            return True
             
         except Exception as e:
             print(f"❌ Error showing next tweet: {e}")
+            return False
     
     @staticmethod
     def show_queue_simple():
@@ -196,7 +198,7 @@ class BotTools:
             
             if not queue:
                 print("\n📭 No articles currently queued")
-                return
+                return True
             
             print(f"\n📋 Queued Articles:")
             for i, article in enumerate(queue):
@@ -210,9 +212,12 @@ class BotTools:
                 
                 print(f"\n{i+1}. {title[:70]}{'...' if len(title) > 70 else ''}")
                 print(f"   Source: {source}")
+            
+            return True
                 
         except Exception as e:
             print(f"❌ Error showing queue: {e}")
+            return False
     
     @staticmethod
     def clean_queue():
