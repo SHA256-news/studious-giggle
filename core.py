@@ -603,104 +603,169 @@ class GeminiClient:
         try:
             import google.generativeai as genai
             genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-1.5-flash')
+            self.model = genai.GenerativeModel('gemini-2.0-flash-exp')  # Updated to support URL context
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
     def generate_catchy_headline(self, article: 'Article') -> str:
-        """Generate a catchy, emoji-free headline for the article."""
-        # Get best available content (full content preferred)
-        article_content = article.get_best_content(max_length=2000)
-        
-        prompt = f"""
-        Create a compelling, newsworthy headline for this Bitcoin mining article.
-        
-        Original title: {article.title}
-        Article content: {article_content}
-        
-        Requirements:
-        - NO emojis, hashtags, or special characters
-        - 60-80 characters maximum  
-        - Include specific numbers, percentages, or key facts when available
-        - Use action words like "surges", "drops", "reaches", "announces", "adopts"
-        - Focus on the actual news impact, not generic statements
-        - Examples of good headlines:
-          "Bitcoin Mining Difficulty Surges 7.3% to New Record High"
-          "Marathon Digital Announces 15,000 New ASIC Miners"
-          "Texas Bitcoin Miners Cut Power Usage During Heat Wave"
-        - NO generic phrases like "key development" or "industry impact"
-        
-        Return only the headline text, nothing else.
-        """
-        
+        """Generate a catchy, emoji-free headline for the article using URL context."""
         try:
-            logger.info("🎯 Generating catchy headline with Gemini...")
-            response = self.model.generate_content(prompt.strip())
+            logger.info("🎯 Generating catchy headline with Gemini URL context...")
             
-            headline = response.text.strip()
-            logger.info(f"✅ Generated headline: '{headline}'")
-            # Ensure no emojis and length compliance
-            headline = self._clean_headline(headline)
-            return headline[:70] if len(headline) > 70 else headline
+            # Use Gemini's native URL context feature instead of manual scraping
+            prompt = f"""
+            Create a compelling, newsworthy headline for this Bitcoin mining article.
+            
+            Original title: {article.title}
+            Article URL: {article.url}
+            
+            Requirements:
+            - NO emojis, hashtags, or special characters
+            - 60-80 characters maximum  
+            - Include specific numbers, percentages, or key facts when available
+            - Use action words like "surges", "drops", "reaches", "announces", "adopts"
+            - Focus on the actual news impact, not generic statements
+            - Examples of good headlines:
+              "Bitcoin Mining Difficulty Surges 7.3% to New Record High"
+              "Marathon Digital Announces 15,000 New ASIC Miners"
+              "Texas Bitcoin Miners Cut Power Usage During Heat Wave"
+            - NO generic phrases like "key development" or "industry impact"
+            
+            Please read the full article content from the URL provided to extract specific details for the headline.
+            Return only the headline text, nothing else.
+            """
+            
+            # Configure with URL context tool
+            tools = [{"url_context": {}}]
+            
+            try:
+                import google.generativeai as genai
+                # Use generate_content with tools parameter for URL context
+                response = self.model.generate_content(
+                    prompt.strip(),
+                    tools=tools
+                )
+                
+                headline = response.text.strip()
+                logger.info(f"✅ Generated headline with URL context: '{headline}'")
+                
+                # Check if URL context was actually used
+                if hasattr(response.candidates[0], 'url_context_metadata'):
+                    url_metadata = response.candidates[0].url_context_metadata
+                    logger.info(f"📄 URL context metadata: {url_metadata}")
+                
+                # Ensure no emojis and length compliance
+                headline = self._clean_headline(headline)
+                return headline[:70] if len(headline) > 70 else headline
+                
+            except Exception as e:
+                logger.warning(f"URL context failed, falling back to standard approach: {e}")
+                # Fallback to original approach without URL context
+                response = self.model.generate_content(prompt.strip())
+                headline = response.text.strip()
+                headline = self._clean_headline(headline)
+                logger.info(f"✅ Generated headline (fallback): '{headline}'")
+                return headline[:70] if len(headline) > 70 else headline
             
         except Exception as e:
             logger.warning(f"❌ Gemini headline generation failed: {e}")
-            # Fallback to cleaned original title
+            # Final fallback to cleaned original title
             return self._clean_headline(article.title)[:70]
     
     def generate_thread_summary(self, article: 'Article') -> str:
-        """Generate a concise 3-point summary that fits with headline in one tweet."""
-        # Get best available content (full content preferred)
-        article_content = article.get_best_content(max_length=3000)
-        
-        prompt = f"""
-        Create a specific 3-point summary for this Bitcoin mining article.
-        
-        Title: {article.title}
-        Content: {article_content}
-        
-        Requirements:
-        - TOTAL summary must be under 180 characters (to fit with headline in one tweet)
-        - Include specific details like numbers, dates, company names, locations
-        - Each point should be 50-60 characters maximum
-        - Focus on concrete facts, not vague statements
-        - Good examples:
-          "Hashrate increased 12% this month • 5,000 new S19 XP miners deployed • Expected ROI within 8 months"
-          "Facility will house 50,000 miners • Located in West Texas • Operations start Q2 2024"
-        - BAD examples (too vague):
-          "Key mining development • Industry impact expected • Details in article"
-        - Format: "Specific fact • Another specific fact • Third specific fact"
-        - NO generic phrases like "industry impact", "key development", "details in article"
-        
-        Return only the formatted summary with bullet separators, nothing else.
-        """
-        
+        """Generate a concise 3-point summary using URL context for full article access."""
         try:
-            logger.info("🎯 Generating thread summary with Gemini...")
-            response = self.model.generate_content(prompt.strip())
+            logger.info("🎯 Generating thread summary with Gemini URL context...")
             
-            summary_text = response.text.strip()
-            logger.info(f"✅ Generated summary: '{summary_text}'")
+            prompt = f"""
+            Create a specific 3-point summary for this Bitcoin mining article.
             
-            # Clean up any numbering that might have been added
-            import re
-            # Remove number prefixes like "1. ", "2. ", etc.
-            summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
-            # Replace line breaks with bullet separators if needed
-            summary_text = re.sub(r'\n+', ' • ', summary_text)
-            # Clean up multiple bullets
-            summary_text = re.sub(r'\s*•\s*', ' • ', summary_text)
+            Title: {article.title}
+            Article URL: {article.url}
             
-            # Ensure it's not too long
-            if len(summary_text) > 180:
-                summary_text = summary_text[:177] + "..."
+            Requirements:
+            - TOTAL summary must be under 180 characters (to fit with headline in one tweet)
+            - Include specific details like numbers, dates, company names, locations
+            - Each point should be 50-60 characters maximum
+            - Focus on concrete facts, not vague statements
+            - Good examples:
+              "Hashrate increased 12% this month • 5,000 new S19 XP miners deployed • Expected ROI within 8 months"
+              "Facility will house 50,000 miners • Located in West Texas • Operations start Q2 2024"
+            - BAD examples (too vague):
+              "Key mining development • Industry impact expected • Details in article"
+            - Format: "Specific fact • Another specific fact • Third specific fact"
+            - NO generic phrases like "industry impact", "key development", "details in article"
+            
+            Please read the full article content from the URL provided to extract specific facts and numbers.
+            Return only the formatted summary with bullet separators, nothing else.
+            """
+            
+            # Configure with URL context tool
+            tools = [{"url_context": {}}]
+            
+            try:
+                # Use generate_content with tools parameter for URL context
+                response = self.model.generate_content(
+                    prompt.strip(),
+                    tools=tools
+                )
                 
-            return summary_text
-            
+                summary_text = response.text.strip()
+                logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
+                
+                # Check if URL context was actually used
+                if hasattr(response.candidates[0], 'url_context_metadata'):
+                    url_metadata = response.candidates[0].url_context_metadata
+                    logger.info(f"📄 URL context metadata: {url_metadata}")
+                
+                # Process and validate the summary
+                return self._process_summary_response(summary_text)
+                
+            except Exception as e:
+                logger.warning(f"URL context failed, falling back to EventRegistry content: {e}")
+                # Fallback to EventRegistry content approach
+                fallback_prompt = f"""
+                Create a specific 3-point summary for this Bitcoin mining article.
+                
+                Title: {article.title}
+                Content: {article.body}
+                
+                Requirements:
+                - TOTAL summary must be under 180 characters
+                - Include specific details when available
+                - Format: "Specific fact • Another specific fact • Third specific fact"
+                - NO generic phrases like "industry impact", "key development"
+                
+                Return only the formatted summary with bullet separators, nothing else.
+                """
+                
+                response = self.model.generate_content(fallback_prompt.strip())
+                summary_text = response.text.strip()
+                logger.info(f"✅ Generated summary (fallback): '{summary_text}'")
+                return self._process_summary_response(summary_text)
+                
         except Exception as e:
             logger.warning(f"❌ Gemini summary generation failed: {e}")
-            # Fallback to simple summary
-            return f"Key mining development • Industry impact expected • Details in full article"
+            # Final fallback to generic summary
+            return "Mining operations update • Industry development • See article for details"
+    
+    def _process_summary_response(self, summary_text: str) -> str:
+        """Process and clean the summary response from Gemini."""
+        import re
+        
+        # Clean up any numbering that might have been added
+        # Remove number prefixes like "1. ", "2. ", etc.
+        summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
+        # Replace line breaks with bullet separators if needed
+        summary_text = re.sub(r'\n+', ' • ', summary_text)
+        # Clean up multiple bullets
+        summary_text = re.sub(r'\s*•\s*', ' • ', summary_text)
+        
+        # Ensure it's not too long
+        if len(summary_text) > 180:
+            summary_text = summary_text[:177] + "..."
+            
+        return summary_text
     
     def _clean_headline(self, text: str) -> str:
         """Remove emojis and clean headline text."""
