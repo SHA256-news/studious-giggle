@@ -697,20 +697,26 @@ class GeminiClient:
             - Focus on NEW facts NOT mentioned in the headline
             - Good examples:
               If headline: "Marathon Digital Deploys 5,000 New S19 XP Miners"
-              Then summary: "Located in West Texas facility • Operations start Q2 2024 • Expected ROI within 8 months"
+              Then summary:
+              "• Located in West Texas facility
+              • Operations start Q2 2024
+              • Expected ROI within 8 months"
               
               If headline: "Bitcoin Mining Difficulty Surges 7.3% to Record High"  
-              Then summary: "Block 815,000 adjustment complete • Hashrate reaches 472 EH/s • Next adjustment in 14 days"
+              Then summary:
+              "• Block 815,000 adjustment complete
+              • Hashrate reaches 472 EH/s
+              • Next adjustment in 14 days"
               
             - BAD examples (repeating headline info):
               If headline mentions "5,000 miners" then DON'T repeat "5,000 miners" in summary
               If headline mentions company name, focus on OTHER details like location, timeline, financial impact
               
-            - Format: "Specific fact • Another specific fact • Third specific fact"
+            - Format: Each point on its own line starting with "•"
             - NO generic phrases like "industry impact", "key development", "details in article"
             
             Please read the full article content from the URL and extract DIFFERENT facts than those in the headline.
-            Return only the formatted summary with bullet separators, nothing else.
+            Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
             # Configure with URL context tool
@@ -746,11 +752,11 @@ class GeminiClient:
                 Requirements:
                 - TOTAL summary must be under 180 characters
                 - Include specific details when available but NOT mentioned in headline
-                - Format: "Specific fact • Another specific fact • Third specific fact"
+                - Format: Each point on its own line starting with "•"
                 - NO repetition of headline information
                 - NO generic phrases like "industry impact", "key development"
                 
-                Return only the formatted summary with bullet separators, nothing else.
+                Return only the formatted summary with each point on its own line, nothing else.
                 """
                 
                 response = self.model.generate_content(fallback_prompt.strip())
@@ -761,7 +767,7 @@ class GeminiClient:
         except Exception as e:
             logger.warning(f"❌ Gemini summary generation failed: {e}")
             # Final fallback to generic summary
-            return "Additional mining details • Industry context • See full article"
+            return "• Additional mining details\n• Industry context\n• See full article"
     
     def _process_headline_response(self, text: str) -> str:
         """Process and validate Gemini headline response."""
@@ -783,15 +789,38 @@ class GeminiClient:
         # Clean up any numbering that might have been added
         # Remove number prefixes like "1. ", "2. ", etc.
         summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
-        # Replace line breaks with bullet separators if needed
-        summary_text = re.sub(r'\n+', ' • ', summary_text)
-        # Clean up multiple bullets
-        summary_text = re.sub(r'\s*•\s*', ' • ', summary_text)
         
-        # Ensure it's not too long
+        # If we have inline bullets, convert to line-break format
+        if ' • ' in summary_text and '\n' not in summary_text:
+            # Convert inline bullets to line breaks
+            parts = [part.strip() for part in summary_text.split(' • ') if part.strip()]
+            summary_text = '\n'.join([f'• {part}' if not part.startswith('•') else part for part in parts[:3]])
+        elif '\n' in summary_text:
+            # Already has line breaks, ensure proper bullet formatting
+            lines = [line.strip() for line in summary_text.split('\n') if line.strip()]
+            summary_text = '\n'.join([f'• {line}' if not line.startswith('•') else line for line in lines[:3]])
+        else:
+            # Single line without bullets, add bullet point
+            summary_text = f'• {summary_text}'
+        
+        # Ensure it's not too long (accounting for line breaks)
         if len(summary_text) > 180:
-            summary_text = summary_text[:177] + "..."
+            # Try to fit within limit by truncating last points
+            lines = summary_text.split('\n')
+            result_lines = []
+            total_length = 0
             
+            for line in lines:
+                if total_length + len(line) + 1 <= 177:  # +1 for newline, leave room for "..."
+                    result_lines.append(line)
+                    total_length += len(line) + 1
+                else:
+                    break
+            
+            summary_text = '\n'.join(result_lines)
+            if len(summary_text) > 180:
+                summary_text = summary_text[:177] + "..."
+                
         return summary_text
     
     def _clean_headline(self, text: str) -> str:
