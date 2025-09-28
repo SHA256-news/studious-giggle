@@ -613,6 +613,15 @@ class GeminiClient:
             logger.info("🎯 Generating catchy headline with Gemini URL context...")
             
             # Use Gemini's native URL context feature instead of manual scraping
+            # Check if this is a chip/hardware article for enhanced prompts
+            text = f"{article.title} {article.body}".lower()
+            chip_terms = ["chip", "semiconductor", "processor", "hardware", "asic", "gpu", "cpu"]
+            is_chip_article = any(term in text for term in chip_terms)
+            
+            chip_instruction = ""
+            if is_chip_article:
+                chip_instruction = "- CRITICAL: This appears to be about chips/hardware - explicitly connect it to Bitcoin mining applications\n            "
+            
             prompt = f"""
             Create a compelling, newsworthy headline for this Bitcoin mining article.
             
@@ -627,13 +636,16 @@ class GeminiClient:
             - Use action words like "surges", "drops", "reaches", "announces", "adopts"
             - Focus on the actual news impact, not generic statements
             - Remember: A separate 3-point summary will provide ADDITIONAL complementary details
-            - Examples of good headlines (note: summary would add different details):
+            {chip_instruction}- Examples of good headlines (note: summary would add different details):
               "Bitcoin Mining Difficulty Surges 7.3% to New Record High"
               "Marathon Digital Announces 15,000 New ASIC Miners"  
               "Texas Bitcoin Miners Cut Power Usage During Heat Wave"
+              "Nvidia Launches New Chip Targeting Bitcoin Mining Efficiency" (for chip news)
+              "Intel Expands Bitcoin Mining Hardware Production" (for hardware news)
             - NO generic phrases like "key development" or "industry impact"
             
-            Please read the full article content from the URL provided to extract the most newsworthy aspect.
+            Please read the full article content from the URL to identify the main news point.
+            {"For chip/hardware articles, emphasize the Bitcoin mining application specifically." if is_chip_article else ""}
             Return only the headline text, nothing else.
             """
             
@@ -681,6 +693,23 @@ class GeminiClient:
             headline = self.generate_catchy_headline(article)
             logger.info(f"📰 Using headline for context: '{headline}'")
             
+            # Check if this is a chip/hardware article for enhanced prompts
+            text = f"{article.title} {article.body}".lower()
+            chip_terms = ["chip", "semiconductor", "processor", "hardware", "asic", "gpu", "cpu"]
+            is_chip_article = any(term in text for term in chip_terms)
+            
+            chip_instruction = ""
+            chip_example = ""
+            if is_chip_article:
+                chip_instruction = "- CRITICAL: If this article is about chips, hardware, or semiconductors, explicitly highlight Bitcoin mining applications\n            "
+                chip_example = """
+              If headline: "Nvidia Launches New Chip for Enhanced Performance" (chip article)
+              Then summary:
+              "• Targets Bitcoin mining efficiency gains
+              • Available Q2 2024 for mining farms
+              • Expected 25% power reduction per hash"
+              """
+            
             prompt = f"""
             Create a specific 3-point summary for this Bitcoin mining article that COMPLEMENTS the headline.
             
@@ -695,7 +724,7 @@ class GeminiClient:
             - Include specific details like numbers, dates, company names, locations
             - Each point should be 50-60 characters maximum
             - Focus on NEW facts NOT mentioned in the headline
-            - Good examples:
+            {chip_instruction}- Good examples:{chip_example}
               If headline: "Marathon Digital Deploys 5,000 New S19 XP Miners"
               Then summary:
               "• Located in West Texas facility
@@ -716,6 +745,7 @@ class GeminiClient:
             - NO generic phrases like "industry impact", "key development", "details in article"
             
             Please read the full article content from the URL and extract DIFFERENT facts than those in the headline.
+            {"For chip/hardware articles, ensure Bitcoin mining relevance is clear in the summary." if is_chip_article else ""}
             Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
@@ -755,6 +785,7 @@ class GeminiClient:
                 - Format: Each point on its own line starting with "•"
                 - NO repetition of headline information
                 - NO generic phrases like "industry impact", "key development"
+                - CRITICAL: If this is about chips/hardware, emphasize Bitcoin mining applications
                 
                 Return only the formatted summary with each point on its own line, nothing else.
                 """
@@ -766,8 +797,8 @@ class GeminiClient:
                 
         except Exception as e:
             logger.warning(f"❌ Gemini summary generation failed: {e}")
-            # Final fallback to generic summary
-            return "• Additional mining details\n• Industry context\n• See full article"
+            # Final fallback to Bitcoin mining specific summary
+            return "• Bitcoin mining sector update\n• Industry development details\n• See full article for specifics"
     
     def _process_headline_response(self, text: str) -> str:
         """Process and validate Gemini headline response."""
@@ -1237,10 +1268,33 @@ class NewsAPI:
         """Filter articles for Bitcoin mining relevance and add freshness information."""
         bitcoin_terms = ["bitcoin", "btc", "mining", "miner", "hash rate", "asic"]
         
+        # Exclude articles about other cryptocurrencies
+        crypto_exclusions = [
+            "ethereum", "eth", "solana", "sol", "cardano", "ada", "polkadot", "dot",
+            "chainlink", "link", "litecoin", "ltc", "ripple", "xrp", "dogecoin", "doge",
+            "avalanche", "avax", "polygon", "matic", "cosmos", "atom", "tezos", "xtz",
+            "binance coin", "bnb", "uniswap", "uni", "shiba", "shib", "pepe", "memecoin"
+        ]
+        
         filtered = []
         for article in articles:
             text = f"{article.title} {article.body}".lower()
+            
+            # Check for Bitcoin mining relevance
             if any(term in text for term in bitcoin_terms):
+                # Exclude if it mentions other cryptocurrencies significantly
+                other_crypto_mentions = sum(1 for term in crypto_exclusions if term in text)
+                bitcoin_mentions = sum(1 for term in ["bitcoin", "btc"] if term in text)
+                
+                # Skip if other cryptos are mentioned more than Bitcoin or equally
+                if other_crypto_mentions > 0 and other_crypto_mentions >= bitcoin_mentions:
+                    logger.info(f"Filtered out multi-crypto article: {article.title[:50]}...")
+                    continue
+                
+                # Mark if this is a chip/hardware article for enhanced processing
+                chip_terms = ["chip", "semiconductor", "processor", "hardware", "asic", "gpu", "cpu"]
+                article.is_chip_article = any(term in text for term in chip_terms)
+                
                 # Add article freshness information for smart prefix selection
                 article_date = article.date_published
                 if article_date:
