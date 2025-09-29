@@ -47,7 +47,8 @@
     "https://www.boerse-express.com/news/articles/bitcoin-gelungener-schachzug-829060",
     "https://ca.finance.yahoo.com/video/renewable-energys-role-ai-data-100025194.html",
     "https://www.ad-hoc-news.de/boerse/ueberblick/terawulf-s-strategic-pivot-gains-momentum-with-major-google-backing/68232157",
-    "https://www.benzinga.com/Opinion/25/09/47914770/fed-speakers-a-looming-government-shutdown-a-packed-jobs-calendar"
+    "https://www.benzinga.com/Opinion/25/09/47914770/fed-speakers-a-looming-government-shutdown-a-packed-jobs-calendar",
+    "https://www.ad-hoc-news.de/boerse/ueberblick/bitcoin-s-calm-surface-masks-gathering-storm/68233346"
   ],
   "queued_articles": [
     {
@@ -1372,7 +1373,16 @@
         "title": "Medium"
       },
       "dateTimePub": "2025-09-29T09:01:49"
+    },
+    {
+      "title": "DL Holdings Buys $41M of Equipment to Become Hong Kong's Biggest Public Bitcoin Miner",
+      "body": "DL plans to tokenize its mining operations and integrate AI optimization tools to increase efficiency and create accessible digital investment products, it said.\n\nInvestment firm DL Holdings (1709) said it agreed to spend a total of HK$320 million ($41 million) on bitcoin mining rigs from Bitmain as it aims to become Hong Kong's largest publicly traded bitcoin miner within two years.\n\nThe 2,995 Antminer S21 hydro-cooled machines will be installed in data centers in Oman and Paraguay, the company said in a statement. Hosting and operational support will be handled by Bitmain, one of the world's largest manufacturers of crypto mining equipment.\n\nCombined with the 2,200 machines it bought just two weeks ago, DL now boasts a hashrate of around 2.1 exahashes per second (EH/s), the company said.\n\nAs part of the broader strategy, DL said it plans to tokenize its mining operations and integrate AI optimization tools, enabling more efficient energy use and potentially creating accessible digital investment products.",
+      "url": "https://www.coindesk.com/business/2025/09/29/dl-holdings-spends-usd41m-in-push-to-become-hong-kong-s-top-publicly-traded-bitcoin-miner",
+      "source": {
+        "title": "CoinDesk"
+      },
+      "dateTimePub": "2025-09-29T14:45:58"
     }
   ],
-  "last_run_time": "2025-09-29T15:10:31.597655"
+  "last_run_time": "2025-09-29T18:15:16.629338"
 }
