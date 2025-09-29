@@ -40,7 +40,8 @@
     "https://finance.yahoo.com/news/terawulf-inc-wulf-bull-case-153523052.html",
     "https://ca.finance.yahoo.com/news/terawulf-inc-wulf-bull-case-153523052.html",
     "https://finance.yahoo.com/news/bernstein-maintains-buy-core-scientific-045851609.html",
-    "https://www.techmeme.com/250928/p21"
+    "https://www.techmeme.com/250928/p21",
+    "https://ca.finance.yahoo.com/news/terawulf-inc-wulf-bull-case-153523052.html"
   ],
   "queued_articles": [
     {
@@ -1331,15 +1332,6 @@
       "dateTimePub": "2025-09-27T10:07:04"
     },
     {
-      "title": "TeraWulf Inc. (WULF): A Bull Case Theory",
-      "body": "We came across a bullish thesis on TeraWulf Inc. on Investing With Purpose's Substack. In this article, we will summarize the bulls' thesis on WULF. TeraWulf Inc.'s share was trading at $11.35 as of September 17th. WULF's forward P/E was 29.76 according to Yahoo Finance.\n\nWULF represents a tangible pivot from cryptocurrency mining to becoming a specialized AI infrastructure landlord, leveraging its power-rich industrial campuses in upstate New York. These sites, originally built for bitcoin mining, offer precisely what AI workloads demand: abundant, low-cost electricity, heavy-duty cooling, and reliable grid access.\n\nThe company is converting its facilities into liquid-cooled, high-density data centers, where customers bring their own GPUs while WULF provides power, cooling, security, and operations, charging multi-year rent per megawatt with annual escalators. This model shifts WULF from volatile mining revenues to predictable, recurring income, creating a clear path toward positive EBITDA and cash flow once the ramp-up schedule is executed.\n\nWULF already has signed tenants, including Core42 and Fluidstack, with first rooms billing in 2025 and a major ramp expected through 2026. A second campus at Cayuga adds optionality for long-term growth. At full run-rate, the leased AI infrastructure could generate roughly $630 million in annual revenue, with site-level margins of 80-85%, positioning the company for substantial profitability. Execution is critical: timely commissioning, customer acceptance, and cash build will determine the trajectory, while existing converts and warrants create potential dilution that diminishes as cash inflows improve.\n\nThe stock currently trades above key moving averages, with technical momentum supporting further upside to $12-13 near term and $15-16 if the growth cadence holds. Key risks include construction delays, financing mix, and ramp timing. Investors should monitor delivered and billing megawatts, EBITDA/CFO inflection, and balance sheet stabilization. WULF's thesis is simple: turn on the rooms, turn on the rent, and transform from a small-scale miner into a scarce, high-value AI real estate operator with recurring, predictable cash flows. Execution over 2026 is the catalyst for re-rating and long-term value creation.\n\nPreviously we covered a bullish thesis on IREN Limited (IREN) by Anxious-Criticism652 in May 2025, which highlighted the company's pivot from Bitcoin mining to AI and digital infrastructure, high-margin GPU operations, scalable power capacity, and disciplined balance sheet. The company's stock price has appreciated approximately by 315% since our coverage. The thesis still stands as IREN's hybrid AI/crypto optionality remains compelling. Investing With Purpose shares a similar thesis for TeraWulf Inc., emphasizing the shift from mining to AI infrastructure and recurring rental income from liquid-cooled data centers.",
-      "url": "https://ca.finance.yahoo.com/news/terawulf-inc-wulf-bull-case-153523052.html",
-      "source": {
-        "title": "Yahoo! Finance"
-      },
-      "dateTimePub": "2025-09-28T15:35:23"
-    },
-    {
       "title": "Bernstein Maintains a Buy on Core Scientific (CORZ), Sets a $17 PT",
       "body": "Core Scientific, Inc. (NASDAQ:CORZ) is one of the best stocks to invest in right now. In a report released on September 15, Gautam Chhugani from Bernstein maintained a Buy rating on Core Scientific, Inc. (NASDAQ:CORZ) and set a price target of $17.00.\n\nCore Scientific, Inc. (NASDAQ:CORZ) reported total revenue of $78.6 million in fiscal Q2 2025 compared to $141.1 million in the same quarter last year.\n\nAdjusted EBITDA for the quarter reached $21.5 million compared to $46.0 million for the prior year period.\n\nCore Scientific, Inc. (NASDAQ:CORZ) operates digital Bitcoin mining and high-performance computing infrastructure. The company leverages its own fleet of computers, called miners, to earn Bitcoin for its own account and also provides hosting services for Bitcoin mining and high-performance computing customers at eight US-based operational data centers.\n\nWhile we acknowledge the potential of CORZ as an investment, we believe certain AI stocks offer greater upside potential and carry less downside risk. If you're looking for an extremely undervalued AI stock that also stands to benefit significantly from Trump-era tariffs and the onshoring trend, see our free report on the best short-term AI stock.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
       "url": "https://finance.yahoo.com/news/bernstein-maintains-buy-core-scientific-045851609.html",
@@ -1358,5 +1350,5 @@
       "dateTimePub": "2025-09-28T08:06:10"
     }
   ],
-  "last_run_time": "2025-09-29T00:45:42.136944"
+  "last_run_time": "2025-09-29T02:50:46.792288"
 }
