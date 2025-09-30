@@ -59,7 +59,8 @@
     "https://insidebitcoins.com/news/worlds-smartest-man-bets-everything-on-bitcoin-predicts-100x-surge",
     "https://www.it-boltwise.de/bitcoin-investitionen-und-stablecoin-wachstum-im-september.html",
     "https://dailycoin.com/crypto-exchanges-trust-and-innovation-kucoin-alicia-kao-coinferencex/",
-    "https://www.it-boltwise.de/bitcoin-als-zukunft-der-wirtschaft-einblicke-des-kluegsten-mannes-der-welt.html"
+    "https://www.it-boltwise.de/bitcoin-als-zukunft-der-wirtschaft-einblicke-des-kluegsten-mannes-der-welt.html",
+    "https://www.it-boltwise.de/rechtsstreit-um-bitcoin-mining-geschaeft-in-kentucky.html"
   ],
   "queued_articles": [
     {
@@ -1537,7 +1538,16 @@
         "title": "CryptoPotato"
       },
       "dateTimePub": "2025-09-30T11:02:02"
+    },
+    {
+      "title": "News Explorer -- Legal Cases Encircle Kentucky Sen. Brandon Smith's Involvement in Mohawk Energy's Bitcoin Mining Pivot",
+      "body": "Legal Cases Encircle Kentucky Sen. Brandon Smith's Involvement in Mohawk Energy's Bitcoin Mining Pivot\n\nKentucky Sen. Brandon Smith, CEO of Mohawk Energy, faces legal cases involving misrepresentation and breach of contract in relation to the company's pivot to Bitcoin mining services. Smith has denied the allegations and filed counterclaims against the plaintiffs, remaining optimistic about the future of the crypto industry.",
+      "url": "https://decrypt.co/news-explorer?pinned=1179634&title=legal-cases-encircle-kentucky-sen-brandon-smiths-involvement-in-mohawk-energys-bitcoin-mining-pivot",
+      "source": {
+        "title": "Decrypt"
+      },
+      "dateTimePub": "2025-09-30T19:44:48"
     }
   ],
-  "last_run_time": "2025-09-30T19:38:59.505490"
+  "last_run_time": "2025-09-30T22:40:19.071047"
 }
