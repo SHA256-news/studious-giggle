@@ -52,7 +52,8 @@
     "https://www.coindesk.com/business/2025/09/29/dl-holdings-spends-usd41m-in-push-to-become-hong-kong-s-top-publicly-traded-bitcoin-miner",
     "https://www.fool.com/investing/2025/09/29/why-cipher-mining-stock-mashed-the-market-on-monda/",
     "https://coincu.com/news/ice-raid-texas-bitcoin-facility/",
-    "https://www.nasdaq.com/articles/why-iren-stock-skyrocketed-almost-10-today"
+    "https://www.nasdaq.com/articles/why-iren-stock-skyrocketed-almost-10-today",
+    "https://www.fool.com/investing/2025/09/29/why-iren-stock-skyrocketed-almost-10-today/"
   ],
   "queued_articles": [
     {
@@ -1485,7 +1486,25 @@
         "title": "StreetInsider.com"
       },
       "dateTimePub": "2025-09-29T20:49:54"
+    },
+    {
+      "title": "Bitcoin Whale Awakens After 12 Years to Move $44 Million in BTC - Decrypt",
+      "body": "Data from Arkham Intelligence shows that an address holding over $44 million in digital coins made a transaction after 12 years of dormancy.\n\nSunday was the first time the 400 Bitcoin had been touched since they arrived in the digital wallet in November 2013 -- just four years after the oldest blockchain came to life.\n\nBack then, the price of Bitcoin stood at around $720, according to CoinGecko. It's now trading for over $114,000 -- a nearly 16,000% rise. As is often the case, it's unclear who owns the wallet, as such personally identifying information isn't included on the blockchain.\n\nBack in 2013, the lowest price the oldest cryptocurrency touched was a mere $13. It soared to over $1,132 by the end of the year.\n\nOld addresses holding such large amounts of Bitcoin likely belong to miners -- people or companies -- who started minting new coins during the digital asset's early years.\n\nBack then, new coins could be produced using desktop computers. But now in the increasingly industrialized Bitcoin mining world, companies use warehouses full of computers to process transactions on the crypto network.\n\nA number of big, long-term Bitcoin holders -- known as \"whales\" -- have started moving coins this year as the cryptocurrency dubbed \"digital gold\" trades comfortably above $100,000. Such moves have, in the past, spooked markets, as traders largely interpret such reactivations of old wallets as an intention to sell off the stash.\n\nAt the moment, market sentiment on Bitcoin has once again flipped bullish, with users on Myriad -- a prediction market developed by Decrypt's parent company Dastan -- now favoring a move to $125K over a drop to $105K at nearly 58%. Those odds had dropped as low as 29% just yesterday.",
+      "url": "https://decrypt.co/342016/bitcoin-whale-awakens-after-12-years-move-44-million-btc",
+      "source": {
+        "title": "Decrypt"
+      },
+      "dateTimePub": "2025-09-29T22:01:04"
+    },
+    {
+      "title": "Bit Digital reports preliminary two-month revenue of up to $22.2 million",
+      "body": "Bit Digital Inc. (NASDAQ: BTBT) announced preliminary financial results for the two months ended August 31, 2025. The company expects revenue between $20.1 million and $22.2 million for the period, with cost of revenue ranging from $8.2 million to $9.0 million, excluding depreciation.\n\nThe bitcoin mining company reported cash and cash equivalents of approximately $163.7 million to $173.9 million as of August 31, 2025.\n\nBit Digital stated the financial data remains preliminary and unaudited, based on information available as of September 29, 2025. The company noted that actual results may differ from these estimates as financial closing procedures for the three months ending September 30, 2025 are not yet complete.\n\nThe preliminary estimates were prepared by management and have not been audited, reviewed or compiled by the company's independent registered public accounting firm, Audit Alliance LLP.",
+      "url": "https://www.streetinsider.com/Corporate+News/Bit+Digital+reports+preliminary+two-month+revenue+of+up+to+$22.2+million/25392462.html",
+      "source": {
+        "title": "StreetInsider.com"
+      },
+      "dateTimePub": "2025-09-29T20:49:54"
     }
   ],
-  "last_run_time": "2025-09-30T04:43:42.700884"
+  "last_run_time": "2025-09-30T06:15:58.370669"
 }
