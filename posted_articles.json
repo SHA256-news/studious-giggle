@@ -56,7 +56,8 @@
     "https://www.fool.com/investing/2025/09/29/why-iren-stock-skyrocketed-almost-10-today/",
     "https://www.nasdaq.com/articles/why-iren-stock-skyrocketed-almost-10-today",
     "https://www.streetinsider.com/Corporate+News/Hyperscale+Data+bitcoin+treasury+reaches+$24.2+million/25394445.html",
-    "https://insidebitcoins.com/news/worlds-smartest-man-bets-everything-on-bitcoin-predicts-100x-surge"
+    "https://insidebitcoins.com/news/worlds-smartest-man-bets-everything-on-bitcoin-predicts-100x-surge",
+    "https://www.it-boltwise.de/bitcoin-investitionen-und-stablecoin-wachstum-im-september.html"
   ],
   "queued_articles": [
     {
@@ -1525,7 +1526,16 @@
         "title": "sofokleous10.gr"
       },
       "dateTimePub": "2025-09-30T10:52:00"
+    },
+    {
+      "title": "Bitcoin Hashrate Breaks Records, Analysts Say It's a Bullish Sign",
+      "body": "Bitcoin's network has set a new all-time high with its hashrate hitting 1.441 zettahashes per second, a milestone that confirms growing miner confidence.\n\nThis increase in computational power makes the network exponentially more resilient and secure against attacks.\n\nWhat Drives the Record-Breaking Hashrate?\n\nCrypto Patel shared via X that the Bitcoin blockchain is now more secure than ever, proven by computational power records. In his report, he said: \"High hashrate = stronger security + growing miner confidence.\"\n\nCoinWarz data shows that Bitcoin's hashrate hit a new all-time high of 1.441 zettahashes per second (ZH/s) on September 20. This marks a leap from the previous peak of around 1.004 zettahashes per second (ZH/s in August, confirming a sustained upward trend. TradingView charts further highlight the network's strength, with the 7-day moving average stabilizing near 1.1 ZH/s.\n\nHashrates refer to the total computational power securing a Proof-of-Work network. This means that the higher the hash power, the harder it is for attackers to overpower the network.\n\nThe metric increases when more powerful mining equipment is installed online, or when existing miners optimize their operations. The competitive nature of Bitcoin mining encourages continual upgrades, such as stronger rigs and better energy sources, to stay in the game.\n\nBitcoin has seen multiple hashrate peaks over its lifetime, usually correlating with hardware upgrades and geographic shifts in mining power. For instance, in 2021, firms in the U.S. and other regions gained up to 40% of the total mining after China's ban. This redistribution helped sustain growth in hash power.\n\nOn the other hand, an increase usually boosts network security but also drives up energy consumption and carbon emissions, making cost control essential. The Targeted Nakamoto paper proposes a dynamic reward system to balance these tradeoffs, guiding the metric toward an optimal range that preserves security without increasing environmental impact.\n\nThe Impact on Miners and Network Resiliency\n\nA ScienceDirect study shows that miner revenue does not always rise with increasing hashrate, with earnings sometimes stagnating or even dropping despite a strong network. High electricity costs, hardware depreciation, and thinner post-halving margins often limit smaller operators, so benefits are not evenly distributed.\n\nAnalysts explain that network difficulty adjusts roughly every 2,016 blocks to keep average block times near 10 minutes. As a result, higher hashrate increases mining difficulty, creating more competition among participants.\n\nThe recent hashrate peak confirms that Bitcoin's security foundation is stronger, and miners continue to maintain their operations. This, in turn, shows the network's resilience for long-term participants and new entrants.",
+      "url": "https://cryptopotato.com/bitcoin-hashrate-breaks-records-analysts-say-its-a-bullish-sign/",
+      "source": {
+        "title": "CryptoPotato"
+      },
+      "dateTimePub": "2025-09-30T11:02:02"
     }
   ],
-  "last_run_time": "2025-09-30T12:19:46.631445"
+  "last_run_time": "2025-09-30T15:09:18.190678"
 }
