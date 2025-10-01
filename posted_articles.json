@@ -60,7 +60,8 @@
     "https://www.it-boltwise.de/bitcoin-investitionen-und-stablecoin-wachstum-im-september.html",
     "https://dailycoin.com/crypto-exchanges-trust-and-innovation-kucoin-alicia-kao-coinferencex/",
     "https://www.it-boltwise.de/bitcoin-als-zukunft-der-wirtschaft-einblicke-des-kluegsten-mannes-der-welt.html",
-    "https://www.it-boltwise.de/rechtsstreit-um-bitcoin-mining-geschaeft-in-kentucky.html"
+    "https://www.it-boltwise.de/rechtsstreit-um-bitcoin-mining-geschaeft-in-kentucky.html",
+    "https://finance.yahoo.com/news/ai-creating-gold-rush-demand-155240895.html"
   ],
   "queued_articles": [
     {
@@ -1547,7 +1548,25 @@
         "title": "Decrypt"
       },
       "dateTimePub": "2025-09-30T19:44:48"
+    },
+    {
+      "title": "MARA Holdings profitiert von Bitcoin-Prognosen",
+      "body": "NEW YORK / LONDON (IT BOLTWISE) - MARA Holdings verzeichnete einen beeindruckenden Kursanstieg von 15,7 % aufgrund optimistischer Bitcoin-Prognosen. Der CEO von Galaxy Digital prognostiziert, dass der Bitcoin-Preis die Marke von 200.000 US-Dollar überschreiten könnte, was die Aktien von MARA und anderen Unternehmen in der Branche beflügelte.\n\nDie Aktien von MARA Holdings, einem führenden Unternehmen im Bereich der Bitcoin-Mining-Industrie, erlebten kürzlich einen signifikanten Anstieg. Der Kurs stieg um 15,69 % auf 18,66 US-Dollar pro Aktie, was auf die optimistischen Prognosen für den Bitcoin-Markt zurückzuführen ist. Diese positive Entwicklung wurde durch die Aussage des CEO von Galaxy Digital unterstützt, der einen Bitcoin-Preis von über 200.000 US-Dollar in Aussicht stellte.\n\nWährend der Handelssitzung stiegen nicht nur die Aktien von MARA Holdings, sondern auch die von Riot Platforms, CleanSpark und Galaxy Digital. Diese Unternehmen profitieren von der allgemeinen Marktstimmung, die durch die optimistischen Bitcoin-Prognosen angeheizt wird. Der aktuelle Bitcoin-Preis liegt bei 114.155,20 US-Dollar, was einem Anstieg von 1,82 % entspricht.\n\nInvestoren haben ihre Portfolios neu ausgerichtet, um von den erwarteten Ergebnissen der Bitcoin-Mining-Performance von MARA Holdings im September zu profitieren. Im August konnte das Unternehmen 705 Bitcoins abbauen, was eine Steigerung gegenüber den 703 Einheiten im Juli darstellt. Diese Zunahme ist auf eine höhere operative Hash-Rate von 59,4 EH/s im Vergleich zu 58,9 EH/s im Vorjahreszeitraum zurückzuführen.\n\nObwohl MARA Holdings als vielversprechende Investition gilt, sehen einige Analysten in KI-Aktien ein noch größeres Potenzial für hohe Renditen bei gleichzeitig begrenztem Risiko. Ein kostenloser Bericht hebt eine besonders günstige KI-Aktie hervor, die von Trump-Zöllen und der Verlagerung der Produktion in die USA profitiert. Diese Entwicklungen könnten für Investoren, die nach kurzfristigen Chancen suchen, von Interesse sein.",
+      "url": "https://www.it-boltwise.de/mara-holdings-profitiert-von-bitcoin-prognosen.html",
+      "source": {
+        "title": "IT News zu den Themen Künstliche Intelligenz, Roboter und Maschinelles Lernen - IT BOLTWISE® x Artificial Intelligence"
+      },
+      "dateTimePub": "2025-09-30T22:59:59"
+    },
+    {
+      "title": "News Explorer -- Legal Cases Encircle Kentucky Sen. Brandon Smith's Involvement in Mohawk Energy's Bitcoin Mining Pivot",
+      "body": "Legal Cases Encircle Kentucky Sen. Brandon Smith's Involvement in Mohawk Energy's Bitcoin Mining Pivot\n\nKentucky Sen. Brandon Smith, CEO of Mohawk Energy, faces legal cases involving misrepresentation and breach of contract in relation to the company's pivot to Bitcoin mining services. Smith has denied the allegations and filed counterclaims against the plaintiffs, remaining optimistic about the future of the crypto industry.",
+      "url": "https://decrypt.co/news-explorer?pinned=1179634&title=legal-cases-encircle-kentucky-sen-brandon-smiths-involvement-in-mohawk-energys-bitcoin-mining-pivot",
+      "source": {
+        "title": "Decrypt"
+      },
+      "dateTimePub": "2025-09-30T19:44:48"
     }
   ],
-  "last_run_time": "2025-09-30T22:40:19.071047"
+  "last_run_time": "2025-10-01T00:51:37.541260"
 }
