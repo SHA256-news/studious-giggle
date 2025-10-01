@@ -66,7 +66,8 @@
     "https://decrypt.co/news-explorer?pinned=1179634&title=legal-cases-encircle-kentucky-sen-brandon-smiths-involvement-in-mohawk-energys-bitcoin-mining-pivot",
     "https://finance.yahoo.com/news/google-betting-big-cipher-mining-181717630.html",
     "https://www.it-boltwise.de/mara-holdings-profitiert-von-bitcoin-prognosen.html",
-    "https://www.it-boltwise.de/tether-verstaerkt-bitcoin-reserven-mit-milliardeninvestition.html"
+    "https://www.it-boltwise.de/tether-verstaerkt-bitcoin-reserven-mit-milliardeninvestition.html",
+    "https://finance.yahoo.com/news/why-cipher-mining-stock-mashed-224145970.html"
   ],
   "queued_articles": [
     {
@@ -1582,5 +1583,5 @@
       "dateTimePub": "2025-10-01T09:09:49"
     }
   ],
-  "last_run_time": "2025-10-01T10:44:03.849376"
+  "last_run_time": "2025-10-01T12:19:51.067890"
 }
