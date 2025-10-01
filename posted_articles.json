@@ -70,7 +70,8 @@
     "https://finance.yahoo.com/news/why-cipher-mining-stock-mashed-224145970.html",
     "https://latina-press.com/news/338171-paraguay-sammelt-millionen-von-hongkong-dollar-fuer-bitcoin-mining/",
     "https://de.marketscreener.com/boerse-nachrichten/vom-milliardaer-unterstuetztes-bitcoin-unternehmen-oranjebtc-startet-handel-an-brasilianischer-boerse-ce7d5bd9df8ef426",
-    "https://za.investing.com/news/stock-market-news/billionairebacked-bitcoin-firm-oranjebtc-to-begin-trading-at-brazilian-exchange-3904132"
+    "https://za.investing.com/news/stock-market-news/billionairebacked-bitcoin-firm-oranjebtc-to-begin-trading-at-brazilian-exchange-3904132",
+    "https://decrypt.co/342541/bitcoin-miners-market-cap-soared-september-record-high"
   ],
   "queued_articles": [
     {
@@ -1685,5 +1686,5 @@
       "dateTimePub": "2025-10-01T15:10:33"
     }
   ],
-  "last_run_time": "2025-10-01T19:38:35.703670"
+  "last_run_time": "2025-10-01T22:40:00.617024"
 }
