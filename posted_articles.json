@@ -71,7 +71,8 @@
     "https://latina-press.com/news/338171-paraguay-sammelt-millionen-von-hongkong-dollar-fuer-bitcoin-mining/",
     "https://de.marketscreener.com/boerse-nachrichten/vom-milliardaer-unterstuetztes-bitcoin-unternehmen-oranjebtc-startet-handel-an-brasilianischer-boerse-ce7d5bd9df8ef426",
     "https://za.investing.com/news/stock-market-news/billionairebacked-bitcoin-firm-oranjebtc-to-begin-trading-at-brazilian-exchange-3904132",
-    "https://decrypt.co/342541/bitcoin-miners-market-cap-soared-september-record-high"
+    "https://decrypt.co/342541/bitcoin-miners-market-cap-soared-september-record-high",
+    "https://www.tmtpost.com/7712420.html"
   ],
   "queued_articles": [
     {
@@ -1684,7 +1685,16 @@
         "title": "Market Screener"
       },
       "dateTimePub": "2025-10-01T15:10:33"
+    },
+    {
+      "title": "DGAP-News: Northern Bitcoin blickt auf erfolgreiches erstes Halbjahr 2018 (deutsch) (Seite 150) | Diskussion im Forum",
+      "body": "hast du das auch berücksichtigt?..Bericht aus 12/2018\n\n...\n\nDie Mine nutze das kalte Wasser des Fjords, um die Computer günstig zu kühlen. Wasser- und Windkraft stelle den Strom bereit. Immer mehr Miner verschlägt es wegen des günstigen Strompreises und niedrigen Temperaturen nach Skandinavien. Die durchschnittlichen Kosten in Norwegen betragen laut Northern Bitcoin 7.700 Dollar. Zum Vergleich: In Australien kostet das Mining fast 10.000 Dollar pro Bitcoin. Lediglich in Staaten wie China oder Saudi-Arabien sei es günstiger.\n\nJüngst wurde aber bekannt, dass Norwegen das Bitcoin-Mining ab Januar 2019 nicht mehr unterstützt. Bisher profitierten Miner von einem Steuererlass, der den Strompreis drückte. Durch die Aufhebung, begründet mit Umweltschutz, erhöht sich der Energiepreis um etwa das Vierfache. Ob das Bitcoin-Mining dann noch rentabel ist? Fraglich.",
+      "url": "https://www.wallstreet-online.de/diskussion/1287915-150/dgap-news-northern-bitcoin-blickt-erfolgreiches-erstes-halbjahr-2018-deutsch",
+      "source": {
+        "title": "wallstreet:online"
+      },
+      "dateTimePub": "2025-10-02T01:15:22"
     }
   ],
-  "last_run_time": "2025-10-01T22:40:00.617024"
+  "last_run_time": "2025-10-02T02:43:26.309751"
 }
