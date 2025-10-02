@@ -75,7 +75,8 @@
     "https://www.tmtpost.com/7712420.html",
     "https://www.it-boltwise.de/bitcoin-miner-profitieren-von-ki-boom-und-steigern-marktwert.html",
     "https://www.wallstreet-online.de/diskussion/1287915-150/dgap-news-northern-bitcoin-blickt-erfolgreiches-erstes-halbjahr-2018-deutsch",
-    "https://finance.yahoo.com/news/bernstein-maintains-bullish-stance-iren-192913954.html"
+    "https://finance.yahoo.com/news/bernstein-maintains-bullish-stance-iren-192913954.html",
+    "https://www.it-boltwise.de/bitcoin-mining-erreicht-neue-schwierigkeitsrekorde-trotz-sinkender-hashpreise.html"
   ],
   "queued_articles": [
     {
@@ -1715,7 +1716,25 @@
         "title": "Yahoo! Finance"
       },
       "dateTimePub": "2025-10-02T07:08:46"
+    },
+    {
+      "title": "BTC Mining Hits Toughest Level Yet While Hashprice Slides",
+      "body": "Hashprice hovers below $50 per petahash despite Bitcoin's price rebound, as low fees and high difficulty weigh on miners.\n\nBitcoin's mining difficulty climbed 5% to a record 150.84 trillion on Wednesday, marking the seventh straight upward adjustment, according to Glassnode.\n\nDifficulty, which resets every 2016 blocks (approximately every two weeks), measures how challenging it is for miners to find new blocks and maintains the average block time at around 10 minutes.\n\nThe increase reflects continued growth in the network's hash rate, now above one zettahash at 1.05 ZH/s. A higher hash rate signals more machines competing to secure the network, boosting security while raising the bar for profitability.\n\nThat pressure is showing up in hashprice, miner revenue per unit of hashrate ,which has slipped under $50 per petahash per second, Luxor data shows.\n\nThe metric briefly touched $52 when bitcoin traded above $118,000 earlier this summer, but has since drifted lower as difficulty rose and prices softened.\n\nFor miner margins to improve, one of three levers would need to move: higher fees, which remain at multi-year lows, a rebound in bitcoin's price, or a slowdown in network hash rate.\n\nDespite record difficulty and falling hashprice, mining stocks have rallied alongside bitcoin's surge above $118,500, with Cipher Mining (CIFR) up more than 51% over the past month, Bit Digital (BTBT) gaining 25%, and Marathon Digital (MARA) climbing nearly 16%",
+      "url": "https://www.coindesk.com/markets/2025/10/02/bitcoin-mining-hits-toughest-level-yet-while-hashprice-slides",
+      "source": {
+        "title": "CoinDesk"
+      },
+      "dateTimePub": "2025-10-02T09:28:05"
+    },
+    {
+      "title": "CleanSpark (CLSK) Soars 14.7% as Bitcoin Seen to Hit $200K",
+      "body": "We recently published 10 Stocks With 10-60% Upside. CleanSpark, Inc. (NASDAQ:CLSK) is one of the top performers on Monday.\n\nShares of CleanSpark recovered by 14.74 percent on Monday to finish at $14.87 apiece, bolstered by strong optimism for the Bitcoin industry.\n\nCleanSpark, Inc. (NASDAQ:CLSK) rallied alongside its Bitcoin mining firms on Monday, namely MARA Holdings, Riot Platforms, and Galaxy Digital, after the latter's chief executive said that he expects the price of Bitcoin to propel past the $200,000 level if a new dovish chairman takes over the Federal Reserve.\n\nThe rally suggested strong confidence for the company even after getting a rating downgrade from JPMorgan.\n\nOver the weekend, JPMorgan downgraded CleanSpark, Inc. (NASDAQ:CLSK) to \"neutral\" from \"overweight\" previously, while maintaining its price target of $14.\n\nAccording to the investment firm, CleanSpark, Inc. (NASDAQ:CLSK) is currently fully priced after announcing expansion to 50 EH/s in June. It is currently the 7th largest Bitcoin mining firm in terms of market capitalization.\n\nIn other news, CleanSpark, Inc. (NASDAQ:CLSK) last week raised $100 million in fresh funds through tapping a credit facility with Two Prime. Proceeds will be used to support Bitcoin mining hashrate deployment, invest in high-performance computing (HPC) capabilities, and fund its evolving digital asset management strategies.\n\nWhile we acknowledge the potential of CLSK as an investment, our conviction lies in the belief that some AI stocks hold greater promise for delivering higher returns and have limited downside risk. If you are looking for an extremely cheap AI stock that is also a major beneficiary of Trump tariffs and onshoring, see our free report on the best short-term AI stock.\n\nDisclosure: None. This article is originally published at Insider Monkey.",
+      "url": "https://finance.yahoo.com/news/cleanspark-clsk-soars-14-7-193757148.html",
+      "source": {
+        "title": "Yahoo! Finance"
+      },
+      "dateTimePub": "2025-10-02T07:08:46"
     }
   ],
-  "last_run_time": "2025-10-02T09:10:49.219031"
+  "last_run_time": "2025-10-02T10:41:13.642461"
 }
