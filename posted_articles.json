@@ -81,7 +81,8 @@
     "https://www.coindesk.com/business/2025/10/02/canaan-shares-jump-over-12-as-it-lands-largest-u-s-order-in-3-years",
     "https://www.investing.com/news/stock-market-news/canaan-stock-soars-after-securing-largest-mining-machine-order-in-3-years-93CH-4268887",
     "https://www.economist.com/china/2025/10/02/bitcoin-and-a-chinese-fraudster-in-london",
-    "https://cryptocrunchapp.com/bitcoinmagazine/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill/"
+    "https://cryptocrunchapp.com/bitcoinmagazine/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill/",
+    "https://cryptobriefing.com/ny-bill-tax-bitcoin-mining-energy-aid/"
   ],
   "queued_articles": [
     {
@@ -1811,7 +1812,25 @@
         "title": "Bitcoin Magazine"
       },
       "dateTimePub": "2025-10-02T19:18:17"
+    },
+    {
+      "title": "Canaan Inc. Secures U.S. Order, Strengthening Market Leadership Amid U.S. Bitcoin Mining Recovery",
+      "body": "Canaan Inc. announced that it has secured a purchase order from a U.S.-based bitcoin miner for more than 50,000 of its latest-generation Avalon A15 Pro mining machines. Representing the largest order in the past three years, this milestone agreement highlights the strength of Canaan's technology portfolio and affirms both companies' confidence in the long-term growth of bitcoin mining and the market's demand for highly efficient, next-generation infrastructure. The Avalon A15 Pro, Canaan's latest generation bitcoin mining machine, offers efficiency and reliability.\n\nWith power costs and efficiency as defining factors for mining economics, the Avalon A15 Pro provides institutional miners with a tool to mine competitively because of the reliability and uptime performance of its machines. With this record-setting purchase order, Canaan's position as a trusted partner for institutional-scale mining operations worldwide has been reinforced.",
+      "url": "https://www.marketscreener.com/news/canaan-inc-secures-u-s-order-strengthening-market-leadership-amid-u-s-bitcoin-mining-recovery-ce7d5bded189f02d",
+      "source": {
+        "title": "Market Screener"
+      },
+      "dateTimePub": "2025-10-02T21:08:53"
+    },
+    {
+      "title": "New York Targets Bitcoin Mining With Proposed Tax Hike Bill",
+      "body": "Yesterday, two members of the New York State (NYS) Senate introduced Senate Bill 8518 (S8518), which imposes excise taxes on digital asset mining using the proof-of-work consensus mechanism, making it even more difficult than it already is for bitcoin miners to operate in the state.\n\nS8518, which was co-sponsored by Liz Krueger (D) and Andrew Gounardes (D), stipulates that bitcoin and digital asset miners in the state will pay increased taxes based on the amount of energy that they use.\n\nThe rates are as follows:\n\n* 0 cents per kilowatt-hour (kWh) for every kWh less than or equal to 2.25 million kWh per year\n\n* 2 cents per kWh for every kWh between 2.25 million and 5 million kWh per year\n\n* 3 cents per kWh for every kWh between 5 million and 10 million kWh per year\n\n* 4 cents per kWh for every kWh between 10 million and 20 million kWh per year\n\n* 5 cents per kWh for every kWh over 20 million kWh per year\n\nThe proposed taxes will not apply to miners who utilize renewable energy sources, as defined by Section 66-P of NYS public service law, to power their facilities. The mining facility would also have to \"not [be] operated in conjunction with an electric corporation's transmission and distribution facilities,\" according to the bill.\n\nThe bill also stipulates that all taxes, interest, and penalties collected as a result of this potential law be used to subsidize energy customers enrolled in NYS energy affordability programs.\n\nThe introduction of this bill comes approximately one year after NYS' digital asset mining moratorium expired. The moratorium banned any digital asset mining that required the use of fossil fuels.\n\nNow that bitcoin mining companies can technically operate in the state again, they will likely think twice about doing so, as the increased taxes will likely cause these companies to look to set up facilities elsewhere in the U.S..\n\nThis new bill is just another in a series of bad regulatory proposals from Democratic lawmakers and bureaucrats in NYS that disincentivize the Bitcoin and crypto companies from setting up in NYS.\n\nInstead of thinking about the jobs that the bitcoin mining industry could bring to upstate New York, home to a number of cities and regions that suffer from poverty in this post-industrial era, Democrats seem more hellbent on sticking it to bitcoin miners.",
+      "url": "https://bitcoinmagazine.com/politics/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill",
+      "source": {
+        "title": "Bitcoin Magazine"
+      },
+      "dateTimePub": "2025-10-02T19:18:17"
     }
   ],
-  "last_run_time": "2025-10-02T21:08:25.295445"
+  "last_run_time": "2025-10-02T22:39:56.628619"
 }
