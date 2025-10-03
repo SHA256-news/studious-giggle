@@ -82,7 +82,8 @@
     "https://www.investing.com/news/stock-market-news/canaan-stock-soars-after-securing-largest-mining-machine-order-in-3-years-93CH-4268887",
     "https://www.economist.com/china/2025/10/02/bitcoin-and-a-chinese-fraudster-in-london",
     "https://cryptocrunchapp.com/bitcoinmagazine/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill/",
-    "https://cryptobriefing.com/ny-bill-tax-bitcoin-mining-energy-aid/"
+    "https://cryptobriefing.com/ny-bill-tax-bitcoin-mining-energy-aid/",
+    "https://www.marketscreener.com/news/canaan-inc-secures-u-s-order-strengthening-market-leadership-amid-u-s-bitcoin-mining-recovery-ce7d5bded189f02d"
   ],
   "queued_articles": [
     {
@@ -1830,7 +1831,16 @@
         "title": "Bitcoin Magazine"
       },
       "dateTimePub": "2025-10-02T19:18:17"
+    },
+    {
+      "title": "New York Targets Bitcoin Mining With Proposed Tax Hike Bill",
+      "body": "Yesterday, two members of the New York State (NYS) Senate introduced Senate Bill 8518 (S8518), which imposes excise taxes on digital asset mining using the proof-of-work consensus mechanism, making it even more difficult than it already is for bitcoin miners to operate in the state.\n\nS8518, which was co-sponsored by Liz Krueger (D) and Andrew Gounardes (D), stipulates that bitcoin and digital asset miners in the state will pay increased taxes based on the amount of energy that they use.\n\nThe rates are as follows:\n\n* 0 cents per kilowatt-hour (kWh) for every kWh less than or equal to 2.25 million kWh per year\n\n* 2 cents per kWh for every kWh between 2.25 million and 5 million kWh per year\n\n* 3 cents per kWh for every kWh between 5 million and 10 million kWh per year\n\n* 4 cents per kWh for every kWh between 10 million and 20 million kWh per year\n\n* 5 cents per kWh for every kWh over 20 million kWh per year\n\nThe proposed taxes will not apply to miners who utilize renewable energy sources, as defined by Section 66-P of NYS public service law, to power their facilities. The mining facility would also have to \"not [be] operated in conjunction with an electric corporation's transmission and distribution facilities,\" according to the bill.\n\nThe bill also stipulates that all taxes, interest, and penalties collected as a result of this potential law be used to subsidize energy customers enrolled in NYS energy affordability programs.\n\nThe introduction of this bill comes approximately one year after NYS' digital asset mining moratorium expired. The moratorium banned any digital asset mining that required the use of fossil fuels.\n\nNow that bitcoin mining companies can technically operate in the state again, they will likely think twice about doing so, as the increased taxes will likely cause these companies to look to set up facilities elsewhere in the U.S..\n\nThis new bill is just another in a series of bad regulatory proposals from Democratic lawmakers and bureaucrats in NYS that disincentivize the Bitcoin and crypto companies from setting up in NYS.\n\nInstead of thinking about the jobs that the bitcoin mining industry could bring to upstate New York, home to a number of cities and regions that suffer from poverty in this post-industrial era, Democrats seem more hellbent on sticking it to bitcoin miners.",
+      "url": "https://bitcoinmagazine.com/politics/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill",
+      "source": {
+        "title": "Bitcoin Magazine"
+      },
+      "dateTimePub": "2025-10-02T19:18:17"
     }
   ],
-  "last_run_time": "2025-10-02T22:39:56.628619"
+  "last_run_time": "2025-10-03T04:42:06.331614"
 }
