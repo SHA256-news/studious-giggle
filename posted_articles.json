@@ -83,7 +83,8 @@
     "https://www.economist.com/china/2025/10/02/bitcoin-and-a-chinese-fraudster-in-london",
     "https://cryptocrunchapp.com/bitcoinmagazine/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill/",
     "https://cryptobriefing.com/ny-bill-tax-bitcoin-mining-energy-aid/",
-    "https://www.marketscreener.com/news/canaan-inc-secures-u-s-order-strengthening-market-leadership-amid-u-s-bitcoin-mining-recovery-ce7d5bded189f02d"
+    "https://www.marketscreener.com/news/canaan-inc-secures-u-s-order-strengthening-market-leadership-amid-u-s-bitcoin-mining-recovery-ce7d5bded189f02d",
+    "https://bitcoinmagazine.com/politics/new-york-targets-bitcoin-mining-with-proposed-tax-hike-bill"
   ],
   "queued_articles": [
     {
@@ -1842,5 +1843,5 @@
       "dateTimePub": "2025-10-02T19:18:17"
     }
   ],
-  "last_run_time": "2025-10-03T04:42:06.331614"
+  "last_run_time": "2025-10-03T06:14:43.551053"
 }
