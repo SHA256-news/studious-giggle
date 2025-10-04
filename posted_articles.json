@@ -95,7 +95,8 @@
     "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september",
     "https://finance.yahoo.com/news/canaan-shares-jump-over-12-135323461.html",
     "https://finance.yahoo.com/news/bitcoin-mining-stock-just-got-201249143.html",
-    "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september"
+    "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september",
+    "https://finance.yahoo.com/news/canaan-shares-jump-over-12-135323461.html"
   ],
   "queued_articles": [
     {
@@ -2241,15 +2242,6 @@
       "dateTimePub": "2025-10-03T13:25:43"
     },
     {
-      "title": "Canaan Shares Jump Over 12% as it Lands Largest U.S. Order in 3 Years",
-      "body": "Bitcoin mining equipment maker Canaan (CAN) has secured its biggest hardware order in three years, selling over 50,000 of its Avalon A15 Pro bitcoin miners to a U.S.-based mining firm.\n\nThe machines are set to ship in the fourth quarter of 2025, the Singapore-based company said. The name of the buyer wasn't named, although the scale of the purchases points to a major mining operations.\n\n\"This milestone order represents a significant win for Canaan and reflects the robust resurgence of the U.S. market,\" Canaan CEO Nangeng Zhang said in a statement.\n\nThe order also points to miners' continued bets on the industry, even as the cryptocurrency's mining difficulty climbs to a new all-time high. Shares of Canaan were up 12% in pre-market trading following the news and moved up nearly 18% in yesterday's trading session.\n\nWhile reciprocal tariffs applied for Chinese-sourced ASIC miners and Canaan has, for most of its history, been operating from China, it may be able to avoid these costs. The company operates facilities in the both the U.S. and Malaysia, which it has leveraged for a separate purchase agreement with Cipher Mining.\n\nThe company did not specify which facilities will be fulfilling the 50,000 AISC order.",
-      "url": "https://finance.yahoo.com/news/canaan-shares-jump-over-12-135323461.html",
-      "source": {
-        "title": "Yahoo! Finance"
-      },
-      "dateTimePub": "2025-10-03T21:21:09"
-    },
-    {
       "title": "New York Targets Bitcoin Mining With Proposed Tax Hike Bill",
       "body": "Authored by Frank Corva via BitcoinMagazine.com,\n\nYesterday, two members of the New York State (NYS) Senate introduced Senate Bill 8518 (S8518), which imposes excise taxes on digital asset mining using the proof-of-work consensus mechanism, making it even more difficult than it already is for bitcoin miners to operate in the state.\n\nS8518, which was co-sponsored by Liz Krueger (D) and Andrew Gounardes (D), stipulates that bitcoin and digital asset miners in the state will pay increased taxes based on the amount of energy that they use.\n\nThe rates are as follows:\n\nThe proposed taxes will not apply to miners who utilize renewable energy sources, as defined by Section 66-P of NYS public service law, to power their facilities. The mining facility would also have to \"not [be] operated in conjunction with an electric corporation's transmission and distribution facilities,\" according to the bill.\n\nThe bill also stipulates that all taxes, interest, and penalties collected as a result of this potential law be used to subsidize energy customers enrolled in NYS energy affordability programs.\n\nThe introduction of this bill comes approximately one year after NYS' digital asset mining moratorium expired. The moratorium banned any digital asset mining that required the use of fossil fuels.\n\nNow that bitcoin mining companies can technically operate in the state again, they will likely think twice about doing so, as the increased taxes will likely cause these companies to look to set up facilities elsewhere in the U.S..\n\nThis new bill is just another in a series of bad regulatory proposals from Democratic lawmakers and bureaucrats in NYS that disincentivize the Bitcoin and crypto companies from setting up in NYS.\n\nInstead of thinking about the jobs that the bitcoin mining industry could bring to upstate New York, home to a number of cities and regions that suffer from poverty in this post-industrial era, Democrats seem more hellbent on sticking it to bitcoin miners.",
       "url": "https://www.zerohedge.com/crypto/new-york-targets-bitcoin-mining-proposed-tax-hike-bill",
@@ -2403,5 +2395,5 @@
       "dateTimePub": "2025-10-03T20:06:05"
     }
   ],
-  "last_run_time": "2025-10-04T09:09:16.690298"
+  "last_run_time": "2025-10-04T10:39:49.157968"
 }
