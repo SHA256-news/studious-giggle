@@ -727,6 +727,7 @@ class GeminiClient:
               If headline mentions company name, focus on OTHER details like location, timeline, financial impact
               
             - Format: Each point on its own line starting with "•"
+            - NO periods at the end of bullet points (unless it's a question, then use "?")
             - NO generic phrases like "industry impact", "key development", "details in article"
             
             Please read the full article content from the URL and extract DIFFERENT facts than those in the headline.
@@ -768,6 +769,7 @@ class GeminiClient:
                 - TOTAL summary must be under 180 characters
                 - Include specific details when available but NOT mentioned in headline
                 - Format: Each point on its own line starting with "•"
+                - NO periods at the end of bullet points (unless it's a question, then use "?")
                 - NO repetition of headline information
                 - NO generic phrases like "industry impact", "key development"
                 - CRITICAL: If this is about chips/hardware, emphasize Bitcoin mining applications
@@ -818,6 +820,17 @@ class GeminiClient:
         else:
             # Single line without bullets, add bullet point
             summary_text = f'• {summary_text}'
+        
+        # Remove trailing periods from each bullet point (but keep question marks)
+        lines = summary_text.split('\n')
+        cleaned_lines = []
+        for line in lines:
+            if line.strip():
+                # Remove trailing period only if it's not a question mark
+                if line.rstrip().endswith('.') and not line.rstrip().endswith('?'):
+                    line = line.rstrip()[:-1]  # Remove the trailing period
+                cleaned_lines.append(line)
+        summary_text = '\n'.join(cleaned_lines)
         
         # Ensure it's not too long (accounting for line breaks)
         if len(summary_text) > 180:
