@@ -10,6 +10,7 @@ import logging
 import os
 import re
 import time
+import hashlib
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple
@@ -19,6 +20,11 @@ from pathlib import Path
 import tweepy
 
 # Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.StreamHandler()]
+)
 logger = logging.getLogger('bitcoin_mining_bot')
 
 
@@ -207,27 +213,6 @@ class FullContentFetcher:
 # =============================================================================
 # CONFIGURATION
 # =============================================================================
-
-import json
-import logging
-import os
-import re
-import time
-from dataclasses import dataclass
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Tuple
-from pathlib import Path
-
-# External dependencies
-import tweepy
-
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-logger = logging.getLogger('bitcoin_mining_bot')
 
 
 # =============================================================================
@@ -1250,17 +1235,447 @@ class NewsAPI:
             return []
     
     def _deduplicate_articles(self, articles: List[dict]) -> List[dict]:
-        """Remove duplicate articles based on URL."""
-        seen_urls = set()
-        unique_articles = []
+        """Enhanced deduplication using content similarity and source reputation."""
+        return self._enhanced_deduplicate_articles(articles)
+    
+    def _enhanced_deduplicate_articles(self, articles: List[dict]) -> List[dict]:
+        """
+        Enhanced deduplication that detects duplicate content from different sources
+        and selects the most reputable source.
+        
+        Uses content hashing to identify similar articles regardless of source,
+        then applies source reputation ranking to choose the best version.
+        """
+        if not articles:
+            return []
+        
+        # Group articles by content similarity
+        content_groups = {}
         
         for article in articles:
-            url = article.get('url', '')
-            if url and url not in seen_urls:
-                seen_urls.add(url)
-                unique_articles.append(article)
+            content_hash = self._compute_content_hash(article)
+            
+            if content_hash not in content_groups:
+                content_groups[content_hash] = []
+            content_groups[content_hash].append(article)
+        
+        # For each group, select the best article based on source reputation
+        unique_articles = []
+        for group in content_groups.values():
+            best_article = self._select_best_article_from_group(group)
+            unique_articles.append(best_article)
+        
+        logger.info(f"Enhanced deduplication: {len(articles)} → {len(unique_articles)} articles")
+        if len(articles) > len(unique_articles):
+            duplicate_count = len(articles) - len(unique_articles)
+            logger.info(f"Removed {duplicate_count} duplicate articles from different sources")
         
         return unique_articles
+    
+    def _compute_content_hash(self, article: dict) -> str:
+        """
+        Compute a content hash using key entity and number extraction.
+        
+        Simple but effective approach focusing on:
+        - Company names
+        - Key numbers (quantities, amounts)
+        - Technology terms
+        - Action words
+        """
+        title = article.get('title', '').strip().lower()
+        body = article.get('body', '').strip().lower()
+        full_content = f"{title} {body}"
+        
+        # Extract key components for similarity matching
+        components = []
+        
+        # Company detection
+        if 'marathon' in full_content:
+            components.append('marathon_digital')
+        if 'riot' in full_content:
+            components.append('riot_blockchain')
+        if 'bitfarms' in full_content:
+            components.append('bitfarms')
+        
+        # Number patterns
+        if '5000' in full_content or '5,000' in full_content:
+            components.append('num_5000')
+        if '50' in full_content and 'million' in full_content:
+            components.append('amount_50m')
+        
+        # Actions - map similar actions to same component
+        purchase_words = ['acquire', 'buy', 'purchase', 'bought', 'purchased', 'acquisition']
+        if any(word in full_content for word in purchase_words):
+            components.append('action_purchase')
+        
+        announce_words = ['announce', 'announced', 'announces', 'announcement']
+        if any(word in full_content for word in announce_words):
+            components.append('action_announce')
+        
+        # Technology
+        if any(word in full_content for word in ['miner', 'mining', 'asic']):
+            components.append('tech_mining')
+        if 'bitcoin' in full_content or 'btc' in full_content:
+            components.append('tech_bitcoin')
+        if 'hash rate' in full_content or 'hashrate' in full_content:
+            components.append('tech_hashrate')
+        
+        # Sort for consistency
+        components.sort()
+        
+        # Create core fingerprint focusing on main entities (company + numbers + tech)
+        # Actions are secondary and shouldn't prevent duplicate detection
+        core_components = [comp for comp in components if not comp.startswith('action_')]
+        action_components = [comp for comp in components if comp.startswith('action_')]
+        
+        # If we have core components, use them primarily
+        if core_components:
+            # Add at most one action component to avoid over-specificity
+            if action_components:
+                core_components.append('has_action')
+            fingerprint = '_'.join(core_components)
+        else:
+            # Fallback to full components if no core components found
+            fingerprint = '_'.join(components) if components else full_content[:50]
+        
+        # Create hash
+        content_hash = hashlib.sha256(fingerprint.encode('utf-8')).hexdigest()[:16]
+        return content_hash
+    
+    def _normalize_content_for_hashing(self, content: str) -> str:
+        """
+        Normalize content for consistent hashing across similar articles.
+        
+        This handles cases where the same news story appears with:
+        - Different capitalization
+        - Different punctuation
+        - Minor wording differences
+        - Different formatting
+        
+        Strategy: Focus on key entities and numbers rather than exact text matching
+        """
+        if not content:
+            return ""
+        
+        # Convert to lowercase
+        content = content.lower()
+        
+        # Remove common punctuation and special characters, but keep numbers and letters
+        content = re.sub(r'[^\w\s]', ' ', content)
+        
+        # Normalize whitespace
+        content = re.sub(r'\s+', ' ', content).strip()
+        
+        # Extract key semantic components for better duplicate detection
+        semantic_components = []
+        
+        # 1. Extract company names and important entities
+        company_patterns = [
+            r'marathon\\s*digital?', r'riot\\s*blockchain', r'bitfarms', r'hive\\s*blockchain',
+            r'cleanspark', r'iris\\s*energy', r'greenidge', r'stronghold', r'core\\s*scientific',
+            r'hut\\s*8', r'bitdeer', r'cipher\\s*mining', r'terawulf', r'applied\\s*digital'
+        ]
+        
+        for pattern in company_patterns:
+            if re.search(pattern, content):
+                # Normalize company name format
+                match = re.search(pattern, content)
+                if match:
+                    company = re.sub(r'\s+', '_', match.group().strip())
+                    semantic_components.append(f"company_{company}")
+        
+        # 2. Extract numbers (quantities, prices, percentages)
+        numbers = re.findall(r'\d+(?:,\d+)*(?:\.\d+)?', content)
+        for num in numbers:
+            # Normalize numbers (remove commas, group similar ranges)
+            clean_num = num.replace(',', '')
+            if '.' in clean_num:
+                # Round decimals to avoid minor differences
+                try:
+                    float_num = float(clean_num)
+                    if float_num >= 1000:
+                        semantic_components.append(f"num_{int(float_num//1000)}k")
+                    else:
+                        semantic_components.append(f"num_{int(float_num)}")
+                except ValueError:
+                    semantic_components.append(f"num_{clean_num}")
+            else:
+                try:
+                    int_num = int(clean_num)
+                    if int_num >= 1000:
+                        semantic_components.append(f"num_{int_num//1000}k")
+                    else:
+                        semantic_components.append(f"num_{int_num}")
+                except ValueError:
+                    semantic_components.append(f"num_{clean_num}")
+        
+        # 3. Extract key action words and business terms
+        key_terms = [
+            'acquires?', 'acquisition', 'buys?', 'purchase[ds]?', 'announces?', 'announcement',
+            'deploys?', 'deployment', 'installs?', 'installation', 'expands?', 'expansion',
+            'miners?', 'mining', 'asics?', 'rigs?', 'machines?', 'equipment',
+            'hash\\s*rate', 'hashrate', 'bitcoin', 'btc', 'cryptocurrency', 'crypto',
+            'million', 'billion', 'trillion', 'percent', 'percentage', 'increase', 'decrease',
+            'quarter', 'q[1-4]', 'year', '202[4-9]', 'capacity', 'operations?'
+        ]
+        
+        for term_pattern in key_terms:
+            matches = re.findall(term_pattern, content)
+            for match in matches:
+                normalized_term = re.sub(r'\s+', '_', match.strip())
+                semantic_components.append(f"term_{normalized_term}")
+        
+        # 4. Extract specific product/technology terms
+        tech_terms = [
+            'antminer', 's19', 's21', 'whatsminer', 'm30', 'm50', 'm60',
+            'bitmain', 'microbt', 'canaan', 'avalon', 'immersion', 'cooling'
+        ]
+        
+        for tech_term in tech_terms:
+            if tech_term in content:
+                semantic_components.append(f"tech_{tech_term}")
+        
+        # 5. Add remaining significant words (length >= 4, not stop words)
+        words = content.split()
+        significant_words = []
+        
+        # More focused stop words list for financial/tech content
+        stop_words = {
+            'the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 
+            'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 
+            'how', 'its', 'may', 'new', 'now', 'old', 'see', 'two', 'way', 'who', 
+            'boy', 'did', 'does', 'each', 'few', 'got', 'let', 'put', 'say', 'she', 
+            'too', 'use', 'will', 'with', 'this', 'that', 'they', 'from', 'have', 
+            'been', 'into', 'said', 'than', 'them', 'were', 'what', 'when', 'where',
+            'more', 'some', 'time', 'very', 'after', 'back', 'other', 'many', 'then',
+            'about', 'would', 'there', 'could', 'first', 'also', 'make', 'made', 'well',
+            'much', 'take', 'come', 'came', 'work', 'year', 'years', 'week', 'weeks'
+        }
+        
+        for word in words:
+            if len(word) >= 4 and word not in stop_words:
+                # Only add if not already captured by semantic components
+                if not any(word in comp for comp in semantic_components):
+                    significant_words.append(word)
+        
+        # Combine all components
+        all_components = semantic_components + [f"word_{word}" for word in significant_words[:10]]  # Limit words
+        
+        # Sort for consistency
+        all_components.sort()
+        
+        return ' '.join(all_components)
+    
+    def _select_best_article_from_group(self, articles: List[dict]) -> dict:
+        """
+        Select the best article from a group of similar articles based on source reputation.
+        
+        Ranking criteria:
+        1. Source reputation (tier-based)
+        2. Content completeness (longer, more detailed articles preferred)
+        3. Recency (newer articles preferred)
+        """
+        if len(articles) == 1:
+            return articles[0]
+        
+        # Score each article
+        scored_articles = []
+        for article in articles:
+            score = self._calculate_article_score(article)
+            scored_articles.append((score, article))
+        
+        # Sort by score (highest first) and return the best
+        scored_articles.sort(key=lambda x: x[0], reverse=True)
+        best_article = scored_articles[0][1]
+        
+        # Log the selection for transparency
+        best_source = self._extract_source_name(best_article)
+        other_sources = [self._extract_source_name(art) for _, art in scored_articles[1:]]
+        logger.info(f"Selected '{best_source}' over {other_sources} for: {best_article.get('title', 'Unknown')[:60]}...")
+        
+        return best_article
+    
+    def _calculate_article_score(self, article: dict) -> float:
+        """
+        Calculate a comprehensive score for article quality and source reputation.
+        
+        Higher scores indicate better articles that should be preferred.
+        """
+        score = 0.0
+        
+        # Source reputation score (0-100 points)
+        source_score = self._get_source_reputation_score(article)
+        score += source_score
+        
+        # Content quality score (0-50 points)
+        content_score = self._get_content_quality_score(article)
+        score += content_score
+        
+        # Recency bonus (0-20 points)
+        recency_score = self._get_recency_score(article)
+        score += recency_score
+        
+        return score
+    
+    def _get_source_reputation_score(self, article: dict) -> float:
+        """
+        Get reputation score for the article's source.
+        
+        Tier 1 (90-100 points): Premium financial/crypto news sources
+        Tier 2 (70-89 points): Established general news sources
+        Tier 3 (50-69 points): Specialized crypto/tech sources
+        Tier 4 (30-49 points): General tech/business sources
+        Tier 5 (10-29 points): Other legitimate sources
+        Default (5 points): Unknown sources
+        """
+        source_name = self._extract_source_name(article).lower()
+        
+        # Tier 1: Premium financial/crypto sources
+        tier1_sources = {
+            'coindesk', 'cointelegraph', 'decrypt', 'the block', 'blockworks',
+            'bitcoin magazine', 'bloomberg crypto', 'reuters crypto', 'wsj crypto'
+        }
+        
+        # Tier 2: Established general news
+        tier2_sources = {
+            'reuters', 'bloomberg', 'wall street journal', 'financial times',
+            'associated press', 'bbc', 'cnn business', 'cnbc'
+        }
+        
+        # Tier 3: Specialized crypto/tech
+        tier3_sources = {
+            'cryptoslate', 'coinnounce', 'bitcoinist', 'newsbtc', 'crypto news',
+            'crypto briefing', 'ambcrypto', 'u.today', 'bitcoinist'
+        }
+        
+        # Tier 4: General tech/business
+        tier4_sources = {
+            'techcrunch', 'the verge', 'ars technica', 'wired', 'forbes',
+            'business insider', 'venturebeat', 'zdnet', 'engadget'
+        }
+        
+        # Tier 5: Other legitimate sources
+        tier5_sources = {
+            'yahoo finance', 'marketwatch', 'seeking alpha', 'nasdaq',
+            'investing.com', 'benzinga', 'finance yahoo'
+        }
+        
+        # Check each tier
+        for tier1_source in tier1_sources:
+            if tier1_source in source_name:
+                return 95.0
+        
+        for tier2_source in tier2_sources:
+            if tier2_source in source_name:
+                return 80.0
+        
+        for tier3_source in tier3_sources:
+            if tier3_source in source_name:
+                return 60.0
+        
+        for tier4_source in tier4_sources:
+            if tier4_source in source_name:
+                return 40.0
+        
+        for tier5_source in tier5_sources:
+            if tier5_source in source_name:
+                return 20.0
+        
+        return 5.0  # Unknown source
+    
+    def _get_content_quality_score(self, article: dict) -> float:
+        """
+        Score article based on content completeness and quality indicators.
+        
+        Factors:
+        - Title length and informativeness
+        - Body content length and detail
+        - Presence of specific details (numbers, dates, names)
+        """
+        score = 0.0
+        
+        title = article.get('title', '')
+        body = article.get('body', '')
+        
+        # Title quality (0-15 points)
+        if title:
+            title_len = len(title)
+            if 30 <= title_len <= 120:  # Good title length
+                score += 10.0
+            elif title_len > 20:  # Reasonable title
+                score += 5.0
+            
+            # Bonus for specific details in title
+            if re.search(r'\d+', title):  # Contains numbers
+                score += 3.0
+            if any(word in title.lower() for word in ['million', 'billion', 'trillion', '%', 'percent']):
+                score += 2.0
+        
+        # Body content quality (0-25 points)
+        if body:
+            body_len = len(body)
+            if body_len > 500:  # Detailed article
+                score += 20.0
+            elif body_len > 200:  # Reasonable content
+                score += 15.0
+            elif body_len > 100:  # Minimal content
+                score += 10.0
+            else:  # Very short
+                score += 5.0
+            
+            # Bonus for detailed content indicators
+            if re.search(r'\d+', body):  # Contains numbers/data
+                score += 3.0
+            if len(re.findall(r'[A-Z][a-z]+ [A-Z][a-z]+', body)) > 2:  # Proper names
+                score += 2.0
+        
+        # URL quality (0-10 points)
+        url = article.get('url', '')
+        if '/news/' in url or '/article/' in url or '/story/' in url:
+            score += 5.0
+        if url.startswith('https://'):
+            score += 2.0
+        
+        return min(score, 50.0)  # Cap at 50 points
+    
+    def _get_recency_score(self, article: dict) -> float:
+        """
+        Score article based on how recent it is.
+        
+        More recent articles get higher scores.
+        """
+        date_str = article.get('dateTimePub') or article.get('dateTime')
+        if not date_str:
+            return 5.0  # Default for unknown date
+        
+        try:
+            article_date = datetime.fromisoformat(date_str.replace('Z', '+00:00')).replace(tzinfo=None)
+            hours_old = (datetime.now() - article_date).total_seconds() / 3600
+            
+            if hours_old <= 1:    # Very fresh
+                return 20.0
+            elif hours_old <= 6:  # Recent
+                return 15.0
+            elif hours_old <= 24: # Today
+                return 10.0
+            elif hours_old <= 48: # Yesterday
+                return 5.0
+            else:                 # Older
+                return 1.0
+        except (ValueError, TypeError):
+            return 5.0  # Default for unparseable date
+    
+    def _extract_source_name(self, article: dict) -> str:
+        """
+        Extract clean source name from article data.
+        """
+        source_data = article.get('source')
+        if isinstance(source_data, dict):
+            return source_data.get('title', 'Unknown Source')
+        elif isinstance(source_data, str):
+            return source_data
+        else:
+            return 'Unknown Source'
     
     def _add_freshness_info(self, article: 'Article') -> None:
         """Add precise freshness information to article for smart prefix selection."""

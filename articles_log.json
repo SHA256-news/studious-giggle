@@ -1,6 +1,6 @@
 {
-  "last_updated": "2025-09-28T17:18:41.659282",
-  "total_articles": 4,
+  "last_updated": "2025-10-04T02:43:09.944180",
+  "total_articles": 8,
   "daily_articles": [
     {
       "date": "2025-09-28",
@@ -59,6 +59,64 @@
         }
       ],
       "fetch_count": 7
+    },
+    {
+      "date": "2025-10-04",
+      "articles": [
+        {
+          "url": "https://example.com/article",
+          "title": "Bitcoin Mining News",
+          "description": "",
+          "source": "Test Source",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-04T02:26:41.810559",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://example.com",
+          "title": "Valid Article",
+          "description": "",
+          "source": "Test",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-04T02:26:47.184268",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://bitcoinnews.com/hashrate-ath-2024",
+          "title": "Bitcoin Network Hashrate Reaches All-Time High",
+          "description": "",
+          "source": "Bitcoin News",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-04T02:26:47.194804",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://miningupdate.com/green-energy-2024",
+          "title": "Major Mining Pool Announces Green Energy Initiative",
+          "description": "",
+          "source": "Mining Update",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-04T02:26:47.194812",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        }
+      ],
+      "fetch_count": 5
     }
   ]
 }
