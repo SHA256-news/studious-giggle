@@ -94,7 +94,8 @@
     "https://www.it-boltwise.de/cleanspark-steigert-bitcoin-produktion-trotz-herausforderungen-2.html",
     "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september",
     "https://finance.yahoo.com/news/canaan-shares-jump-over-12-135323461.html",
-    "https://finance.yahoo.com/news/bitcoin-mining-stock-just-got-201249143.html"
+    "https://finance.yahoo.com/news/bitcoin-mining-stock-just-got-201249143.html",
+    "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september"
   ],
   "queued_articles": [
     {
@@ -2240,15 +2241,6 @@
       "dateTimePub": "2025-10-03T13:25:43"
     },
     {
-      "title": "CleanSpark sells $48.7M in Bitcoin, treasury tops 13K BTC in September",
-      "body": "Shares of Nasdaq-listed miner CleanSpark rose more than 5% Friday after the company reported higher September production.\n\nBitcoin miner CleanSpark ended September with 13,011 BTC in its treasury after reporting year-over-year gains in efficiency and output.\n\nThe company said monthly production rose 27% from September 2024, with 629 Bitcoin (BTC) mined, and sold 445 BTC for roughly $48.7 million at an average price of $109,568. In its Friday update, CleanSpark said that fleet efficiency improved 26% year over year, while its average operating hashrate for the month was 45.6 EH/s.\n\nCleanSpark has been selling part of its monthly Bitcoin production since April as part of a push to become financially self-sufficient. It also opened an institutional Bitcoin trading desk to facilitate sales. In August, the company generated $60.7 million from the sale of 533.5 BTC.\n\nCleanSpark's shares on Nasdaq rose 5.28% following the report, gaining more than 23% over the week, according to Yahoo Finance.\n\nThe market capitalization of 15 major publicly traded Bitcoin miners reached a record $58.1 billion in September, up from $41.6 billion in August and more than double the $19.9 billion recorded in March, according to an Oct. 1 report from The Miner Mag.\n\nRelated: Bitcoin miner accumulation hits fastest pace since 2023 rally\n\nDespite investor appetite for publicly traded mining companies, the industry faces growing headwinds from higher energy costs and the threat of tariffs on imported mining rigs.\n\nIn August, The Miner Mag reported that US Customs and Border Protection had alleged some of CleanSpark's 2024 mining rigs were manufactured in China, leaving the company with potential tariff liabilities of up to $185 million.\n\nIris Energy (IREN), the largest Bitcoin miner by market cap, was also contesting a separate $100 million tariff dispute with the agency.\n\nAs Cointelegraph reported in August, the effective duty on China-made machines stood at 57.6%, while rigs from Indonesia, Malaysia, and Thailand face tariffs of 21.6%.\n\nBitcoin mining difficulty also reached record highs in September and October, meaning miners must expend more computing power and energy to produce the same amount of Bitcoin.",
-      "url": "https://cointelegraph.com/news/cleanspark-sells-bitcoin-treasury-tops-13k-btc-september",
-      "source": {
-        "title": "Cointelegraph"
-      },
-      "dateTimePub": "2025-10-03T21:33:37"
-    },
-    {
       "title": "Canaan Shares Jump Over 12% as it Lands Largest U.S. Order in 3 Years",
       "body": "Bitcoin mining equipment maker Canaan (CAN) has secured its biggest hardware order in three years, selling over 50,000 of its Avalon A15 Pro bitcoin miners to a U.S.-based mining firm.\n\nThe machines are set to ship in the fourth quarter of 2025, the Singapore-based company said. The name of the buyer wasn't named, although the scale of the purchases points to a major mining operations.\n\n\"This milestone order represents a significant win for Canaan and reflects the robust resurgence of the U.S. market,\" Canaan CEO Nangeng Zhang said in a statement.\n\nThe order also points to miners' continued bets on the industry, even as the cryptocurrency's mining difficulty climbs to a new all-time high. Shares of Canaan were up 12% in pre-market trading following the news and moved up nearly 18% in yesterday's trading session.\n\nWhile reciprocal tariffs applied for Chinese-sourced ASIC miners and Canaan has, for most of its history, been operating from China, it may be able to avoid these costs. The company operates facilities in the both the U.S. and Malaysia, which it has leveraged for a separate purchase agreement with Cipher Mining.\n\nThe company did not specify which facilities will be fulfilling the 50,000 AISC order.",
       "url": "https://finance.yahoo.com/news/canaan-shares-jump-over-12-135323461.html",
@@ -2411,5 +2403,5 @@
       "dateTimePub": "2025-10-03T20:06:05"
     }
   ],
-  "last_run_time": "2025-10-04T06:13:28.721900"
+  "last_run_time": "2025-10-04T09:09:16.690298"
 }
