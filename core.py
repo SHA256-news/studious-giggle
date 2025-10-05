@@ -768,7 +768,6 @@ class NewsAPI:
             
             q = QueryArticlesIter(
                 keywords="bitcoin mining",
-                keywordLoc="body",
                 dateStart=datetime.now() - timedelta(days=self.config.article_lookback_days),
                 lang="eng"
             )
