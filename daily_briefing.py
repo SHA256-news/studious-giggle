@@ -315,11 +315,21 @@ class DailyBriefingGenerator:
                     article["source_type"] = "queued"
                     all_articles.append(article)
             
-            # Add articles from log (if available)
-            for article in articles_log.get("articles", []):
-                if self._is_article_recent(article, cutoff_date):
-                    article["source_type"] = "logged"
-                    all_articles.append(article)
+            # Add articles from log (if available) - handle both old and new format
+            daily_articles = articles_log.get("daily_articles", [])
+            if daily_articles:
+                # New format: daily_articles contains date groups
+                for date_group in daily_articles:
+                    for article in date_group.get("articles", []):
+                        if self._is_article_recent(article, cutoff_date):
+                            article["source_type"] = "logged"
+                            all_articles.append(article)
+            else:
+                # Fallback: old format with articles directly
+                for article in articles_log.get("articles", []):
+                    if self._is_article_recent(article, cutoff_date):
+                        article["source_type"] = "logged"
+                        all_articles.append(article)
             
             # Remove duplicates based on URL
             unique_articles = {}
@@ -457,10 +467,17 @@ class DailyBriefingGenerator:
     
     def _basic_article_processing(self, article_data: Dict[str, Any]) -> ProcessedArticle:
         """Fallback processing without AI enhancement."""
+        # Handle source field - could be string or dict
+        source_data = article_data.get("source", "Unknown Source")
+        if isinstance(source_data, dict):
+            source_name = source_data.get("title", "Unknown Source")
+        else:
+            source_name = str(source_data) if source_data else "Unknown Source"
+            
         return ProcessedArticle(
             title=article_data.get("title", "Unknown Title"),
             url=article_data.get("url", ""),
-            source=article_data.get("source", {}).get("title", "Unknown Source"),
+            source=source_name,
             published_date=article_data.get("dateTimePub", ""),
             summary=article_data.get("body", "")[:300] + "...",
             key_points=[
