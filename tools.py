@@ -120,14 +120,17 @@ class BotTools:
                     # Handle optional gemini_client properly
                     thread = TextProcessor.create_tweet_thread(article, gemini_client if gemini_available else None)
                     
-                    for j, tweet in enumerate(thread, 1):
-                        print(f"Tweet {j}: {tweet}")
-                        print(f"Length: {len(tweet)} chars")
-                        if j < len(thread):
-                            print("-" * 20)
-                    
-                    print("-" * 30)
-                    print(f"✅ Thread complete: {len(thread)} tweets total")
+                    if thread is None:
+                        print("❌ Thread generation failed - no content available")
+                    else:
+                        for j, tweet in enumerate(thread, 1):
+                            print(f"Tweet {j}: {tweet}")
+                            print(f"Length: {len(tweet)} chars")
+                            if j < len(thread):
+                                print("-" * 20)
+                        
+                        print("-" * 30)
+                        print(f"✅ Thread complete: {len(thread)} tweets total")
                     
                 except Exception as e:
                     print(f"❌ Error generating thread: {e}")
