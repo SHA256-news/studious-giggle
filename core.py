@@ -1035,12 +1035,12 @@ class BitcoinMiningBot:
                 return True
             
             # Filter out already posted articles using INTELLIGENT deduplication
-            new_articles = []
+            new_articles: List[Article] = []
             posted_urls = set(self.posted_data["posted_uris"])
             queued_articles_data = self.posted_data.get("queued_articles", [])
             
             # Convert existing queued articles to Article objects for comparison
-            existing_articles = []
+            existing_articles: List[Article] = []
             
             # Add already queued articles for comparison
             for qa_data in queued_articles_data:
