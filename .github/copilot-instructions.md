@@ -56,7 +56,16 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 - **Professional formatting**: Line-break bullet points for improved readability
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
-- **Content deduplication**: Tracks posted articles to prevent repeats
+- **Content deduplication**: Intelligent content-based similarity detection prevents duplicate articles from different sources
+
+### Intelligent Content Deduplication System
+- **Problem solved**: Replaced simple URL-based deduplication that missed same content from different sources
+- **ContentSimilarity class**: Complete similarity detection with title analysis, content fingerprinting, and date proximity
+- **Multi-factor detection**: Jaccard similarity for titles, MD5 fingerprinting for content, word overlap analysis
+- **Configurable thresholds**: title_similarity_threshold (0.8), content_similarity_threshold (0.7), date_window_hours (48)
+- **Real-world proven**: Successfully catches duplicates like Marathon Digital conference transcripts from different Investing.com domains
+- **Smart algorithms**: Handles same news from multiple outlets, regional variations, and republished content
+- **Production performance**: O(n²) comparison optimized with early URL checks and fingerprint matching
 
 ### Technical Implementation Details
 
@@ -175,7 +184,7 @@ Since this repository doesn't have API keys configured by default:
 ## Common Tasks
 
 ### Code Locations (Ultra-Minimally Simplified)
-- **Core functionality**: `core.py` (complete bot engine: Config, Storage, API clients, processing)
+- **Core functionality**: `core.py` (complete bot engine: Config, Storage, API clients, ContentSimilarity, processing)
 - **Main entry point**: `bot.py` (execution + backward compatibility layer)
 - **Management tools**: `tools.py` (preview, queue management, diagnostics)
 - **Core tests**: `tests/test_bot.py` (comprehensive core tests - 9 tests)

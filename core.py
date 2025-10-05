@@ -12,7 +12,7 @@ import time
 import hashlib
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Set
 from pathlib import Path
 
 # External dependencies
@@ -50,6 +50,11 @@ class Config:
     retry_delay_minutes: int = 5
     article_lookback_days: int = 1
     cooldown_hours: int = 2
+    
+    # Content Similarity Thresholds
+    title_similarity_threshold: float = 0.8
+    content_similarity_threshold: float = 0.7
+    duplicate_detection_date_window_hours: int = 48
     
     # Files
     posted_articles_file: str = "posted_articles.json"
@@ -153,6 +158,149 @@ class Article:
             return datetime.fromisoformat(date_str.replace('Z', '+00:00')).replace(tzinfo=None)
         except (ValueError, TypeError):
             return None
+
+
+# =============================================================================
+# CONTENT SIMILARITY FUNCTIONS
+# =============================================================================
+
+class ContentSimilarity:
+    """Intelligent content similarity detection for duplicate article identification."""
+    
+    @staticmethod
+    def normalize_text(text: str) -> str:
+        """Normalize text for comparison by removing extra whitespace and converting to lowercase."""
+        if not text:
+            return ""
+        # Remove extra whitespace, convert to lowercase, remove special characters
+        normalized = re.sub(r'\s+', ' ', text.lower().strip())
+        normalized = re.sub(r'[^\w\s]', '', normalized)
+        return normalized
+    
+    @staticmethod
+    def get_word_set(text: str) -> Set[str]:
+        """Extract normalized word set from text."""
+        normalized = ContentSimilarity.normalize_text(text)
+        words = normalized.split()
+        # Filter out very short words and common stop words
+        stop_words = {'the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'}
+        return {word for word in words if len(word) > 2 and word not in stop_words}
+    
+    @staticmethod
+    def title_similarity(title1: str, title2: str) -> float:
+        """Calculate title similarity using Jaccard similarity of words."""
+        if not title1 or not title2:
+            return 0.0
+        
+        words1 = ContentSimilarity.get_word_set(title1)
+        words2 = ContentSimilarity.get_word_set(title2)
+        
+        if not words1 or not words2:
+            return 0.0
+        
+        intersection = len(words1 & words2)
+        union = len(words1 | words2)
+        
+        return intersection / union if union > 0 else 0.0
+    
+    @staticmethod
+    def content_fingerprint(text: str) -> str:
+        """Create a content fingerprint using significant words and phrases."""
+        if not text:
+            return ""
+        
+        # Extract significant phrases (3+ words) and individual significant words
+        normalized = ContentSimilarity.normalize_text(text)
+        words = normalized.split()
+        
+        # Get significant words (length > 4) and numbers
+        significant_words = []
+        for word in words:
+            if len(word) > 4 or word.isdigit():
+                significant_words.append(word)
+        
+        # Create fingerprint from most significant words (sorted for consistency)
+        fingerprint_words = sorted(set(significant_words))[:20]  # Take top 20 most significant
+        fingerprint = ' '.join(fingerprint_words)
+        
+        # Return hash of fingerprint for compact comparison
+        return hashlib.md5(fingerprint.encode()).hexdigest()
+    
+    @staticmethod
+    def content_similarity(body1: str, body2: str) -> float:
+        """Calculate content similarity using multiple methods."""
+        if not body1 or not body2:
+            return 0.0
+        
+        # Method 1: Fingerprint exact match
+        fp1 = ContentSimilarity.content_fingerprint(body1)
+        fp2 = ContentSimilarity.content_fingerprint(body2)
+        
+        if fp1 == fp2 and fp1:  # Exact fingerprint match (high confidence)
+            return 1.0
+        
+        # Method 2: Word overlap similarity
+        words1 = ContentSimilarity.get_word_set(body1)
+        words2 = ContentSimilarity.get_word_set(body2)
+        
+        if not words1 or not words2:
+            return 0.0
+        
+        intersection = len(words1 & words2)
+        union = len(words1 | words2)
+        
+        return intersection / union if union > 0 else 0.0
+    
+    @staticmethod
+    def date_proximity(date1: Optional[datetime], date2: Optional[datetime], 
+                      max_hours: int = 48) -> bool:
+        """Check if two dates are within specified hours of each other."""
+        if not date1 or not date2:
+            return True  # If dates unknown, don't use as discriminator
+        
+        time_diff = abs((date1 - date2).total_seconds()) / 3600  # Convert to hours
+        return time_diff <= max_hours
+    
+    @staticmethod
+    def is_duplicate_article(article1: 'Article', article2: 'Article',
+                           title_threshold: float = 0.8,
+                           content_threshold: float = 0.7,
+                           date_window_hours: int = 48) -> bool:
+        """
+        Determine if two articles are duplicates using multiple similarity metrics.
+        
+        Args:
+            article1, article2: Articles to compare
+            title_threshold: Minimum title similarity for duplicate (0.0-1.0)
+            content_threshold: Minimum content similarity for duplicate (0.0-1.0)  
+            date_window_hours: Maximum hours apart for articles to be considered duplicates
+            
+        Returns:
+            True if articles are likely duplicates
+        """
+        # Quick URL check first (if same URL, definitely duplicate)
+        if article1.url == article2.url:
+            return True
+        
+        # Check date proximity first (optimization)
+        if not ContentSimilarity.date_proximity(
+            article1.date_published, article2.date_published, date_window_hours
+        ):
+            return False
+        
+        # Calculate title similarity
+        title_sim = ContentSimilarity.title_similarity(article1.title, article2.title)
+        
+        # Calculate content similarity
+        content_sim = ContentSimilarity.content_similarity(article1.body, article2.body)
+        
+        # Articles are duplicates if:
+        # 1. High title similarity AND high content similarity, OR
+        # 2. Very high content similarity (even if titles differ slightly)
+        return (
+            (title_sim >= title_threshold and content_sim >= content_threshold) or
+            content_sim >= 0.9  # Very high content similarity threshold
+        )
 
 
 # =============================================================================
@@ -764,14 +912,46 @@ class BitcoinMiningBot:
                 logger.info("No new articles found from EventRegistry")
                 return True
             
-            # Filter out already posted articles using SIMPLE deduplication
+            # Filter out already posted articles using INTELLIGENT deduplication
             new_articles = []
             posted_urls = set(self.posted_data["posted_uris"])
-            queued_urls = set(qa.get("url", "") for qa in self.posted_data["queued_articles"])
+            queued_articles_data = self.posted_data.get("queued_articles", [])
+            
+            # Convert existing queued articles to Article objects for comparison
+            existing_articles = []
+            
+            # Add already queued articles for comparison
+            for qa_data in queued_articles_data:
+                try:
+                    existing_articles.append(Article.from_dict(qa_data))
+                except (ValueError, KeyError) as e:
+                    logger.warning(f"Invalid queued article data: {e}")
+                    continue
+            
+            # Note: We can't reconstruct Article objects from just URLs in posted_uris,
+            # so for backwards compatibility, we still check URL duplicates first
+            queued_urls = set(qa.get("url", "") for qa in queued_articles_data)
             existing_urls = posted_urls.union(queued_urls)
             
             for article in articles:
-                if article.url not in existing_urls:
+                # Quick URL check first (if URL already posted, definitely duplicate)
+                if article.url in existing_urls:
+                    continue
+                
+                # Intelligent content similarity check against queued articles
+                is_duplicate = False
+                for existing_article in existing_articles:
+                    if ContentSimilarity.is_duplicate_article(
+                        article, existing_article,
+                        title_threshold=self.config.title_similarity_threshold,
+                        content_threshold=self.config.content_similarity_threshold,
+                        date_window_hours=self.config.duplicate_detection_date_window_hours
+                    ):
+                        logger.info(f"Found content duplicate: '{article.title}' matches existing '{existing_article.title}'")
+                        is_duplicate = True
+                        break
+                
+                if not is_duplicate:
                     new_articles.append(article)
             
             logger.info(f"Found {len(new_articles)} new articles (filtered out {len(articles) - len(new_articles)} duplicates)")

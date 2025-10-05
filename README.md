@@ -6,7 +6,7 @@
 
 **Extremely clean 3-file core structure achieving maximum simplicity:**
 
-- **`core.py`** - Complete bot engine (800 lines: Config, Storage, API clients, processing)
+- **`core.py`** - Complete bot engine (1100+ lines: Config, Storage, API clients, ContentSimilarity, processing)
 - **`bot.py`** - Main entry point with backward compatibility layer  
 - **`tools.py`** - Unified management interface (preview, queue, diagnostics)
 - **`tests/test_bot.py`** - Core functionality tests (9 tests)
@@ -33,9 +33,17 @@
 
 ### Robust Article Management
 - **Bitcoin-focused filtering**: Advanced keyword matching for relevant content
+- **Intelligent deduplication**: Content-based similarity detection catches same news from different sources/URLs
 - **Smart queueing**: Multiple articles queued, posted one at a time
 - **Time-based validation**: Article freshness and staleness detection
 - **Content deduplication**: Tracks posted articles to prevent repeats
+
+### Intelligent Content Deduplication
+- **Multi-factor analysis**: Title similarity, content fingerprinting, and date proximity detection
+- **Cross-source detection**: Identifies duplicate content from different news outlets and domains
+- **Configurable thresholds**: Fine-tunable similarity detection (title: 80%, content: 70%, date window: 48h)
+- **Smart algorithms**: Jaccard similarity, MD5 content fingerprinting, and word overlap analysis
+- **Real-world proven**: Successfully catches duplicates like same conference transcripts from multiple Investing.com domains
 
 ### Production-Ready Reliability
 - **Rate limit handling**: Progressive cooldowns with intelligent recovery
