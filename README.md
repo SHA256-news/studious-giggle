@@ -282,6 +282,8 @@ python tools.py diagnose          # Full system diagnostics
 - Production-ready reliability and error handling
 - GitHub Actions automation with rate limiting
 - **Enhanced rate limiting system with specific 429 error handling**
+- **EventRegistry API integration fix: Resolved invalid parameter error that prevented article fetching**
+- **Intelligent content-based deduplication: Multi-factor similarity detection for cross-source duplicate prevention**
 - **Ultra-minimal architecture: 10 files total (79% reduction)**
 - **Massive repository cleanup: 90 branches deleted (91% reduction)**
 - **Simplified dependencies: 4 packages (60% reduction)**

@@ -242,6 +242,10 @@ Since this repository doesn't have API keys configured by default:
 **Symptoms**: "Gemini API is required but not available - will retry later"
 **Solution**: Bot waits for Gemini API without setting rate limit cooldowns - retries on next scheduled run
 
+### EventRegistry API Parameter Error (Fixed in v1.1)
+**Symptoms**: "QueryArticles.__init__() got an unexpected keyword argument 'keywordLoc'"
+**Solution**: Fixed by removing invalid keywordLoc parameter from QueryArticlesIter constructor. Bot now uses default keyword search behavior.
+
 ## CI/GitHub Actions
 
 The bot includes a single, focused GitHub Actions workflow:
