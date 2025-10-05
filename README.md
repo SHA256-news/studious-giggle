@@ -16,7 +16,7 @@
 - **🎯 Ultra-minimal structure**: 10 total files (79% reduction from 47 files)
 - **⚡ Lightning performance**: Sub-second startup with lazy loading
 - **🧹 Zero redundancy**: Eliminated duplicate code and unnecessary abstractions
-- **🛡️ Bulletproof reliability**: 100% test coverage, comprehensive error handling including queue bounds checking
+- **🛡️ Bulletproof reliability**: 100% test coverage, comprehensive error handling including queue bounds checking and specific API error types
 - **🔄 Single workflow**: Only production bot workflow (removed broken test workflows)
 - **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections
 

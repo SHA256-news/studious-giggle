@@ -486,8 +486,17 @@ class GeminiClient:
             
             return self._clean_headline(headline)[:80]
             
+        except ValueError as e:
+            # API authentication or configuration issues - reraise to surface the problem
+            logger.error(f"❌ Gemini API authentication/configuration error: {e}")
+            raise
+        except ConnectionError as e:
+            # Network connectivity issues
+            logger.warning(f"❌ Gemini network connection failed: {e}")
+            return self._clean_headline(article.title)[:80]
         except Exception as e:
-            logger.warning(f"❌ Gemini headline generation failed: {e}")
+            # Other unexpected errors - log but continue with fallback
+            logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             return self._clean_headline(article.title)[:80]
     
     def generate_thread_summary(self, article: 'Article') -> str:
@@ -538,8 +547,17 @@ class GeminiClient:
             
             return self._process_summary_response(summary_text)
                 
+        except ValueError as e:
+            # API authentication or configuration issues - reraise to surface the problem
+            logger.error(f"❌ Gemini API authentication/configuration error in summary generation: {e}")
+            raise
+        except ConnectionError as e:
+            # Network connectivity issues
+            logger.warning(f"❌ Gemini network connection failed during summary generation: {e}")
+            return "• Bitcoin mining sector update\n• Industry development details\n• See full article for specifics"
         except Exception as e:
-            logger.warning(f"❌ Gemini summary generation failed: {e}")
+            # Other unexpected errors - log but continue with fallback
+            logger.warning(f"❌ Gemini summary generation failed with unexpected error: {e}")
             return "• Bitcoin mining sector update\n• Industry development details\n• See full article for specifics"
     
     def _process_summary_response(self, summary_text: str) -> str:
