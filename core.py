@@ -980,7 +980,7 @@ class BitcoinMiningBot:
         return self._news
     
     @property
-    def gemini(self) -> GeminiClient:
+    def gemini(self) -> Optional[GeminiClient]:
         """Lazy-initialized Gemini AI client."""
         if self._gemini is None:
             if self.config.gemini_api_key:
