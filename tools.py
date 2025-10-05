@@ -170,7 +170,15 @@ class BotTools:
             next_article = queue[0]
             print(f"📰 Next Article:")
             print(f"   Title: {next_article.get('title', 'Unknown')}")
-            print(f"   Source: {next_article.get('source', {}).get('title', 'Unknown')}")
+            
+            # Safely handle source data access
+            source_data = next_article.get('source', {})
+            if isinstance(source_data, dict):
+                source = source_data.get('title', 'Unknown')
+            else:
+                source = str(source_data) if source_data else 'Unknown'
+            print(f"   Source: {source}")
+            
             print(f"   URL: {next_article.get('url', 'No URL')}")
             
             # Generate tweet text
