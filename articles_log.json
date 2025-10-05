@@ -1,180 +1,51 @@
 {
-  "last_updated": "2025-10-05T18:12:46.595004",
-  "total_articles": 12,
+  "last_updated": "2025-10-05T18:53:44.695039",
+  "total_articles": 3,
   "daily_articles": [
-    {
-      "date": "2025-09-28",
-      "articles": [
-        {
-          "url": "https://example.com/article",
-          "title": "Bitcoin Mining News",
-          "description": "",
-          "source": "Test Source",
-          "dateTimePub": "",
-          "fetched_at": "2025-09-28T16:23:55.145416",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://example.com",
-          "title": "Valid Article",
-          "description": "",
-          "source": "Test",
-          "dateTimePub": "",
-          "fetched_at": "2025-09-28T16:24:03.547713",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://bitcoinnews.com/hashrate-ath-2024",
-          "title": "Bitcoin Network Hashrate Reaches All-Time High",
-          "description": "",
-          "source": "Bitcoin News",
-          "dateTimePub": "",
-          "fetched_at": "2025-09-28T16:24:03.560182",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://miningupdate.com/green-energy-2024",
-          "title": "Major Mining Pool Announces Green Energy Initiative",
-          "description": "",
-          "source": "Mining Update",
-          "dateTimePub": "",
-          "fetched_at": "2025-09-28T16:24:03.560192",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        }
-      ],
-      "fetch_count": 7
-    },
-    {
-      "date": "2025-10-04",
-      "articles": [
-        {
-          "url": "https://example.com/article",
-          "title": "Bitcoin Mining News",
-          "description": "",
-          "source": "Test Source",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-04T02:26:41.810559",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://example.com",
-          "title": "Valid Article",
-          "description": "",
-          "source": "Test",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-04T02:26:47.184268",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://bitcoinnews.com/hashrate-ath-2024",
-          "title": "Bitcoin Network Hashrate Reaches All-Time High",
-          "description": "",
-          "source": "Bitcoin News",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-04T02:26:47.194804",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://miningupdate.com/green-energy-2024",
-          "title": "Major Mining Pool Announces Green Energy Initiative",
-          "description": "",
-          "source": "Mining Update",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-04T02:26:47.194812",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
-        }
-      ],
-      "fetch_count": 8
-    },
     {
       "date": "2025-10-05",
       "articles": [
         {
-          "url": "https://example.com",
-          "title": "Valid Article",
-          "description": "",
-          "source": "Test",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-05T18:06:23.202678",
+          "url": "https://cointelegraph.com/news/bitcoin-mining-difficulty-hits-record-high",
+          "title": "Bitcoin Mining Difficulty Hits New Record High Following Network Upgrade",
+          "description": "Bitcoin's mining difficulty has reached an all-time high as the network continues to strengthen its security infrastructure.",
+          "source": "Cointelegraph",
+          "dateTimePub": "2025-10-05T14:30:00Z",
+          "fetched_at": "2025-10-05T18:53:44.695007",
           "posted_to_twitter": false,
           "queued_for_twitter": false,
-          "lang": "",
+          "lang": "eng",
           "isDuplicate": false,
-          "wgt": 0
+          "wgt": 85
         },
         {
-          "url": "https://bitcoinnews.com/hashrate-ath-2024",
-          "title": "Bitcoin Network Hashrate Reaches All-Time High",
-          "description": "",
-          "source": "Bitcoin News",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-05T18:06:23.223399",
+          "url": "https://bitcoinmagazine.com/business/marathon-digital-expands-mining-operations",
+          "title": "Marathon Digital Announces Major Expansion of Mining Operations in Texas",
+          "description": "Marathon Digital Holdings reveals plans to deploy 15,000 new ASIC miners across multiple facilities.",
+          "source": "Bitcoin Magazine",
+          "dateTimePub": "2025-10-05T12:15:00Z",
+          "fetched_at": "2025-10-05T18:53:44.695015",
           "posted_to_twitter": false,
           "queued_for_twitter": false,
-          "lang": "",
+          "lang": "eng",
           "isDuplicate": false,
-          "wgt": 0
+          "wgt": 92
         },
         {
-          "url": "https://miningupdate.com/green-energy-2024",
-          "title": "Major Mining Pool Announces Green Energy Initiative",
-          "description": "",
-          "source": "Mining Update",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-05T18:06:23.223411",
+          "url": "https://decrypt.co/news/renewable-energy-bitcoin-mining-growth",
+          "title": "Renewable Energy Powers 60% of Bitcoin Mining Operations, Study Shows",
+          "description": "New research indicates a significant shift toward sustainable energy sources in Bitcoin mining.",
+          "source": "Decrypt",
+          "dateTimePub": "2025-10-05T10:45:00Z",
+          "fetched_at": "2025-10-05T18:53:44.695019",
           "posted_to_twitter": false,
           "queued_for_twitter": false,
-          "lang": "",
+          "lang": "eng",
           "isDuplicate": false,
-          "wgt": 0
-        },
-        {
-          "url": "https://example.com/article",
-          "title": "Bitcoin Mining News",
-          "description": "",
-          "source": "Test Source",
-          "dateTimePub": "",
-          "fetched_at": "2025-10-05T18:12:40.448908",
-          "posted_to_twitter": false,
-          "queued_for_twitter": false,
-          "lang": "",
-          "isDuplicate": false,
-          "wgt": 0
+          "wgt": 78
         }
       ],
-      "fetch_count": 5
+      "fetch_count": 1
     }
   ]
 }
