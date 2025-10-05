@@ -3,15 +3,18 @@ name: Bitcoin Mining News Bot
 on:
   schedule:
     # Run every 90 minutes (16 times per day) to respect 17 requests per 24 hours rate limit
-    # Times: 00:00, 01:30, 03:00, 04:30, 06:00, 07:30, 09:00, 10:30, 12:00, 13:30, 15:00, 16:30, 18:00, 19:30, 21:00, 22:30
-    - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight  
+    # Two complementary schedules create perfect 90-minute intervals across 24 hours:
+    # Schedule A: 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 (8 times)
+    # Schedule B: 01:30, 04:30, 07:30, 10:30, 13:30, 16:30, 19:30, 22:30 (8 times)
+    # Total: 16 executions per day with consistent 90-minute spacing
+    - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight
     - cron: '30 1,4,7,10,13,16,19,22 * * *'    # Every 3 hours starting at 1:30 AM
   workflow_dispatch:  # Allows manual triggering
     inputs:
       force_run:
         description: 'Force run even if within minimum interval'
         required: false
-        default: 'false'
+        default: false
         type: boolean
 
 permissions:
