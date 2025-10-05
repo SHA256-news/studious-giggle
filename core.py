@@ -441,78 +441,68 @@ class TextProcessor:
     """Text processing for tweet creation with Gemini AI integration."""
     
     @staticmethod
-    def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> list[str]:
-        """Create a complete tweet thread with catchy headline, summary, and URL."""
-        thread = []
+    def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> Optional[list[str]]:
+        """Create a complete tweet thread with catchy headline, summary, and URL.
         
+        Returns None if Gemini is required but unavailable, indicating the bot should wait and retry later.
+        """
         logger.info(f"🧵 Creating tweet thread for: {article.title[:100]}...")
         logger.info(f"🤖 Gemini client available: {gemini_client is not None}")
         
-        if gemini_client:
-            try:
-                logger.info("🎯 Using Gemini-powered thread generation...")
-                headline = gemini_client.generate_catchy_headline(article)
-                summary_text = gemini_client.generate_thread_summary(article)
+        # CRITICAL: Gemini is now MANDATORY - do not publish without it
+        if not gemini_client:
+            logger.warning("❌ Gemini API is required but not available - will retry later")
+            return None
+        
+        try:
+            logger.info("🎯 Using Gemini-powered thread generation...")
+            headline = gemini_client.generate_catchy_headline(article)
+            summary_text = gemini_client.generate_thread_summary(article)
+            
+            if not headline:
+                logger.error("❌ Failed to generate headline with Gemini - will retry later")
+                return None
+            
+            if not summary_text:
+                logger.error("❌ Failed to generate summary with Gemini - will retry later")
+                return None
+            
+            thread = []
+            
+            # Smart character limit logic: Try to combine headline + summary in one tweet
+            combined_text = f"{headline}\n\n{summary_text}"
+            logger.info(f"📏 Combined text length: {len(combined_text)} chars")
+            
+            if len(combined_text) <= 280:
+                logger.info("✅ Using combined format (headline + summary in one tweet)")
+                thread.append(combined_text)
+            else:
+                logger.info("📏 Text too long, using separate tweets")
+                thread.append(headline)
                 
-                if summary_text:
-                    combined_text = f"{headline}\n\n{summary_text}"
-                    logger.info(f"📏 Combined text length: {len(combined_text)} chars")
-                    
-                    if len(combined_text) <= 280:
-                        logger.info("✅ Using combined format (headline + summary)")
-                        thread.append(combined_text)
-                    else:
-                        logger.info("📏 Text too long, using separate tweets")
-                        thread.append(headline)
-                        if len(summary_text) <= 280:
-                            thread.append(summary_text)
-                        else:
-                            thread.append(summary_text[:277] + "...")
+                # Ensure summary fits in second tweet
+                if len(summary_text) <= 280:
+                    thread.append(summary_text)
                 else:
-                    thread.append(headline)
-                
-                # Final tweet: URL only
-                if article.url:
-                    thread.append(article.url)
-                
-                logger.info(f"✅ Generated {len(thread)}-tweet thread with Gemini")
-                return thread
-                
-            except Exception as e:
-                logger.warning(f"❌ Gemini content generation failed: {e}")
-        
-        # Fallback: Simple format without Gemini
-        logger.info("🔄 Using fallback simple tweet format")
-        return TextProcessor._create_simple_tweet(article)
-    
-    @staticmethod
-    def _create_simple_tweet(article: Article) -> list[str]:
-        """Create simple thread (fallback when Gemini unavailable)."""
-        thread = []
-        
-        title = TextProcessor._clean_title(article.title)
-        
-        # Select prefix
-        import random
-        prefix = random.choice(["BREAKING:", "NEWS:", "UPDATE:", "REPORT:"])
-        
-        # Tweet 1: Prefixed headline
-        headline = f"{prefix} {title}"
-        if len(headline) > 280:
-            headline = headline[:277] + "..."
-        thread.append(headline)
-        
-        # Tweet 2: URL only
-        if article.url:
-            thread.append(article.url)
-        
-        return thread
+                    # Truncate summary to fit in 280 chars
+                    truncated_summary = summary_text[:277] + "..."
+                    thread.append(truncated_summary)
+            
+            # Final tweet: URL always goes in the last tweet
+            if article.url:
+                thread.append(article.url)
+            
+            logger.info(f"✅ Generated {len(thread)}-tweet thread with Gemini")
+            return thread
+            
+        except Exception as e:
+            logger.error(f"❌ Gemini content generation failed: {e} - will retry later")
+            return None
     
     @staticmethod
     def create_tweet_text(article: Article) -> str:
-        """Legacy method - creates simple tweet."""
-        simple_thread = TextProcessor._create_simple_tweet(article)
-        return simple_thread[0] if simple_thread else article.title
+        """Legacy method - creates simple tweet title only (for compatibility)."""
+        return TextProcessor._clean_title(article.title)
     
     @staticmethod
     def _clean_title(title: str) -> str:
@@ -802,6 +792,14 @@ class BitcoinMiningBot:
                         self._save_data()
                         logger.info("✅ Posted queued article successfully")
                         return True
+                    else:
+                        # Check if failure was due to Gemini (not a rate limit issue)
+                        if not self.gemini:
+                            logger.info("⏳ Gemini API unavailable for queued article - will retry on next run")
+                            return True  # Don't set rate limit cooldown for Gemini issues
+                        else:
+                            self._handle_posting_failure()
+                            return False
                 else:
                     logger.info("No new articles and no queued articles available")
                     return True
@@ -832,8 +830,13 @@ class BitcoinMiningBot:
                     logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
                     return True
                 else:
-                    self._handle_posting_failure()
-                    return False
+                    # Check if failure was due to Gemini (not a rate limit issue)
+                    if not self.gemini:
+                        logger.info("⏳ Gemini API unavailable - will retry on next run (no cooldown)")
+                        return True  # Don't set rate limit cooldown for Gemini issues
+                    else:
+                        self._handle_posting_failure()
+                        return False
                 
         except tweepy.TooManyRequests as e:
             logger.error(f"Rate limit exceeded (429): {e}")
@@ -875,6 +878,12 @@ class BitcoinMiningBot:
         """Post an article to Twitter as a thread."""
         try:
             thread_tweets = TextProcessor.create_tweet_thread(article, self.gemini)
+            
+            # CRITICAL: If Gemini failed (thread_tweets is None), don't post - wait and retry later
+            if thread_tweets is None:
+                logger.warning("❌ Cannot create thread without Gemini API - will retry later")
+                return False
+            
             logger.info(f"Posting thread with {len(thread_tweets)} tweets: {article.title[:50]}...")
             
             if len(thread_tweets) == 1:
