@@ -22,13 +22,12 @@ class BitcoinMiningNewsBotLegacy(BitcoinMiningBot):
     Maintains backward compatibility with existing tests and usage patterns.
     """
     
-    def __init__(self, safe_mode: bool = False, skip_gemini_analysis: bool = False):
+    def __init__(self, safe_mode: bool = False):
         """Initialize with legacy parameters."""
         config = Config.from_env()
         super().__init__(config=config, safe_mode=safe_mode)
         
         # Legacy attributes for test compatibility
-        self.skip_gemini_analysis = skip_gemini_analysis
         self.rate_limit_cooldown_file = config.rate_limit_file
         self.posted_articles = self.posted_data
         
@@ -169,8 +168,7 @@ def main():
     """Main execution function with legacy compatibility."""
     # Use legacy wrapper for backward compatibility
     bot = BitcoinMiningNewsBotLegacy(
-        safe_mode='--diagnose' in sys.argv,
-        skip_gemini_analysis=False
+        safe_mode='--diagnose' in sys.argv
     )
     
     success = bot.run()
