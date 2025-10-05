@@ -12,7 +12,7 @@ import time
 import hashlib
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Any, Set
+from typing import Dict, List, Optional, Any, Set, Union
 from pathlib import Path
 
 # External dependencies

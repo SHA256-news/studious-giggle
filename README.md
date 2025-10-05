@@ -18,7 +18,7 @@
 - **🧹 Zero redundancy**: Eliminated duplicate code and unnecessary abstractions
 - **🛡️ Bulletproof reliability**: 100% test coverage, comprehensive error handling including queue bounds checking, specific API error types, improved mining filter validation, cleaner API without misleading parameters, and robust None handling
 - **🔄 Single workflow**: Only production bot workflow (removed broken test workflows)
-- **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections and defensive bounds checking in mining filter logic
+- **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections, defensive bounds checking in mining filter logic, and comprehensive type annotation support including Union types
 
 ## 🚀 Smart Tweet Generation
 
