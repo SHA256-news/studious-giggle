@@ -20,6 +20,26 @@
 - **🔄 Single workflow**: Only production bot workflow with optimized 90-minute scheduling (removed broken test workflows)
 - **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections, defensive bounds checking in mining filter logic, comprehensive type annotation support including Union types, and complete dictionary type annotations
 
+### 🛠️ Recent Critical Bug Fixes (12 Issues Resolved)
+
+**Type Safety & Error Handling:**
+- ✅ **Gemini Client Type Mismatch** - Fixed Optional[GeminiClient] property return type
+- ✅ **Article List Type Safety** - Added explicit List[Article] annotations for data collections
+- ✅ **Queue Bounds Checking** - Added validation before queue operations to prevent IndexError
+- ✅ **Specific Error Handling** - Replaced broad Exception catching with ValueError/ConnectionError specificity
+- ✅ **Union Import Support** - Added Union to typing imports for comprehensive type annotations
+- ✅ **Dictionary Type Annotations** - Added explicit Dict[str, Any] for all data structures
+
+**Robustness & Validation:**
+- ✅ **Mining Filter Logic** - Enhanced counting validation with defensive bounds checking
+- ✅ **Thread Type Error** - Added None check before enumeration in tools.py
+- ✅ **Safe Dictionary Access** - Added isinstance() validation for source_data.get() calls
+- ✅ **Test File Cleanup** - Improved temporary file handling to prevent race conditions
+
+**API & Workflow Optimizations:**
+- ✅ **Clean API Design** - Removed misleading skip_gemini_analysis parameter
+- ✅ **Optimized Scheduling** - Clarified GitHub workflow cron scheduling (90-minute intervals)
+
 ## 🚀 Smart Tweet Generation
 
 ### AI-Enhanced Threads (Gemini Required)
