@@ -1224,7 +1224,7 @@ class BitcoinMiningBot:
                 self.posted_data["posted_uris"].append(article.url)
                 
                 # NEW: Save full article metadata to posted history
-                posted_article_record = {
+                posted_article_record: Dict[str, Any] = {
                     "url": article.url,
                     "title": article.title,
                     "source": article.source,
