@@ -1989,11 +1989,18 @@ class BitcoinMiningBot:
         return TimeManager.is_minimum_interval_passed(last_run, self.config.min_interval_minutes)
     
     def _filter_new_articles(self, articles: List[Article]) -> List[Article]:
-        """Filter out articles that have already been posted."""
+        """Filter out articles that have already been posted or are queued."""
+        # Check against both posted_uris and queued_articles to prevent any duplicates
         posted_urls = set(self.posted_data["posted_uris"])
-        new_articles = [article for article in articles if article.url not in posted_urls]
+        queued_urls = set(qa.get("url") for qa in self.posted_data["queued_articles"])
+        existing_urls = posted_urls.union(queued_urls)
+        
+        new_articles = [article for article in articles if article.url not in existing_urls]
         
         logger.info(f"Found {len(new_articles)} new articles out of {len(articles)} total")
+        if len(articles) > len(new_articles):
+            filtered_count = len(articles) - len(new_articles)
+            logger.info(f"Filtered out {filtered_count} articles (already posted or queued)")
         return new_articles
     
     def _post_article(self, article: Article) -> bool:
@@ -2029,7 +2036,17 @@ class BitcoinMiningBot:
     
     def _queue_articles(self, articles: List[Article]) -> None:
         """Add articles to the queue for future posting."""
+        # Get existing URLs from both posted_uris and queued_articles to prevent duplicates
+        existing_urls = set(self.posted_data["posted_uris"])
+        existing_urls.update(qa.get("url") for qa in self.posted_data["queued_articles"])
+        
+        new_articles_added = 0
         for article in articles:
+            # Skip if URL already exists in posted or queued articles
+            if article.url in existing_urls:
+                logger.debug(f"Skipping duplicate URL: {article.url}")
+                continue
+                
             article_data = {
                 "title": article.title,
                 "body": article.body,
@@ -2038,8 +2055,10 @@ class BitcoinMiningBot:
                 "dateTimePub": article.date_published.isoformat() if article.date_published else None
             }
             self.posted_data["queued_articles"].append(article_data)
+            existing_urls.add(article.url)  # Prevent duplicates within this batch
+            new_articles_added += 1
         
-        logger.info(f"Queued {len(articles)} articles for future posting")
+        logger.info(f"Queued {new_articles_added} new articles for future posting (skipped {len(articles) - new_articles_added} duplicates)")
     
     def _handle_posting_failure(self) -> None:
         """Handle failure to post tweet (likely rate limiting)."""

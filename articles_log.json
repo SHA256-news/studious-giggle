@@ -1,6 +1,6 @@
 {
-  "last_updated": "2025-10-04T02:43:09.944180",
-  "total_articles": 8,
+  "last_updated": "2025-10-05T18:12:46.595004",
+  "total_articles": 12,
   "daily_articles": [
     {
       "date": "2025-09-28",
@@ -109,6 +109,64 @@
           "source": "Mining Update",
           "dateTimePub": "",
           "fetched_at": "2025-10-04T02:26:47.194812",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        }
+      ],
+      "fetch_count": 8
+    },
+    {
+      "date": "2025-10-05",
+      "articles": [
+        {
+          "url": "https://example.com",
+          "title": "Valid Article",
+          "description": "",
+          "source": "Test",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-05T18:06:23.202678",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://bitcoinnews.com/hashrate-ath-2024",
+          "title": "Bitcoin Network Hashrate Reaches All-Time High",
+          "description": "",
+          "source": "Bitcoin News",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-05T18:06:23.223399",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://miningupdate.com/green-energy-2024",
+          "title": "Major Mining Pool Announces Green Energy Initiative",
+          "description": "",
+          "source": "Mining Update",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-05T18:06:23.223411",
+          "posted_to_twitter": false,
+          "queued_for_twitter": false,
+          "lang": "",
+          "isDuplicate": false,
+          "wgt": 0
+        },
+        {
+          "url": "https://example.com/article",
+          "title": "Bitcoin Mining News",
+          "description": "",
+          "source": "Test Source",
+          "dateTimePub": "",
+          "fetched_at": "2025-10-05T18:12:40.448908",
           "posted_to_twitter": false,
           "queued_for_twitter": false,
           "lang": "",
