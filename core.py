@@ -1088,8 +1088,11 @@ class BitcoinMiningBot:
                     
                     success = self._post_article(article_to_post)
                     if success:
-                        # Remove from queue
-                        self.posted_data["queued_articles"].pop(0)
+                        # Remove from queue - verify queue has items before popping
+                        if self.posted_data["queued_articles"]:
+                            self.posted_data["queued_articles"].pop(0)
+                        else:
+                            logger.warning("Queue was empty when trying to remove posted article")
                         self.posted_data["last_run_time"] = datetime.now().isoformat()
                         self._save_data()
                         logger.info("✅ Posted queued article successfully")
