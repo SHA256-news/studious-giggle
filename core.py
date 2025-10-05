@@ -374,6 +374,7 @@ class Storage:
         return {
             "posted_uris": data.get("posted_uris", []),
             "queued_articles": data.get("queued_articles", []),
+            "posted_articles_history": data.get("posted_articles_history", []),
             "last_run_time": data.get("last_run_time")
         }
 
@@ -826,16 +827,35 @@ class NewsAPI:
             return []
     
     def _is_bitcoin_relevant(self, article: Article) -> bool:
-        """Simple check if article is relevant to Bitcoin mining."""
+        """Enhanced check if article is relevant to Bitcoin mining news."""
         text = f"{article.title} {article.body}".lower()
+        title_lower = article.title.lower()
+        
+        # CRITICAL: Must be primarily about Bitcoin mining, not just mention it
+        # Reject if title is clearly about other topics
+        non_mining_titles = [
+            "gold", "treasury", "investment fund", "stablecoin", "usdt", "tether",
+            "defi", "nft", "metaverse", "web3", "trading", "exchange", 
+            "tokenized", "asset management", "custody", "vault"
+        ]
+        if any(term in title_lower for term in non_mining_titles):
+            logger.info(f"❌ Excluded non-mining title topic: {article.title}")
+            return False
         
         # Must contain Bitcoin mining terms
         bitcoin_terms = ["bitcoin", "btc", "mining", "miner", "hash rate", "asic"]
         if not any(term in text for term in bitcoin_terms):
             return False
         
+        # ENHANCED: Require Bitcoin AND mining in meaningful context
+        has_bitcoin = any(term in text for term in ["bitcoin", "btc"])
+        has_mining = any(term in text for term in ["mining", "miner", "miners"])
+        if not (has_bitcoin and has_mining):
+            logger.info(f"❌ Missing Bitcoin+mining combination: {article.title}")
+            return False
+        
         # Exclude other cryptocurrencies
-        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin"]
+        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin", "xaut"]
         other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
         bitcoin_mentions = sum(1 for term in ["bitcoin", "btc"] if term in text)
         
@@ -843,6 +863,79 @@ class NewsAPI:
         if other_mentions > bitcoin_mentions:
             return False
         
+        # ENHANCED: Exclude non-mining crypto topics
+        excluded_topics = [
+            "gold token", "tokenized gold", "gold-backed", "xaut", "treasury",
+            "stablecoin", "stable coin", "digital asset", "investment vehicle",
+            "fundraising", "private equity", "venture capital", "ipo",
+            "trading platform", "exchange", "custody", "vault services"
+        ]
+        if any(term in text for term in excluded_topics):
+            logger.info(f"❌ Excluded crypto-adjacent non-mining topic: {article.title}")
+            return False
+        
+        # Exclude promotional/advertising content
+        promotional_terms = [
+            "free bitcoin mining", "claim", "bonus", "gift", "sign up",
+            "register now", "join now", "get started", "download app",
+            "cloud mining app", "mining app", "earn daily", "passive income",
+            "$118", "hashj", "momhash", "free mining", "no investment"
+        ]
+        if any(term in text for term in promotional_terms):
+            logger.info(f"❌ Excluded promotional content: {article.title}")
+            return False
+        
+        # Exclude generic educational content  
+        generic_terms = [
+            "what is bitcoin mining", "how to mine bitcoin", 
+            "bitcoin mining explained", "mining tutorial",
+            "beginner's guide", "introduction to"
+        ]
+        if any(term in title_lower for term in generic_terms):
+            logger.info(f"❌ Excluded generic educational content: {article.title}")
+            return False
+        
+        # Exclude suspicious/scam indicators
+        suspicious_terms = [
+            "guaranteed profit", "risk-free", "100% profit",
+            "get rich", "make money fast", "instant profit",
+            "ponzi", "pyramid", "scam"
+        ]
+        if any(term in text for term in suspicious_terms):
+            logger.info(f"❌ Excluded suspicious content: {article.title}")
+            return False
+        
+        # ENHANCED: Require primary focus on actual Bitcoin mining operations
+        core_mining_terms = [
+            "mining company", "mining operation", "mining facility", 
+            "mining farm", "mining pool", "hash rate", "hashrate", "difficulty",
+            "mining equipment", "mining revenue", "mining profit",
+            "block reward", "halving", "mining stocks", "public miner",
+            "mining rig", "mining power", "mining capacity", "mining contract",
+            "mining data center", "mining infrastructure", "asic miner",
+            "mining performance", "mining efficiency", "mining expansion"
+        ]
+        
+        # ENHANCED: Must have substantial mining focus, not just tangential mentions
+        mining_mentions = sum(1 for term in core_mining_terms if term in text)
+        if mining_mentions < 2:  # Require at least 2 substantial mining references
+            logger.info(f"❌ Insufficient mining focus (only {mining_mentions} mining terms): {article.title}")
+            return False
+        
+        # ENHANCED: Exclude if it's primarily about mining hardware manufacturers
+        # rather than actual mining operations
+        hardware_only_indicators = [
+            "manufacturer", "manufacturing", "supply", "supplier", "equipment maker",
+            "hardware company", "chip maker", "asic manufacturer"
+        ]
+        hardware_mentions = sum(1 for term in hardware_only_indicators if term in text)
+        
+        # If it's primarily about hardware manufacturing and has few actual mining terms
+        if hardware_mentions >= 2 and mining_mentions < 3:
+            logger.info(f"❌ Hardware manufacturing focus, not mining operations: {article.title}")
+            return False
+        
+        logger.info(f"✅ Bitcoin mining content approved: {article.title} (mining terms: {mining_mentions})")
         return True
 
 
@@ -1102,8 +1195,26 @@ class BitcoinMiningBot:
                 success = self.twitter.post_thread(thread_tweets)
             
             if success:
-                # Record successful post
+                # Record successful post in both URL list and full history
                 self.posted_data["posted_uris"].append(article.url)
+                
+                # NEW: Save full article metadata to posted history
+                posted_article_record = {
+                    "url": article.url,
+                    "title": article.title,
+                    "source": article.source,
+                    "date_published": article.date_published.isoformat() if article.date_published else None,
+                    "date_posted": TimeManager.now().isoformat(),
+                    "body_preview": article.body[:200] + "..." if len(article.body) > 200 else article.body
+                }
+                
+                # Initialize posted_articles_history if it doesn't exist
+                if "posted_articles_history" not in self.posted_data:
+                    self.posted_data["posted_articles_history"] = []
+                
+                self.posted_data["posted_articles_history"].append(posted_article_record)
+                
+                logger.info(f"✅ Article recorded in posting history: {article.title}")
                 return True
             else:
                 logger.error("Failed to post tweet(s)")

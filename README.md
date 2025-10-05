@@ -32,11 +32,14 @@
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 
 ### Robust Article Management
-- **Bitcoin-focused filtering**: Advanced keyword matching for relevant content
+- **Enhanced Bitcoin mining filtering**: Multi-layer filtering system that requires substantial Bitcoin mining focus, not just tangential mentions
+- **Crypto-adjacent content exclusion**: Rejects articles about tokenized assets, treasury management, and other crypto topics that aren't mining-related
+- **Anti-promotional protection**: Blocks scam content, cloud mining apps, and "get rich quick" schemes
+- **Content quality enforcement**: Requires minimum 2 substantial mining industry terms for approval
 - **Intelligent deduplication**: Content-based similarity detection catches same news from different sources/URLs
 - **Smart queueing**: Multiple articles queued, posted one at a time
+- **Posted articles history**: Comprehensive tracking of all published tweets with full metadata
 - **Time-based validation**: Article freshness and staleness detection
-- **Content deduplication**: Tracks posted articles to prevent repeats
 
 ### Intelligent Content Deduplication
 - **Multi-factor analysis**: Title similarity, content fingerprinting, and date proximity detection
@@ -109,6 +112,10 @@ python tools.py preview
 
 # View article queue
 python tools.py queue
+
+# View posted articles history
+python tools.py history          # Last 10 articles
+python tools.py history 20       # Last 20 articles
 
 # Clean unwanted articles
 python tools.py clean
@@ -199,6 +206,7 @@ python tools.py diagnose          # Full system diagnostics
 ### Unified Management Interface (tools.py)
 - **Preview next thread**: `python tools.py preview` -- shows complete thread structure with character counts
 - **Simple queue view**: `python tools.py queue` -- clean list of queued articles  
+- **Posted articles history**: `python tools.py history [limit]` -- view recently posted tweets with full metadata
 - **Clean queue**: `python tools.py clean` -- interactive removal of unwanted content
 - **Full diagnostics**: `python tools.py diagnose` -- comprehensive bot health check
 - **Test live APIs**: `python tools.py test` -- test EventRegistry & Gemini APIs without posting (requires API keys)
@@ -284,6 +292,9 @@ python tools.py diagnose          # Full system diagnostics
 - **Enhanced rate limiting system with specific 429 error handling**
 - **EventRegistry API integration fix: Resolved invalid parameter error that prevented article fetching**
 - **Intelligent content-based deduplication: Multi-factor similarity detection for cross-source duplicate prevention**
+- **Enhanced Bitcoin mining filtering: Multi-layer system that rejects crypto-adjacent content and requires substantial mining focus**
+- **Posted articles history retention: Comprehensive tracking of published tweets with full metadata for accountability**
+- **Anti-promotional protection: Advanced detection of scam content and cloud mining schemes**
 - **Ultra-minimal architecture: 10 files total (79% reduction)**
 - **Massive repository cleanup: 90 branches deleted (91% reduction)**
 - **Simplified dependencies: 4 packages (60% reduction)**

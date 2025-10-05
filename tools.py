@@ -378,6 +378,64 @@ class BotTools:
             print("💡 Please review the issues above before running the bot")
         
         return all_passed
+    
+    @staticmethod
+    def show_posted_history(limit: int = 10) -> None:
+        """Show recently posted articles history with full metadata."""
+        try:
+            posted_data = Storage.load_json("posted_articles.json", {})
+            posted_history = posted_data.get("posted_articles_history", [])
+            
+            print("📰 Recently Posted Articles History")
+            print("=" * 50)
+            
+            if not posted_history:
+                print("❌ No posted articles history found")
+                print("💡 History tracking was added recently - future posts will be recorded")
+                return
+            
+            # Show most recent articles first
+            recent_articles = list(reversed(posted_history))[-limit:]
+            recent_articles.reverse()  # Most recent first
+            
+            for i, article in enumerate(recent_articles, 1):
+                print(f"\n📝 #{i} - Posted Article")
+                print(f"Title: {article.get('title', 'Unknown')}")
+                print(f"Source: {article.get('source', 'Unknown')}")
+                print(f"URL: {article.get('url', 'Unknown')}")
+                
+                # Format dates nicely
+                date_posted = article.get('date_posted')
+                if date_posted:
+                    try:
+                        posted_dt = datetime.fromisoformat(date_posted.replace('Z', '+00:00'))
+                        print(f"Posted: {posted_dt.strftime('%Y-%m-%d %H:%M UTC')}")
+                    except:
+                        print(f"Posted: {date_posted}")
+                
+                date_published = article.get('date_published')
+                if date_published:
+                    try:
+                        pub_dt = datetime.fromisoformat(date_published.replace('Z', '+00:00'))
+                        print(f"Published: {pub_dt.strftime('%Y-%m-%d %H:%M UTC')}")
+                    except:
+                        print(f"Published: {date_published}")
+                
+                # Show preview of article content
+                preview = article.get('body_preview', '')
+                if preview:
+                    print(f"Preview: {preview}")
+                
+                print("-" * 40)
+            
+            print(f"\n📊 Total articles in history: {len(posted_history)}")
+            print(f"📊 Total URLs tracked: {len(posted_data.get('posted_uris', []))}")
+            
+            if len(posted_history) > limit:
+                print(f"💡 Showing latest {limit} articles. Use 'python tools.py history 20' for more")
+            
+        except Exception as e:
+            print(f"❌ Error loading posted history: {e}")
 
 
 def main():
@@ -389,9 +447,12 @@ def main():
         print("  preview    - Show next tweet to be posted")
         print("  queue      - Show simple queue view") 
         print("  clean      - Clean unwanted articles from queue")
+        print("  history    - Show recently posted articles (default: 10)")
         print("  diagnose   - Run bot diagnostics")
         print("  test       - Test live APIs (EventRegistry + Gemini)")
-        print("\nUsage: python tools.py <command>")
+        print("\nUsage: python tools.py <command> [args]")
+        print("Examples:")
+        print("  python tools.py history 20   # Show last 20 posted articles")
         return
     
     command = sys.argv[1].lower()
@@ -402,13 +463,26 @@ def main():
         BotTools.show_queue_simple()
     elif command == "clean":
         BotTools.clean_queue()
+    elif command == "history":
+        # Parse optional limit argument
+        limit = 10  # default
+        if len(sys.argv) > 2:
+            try:
+                limit = int(sys.argv[2])
+                if limit <= 0:
+                    print("❌ Limit must be a positive number")
+                    return
+            except ValueError:
+                print("❌ Invalid limit number")
+                return
+        BotTools.show_posted_history(limit)
     elif command == "diagnose":
         BotTools.diagnose_bot()
     elif command == "test":
         BotTools.test_live_apis()
     else:
         print(f"❌ Unknown command: {command}")
-        print("Available: preview, queue, clean, diagnose, test")
+        print("Available: preview, queue, clean, history, diagnose, test")
 
 
 if __name__ == "__main__":

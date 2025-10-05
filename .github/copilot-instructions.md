@@ -36,6 +36,7 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 ### Essential Tools (Ultra-Minimal Interface)
 - **Preview next thread**: `python tools.py preview` -- shows complete thread structure with character counts
 - **Simple queue view**: `python tools.py queue` -- clean list of queued articles  
+- **Posted articles history**: `python tools.py history [limit]` -- view recently posted tweets with full metadata (default: 10)
 - **Clean queue**: `python tools.py clean` -- interactive removal of unwanted content
 - **Full diagnostics**: `python tools.py diagnose` -- comprehensive bot health check
 - **Test live APIs**: `python tools.py test` -- test EventRegistry & Gemini APIs without posting (requires API keys)
@@ -58,14 +59,36 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 - **Content deduplication**: Intelligent content-based similarity detection prevents duplicate articles from different sources
 
-### Intelligent Content Deduplication System
-- **Problem solved**: Replaced simple URL-based deduplication that missed same content from different sources
-- **ContentSimilarity class**: Complete similarity detection with title analysis, content fingerprinting, and date proximity
-- **Multi-factor detection**: Jaccard similarity for titles, MD5 fingerprinting for content, word overlap analysis
-- **Configurable thresholds**: title_similarity_threshold (0.8), content_similarity_threshold (0.7), date_window_hours (48)
-- **Real-world proven**: Successfully catches duplicates like Marathon Digital conference transcripts from different Investing.com domains
-- **Smart algorithms**: Handles same news from multiple outlets, regional variations, and republished content
-- **Production performance**: O(n²) comparison optimized with early URL checks and fingerprint matching
+### Enhanced Bitcoin Mining Filter (Latest Critical Fix)
+**Problem Solved**: Articles like "Tether Eyes $200M for Tokenized Gold Crypto Treasury With Antalpha" were incorrectly approved because they mentioned "mining" in the context of hardware manufacturers, not actual Bitcoin mining operations.
+
+**Multi-Layer Filtering System**:
+- **Title-based exclusions**: Automatically rejects articles with non-mining titles (gold, treasury, stablecoin, tokenized, etc.)
+- **Topic filtering**: Excludes crypto-adjacent but non-mining topics (investment vehicles, custody services, trading platforms)
+- **Mining focus requirements**: Requires at least 2 substantial mining industry terms, not just tangential mentions
+- **Hardware vs. operations distinction**: Differentiates between mining hardware manufacturers and actual mining operations
+- **Anti-promotional blocking**: Advanced detection for promotional content, scam schemes, and "free mining" apps
+- **Content quality validation**: Ensures articles are primarily about Bitcoin mining operations, not just mentioning them
+
+**Real-World Examples**:
+- ✅ **Approved**: "Marathon Digital Announces Major Bitcoin Mining Expansion" (12 mining terms detected)
+- ❌ **Rejected**: "Tether Eyes $200M for Tokenized Gold Crypto Treasury" (non-mining title topic: gold, treasury, tokenized)
+- ❌ **Rejected**: "HashJ Claims Users Can Earn $118 Daily Through Free Bitcoin Mining App" (promotional content detected)
+
+### Posted Articles History System (New Accountability Feature)
+**Problem Solved**: Queue clearing removed all tracking of what was actually posted to Twitter, leaving no accountability or debugging capability.
+
+**Comprehensive History Tracking**:
+- **Rich metadata preservation**: Saves title, source, URLs, publish date, post date, and content preview for each posted article
+- **New tools command**: `python tools.py history [limit]` to view posted articles with full context
+- **Enhanced data structure**: Added `posted_articles_history` field while maintaining backward compatibility
+- **Persistent tracking**: All future posts will be recorded with complete metadata for debugging and accountability
+
+**Usage Examples**:
+```bash
+python tools.py history       # View last 10 posted articles with full metadata
+python tools.py history 20   # View last 20 posted articles
+```
 
 ### Technical Implementation Details
 
@@ -91,7 +114,11 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 - Multi-level validation and text processing for consistency
 
 ### Robust Article Management
-- **Bitcoin-focused filtering**: Advanced keyword matching for relevant content
+- **Enhanced Bitcoin mining filtering**: Multi-layer filtering system that requires substantial Bitcoin mining focus, not just tangential mentions
+- **Crypto-adjacent content exclusion**: Rejects articles about tokenized assets (like Tether gold), treasury management, and other crypto topics that aren't mining-related
+- **Anti-promotional protection**: Blocks scam content, cloud mining apps, and "get rich quick" schemes (prevents HashJ-style promotional content)
+- **Content quality enforcement**: Requires minimum 2 substantial mining industry terms for approval, distinguishes hardware manufacturing from actual mining operations
+- **Posted articles history retention**: Comprehensive tracking of all published tweets with full metadata (title, source, dates, content preview)
 - **Smart queueing**: Multiple articles queued, posted one at a time
 - **Time-based validation**: Article freshness and staleness detection
 - **Queue management**: Interactive tools for preview, editing, and cleaning
