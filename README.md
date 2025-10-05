@@ -21,13 +21,14 @@
 
 ## 🚀 Smart Tweet Generation
 
-### AI-Enhanced Threads
-- **Multi-tweet structure**: Headline → 3-point summary → URL (with Gemini) or Headline → URL (without)
+### AI-Enhanced Threads (Gemini Required)
+- **Smart threading structure**: Combines headline + summary in single tweet if ≤280 chars, otherwise separates
+- **Option 1**: [Headline + Summary] → [URL] (when combined ≤280 characters)
+- **Option 2**: [Headline] → [Summary] → [URL] (when combined >280 characters)
 - **Native URL context**: Gemini 2.0 Flash Exp with direct article content access via Google's servers
 - **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
 - **Professional formatting**: Line-break bullet points for improved readability
-- **Intelligent fallback**: 2-tweet threads when Gemini unavailable
-- **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
+- **Mandatory AI enhancement**: Bot waits for Gemini API - no publishing without AI-generated content
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 
 ### Robust Article Management
@@ -70,9 +71,9 @@ Set these as GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
-- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp model with URL context for AI headlines and summaries)
+- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp model with URL context for AI headlines and summaries) **REQUIRED**
 
-**Note**: With Gemini API key, the bot generates AI-enhanced multi-tweet threads. Without it, it falls back to clean 2-tweet threads (headline → URL).
+**CRITICAL**: Gemini API key is now MANDATORY. The bot will NOT publish without AI enhancement - it waits and retries when Gemini is unavailable.
 
 ### GitHub Actions Workflow
 The bot includes a single, focused production workflow:
@@ -165,12 +166,13 @@ python tools.py diagnose          # Full system diagnostics
 - Comprehensive fallback system: URL context → EventRegistry content → generic fallback
 - URL context metadata logging for debugging and validation
 
-### Anti-Repetition Logic Flow
+### Smart Threading Logic Flow
 1. Generate headline first using URL context
-2. Pass headline to summary generation to avoid duplication
-3. Summary prompt explicitly includes headline and instructs "DO NOT REPEAT"
-4. Enhanced prompts with specific examples of good/bad complementary content
-5. Result: Maximum information density with zero redundancy
+2. Generate complementary summary that doesn't repeat headline information
+3. Check combined character count: headline + "\n\n" + summary
+4. If ≤280 chars: Combine in single tweet, then add URL tweet
+5. If >280 chars: Separate into headline tweet, summary tweet, URL tweet
+6. Result: Optimal character usage with maximum information density
 
 ### Elegant Performance Optimizations
 
@@ -240,6 +242,10 @@ python tools.py diagnose          # Full system diagnostics
 ### All Articles Posted
 **Symptoms**: "No new articles to post (all articles were already posted)"
 **Solution**: Normal behavior - bot tracks posted articles
+
+### Gemini API Unavailable (New Behavior)
+**Symptoms**: "Gemini API is required but not available - will retry later"
+**Solution**: Bot waits for Gemini API - no rate limit cooldown, just retries on next run
 
 ## 🏁 Development Workflow
 
