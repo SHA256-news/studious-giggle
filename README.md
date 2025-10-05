@@ -25,7 +25,7 @@
 - **Smart threading structure**: Combines headline + summary in single tweet if ≤280 chars, otherwise separates
 - **Option 1**: [Headline + Summary] → [URL] (when combined ≤280 characters)
 - **Option 2**: [Headline] → [Summary] → [URL] (when combined >280 characters)
-- **Native URL context**: Gemini 2.0 Flash Exp with direct article content access via Google's servers
+- **Native URL context**: Gemini 2.5 Flash with direct article content access via Google's servers (up to 34MB per URL)
 - **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
 - **Professional formatting**: Line-break bullet points for improved readability
 - **Mandatory AI enhancement**: Bot waits for Gemini API - no publishing without AI-generated content
@@ -79,7 +79,7 @@ Set these as GitHub repository secrets:
 - `TWITTER_ACCESS_TOKEN` - Twitter access token
 - `TWITTER_ACCESS_TOKEN_SECRET` - Twitter access token secret
 - `EVENTREGISTRY_API_KEY` - EventRegistry/NewsAPI.ai API key
-- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.0 Flash Exp model with URL context for AI headlines and summaries) **REQUIRED**
+- `GEMINI_API_KEY` - Google Gemini API key (Gemini 2.5 Flash model with URL context for AI headlines and summaries) **REQUIRED**
 
 **CRITICAL**: Gemini API key is now MANDATORY. The bot will NOT publish without AI enhancement - it waits and retries when Gemini is unavailable.
 
@@ -133,14 +133,14 @@ python tools.py diagnose          # Full system diagnostics
 ### Key Dependencies (Streamlined)
 - `tweepy>=4.14.0` - Twitter API client  
 - `eventregistry>=9.1` - News article fetching
-- `google-generativeai>=0.8.0` - Gemini 2.0 Flash Exp with native URL context
+- `google-genai>=0.1.0` - Modern Gemini 2.5 Flash with native URL context support
 - `requests>=2.25.0` - HTTP client for API calls
 - **Note**: Only 4 essential packages (60% reduction from 10 packages)
 
 ### Streamlined API Dependencies
 - **Twitter API v2**: For posting tweets and thread replies
 - **EventRegistry (NewsAPI.ai)**: For fetching Bitcoin mining news
-- **Google Gemini API**: Gemini 2.0 Flash Exp model with native URL context for AI-generated headlines and summaries
+- **Google Gemini API**: Modern google-genai library with Gemini 2.5 Flash for AI-generated headlines and summaries with URL context
 - **Python 3.10+**: Core runtime environment with minimal dependencies
 
 ### Ultra-Minimal Repository Structure
@@ -169,8 +169,8 @@ python tools.py diagnose          # Full system diagnostics
 ## 🎯 Advanced Features
 
 ### Gemini URL Context Implementation
-- Uses `tools=[{"url_context": {}}]` parameter in `generate_content()` calls
-- Gemini 2.0 Flash Exp model with native URL content fetching
+- Uses modern `google-genai` library with `tools=[Tool(url_context=UrlContext())]` parameter
+- Gemini 2.5 Flash model with native URL content fetching up to 34MB per URL
 - Comprehensive fallback system: URL context → EventRegistry content → generic fallback
 - URL context metadata logging for debugging and validation
 

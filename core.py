@@ -429,7 +429,7 @@ class TimeManager:
 # =============================================================================
 
 class GeminiClient:
-    """Gemini AI client for generating catchy headlines and summaries."""
+    """Gemini AI client for generating catchy headlines and summaries with URL context support."""
     
     def __init__(self, api_key: str):
         """Initialize Gemini client with API key."""
@@ -437,36 +437,51 @@ class GeminiClient:
             raise ValueError("Gemini API key is required")
         
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
+            from google import genai
+            from google.genai import types
+            self.client = genai.Client(api_key=api_key)
+            self.types = types
+            self.model_name = 'gemini-2.5-flash'
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
     def generate_catchy_headline(self, article: 'Article') -> str:
-        """Generate a catchy, emoji-free headline for the article."""
+        """Generate a catchy, emoji-free headline for the article using URL context."""
         try:
-            logger.info("🎯 Generating catchy headline with Gemini...")
+            logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Create a compelling, newsworthy headline for this Bitcoin mining article.
+            Create a compelling, newsworthy headline for this Bitcoin mining article at {article.url}
             
-            Original title: {article.title}
-            Article URL: {article.url}
-            
-            Requirements:
+            Use the full article content to understand the complete story, then create a headline that:
+            - Captures the MAIN story/takeaway with specific details from the article
             - NO emojis, hashtags, or special characters
             - 60-80 characters maximum  
-            - Should capture the MAIN story/takeaway from the article
             - Include specific numbers, percentages, or key facts when available
             - Use action words like "surges", "drops", "reaches", "announces", "adopts"
             
             Return only the headline text, nothing else.
             """
             
-            response = self.model.generate_content(prompt.strip())
+            # Use URL context tool to fetch full article content
+            config = self.types.GenerateContentConfig(
+                tools=[self.types.Tool(url_context=self.types.UrlContext())]
+            )
+            
+            response = self.client.models.generate_content(
+                model=self.model_name,
+                contents=prompt.strip(),
+                config=config
+            )
+            
             headline = response.text.strip()
-            logger.info(f"✅ Generated headline: '{headline}'")
+            logger.info(f"✅ Generated headline with URL context: '{headline}'")
+            
+            # Log URL context metadata for debugging
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'url_context_metadata'):
+                    logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
             
             return self._clean_headline(headline)[:80]
             
@@ -475,24 +490,23 @@ class GeminiClient:
             return self._clean_headline(article.title)[:80]
     
     def generate_thread_summary(self, article: 'Article') -> str:
-        """Generate a concise 3-point summary."""
+        """Generate a concise 3-point summary using URL context."""
         try:
-            logger.info("🎯 Generating thread summary with Gemini...")
+            logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
             
             headline = self.generate_catchy_headline(article)
             
             prompt = f"""
-            Create a specific 3-point summary for this Bitcoin mining article that COMPLEMENTS the headline.
+            Read the full article at {article.url} and create a specific 3-point summary that COMPLEMENTS the headline.
             
-            Title: {article.title}
-            Article URL: {article.url}
             Generated Headline: {headline}
             
             CRITICAL: DO NOT REPEAT any information already mentioned in the headline above.
             
             Requirements:
+            - Use the full article content to extract specific details
             - TOTAL summary must be under 180 characters
-            - Include specific details like numbers, dates, company names, locations
+            - Include specific details like numbers, dates, company names, locations from the article
             - Each point should be 50-60 characters maximum
             - Focus on NEW facts NOT mentioned in the headline
             - Format: Each point on its own line starting with "•"
@@ -501,9 +515,25 @@ class GeminiClient:
             Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
-            response = self.model.generate_content(prompt.strip())
+            # Use URL context tool to fetch full article content
+            config = self.types.GenerateContentConfig(
+                tools=[self.types.Tool(url_context=self.types.UrlContext())]
+            )
+            
+            response = self.client.models.generate_content(
+                model=self.model_name,
+                contents=prompt.strip(),
+                config=config
+            )
+            
             summary_text = response.text.strip()
-            logger.info(f"✅ Generated summary: '{summary_text}'")
+            logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
+            
+            # Log URL context metadata for debugging
+            if hasattr(response, 'candidates') and response.candidates:
+                candidate = response.candidates[0]
+                if hasattr(candidate, 'url_context_metadata'):
+                    logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
             
             return self._process_summary_response(summary_text)
                 
