@@ -128,24 +128,26 @@ class TestBot:
         config.twitter_access_token_secret = "test_token_secret"
         config.eventregistry_api_key = "test_er_key"
         
-        # Create temporary file
-        with tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.json') as f:
+        # Create temporary file with proper cleanup
+        temp_file = tempfile.NamedTemporaryFile(mode='w', delete=False, suffix='.json')
+        try:
             json.dump({
                 "posted_uris": [],
                 "queued_articles": [],
                 "last_run_time": None
-            }, f)
-            config.posted_articles_file = f.name
-        
-        mock_article_data = {
-            "title": "Bitcoin Mining News",
-            "url": "https://example.com/article",
-            "body": "Mining update content",
-            "source": {"title": "Test Source"}
-        }
-        mock_article = Article.from_dict(mock_article_data)
-        
-        try:
+            }, temp_file)
+            temp_file.flush()  # Ensure data is written
+            temp_file.close()   # Explicitly close before use
+            config.posted_articles_file = temp_file.name
+            
+            mock_article_data = {
+                "title": "Bitcoin Mining News",
+                "url": "https://example.com/article",
+                "body": "Mining update content",
+                "source": {"title": "Test Source"}
+            }
+            mock_article = Article.from_dict(mock_article_data)
+            
             with patch('core.TwitterAPI') as MockTwitter, patch('core.NewsAPI') as MockNews:
                 # Setup mocks
                 mock_twitter = MockTwitter.return_value
@@ -161,8 +163,21 @@ class TestBot:
                 # Should succeed with mocks
                 assert result is True
                 
+        except Exception:
+            # Ensure temp file is closed even if test fails during setup
+            if 'temp_file' in locals() and not temp_file.closed:
+                temp_file.close()
+            raise
         finally:
-            Path(config.posted_articles_file).unlink(missing_ok=True)
+            # Safer cleanup with error handling
+            try:
+                if 'config' in locals() and hasattr(config, 'posted_articles_file'):
+                    temp_path = Path(config.posted_articles_file)
+                    if temp_path.exists():
+                        temp_path.unlink()
+            except (OSError, PermissionError) as e:
+                # File cleanup failed, but don't fail the test
+                print(f"Warning: Could not clean up temporary file: {e}")
 
 
 def run_simple_tests():
