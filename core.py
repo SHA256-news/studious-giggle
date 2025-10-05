@@ -865,20 +865,24 @@ class NewsAPI:
         if not any(term in text for term in bitcoin_terms):
             return False
         
-        # ENHANCED: Require Bitcoin AND mining in meaningful context
-        has_bitcoin = any(term in text for term in ["bitcoin", "btc"])
-        has_mining = any(term in text for term in ["mining", "miner", "miners"])
-        if not (has_bitcoin and has_mining):
-            logger.info(f"❌ Missing Bitcoin+mining combination: {article.title}")
+        # ENHANCED: Require Bitcoin AND mining in meaningful context with proper counting
+        bitcoin_terms_list = ["bitcoin", "btc"]
+        mining_terms_list = ["mining", "miner", "miners"]
+        
+        bitcoin_mentions = sum(1 for term in bitcoin_terms_list if term in text)
+        mining_mentions = sum(1 for term in mining_terms_list if term in text)
+        
+        if bitcoin_mentions == 0 or mining_mentions == 0:
+            logger.info(f"❌ Missing Bitcoin+mining combination: {article.title} (Bitcoin: {bitcoin_mentions}, Mining: {mining_mentions})")
             return False
         
-        # Exclude other cryptocurrencies
+        # Exclude other cryptocurrencies - validation with proper bounds checking
         other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin", "xaut"]
         other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
-        bitcoin_mentions = sum(1 for term in ["bitcoin", "btc"] if term in text)
         
-        # Skip if other cryptos mentioned more than Bitcoin
-        if other_mentions > bitcoin_mentions:
+        # Skip if other cryptos mentioned more than Bitcoin (defensive check)
+        if other_mentions > 0 and bitcoin_mentions > 0 and other_mentions > bitcoin_mentions:
+            logger.info(f"❌ Other cryptos mentioned more than Bitcoin: {article.title} (Other: {other_mentions}, Bitcoin: {bitcoin_mentions})")
             return False
         
         # ENHANCED: Exclude non-mining crypto topics

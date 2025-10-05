@@ -19,8 +19,8 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 - **🚀 Enhanced Performance**: Lazy loading, optimized imports, sub-second startup
 - **🧹 Eliminated Redundancy**: Removed duplicate code and unnecessary abstractions  
 - **📚 Clean Interfaces**: Simple, readable, maintainable code structure
-- **🛡️ Robust Error Handling**: Comprehensive validation and graceful failure handling including queue bounds checking and specific API error types
-- **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections
+- **🛡️ Robust Error Handling**: Comprehensive validation and graceful failure handling including queue bounds checking, specific API error types, and improved mining filter validation
+- **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections and defensive bounds checking in mining filter logic
 
 ## Working Effectively
 
@@ -66,10 +66,10 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 **Multi-Layer Filtering System**:
 - **Title-based exclusions**: Automatically rejects articles with non-mining titles (gold, treasury, stablecoin, tokenized, etc.)
 - **Topic filtering**: Excludes crypto-adjacent but non-mining topics (investment vehicles, custody services, trading platforms)
-- **Mining focus requirements**: Requires at least 2 substantial mining industry terms, not just tangential mentions
+- **Mining focus requirements**: Requires at least 2 substantial mining industry terms, not just tangential mentions, with defensive bounds checking
 - **Hardware vs. operations distinction**: Differentiates between mining hardware manufacturers and actual mining operations
 - **Anti-promotional blocking**: Advanced detection for promotional content, scam schemes, and "free mining" apps
-- **Content quality validation**: Ensures articles are primarily about Bitcoin mining operations, not just mentioning them
+- **Content quality validation**: Ensures articles are primarily about Bitcoin mining operations, not just mentioning them, with proper mention counting validation
 
 **Real-World Examples**:
 - ✅ **Approved**: "Marathon Digital Announces Major Bitcoin Mining Expansion" (12 mining terms detected)
