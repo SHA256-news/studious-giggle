@@ -284,20 +284,7 @@ jobs:
         
         if [ -f "articles_log.json" ]; then
           echo "📊 Articles Log Status: ✅ Present"
-          python -c "
-          import json
-          try:
-            with open('articles_log.json', 'r') as f:
-              data = json.load(f)
-            print(f'  Total articles logged: {data.get(\"total_articles\", 0)}')
-            daily = data.get('daily_articles', [])
-            if daily:
-              latest = daily[-1]
-              print(f'  Latest date: {latest.get(\"date\", \"unknown\")}')
-              print(f'  Articles today: {len(latest.get(\"articles\", []))}')
-          except Exception as e:
-            print(f'  Error reading log: {e}')
-          "
+          python -c "import json; data=json.load(open('articles_log.json')); print(f'  Total articles logged: {data.get(\"total_articles\", 0)}'); daily=data.get('daily_articles', []); latest=daily[-1] if daily else {}; print(f'  Latest date: {latest.get(\"date\", \"unknown\")}'); print(f'  Articles today: {len(latest.get(\"articles\", []))}')" 2>/dev/null || echo "  Error reading articles log"
         else
           echo "📊 Articles Log Status: ❌ Missing"
         fi
