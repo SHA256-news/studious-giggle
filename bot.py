@@ -28,7 +28,6 @@ class BitcoinMiningNewsBotLegacy(BitcoinMiningBot):
         super().__init__(config=config, safe_mode=safe_mode)
         
         # Legacy attributes for test compatibility
-        self.rate_limit_cooldown_file = config.rate_limit_file
         self.posted_articles = self.posted_data
         
         # Legacy API client properties
@@ -56,15 +55,6 @@ class BitcoinMiningNewsBotLegacy(BitcoinMiningBot):
     def _save_posted_articles(self):
         """Legacy method for saving posted articles."""
         self._save_data()
-    
-    def _set_rate_limit_cooldown(self):
-        """Legacy method for setting rate limit cooldown."""
-        cooldown_data = TimeManager.create_cooldown_data(self.config.cooldown_hours)
-        self.storage.save_json(self.config.rate_limit_file, cooldown_data)
-    
-    def _is_rate_limit_cooldown_active(self):
-        """Legacy method for checking rate limit cooldown."""
-        return self._is_rate_limited()
     
     def _is_minimum_interval_respected(self):
         """Legacy method for checking minimum interval."""
@@ -120,14 +110,6 @@ class FileManager:
     @staticmethod
     def save_posted_articles(data):
         return Storage.save_json("posted_articles.json", data)
-    
-    @staticmethod
-    def load_rate_limit_cooldown():
-        return Storage.load_json("rate_limit_cooldown.json", {})
-    
-    @staticmethod
-    def save_rate_limit_cooldown(data):
-        return Storage.save_json("rate_limit_cooldown.json", data)
 
 
 class TimeUtils:
@@ -136,14 +118,6 @@ class TimeUtils:
     @staticmethod
     def is_minimum_interval_respected(last_run_time):
         return TimeManager.is_minimum_interval_passed(last_run_time, 90)
-    
-    @staticmethod
-    def create_rate_limit_cooldown():
-        return TimeManager.create_cooldown_data(2)
-    
-    @staticmethod
-    def is_rate_limit_cooldown_active(cooldown_data):
-        return TimeManager.is_cooldown_active(cooldown_data)
 
 
 class TextUtils:

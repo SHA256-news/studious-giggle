@@ -387,7 +387,7 @@ for url_meta in metadata.url_metadata:
 **Problem**: The enum value includes the class name:
 - **Actual enum value**: `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS`
 - **Wrong comparison**: `"URL_RETRIEVAL_STATUS_SUCCESS"`
-- **Result**: Success treated as failure → Rate limit cooldowns on working URLs!
+- **Result**: Success treated as failure → Bot unnecessarily skips working URLs!
 
 **Solution**: Use proper string checking that handles both formats.
 
