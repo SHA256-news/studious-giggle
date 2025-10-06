@@ -218,26 +218,72 @@ def create_thread(headline: str, summary: str, url: str) -> list[str]:
         return thread
 ```
 
-## Bitcoin Mining Filter Pattern
+## Bitcoin Mining Filter Pattern (CORRECTED)
 ```python
 def is_bitcoin_mining_article(article: dict) -> bool:
-    """Enhanced Bitcoin mining validation."""
+    """Enhanced Bitcoin mining validation - CORRECTED based on user feedback."""
     text = f"{article.get('title', '')} {article.get('body', '')}".lower()
     title = article.get('title', '').lower()
     
-    # Exclude non-mining topics
-    excluded_topics = ["gold", "treasury", "stablecoin", "tokenized", "trading"]
-    if any(topic in title for topic in excluded_topics):
-        return False
+    # PRIORITY: Public Bitcoin mining companies (ALWAYS relevant)
+    # Comprehensive list of 33 publicly traded Bitcoin mining companies with tickers
+    public_miners = [
+        # Major US-listed Bitcoin miners
+        "marathon digital", "mara", "riot platforms", "riot", "cleanspark", "clsk",
+        "hut 8", "hut8", "core scientific", "corz", "cipher mining", "cifr",
+        "bitfarms", "bitf", "hive digital", "hive", "terawulf", "wulf",
+        "bitdeer", "btdr", "iris energy", "iren", "bit digital", "btbt",
+        "greenidge", "gree", "stronghold", "sdig", "argo blockchain", "arbk",
+        "arbkf", "canaan", "can", "bit mining", "btcm", "bitfufu", "fufu",
+        # International and emerging miners
+        "phoenix group", "phx", "the9 limited", "ncty", "dmg blockchain", "dmgi",
+        "dmggf", "cathedra bitcoin", "cbit", "cbttf", "bitcoin well", "btcw",
+        "lm funding", "lmfa", "sos limited", "sos", "neptune digital", "nda",
+        "npptf", "digihost", "hsshf", "sato technologies", "sato",
+        "sphere 3d", "any", "gryphon digital", "gryp", "american bitcoin", "abtc",
+        "abits group", "abts"
+    ]
+    if any(company in text for company in public_miners):
+        return True  # Auto-approve public mining companies
     
     # Require Bitcoin + mining terms
     bitcoin_terms = ["bitcoin", "btc"]
-    mining_terms = ["mining", "miner", "miners"]
+    mining_terms = ["mining", "miner", "miners", "mine", "mined"]
     
     has_bitcoin = any(term in text for term in bitcoin_terms)
     has_mining = any(term in text for term in mining_terms)
     
-    return has_bitcoin and has_mining
+    if not (has_bitcoin and has_mining):
+        return False
+    
+    # CORRECTED: Only exclude clear non-mining topics (much more restrictive)
+    excluded_topics = ["defi", "nft", "metaverse", "web3", "stablecoin"]
+    if any(topic in title for topic in excluded_topics):
+        return False
+    
+    # CORRECTED: AI + mining is always relevant
+    ai_mining_terms = ["ai data center", "artificial intelligence", "power struggle"]
+    if any(term in text for term in ai_mining_terms):
+        return True
+    
+    # CORRECTED: Political/regulatory mining news is always relevant  
+    political_terms = ["regulation", "government", "policy", "political"]
+    if any(term in text for term in political_terms):
+        return True
+    
+    # CORRECTED: Exclude only obvious cloud mining/promotional content
+    promotional_terms = ["cloud mining", "free mining", "guaranteed returns"]
+    if any(term in text for term in promotional_terms):
+        return False
+    
+    # CORRECTED: 1 mining term is sufficient (was previously 2+)
+    mining_focus_terms = [
+        "mining company", "mining operation", "hash rate", "mining revenue",
+        "mining facility", "mining farm", "asic", "data center"
+    ]
+    mining_focus = sum(1 for term in mining_focus_terms if term in text)
+    
+    return mining_focus >= 1  # CORRECTED: Lowered from 2 to 1
 ```
 
 ## Debugging Helpers

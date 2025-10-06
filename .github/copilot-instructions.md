@@ -92,21 +92,27 @@ All fixes maintain **100% backward compatibility** with comprehensive testing va
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining
 - **Content deduplication**: Intelligent content-based similarity detection prevents duplicate articles from different sources
 
-### Enhanced Bitcoin Mining Filter (Latest Critical Fix)
-**Problem Solved**: Articles like "Tether Eyes $200M for Tokenized Gold Crypto Treasury With Antalpha" were incorrectly approved because they mentioned "mining" in the context of hardware manufacturers, not actual Bitcoin mining operations.
+### Enhanced Bitcoin Mining Filter (CORRECTED Based on User Feedback)
+**Problem Solved**: Previous filter was too restrictive, rejecting valid mining articles about public miners, AI/mining relationships, and political/regulatory news.
 
-**Multi-Layer Filtering System**:
-- **Title-based exclusions**: Automatically rejects articles with non-mining titles (gold, treasury, stablecoin, tokenized, etc.)
-- **Topic filtering**: Excludes crypto-adjacent but non-mining topics (investment vehicles, custody services, trading platforms)
-- **Mining focus requirements**: Requires at least 2 substantial mining industry terms, not just tangential mentions, with defensive bounds checking
-- **Hardware vs. operations distinction**: Differentiates between mining hardware manufacturers and actual mining operations
-- **Anti-promotional blocking**: Advanced detection for promotional content, scam schemes, and "free mining" apps
-- **Content quality validation**: Ensures articles are primarily about Bitcoin mining operations, not just mentioning them, with proper mention counting validation
+**Improved Multi-Layer Filtering System**:
+- **Public mining companies auto-approval**: Comprehensive coverage of 33 publicly traded Bitcoin mining companies including Marathon Digital (MARA), Riot Platforms (RIOT), CleanSpark (CLSK), Hut 8 (HUT), Core Scientific (CORZ), Cipher Mining (CIFR), Bitfarms (BITF), HIVE Digital (HIVE), TeraWulf (WULF), Bitdeer (BTDR), Iris Energy (IREN), Bit Digital (BTBT), Greenidge (GREE), Stronghold (SDIG), Argo Blockchain (ARBK), Canaan (CAN), BIT Mining (BTCM), BitFuFu (FUFU), and many more - ALL are ALWAYS relevant
+- **AI + mining relationships**: Articles about AI data centers, power struggles, electricity consumption with mining context are approved
+- **Political/regulatory mining news**: Government policies, regulations, bans, approvals related to Bitcoin mining are approved
+- **Flexible mining focus**: Requires only 1 substantial mining term (not 2+) for approval
+- **Targeted exclusions**: Only excludes obvious cloud mining, promotional schemes, and clear non-mining topics (DeFi, NFT, Web3)
+- **Content quality validation**: Ensures articles are genuinely about Bitcoin mining operations, companies, or regulation
 
-**Real-World Examples**:
-- ✅ **Approved**: "Marathon Digital Announces Major Bitcoin Mining Expansion" (12 mining terms detected)
-- ❌ **Rejected**: "Tether Eyes $200M for Tokenized Gold Crypto Treasury" (non-mining title topic: gold, treasury, tokenized)
-- ❌ **Rejected**: "HashJ Claims Users Can Earn $118 Daily Through Free Bitcoin Mining App" (promotional content detected)
+**Real-World Examples** (Now APPROVED):
+- ✅ **"Why Hut 8 Stock Was Blasting Higher This Week"** - Public mining company (auto-approved)
+- ✅ **"'Shark Tank' Star Kevin O'Leary Says Bitcoin Mining, AI Data Centers Are Locked In A 'Power Struggle'"** - AI+mining relationship (approved)
+- ✅ **"JPMorgan Downgrades CleanSpark (CLSK) to Neutral"** - Public mining company (auto-approved)  
+- ✅ **"France: Éric Ciotti Opposes U.S. Takeover of Exaion, Defends Bitcoin Mining"** - Political/regulatory (approved)
+- ✅ **"MARA | My Life Long Girlfriend Stock | LONG"** - Public mining company MARA (auto-approved)
+
+**Validation Results**: 7/7 filter tests passing after corrections, with proper rejection of promotional content like "HashJ Claims Users Can Earn $118 Daily Through Free Bitcoin Mining App" while approving legitimate mining industry content.
+
+**Complete Public Miners Coverage**: The filter now includes all major publicly traded Bitcoin mining companies: Marathon Digital Holdings Inc. (MARA), Riot Platforms Inc. (RIOT), CleanSpark Inc. (CLSK), Hut 8 Mining Corp. (HUT), Core Scientific Inc. (CORZ), Cipher Mining Inc. (CIFR), Bitfarms Ltd. (BITF), HIVE Digital Technologies Ltd. (HIVE), TeraWulf Inc. (WULF), Bitdeer Technologies Group (BTDR), Iris Energy Ltd. (IREN), Bit Digital Inc. (BTBT), Greenidge Generation Holdings Inc. (GREE), Stronghold Digital Mining Inc. (SDIG), Argo Blockchain PLC (ARBK/ARBKF), Canaan Inc. (CAN), BIT Mining Limited (BTCM), BitFuFu Inc. (FUFU), Phoenix Group PLC (PHX), The9 Limited (NCTY), DMG Blockchain Solutions Inc. (DMGI/DMGGF), Cathedra Bitcoin Inc. (CBIT/CBTTF), Bitcoin Well Inc. (BTCW), LM Funding America Inc. (LMFA), SOS Limited (SOS), Neptune Digital Assets (NDA/NPPTF), Digihost Technology Inc. (HSSHF), SATO Technologies Corp. (SATO), Sphere 3D Corp (ANY), Gryphon Digital Mining Inc. (GRYP), American Bitcoin Corp. (ABTC), and Abits Group Inc. (ABTS).
 
 ### Posted Articles History System (New Accountability Feature)
 **Problem Solved**: Queue clearing removed all tracking of what was actually posted to Twitter, leaving no accountability or debugging capability.

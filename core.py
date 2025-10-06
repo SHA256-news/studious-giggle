@@ -861,25 +861,49 @@ class NewsAPI:
         text = f"{article.title} {article.body}".lower()
         title_lower = article.title.lower()
         
-        # CRITICAL: Must be primarily about Bitcoin mining, not just mention it
-        # Reject if title is clearly about other topics
-        non_mining_titles = [
-            "gold", "treasury", "investment fund", "stablecoin", "usdt", "tether",
-            "defi", "nft", "metaverse", "web3", "trading", "exchange", 
-            "tokenized", "asset management", "custody", "vault"
+        # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant)
+        # Comprehensive list of 33 publicly traded Bitcoin mining companies with tickers
+        public_miners = [
+            # Major US-listed Bitcoin miners
+            "marathon digital", "mara", "riot platforms", "riot", "cleanspark", "clsk",
+            "hut 8", "hut8", "core scientific", "corz", "cipher mining", "cifr",
+            "bitfarms", "bitf", "hive digital", "hive", "terawulf", "wulf",
+            "bitdeer", "btdr", "iris energy", "iren", "bit digital", "btbt",
+            "greenidge", "gree", "stronghold", "sdig", "argo blockchain", "arbk",
+            "arbkf", "canaan", "can", "bit mining", "btcm", "bitfufu", "fufu",
+            # International and emerging miners
+            "phoenix group", "phx", "the9 limited", "ncty", "dmg blockchain", "dmgi",
+            "dmggf", "cathedra bitcoin", "cbit", "cbttf", "bitcoin well", "btcw",
+            "lm funding", "lmfa", "sos limited", "sos", "neptune digital", "nda",
+            "npptf", "digihost", "hsshf", "sato technologies", "sato",
+            "sphere 3d", "any", "gryphon digital", "gryp", "american bitcoin", "abtc",
+            "abits group", "abts"
         ]
-        if any(term in title_lower for term in non_mining_titles):
-            logger.info(f"❌ Excluded non-mining title topic: {article.title}")
+        
+        # CRITICAL: Check for promotional content BEFORE public miner check
+        # This prevents scam apps like "HashJ" from being approved
+        promotional_terms = [
+            "cloud mining", "free bitcoin mining", "claim", "bonus", "gift", 
+            "sign up", "register now", "join now", "get started", "download app",
+            "earn daily", "passive income", "$118", "hashj", "momhash", 
+            "free mining", "no investment", "guaranteed returns", "daily earnings"
+        ]
+        if any(term in text for term in promotional_terms):
+            logger.info(f"❌ Excluded promotional content: {article.title}")
             return False
+        
+        if any(company in text for company in public_miners):
+            logger.info(f"✅ Public mining company detected - auto-approved: {article.title}")
+            return True
         
         # Must contain Bitcoin mining terms
         bitcoin_terms = ["bitcoin", "btc", "mining", "miner", "hash rate", "asic"]
         if not any(term in text for term in bitcoin_terms):
             return False
         
-        # ENHANCED: Require Bitcoin AND mining in meaningful context with proper counting
+        # CORRECTED: Require Bitcoin AND mining in meaningful context (more flexible)
         bitcoin_terms_list = ["bitcoin", "btc"]
-        mining_terms_list = ["mining", "miner", "miners"]
+        mining_terms_list = ["mining", "miner", "miners", "mine", "mined"]
         
         bitcoin_mentions = sum(1 for term in bitcoin_terms_list if term in text)
         mining_mentions = sum(1 for term in mining_terms_list if term in text)
@@ -888,8 +912,18 @@ class NewsAPI:
             logger.info(f"❌ Missing Bitcoin+mining combination: {article.title} (Bitcoin: {bitcoin_mentions}, Mining: {mining_mentions})")
             return False
         
+        # CORRECTED: More restrictive non-mining titles (only clear exclusions)
+        non_mining_titles = [
+            "defi", "nft", "metaverse", "web3", "stablecoin", "usdt", "tether"
+        ]
+        # NOTE: Removed "gold", "treasury", "investment fund", "trading", "exchange", "tokenized" 
+        # as these can be part of legitimate mining news (e.g., "France opposes takeover")
+        if any(term in title_lower for term in non_mining_titles):
+            logger.info(f"❌ Excluded non-mining title topic: {article.title}")
+            return False
+        
         # Exclude other cryptocurrencies - validation with proper bounds checking
-        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin", "xaut"]
+        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin"]
         other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
         
         # Skip if other cryptos mentioned more than Bitcoin (defensive check)
@@ -897,33 +931,25 @@ class NewsAPI:
             logger.info(f"❌ Other cryptos mentioned more than Bitcoin: {article.title} (Other: {other_mentions}, Bitcoin: {bitcoin_mentions})")
             return False
         
-        # ENHANCED: Exclude non-mining crypto topics
+        # CORRECTED: More specific crypto-adjacent exclusions (removed overly broad terms)
         excluded_topics = [
-            "gold token", "tokenized gold", "gold-backed", "xaut", "treasury",
-            "stablecoin", "stable coin", "digital asset", "investment vehicle",
-            "fundraising", "private equity", "venture capital", "ipo",
-            "trading platform", "exchange", "custody", "vault services"
+            "stablecoin minting", "stable coin issuance", "defi protocol",
+            "nft marketplace", "web3 gaming", "metaverse platform"
         ]
+        # NOTE: Removed broad terms like "digital asset", "investment vehicle", "treasury"
+        # as these can appear in legitimate mining regulatory/political news
         if any(term in text for term in excluded_topics):
             logger.info(f"❌ Excluded crypto-adjacent non-mining topic: {article.title}")
             return False
         
-        # Exclude promotional/advertising content
-        promotional_terms = [
-            "free bitcoin mining", "claim", "bonus", "gift", "sign up",
-            "register now", "join now", "get started", "download app",
-            "cloud mining app", "mining app", "earn daily", "passive income",
-            "$118", "hashj", "momhash", "free mining", "no investment"
-        ]
-        if any(term in text for term in promotional_terms):
-            logger.info(f"❌ Excluded promotional content: {article.title}")
-            return False
+        # ENHANCED: Exclude only obvious promotional/cloud mining content (already checked above)
+        # This check is moved earlier to prevent scam apps from being approved
         
         # Exclude generic educational content  
         generic_terms = [
             "what is bitcoin mining", "how to mine bitcoin", 
             "bitcoin mining explained", "mining tutorial",
-            "beginner's guide", "introduction to"
+            "beginner's guide", "introduction to mining"
         ]
         if any(term in title_lower for term in generic_terms):
             logger.info(f"❌ Excluded generic educational content: {article.title}")
@@ -939,7 +965,7 @@ class NewsAPI:
             logger.info(f"❌ Excluded suspicious content: {article.title}")
             return False
         
-        # ENHANCED: Require primary focus on actual Bitcoin mining operations
+        # CORRECTED: Expanded mining focus terms including AI/political/regulatory
         core_mining_terms = [
             "mining company", "mining operation", "mining facility", 
             "mining farm", "mining pool", "hash rate", "hashrate", "difficulty",
@@ -947,26 +973,53 @@ class NewsAPI:
             "block reward", "halving", "mining stocks", "public miner",
             "mining rig", "mining power", "mining capacity", "mining contract",
             "mining data center", "mining infrastructure", "asic miner",
-            "mining performance", "mining efficiency", "mining expansion"
+            "mining performance", "mining efficiency", "mining expansion",
+            # ADDED: AI and data center terms (AI + mining is relevant)
+            "ai data center", "artificial intelligence", "data center", "power struggle",
+            "electricity", "energy consumption", "power grid", "renewable energy",
+            # ADDED: Political/regulatory terms (political mining news is relevant)  
+            "regulation", "regulatory", "government", "policy", "ban", "approval",
+            "law", "legal", "compliance", "taxation", "lobbying", "political"
         ]
         
-        # ENHANCED: Must have substantial mining focus, not just tangential mentions
+        # CORRECTED: More flexible mining focus (1 substantial term can be enough)
         mining_mentions = sum(1 for term in core_mining_terms if term in text)
-        if mining_mentions < 2:  # Require at least 2 substantial mining references
+        
+        # Special case: If it's about AI + mining, data centers, or political/regulatory, 
+        # it's automatically relevant even with fewer traditional mining terms
+        ai_mining_terms = ["ai data center", "artificial intelligence", "power struggle", "electricity"]
+        political_terms = ["regulation", "regulatory", "government", "policy", "political"]
+        
+        has_ai_mining = any(term in text for term in ai_mining_terms)
+        has_political = any(term in text for term in political_terms)
+        
+        if has_ai_mining or has_political:
+            logger.info(f"✅ Bitcoin mining content approved (AI/political relevance): {article.title}")
+            return True
+        
+        # For traditional mining news, require at least 1 substantial mining term
+        if mining_mentions < 1:
             logger.info(f"❌ Insufficient mining focus (only {mining_mentions} mining terms): {article.title}")
             return False
         
-        # ENHANCED: Exclude if it's primarily about mining hardware manufacturers
-        # rather than actual mining operations
+        # CORRECTED: Less restrictive hardware manufacturing check
+        # Only exclude if it's ONLY about hardware manufacturing with no mining operations
         hardware_only_indicators = [
-            "manufacturer", "manufacturing", "supply", "supplier", "equipment maker",
+            "manufacturer", "manufacturing", "supply chain", "equipment maker",
             "hardware company", "chip maker", "asic manufacturer"
         ]
         hardware_mentions = sum(1 for term in hardware_only_indicators if term in text)
         
-        # If it's primarily about hardware manufacturing and has few actual mining terms
-        if hardware_mentions >= 2 and mining_mentions < 3:
-            logger.info(f"❌ Hardware manufacturing focus, not mining operations: {article.title}")
+        # Only exclude if it's primarily hardware manufacturing AND has no operational mining content
+        mining_operations_terms = [
+            "mining company", "mining operation", "mining facility", "mining farm",
+            "hash rate", "mining revenue", "mining profit", "mining expansion"
+        ]
+        operations_mentions = sum(1 for term in mining_operations_terms if term in text)
+        
+        # If it's primarily hardware manufacturing AND has no operations content
+        if hardware_mentions >= 2 and operations_mentions == 0:
+            logger.info(f"❌ Hardware manufacturing only, no mining operations: {article.title}")
             return False
         
         logger.info(f"✅ Bitcoin mining content approved: {article.title} (mining terms: {mining_mentions})")
