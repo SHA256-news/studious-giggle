@@ -515,16 +515,28 @@ class GeminiClient:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Create a compelling, newsworthy headline for this Bitcoin mining article at {article.url}
+            Read the Bitcoin mining article at {article.url} and write a PUNCHY news headline.
             
-            Use the full article content to understand the complete story, then create a headline that:
-            - Captures the MAIN story/takeaway with specific details from the article
-            - NO emojis, hashtags, or special characters
-            - 60-80 characters maximum  
-            - Include specific numbers, percentages, or key facts when available
-            - Use action words like "surges", "drops", "reaches", "announces", "adopts"
+            CRITICAL REQUIREMENTS:
+            - Write like a professional financial news reporter
+            - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+            - Keep it under 70 characters
+            - Include specific numbers, percentages, or dollar amounts from the article
+            - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
+            - Sound like headlines from Bloomberg, Reuters, or MarketWatch
             
-            Return only the headline text, nothing else.
+            GOOD EXAMPLES:
+            - "HIVE Hits 52-Week High on Mining Surge"
+            - "Riot Platforms Acquires 5,000 Bitcoin Miners"
+            - "Marathon Digital Reports Record Q3 Revenue"
+            - "CleanSpark Stock Jumps 15% on Expansion News"
+            
+            BAD EXAMPLES (NEVER DO THIS):
+            - "The article states that HIVE Digital Technologies..."
+            - "According to the report, Marathon Digital..."
+            - "The company announced in the article..."
+            
+            Return ONLY the headline, no quotes, no explanation.
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
@@ -619,22 +631,31 @@ class GeminiClient:
             headline = self.generate_catchy_headline(article)
             
             prompt = f"""
-            Read the full article at {article.url} and create a specific 3-point summary that COMPLEMENTS the headline.
+            Read the full Bitcoin mining article at {article.url} and create SPECIFIC bullet points.
             
             Generated Headline: {headline}
             
-            CRITICAL: DO NOT REPEAT any information already mentioned in the headline above.
+            CRITICAL: DO NOT repeat anything from the headline above.
             
-            Requirements:
-            - Use the full article content to extract specific details
-            - TOTAL summary must be under 180 characters
-            - Include specific details like numbers, dates, company names, locations from the article
-            - Each point should be 50-60 characters maximum
-            - Focus on NEW facts NOT mentioned in the headline
-            - Format: Each point on its own line starting with "•"
-            - NO periods at the end of bullet points
+            Create 3 rapid-fire bullet points that reveal NEW details from the article:
+            - Total length under 180 characters
+            - Include specific numbers, dates, locations, dollar amounts from the article
+            - Use telegraphic style like financial newswires
+            - Each point 50-60 characters max
+            - Format: "• [specific fact]"
+            - NO generic statements
             
-            Return only the formatted summary with each bullet point on its own line, nothing else.
+            GOOD EXAMPLES:
+            • Q3 revenue jumped 42% to $87M year-over-year
+            • Added 2,500 miners at Texas facility this month  
+            • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
+            
+            BAD EXAMPLES (NEVER DO):
+            • The company is performing well
+            • Bitcoin mining operations are expanding
+            • Management is optimistic about the future
+            
+            Return ONLY the bullet points, nothing else.
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)

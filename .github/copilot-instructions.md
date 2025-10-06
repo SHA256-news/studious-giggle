@@ -97,7 +97,7 @@ All fixes maintain **100% backward compatibility** with comprehensive testing va
 - **Thread structure**: [Headline + Summary] → [URL] OR [Headline] → [Summary] → [URL]
 - **Native URL context**: Gemini 2.5 Flash with direct article content access via Google's servers (up to 34MB per URL)
 - **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
-- **Enhanced AI prompts**: Specific examples and instructions for quality content generation
+- **COMPLETELY REWRITTEN AI prompts**: Professional journalism-style prompts that ELIMINATE robotic "The article states that..." headlines with specific Bloomberg/Reuters examples
 - **Professional formatting**: Line-break bullet points for improved readability
 - **Emoji-free prefixes**: Professional text prefixes (BREAKING:, JUST IN:, NEWS:, HOT:)
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining

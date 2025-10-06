@@ -175,7 +175,9 @@ if hasattr(response, 'candidates') and response.candidates:
 
 ## Bot-Specific Patterns
 
-### 1. Headline Generation with URL Context (Error-Safe)
+### 1. Headline Generation with URL Context (COMPLETELY IMPROVED)
+
+**CRITICAL UPDATE**: Prompts completely rewritten to eliminate robotic "The article states that..." headlines
 
 ```python
 class URLRetrievalError(Exception):
@@ -192,47 +194,28 @@ def generate_catchy_headline(article_url: str, title: str) -> str:
     )
     
     prompt = f"""
-    Create a compelling Bitcoin mining headline for: {article_url}
+    Read the Bitcoin mining article at {article_url} and write a PUNCHY news headline.
     
-    Requirements:
-    - 60-80 characters maximum
-    - Include specific numbers/facts from article
-    - Use action words (surges, drops, announces, reaches)
-    - NO emojis, hashtags, or special characters
-    - Professional news style
+    CRITICAL REQUIREMENTS:
+    - Write like a professional financial news reporter
+    - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+    - Keep it under 70 characters
+    - Include specific numbers, percentages, or dollar amounts from the article
+    - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
+    - Sound like headlines from Bloomberg, Reuters, or MarketWatch
     
-    Return only the headline text.
-    """
+    GOOD EXAMPLES:
+    - "HIVE Hits 52-Week High on Mining Surge"
+    - "Riot Platforms Acquires 5,000 Bitcoin Miners"
+    - "Marathon Digital Reports Record Q3 Revenue"
     
-    try:
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt,
-            config=config
-        )
-        
-        # CRITICAL: Check URL retrieval status before using response
-        if hasattr(response, 'candidates') and response.candidates:
-            candidate = response.candidates[0]
-            if hasattr(candidate, 'url_context_metadata'):
-                for url_metadata in candidate.url_context_metadata:
-                    if hasattr(url_metadata, 'url_retrieval_status'):
-                        status = str(url_metadata.url_retrieval_status)
-                        if 'ERROR' in status or 'FAILED' in status:
-                            raise URLRetrievalError(f"Failed to retrieve content from {article_url}: {status}")
-        
-        return response.text.strip()[:80]
-        
-    except URLRetrievalError:
-        # Let URL retrieval errors bubble up - bot will skip this article
-        raise
-    except ValueError as e:
-        # API authentication issues
-        print(f"Gemini auth error: {e}")
-        raise
-    except Exception as e:
-        print(f"Gemini error: {e}")
-        return title[:80]  # Fallback to original title
+    BAD EXAMPLES (NEVER DO THIS):
+    - "The article states that HIVE Digital Technologies..."
+    - "According to the report, Marathon Digital..."
+    - "The company announced in the article..."
+    
+    Return ONLY the headline, no quotes, no explanation.
+    
 ```
 
 ### 2. Summary Generation (Anti-Repetition)

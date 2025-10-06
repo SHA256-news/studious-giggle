@@ -65,7 +65,7 @@ response = client.models.generate_content(
 )
 ```
 
-### Headline Generation
+### Headline Generation (IMPROVED - Anti-Robotic)
 ```python
 def generate_headline(article_url: str) -> str:
     config = GenerateContentConfig(
@@ -74,11 +74,22 @@ def generate_headline(article_url: str) -> str:
     )
     
     prompt = f"""
-    Create Bitcoin mining headline for: {article_url}
-    - 60-80 characters
-    - Include specific facts/numbers
-    - No emojis or hashtags
-    Return only headline text.
+    Read the Bitcoin mining article at {article_url} and write a PUNCHY news headline.
+    
+    CRITICAL REQUIREMENTS:
+    - Write like a professional financial news reporter
+    - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+    - Keep it under 70 characters
+    - Use powerful action verbs: "soars", "plummets", "hits", "reaches"
+    
+    GOOD EXAMPLES:
+    - "HIVE Hits 52-Week High on Mining Surge"
+    - "Marathon Digital Reports Record Q3 Revenue"
+    
+    BAD EXAMPLES (NEVER DO):
+    - "The article states that HIVE Digital Technologies..."
+    
+    Return ONLY the headline, no quotes, no explanation.
     """
     
     response = client.models.generate_content(
@@ -86,7 +97,7 @@ def generate_headline(article_url: str) -> str:
         contents=prompt,
         config=config
     )
-    return response.text.strip()[:80]
+    return response.text.strip()[:70]
 ```
 
 ### Summary Generation (Anti-Repetition)
