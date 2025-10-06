@@ -143,6 +143,14 @@ class Article:
         if not url:
             raise ValueError("Article URL is required")
         
+        # Basic URL format validation
+        if not url.startswith(('http://', 'https://')):
+            raise ValueError(f"Invalid URL format: {url}")
+        
+        # Additional basic URL validation
+        if len(url) < 10 or ' ' in url:
+            raise ValueError(f"Malformed URL: {url}")
+        
         return cls(
             title=title,
             body=data.get("body", data.get("summary", "")),
@@ -499,15 +507,24 @@ class GeminiClient:
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
                 if hasattr(candidate, 'url_context_metadata'):
-                    logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
+                    metadata = candidate.url_context_metadata
+                    logger.info(f"📄 URL context metadata: {metadata}")
                     
-                    # Check if any URL retrieval failed
-                    for url_metadata in candidate.url_context_metadata:
-                        if hasattr(url_metadata, 'url_retrieval_status'):
-                            status = str(url_metadata.url_retrieval_status)
-                            if 'ERROR' in status or 'FAILED' in status:
-                                logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
-                                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                    # Check if any URL retrieval failed - safely handle metadata format
+                    if metadata is not None:
+                        try:
+                            # Handle both single item and iterable metadata
+                            metadata_items = metadata if hasattr(metadata, '__iter__') and not isinstance(metadata, (str, bytes)) else [metadata]
+                            
+                            for url_metadata in metadata_items:
+                                if hasattr(url_metadata, 'url_retrieval_status'):
+                                    status = str(url_metadata.url_retrieval_status)
+                                    if 'ERROR' in status or 'FAILED' in status:
+                                        logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
+                                        raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                        except TypeError as e:
+                            logger.warning(f"⚠️ Could not iterate URL metadata: {e}")
+                            # Continue without raising exception for metadata parsing issues
             
             return self._clean_headline(headline)[:80]
             
@@ -574,15 +591,24 @@ class GeminiClient:
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
                 if hasattr(candidate, 'url_context_metadata'):
-                    logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
+                    metadata = candidate.url_context_metadata
+                    logger.info(f"📄 URL context metadata: {metadata}")
                     
-                    # Check if any URL retrieval failed
-                    for url_metadata in candidate.url_context_metadata:
-                        if hasattr(url_metadata, 'url_retrieval_status'):
-                            status = str(url_metadata.url_retrieval_status)
-                            if 'ERROR' in status or 'FAILED' in status:
-                                logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
-                                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                    # Check if any URL retrieval failed - safely handle metadata format
+                    if metadata is not None:
+                        try:
+                            # Handle both single item and iterable metadata
+                            metadata_items = metadata if hasattr(metadata, '__iter__') and not isinstance(metadata, (str, bytes)) else [metadata]
+                            
+                            for url_metadata in metadata_items:
+                                if hasattr(url_metadata, 'url_retrieval_status'):
+                                    status = str(url_metadata.url_retrieval_status)
+                                    if 'ERROR' in status or 'FAILED' in status:
+                                        logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
+                                        raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                        except TypeError as e:
+                            logger.warning(f"⚠️ Could not iterate URL metadata during summary generation: {e}")
+                            # Continue without raising exception for metadata parsing issues
             
             return self._process_summary_response(summary_text)
                 
@@ -683,7 +709,7 @@ class TextProcessor:
     """Text processing for tweet creation with Gemini AI integration."""
     
     @staticmethod
-    def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> Optional[list[str]]:
+    def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> Optional[List[str]]:
         """Create a complete tweet thread with catchy headline, summary, and URL.
         
         Returns None if Gemini is required but unavailable, indicating the bot should wait and retry later.
@@ -1222,9 +1248,19 @@ class BitcoinMiningBot:
                             if success:
                                 # Remove from queue - verify queue has items before popping
                                 if self.posted_data["queued_articles"]:
-                                    self.posted_data["queued_articles"].pop(0)
+                                    try:
+                                        self.posted_data["queued_articles"].pop(0)
+                                        logger.info(f"✅ Removed posted article from queue: {article_to_post.title[:50]}")
+                                    except (IndexError, ValueError) as e:
+                                        logger.error(f"❌ Failed to remove article from queue: {e}")
+                                        # Queue state is inconsistent - clear it to prevent further issues
+                                        self.posted_data["queued_articles"] = []
+                                        logger.warning("🧹 Cleared queue due to state inconsistency")
                                 else:
-                                    logger.warning("Queue was empty when trying to remove posted article")
+                                    logger.error("❌ Queue was empty when trying to remove posted article - state inconsistency detected")
+                                    # Reset queue state
+                                    self.posted_data["queued_articles"] = []
+                                
                                 self.posted_data["last_run_time"] = datetime.now().isoformat()
                                 self._save_data()
                                 logger.info("✅ Posted queued article successfully")

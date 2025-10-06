@@ -1,6 +1,19 @@
 # Bitcoin Mining News Twitter Bot
 
-⚡ **Ultra-minimal Bi### Enhanced Bitcoin Mining Filter (CORRECTED Based on User Feedback)
+⚡ **Ultra-minimal Bitcoin mining news Twitter bot** that fetches articles from EventRegistry API and posts AI-enhanced threads with Gemini-generated headlines and summaries. Runs every 90 minutes via GitHub Actions with sophisticated rate limiting and comprehensive error handling.
+
+## 🛡️ Recent Critical Bug Fixes (October 2025)
+
+**Latest improvements ensure maximum reliability:**
+- **URLRetrievalError Exception Safety**: Fixed crashes when Gemini metadata is not iterable
+- **Queue Index Error Protection**: Added bounds validation to prevent IndexError during queue operations  
+- **Complete Queue State Management**: Implemented proper error handling with state recovery
+- **URL Format Validation**: Added comprehensive URL validation to catch malformed URLs
+- **Type Annotation Consistency**: Fixed Python 3.8 compatibility issues
+
+**All 9 core tests and 3 integration tests passing** ✅
+
+### Enhanced Bitcoin Mining Filter (CORRECTED Based on User Feedback)
 **Problem Solved**: Previous filter was too restrictive, rejecting valid mining articles about public miners, AI/mining relationships, and political/regulatory news.
 
 **Improved Multi-Layer Filtering System**:

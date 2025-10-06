@@ -63,7 +63,7 @@ class TestIntegrationWorkflows:
             config.posted_articles_file = f.name
 
         try:
-            with patch('core.TwitterAPI') as MockTwitter, patch('core.NewsAPI') as MockNews:
+            with patch('core.TwitterAPI') as MockTwitter, patch('core.NewsAPI') as MockNews, patch('core.GeminiClient') as MockGemini:
                 # Setup realistic mocks
                 mock_twitter = MockTwitter.return_value
                 mock_twitter.post_thread.return_value = True
@@ -72,9 +72,17 @@ class TestIntegrationWorkflows:
                 mock_news.fetch_articles.return_value = [
                     Article.from_dict(article) for article in production_articles
                 ]
+                
+                # Mock Gemini client to simulate AI content generation
+                mock_gemini_instance = MockGemini.return_value
+                mock_gemini_instance.generate_catchy_headline.return_value = "Bitcoin Mining Hashrate Hits Record High"
+                mock_gemini_instance.generate_thread_summary.return_value = "• Network computational power increased 15%\n• New mining facilities come online\n• Industry growth continues strong"
 
-                # Execute production-like workflow
+                # Override the bot's gemini property to return the mock
                 bot = BitcoinMiningBot(config=config)
+                bot._gemini = mock_gemini_instance
+                
+                # Execute production-like workflow
                 result = bot.run()
 
                 # Validate production behavior

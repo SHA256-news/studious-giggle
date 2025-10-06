@@ -13,6 +13,7 @@ This module provides essential utilities for bot management:
 import json
 import sys
 import os
+import logging
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Any, Optional
@@ -29,6 +30,9 @@ except ImportError as e:
     print("💡 Make sure you're running this from the project root directory")
     print("💡 Required files: core.py and bot.py")
     sys.exit(1)
+
+# Configure logging for tools
+logger = logging.getLogger('bitcoin_mining_bot.tools')
 
 
 class BotTools:
@@ -277,11 +281,18 @@ class BotTools:
             
             # Remove articles (in reverse order to maintain indices)
             for i in reversed(indices_to_remove):
-                if i < len(queue):
-                    removed_article = queue.pop(i)
-                    if removed_article:
-                        title = removed_article.get('title', 'Unknown') if isinstance(removed_article, dict) else 'Invalid data'
-                        print(f"🗑️ Removed: {title[:50]}{'...' if len(str(title)) > 50 else ''}")
+                # Double-check bounds to prevent IndexError
+                if 0 <= i < len(queue):
+                    try:
+                        removed_article = queue.pop(i)
+                        if removed_article:
+                            title = removed_article.get('title', 'Unknown') if isinstance(removed_article, dict) else 'Invalid data'
+                            print(f"🗑️ Removed: {title[:50]}{'...' if len(str(title)) > 50 else ''}")
+                    except IndexError as e:
+                        logger.warning(f"⚠️ Could not remove article at index {i}: {e}")
+                        continue
+                else:
+                    logger.warning(f"⚠️ Invalid index {i} for queue of length {len(queue)}")
             
             # Save cleaned queue
             if removed_count > 0:

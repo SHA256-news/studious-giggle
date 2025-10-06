@@ -2,6 +2,32 @@
 
 > **CRITICAL**: This is the permanent API reference for Google Gemini. Always reference this during refactoring!
 
+## ⚠️ Critical Error Handling (October 2025 Update)
+
+**URLRetrievalError Exception Pattern**:
+When using URL context, always check metadata safely to prevent crashes:
+
+```python
+# ✅ CORRECT: Safe metadata checking
+if hasattr(response, 'candidates') and response.candidates:
+    candidate = response.candidates[0]
+    if hasattr(candidate, 'url_context_metadata'):
+        metadata = candidate.url_context_metadata
+        if metadata is not None:
+            try:
+                # Handle both single item and iterable metadata
+                metadata_items = metadata if hasattr(metadata, '__iter__') and not isinstance(metadata, (str, bytes)) else [metadata]
+                
+                for url_metadata in metadata_items:
+                    if hasattr(url_metadata, 'url_retrieval_status'):
+                        status = str(url_metadata.url_retrieval_status)
+                        if 'ERROR' in status or 'FAILED' in status:
+                            raise URLRetrievalError(f"URL retrieval failed: {status}")
+            except TypeError:
+                # Continue without raising exception for metadata parsing issues
+                pass
+```
+
 ## Installation & Setup
 
 ```python
