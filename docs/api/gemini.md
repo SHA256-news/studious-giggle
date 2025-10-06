@@ -96,24 +96,36 @@ response = client.models.generate_content(
 headline = response.text.strip()
 ```
 
-### URL Context Metadata
+### URL Context Metadata (CRITICAL - Error Detection)
 
 ```python
-# Access URL context metadata
+# Access URL context metadata and detect failures
 if hasattr(response, 'candidates') and response.candidates:
     candidate = response.candidates[0]
     if hasattr(candidate, 'url_context_metadata'):
         metadata = candidate.url_context_metadata
-        print(f"Fetched URL: {metadata.url}")
-        print(f"Content length: {metadata.content_length}")
-        print(f"Status: {metadata.status}")
+        
+        # CRITICAL: Check for URL retrieval failures
+        for url_metadata in metadata:
+            if hasattr(url_metadata, 'url_retrieval_status'):
+                status = str(url_metadata.url_retrieval_status)
+                if 'ERROR' in status or 'FAILED' in status:
+                    # URL retrieval failed - raise exception to skip article
+                    raise URLRetrievalError(f"Failed to retrieve content from URL: {status}")
+        
+        print(f"Fetched URL: {url_metadata.retrieved_url}")
+        print(f"Status: {url_metadata.url_retrieval_status}")
 ```
 
 ## Bot-Specific Patterns
 
-### 1. Headline Generation with URL Context
+### 1. Headline Generation with URL Context (Error-Safe)
 
 ```python
+class URLRetrievalError(Exception):
+    """Raised when URL content retrieval fails."""
+    pass
+
 def generate_catchy_headline(article_url: str, title: str) -> str:
     """Generate AI-powered headline using full article content."""
     
@@ -142,8 +154,26 @@ def generate_catchy_headline(article_url: str, title: str) -> str:
             contents=prompt,
             config=config
         )
+        
+        # CRITICAL: Check URL retrieval status before using response
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'url_context_metadata'):
+                for url_metadata in candidate.url_context_metadata:
+                    if hasattr(url_metadata, 'url_retrieval_status'):
+                        status = str(url_metadata.url_retrieval_status)
+                        if 'ERROR' in status or 'FAILED' in status:
+                            raise URLRetrievalError(f"Failed to retrieve content from {article_url}: {status}")
+        
         return response.text.strip()[:80]
         
+    except URLRetrievalError:
+        # Let URL retrieval errors bubble up - bot will skip this article
+        raise
+    except ValueError as e:
+        # API authentication issues
+        print(f"Gemini auth error: {e}")
+        raise
     except Exception as e:
         print(f"Gemini error: {e}")
         return title[:80]  # Fallback to original title

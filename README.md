@@ -40,7 +40,7 @@
 - **🔄 Single workflow**: Only production bot workflow with optimized 90-minute scheduling (removed broken test workflows)
 - **🔧 Type Safety**: Proper type annotations and Optional type handling for reliable API client initialization, with explicit List[Article] typing for data collections, defensive bounds checking in mining filter logic, comprehensive type annotation support including Union types, and complete dictionary type annotations
 
-### 🛠️ Recent Critical Bug Fixes (12 Issues Resolved)
+### 🛠️ Recent Critical Bug Fixes (14 Issues Resolved)
 
 **Type Safety & Error Handling:**
 - ✅ **Gemini Client Type Mismatch** - Fixed Optional[GeminiClient] property return type
@@ -49,6 +49,8 @@
 - ✅ **Specific Error Handling** - Replaced broad Exception catching with ValueError/ConnectionError specificity
 - ✅ **Union Import Support** - Added Union to typing imports for comprehensive type annotations
 - ✅ **Dictionary Type Annotations** - Added explicit Dict[str, Any] for all data structures
+- ✅ **URL Retrieval Error Handling** - Distinguished URL retrieval failures from API failures with proper error categorization
+- ✅ **Gemini Metadata Checking** - CRITICAL FIX: Proper detection of URL failures from url_context_metadata to prevent posting error messages
 
 **Robustness & Validation:**
 - ✅ **Mining Filter Logic** - Enhanced counting validation with defensive bounds checking
@@ -317,6 +319,13 @@ python tools.py diagnose          # Full system diagnostics
 ### Gemini API Unavailable (New Behavior)
 **Symptoms**: "Gemini API is required but not available - will retry later"
 **Solution**: Bot waits for Gemini API - no rate limit cooldown, just retries on next run
+
+### URL Retrieval Failures (Smart Handling)
+**Symptoms**: "URL retrieval failed", "Failed to retrieve content from [URL]", URLRetrievalError
+**Solution**: Bot automatically skips articles with inaccessible URLs and moves to the next article in queue
+**CRITICAL**: URL retrieval failures **DO NOT** trigger rate limit cooldowns - only Twitter API failures (17 posts/day limit) trigger cooldowns
+**Behavior**: When Gemini cannot access a specific URL (blocked, 403, 404, etc.), the article is skipped and removed from queue
+**Impact**: Bot continues processing remaining articles without waiting, ensuring maximum posting efficiency
 
 ## 🏁 Development Workflow
 
