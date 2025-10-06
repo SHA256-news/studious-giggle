@@ -28,6 +28,19 @@ logger = logging.getLogger('bitcoin_mining_bot')
 
 
 # =============================================================================
+# CUSTOM EXCEPTIONS
+# =============================================================================
+
+class URLRetrievalError(Exception):
+    """Raised when URL content retrieval fails (not an API failure).
+    
+    This indicates the specific URL cannot be accessed, but the API itself is working.
+    Bot should skip this article and try the next one without triggering rate limit cooldown.
+    """
+    pass
+
+
+# =============================================================================
 # CONFIGURATION
 # =============================================================================
 
@@ -497,11 +510,17 @@ class GeminiClient:
         except ConnectionError as e:
             # Network connectivity issues
             logger.warning(f"❌ Gemini network connection failed: {e}")
-            return self._clean_headline(article.title)[:80]
+            raise
         except Exception as e:
-            # Other unexpected errors - log but continue with fallback
+            # Check if this is a URL retrieval failure (not an API failure)
+            error_message = str(e).lower()
+            if any(term in error_message for term in ['url', 'retrieve', 'fetch', 'access', 'blocked', 'forbidden', '403', '404']):
+                logger.warning(f"❌ URL retrieval failed for {article.url}: {e}")
+                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
+            
+            # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
-            return self._clean_headline(article.title)[:80]
+            raise
     
     def generate_thread_summary(self, article: 'Article') -> str:
         """Generate a concise 3-point summary using URL context."""
@@ -558,11 +577,17 @@ class GeminiClient:
         except ConnectionError as e:
             # Network connectivity issues
             logger.warning(f"❌ Gemini network connection failed during summary generation: {e}")
-            return "• Bitcoin mining sector update\n• Industry development details\n• See full article for specifics"
+            raise
         except Exception as e:
-            # Other unexpected errors - log but continue with fallback
+            # Check if this is a URL retrieval failure (not an API failure)
+            error_message = str(e).lower()
+            if any(term in error_message for term in ['url', 'retrieve', 'fetch', 'access', 'blocked', 'forbidden', '403', '404']):
+                logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {e}")
+                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
+            
+            # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini summary generation failed with unexpected error: {e}")
-            return "• Bitcoin mining sector update\n• Industry development details\n• See full article for specifics"
+            raise
     
     def _process_summary_response(self, summary_text: str) -> str:
         """Process and clean the summary response from Gemini."""
@@ -1166,69 +1191,105 @@ class BitcoinMiningBot:
             logger.info(f"Found {len(new_articles)} new articles (filtered out {len(articles) - len(new_articles)} duplicates)")
             
             if not new_articles:
-                # Check queued articles
+                # Check queued articles and try multiple if URL retrieval fails
                 queued_articles = self.posted_data.get("queued_articles", [])
                 if queued_articles:
                     logger.info("No new articles, posting from queue")
-                    article_data = queued_articles[0]
-                    article_to_post = Article.from_dict(article_data)
                     
-                    success = self._post_article(article_to_post)
-                    if success:
-                        # Remove from queue - verify queue has items before popping
-                        if self.posted_data["queued_articles"]:
-                            self.posted_data["queued_articles"].pop(0)
-                        else:
-                            logger.warning("Queue was empty when trying to remove posted article")
-                        self.posted_data["last_run_time"] = datetime.now().isoformat()
-                        self._save_data()
-                        logger.info("✅ Posted queued article successfully")
-                        return True
-                    else:
-                        # Check if failure was due to Gemini (not a rate limit issue)
-                        if not self.gemini:
-                            logger.info("⏳ Gemini API unavailable for queued article - will retry on next run")
-                            return True  # Don't set rate limit cooldown for Gemini issues
-                        else:
-                            self._handle_posting_failure()
-                            return False
+                    # Try posting queued articles, skipping ones with URL retrieval failures
+                    while queued_articles:
+                        article_data = queued_articles[0]
+                        article_to_post = Article.from_dict(article_data)
+                        
+                        try:
+                            success = self._post_article(article_to_post)
+                            if success:
+                                # Remove from queue - verify queue has items before popping
+                                if self.posted_data["queued_articles"]:
+                                    self.posted_data["queued_articles"].pop(0)
+                                else:
+                                    logger.warning("Queue was empty when trying to remove posted article")
+                                self.posted_data["last_run_time"] = datetime.now().isoformat()
+                                self._save_data()
+                                logger.info("✅ Posted queued article successfully")
+                                return True
+                            else:
+                                # Check if failure was due to Gemini (not a rate limit issue)
+                                if not self.gemini:
+                                    logger.info("⏳ Gemini API unavailable for queued article - will retry on next run")
+                                    return True  # Don't set rate limit cooldown for Gemini issues
+                                else:
+                                    self._handle_posting_failure()
+                                    return False
+                        
+                        except URLRetrievalError as e:
+                            # URL retrieval failed - skip this article and try next one
+                            logger.warning(f"⏭️ Skipping article due to URL retrieval failure: {e}")
+                            if self.posted_data["queued_articles"]:
+                                skipped_article = self.posted_data["queued_articles"].pop(0)
+                                logger.info(f"🗑️ Removed article from queue: {skipped_article.get('title', 'Unknown')}")
+                            continue
+                    
+                    # If we get here, all queued articles had URL retrieval failures
+                    logger.info("⚠️ All queued articles had URL retrieval failures - queue is now empty")
+                    return True
                 else:
                     logger.info("No new articles and no queued articles available")
                     return True
             else:
-                # Post first new article
-                article_to_post = new_articles[0]
-                success = self._post_article(article_to_post)
+                # Try posting new articles, skipping ones with URL retrieval failures
+                posted_successfully = False
+                articles_posted = 0
                 
-                if success:
-                    # Queue remaining articles
-                    if len(new_articles) > 1:
-                        for article in new_articles[1:]:
-                            article_data = {
-                                "title": article.title,
-                                "body": article.body,
-                                "url": article.url,
-                                "source": {"title": article.source},
-                                "dateTimePub": article.date_published.isoformat() if article.date_published else None
-                            }
-                            self.posted_data["queued_articles"].append(article_data)
-                        logger.info(f"Queued {len(new_articles) - 1} additional articles")
+                for i, article_to_post in enumerate(new_articles):
+                    try:
+                        success = self._post_article(article_to_post)
+                        
+                        if success:
+                            posted_successfully = True
+                            articles_posted += 1
+                            
+                            # Queue remaining articles (after the one we just posted)
+                            remaining_articles = new_articles[i+1:]
+                            for article in remaining_articles:
+                                article_data = {
+                                    "title": article.title,
+                                    "body": article.body,
+                                    "url": article.url,
+                                    "source": {"title": article.source},
+                                    "dateTimePub": article.date_published.isoformat() if article.date_published else None
+                                }
+                                self.posted_data["queued_articles"].append(article_data)
+                            
+                            if remaining_articles:
+                                logger.info(f"Queued {len(remaining_articles)} additional articles")
+                            
+                            # Update last run time
+                            self.posted_data["last_run_time"] = datetime.now().isoformat()
+                            self._save_data()
+                            
+                            execution_time = time.time() - start_time
+                            logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
+                            return True
+                        else:
+                            # Check if failure was due to Gemini (not a rate limit issue)
+                            if not self.gemini:
+                                logger.info("⏳ Gemini API unavailable - will retry on next run (no cooldown)")
+                                return True  # Don't set rate limit cooldown for Gemini issues
+                            else:
+                                self._handle_posting_failure()
+                                return False
                     
-                    # Update last run time
-                    self.posted_data["last_run_time"] = datetime.now().isoformat()
-                    self._save_data()
-                    
-                    execution_time = time.time() - start_time
-                    logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
+                    except URLRetrievalError as e:
+                        # URL retrieval failed - skip this article and try next one
+                        logger.warning(f"⏭️ Skipping article due to URL retrieval failure: {e}")
+                        logger.info(f"🗑️ Skipped article: {article_to_post.title}")
+                        continue
+                
+                # If we get here, no articles could be posted (all had URL retrieval failures)
+                if not posted_successfully:
+                    logger.info("⚠️ All new articles had URL retrieval failures - none could be posted")
                     return True
-                else:
-                    # Check if failure was due to Gemini (not a rate limit issue)
-                    if not self.gemini:
-                        logger.info("⏳ Gemini API unavailable - will retry on next run (no cooldown)")
-                        return True  # Don't set rate limit cooldown for Gemini issues
-                    else:
-                        self._handle_posting_failure()
-                        return False
                 
         except tweepy.TooManyRequests as e:
             logger.error(f"Rate limit exceeded (429): {e}")
@@ -1267,7 +1328,12 @@ class BitcoinMiningBot:
         return TimeManager.is_minimum_interval_passed(last_run, self.config.min_interval_minutes)
     
     def _post_article(self, article: Article) -> bool:
-        """Post an article to Twitter as a thread."""
+        """Post an article to Twitter as a thread.
+        
+        Raises:
+            URLRetrievalError: When URL content cannot be retrieved (caller should skip article)
+            tweepy.TooManyRequests: When Twitter API rate limit is exceeded
+        """
         try:
             thread_tweets = TextProcessor.create_tweet_thread(article, self.gemini)
             
@@ -1310,6 +1376,9 @@ class BitcoinMiningBot:
                 logger.error("Failed to post tweet(s)")
                 return False
                 
+        except URLRetrievalError:
+            # Let URL retrieval errors bubble up to caller for proper handling
+            raise
         except tweepy.TooManyRequests as e:
             logger.error(f"Rate limit exceeded during article posting: {e}")
             raise

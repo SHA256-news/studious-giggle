@@ -25,7 +25,7 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 
 ## Recent Critical Bug Fixes (Session Summary)
 
-The codebase has undergone comprehensive bug fixing with **12 critical issues resolved**:
+The codebase has undergone comprehensive bug fixing with **13 critical issues resolved**:
 
 ### Type Safety & Error Handling Improvements:
 1. **✅ Gemini Client Type Mismatch**: Fixed Optional[GeminiClient] property return type annotation
@@ -34,16 +34,17 @@ The codebase has undergone comprehensive bug fixing with **12 critical issues re
 4. **✅ Specific Error Handling**: Replaced broad Exception catching with ValueError/ConnectionError specificity
 5. **✅ Union Import Support**: Added Union to typing imports for comprehensive type annotation capabilities
 6. **✅ Dictionary Type Annotations**: Added explicit Dict[str, Any] type for posted_article_record
+7. **✅ URL Retrieval Error Handling**: NEW - Distinguished URL retrieval failures from API failures with proper error categorization
 
 ### Robustness & Validation Improvements:
-7. **✅ Mining Filter Logic**: Enhanced counting validation with defensive bounds checking
-8. **✅ Thread Type Error**: Added None check before enumeration in tools.py preview
-9. **✅ Safe Dictionary Access**: Added isinstance() validation for source_data.get() calls
-10. **✅ Test File Cleanup**: Improved temporary file handling to prevent race conditions
+8. **✅ Mining Filter Logic**: Enhanced counting validation with defensive bounds checking
+9. **✅ Thread Type Error**: Added None check before enumeration in tools.py preview
+10. **✅ Safe Dictionary Access**: Added isinstance() validation for source_data.get() calls
+11. **✅ Test File Cleanup**: Improved temporary file handling to prevent race conditions
 
 ### API & Workflow Optimizations:
-11. **✅ Clean API Design**: Removed misleading skip_gemini_analysis parameter
-12. **✅ Optimized Scheduling**: Clarified GitHub workflow cron scheduling (complementary 90-minute intervals)
+12. **✅ Clean API Design**: Removed misleading skip_gemini_analysis parameter
+13. **✅ Optimized Scheduling**: Clarified GitHub workflow cron scheduling (complementary 90-minute intervals)
 
 All fixes maintain **100% backward compatibility** with comprehensive testing validation.
 
@@ -163,7 +164,8 @@ python tools.py history 20   # View last 20 posted articles
 - **Queue management**: Interactive tools for preview, editing, and cleaning
 
 ### Production-Ready Reliability
-- **Rate limit handling**: Progressive cooldowns with intelligent recovery
+- **Rate limit handling**: Progressive cooldowns with intelligent recovery (only for Twitter API 17 posts/day limit)
+- **Smart URL error handling**: URL retrieval failures skip article and continue with next one (no cooldown triggered)  
 - **Error resilience**: Graceful failure handling with detailed diagnostics
 - **Data persistence**: JSON-based storage with atomic operations
 - **Minimum interval enforcement**: Respects Twitter API daily limits
@@ -212,6 +214,29 @@ The bot requires these GitHub repository secrets:
   • 8-month ROI target"
 
 Without these keys, the bot will show clear error messages explaining what's missing.
+
+### Technical Implementation Details
+
+**URL Error Handling Implementation**:
+- Custom `URLRetrievalError` exception class distinguishes URL failures from API failures
+- Gemini methods raise `URLRetrievalError` when specific URLs cannot be accessed (403, 404, blocked sites)
+- Bot logic catches `URLRetrievalError` and skips problematic articles without triggering rate limit cooldown
+- Only Twitter API failures (429 Too Many Requests, 17 posts/day limit) trigger progressive cooldowns
+- URL failures result in article removal from queue and continuation with next available article
+
+**Smart Threading Logic Flow**:
+1. Generate headline first using URL context
+2. Pass headline to summary generation to avoid duplication
+3. Check combined character count: headline + "\n\n" + summary
+4. If ≤280 chars: Combine in single tweet, add URL as second tweet
+5. If >280 chars: Separate into headline, summary, and URL tweets
+6. Result: Optimal character usage with maximum information density
+
+**Content Quality Enhancements**:
+- Specific character limits: Headlines 60-80 chars, summaries <180 chars
+- Professional prefixes instead of emoji decorations
+- Action-oriented language with specific facts/numbers when available
+- Multi-level validation and text processing for consistency
 
 ## Validation Scenarios
 
@@ -311,6 +336,13 @@ Since this repository doesn't have API keys configured by default:
 ### EventRegistry API Parameter Error (Fixed in v1.1)
 **Symptoms**: "QueryArticles.__init__() got an unexpected keyword argument 'keywordLoc'"
 **Solution**: Fixed by removing invalid keywordLoc parameter from QueryArticlesIter constructor. Bot now uses default keyword search behavior.
+
+### URL Retrieval Failures (New Smart Handling) 
+**Symptoms**: "URL retrieval failed", "Failed to retrieve content from [URL]", URLRetrievalError
+**Solution**: Bot automatically skips articles with inaccessible URLs and moves to the next article in queue
+**CRITICAL**: URL retrieval failures **DO NOT** trigger rate limit cooldowns - only Twitter API failures (17 posts/day limit) trigger cooldowns
+**Behavior**: When Gemini cannot access a specific URL (blocked, 403, 404, etc.), the article is skipped and removed from queue
+**Impact**: Bot continues processing remaining articles without waiting, ensuring maximum posting efficiency
 
 ## CI/GitHub Actions
 
