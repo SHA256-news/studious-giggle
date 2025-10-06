@@ -430,7 +430,11 @@ class TimeManager:
 # =============================================================================
 
 class GeminiClient:
-    """Gemini AI client for generating catchy headlines and summaries with URL context support."""
+    """Gemini AI client for generating catchy headlines and summaries with URL context support.
+    
+    📚 API REFERENCE: /docs/api/gemini.md
+    🔗 Quick Reference: /docs/api/quick-reference.md
+    """
     
     def __init__(self, api_key: str):
         """Initialize Gemini client with API key."""
@@ -721,7 +725,11 @@ class TextProcessor:
 # =============================================================================
 
 class TwitterAPI:
-    """Twitter API client."""
+    """Twitter API client.
+    
+    📚 Tweepy Documentation: https://docs.tweepy.org/en/stable/
+    🔗 Quick Reference: /docs/api/quick-reference.md
+    """
     
     def __init__(self, config: Config):
         self.client = tweepy.Client(
@@ -796,7 +804,11 @@ class TwitterAPI:
 
 
 class NewsAPI:
-    """Simple EventRegistry client for Bitcoin mining articles."""
+    """Simple EventRegistry client for Bitcoin mining articles.
+    
+    📚 API REFERENCE: /docs/api/eventregistry.md
+    🔗 Quick Reference: /docs/api/quick-reference.md
+    """
     
     def __init__(self, config: Config):
         self.config = config
