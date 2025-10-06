@@ -35,7 +35,7 @@ class URLRetrievalError(Exception):
     """Raised when URL content retrieval fails (not an API failure).
     
     This indicates the specific URL cannot be accessed, but the API itself is working.
-    Bot should skip this article and try the next one without triggering rate limit cooldown.
+    Bot should skip this article and try the next one.
     """
     pass
 
@@ -1382,7 +1382,7 @@ class BitcoinMiningBot:
                                 logger.info("✅ Posted queued article successfully")
                                 return True
                             else:
-                                # Check if failure was due to Gemini (not a rate limit issue)
+                                # Check if failure was due to Gemini
                                 if not self.gemini:
                                     logger.info("⏳ Gemini API unavailable for queued article - will retry on next run")
                                     return True  # Don't fail for Gemini issues
@@ -1450,7 +1450,7 @@ class BitcoinMiningBot:
                             ContentSimilarity.clear_cache()
                             return True
                         else:
-                            # Check if failure was due to Gemini (not a rate limit issue)
+                            # Check if failure was due to Gemini
                             if not self.gemini:
                                 logger.info("⏳ Gemini API unavailable - will retry on next run")
                                 return True  # Don't fail for Gemini issues
