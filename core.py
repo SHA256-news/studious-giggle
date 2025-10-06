@@ -62,7 +62,6 @@ class Config:
     max_retries: int = 1
     retry_delay_minutes: int = 5
     article_lookback_days: int = 1
-    cooldown_hours: int = 2
     
     # Content Similarity Thresholds
     title_similarity_threshold: float = 0.8
@@ -71,7 +70,6 @@ class Config:
     
     # Files
     posted_articles_file: str = "posted_articles.json"
-    rate_limit_file: str = "rate_limit_cooldown.json"
     
     # Keywords
     bitcoin_keywords: Optional[List[str]] = None
@@ -453,30 +451,6 @@ class TimeManager:
             return (TimeManager.now() - last_time) >= timedelta(minutes=min_minutes)
         except (ValueError, TypeError):
             return True
-    
-    @staticmethod
-    def create_cooldown_data(hours: int) -> Dict[str, Any]:
-        """Create rate limit cooldown data."""
-        return {
-            "cooldown_start": TimeManager.now().isoformat(),
-            "cooldown_hours": hours,
-            "cooldown_end": (TimeManager.now() + timedelta(hours=hours)).isoformat()
-        }
-    
-    @staticmethod
-    def is_cooldown_active(cooldown_data: Dict[str, Any]) -> bool:
-        """Check if cooldown is still active."""
-        if not cooldown_data.get("cooldown_end"):
-            return False
-        
-        try:
-            cooldown_end = datetime.fromisoformat(cooldown_data["cooldown_end"])
-            # Ensure timezone awareness for comparison
-            if cooldown_end.tzinfo is None:
-                cooldown_end = cooldown_end.replace(tzinfo=timezone.utc)
-            return TimeManager.now() < cooldown_end
-        except (ValueError, TypeError, KeyError):
-            return False
 
 
 # =============================================================================
@@ -1308,13 +1282,6 @@ class BitcoinMiningBot:
                 logger.error(f"Missing required configuration: {', '.join(missing_config)}")
                 return False
             
-            # Check rate limiting
-            if self._is_rate_limited():
-                cooldown_data = self.storage.load_json(self.config.rate_limit_file, {})
-                cooldown_end = cooldown_data.get('cooldown_end', 'unknown')
-                logger.info(f"⏳ Rate limit cooldown active until: {cooldown_end}")
-                return True
-            
             # Check minimum interval
             if not self._can_run_now():
                 last_run = self.posted_data.get("last_run_time")
@@ -1418,9 +1385,9 @@ class BitcoinMiningBot:
                                 # Check if failure was due to Gemini (not a rate limit issue)
                                 if not self.gemini:
                                     logger.info("⏳ Gemini API unavailable for queued article - will retry on next run")
-                                    return True  # Don't set rate limit cooldown for Gemini issues
+                                    return True  # Don't fail for Gemini issues
                                 else:
-                                    self._handle_posting_failure()
+                                    logger.error("❌ Failed to post queued article")
                                     return False
                         
                         except URLRetrievalError as e:
@@ -1485,10 +1452,10 @@ class BitcoinMiningBot:
                         else:
                             # Check if failure was due to Gemini (not a rate limit issue)
                             if not self.gemini:
-                                logger.info("⏳ Gemini API unavailable - will retry on next run (no cooldown)")
-                                return True  # Don't set rate limit cooldown for Gemini issues
+                                logger.info("⏳ Gemini API unavailable - will retry on next run")
+                                return True  # Don't fail for Gemini issues
                             else:
-                                self._handle_posting_failure()
+                                logger.error("❌ Failed to post article")
                                 return False
                     
                     except URLRetrievalError as e:
@@ -1504,7 +1471,6 @@ class BitcoinMiningBot:
                 
         except tweepy.TooManyRequests as e:
             logger.error(f"Rate limit exceeded (429): {e}")
-            self._handle_posting_failure()
             return False
         except Exception as e:
             execution_time = time.time() - start_time
@@ -1529,11 +1495,6 @@ class BitcoinMiningBot:
         logger.info("✅ Posted articles file is accessible")
         logger.info("🎉 Diagnostics completed successfully")
         return True
-    
-    def _is_rate_limited(self) -> bool:
-        """Check if bot is currently rate limited."""
-        cooldown_data = self.storage.load_json(self.config.rate_limit_file, {})
-        return TimeManager.is_cooldown_active(cooldown_data)
     
     def _can_run_now(self) -> bool:
         """Check if minimum interval has passed since last run."""
@@ -1603,19 +1564,6 @@ class BitcoinMiningBot:
         except Exception as e:
             logger.error(f"Error posting article: {e}")
             return False
-    
-    def _handle_posting_failure(self) -> None:
-        """Handle failure to post tweet (likely rate limiting)."""
-        logger.warning(f"Failed to post tweet - setting rate limit cooldown for {self.config.cooldown_hours} hours")
-        
-        cooldown_data = TimeManager.create_cooldown_data(self.config.cooldown_hours)
-        cooldown_end = cooldown_data.get('cooldown_end', 'unknown')
-        logger.info(f"⏳ Rate limit cooldown active until: {cooldown_end}")
-        
-        if self.storage.save_json(self.config.rate_limit_file, cooldown_data):
-            logger.info(f"✅ Cooldown data saved to {self.config.rate_limit_file}")
-        else:
-            logger.error(f"❌ Failed to save cooldown data to {self.config.rate_limit_file}")
     
     def _save_data(self) -> bool:
         """Save posted articles data."""
