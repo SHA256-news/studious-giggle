@@ -115,7 +115,8 @@
     "https://za.investing.com/news/transcripts/marathon-digital-at-hc-wainwright-strategic-shifts-in-bitcoin-mining-93CH-3874683",
     "https://in.investing.com/news/transcripts/marathon-digital-at-hc-wainwright-strategic-shifts-in-bitcoin-mining-93CH-4999578",
     "https://www.benzinga.com/trading-ideas/movers/25/10/48050040/why-hive-digital-technologies-stock-is-hitting-new-52-week-highs-today",
-    "https://www.thestreet.com/video/openais-deal-with-amd-proves-ai-race-has-just-begun"
+    "https://www.thestreet.com/video/openais-deal-with-amd-proves-ai-race-has-just-begun",
+    "https://decrypt.co/343133/bitcoin-mining-stocks-jump-crypto-market-continues-historic-rally"
   ],
   "queued_articles": [
     {
@@ -2664,6 +2665,15 @@
         "title": "Investing.com"
       },
       "dateTimePub": "2025-10-06T18:00:33+00:00"
+    },
+    {
+      "title": "Bitcoin mining stocks soar as BTC's fresh $126,000 high fuels bets on more upside",
+      "body": "ETF flows and bullish options trades point to rising institutional demand despite overbought signals.\n\nBitcoin briefly set a new all-time high on Monday, pushing miner stocks sharply higher as traders priced in more gains before year-end.\n\nThe top cryptocurrency tapped $126,200 according to The Block's price data, slightly edging out Sunday's peak of $125,250. The move came as options markets saw a surge in open interest on calls targeting $140,000, according to Bloomberg.\n\nThat momentum lifted bitcoin mining stocks across the board. Hive Digital surged 23%, followed by Bitfarms with a 14% gain, Riot Platforms up 10%, and MARA and CleanSpark both advancing about 7% according to The Block's price page.\n\nBehind the rally is a combination of bullish bitcoin momentum and improving fundamentals across the mining sector. Firms like Hive, Marathon, and CleanSpark have all ramped up their hashrate capacity in recent months, while also expanding their bitcoin treasuries.\n\nMARA and CleanSpark have beefed up their bitcoin holdings to over 52,000 BTC and 13,000 BTC, respectively, while firms like Hive recently hit new monthly production highs.\n\nBullish bitcoin drivers\n\nMarket watchers pointed to a confluence of macro and structural drivers behind these moves.\n\nJean-David Péquignot, chief commercial officer at Deribit by Coinbase, said that Bitcoin ticking higher was fueled by \"a perfect storm of macroeconomic tailwinds,\" including the U.S. government shutdown, record spot ETF inflows, and declining exchange supplies.\n\n\"ETF demand is squeezing supply, while seasonal optimism and geopolitical agitation position BTC as a prime hedge against inflation,\" Péquignot wrote in an email. He added that technical indicators like RSI and recent chart structure point to potential targets of $128,000 to $130,000 by mid-October, with implied volatility ticking up modestly in short-term options as traders layer in bullish positions.\n\nBitcoin's price run has also been supported by record spot ETF inflows. U.S. bitcoin ETFs pulled in $3.2 billion last week, their second-highest total since launching in early 2024, according to The Block ETF data.\n\nThe price of bitcoin traded around $125,239 at publication time, up 1.8% over the past 24 hours. In that timespan, the world's foremost cryptocurrency generated $68.2 billion of trading volume.\n\nOf note, the total cryptocurrency market capitalization reached a new all-time high of $4.29 trillion over the weekend, a 23% year-to-date increase.",
+      "url": "https://www.theblock.co/post/373570/bitcoin-mining-stocks-soar-as-btcs-fresh-126000-high-fuels-bets-on-more-upside",
+      "source": {
+        "title": "The Block"
+      },
+      "dateTimePub": "2025-10-06T20:51:07+00:00"
     }
   ],
   "posted_articles_history": [
@@ -2698,7 +2708,15 @@
       "date_published": "2025-10-06T15:30:36+00:00",
       "date_posted": "2025-10-06T19:39:34.984108+00:00",
       "body_preview": "Caroline Woods: Joining me now, Daniel Newman, CEO of the Futurum Group. Daniel, great to have you back.\n\nDaniel Newman: Thanks for having me, Caroline.\n\nCaroline Woods: All right. Let's start with th..."
+    },
+    {
+      "url": "https://decrypt.co/343133/bitcoin-mining-stocks-jump-crypto-market-continues-historic-rally",
+      "title": "Bitcoin Mining Stocks Jump as Crypto Market Continues Historic Rally - Decrypt",
+      "source": "Decrypt",
+      "date_published": "2025-10-06T21:14:17+00:00",
+      "date_posted": "2025-10-06T21:35:56.475637+00:00",
+      "body_preview": "Investors are flooding into the stock market and alternative assets over worries that currencies worldwide are being debased.\n\nBitcoin's price hit new records Monday, as the so-called debasement trade..."
     }
   ],
-  "last_run_time": "2025-10-06T19:39:34.984232+00:00"
+  "last_run_time": "2025-10-06T21:35:56.475763+00:00"
 }
