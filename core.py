@@ -495,11 +495,19 @@ class GeminiClient:
             headline = response.text.strip()
             logger.info(f"✅ Generated headline with URL context: '{headline}'")
             
-            # Log URL context metadata for debugging
+            # Check URL context metadata for retrieval failures
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
                 if hasattr(candidate, 'url_context_metadata'):
                     logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
+                    
+                    # Check if any URL retrieval failed
+                    for url_metadata in candidate.url_context_metadata:
+                        if hasattr(url_metadata, 'url_retrieval_status'):
+                            status = str(url_metadata.url_retrieval_status)
+                            if 'ERROR' in status or 'FAILED' in status:
+                                logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
+                                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
             
             return self._clean_headline(headline)[:80]
             
@@ -562,11 +570,19 @@ class GeminiClient:
             summary_text = response.text.strip()
             logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
             
-            # Log URL context metadata for debugging
+            # Check URL context metadata for retrieval failures
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
                 if hasattr(candidate, 'url_context_metadata'):
                     logger.info(f"📄 URL context metadata: {candidate.url_context_metadata}")
+                    
+                    # Check if any URL retrieval failed
+                    for url_metadata in candidate.url_context_metadata:
+                        if hasattr(url_metadata, 'url_retrieval_status'):
+                            status = str(url_metadata.url_retrieval_status)
+                            if 'ERROR' in status or 'FAILED' in status:
+                                logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
+                                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
             
             return self._process_summary_response(summary_text)
                 
