@@ -497,9 +497,9 @@ class GeminiClient:
         
         try:
             from google import genai
-            from google.genai.types import GenerateContentConfig
+            from google.genai import types
             self.client = genai.Client(api_key=api_key)
-            self.GenerateContentConfig = GenerateContentConfig
+            self.types = types  # Store types module for Tool creation
             self.model_name = 'gemini-2.5-flash'
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
@@ -522,9 +522,12 @@ class GeminiClient:
             Return only the headline text, nothing else.
             """
             
-            # Use URL context tool with CORRECT format (simple dict, not complex objects)
-            config = self.GenerateContentConfig(
-                tools=[{"url_context": {}}]  # CORRECT: Simple dict format from official docs
+            # Use URL context tool with CORRECT Python SDK format (NOT REST API format)
+            tools = []
+            tools.append(self.types.Tool(url_context=self.types.UrlContext()))  # ✅ CORRECT: Python SDK format from cookbook!
+            
+            config = self.types.GenerateContentConfig(
+                tools=tools
             )
             
             response = self.client.models.generate_content(
@@ -630,9 +633,12 @@ class GeminiClient:
             Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
-            # Use URL context tool with CORRECT format (simple dict, not complex objects)
-            config = self.GenerateContentConfig(
-                tools=[{"url_context": {}}]  # CORRECT: Simple dict format from official docs
+            # Use URL context tool with CORRECT Python SDK format (NOT REST API format)
+            tools = []
+            tools.append(self.types.Tool(url_context=self.types.UrlContext()))  # ✅ CORRECT: Python SDK format from cookbook!
+            
+            config = self.types.GenerateContentConfig(
+                tools=tools
             )
             
             response = self.client.models.generate_content(
