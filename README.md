@@ -165,6 +165,14 @@ python tools.py diagnose          # Full system diagnostics
 - `requests>=2.25.0` - HTTP client for API calls
 - **Note**: Only 4 essential packages (60% reduction from 10 packages)
 
+### 📚 Permanent API Documentation System (NEW)
+- **Hard-coded API references**: Complete documentation in `/docs/api/` directory prevents forgetting API details during refactoring
+- **EventRegistry reference**: `/docs/api/eventregistry.md` - Complete Python SDK documentation with examples
+- **Gemini reference**: `/docs/api/gemini.md` - Complete Google Gemini API with URL context patterns
+- **Quick reference**: `/docs/api/quick-reference.md` - Copy-paste ready code snippets for common operations
+- **In-code integration**: All API clients in `core.py` have permanent documentation links in docstrings
+- **Usage guide**: `/docs/api/README.md` explains when and how to use each reference during development
+
 ### Streamlined API Dependencies
 - **Twitter API v2**: For posting tweets and thread replies
 - **EventRegistry (NewsAPI.ai)**: For fetching Bitcoin mining news
@@ -177,6 +185,12 @@ python tools.py diagnose          # Full system diagnostics
 ├── core.py                    # Complete bot engine (800 lines)
 ├── bot.py                     # Main entry point
 ├── tools.py                   # Management interface
+├── docs/
+│   └── api/                   # 🆕 PERMANENT API DOCUMENTATION
+│       ├── README.md          # Usage guide
+│       ├── eventregistry.md   # EventRegistry API reference
+│       ├── gemini.md          # Gemini API reference
+│       └── quick-reference.md # Copy-paste code snippets
 ├── tests/
 │   ├── test_bot.py           # Core functionality tests (9 tests)
 │   └── test_integration.py   # Integration workflow tests (3 tests)
@@ -191,7 +205,7 @@ python tools.py diagnose          # Full system diagnostics
     └── workflows/
         └── main.yml          # Single production workflow
 
-**TOTAL: 10 essential files (79% reduction from 47 files)**
+**TOTAL: 10 essential files + 4 permanent API docs (79% reduction from 47 files)**
 ```
 
 ## 🎯 Advanced Features
@@ -285,6 +299,12 @@ python tools.py diagnose          # Full system diagnostics
 **Solution**: Bot waits for Gemini API - no rate limit cooldown, just retries on next run
 
 ## 🏁 Development Workflow
+
+### 📚 Before Any API Refactoring:
+1. **Check API documentation first**: Reference `/docs/api/eventregistry.md` or `/docs/api/gemini.md`
+2. **Use proven patterns**: Copy from `/docs/api/quick-reference.md` instead of rewriting from memory
+3. **Follow in-code links**: API client docstrings in `core.py` point to permanent documentation
+4. **Test against examples**: Validate changes using documented patterns
 
 ### Always run these before committing:
 1. `python tests/test_bot.py` - Test core functionality

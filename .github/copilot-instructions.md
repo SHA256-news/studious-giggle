@@ -49,6 +49,13 @@ All fixes maintain **100% backward compatibility** with comprehensive testing va
 
 ## Working Effectively
 
+### 📚 API Documentation (NEW - CRITICAL FOR REFACTORING)
+- **PERMANENT API REFERENCE**: `/docs/api/` directory contains hard-coded API documentation
+- **Never forget API details**: Complete EventRegistry, Gemini, and Twitter API references
+- **Before refactoring**: Always check `/docs/api/eventregistry.md` and `/docs/api/gemini.md`
+- **Quick patterns**: `/docs/api/quick-reference.md` has copy-paste ready code snippets
+- **In-code references**: All API clients in `core.py` link to permanent documentation
+
 ### Bootstrap and Setup
 - Install Python dependencies: `pip install -r requirements.txt`
 - NEVER CANCEL: Dependency installation takes 30-60 seconds. Set timeout to 120+ seconds.
@@ -343,6 +350,12 @@ The bot includes a single, focused GitHub Actions workflow:
 ├── .github/
 │   └── workflows/
 │       └── main.yml                # Single bot workflow (90-minute schedule)
+├── docs/
+│   └── api/                        # 🆕 PERMANENT API DOCUMENTATION
+│       ├── README.md               # API documentation usage guide
+│       ├── eventregistry.md        # Complete EventRegistry Python SDK reference
+│       ├── gemini.md               # Complete Google Gemini API reference
+│       └── quick-reference.md      # Copy-paste ready code snippets
 ├── tests/                          # Ultra-minimal test files (2 total)
 │   ├── test_bot.py                 # Core functionality tests (9 tests) 
 │   └── test_integration.py         # Integration workflow tests (3 tests)
@@ -353,7 +366,7 @@ The bot includes a single, focused GitHub Actions workflow:
 ├── posted_articles.json            # Article tracking (auto-generated)
 └── README.md                       # Comprehensive user documentation
 
-**TOTAL: 10 essential files (79% reduction from 47 files)**
+**TOTAL: 10 essential files + 4 permanent API docs (79% reduction from 47 files)**
 ```
 
 This is a production-ready Twitter bot with **ultra-minimal 10-file core architecture**, achieving 79% file reduction while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
