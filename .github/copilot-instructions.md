@@ -142,31 +142,30 @@ python tools.py history 20   # View last 20 posted articles
 
 ### 🚨 CRITICAL: Gemini URL Context API Implementation (NEVER GET WRONG AGAIN!)
 
-**RECURRING ISSUE**: This bug keeps coming up when we modify code. Always follow this EXACT pattern:
+**RECURRING ISSUE**: This bug keeps appearing during refactoring. **PERMANENT SOLUTION**: See `/GEMINI-API-NEVER-FORGET.md`
 
-**✅ CORRECT Implementation (October 2025 FIX):**
+**✅ CORRECT Implementation (Always Use This):**
 ```python
 from google import genai
-from google.genai.types import GenerateContentConfig
 
 client = genai.Client(api_key=api_key)
 
 # ✅ CORRECT: Simple dict format - ALWAYS USE THIS
-config = GenerateContentConfig(
-    tools=[{"url_context": {}}]  # Simple dict, NOT complex objects
-)
+config = {
+    "tools": [{"url_context": {}}]  # Simple dict, NOT complex objects
+}
 ```
 
-**❌ WRONG Implementation (NEVER USE):**
+**❌ WRONG Implementation (Causes Error Tweets):**
 ```python
 # ❌ WRONG: Complex object format (causes "unable to fetch content" errors)
 from google.genai import types
-tools = [types.Tool(url_context=types.UrlContext())]
+tools = [types.Tool(url_context=types.UrlContext())]  # ← NEVER USE!
 ```
 
-**🚨 CRITICAL: URL Retrieval Status Checking (October 2025 FIX):**
+**🚨 CRITICAL: URL Retrieval Status Checking (Fixed October 2025):**
 ```python
-# ✅ CORRECT: Proper status checking
+# ✅ CORRECT: Proper status checking for enum values
 if hasattr(url_meta, 'url_retrieval_status'):
     status = url_meta.url_retrieval_status
     status_str = str(status)
@@ -183,14 +182,8 @@ if hasattr(url_meta, 'url_retrieval_status'):
         logger.info(f"✅ URL retrieval successful: {status_str}")
 ```
 
-**❌ WRONG Status Checking (What We Fixed):**
-```python
-# ❌ WRONG: String comparison fails with enum representation
-if str(status) != "URL_RETRIEVAL_STATUS_SUCCESS":
-    # This fails because enum includes class name: "UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS"
-```
-
 **Reference Documentation:**
+- **PERMANENT GUIDE**: `/GEMINI-API-NEVER-FORGET.md` (NEVER FORGET THE CORRECT FORMAT!)
 - **Official URL Context Docs**: https://ai.google.dev/gemini-api/docs/url-context
 - **Cookbook Examples**: https://github.com/google-gemini/cookbook
 - **Internal Reference**: `/docs/api/gemini-url-context-CORRECT.md`

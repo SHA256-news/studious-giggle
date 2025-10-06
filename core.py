@@ -488,6 +488,11 @@ class GeminiClient:
     
     📚 API REFERENCE: /docs/api/gemini.md
     🔗 Quick Reference: /docs/api/quick-reference.md
+    🚨 CRITICAL: /GEMINI-API-NEVER-FORGET.md - PERMANENT solution to API format confusion
+    
+    ⚠️ SYSTEMATIC ISSUE SOLVED: We kept forgetting correct API format during refactoring!
+    ✅ PERMANENT FIX: Always use simple dict format {"url_context": {}}
+    ❌ NEVER USE: Complex types.Tool() objects (causes error tweets)
     """
     
     def __init__(self, api_key: str):
@@ -497,9 +502,9 @@ class GeminiClient:
         
         try:
             from google import genai
-            from google.genai import types
+            # ✅ CORRECT: Use simple dict format, no need for types import
+            # Reference: Official cookbook examples use simple dict tools
             self.client = genai.Client(api_key=api_key)
-            self.types = types  # Store types module for Tool creation
             self.model_name = 'gemini-2.5-flash'
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
@@ -522,13 +527,12 @@ class GeminiClient:
             Return only the headline text, nothing else.
             """
             
-            # Use URL context tool with CORRECT Python SDK format (NOT REST API format)
-            tools = []
-            tools.append(self.types.Tool(url_context=self.types.UrlContext()))  # ✅ CORRECT: Python SDK format from cookbook!
-            
-            config = self.types.GenerateContentConfig(
-                tools=tools
-            )
+            # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
+            # ✅ CORRECT: Simple dict format from Grounding.ipynb lines 561, 696, 873
+            # Source: https://github.com/google-gemini/cookbook/tree/main/quickstarts/Grounding.ipynb
+            config = {
+                "tools": [{"url_context": {}}]
+            }
             
             response = self.client.models.generate_content(
                 model=self.model_name,
@@ -633,13 +637,12 @@ class GeminiClient:
             Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
-            # Use URL context tool with CORRECT Python SDK format (NOT REST API format)
-            tools = []
-            tools.append(self.types.Tool(url_context=self.types.UrlContext()))  # ✅ CORRECT: Python SDK format from cookbook!
-            
-            config = self.types.GenerateContentConfig(
-                tools=tools
-            )
+            # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
+            # ✅ CORRECT: Simple dict format from Grounding.ipynb lines 561, 696, 873
+            # Source: https://github.com/google-gemini/cookbook/tree/main/quickstarts/Grounding.ipynb
+            config = {
+                "tools": [{"url_context": {}}]
+            }
             
             response = self.client.models.generate_content(
                 model=self.model_name,
