@@ -480,7 +480,165 @@ class TimeManager:
 
 
 # =============================================================================
-# GEMINI AI CLIENT  
+# GEMINI PROMPT PATTERNS (NEVER CHANGE THESE - TESTED & WORKING!)
+# =============================================================================
+
+class GeminiPrompts:
+    """Curated journalism-style prompts that eliminate robotic headlines.
+    
+    🚨 CRITICAL: These prompts were completely rewritten in October 2025 to fix
+    terrible headlines like "The article states that HIVE Digital..."
+    
+    ✅ RESULT: Professional Bloomberg/Reuters style headlines
+    📍 REFERENCE: /PROMPT-IMPROVEMENTS-NEVER-FORGET.md
+    """
+    
+    @staticmethod
+    def headline_prompt(article_url: str) -> str:
+        """Professional journalism headline prompt - TESTED & WORKING.
+        
+        This exact prompt eliminates robotic language and produces punchy headlines.
+        DO NOT MODIFY - any changes risk reverting to terrible "The article states that..." patterns.
+        """
+        return f"""
+            Read the Bitcoin mining article at {article_url} and write a PUNCHY news headline.
+            
+            CRITICAL REQUIREMENTS:
+            - Write like a professional financial news reporter
+            - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+            - Keep it under 70 characters
+            - Include specific numbers, percentages, or dollar amounts from the article
+            - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
+            - Sound like headlines from Bloomberg, Reuters, or MarketWatch
+            
+            GOOD EXAMPLES:
+            - "HIVE Hits 52-Week High on Mining Surge"
+            - "Riot Platforms Acquires 5,000 Bitcoin Miners"
+            - "Marathon Digital Reports Record Q3 Revenue"
+            - "CleanSpark Stock Jumps 15% on Expansion News"
+            
+            BAD EXAMPLES (NEVER DO THIS):
+            - "The article states that HIVE Digital Technologies..."
+            - "According to the report, Marathon Digital..."
+            - "The company announced in the article..."
+            
+            Return ONLY the headline, no quotes, no explanation.
+            """.strip()
+    
+    @staticmethod
+    def summary_prompt(article_url: str, headline: str) -> str:
+        """Anti-repetition summary prompt - TESTED & WORKING.
+        
+        This prompt ensures summaries complement headlines without duplication.
+        DO NOT MODIFY - carefully calibrated for Twitter character limits.
+        """
+        return f"""
+            Read the full Bitcoin mining article at {article_url} and create SPECIFIC bullet points.
+            
+            Generated Headline: {headline}
+            
+            CRITICAL: DO NOT repeat anything from the headline above.
+            
+            Create 3 rapid-fire bullet points that reveal NEW details from the article:
+            - Total length under 180 characters
+            - Include specific numbers, dates, locations, dollar amounts from the article
+            - Use telegraphic style like financial newswires
+            - Each point 50-60 characters max
+            - Format: "• [specific fact]"
+            - NO generic statements
+            
+            GOOD EXAMPLES:
+            • Q3 revenue jumped 42% to $87M year-over-year
+            • Added 2,500 miners at Texas facility this month  
+            • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
+            
+            BAD EXAMPLES (NEVER DO):
+            • The company is performing well
+            • Bitcoin mining operations are expanding
+            • Management is optimistic about the future
+            
+            Return ONLY the bullet points, nothing else.
+            """.strip()
+
+
+class GeminiAPIHelper:
+    """Reusable Gemini API interaction patterns.
+    
+    📚 API REFERENCE: /docs/api/gemini.md
+    🔗 Quick Reference: /docs/api/quick-reference.md
+    🚨 CRITICAL: /GEMINI-API-NEVER-FORGET.md - PERMANENT solution to API format confusion
+    """
+    
+    @staticmethod
+    def create_url_context_config() -> dict:
+        """✅ CORRECT format confirmed by official cookbook examples.
+        
+        Source: https://github.com/google-gemini/cookbook/tree/main/quickstarts/Grounding.ipynb
+        Lines 561, 696, 873 use simple dict format: {"tools": [{"url_context": {}}]}
+        
+        ❌ NEVER USE: Complex types.Tool() objects (causes error tweets)
+        """
+        return {"tools": [{"url_context": {}}]}
+    
+    @staticmethod
+    def check_for_url_errors(response_text: str, url: str) -> None:
+        """Check for Gemini URL access error patterns and raise URLRetrievalError.
+        
+        This prevents posting error messages like "I am unable to access..." as tweets.
+        """
+        error_patterns = [
+            "unable to fetch the content",
+            "unable to access the content",
+            "could not retrieve the content",
+            "failed to fetch the content",
+            "cannot access the URL",
+            "unable to fetch",
+            "unable to access",
+            "could not access"
+        ]
+        
+        text_lower = response_text.lower()
+        for pattern in error_patterns:
+            if pattern in text_lower:
+                logger.warning(f"❌ Gemini returned URL access error: {response_text[:100]}...")
+                raise URLRetrievalError(f"Failed to retrieve content from {url}: Gemini access error")
+    
+    @staticmethod
+    def extract_url_metadata(response, url: str) -> None:
+        """Extract and log URL context metadata using CORRECT access pattern.
+        
+        Validates URL retrieval success and logs metadata for debugging.
+        """
+        if not (hasattr(response, 'candidates') and response.candidates):
+            return
+            
+        candidate = response.candidates[0]
+        if not (hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata):
+            return
+            
+        metadata = candidate.url_context_metadata
+        logger.info(f"📄 URL context metadata: {metadata}")
+        
+        # CORRECT: Access url_metadata list directly from official format
+        if hasattr(metadata, 'url_metadata'):
+            for url_meta in metadata.url_metadata:
+                if hasattr(url_meta, 'url_retrieval_status'):
+                    status = url_meta.url_retrieval_status
+                    status_str = str(status)
+                    # Check for SUCCESS status (handle both enum value and string representation)
+                    is_success = (
+                        status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+                        "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+                    )
+                    if not is_success:
+                        logger.warning(f"❌ URL retrieval failed for {url}: {status_str}")
+                        raise URLRetrievalError(f"Failed to retrieve content from {url}: URL retrieval status {status_str}")
+                    else:
+                        logger.info(f"✅ URL retrieval successful for {url}: {status_str}")
+
+
+# =============================================================================
+# GEMINI AI CLIENT (REFACTORED FOR ELEGANCE)
 # =============================================================================
 
 class GeminiClient:
@@ -510,107 +668,29 @@ class GeminiClient:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
     def generate_catchy_headline(self, article: 'Article') -> str:
-        """Generate a catchy, emoji-free headline for the article using URL context."""
+        """Generate a catchy, emoji-free headline using professional journalism prompts."""
         try:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
-            prompt = f"""
-            Read the Bitcoin mining article at {article.url} and write a PUNCHY news headline.
+            # Use the tested journalism-style prompt (NEVER CHANGE!)
+            prompt = GeminiPrompts.headline_prompt(article.url)
+            config = GeminiAPIHelper.create_url_context_config()
             
-            CRITICAL REQUIREMENTS:
-            - Write like a professional financial news reporter
-            - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
-            - Keep it under 70 characters
-            - Include specific numbers, percentages, or dollar amounts from the article
-            - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
-            - Sound like headlines from Bloomberg, Reuters, or MarketWatch
+            response = self._call_gemini_api(prompt, config)
             
-            GOOD EXAMPLES:
-            - "HIVE Hits 52-Week High on Mining Surge"
-            - "Riot Platforms Acquires 5,000 Bitcoin Miners"
-            - "Marathon Digital Reports Record Q3 Revenue"
-            - "CleanSpark Stock Jumps 15% on Expansion News"
-            
-            BAD EXAMPLES (NEVER DO THIS):
-            - "The article states that HIVE Digital Technologies..."
-            - "According to the report, Marathon Digital..."
-            - "The company announced in the article..."
-            
-            Return ONLY the headline, no quotes, no explanation.
-            """
-            
-            # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
-            # ✅ CORRECT: Simple dict format from Grounding.ipynb lines 561, 696, 873
-            # Source: https://github.com/google-gemini/cookbook/tree/main/quickstarts/Grounding.ipynb
-            config = {
-                "tools": [{"url_context": {}}]
-            }
-            
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=prompt.strip(),
-                config=config
-            )
-            
-            # Null check before accessing response.text
+            # Validate response and check for URL errors
             if not response or not response.text:
                 raise ValueError("Gemini API returned empty or null response for headline generation")
             
             headline = response.text.strip()
-            
-            # CRITICAL: Check for Gemini error messages indicating URL retrieval failure
-            error_patterns = [
-                "unable to fetch the content",
-                "unable to access the content",
-                "could not retrieve the content",
-                "failed to fetch the content",
-                "cannot access the URL",
-                "unable to fetch",
-                "unable to access",
-                "could not access"
-            ]
-            
-            headline_lower = headline.lower()
-            for pattern in error_patterns:
-                if pattern in headline_lower:
-                    logger.warning(f"❌ Gemini returned URL access error: {headline[:100]}...")
-                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: Gemini access error")
+            GeminiAPIHelper.check_for_url_errors(headline, article.url)
+            GeminiAPIHelper.extract_url_metadata(response, article.url)
             
             logger.info(f"✅ Generated headline with URL context: '{headline}'")
-            
-            # Check URL context metadata using CORRECT access pattern
-            if hasattr(response, 'candidates') and response.candidates:
-                candidate = response.candidates[0]
-                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
-                    metadata = candidate.url_context_metadata
-                    logger.info(f"📄 URL context metadata: {metadata}")
-                    
-                    # CORRECT: Access url_metadata list directly from official format
-                    if hasattr(metadata, 'url_metadata'):
-                        for url_meta in metadata.url_metadata:
-                            if hasattr(url_meta, 'url_retrieval_status'):
-                                status = url_meta.url_retrieval_status
-                                status_str = str(status)
-                                # Check for SUCCESS status (handle both enum value and string representation)
-                                is_success = (
-                                    status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
-                                    "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
-                                )
-                                if not is_success:
-                                    logger.warning(f"❌ URL retrieval failed for {article.url}: {status_str}")
-                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status_str}")
-                                else:
-                                    logger.info(f"✅ URL retrieval successful for {article.url}: {status_str}")
-            
             return self._clean_headline(headline)[:80]
             
-        except ValueError as e:
-            # API authentication or configuration issues - reraise to surface the problem
-            logger.error(f"❌ Gemini API authentication/configuration error: {e}")
-            raise
-        except ConnectionError as e:
-            # Network connectivity issues
-            logger.warning(f"❌ Gemini network connection failed: {e}")
+        except (ValueError, ConnectionError, URLRetrievalError):
+            # Let specific errors bubble up
             raise
         except Exception as e:
             # Check if this is a URL retrieval failure (not an API failure)
@@ -619,117 +699,36 @@ class GeminiClient:
                 logger.warning(f"❌ URL retrieval failed for {article.url}: {e}")
                 raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
             
-            # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             raise
     
     def generate_thread_summary(self, article: 'Article') -> str:
-        """Generate a concise 3-point summary using URL context."""
+        """Generate a concise 3-point summary using anti-repetition prompts."""
         try:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
             
+            # Get headline first to avoid repetition in summary
             headline = self.generate_catchy_headline(article)
             
-            prompt = f"""
-            Read the full Bitcoin mining article at {article.url} and create SPECIFIC bullet points.
+            # Use the tested anti-repetition prompt (NEVER CHANGE!)
+            prompt = GeminiPrompts.summary_prompt(article.url, headline)
+            config = GeminiAPIHelper.create_url_context_config()
             
-            Generated Headline: {headline}
+            response = self._call_gemini_api(prompt, config)
             
-            CRITICAL: DO NOT repeat anything from the headline above.
-            
-            Create 3 rapid-fire bullet points that reveal NEW details from the article:
-            - Total length under 180 characters
-            - Include specific numbers, dates, locations, dollar amounts from the article
-            - Use telegraphic style like financial newswires
-            - Each point 50-60 characters max
-            - Format: "• [specific fact]"
-            - NO generic statements
-            
-            GOOD EXAMPLES:
-            • Q3 revenue jumped 42% to $87M year-over-year
-            • Added 2,500 miners at Texas facility this month  
-            • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
-            
-            BAD EXAMPLES (NEVER DO):
-            • The company is performing well
-            • Bitcoin mining operations are expanding
-            • Management is optimistic about the future
-            
-            Return ONLY the bullet points, nothing else.
-            """
-            
-            # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
-            # ✅ CORRECT: Simple dict format from Grounding.ipynb lines 561, 696, 873
-            # Source: https://github.com/google-gemini/cookbook/tree/main/quickstarts/Grounding.ipynb
-            config = {
-                "tools": [{"url_context": {}}]
-            }
-            
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=prompt.strip(),
-                config=config
-            )
-            
-            # Null check before accessing response.text
+            # Validate response and check for URL errors
             if not response or not response.text:
                 raise ValueError("Gemini API returned empty or null response for summary generation")
             
             summary_text = response.text.strip()
-            
-            # CRITICAL: Check for Gemini error messages indicating URL retrieval failure
-            error_patterns = [
-                "unable to fetch the content",
-                "unable to access the content", 
-                "could not retrieve the content",
-                "failed to fetch the content",
-                "cannot access the URL",
-                "unable to fetch",
-                "unable to access",
-                "could not access"
-            ]
-            
-            summary_lower = summary_text.lower()
-            for pattern in error_patterns:
-                if pattern in summary_lower:
-                    logger.warning(f"❌ Gemini returned URL access error: {summary_text[:100]}...")
-                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: Gemini access error")
+            GeminiAPIHelper.check_for_url_errors(summary_text, article.url)
+            GeminiAPIHelper.extract_url_metadata(response, article.url)
             
             logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
-            
-            # Check URL context metadata using CORRECT access pattern
-            if hasattr(response, 'candidates') and response.candidates:
-                candidate = response.candidates[0]
-                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
-                    metadata = candidate.url_context_metadata
-                    logger.info(f"📄 URL context metadata: {metadata}")
-                    
-                    # CORRECT: Access url_metadata list directly from official format
-                    if hasattr(metadata, 'url_metadata'):
-                        for url_meta in metadata.url_metadata:
-                            if hasattr(url_meta, 'url_retrieval_status'):
-                                status = url_meta.url_retrieval_status
-                                status_str = str(status)
-                                # Check for SUCCESS status (handle both enum value and string representation)
-                                is_success = (
-                                    status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
-                                    "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
-                                )
-                                if not is_success:
-                                    logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status_str}")
-                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status_str}")
-                                else:
-                                    logger.info(f"✅ URL retrieval successful during summary generation for {article.url}: {status_str}")
-            
             return self._process_summary_response(summary_text)
                 
-        except ValueError as e:
-            # API authentication or configuration issues - reraise to surface the problem
-            logger.error(f"❌ Gemini API authentication/configuration error in summary generation: {e}")
-            raise
-        except ConnectionError as e:
-            # Network connectivity issues
-            logger.warning(f"❌ Gemini network connection failed during summary generation: {e}")
+        except (ValueError, ConnectionError, URLRetrievalError):
+            # Let specific errors bubble up
             raise
         except Exception as e:
             # Check if this is a URL retrieval failure (not an API failure)
@@ -738,8 +737,25 @@ class GeminiClient:
                 logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {e}")
                 raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
             
-            # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini summary generation failed with unexpected error: {e}")
+            raise
+    
+    def _call_gemini_api(self, prompt: str, config: dict):
+        """Centralized Gemini API calling with consistent error handling."""
+        try:
+            response = self.client.models.generate_content(
+                model=self.model_name,
+                contents=prompt,
+                config=config
+            )
+            return response
+        except ValueError as e:
+            # API authentication or configuration issues - reraise to surface the problem
+            logger.error(f"❌ Gemini API authentication/configuration error: {e}")
+            raise
+        except ConnectionError as e:
+            # Network connectivity issues
+            logger.warning(f"❌ Gemini network connection failed: {e}")
             raise
     
     def _process_summary_response(self, summary_text: str) -> str:
