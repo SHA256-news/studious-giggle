@@ -63,6 +63,7 @@ All fixes maintain **100% backward compatibility** with comprehensive testing va
 - **Before refactoring**: Always check `/docs/api/eventregistry.md` and `/docs/api/gemini.md`
 - **Quick patterns**: `/docs/api/quick-reference.md` has copy-paste ready code snippets
 - **In-code references**: All API clients in `core.py` link to permanent documentation
+- **🚨 GEMINI URL CONTEXT**: `/docs/api/gemini-url-context-CORRECT.md` contains EXACT correct implementation to prevent error message tweets
 
 ### Bootstrap and Setup
 - Install Python dependencies: `pip install -r requirements.txt`
@@ -137,10 +138,41 @@ python tools.py history       # View last 10 posted articles with full metadata
 python tools.py history 20   # View last 20 posted articles
 ```
 
+### 🚨 CRITICAL: Gemini URL Context API Implementation (NEVER GET WRONG AGAIN!)
+
+**RECURRING ISSUE**: This bug keeps coming up when we modify code. Always follow this EXACT pattern:
+
+**✅ CORRECT Implementation (October 2025 FIX):**
+```python
+from google import genai
+from google.genai.types import GenerateContentConfig
+
+client = genai.Client(api_key=api_key)
+
+# ✅ CORRECT: Simple dict format - ALWAYS USE THIS
+config = GenerateContentConfig(
+    tools=[{"url_context": {}}]  # Simple dict, NOT complex objects
+)
+```
+
+**❌ WRONG Implementation (NEVER USE):**
+```python
+# ❌ WRONG: Complex object format (causes "unable to fetch content" errors)
+from google.genai import types
+tools = [types.Tool(url_context=types.UrlContext())]
+```
+
+**Reference Documentation:**
+- **Official URL Context Docs**: https://ai.google.dev/gemini-api/docs/url-context
+- **Cookbook Examples**: https://github.com/google-gemini/cookbook
+- **Internal Reference**: `/docs/api/gemini-url-context-CORRECT.md`
+
+**If Bot Posts Error Messages**: This means wrong tool configuration - use simple dict format above!
+
 ### Technical Implementation Details
 
 **Gemini URL Context Implementation**:
-- Uses modern `google-genai` library with `tools=[Tool(url_context=UrlContext())]` parameter
+- Uses modern `google-genai` library with `tools=[{"url_context": {}}]` parameter (CORRECTED)
 - Gemini 2.5 Flash model with native URL content fetching up to 34MB per URL
 - Comprehensive fallback system: URL context → EventRegistry content → generic fallback
 - URL context metadata logging for debugging and validation
@@ -205,6 +237,7 @@ The bot requires these GitHub repository secrets:
 
 **Native URL Context (Latest Enhancement)**:
 - Uses modern `google-genai` library with Gemini 2.5 Flash model
+- **CRITICAL**: Uses `tools=[{"url_context": {}}]` simple dict format (NOT complex objects)
 - Google's servers fetch article content directly (no manual web scraping)
 - Up to 34MB content per URL with comprehensive article analysis
 - Enhanced content quality with full article access
