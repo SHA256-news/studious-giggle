@@ -43,6 +43,7 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 17. **✅ Complete Queue State Management**: CRITICAL - Implemented proper queue bounds checking with state recovery instead of just logging warnings when queue operations fail
 18. **✅ URL Format Validation**: MODERATE - Added comprehensive URL validation to catch malformed URLs (non-http/https, spaces, too short) that pass empty string validation but cause downstream errors
 19. **✅ URL Retrieval Status Logic**: CRITICAL - **JUST FIXED** - Corrected enum status checking to properly handle `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS` format instead of simple string comparison, preventing rate limit cooldowns on successful URL retrievals
+20. **✅ Gemini URL Context API Format**: CRITICAL - **OCTOBER 2025 MAJOR FIX** - Discovered and fixed fundamental SDK vs REST API format confusion. We were using REST API dict syntax `{"url_context": {}}` in Python SDK calls instead of proper object syntax `types.Tool(url_context=types.UrlContext())`. This was the root cause of "unable to fetch content" error messages being posted as tweets.
 
 ### Robustness & Validation Improvements:
 9. **✅ Mining Filter Logic**: Enhanced counting validation with defensive bounds checking
@@ -54,7 +55,7 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 13. **✅ Clean API Design**: Removed misleading skip_gemini_analysis parameter
 14. **✅ Optimized Scheduling**: Clarified GitHub workflow cron scheduling (complementary 90-minute intervals)
 
-All fixes maintain **100% backward compatibility** with comprehensive testing validation. **NEW**: All 9 core functionality tests and 3 integration tests passing after latest fixes.
+All fixes maintain **100% backward compatibility** with comprehensive testing validation. **NEW**: All 9 core functionality tests and 3 integration tests passing after latest fixes. **OCTOBER 2025 MAJOR UPDATE**: Fixed fundamental Gemini URL Context API implementation - bot will now fetch actual article content instead of posting error messages.
 
 ## Working Effectively
 

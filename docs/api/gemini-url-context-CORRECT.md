@@ -1,23 +1,39 @@
-# Gemini URL Context API - CORRECT Implementation 
+# Gemini URL Context API - CORRECT Implementation (OCTOBER 2025 MAJOR FIX)
 
-## 🚨 CRITICAL: The Problem We're Fixing
+## 🚨 CRITICAL: The Problem We Fixed
 
 The bot was posting error messages as tweets: 
 > "I was unable to fetch the content of the article from the provided URL. Therefor..."
 
-**Root Cause**: Wrong SDK usage mixing old patterns with new API.
+**Root Cause Discovered**: Wrong SDK format mixing REST API patterns with Python SDK syntax.
 
 ---
 
-## ✅ CORRECT Implementation Pattern (Official Google Documentation)
+## 🔥 OCTOBER 2025 FIX: Python SDK vs REST API Format Confusion
 
-### 1. Correct Import Pattern
+### THE CRITICAL DIFFERENCE WE DISCOVERED
+
+**❌ WRONG - What We Had (REST API Format in Python SDK):**
 ```python
-from google import genai
 from google.genai.types import GenerateContentConfig
 
-# NOT: from google.generativeai import genai
-# NOT: from google.genai import types.Tool, types.UrlContext
+# ❌ WRONG: We were mixing REST API dict format with Python SDK
+config = GenerateContentConfig(
+    tools=[{"url_context": {}}]  # This is REST API syntax!
+)
+```
+
+**✅ CORRECT - Python SDK Format (From Official Cookbook):**
+```python
+from google.genai import types
+
+# ✅ CORRECT: Python SDK requires proper Tool objects  
+tools = []
+tools.append(types.Tool(url_context=types.UrlContext()))
+
+config = types.GenerateContentConfig(
+    tools=tools
+)
 ```
 
 ### 2. Correct Client Initialization
