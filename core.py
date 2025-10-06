@@ -570,10 +570,18 @@ class GeminiClient:
                     if hasattr(metadata, 'url_metadata'):
                         for url_meta in metadata.url_metadata:
                             if hasattr(url_meta, 'url_retrieval_status'):
-                                status = str(url_meta.url_retrieval_status)
-                                if status != "URL_RETRIEVAL_STATUS_SUCCESS":
-                                    logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
-                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                                status = url_meta.url_retrieval_status
+                                status_str = str(status)
+                                # Check for SUCCESS status (handle both enum value and string representation)
+                                is_success = (
+                                    status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+                                    "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+                                )
+                                if not is_success:
+                                    logger.warning(f"❌ URL retrieval failed for {article.url}: {status_str}")
+                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status_str}")
+                                else:
+                                    logger.info(f"✅ URL retrieval successful for {article.url}: {status_str}")
             
             return self._clean_headline(headline)[:80]
             
@@ -670,10 +678,18 @@ class GeminiClient:
                     if hasattr(metadata, 'url_metadata'):
                         for url_meta in metadata.url_metadata:
                             if hasattr(url_meta, 'url_retrieval_status'):
-                                status = str(url_meta.url_retrieval_status)
-                                if status != "URL_RETRIEVAL_STATUS_SUCCESS":
-                                    logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
-                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
+                                status = url_meta.url_retrieval_status
+                                status_str = str(status)
+                                # Check for SUCCESS status (handle both enum value and string representation)
+                                is_success = (
+                                    status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+                                    "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+                                )
+                                if not is_success:
+                                    logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status_str}")
+                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status_str}")
+                                else:
+                                    logger.info(f"✅ URL retrieval successful during summary generation for {article.url}: {status_str}")
             
             return self._process_summary_response(summary_text)
                 

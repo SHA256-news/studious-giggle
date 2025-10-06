@@ -25,7 +25,7 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 
 ## Recent Critical Bug Fixes (Session Summary)
 
-The codebase has undergone comprehensive bug fixing with **18 critical issues resolved** (5 new fixes added):
+The codebase has undergone comprehensive bug fixing with **19 critical issues resolved** (6 new fixes added):
 
 ### Type Safety & Error Handling Improvements:
 1. **✅ Gemini Client Type Mismatch**: Fixed Optional[GeminiClient] property return type annotation
@@ -42,6 +42,7 @@ The codebase has undergone comprehensive bug fixing with **18 critical issues re
 16. **✅ Queue Index Error Protection**: CRITICAL - Added bounds validation and exception handling in tools.py queue operations to prevent IndexError during concurrent modifications  
 17. **✅ Complete Queue State Management**: CRITICAL - Implemented proper queue bounds checking with state recovery instead of just logging warnings when queue operations fail
 18. **✅ URL Format Validation**: MODERATE - Added comprehensive URL validation to catch malformed URLs (non-http/https, spaces, too short) that pass empty string validation but cause downstream errors
+19. **✅ URL Retrieval Status Logic**: CRITICAL - **JUST FIXED** - Corrected enum status checking to properly handle `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS` format instead of simple string comparison, preventing rate limit cooldowns on successful URL retrievals
 
 ### Robustness & Validation Improvements:
 9. **✅ Mining Filter Logic**: Enhanced counting validation with defensive bounds checking
@@ -162,12 +163,38 @@ from google.genai import types
 tools = [types.Tool(url_context=types.UrlContext())]
 ```
 
+**🚨 CRITICAL: URL Retrieval Status Checking (October 2025 FIX):**
+```python
+# ✅ CORRECT: Proper status checking
+if hasattr(url_meta, 'url_retrieval_status'):
+    status = url_meta.url_retrieval_status
+    status_str = str(status)
+    # Check for SUCCESS status (handle both enum value and string representation)
+    is_success = (
+        status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+        "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+    )
+    if not is_success:
+        # URL retrieval failed
+        raise URLRetrievalError(f"Failed to retrieve content from {url}: {status_str}")
+    else:
+        # URL retrieval succeeded - continue processing
+        logger.info(f"✅ URL retrieval successful: {status_str}")
+```
+
+**❌ WRONG Status Checking (What We Fixed):**
+```python
+# ❌ WRONG: String comparison fails with enum representation
+if str(status) != "URL_RETRIEVAL_STATUS_SUCCESS":
+    # This fails because enum includes class name: "UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS"
+```
+
 **Reference Documentation:**
 - **Official URL Context Docs**: https://ai.google.dev/gemini-api/docs/url-context
 - **Cookbook Examples**: https://github.com/google-gemini/cookbook
 - **Internal Reference**: `/docs/api/gemini-url-context-CORRECT.md`
 
-**If Bot Posts Error Messages**: This means wrong tool configuration - use simple dict format above!
+**If Bot Posts Error Messages OR Triggers Rate Limits on Success**: This means wrong tool configuration or status checking - use patterns above!
 
 ### Technical Implementation Details
 

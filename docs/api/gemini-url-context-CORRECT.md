@@ -48,7 +48,42 @@ response = client.models.generate_content(
 )
 ```
 
-### 5. Correct Response Handling
+### 5. Correct Response Handling & Status Checking (October 2025 FIX)
+
+```python
+# ✅ CORRECT: Comprehensive response processing with proper status checking
+if hasattr(response, 'candidates') and response.candidates:
+    candidate = response.candidates[0]
+    if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
+        metadata = candidate.url_context_metadata
+        
+        # CRITICAL: Proper status checking for enum values
+        if hasattr(metadata, 'url_metadata'):
+            for url_meta in metadata.url_metadata:
+                if hasattr(url_meta, 'url_retrieval_status'):
+                    status = url_meta.url_retrieval_status
+                    status_str = str(status)
+                    
+                    # ✅ CORRECT: Handle both enum value and string representation
+                    is_success = (
+                        status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+                        "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+                    )
+                    
+                    if not is_success:
+                        # URL retrieval failed
+                        raise URLRetrievalError(f"Failed to retrieve content from {url}: {status_str}")
+                    else:
+                        # URL retrieval succeeded - continue processing
+                        logger.info(f"✅ URL retrieval successful: {status_str}")
+
+# Get the actual content
+text = response.text.strip()
+
+# ❌ WRONG Status Checking (What Caused The Bug):
+# if str(status) != "URL_RETRIEVAL_STATUS_SUCCESS":
+#     # This fails because enum includes class name: "UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS"
+```
 ```python
 # Access the generated text
 text_content = response.text
@@ -305,14 +340,42 @@ config = GenerateContentConfig(
 - **Supported content**: HTML, PDF, images, JSON, text files
 - **Two-step retrieval**: Internal cache → live fetch fallback
 
-## 🛠️ Correct Error Handling Pattern
+## 🛠️ Correct Error Handling Pattern (October 2025 Fixed)
 
 ```python
-# Check URL retrieval status properly
+# ✅ CORRECT: Proper URL retrieval status checking
 metadata = response.candidates[0].url_context_metadata
 for url_meta in metadata.url_metadata:
-    if url_meta.url_retrieval_status != "URL_RETRIEVAL_STATUS_SUCCESS":
+    status = url_meta.url_retrieval_status
+    status_str = str(status)
+    
+    # Handle both enum value and string representation
+    is_success = (
+        status_str == "URL_RETRIEVAL_STATUS_SUCCESS" or 
+        "URL_RETRIEVAL_STATUS_SUCCESS" in status_str
+    )
+    
+    if not is_success:
         # Handle specific failure - URL was inaccessible
+        raise URLRetrievalError(f"Failed to retrieve content: {status_str}")
+    else:
+        logger.info(f"✅ URL retrieval successful: {status_str}")
+
+# ❌ WRONG Pattern (Caused October 2025 Bug):
+# if url_meta.url_retrieval_status != "URL_RETRIEVAL_STATUS_SUCCESS":
+#     # This fails because enum value is "UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS"
+```
+
+## 🐛 Common Bug: Status Checking Logic Error
+
+**Problem**: The enum value includes the class name:
+- **Actual enum value**: `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS`
+- **Wrong comparison**: `"URL_RETRIEVAL_STATUS_SUCCESS"`
+- **Result**: Success treated as failure → Rate limit cooldowns on working URLs!
+
+**Solution**: Use proper string checking that handles both formats.
+
+---
         # This is NOT an API error, it's a content access issue
         logger.warning(f"URL {url_meta.retrieved_url} failed: {url_meta.url_retrieval_status}")
 ```
