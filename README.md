@@ -2,7 +2,22 @@
 
 ⚡ **Ultra-minimal Bitcoin mining news Twitter bot** that fetches articles from EventRegistry API and posts AI-enhanced threads with Gemini-generated headlines and summaries. Runs every 90 minutes via GitHub Actions with sophisticated rate limiting and comprehensive error handling.
 
-## 🛡️ Recent Critical Bug Fixes (October 2025)
+## � CRITICAL FIX: Gemini URL Context API (October 2025)
+
+**MAJOR ISSUE RESOLVED**: Bot was posting error messages as tweets instead of actual content!
+
+**Problem**: Wrong Gemini SDK usage caused "I was unable to fetch the content of the article from the provided URL..." messages to be posted as tweets.
+
+**Root Cause**: Mixing old `google-generativeai` patterns with new `google-genai` SDK API.
+
+**Solution Applied**: 
+- ✅ **Fixed Tool Configuration**: Changed from complex `Tool(url_context=UrlContext())` to simple `{"url_context": {}}`
+- ✅ **Fixed Import Pattern**: Updated to correct `from google.genai.types import GenerateContentConfig`
+- ✅ **Updated Documentation**: Comprehensive reference in `/docs/api/gemini-url-context-CORRECT.md`
+
+**Expected Result**: Bot now properly fetches article content and generates real headlines/summaries instead of error messages.
+
+## �🛡️ Recent Critical Bug Fixes (October 2025)
 
 **Latest improvements ensure maximum reliability:**
 - **URLRetrievalError Exception Safety**: Fixed crashes when Gemini metadata is not iterable

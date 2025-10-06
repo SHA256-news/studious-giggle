@@ -497,9 +497,9 @@ class GeminiClient:
         
         try:
             from google import genai
-            from google.genai import types
+            from google.genai.types import GenerateContentConfig
             self.client = genai.Client(api_key=api_key)
-            self.types = types
+            self.GenerateContentConfig = GenerateContentConfig
             self.model_name = 'gemini-2.5-flash'
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
@@ -522,9 +522,9 @@ class GeminiClient:
             Return only the headline text, nothing else.
             """
             
-            # Use URL context tool to fetch full article content
-            config = self.types.GenerateContentConfig(
-                tools=[self.types.Tool(url_context=self.types.UrlContext())]
+            # Use URL context tool with CORRECT format (simple dict, not complex objects)
+            config = self.GenerateContentConfig(
+                tools=[{"url_context": {}}]  # CORRECT: Simple dict format from official docs
             )
             
             response = self.client.models.generate_content(
@@ -538,30 +538,42 @@ class GeminiClient:
                 raise ValueError("Gemini API returned empty or null response for headline generation")
             
             headline = response.text.strip()
+            
+            # CRITICAL: Check for Gemini error messages indicating URL retrieval failure
+            error_patterns = [
+                "unable to fetch the content",
+                "unable to access the content",
+                "could not retrieve the content",
+                "failed to fetch the content",
+                "cannot access the URL",
+                "unable to fetch",
+                "unable to access",
+                "could not access"
+            ]
+            
+            headline_lower = headline.lower()
+            for pattern in error_patterns:
+                if pattern in headline_lower:
+                    logger.warning(f"❌ Gemini returned URL access error: {headline[:100]}...")
+                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: Gemini access error")
+            
             logger.info(f"✅ Generated headline with URL context: '{headline}'")
             
-            # Check URL context metadata for retrieval failures
+            # Check URL context metadata using CORRECT access pattern
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
-                if hasattr(candidate, 'url_context_metadata'):
+                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
                     metadata = candidate.url_context_metadata
                     logger.info(f"📄 URL context metadata: {metadata}")
                     
-                    # Check if any URL retrieval failed - safely handle metadata format
-                    if metadata is not None:
-                        try:
-                            # Handle both single item and iterable metadata
-                            metadata_items = metadata if hasattr(metadata, '__iter__') and not isinstance(metadata, (str, bytes)) else [metadata]
-                            
-                            for url_metadata in metadata_items:
-                                if hasattr(url_metadata, 'url_retrieval_status'):
-                                    status = str(url_metadata.url_retrieval_status)
-                                    if 'ERROR' in status or 'FAILED' in status:
-                                        logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
-                                        raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
-                        except TypeError as e:
-                            logger.warning(f"⚠️ Could not iterate URL metadata: {e}")
-                            # Continue without raising exception for metadata parsing issues
+                    # CORRECT: Access url_metadata list directly from official format
+                    if hasattr(metadata, 'url_metadata'):
+                        for url_meta in metadata.url_metadata:
+                            if hasattr(url_meta, 'url_retrieval_status'):
+                                status = str(url_meta.url_retrieval_status)
+                                if status != "URL_RETRIEVAL_STATUS_SUCCESS":
+                                    logger.warning(f"❌ URL retrieval failed for {article.url}: {status}")
+                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
             
             return self._clean_headline(headline)[:80]
             
@@ -610,9 +622,9 @@ class GeminiClient:
             Return only the formatted summary with each bullet point on its own line, nothing else.
             """
             
-            # Use URL context tool to fetch full article content
-            config = self.types.GenerateContentConfig(
-                tools=[self.types.Tool(url_context=self.types.UrlContext())]
+            # Use URL context tool with CORRECT format (simple dict, not complex objects)
+            config = self.GenerateContentConfig(
+                tools=[{"url_context": {}}]  # CORRECT: Simple dict format from official docs
             )
             
             response = self.client.models.generate_content(
@@ -626,30 +638,42 @@ class GeminiClient:
                 raise ValueError("Gemini API returned empty or null response for summary generation")
             
             summary_text = response.text.strip()
+            
+            # CRITICAL: Check for Gemini error messages indicating URL retrieval failure
+            error_patterns = [
+                "unable to fetch the content",
+                "unable to access the content", 
+                "could not retrieve the content",
+                "failed to fetch the content",
+                "cannot access the URL",
+                "unable to fetch",
+                "unable to access",
+                "could not access"
+            ]
+            
+            summary_lower = summary_text.lower()
+            for pattern in error_patterns:
+                if pattern in summary_lower:
+                    logger.warning(f"❌ Gemini returned URL access error: {summary_text[:100]}...")
+                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: Gemini access error")
+            
             logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
             
-            # Check URL context metadata for retrieval failures
+            # Check URL context metadata using CORRECT access pattern
             if hasattr(response, 'candidates') and response.candidates:
                 candidate = response.candidates[0]
-                if hasattr(candidate, 'url_context_metadata'):
+                if hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata:
                     metadata = candidate.url_context_metadata
                     logger.info(f"📄 URL context metadata: {metadata}")
                     
-                    # Check if any URL retrieval failed - safely handle metadata format
-                    if metadata is not None:
-                        try:
-                            # Handle both single item and iterable metadata
-                            metadata_items = metadata if hasattr(metadata, '__iter__') and not isinstance(metadata, (str, bytes)) else [metadata]
-                            
-                            for url_metadata in metadata_items:
-                                if hasattr(url_metadata, 'url_retrieval_status'):
-                                    status = str(url_metadata.url_retrieval_status)
-                                    if 'ERROR' in status or 'FAILED' in status:
-                                        logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
-                                        raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
-                        except TypeError as e:
-                            logger.warning(f"⚠️ Could not iterate URL metadata during summary generation: {e}")
-                            # Continue without raising exception for metadata parsing issues
+                    # CORRECT: Access url_metadata list directly from official format
+                    if hasattr(metadata, 'url_metadata'):
+                        for url_meta in metadata.url_metadata:
+                            if hasattr(url_meta, 'url_retrieval_status'):
+                                status = str(url_meta.url_retrieval_status)
+                                if status != "URL_RETRIEVAL_STATUS_SUCCESS":
+                                    logger.warning(f"❌ URL retrieval failed for {article.url} during summary generation: {status}")
+                                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: URL retrieval status {status}")
             
             return self._process_summary_response(summary_text)
                 

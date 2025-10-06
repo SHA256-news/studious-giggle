@@ -47,14 +47,15 @@ article = {
 }
 ```
 
-## Gemini - Quick Patterns
+## Gemini - Quick Patterns (CORRECTED October 2025)
 
 ### URL Context Generation
 ```python
-from google.genai import types
+from google.genai.types import GenerateContentConfig
 
-config = types.GenerateContentConfig(
-    tools=[types.Tool(url_context=types.UrlContext())]
+# ✅ CORRECT: Simple dict format
+config = GenerateContentConfig(
+    tools=[{"url_context": {}}]  # Simple dict, NOT complex objects
 )
 
 response = client.models.generate_content(
@@ -67,8 +68,8 @@ response = client.models.generate_content(
 ### Headline Generation
 ```python
 def generate_headline(article_url: str) -> str:
-    config = types.GenerateContentConfig(
-        tools=[types.Tool(url_context=types.UrlContext())],
+    config = GenerateContentConfig(
+        tools=[{"url_context": {}}],  # ✅ CORRECT format
         max_output_tokens=100
     )
     
@@ -101,8 +102,8 @@ def generate_summary(article_url: str, headline: str) -> str:
     - New details only
     """
     
-    config = types.GenerateContentConfig(
-        tools=[types.Tool(url_context=types.UrlContext())]
+    config = GenerateContentConfig(
+        tools=[{"url_context": {}}]  # ✅ CORRECT format
     )
     
     response = client.models.generate_content(

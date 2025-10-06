@@ -2,6 +2,36 @@
 
 > **CRITICAL**: This is the permanent API reference for Google Gemini. Always reference this during refactoring!
 
+## 🚨 CRITICAL: URL Context Implementation (October 2025 Fix)
+
+**Problem Solved**: Bot was posting "I was unable to fetch the content..." as tweets due to wrong API usage.
+
+### ✅ CORRECT Implementation Pattern:
+```python
+from google import genai
+from google.genai.types import GenerateContentConfig
+
+client = genai.Client(api_key=api_key)
+
+# ✅ CORRECT: Simple dict format for tools
+config = GenerateContentConfig(
+    tools=[{"url_context": {}}]  # Simple dict, NOT complex objects
+)
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents=f"Analyze this article: {url}",
+    config=config
+)
+```
+
+### ❌ WRONG Pattern (What We Fixed):
+```python
+# ❌ WRONG: Complex object format (outdated)
+from google.genai import types
+tools = [types.Tool(url_context=types.UrlContext())]
+```
+
 ## ⚠️ Critical Error Handling (October 2025 Update)
 
 **URLRetrievalError Exception Pattern**:
@@ -34,7 +64,7 @@ if hasattr(response, 'candidates') and response.candidates:
 pip install google-genai
 
 from google import genai
-from google.genai import types
+from google.genai.types import GenerateContentConfig
 
 # Initialize client
 client = genai.Client(api_key="YOUR_API_KEY")
