@@ -25,7 +25,16 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 
 ## Recent Critical Bug Fixes (Session Summary)
 
-The codebase has undergone comprehensive bug fixing with **19 critical issues resolved** (6 new fixes added):
+The codebase has undergone comprehensive bug fixing with **26 critical issues resolved** (7 NEW runtime crash fixes added October 6, 2025):
+
+### 🆕 LATEST: Runtime Crash Prevention (October 6, 2025):
+21. **✅ Race Condition in Queue Handling**: CRITICAL - Fixed race condition where local `queued_articles` variable and live `self.posted_data['queued_articles']` could become out of sync, causing IndexError crashes during article processing
+22. **✅ IndexError in Tools Preview**: HIGH - Added bounds checking before `queue[0]` access in tools.py to prevent crashes when queue is empty
+23. **✅ IndexError in Gemini Response Parsing**: MEDIUM - Added length validation before `response.candidates[0]` access to handle empty API responses safely
+24. **✅ CLI Argument IndexError Protection**: HIGH - Verified and documented proper `sys.argv` bounds checking to prevent crashes when tools.py is run without arguments
+25. **✅ KeyError in Posted Articles Tracking**: MEDIUM - Added defensive initialization for `posted_uris` data structure to prevent crashes when recording successful posts
+26. **✅ Comprehensive Array Access Audit**: Verified all array/list access patterns use proper bounds checking throughout the codebase
+27. **✅ Queue State Management**: Enhanced queue operations with live state access patterns and defensive programming to prevent data corruption
 
 ### Type Safety & Error Handling Improvements:
 1. **✅ Gemini Client Type Mismatch**: Fixed Optional[GeminiClient] property return type annotation
@@ -37,7 +46,7 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 7. **✅ URL Retrieval Error Handling**: NEW - Distinguished URL retrieval failures from API failures with proper error categorization
 8. **✅ Gemini Metadata Checking**: CRITICAL FIX - **ACTUALLY IMPLEMENTED** - Proper detection of URL failures from url_context_metadata with safe iteration to prevent posting error messages
 
-### NEW: Additional Critical Fixes (October 2025):
+### Previous Critical Fixes (October 2025):
 15. **✅ URLRetrievalError Exception Safety**: CRITICAL - Fixed potential crashes when url_context_metadata is None or not iterable with proper type checking and safe iteration patterns
 16. **✅ Queue Index Error Protection**: CRITICAL - Added bounds validation and exception handling in tools.py queue operations to prevent IndexError during concurrent modifications  
 17. **✅ Complete Queue State Management**: CRITICAL - Implemented proper queue bounds checking with state recovery instead of just logging warnings when queue operations fail
@@ -300,6 +309,70 @@ Without these keys, the bot will show clear error messages explaining what's mis
 - Professional prefixes instead of emoji decorations
 - Action-oriented language with specific facts/numbers when available
 - Multi-level validation and text processing for consistency
+
+## 🛡️ CRITICAL: Defensive Programming Guidelines (NEVER VIOLATE!)
+
+**🚨 MANDATORY PATTERNS - Always use these patterns to prevent runtime crashes:**
+
+### Array/List Access (ALWAYS check bounds first):
+```python
+# ✅ CORRECT - Always check bounds before accessing by index
+if list_var and len(list_var) > index:
+    item = list_var[index]
+
+# ❌ WRONG - Direct access can cause IndexError
+item = list_var[index]  # ← Runtime crash risk!
+```
+
+### Dictionary Access (ALWAYS use safe access):
+```python
+# ✅ CORRECT - Initialize missing keys defensively
+if "key" not in dict_var:
+    dict_var["key"] = default_value
+dict_var["key"].append(item)
+
+# ❌ WRONG - Direct access can cause KeyError
+dict_var["key"].append(item)  # ← Runtime crash risk!
+```
+
+### Queue Operations (ALWAYS access live state):
+```python
+# ✅ CORRECT - Always access live queue state, not cached variables
+while self.data.get("queue", []):
+    current_queue = self.data.get("queue", [])
+    if not current_queue:
+        break
+    item = current_queue[0]  # Safe after bounds check
+
+# ❌ WRONG - Using cached variable creates race condition
+queue = self.data.get("queue", [])
+while queue:  # ← BUG: cached variable doesn't reflect live state
+    item = queue[0]  # ← Can cause IndexError
+```
+
+### API Response Parsing (ALWAYS validate structure):
+```python
+# ✅ CORRECT - Validate before accessing nested attributes
+if hasattr(response, 'candidates') and response.candidates and len(response.candidates) > 0:
+    candidate = response.candidates[0]
+
+# ❌ WRONG - Direct access can cause IndexError/AttributeError
+candidate = response.candidates[0]  # ← Runtime crash risk!
+```
+
+### CLI Arguments (ALWAYS check count):
+```python
+# ✅ CORRECT - Check argument count before access
+if len(sys.argv) < 2:
+    show_help()
+    return
+command = sys.argv[1]
+
+# ❌ WRONG - Direct access can cause IndexError
+command = sys.argv[1]  # ← Runtime crash risk!
+```
+
+**📋 REFERENCE**: See `/BUG-FIXES-OCTOBER-2025.md` for complete patterns and examples.
 
 ## Validation Scenarios
 

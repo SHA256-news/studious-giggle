@@ -171,6 +171,14 @@ class BotTools:
                 print("💡 Run the bot to fetch fresh articles")
                 return True
             
+            # 🛡️ BUG FIX (Oct 6, 2025): ALWAYS check bounds before accessing queue[0]
+            # NEVER access array indices without bounds checking - causes IndexError crashes
+            # See /BUG-FIXES-OCTOBER-2025.md for details
+            if len(queue) == 0:
+                print("📭 No articles queued")
+                print("💡 Run the bot to fetch fresh articles")
+                return True
+            
             next_article = queue[0]
             print(f"📰 Next Article:")
             print(f"   Title: {next_article.get('title', 'Unknown')}")
@@ -483,6 +491,7 @@ def main():
         print("  python tools.py history 20   # Show last 20 posted articles")
         return
     
+    # Safe access to sys.argv[1] since we've checked length above
     command = sys.argv[1].lower()
     
     if command == "preview":

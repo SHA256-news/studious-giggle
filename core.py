@@ -611,6 +611,13 @@ class GeminiAPIHelper:
         """
         if not (hasattr(response, 'candidates') and response.candidates):
             return
+        
+        # 🛡️ BUG FIX (Oct 6, 2025): Safety check before accessing response.candidates[0]
+        # NEVER access array indices without bounds checking - causes IndexError crashes
+        # See /BUG-FIXES-OCTOBER-2025.md for details
+        if len(response.candidates) == 0:
+            logger.warning(f"⚠️ Empty candidates list in Gemini response for {url}")
+            return
             
         candidate = response.candidates[0]
         if not (hasattr(candidate, 'url_context_metadata') and candidate.url_context_metadata):
@@ -1370,13 +1377,19 @@ class BitcoinMiningBot:
             
             if not new_articles:
                 # Check queued articles and try multiple if URL retrieval fails
-                queued_articles = self.posted_data.get("queued_articles", [])
-                if queued_articles:
+                if self.posted_data.get("queued_articles", []):
                     logger.info("No new articles, posting from queue")
                     
-                    # Try posting queued articles, skipping ones with URL retrieval failures
-                    while queued_articles:
-                        article_data = queued_articles[0]
+                    # 🛡️ BUG FIX (Oct 6, 2025): ALWAYS access live queue state to prevent race conditions
+                    # NEVER use cached local variables for queue operations - causes IndexError crashes
+                    # See /BUG-FIXES-OCTOBER-2025.md for details
+                    while self.posted_data.get("queued_articles", []):
+                        # Always access live queue state to prevent race conditions
+                        current_queue = self.posted_data.get("queued_articles", [])
+                        if not current_queue:
+                            break
+                        
+                        article_data = current_queue[0]
                         article_to_post = Article.from_dict(article_data)
                         
                         try:
@@ -1413,9 +1426,17 @@ class BitcoinMiningBot:
                         except URLRetrievalError as e:
                             # URL retrieval failed - skip this article and try next one
                             logger.warning(f"⏭️ Skipping article due to URL retrieval failure: {e}")
-                            if self.posted_data["queued_articles"]:
-                                skipped_article = self.posted_data["queued_articles"].pop(0)
-                                logger.info(f"🗑️ Removed article from queue: {skipped_article.get('title', 'Unknown')}")
+                            # Always check current queue state before popping
+                            current_queue = self.posted_data.get("queued_articles", [])
+                            if current_queue:
+                                try:
+                                    skipped_article = self.posted_data["queued_articles"].pop(0)
+                                    logger.info(f"🗑️ Removed article from queue: {skipped_article.get('title', 'Unknown')}")
+                                except (IndexError, ValueError) as e:
+                                    logger.warning(f"⚠️ Queue modification failed during skip: {e}")
+                                    # Reset queue state if it's corrupted
+                                    self.posted_data["queued_articles"] = []
+                                    break
                             continue
                     
                     # If we get here, all queued articles had URL retrieval failures
@@ -1544,6 +1565,11 @@ class BitcoinMiningBot:
             
             if success:
                 # Record successful post in both URL list and full history
+                # 🛡️ BUG FIX (Oct 6, 2025): Defensive initialization to prevent KeyError crashes
+                # NEVER access dict keys without checking existence - causes KeyError crashes
+                # See /BUG-FIXES-OCTOBER-2025.md for details
+                if "posted_uris" not in self.posted_data:
+                    self.posted_data["posted_uris"] = []
                 self.posted_data["posted_uris"].append(article.url)
                 
                 # NEW: Save full article metadata to posted history
