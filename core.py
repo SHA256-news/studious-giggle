@@ -11,7 +11,7 @@ import re
 import time
 import hashlib
 from dataclasses import dataclass
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Any, Set, Union
 from pathlib import Path
 
@@ -172,11 +172,16 @@ class Article:
     
     @staticmethod
     def _parse_date(date_str: Optional[str]) -> Optional[datetime]:
-        """Parse date string to datetime."""
+        """Parse date string to datetime, ensuring UTC timezone awareness."""
         if not date_str:
             return None
         try:
-            return datetime.fromisoformat(date_str.replace('Z', '+00:00')).replace(tzinfo=None)
+            # Parse ISO format with timezone awareness
+            dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
+            # Ensure we have UTC timezone info
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+            return dt.astimezone(timezone.utc)
         except (ValueError, TypeError):
             return None
 
@@ -187,6 +192,14 @@ class Article:
 
 class ContentSimilarity:
     """Intelligent content similarity detection for duplicate article identification."""
+    
+    # Performance optimization: Cache expensive fingerprint calculations
+    _fingerprint_cache: Dict[str, str] = {}
+    
+    @staticmethod
+    def clear_cache():
+        """Clear fingerprint cache to free memory."""
+        ContentSimilarity._fingerprint_cache.clear()
     
     @staticmethod
     def normalize_text(text: str) -> str:
@@ -230,6 +243,10 @@ class ContentSimilarity:
         if not text:
             return ""
         
+        # Performance optimization: Check cache first
+        if text in ContentSimilarity._fingerprint_cache:
+            return ContentSimilarity._fingerprint_cache[text]
+        
         # Extract significant phrases (3+ words) and individual significant words
         normalized = ContentSimilarity.normalize_text(text)
         words = normalized.split()
@@ -245,7 +262,13 @@ class ContentSimilarity:
         fingerprint = ' '.join(fingerprint_words)
         
         # Return hash of fingerprint for compact comparison
-        return hashlib.md5(fingerprint.encode()).hexdigest()
+        result = hashlib.md5(fingerprint.encode()).hexdigest()
+        
+        # Cache result (but limit cache size to prevent memory issues)
+        if len(ContentSimilarity._fingerprint_cache) < 100:  # Reasonable cache limit
+            ContentSimilarity._fingerprint_cache[text] = result
+        
+        return result
     
     @staticmethod
     def content_similarity(body1: str, body2: str) -> float:
@@ -303,16 +326,20 @@ class ContentSimilarity:
         if article1.url == article2.url:
             return True
         
-        # Check date proximity first (optimization)
+        # Check date proximity first (optimization - fastest check)
         if not ContentSimilarity.date_proximity(
             article1.date_published, article2.date_published, date_window_hours
         ):
             return False
         
-        # Calculate title similarity
+        # Performance optimization: Check title similarity first (faster than content)
         title_sim = ContentSimilarity.title_similarity(article1.title, article2.title)
         
-        # Calculate content similarity
+        # Early exit if title similarity is very low (likely not duplicates)
+        if title_sim < 0.3:  # If titles are very different, skip expensive content analysis
+            return False
+        
+        # Calculate content similarity only when needed
         content_sim = ContentSimilarity.content_similarity(article1.body, article2.body)
         
         # Articles are duplicates if:
@@ -409,8 +436,8 @@ class TimeManager:
     
     @staticmethod
     def now() -> datetime:
-        """Get current datetime."""
-        return datetime.now()
+        """Get current datetime in UTC timezone."""
+        return datetime.now(timezone.utc)
     
     @staticmethod
     def is_minimum_interval_passed(last_run: Optional[str], min_minutes: int) -> bool:
@@ -420,6 +447,9 @@ class TimeManager:
         
         try:
             last_time = datetime.fromisoformat(last_run)
+            # Ensure timezone awareness for comparison
+            if last_time.tzinfo is None:
+                last_time = last_time.replace(tzinfo=timezone.utc)
             return (TimeManager.now() - last_time) >= timedelta(minutes=min_minutes)
         except (ValueError, TypeError):
             return True
@@ -441,6 +471,9 @@ class TimeManager:
         
         try:
             cooldown_end = datetime.fromisoformat(cooldown_data["cooldown_end"])
+            # Ensure timezone awareness for comparison
+            if cooldown_end.tzinfo is None:
+                cooldown_end = cooldown_end.replace(tzinfo=timezone.utc)
             return TimeManager.now() < cooldown_end
         except (ValueError, TypeError, KeyError):
             return False
@@ -499,6 +532,10 @@ class GeminiClient:
                 contents=prompt.strip(),
                 config=config
             )
+            
+            # Null check before accessing response.text
+            if not response or not response.text:
+                raise ValueError("Gemini API returned empty or null response for headline generation")
             
             headline = response.text.strip()
             logger.info(f"✅ Generated headline with URL context: '{headline}'")
@@ -583,6 +620,10 @@ class GeminiClient:
                 contents=prompt.strip(),
                 config=config
             )
+            
+            # Null check before accessing response.text
+            if not response or not response.text:
+                raise ValueError("Gemini API returned empty or null response for summary generation")
             
             summary_text = response.text.strip()
             logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
@@ -712,7 +753,15 @@ class TextProcessor:
     def create_tweet_thread(article: Article, gemini_client: Optional[GeminiClient] = None) -> Optional[List[str]]:
         """Create a complete tweet thread with catchy headline, summary, and URL.
         
-        Returns None if Gemini is required but unavailable, indicating the bot should wait and retry later.
+        Args:
+            article: The article to create a thread for
+            gemini_client: Optional Gemini AI client for enhanced content generation
+            
+        Returns:
+            List of tweet strings forming a thread, or None if Gemini is required but unavailable
+            
+        Note:
+            Returns None if Gemini is required but unavailable, indicating the bot should wait and retry later.
         """
         logger.info(f"🧵 Creating tweet thread for: {article.title[:100]}...")
         logger.info(f"🤖 Gemini client available: {gemini_client is not None}")
@@ -896,7 +945,7 @@ class NewsAPI:
             
             q = QueryArticlesIter(
                 keywords="bitcoin mining",
-                dateStart=datetime.now() - timedelta(days=self.config.article_lookback_days),
+                dateStart=datetime.now(timezone.utc) - timedelta(days=self.config.article_lookback_days),
                 lang="eng"
             )
             
@@ -1215,6 +1264,7 @@ class BitcoinMiningBot:
                     continue
                 
                 # Intelligent content similarity check against queued articles
+                # Performance optimization: Early termination on first duplicate match
                 is_duplicate = False
                 for existing_article in existing_articles:
                     if ContentSimilarity.is_duplicate_article(
@@ -1225,7 +1275,7 @@ class BitcoinMiningBot:
                     ):
                         logger.info(f"Found content duplicate: '{article.title}' matches existing '{existing_article.title}'")
                         is_duplicate = True
-                        break
+                        break  # Early termination - no need to check remaining articles
                 
                 if not is_duplicate:
                     new_articles.append(article)
@@ -1261,7 +1311,7 @@ class BitcoinMiningBot:
                                     # Reset queue state
                                     self.posted_data["queued_articles"] = []
                                 
-                                self.posted_data["last_run_time"] = datetime.now().isoformat()
+                                self.posted_data["last_run_time"] = TimeManager.now().isoformat()
                                 self._save_data()
                                 logger.info("✅ Posted queued article successfully")
                                 return True
@@ -1317,11 +1367,13 @@ class BitcoinMiningBot:
                                 logger.info(f"Queued {len(remaining_articles)} additional articles")
                             
                             # Update last run time
-                            self.posted_data["last_run_time"] = datetime.now().isoformat()
+                            self.posted_data["last_run_time"] = TimeManager.now().isoformat()
                             self._save_data()
                             
                             execution_time = time.time() - start_time
                             logger.info(f"✅ Bot completed successfully in {execution_time:.2f}s")
+                            # Performance optimization: Clear cache to free memory
+                            ContentSimilarity.clear_cache()
                             return True
                         else:
                             # Check if failure was due to Gemini (not a rate limit issue)
@@ -1350,6 +1402,8 @@ class BitcoinMiningBot:
         except Exception as e:
             execution_time = time.time() - start_time
             logger.error(f"Bot execution failed after {execution_time:.2f}s: {e}")
+            # Performance optimization: Clear cache even on failure to free memory
+            ContentSimilarity.clear_cache()
             return False
     
     def _run_diagnostics(self) -> bool:

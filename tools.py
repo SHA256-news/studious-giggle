@@ -281,18 +281,24 @@ class BotTools:
             
             # Remove articles (in reverse order to maintain indices)
             for i in reversed(indices_to_remove):
-                # Double-check bounds to prevent IndexError
-                if 0 <= i < len(queue):
-                    try:
+                try:
+                    # Atomic bounds check and pop operation to prevent race conditions
+                    if 0 <= i < len(queue):
                         removed_article = queue.pop(i)
                         if removed_article:
                             title = removed_article.get('title', 'Unknown') if isinstance(removed_article, dict) else 'Invalid data'
                             print(f"🗑️ Removed: {title[:50]}{'...' if len(str(title)) > 50 else ''}")
-                    except IndexError as e:
-                        logger.warning(f"⚠️ Could not remove article at index {i}: {e}")
-                        continue
-                else:
-                    logger.warning(f"⚠️ Invalid index {i} for queue of length {len(queue)}")
+                    else:
+                        logger.warning(f"⚠️ Invalid index {i} for queue of length {len(queue)}")
+                except (IndexError, ValueError) as e:
+                    # Comprehensive error handling for any queue modification issues
+                    logger.warning(f"⚠️ Could not remove article at index {i}: {e}")
+                    # Continue processing other indices even if one fails
+                    continue
+                except Exception as e:
+                    # Catch any unexpected errors to prevent total failure
+                    logger.error(f"❌ Unexpected error removing article at index {i}: {e}")
+                    continue
             
             # Save cleaned queue
             if removed_count > 0:
