@@ -86,7 +86,6 @@ class FakeStorage(ArticleStorage):
     def __init__(self):
         self.posted_articles: List[PostedArticle] = []
         self.queue: List[Article] = []
-        self.last_run_time: Optional[datetime] = None
         self.save_posted_article_called = False
         self.save_queue_called = False
     
@@ -104,13 +103,6 @@ class FakeStorage(ArticleStorage):
     def save_queue(self, articles: List[Article]) -> bool:
         self.save_queue_called = True
         self.queue = articles.copy()
-        return True
-    
-    def get_last_run_time(self) -> Optional[datetime]:
-        return self.last_run_time
-    
-    def set_last_run_time(self, timestamp: datetime) -> bool:
-        self.last_run_time = timestamp
         return True
     
     def clear_queue(self) -> bool:

@@ -20,7 +20,6 @@ class BotConfig:
     
     # Bot Settings
     max_articles: int = 20
-    min_interval_minutes: int = 90
     article_lookback_days: int = 1
     
     # Storage
@@ -66,7 +65,6 @@ class BotConfig:
             eventregistry_api_key=eventregistry_api_key,
             gemini_api_key=gemini_api_key,
             max_articles=int(os.getenv("MAX_ARTICLES", "20")),
-            min_interval_minutes=int(os.getenv("MIN_INTERVAL_MINUTES", "90")),
             article_lookback_days=int(os.getenv("ARTICLE_LOOKBACK_DAYS", "1")),
             storage_file=os.getenv("STORAGE_FILE", "posted_articles.json")
         )
@@ -97,8 +95,6 @@ class BotConfig:
         # Validate numeric ranges
         if self.max_articles < 1:
             issues.append(f"max_articles must be positive: {self.max_articles}")
-        if self.min_interval_minutes < 1:
-            issues.append(f"min_interval_minutes must be positive: {self.min_interval_minutes}")
         if self.article_lookback_days < 1:
             issues.append(f"article_lookback_days must be positive: {self.article_lookback_days}")
         
@@ -121,6 +117,5 @@ class BotConfig:
             f"BotConfig(twitter={'✓' if self.twitter_api_key else '✗'}, "
             f"eventregistry={'✓' if self.eventregistry_api_key else '✗'}, "
             f"gemini={'✓' if self.gemini_api_key else '✗'}, "
-            f"max_articles={self.max_articles}, "
-            f"interval={self.min_interval_minutes}min)"
+            f"max_articles={self.max_articles})"
         )

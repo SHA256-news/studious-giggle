@@ -58,8 +58,7 @@ def create_bot(config: BotConfig) -> Optional[BitcoinMiningNewsBot]:
             news_provider=news_provider,
             storage=storage,
             publisher=publisher,
-            ai_provider=ai_provider,
-            min_interval_minutes=config.min_interval_minutes
+            ai_provider=ai_provider
         )
         
         logger.info("Bot initialized successfully")
@@ -141,12 +140,6 @@ def cmd_diagnose(config: BotConfig) -> int:
     print()
     print(f"  Queue Size: {diagnostics.get('queue_size', 0)} articles")
     print(f"  Posted Count: {diagnostics.get('posted_count', 0)} articles")
-    
-    last_run = diagnostics.get('last_run')
-    if last_run:
-        print(f"  Last Run: {last_run}")
-    else:
-        print("  Last Run: Never")
     
     print()
     print("✅ Diagnostics complete")

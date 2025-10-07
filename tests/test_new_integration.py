@@ -28,8 +28,7 @@ class TestBotIntegration(unittest.TestCase):
             news_provider=self.news_provider,
             storage=self.storage,
             publisher=self.publisher,
-            ai_provider=self.ai_provider,
-            min_interval_minutes=90
+            ai_provider=self.ai_provider
         )
     
     def test_bot_run_with_relevant_articles(self):
@@ -69,18 +68,34 @@ class TestBotIntegration(unittest.TestCase):
         self.assertFalse(success)
         self.assertFalse(self.publisher.post_thread_called)
     
-    def test_bot_respects_minimum_interval(self):
-        """Test bot respects minimum interval between runs."""
-        # Set last run time to recent
-        self.storage.last_run_time = datetime.now() - timedelta(minutes=30)
+    def test_bot_runs_multiple_times_without_interval_restriction(self):
+        """Test bot can run multiple times without interval restriction."""
+        # Setup: provide relevant articles for both runs
+        article1 = create_test_article(
+            uri="test-789",
+            title="Bitcoin Mining Difficulty Adjusts",
+            body="Bitcoin mining difficulty adjustment occurred"
+        )
+        article2 = create_test_article(
+            uri="test-790",
+            title="New Mining Pool Launches",
+            body="A new Bitcoin mining pool has launched"
+        )
         
-        # Run bot
-        success = self.bot.run(keywords=["bitcoin mining"], max_articles=20)
+        # First run
+        self.news_provider.articles_to_return = [article1]
+        success1 = self.bot.run(keywords=["bitcoin mining"], max_articles=20)
         
-        # Verify: should not fetch or post
-        self.assertFalse(success)
-        self.assertFalse(self.news_provider.fetch_called)
-        self.assertFalse(self.publisher.post_thread_called)
+        # Second run immediately after (no interval restriction)
+        self.news_provider.articles_to_return = [article2]
+        success2 = self.bot.run(keywords=["bitcoin mining"], max_articles=20)
+        
+        # Verify: both runs should complete successfully
+        self.assertTrue(success1)
+        self.assertTrue(success2)
+        self.assertTrue(self.news_provider.fetch_called)
+        # Verify two articles were posted
+        self.assertEqual(len(self.publisher.posted_threads), 2)
 
 
 if __name__ == '__main__':

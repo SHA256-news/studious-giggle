@@ -28,8 +28,7 @@ class BitcoinMiningNewsBot:
         news_provider: NewsProvider,
         storage: ArticleStorage,
         publisher: SocialMediaPublisher,
-        ai_provider: Optional[AIProvider] = None,
-        min_interval_minutes: int = 90
+        ai_provider: Optional[AIProvider] = None
     ):
         """
         Initialize bot with dependencies.
@@ -39,13 +38,11 @@ class BitcoinMiningNewsBot:
             storage: Storage for article data and bot state
             publisher: Publisher for posting to social media
             ai_provider: Optional AI provider for enhanced content
-            min_interval_minutes: Minimum minutes between runs
         """
         self.news_provider = news_provider
         self.storage = storage
         self.publisher = publisher
         self.ai_provider = ai_provider
-        self.min_interval_minutes = min_interval_minutes
         
         # Initialize services
         self.mining_filter = BitcoinMiningFilter()
@@ -64,11 +61,6 @@ class BitcoinMiningNewsBot:
             True if run was successful, False otherwise
         """
         try:
-            # Check if enough time has passed since last run
-            if not self._can_run_now():
-                logger.info("Minimum interval not yet passed, skipping run")
-                return False
-            
             # Fetch articles
             logger.info(f"Fetching articles with keywords: {keywords}")
             articles = self.news_provider.fetch_articles(
@@ -107,9 +99,6 @@ class BitcoinMiningNewsBot:
             
             # Save updated queue
             self.storage.save_queue(queue)
-            
-            # Update last run time
-            self.storage.set_last_run_time(datetime.now())
             
             return posted
             
@@ -191,24 +180,6 @@ class BitcoinMiningNewsBot:
             logger.error(f"Failed to post article: {e}", exc_info=True)
             return False
     
-    def _can_run_now(self) -> bool:
-        """Check if minimum interval has passed since last run."""
-        last_run = self.storage.get_last_run_time()
-        if not last_run:
-            return True
-        
-        elapsed = datetime.now() - last_run
-        elapsed_minutes = elapsed.total_seconds() / 60
-        
-        if elapsed_minutes < self.min_interval_minutes:
-            logger.info(
-                f"Only {elapsed_minutes:.1f} minutes since last run "
-                f"(minimum: {self.min_interval_minutes})"
-            )
-            return False
-        
-        return True
-    
     def diagnose(self) -> dict:
         """
         Run diagnostics and return status information.
@@ -222,8 +193,7 @@ class BitcoinMiningNewsBot:
             "publisher_authenticated": False,
             "ai_provider": "not available",
             "queue_size": 0,
-            "posted_count": 0,
-            "last_run": None
+            "posted_count": 0
         }
         
         try:
@@ -246,10 +216,6 @@ class BitcoinMiningNewsBot:
             
             posted = self.storage.load_posted_articles()
             diagnostics["posted_count"] = len(posted)
-            
-            last_run = self.storage.get_last_run_time()
-            if last_run:
-                diagnostics["last_run"] = last_run.isoformat()
         except Exception as e:
             diagnostics["storage"] = f"error: {e}"
         
