@@ -42,7 +42,6 @@ class JSONStorage(ArticleStorage):
                 "posted_articles": [],
                 "posted_uris": [],
                 "queue": [],
-                "last_run": None,
                 "posted_articles_history": []
             }
         
@@ -54,7 +53,6 @@ class JSONStorage(ArticleStorage):
             data.setdefault("posted_articles", [])
             data.setdefault("posted_uris", [])
             data.setdefault("queue", [])
-            data.setdefault("last_run", None)
             data.setdefault("posted_articles_history", [])
             
             logger.info(f"Loaded storage: {len(data['posted_uris'])} posted, {len(data['queue'])} queued")
@@ -174,26 +172,6 @@ class JSONStorage(ArticleStorage):
             return self._save_data()
         except Exception as e:
             logger.error(f"Failed to save queue: {e}")
-            return False
-    
-    def get_last_run_time(self) -> Optional[datetime]:
-        """Get timestamp of last bot execution."""
-        last_run = self.data.get("last_run")
-        if not last_run:
-            return None
-        
-        try:
-            return datetime.fromisoformat(last_run)
-        except (ValueError, TypeError):
-            return None
-    
-    def set_last_run_time(self, timestamp: datetime) -> bool:
-        """Record bot execution timestamp."""
-        try:
-            self.data["last_run"] = timestamp.isoformat()
-            return self._save_data()
-        except Exception as e:
-            logger.error(f"Failed to set last run time: {e}")
             return False
     
     def clear_queue(self) -> bool:

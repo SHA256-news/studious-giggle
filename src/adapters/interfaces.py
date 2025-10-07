@@ -132,16 +132,6 @@ class ArticleStorage(ABC):
         pass
     
     @abstractmethod
-    def get_last_run_time(self) -> Optional[datetime]:
-        """Get timestamp of last bot execution."""
-        pass
-    
-    @abstractmethod
-    def set_last_run_time(self, timestamp: datetime) -> bool:
-        """Record bot execution timestamp."""
-        pass
-    
-    @abstractmethod
     def clear_queue(self) -> bool:
         """Clear all queued articles."""
         pass

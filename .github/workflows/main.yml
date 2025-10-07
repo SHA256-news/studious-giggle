@@ -3,19 +3,13 @@ name: Bitcoin Mining News Bot
 on:
   schedule:
     # Run every 90 minutes (16 times per day)
-    # Two complementary schedules create perfect 90-minute intervals across 24 hours:
+    # Two complementary schedules create consistent 90-minute intervals across 24 hours:
     # Schedule A: 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 (8 times)
     # Schedule B: 01:30, 04:30, 07:30, 10:30, 13:30, 16:30, 19:30, 22:30 (8 times)
-    # Total: 16 executions per day with consistent 90-minute spacing
+    # Total: 16 executions per day with 90-minute spacing
     - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight
     - cron: '30 1,4,7,10,13,16,19,22 * * *'    # Every 3 hours starting at 1:30 AM
   workflow_dispatch:  # Allows manual triggering
-    inputs:
-      force_run:
-        description: 'Force run even if within minimum interval'
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: write
@@ -65,7 +59,6 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
           EVENTREGISTRY_API_KEY: ${{ secrets.EVENTREGISTRY_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          FORCE_RUN: ${{ github.event.inputs.force_run }}
 
       # Reports functionality removed in architecture streamlining
 
