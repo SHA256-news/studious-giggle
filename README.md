@@ -163,19 +163,19 @@ coverage report
 | `EVENTREGISTRY_API_KEY` | Yes | EventRegistry API key |
 | `GEMINI_API_KEY` | Yes | Google Gemini API key |
 | `MAX_ARTICLES` | No | Maximum articles to fetch (default: 20) |
-| `MIN_INTERVAL_MINUTES` | No | Minimum minutes between runs (default: 90) |
 | `STORAGE_FILE` | No | Storage file path (default: posted_articles.json) |
 
 ### GitHub Actions
 
-The bot runs automatically via GitHub Actions:
+The bot runs automatically via GitHub Actions on a schedule:
 
 ```yaml
 schedule:
-  - cron: '0 */90 * * *'  # Every 90 minutes
+  - cron: '0 0,3,6,9,12,15,18,21 * * *'      # Every 3 hours starting at midnight
+  - cron: '30 1,4,7,10,13,16,19,22 * * *'    # Every 3 hours starting at 1:30 AM
 ```
 
-Configure secrets in GitHub repository settings.
+This creates 16 bot runs per day with consistent 90-minute spacing. Configure secrets in GitHub repository settings.
 
 ## Contributing
 
