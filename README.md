@@ -101,6 +101,86 @@ src/
 4. **Testability** - Easy to test with fake implementations
 5. **Single Responsibility** - Each module has one clear purpose
 
+## Complete Bot Workflow
+
+The **scaling-engine** repository implements a **Bitcoin Mining News Bot** with dual-purpose operation:
+
+### Purpose 1: Continuous Social Media Distribution
+
+**Monitoring Workflow** (every 30 minutes):
+- 📰 Fetches Bitcoin mining articles from Event Registry (past 1 hour)
+- 🔍 Filters articles based on quality criteria
+- 📦 Adds articles to posting queue
+- 💾 Stores articles for daily brief aggregation
+
+**Posting Workflow** (every 24 minutes):
+- 📋 Retrieves next article from queue
+- 🤖 Generates engaging tweet with Gemini AI
+- ✅ Checks Twitter rate limiter (60/day target)
+- 🐦 Posts to Twitter/X if within limits
+- 📊 Records post timestamp
+
+**Why Separate Workflows?**
+- Continuous monitoring ensures no news is missed
+- Scheduled posting respects Twitter's 100 posts/24hr limit
+- Queue management prevents flooding
+- Even distribution throughout the day
+
+**Twitter API Rate Limiting**:
+- Limit: 100 posts per 24 hours
+- Target: 60 posts per day (40% safety buffer)
+- Frequency: Every 24 minutes
+- Strategy: Queue-based with rate limiter
+
+### Purpose 2: Daily Brief Publication
+
+**Daily Brief Workflow** (once per day at midnight UTC):
+- 📚 Aggregates all articles from past 24 hours
+- 📝 Generates comprehensive Markdown brief with Gemini AI
+- 🔖 Creates GitHub issue with brief content
+- 🌐 Triggers website publication when issue is closed
+
+**Complete Workflow Diagram**:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│         Monitoring Workflow (Every 30 minutes)              │
+│  Event Registry → Filter → Queue → Store for Daily Brief   │
+└────────────────────────┬────────────────────────────────────┘
+                         │
+                         ↓ [Article Queue]
+                         │
+┌────────────────────────┴────────────────────────────────────┐
+│         Posting Workflow (Every 24 minutes)                 │
+│  Queue → Rate Limiter → Gemini → Twitter                   │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│       Daily Brief Workflow (Once per day at 00:00 UTC)     │
+│  Load Cached Articles → Gemini → GitHub Issue → Website    │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### APIs Used
+
+| API | Purpose | Credentials Required |
+|-----|---------|---------------------|
+| **Event Registry** | Fetch Bitcoin mining news articles | `EVENT_REGISTRY_API_KEY` |
+| **Gemini (Google AI)** | Generate tweets and daily briefs | `GEMINI_API_KEY` |
+| **Twitter** | Post scheduled updates | `TWITTER_API_KEY`, `TWITTER_API_SECRET`, `TWITTER_ACCESS_TOKEN`, `TWITTER_ACCESS_SECRET` |
+| **GitHub** | Create issues for daily briefs | `GITHUB_TOKEN` |
+
+### Design Philosophy
+
+1. **Continuous Operation**: Monitor news sources every 30 minutes
+2. **Rate Limit Compliance**: Respect Twitter's 100 posts/day limit (target 60)
+3. **Queue-Based Architecture**: Decouple monitoring from posting
+4. **Intelligent Scheduling**: Post every 24 minutes for even distribution
+5. **Quality Over Quantity**: Filter aggressively, post only worthy content
+6. **Verification**: Every step validated before proceeding
+7. **Stateless Functions**: Pure functions for testability
+8. **Automated Execution**: GitHub Actions for hands-free operation
+
 ## Features
 
 ### Content Filtering
