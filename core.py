@@ -623,7 +623,7 @@ class GeminiClient:
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             raise
     
-       def generate_thread_summary(self, article: 'Article') -> str:
+      626|     def generate_thread_summary(self, article: 'Article') -> str:
         """Generate a concise 3-point summary using URL context."""
         try:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
