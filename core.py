@@ -622,8 +622,8 @@ class GeminiClient:
             # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             raise
-    
-      626|     def generate_thread_summary(self, article: 'Article') -> str:
+
+    def generate_thread_summary(self, article: 'Article') -> str:
         """Generate a concise 3-point summary using URL context."""
         try:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
@@ -741,75 +741,6 @@ class GeminiClient:
             # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini summary generation failed with unexpected error: {e}")
             raise
-    
-    def _process_summary_response(self, summary_text: str) -> str:
-        """Process and clean the summary response from Gemini."""
-        # Clean up numbering
-        summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
-        
-        # Convert inline bullets to line-break format
-        if ' • ' in summary_text and '\n' not in summary_text:
-            parts = [part.strip() for part in summary_text.split(' • ') if part.strip()]
-            summary_text = '\n'.join([f'• {part}' if not part.startswith('•') else part for part in parts[:3]])
-        elif '\n' in summary_text:
-            lines = [line.strip() for line in summary_text.split('\n') if line.strip()]
-            summary_text = '\n'.join([f'• {line}' if not line.startswith('•') else line for line in lines[:3]])
-        else:
-            summary_text = f'• {summary_text}'
-        
-        # Remove trailing periods (but keep question marks)
-        lines = summary_text.split('\n')
-        cleaned_lines = []
-        for line in lines:
-            if line.strip():
-                if line.rstrip().endswith('.') and not line.rstrip().endswith('?'):
-                    line = line.rstrip()[:-1]
-                cleaned_lines.append(line)
-        summary_text = '\n'.join(cleaned_lines)
-        
-        # Ensure it's not too long
-        if len(summary_text) > 180:
-            lines = summary_text.split('\n')
-            result_lines = []
-            total_length = 0
-            
-            for line in lines:
-                if total_length + len(line) + 1 <= 177:
-                    result_lines.append(line)
-                    total_length += len(line) + 1
-                else:
-                    break
-            
-            summary_text = '\n'.join(result_lines)
-            if len(summary_text) > 180:
-                summary_text = summary_text[:177] + "..."
-                
-        return summary_text
-    
-    def _clean_headline(self, text: str) -> str:
-        """Remove emojis and clean headline text."""
-        # Remove emojis
-        emoji_pattern = re.compile(
-            "["
-            "\U0001F600-\U0001F64F"  # emoticons
-            "\U0001F300-\U0001F5FF"  # symbols & pictographs
-            "\U0001F680-\U0001F6FF"  # transport & map symbols
-            "\U0001F1E0-\U0001F1FF"  # flags
-            "\U00002702-\U000027B0"
-            "\U000024C2-\U0001F251"
-            "]+", flags=re.UNICODE
-        )
-        text = emoji_pattern.sub('', text)
-        
-        # Remove common prefixes
-        prefixes = [
-            r"^(BREAKING:|JUST IN:|NEWS:|HOT:)\s*",
-            r"^🚨\s*", r"^📢\s*", r"^⚡\s*", r"^🔥\s*"
-        ]
-        for prefix in prefixes:
-            text = re.sub(prefix, "", text, flags=re.IGNORECASE)
-        
-        return text.strip()
 
 
 # =============================================================================
