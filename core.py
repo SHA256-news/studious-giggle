@@ -623,7 +623,7 @@ class GeminiClient:
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             raise
     
-    def generate_thread_summary(self, article: 'Article') -> str:
+       def generate_thread_summary(self, article: 'Article') -> str:
         """Generate a concise 3-point summary using URL context."""
         try:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
@@ -655,7 +655,7 @@ class GeminiClient:
             • Bitcoin mining operations are expanding
             • Management is optimistic about the future
             
-            Return ONLY the bullet points, nothing else.
+            **IMPORTANT: Your entire response must consist ONLY of the three bullet points. Do not include any introductory phrases, conversational text, explanations, or any text other than the bullet points themselves. Start your response directly with the first bullet point.**
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
