@@ -742,8 +742,7 @@ class GeminiClient:
             CRITICAL ANTI-REPETITION RULES:
             - DO NOT repeat ANY information from the original article title above
             - DO NOT repeat ANY information from the generated headline above
-            - DO NOT repeat ANY numbers, dollar amounts, Bitcoin amounts, or facts already mentioned in either
-            - DO NOT repeat specific numbers like "127,271", "$12 billion", percentages, dates if they appear in headline
+            - DO NOT repeat ANY numbers, dollar amounts, Bitcoin amounts, percentages, dates, or specific facts (e.g., "127,271", "$12 billion") already mentioned in the original article title or generated headline
             - Each bullet point must contain COMPLETELY NEW information from the article BODY
             - Read the ENTIRE article body to find additional facts not in the title or headline
             - If the headline mentions a specific Bitcoin amount or dollar figure, your bullets must discuss DIFFERENT aspects
