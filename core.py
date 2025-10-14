@@ -509,21 +509,123 @@ class GeminiClient:
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
+    def _clean_headline(self, headline: str) -> str:
+        """Clean up headline text by removing unwanted formatting."""
+        import re
+        
+        # Remove quotes if present
+        headline = headline.strip('"\'')
+        
+        # Remove markdown formatting
+        headline = re.sub(r'\*\*', '', headline)
+        headline = re.sub(r'__', '', headline)
+        
+        # Remove any leading/trailing whitespace
+        headline = headline.strip()
+        
+        return headline
+    
+    def _process_summary_response(self, summary_text: str) -> str:
+        """Process and clean Gemini's summary response to extract only bullet points."""
+        import re
+        
+        lines = summary_text.strip().split('\n')
+        bullet_points = []
+        
+        # Filter lines to keep only actual bullet points
+        for line in lines:
+            line = line.strip()
+            
+            # Skip empty lines
+            if not line:
+                continue
+            
+            # Clean the line: remove bullet markers, extra dashes, quotes at start
+            clean_line = line.lstrip('•-* ').strip()
+            clean_line = clean_line.lstrip('-* ').strip()  # Remove any remaining dashes/asterisks
+            clean_line = clean_line.lstrip('"\'').strip()  # Remove quotes at start
+            
+            line_lower = clean_line.lower()
+            
+            # Skip lines that look like Gemini's thinking process or meta-commentary
+            skip_patterns = [
+                r'^(i will|i am|let me|here are|here is)',
+                r'^(the article|from the article|based on|according to)',
+                r'^(the following|these are|below are)',
+                r'(extract|create|generate|provide|present)\s+(the|specific|details)',
+                r'^(bullet points?|summary|details?)[:.]',
+            ]
+            
+            should_skip = False
+            for pattern in skip_patterns:
+                if re.search(pattern, line_lower):
+                    should_skip = True
+                    break
+            
+            if should_skip:
+                continue
+            
+            # Additional check: skip very short lines (less than 20 chars of actual content)
+            if len(clean_line) < 20:
+                continue
+            
+            # Only keep lines that look like actual facts (have numbers, company names, or specific data)
+            # This helps filter out malformed partial content
+            if re.search(r'[A-Z]{2,}|\d+|bitcoin|btc|mara|riot|hive|cleanpark', clean_line, re.IGNORECASE):
+                bullet_points.append(f"• {clean_line}")
+        
+        # If we found valid bullet points, return them
+        if bullet_points:
+            # Take only first 3 bullet points if more were returned
+            return '\n'.join(bullet_points[:3])
+        
+        # Fallback: try to extract any meaningful content that looks like facts
+        meaningful_lines = []
+        for line in lines:
+            line = line.strip()
+            line_lower = line.lower()
+            
+            # Must be substantial content
+            if len(line) < 20:
+                continue
+            
+            # Skip meta-commentary
+            if any(p in line_lower for p in ['i will', 'let me', 'here are', 'from the article:', 'based on', 'according to']):
+                continue
+            
+            # Look for lines with numbers, percentages, or dollar amounts (likely real facts)
+            if re.search(r'\d+[%$]|\d+\s*(BTC|miners?|facility|percent|million|billion)', line, re.IGNORECASE):
+                # Clean this line too
+                clean = line.lstrip('•-* ').lstrip('-* ').lstrip('"\'').strip()
+                meaningful_lines.append(f"• {clean}")
+        
+        if meaningful_lines:
+            return '\n'.join(meaningful_lines[:3])
+        
+        # Last resort: return the original text (this shouldn't happen often)
+        return summary_text
+
     def generate_catchy_headline(self, article: 'Article') -> str:
         """Generate a catchy, emoji-free headline for the article using URL context."""
         try:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Read the Bitcoin mining article at {article.url} and write a PUNCHY news headline.
+            Read the FULL Bitcoin mining article at {article.url} (not just the title) and write a PUNCHY news headline based on the article's BODY content.
+            
+            Article's original title: "{article.title}"
+            
+            CRITICAL: Your headline must be DIFFERENT from the original title. Extract NEW insights from reading the full article body.
             
             CRITICAL REQUIREMENTS:
+            - Read the ENTIRE article body to find the most newsworthy angle
             - Write like a professional financial news reporter
             - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
             - Keep it under 70 characters
-            - Include specific numbers, percentages, or dollar amounts from the article
+            - Include specific numbers, percentages, or dollar amounts from the article BODY
             - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
             - Sound like headlines from Bloomberg, Reuters, or MarketWatch
+            - Must be DIFFERENT from the original article title above
             
             GOOD EXAMPLES:
             - "HIVE Hits 52-Week High on Mining Surge"
@@ -535,6 +637,7 @@ class GeminiClient:
             - "The article states that HIVE Digital Technologies..."
             - "According to the report, Marathon Digital..."
             - "The company announced in the article..."
+            - Repeating the original article title
             
             Return ONLY the headline, no quotes, no explanation.
             """
@@ -631,31 +734,49 @@ class GeminiClient:
             headline = self.generate_catchy_headline(article)
             
             prompt = f"""
-            Read the full Bitcoin mining article at {article.url} and create SPECIFIC bullet points.
+            Read the FULL Bitcoin mining article body at {article.url} and create SPECIFIC bullet points with NEW information.
             
+            Article's original title: "{article.title}"
             Generated Headline: {headline}
             
-            CRITICAL: DO NOT repeat anything from the headline above.
+            CRITICAL ANTI-REPETITION RULES:
+            - DO NOT repeat ANY information from the original article title above
+            - DO NOT repeat ANY information from the generated headline above
+            - DO NOT repeat ANY numbers, dollar amounts, or facts already mentioned in either
+            - Each bullet point must contain COMPLETELY NEW information from the article BODY
+            - Read the ENTIRE article body to find additional facts not in the title or headline
             
-            Create 3 rapid-fire bullet points that reveal NEW details from the article:
+            Create 3 rapid-fire bullet points that reveal DIFFERENT details from the article body:
             - Total length under 180 characters
-            - Include specific numbers, dates, locations, dollar amounts from the article
+            - Include specific numbers, dates, locations, dollar amounts NOT already mentioned
             - Use telegraphic style like financial newswires
             - Each point 50-60 characters max
             - Format: "• [specific fact]"
             - NO generic statements
+            - NO repetition of title or headline content
             
-            GOOD EXAMPLES:
+            GOOD EXAMPLES (each has NEW information):
             • Q3 revenue jumped 42% to $87M year-over-year
             • Added 2,500 miners at Texas facility this month  
             • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
             
             BAD EXAMPLES (NEVER DO):
-            • The company is performing well
-            • Bitcoin mining operations are expanding
-            • Management is optimistic about the future
+            • The company is performing well (too generic)
+            • Bitcoin mining operations are expanding (too generic)
+            • Repeating any number or fact from the title or headline (FORBIDDEN)
             
-            **IMPORTANT: Your entire response must consist ONLY of the three bullet points. Do not include any introductory phrases, conversational text, explanations, or any text other than the bullet points themselves. Start your response directly with the first bullet point.**
+            **CRITICAL OUTPUT FORMAT RULES:**
+            - Start IMMEDIATELY with the first bullet point (•)
+            - NO introductions like "I will now...", "Let me...", "Here are...", "From the article:", etc.
+            - NO explanations or meta-commentary about what you're doing
+            - NO blank lines between bullet points
+            - ONLY the 3 bullet points, nothing else
+            - Each bullet point must start with • character
+            
+            Your response must be EXACTLY in this format:
+            • [First NEW specific fact with numbers/details]
+            • [Second NEW specific fact with numbers/details]
+            • [Third NEW specific fact with numbers/details]
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
