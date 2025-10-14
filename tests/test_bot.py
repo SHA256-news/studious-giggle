@@ -180,6 +180,44 @@ class TestBot:
                 print(f"Warning: Could not clean up temporary file: {e}")
 
 
+    def test_law_enforcement_filtering(self):
+        """Test that law enforcement/seizure articles are filtered out."""
+        from core import NewsAPI, Config
+        
+        config = Config()
+        news_api = NewsAPI(config)
+        
+        # Test article about Treasury seizure (should be rejected)
+        seizure_article_data = {
+            "title": "US moves to seize $12 billion in bitcoin tied to Cambodia scam kingpin",
+            "body": "The U.S. Department of Justice launched a record-breaking forfeiture case involving bitcoin. The Treasury designated cryptocurrency-enabled scam networks. Chen Zhi was indicted for fraud and money laundering. The operation included mining operations in Laos through Warp Data Technology. Authorities identified over $4 billion in illicit proceeds laundered.",
+            "url": "https://example.com/seizure",
+            "uri": "test-seizure",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article = Article.from_dict(seizure_article_data)
+        
+        # This should be rejected because it's primarily about law enforcement
+        is_relevant = news_api._is_bitcoin_relevant(article)
+        assert is_relevant is False, "Treasury seizure article should be filtered out"
+        
+        # Test legitimate mining article (should be approved)
+        mining_article_data = {
+            "title": "Marathon Digital Expands Mining Operations in Texas",
+            "body": "Marathon Digital Holdings announced expansion of its bitcoin mining operations in Texas. The company will add 5000 new mining machines. The mining facility will increase hash rate by 500 PH/s.",
+            "url": "https://example.com/mining",
+            "uri": "test-mining",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article2 = Article.from_dict(mining_article_data)
+        
+        # This should be approved - it's about actual mining operations
+        is_relevant2 = news_api._is_bitcoin_relevant(article2)
+        assert is_relevant2 is True, "Legitimate mining article should be approved"
+
+
 def run_simple_tests():
     """Run all simple tests."""
     test_bot = TestBot()

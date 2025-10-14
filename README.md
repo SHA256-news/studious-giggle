@@ -35,16 +35,18 @@
 - **Public mining companies auto-approval**: Comprehensive coverage of 33 publicly traded Bitcoin mining companies including Marathon Digital (MARA), Riot Platforms (RIOT), CleanSpark (CLSK), Hut 8 (HUT), Core Scientific (CORZ), Cipher Mining (CIFR), Bitfarms (BITF), HIVE Digital (HIVE), TeraWulf (WULF), Bitdeer (BTDR), Iris Energy (IREN), Bit Digital (BTBT), Greenidge (GREE), Stronghold (SDIG), Argo Blockchain (ARBK), Canaan (CAN), BIT Mining (BTCM), BitFuFu (FUFU), and many more - ALL are ALWAYS relevant
 - **AI + mining relationships**: Articles about AI data centers, power struggles, electricity consumption with mining context are approved
 - **Political/regulatory mining news**: Government policies, regulations, bans, approvals related to Bitcoin mining are approved
+- **Law enforcement exclusions**: NEW - Filters out Treasury seizures, arrests, indictments, criminal investigations that only mention mining tangentially (requires 3+ law enforcement terms to trigger)
 - **Flexible mining focus**: Requires only 1 substantial mining term (not 2+) for approval
 - **Targeted exclusions**: Only excludes obvious cloud mining, promotional schemes, and clear non-mining topics (DeFi, NFT, Web3)
 - **Content quality validation**: Ensures articles are genuinely about Bitcoin mining operations, companies, or regulation
 
-**Real-World Examples** (Now APPROVED):
+**Real-World Examples**:
 - ✅ **"Why Hut 8 Stock Was Blasting Higher This Week"** - Public mining company (auto-approved)
 - ✅ **"'Shark Tank' Star Kevin O'Leary Says Bitcoin Mining, AI Data Centers Are Locked In A 'Power Struggle'"** - AI+mining relationship (approved)
 - ✅ **"JPMorgan Downgrades CleanSpark (CLSK) to Neutral"** - Public mining company (auto-approved)  
 - ✅ **"France: Éric Ciotti Opposes U.S. Takeover of Exaion, Defends Bitcoin Mining"** - Political/regulatory (approved)
 - ✅ **"MARA | My Life Long Girlfriend Stock | LONG"** - Public mining company MARA (auto-approved)
+- ❌ **"U.S. Treasury Seizes 127,271 Bitcoin Worth $12 Billion"** - Law enforcement action (correctly rejected - 9 law enforcement terms detected)
 
 **Validation Results**: 7/7 filter tests passing after corrections, with proper rejection of promotional content like "HashJ Claims Users Can Earn $118 Daily Through Free Bitcoin Mining App" while approving legitimate mining industry content.
 
@@ -98,6 +100,7 @@
 - **Option 2**: [Headline] → [Summary] → [URL] (when combined >280 characters)
 - **Native URL context**: Gemini 2.5 Flash with direct article content access via Google's servers (up to 34MB per URL)
 - **Anti-repetition intelligence**: Headlines and summaries complement each other, zero duplicate information
+- **Enhanced repetition prevention**: Specific examples prevent repeating numbers, amounts, or facts from headlines (e.g., won't repeat "$12 billion" or "127,271 BTC" if mentioned in headline)
 - **Professional formatting**: Line-break bullet points for improved readability
 - **Mandatory AI enhancement**: Bot waits for Gemini API - no publishing without AI-generated content
 - **Character limit compliance**: Perfect Twitter threading with proper reply chaining

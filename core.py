@@ -742,9 +742,10 @@ class GeminiClient:
             CRITICAL ANTI-REPETITION RULES:
             - DO NOT repeat ANY information from the original article title above
             - DO NOT repeat ANY information from the generated headline above
-            - DO NOT repeat ANY numbers, dollar amounts, or facts already mentioned in either
+            - DO NOT repeat ANY numbers, dollar amounts, Bitcoin amounts, percentages, dates, or specific facts (e.g., "127,271", "$12 billion") already mentioned in the original article title or generated headline
             - Each bullet point must contain COMPLETELY NEW information from the article BODY
             - Read the ENTIRE article body to find additional facts not in the title or headline
+            - If the headline mentions a specific Bitcoin amount or dollar figure, your bullets must discuss DIFFERENT aspects
             
             Create 3 rapid-fire bullet points that reveal DIFFERENT details from the article body:
             - Total length under 180 characters
@@ -764,6 +765,9 @@ class GeminiClient:
             • The company is performing well (too generic)
             • Bitcoin mining operations are expanding (too generic)
             • Repeating any number or fact from the title or headline (FORBIDDEN)
+            • "US Treasury seizing 127,271 BTC total" - if headline already says this amount (FORBIDDEN REPETITION)
+            • "Worth $12 billion" - if headline already mentions dollar amount (FORBIDDEN REPETITION)
+            • Restating the same event in different words (must be DIFFERENT facts)
             
             **CRITICAL OUTPUT FORMAT RULES:**
             - Start IMMEDIATELY with the first bullet point (•)
@@ -1201,6 +1205,22 @@ class NewsAPI:
         ]
         if any(term in text for term in suspicious_terms):
             logger.info(f"❌ Excluded suspicious content: {article.title}")
+            return False
+        
+        # CRITICAL: Exclude law enforcement/criminal/seizure articles (not about mining operations)
+        # These articles mention "mining" only tangentially in criminal context
+        law_enforcement_terms = [
+            "seiz", "arrest", "indict", "criminal", "fraud", "money laundering",
+            "department of justice", "doj", "treasury", "sec charges", "law enforcement",
+            "investigation", "convicted", "sentenced", "prison", "jail",
+            "confiscate", "forfeiture", "ransomware", "cyberattack", "hack",
+            "transnational criminal", "organized crime", "trafficking", "scam compound"
+        ]
+        law_enforcement_mentions = sum(1 for term in law_enforcement_terms if term in text)
+        
+        # If article heavily focuses on law enforcement (3+ mentions), it's not about mining operations
+        if law_enforcement_mentions >= 3:
+            logger.info(f"❌ Excluded law enforcement/criminal article (not about mining operations): {article.title} (Law enforcement mentions: {law_enforcement_mentions})")
             return False
         
         # CORRECTED: Expanded mining focus terms including AI/political/regulatory
