@@ -611,15 +611,21 @@ class GeminiClient:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Read the Bitcoin mining article at {article.url} and write a PUNCHY news headline.
+            Read the FULL Bitcoin mining article at {article.url} (not just the title) and write a PUNCHY news headline based on the article's BODY content.
+            
+            Article's original title: "{article.title}"
+            
+            CRITICAL: Your headline must be DIFFERENT from the original title. Extract NEW insights from reading the full article body.
             
             CRITICAL REQUIREMENTS:
+            - Read the ENTIRE article body to find the most newsworthy angle
             - Write like a professional financial news reporter
             - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
             - Keep it under 70 characters
-            - Include specific numbers, percentages, or dollar amounts from the article
+            - Include specific numbers, percentages, or dollar amounts from the article BODY
             - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
             - Sound like headlines from Bloomberg, Reuters, or MarketWatch
+            - Must be DIFFERENT from the original article title above
             
             GOOD EXAMPLES:
             - "HIVE Hits 52-Week High on Mining Surge"
@@ -631,6 +637,7 @@ class GeminiClient:
             - "The article states that HIVE Digital Technologies..."
             - "According to the report, Marathon Digital..."
             - "The company announced in the article..."
+            - Repeating the original article title
             
             Return ONLY the headline, no quotes, no explanation.
             """
@@ -727,29 +734,36 @@ class GeminiClient:
             headline = self.generate_catchy_headline(article)
             
             prompt = f"""
-            Read the full Bitcoin mining article at {article.url} and create SPECIFIC bullet points.
+            Read the FULL Bitcoin mining article body at {article.url} and create SPECIFIC bullet points with NEW information.
             
+            Article's original title: "{article.title}"
             Generated Headline: {headline}
             
-            CRITICAL: DO NOT repeat anything from the headline above.
+            CRITICAL ANTI-REPETITION RULES:
+            - DO NOT repeat ANY information from the original article title above
+            - DO NOT repeat ANY information from the generated headline above
+            - DO NOT repeat ANY numbers, dollar amounts, or facts already mentioned in either
+            - Each bullet point must contain COMPLETELY NEW information from the article BODY
+            - Read the ENTIRE article body to find additional facts not in the title or headline
             
-            Create 3 rapid-fire bullet points that reveal NEW details from the article:
+            Create 3 rapid-fire bullet points that reveal DIFFERENT details from the article body:
             - Total length under 180 characters
-            - Include specific numbers, dates, locations, dollar amounts from the article
+            - Include specific numbers, dates, locations, dollar amounts NOT already mentioned
             - Use telegraphic style like financial newswires
             - Each point 50-60 characters max
             - Format: "• [specific fact]"
             - NO generic statements
+            - NO repetition of title or headline content
             
-            GOOD EXAMPLES:
+            GOOD EXAMPLES (each has NEW information):
             • Q3 revenue jumped 42% to $87M year-over-year
             • Added 2,500 miners at Texas facility this month  
             • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
             
             BAD EXAMPLES (NEVER DO):
-            • The company is performing well
-            • Bitcoin mining operations are expanding
-            • Management is optimistic about the future
+            • The company is performing well (too generic)
+            • Bitcoin mining operations are expanding (too generic)
+            • Repeating any number or fact from the title or headline (FORBIDDEN)
             
             **CRITICAL OUTPUT FORMAT RULES:**
             - Start IMMEDIATELY with the first bullet point (•)
@@ -760,9 +774,9 @@ class GeminiClient:
             - Each bullet point must start with • character
             
             Your response must be EXACTLY in this format:
-            • [First specific fact with numbers/details]
-            • [Second specific fact with numbers/details]
-            • [Third specific fact with numbers/details]
+            • [First NEW specific fact with numbers/details]
+            • [Second NEW specific fact with numbers/details]
+            • [Third NEW specific fact with numbers/details]
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
