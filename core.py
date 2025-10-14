@@ -509,6 +509,102 @@ class GeminiClient:
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
+    def _clean_headline(self, headline: str) -> str:
+        """Clean up headline text by removing unwanted formatting."""
+        import re
+        
+        # Remove quotes if present
+        headline = headline.strip('"\'')
+        
+        # Remove markdown formatting
+        headline = re.sub(r'\*\*', '', headline)
+        headline = re.sub(r'__', '', headline)
+        
+        # Remove any leading/trailing whitespace
+        headline = headline.strip()
+        
+        return headline
+    
+    def _process_summary_response(self, summary_text: str) -> str:
+        """Process and clean Gemini's summary response to extract only bullet points."""
+        import re
+        
+        lines = summary_text.strip().split('\n')
+        bullet_points = []
+        
+        # Filter lines to keep only actual bullet points
+        for line in lines:
+            line = line.strip()
+            
+            # Skip empty lines
+            if not line:
+                continue
+            
+            # Clean the line: remove bullet markers, extra dashes, quotes at start
+            clean_line = line.lstrip('•-* ').strip()
+            clean_line = clean_line.lstrip('-* ').strip()  # Remove any remaining dashes/asterisks
+            clean_line = clean_line.lstrip('"\'').strip()  # Remove quotes at start
+            
+            line_lower = clean_line.lower()
+            
+            # Skip lines that look like Gemini's thinking process or meta-commentary
+            skip_patterns = [
+                r'^(i will|i am|let me|here are|here is)',
+                r'^(the article|from the article|based on|according to)',
+                r'^(the following|these are|below are)',
+                r'(extract|create|generate|provide|present)\s+(the|specific|details)',
+                r'^(bullet points?|summary|details?)[:.]',
+            ]
+            
+            should_skip = False
+            for pattern in skip_patterns:
+                if re.search(pattern, line_lower):
+                    should_skip = True
+                    break
+            
+            if should_skip:
+                continue
+            
+            # Additional check: skip very short lines (less than 20 chars of actual content)
+            if len(clean_line) < 20:
+                continue
+            
+            # Only keep lines that look like actual facts (have numbers, company names, or specific data)
+            # This helps filter out malformed partial content
+            if re.search(r'[A-Z]{2,}|\d+|bitcoin|btc|mara|riot|hive|cleanpark', clean_line, re.IGNORECASE):
+                bullet_points.append(f"• {clean_line}")
+        
+        # If we found valid bullet points, return them
+        if bullet_points:
+            # Take only first 3 bullet points if more were returned
+            return '\n'.join(bullet_points[:3])
+        
+        # Fallback: try to extract any meaningful content that looks like facts
+        meaningful_lines = []
+        for line in lines:
+            line = line.strip()
+            line_lower = line.lower()
+            
+            # Must be substantial content
+            if len(line) < 20:
+                continue
+            
+            # Skip meta-commentary
+            if any(p in line_lower for p in ['i will', 'let me', 'here are', 'from the article:', 'based on', 'according to']):
+                continue
+            
+            # Look for lines with numbers, percentages, or dollar amounts (likely real facts)
+            if re.search(r'\d+[%$]|\d+\s*(BTC|miners?|facility|percent|million|billion)', line, re.IGNORECASE):
+                # Clean this line too
+                clean = line.lstrip('•-* ').lstrip('-* ').lstrip('"\'').strip()
+                meaningful_lines.append(f"• {clean}")
+        
+        if meaningful_lines:
+            return '\n'.join(meaningful_lines[:3])
+        
+        # Last resort: return the original text (this shouldn't happen often)
+        return summary_text
+
     def generate_catchy_headline(self, article: 'Article') -> str:
         """Generate a catchy, emoji-free headline for the article using URL context."""
         try:
@@ -655,7 +751,18 @@ class GeminiClient:
             • Bitcoin mining operations are expanding
             • Management is optimistic about the future
             
-            **IMPORTANT: Your entire response must consist ONLY of the three bullet points. Do not include any introductory phrases, conversational text, explanations, or any text other than the bullet points themselves. Start your response directly with the first bullet point.**
+            **CRITICAL OUTPUT FORMAT RULES:**
+            - Start IMMEDIATELY with the first bullet point (•)
+            - NO introductions like "I will now...", "Let me...", "Here are...", "From the article:", etc.
+            - NO explanations or meta-commentary about what you're doing
+            - NO blank lines between bullet points
+            - ONLY the 3 bullet points, nothing else
+            - Each bullet point must start with • character
+            
+            Your response must be EXACTLY in this format:
+            • [First specific fact with numbers/details]
+            • [Second specific fact with numbers/details]
+            • [Third specific fact with numbers/details]
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
