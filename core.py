@@ -753,7 +753,7 @@ class GeminiClient:
                 logger.warning(f"❌ URL retrieval failed for {article.url}: {e}")
                 # Try fallback with body if enabled
                 if use_body_fallback and article.body:
-                    logger.warning(f"⚠️ URL retrieval failed, falling back to article body")
+                    logger.warning(f"⚠️ URL retrieval failed, falling back to article body: {e}")
                     return self._generate_headline_from_body(article)
                 else:
                     raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
