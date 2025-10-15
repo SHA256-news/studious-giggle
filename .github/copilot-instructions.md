@@ -2,7 +2,7 @@
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
-Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X as AI-enhanced threads with Gemini-generated headlines and summaries. It runs every 90 minutes via GitHub Actions with sophisticated rate limiting, queue management, and comprehensive error handling.
+Bitcoin Mining News Twitter Bot is a Python application that automatically fetches Bitcoin mining news from EventRegistry API and posts them to Twitter/X as AI-enhanced threads with Gemini-generated headlines and summaries. It runs every 90 minutes via GitHub Actions with queue management and comprehensive error handling.
 
 ## Ultra-Minimal Architecture Overview
 
@@ -42,7 +42,7 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 16. **✅ Queue Index Error Protection**: CRITICAL - Added bounds validation and exception handling in tools.py queue operations to prevent IndexError during concurrent modifications  
 17. **✅ Complete Queue State Management**: CRITICAL - Implemented proper queue bounds checking with state recovery instead of just logging warnings when queue operations fail
 18. **✅ URL Format Validation**: MODERATE - Added comprehensive URL validation to catch malformed URLs (non-http/https, spaces, too short) that pass empty string validation but cause downstream errors
-19. **✅ URL Retrieval Status Logic**: CRITICAL - **JUST FIXED** - Corrected enum status checking to properly handle `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS` format instead of simple string comparison, preventing rate limit cooldowns on successful URL retrievals
+19. **✅ URL Retrieval Status Logic**: CRITICAL - **JUST FIXED** - Corrected enum status checking to properly handle `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS` format instead of simple string comparison, ensuring accurate URL retrieval validation
 20. **✅ Gemini URL Context API Format**: CRITICAL - **OCTOBER 2025 MAJOR FIX** - Discovered and fixed fundamental SDK vs REST API format confusion. We were using REST API dict syntax `{"url_context": {}}` in Python SDK calls instead of proper object syntax `types.Tool(url_context=types.UrlContext())`. This was the root cause of "unable to fetch content" error messages being posted as tweets.
 
 ### Robustness & Validation Improvements:
@@ -224,11 +224,9 @@ if hasattr(url_meta, 'url_retrieval_status'):
 - **Queue management**: Interactive tools for preview, editing, and cleaning
 
 ### Production-Ready Reliability
-- **Rate limit handling**: Progressive cooldowns with intelligent recovery (only for Twitter API 17 posts/day limit)
-- **Smart URL error handling**: URL retrieval failures skip article and continue with next one (no cooldown triggered)  
+- **Smart URL error handling**: URL retrieval failures skip article and continue with next one
 - **Error resilience**: Graceful failure handling with detailed diagnostics
 - **Data persistence**: JSON-based storage with atomic operations
-- **Minimum interval enforcement**: Respects Twitter API daily limits
 
 ### Ultra-Minimal Performance Optimizations
 
@@ -282,8 +280,7 @@ Without these keys, the bot will show clear error messages explaining what's mis
 - Custom `URLRetrievalError` exception class distinguishes URL failures from API failures
 - Gemini methods check `url_context_metadata` for `URL_RETRIEVAL_STATUS_ERROR` after each response
 - When URL retrieval fails, `URLRetrievalError` is raised immediately before content generation
-- Bot logic catches `URLRetrievalError` and skips problematic articles without triggering rate limit cooldown
-- Only Twitter API failures (429 Too Many Requests, 17 posts/day limit) trigger progressive cooldowns
+- Bot logic catches `URLRetrievalError` and skips problematic articles
 - URL failures result in article removal from queue and continuation with next available article
 - **CRITICAL**: Prevents posting error messages like "I am unable to access the content..." as tweets
 
@@ -371,18 +368,12 @@ Since this repository doesn't have API keys configured by default:
 
 ### GitHub Actions Timing:
 - **Scheduled runs**: Every 90 minutes (16 times per day max)
-- **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
-- **Twitter API limits**: 17 requests per 24 hours
 
 ## Error Patterns and Solutions
 
 ### Missing API Keys (90% of issues)
 **Symptoms**: "Missing required environment variables", "User is not logged in"
 **Solution**: Set up GitHub repository secrets as documented above
-
-### Rate Limiting  
-**Symptoms**: "429 Too Many Requests", "Rate limit cooldown active"
-**Solution**: Bot handles this automatically with progressive cooldowns
 
 ### No Articles Found
 **Symptoms**: "No articles found from EventRegistry"  
@@ -403,7 +394,6 @@ Since this repository doesn't have API keys configured by default:
 ### URL Retrieval Failures (New Smart Handling) 
 **Symptoms**: "URL retrieval failed", "Failed to retrieve content from [URL]", URLRetrievalError
 **Solution**: Bot automatically skips articles with inaccessible URLs and moves to the next article in queue
-**CRITICAL**: URL retrieval failures **DO NOT** trigger rate limit cooldowns - only Twitter API failures (17 posts/day limit) trigger cooldowns
 **Behavior**: When Gemini cannot access a specific URL (blocked, 403, 404, etc.), the article is skipped and removed from queue
 **Impact**: Bot continues processing remaining articles without waiting, ensuring maximum posting efficiency
 
@@ -414,7 +404,6 @@ The bot includes a single, focused GitHub Actions workflow:
 ### Main Bot Workflow (`.github/workflows/main.yml`)
 - **Schedule**: Runs every 90 minutes automatically
 - **Purpose**: Fetches Bitcoin mining articles and posts Twitter threads
-- **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
 - **Python version**: 3.10 (but works with 3.12+)
 - **Dependencies**: Installs from `requirements.txt`
 - **Commits**: Updates `posted_articles.json` after successful runs
@@ -433,10 +422,9 @@ The bot includes a single, focused GitHub Actions workflow:
 - Verify integration with `python tests/test_integration.py`
 - Check that all essential tools work: `python tools.py <command>`
 
-### When modifying rate limiting or article processing:
-- Test with existing rate limit test files (still work via compatibility layer)
-- Verify progressive cooldown behavior in `core.py`
+### When modifying article processing:
 - Check storage operations in the `Storage` class
+- Test with existing test files
 
 ### When adding new features:
 - Add to `core.py` for fundamental functionality
@@ -470,4 +458,4 @@ The bot includes a single, focused GitHub Actions workflow:
 **TOTAL: 10 essential files + 4 permanent API docs (79% reduction from 47 files)**
 ```
 
-This is a production-ready Twitter bot with **ultra-minimal 10-file core architecture**, achieving 79% file reduction while maintaining robust error handling, rate limiting, and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
+This is a production-ready Twitter bot with **ultra-minimal 10-file core architecture**, achieving 79% file reduction while maintaining robust error handling and comprehensive testing. All tests are streamlined into just 2 elegant test files. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
