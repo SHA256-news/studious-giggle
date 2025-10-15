@@ -120,7 +120,8 @@
     "https://coinmarketcap.com/headlines/news/mara-holdings-adds-400-btc-as-bitcoin-recovers-from-fridays-crash/",
     "https://www.livebitcoinnews.com/mara-adds-46m-in-bitcoin-through-falconx-purchase-amid-market-accumulation/",
     "https://investinglive.com/Cryptocurrency/us-moves-to-seize-12-billion-in-bitcoin-tied-to-cambodia-scam-kingpin-chen-zhi-20251014/",
-    "https://example.com/iren-news"
+    "https://example.com/iren-news",
+    "https://finance.yahoo.com/news/elon-musk-says-bitcoin-energy-233109041.html"
   ],
   "queued_articles": [
     {
@@ -3103,7 +3104,15 @@
       "date_published": null,
       "date_posted": "2025-10-15T01:03:32.743645+00:00",
       "body_preview": "Test content about IREN"
+    },
+    {
+      "url": "https://finance.yahoo.com/news/elon-musk-says-bitcoin-energy-233109041.html",
+      "title": "Elon Musk Says Bitcoin Has Energy: 'You Can Issue Fake Fiat...But It Is Impossible To Fake Energy'",
+      "source": "Yahoo! Finance",
+      "date_published": "2025-10-14T23:31:09+00:00",
+      "date_posted": "2025-10-15T01:31:16.487844+00:00",
+      "body_preview": "Benzinga and Yahoo Finance LLC may earn commission or revenue on some items through the links below.\n\nElon Musk said Tuesday that Bitcoin (CRYPTO: BTC) is based on energy and, unlike fiat currencies, ..."
     }
   ],
-  "last_run_time": "2025-10-15T01:03:32.743700+00:00"
+  "last_run_time": "2025-10-15T01:31:16.487891+00:00"
 }
