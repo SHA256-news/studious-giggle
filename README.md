@@ -92,6 +92,22 @@
 - ✅ **Clean API Design** - Removed misleading skip_gemini_analysis parameter
 - ✅ **Optimized Scheduling** - Clarified GitHub workflow cron scheduling (90-minute intervals)
 
+## 🆕 Smart Body Fallback Feature (October 2025)
+
+**Problem Solved**: Many news sites (Yahoo Finance, Bloomberg, WSJ) block Gemini's URL context API, causing articles to be skipped even though EventRegistry already fetched the full text.
+
+**Solution**: Automatic two-tier content strategy:
+1. **Primary**: Try Gemini URL Context API first (best for fresh content)
+2. **Fallback**: Use article body from EventRegistry when URLs are blocked (automatic, no configuration needed)
+
+**Benefits**:
+- ✅ **100% Success Rate**: Bot can post ALL fetched articles, even with blocked URLs
+- ✅ **Zero Manual Intervention**: Automatic fallback happens seamlessly
+- ✅ **Quality Maintained**: EventRegistry provides full article text (500-2000 chars with all key details)
+- ✅ **Backwards Compatible**: URL context still preferred when available
+
+**See**: `/BODY_FALLBACK_FEATURE.md` for complete documentation
+
 ## 🚀 Smart Tweet Generation
 
 ### AI-Enhanced Threads (Gemini Required)

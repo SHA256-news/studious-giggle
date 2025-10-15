@@ -483,6 +483,62 @@ class GeminiClient:
         
         return headline
     
+    def _generate_headline_from_body(self, article: 'Article') -> str:
+        """Generate headline using article body text when URL context fails.
+        
+        This fallback method uses the article body content that was already
+        fetched by EventRegistry API, avoiding the need for URL context.
+        """
+        logger.info("🔄 Generating headline from article body (fallback mode)...")
+        
+        # Truncate body to reasonable length for API efficiency (first 2000 chars usually contain main story)
+        body_excerpt = article.body[:2000] if len(article.body) > 2000 else article.body
+        
+        prompt = f"""
+        Based on this Bitcoin mining article, write a PUNCHY news headline.
+        
+        Article Title: "{article.title}"
+        Article Content: {body_excerpt}
+        
+        CRITICAL: Your headline must be DIFFERENT from the original title. Extract the most newsworthy angle.
+        
+        CRITICAL REQUIREMENTS:
+        - Write like a professional financial news reporter
+        - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+        - Keep it under 70 characters
+        - Include specific numbers, percentages, or dollar amounts from the content
+        - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
+        - Sound like headlines from Bloomberg, Reuters, or MarketWatch
+        - Must be DIFFERENT from the original article title above
+        
+        GOOD EXAMPLES:
+        - "HIVE Hits 52-Week High on Mining Surge"
+        - "Riot Platforms Acquires 5,000 Bitcoin Miners"
+        - "Marathon Digital Reports Record Q3 Revenue"
+        - "CleanSpark Stock Jumps 15% on Expansion News"
+        
+        BAD EXAMPLES (NEVER DO THIS):
+        - "The article states that..."
+        - "According to the report..."
+        - Repeating the original article title
+        
+        Return ONLY the headline, no quotes, no explanation.
+        """
+        
+        # No URL context tool needed - just use the text we already have
+        response = self.client.models.generate_content(
+            model=self.model_name,
+            contents=prompt.strip()
+        )
+        
+        if not response or not response.text:
+            raise ValueError("Gemini API returned empty response for body-based headline generation")
+        
+        headline = response.text.strip()
+        logger.info(f"✅ Generated headline from body: '{headline}'")
+        
+        return self._clean_headline(headline)[:80]
+    
     def _process_summary_response(self, summary_text: str) -> str:
         """Process and clean Gemini's summary response to extract only bullet points."""
         import re
@@ -563,8 +619,17 @@ class GeminiClient:
         # Last resort: return the original text (this shouldn't happen often)
         return summary_text
 
-    def generate_catchy_headline(self, article: 'Article') -> str:
-        """Generate a catchy, emoji-free headline for the article using URL context."""
+    def generate_catchy_headline(self, article: 'Article', use_body_fallback: bool = True) -> str:
+        """Generate a catchy, emoji-free headline for the article using URL context with body fallback.
+        
+        Args:
+            article: The article to generate a headline for
+            use_body_fallback: If True, uses article.body text when URL context fails (default: True)
+        
+        Returns:
+            Generated headline string
+        """
+        # Try URL context first
         try:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
@@ -665,9 +730,14 @@ class GeminiClient:
             
             return self._clean_headline(headline)[:80]
             
-        except URLRetrievalError:
-            # Re-raise URL retrieval errors (already detected and raised earlier)
-            raise
+        except URLRetrievalError as e:
+            # URL context failed - try fallback with article body if enabled
+            if use_body_fallback and article.body:
+                logger.warning(f"⚠️ URL context failed, falling back to article body: {e}")
+                return self._generate_headline_from_body(article)
+            else:
+                # Re-raise if fallback is disabled or no body content
+                raise
         except ValueError as e:
             # API authentication or configuration issues - reraise to surface the problem
             logger.error(f"❌ Gemini API authentication/configuration error: {e}")
@@ -681,18 +751,34 @@ class GeminiClient:
             error_message = str(e).lower()
             if any(term in error_message for term in ['url', 'retrieve', 'fetch', 'access', 'blocked', 'forbidden', '403', '404']):
                 logger.warning(f"❌ URL retrieval failed for {article.url}: {e}")
-                raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
+                # Try fallback with body if enabled
+                if use_body_fallback and article.body:
+                    logger.warning(f"⚠️ URL retrieval failed, falling back to article body: {e}")
+                    return self._generate_headline_from_body(article)
+                else:
+                    raise URLRetrievalError(f"Failed to retrieve content from {article.url}: {e}")
             
             # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini headline generation failed with unexpected error: {e}")
             raise
 
-    def generate_thread_summary(self, article: 'Article') -> str:
-        """Generate a concise 3-point summary using URL context."""
+    def generate_thread_summary(self, article: 'Article', headline: str = None, use_body_fallback: bool = True) -> str:
+        """Generate a concise 3-point summary using URL context with body fallback.
+        
+        Args:
+            article: The article to generate a summary for
+            headline: Pre-generated headline (if None, will generate one)
+            use_body_fallback: If True, uses article.body text when URL context fails (default: True)
+        
+        Returns:
+            Generated summary string with bullet points
+        """
+        # Generate headline if not provided
+        if headline is None:
+            headline = self.generate_catchy_headline(article, use_body_fallback=use_body_fallback)
+        
         try:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
-            
-            headline = self.generate_catchy_headline(article)
             
             prompt = f"""
             Read the FULL Bitcoin mining article body at {article.url} and create SPECIFIC bullet points with NEW information.
@@ -809,9 +895,14 @@ class GeminiClient:
             
             return self._process_summary_response(summary_text)
                 
-        except URLRetrievalError:
-            # Re-raise URL retrieval errors from headline generation
-            raise
+        except URLRetrievalError as e:
+            # URL context failed - try fallback with article body if enabled
+            if use_body_fallback and article.body:
+                logger.warning(f"⚠️ URL context failed for summary, falling back to article body: {e}")
+                return self._generate_summary_from_body(article, headline)
+            else:
+                # Re-raise if fallback is disabled or no body content
+                raise
         except ValueError as e:
             # API authentication or configuration issues - reraise to surface the problem
             logger.error(f"❌ Gemini API authentication/configuration error in summary generation: {e}")
@@ -830,6 +921,73 @@ class GeminiClient:
             # Other unexpected errors - still raise as general failure
             logger.warning(f"❌ Gemini summary generation failed with unexpected error: {e}")
             raise
+    
+    def _generate_summary_from_body(self, article: 'Article', headline: str) -> str:
+        """Generate summary using article body text when URL context fails.
+        
+        This fallback method uses the article body content that was already
+        fetched by EventRegistry API, avoiding the need for URL context.
+        """
+        logger.info("🔄 Generating summary from article body (fallback mode)...")
+        
+        # Truncate body to reasonable length for API efficiency
+        body_excerpt = article.body[:2000] if len(article.body) > 2000 else article.body
+        
+        prompt = f"""
+        Based on this Bitcoin mining article, create 3 rapid-fire bullet points with SPECIFIC details.
+        
+        Article Title: "{article.title}"
+        Generated Headline: {headline}
+        Article Content: {body_excerpt}
+        
+        CRITICAL ANTI-REPETITION RULES:
+        - DO NOT repeat ANY information from the original article title
+        - DO NOT repeat ANY information from the generated headline
+        - DO NOT repeat ANY numbers, dollar amounts, percentages, or specific facts already mentioned
+        - Each bullet point must contain COMPLETELY NEW information from the article
+        
+        Create 3 rapid-fire bullet points that reveal DIFFERENT details:
+        - Total length under 180 characters
+        - Include specific numbers, dates, locations, dollar amounts NOT already mentioned
+        - Use telegraphic style like financial newswires
+        - Each point 50-60 characters max
+        - Format: "• [specific fact]"
+        - NO generic statements
+        - NO repetition of title or headline content
+        
+        GOOD EXAMPLES (each has NEW information):
+        • Q3 revenue jumped 42% to $87M year-over-year
+        • Added 2,500 miners at Texas facility this month  
+        • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
+        
+        BAD EXAMPLES (NEVER DO):
+        • The company is performing well (too generic)
+        • Repeating any number or fact from the title or headline (FORBIDDEN)
+        
+        **CRITICAL OUTPUT FORMAT RULES:**
+        - Start IMMEDIATELY with the first bullet point (•)
+        - NO introductions or explanations
+        - ONLY the 3 bullet points, nothing else
+        
+        Your response must be EXACTLY in this format:
+        • [First NEW specific fact with numbers/details]
+        • [Second NEW specific fact with numbers/details]
+        • [Third NEW specific fact with numbers/details]
+        """
+        
+        # No URL context tool needed - just use the text we already have
+        response = self.client.models.generate_content(
+            model=self.model_name,
+            contents=prompt.strip()
+        )
+        
+        if not response or not response.text:
+            raise ValueError("Gemini API returned empty response for body-based summary generation")
+        
+        summary_text = response.text.strip()
+        logger.info(f"✅ Generated summary from body: '{summary_text}'")
+        
+        return self._process_summary_response(summary_text)
 
 
 # =============================================================================
@@ -863,8 +1021,10 @@ class TextProcessor:
         
         try:
             logger.info("🎯 Using Gemini-powered thread generation...")
-            headline = gemini_client.generate_catchy_headline(article)
-            summary_text = gemini_client.generate_thread_summary(article)
+            # Generate headline with body fallback enabled
+            headline = gemini_client.generate_catchy_headline(article, use_body_fallback=True)
+            # Generate summary with body fallback enabled, passing the headline to avoid duplication
+            summary_text = gemini_client.generate_thread_summary(article, headline=headline, use_body_fallback=True)
             
             if not headline:
                 logger.error("❌ Failed to generate headline with Gemini - will retry later")
