@@ -112,7 +112,7 @@ Industry analysts estimate that approximately 50% of Bitcoin mining now uses ren
     print("\n📚 DOCUMENTATION")
     print("=" * 70)
     print("• Full details: /BODY_FALLBACK_FEATURE.md")
-    print("• Implementation: core.py (lines 566-988)")
+    print("• Implementation: core.py (GeminiClient._generate_headline_from_body, _generate_summary_from_body)")
     print("• Tests: test_body_fallback.py (3/3 passing)")
     print("• All existing tests pass: 11/11 core, 3/3 integration")
     
