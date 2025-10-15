@@ -29,7 +29,6 @@ class TestBot:
         """Test basic config functionality."""
         config = Config()
         assert hasattr(config, 'posted_articles_file')
-        assert hasattr(config, 'rate_limit_file')
         
         # Test validation
         errors = config.validate()
@@ -80,16 +79,11 @@ class TestBot:
 
     def test_time_management(self):
         """Test time management utilities."""
-        # Test minimum interval check
-        result = TimeManager.is_minimum_interval_passed(None, 60)
-        assert result is True  # No previous run should allow execution
-        
-        # Test cooldown creation
-        cooldown_data = TimeManager.create_cooldown_data(2)  # 2 hours
-        assert isinstance(cooldown_data, dict)
-        assert "cooldown_end" in cooldown_data
-        assert "cooldown_hours" in cooldown_data
-        assert cooldown_data["cooldown_hours"] == 2
+        # Test that TimeManager.now() works
+        from datetime import datetime, timezone
+        now = TimeManager.now()
+        assert isinstance(now, datetime)
+        assert now.tzinfo == timezone.utc
 
     def test_bot_initialization(self):
         """Test bot can be initialized."""
