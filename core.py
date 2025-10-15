@@ -665,6 +665,9 @@ class GeminiClient:
             
             return self._clean_headline(headline)[:80]
             
+        except URLRetrievalError:
+            # Re-raise URL retrieval errors (already detected and raised earlier)
+            raise
         except ValueError as e:
             # API authentication or configuration issues - reraise to surface the problem
             logger.error(f"❌ Gemini API authentication/configuration error: {e}")
@@ -806,6 +809,9 @@ class GeminiClient:
             
             return self._process_summary_response(summary_text)
                 
+        except URLRetrievalError:
+            # Re-raise URL retrieval errors from headline generation
+            raise
         except ValueError as e:
             # API authentication or configuration issues - reraise to surface the problem
             logger.error(f"❌ Gemini API authentication/configuration error in summary generation: {e}")
@@ -896,6 +902,10 @@ class TextProcessor:
             logger.info(f"✅ Generated {len(thread)}-tweet thread with Gemini")
             return thread
             
+        except URLRetrievalError:
+            # Re-raise URL retrieval errors so they can be handled by caller
+            # These indicate the specific URL cannot be accessed, not an API failure
+            raise
         except Exception as e:
             logger.error(f"❌ Gemini content generation failed: {e} - will retry later")
             return None

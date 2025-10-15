@@ -210,6 +210,37 @@ class TestBot:
         # This should be approved - it's about actual mining operations
         is_relevant2 = news_api._is_bitcoin_relevant(article2)
         assert is_relevant2 is True, "Legitimate mining article should be approved"
+    
+    def test_url_retrieval_error_handling(self):
+        """Test that URLRetrievalError is properly raised and not caught incorrectly."""
+        from core import URLRetrievalError, GeminiClient, TextProcessor
+        from unittest.mock import MagicMock
+        
+        # Create a test article
+        article_data = {
+            "title": "Test Bitcoin Mining Article",
+            "body": "Test content about Bitcoin mining operations.",
+            "url": "https://example.com/article",
+            "uri": "test-article",
+            "source": {"title": "Test Source"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article = Article.from_dict(article_data)
+        
+        # Create a mock Gemini client that raises URLRetrievalError
+        mock_gemini = MagicMock(spec=GeminiClient)
+        mock_gemini.generate_catchy_headline.side_effect = URLRetrievalError(
+            "Failed to retrieve content from https://example.com/article: Gemini access error"
+        )
+        
+        # Call create_tweet_thread - it should re-raise URLRetrievalError
+        try:
+            result = TextProcessor.create_tweet_thread(article, mock_gemini)
+            assert False, "Expected URLRetrievalError to be raised"
+        except URLRetrievalError as e:
+            # This is expected - the error should bubble up
+            assert "Failed to retrieve content" in str(e)
+            assert "https://example.com/article" in str(e)
 
 
 def run_simple_tests():
