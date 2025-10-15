@@ -1,6 +1,6 @@
 # Bitcoin Mining News Twitter Bot
 
-⚡ **Ultra-minimal Bitcoin mining news Twitter bot** that fetches articles from EventRegistry API and posts AI-enhanced threads with Gemini-generated headlines and summaries. Runs every 90 minutes via GitHub Actions with sophisticated rate limiting and comprehensive error handling.
+⚡ **Ultra-minimal Bitcoin mining news Twitter bot** that fetches articles from EventRegistry API and posts AI-enhanced threads with Gemini-generated headlines and summaries. Runs every 90 minutes via GitHub Actions with comprehensive error handling.
 
 ## � CRITICAL FIX: Gemini URL Context API (October 2025)
 
@@ -123,10 +123,8 @@
 - **Real-world proven**: Successfully catches duplicates like same conference transcripts from multiple Investing.com domains
 
 ### Production-Ready Reliability
-- **Rate limit handling**: Progressive cooldowns with intelligent recovery
 - **Error resilience**: Graceful failure handling with detailed diagnostics
 - **Data persistence**: JSON-based storage with atomic operations
-- **API compliance**: Respects Twitter rate limits (17 requests per 24 hours)
 
 ## 📋 Quick Start
 
@@ -166,7 +164,6 @@ The bot includes a single, focused production workflow:
 **Main Bot Workflow** (`.github/workflows/main.yml`)
 - **Schedule**: Runs every 90 minutes automatically
 - **Purpose**: Fetches articles and posts Twitter threads
-- **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
 - **Error handling**: Comprehensive logging and recovery
 - **Single workflow approach**: Eliminated broken test workflows for ultra-minimal setup
 
@@ -326,18 +323,12 @@ python tools.py diagnose          # Full system diagnostics
 
 ### GitHub Actions Timing:
 - **Scheduled runs**: Every 90 minutes (16 times per day max)
-- **Rate limiting**: Progressive cooldowns (2h → 4h → 8h → 24h)
-- **Twitter API limits**: 17 requests per 24 hours
 
 ## 🔍 Error Patterns & Solutions
 
 ### Missing API Keys (90% of issues)
 **Symptoms**: "Missing required environment variables", "User is not logged in"
 **Solution**: Set up GitHub repository secrets as documented above
-
-### Rate Limiting  
-**Symptoms**: "429 Too Many Requests", "Rate limit cooldown active"
-**Solution**: Bot handles this automatically with progressive cooldowns
 
 ### No Articles Found
 **Symptoms**: "No articles found from EventRegistry"  
@@ -354,7 +345,6 @@ python tools.py diagnose          # Full system diagnostics
 ### URL Retrieval Failures (Smart Handling)
 **Symptoms**: "URL retrieval failed", "Failed to retrieve content from [URL]", URLRetrievalError
 **Solution**: Bot automatically skips articles with inaccessible URLs and moves to the next article in queue
-**CRITICAL**: URL retrieval failures **DO NOT** trigger rate limit cooldowns - only Twitter API failures (17 posts/day limit) trigger cooldowns
 **Behavior**: When Gemini cannot access a specific URL (blocked, 403, 404, etc.), the article is skipped and removed from queue
 **Impact**: Bot continues processing remaining articles without waiting, ensuring maximum posting efficiency
 
@@ -409,7 +399,7 @@ python tools.py diagnose          # Full system diagnostics
 
 ---
 
-This is a production-ready Twitter bot with **ultra-minimal 10-file architecture**, achieving 79% file reduction while maintaining robust error handling, rate limiting, and comprehensive testing. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
+This is a production-ready Twitter bot with **ultra-minimal 10-file architecture**, achieving 79% file reduction while maintaining robust error handling and comprehensive testing. The codebase is designed to be maintainable and well-documented for GitHub Copilot assistance.
 
 ## 📄 License
 
