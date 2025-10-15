@@ -119,7 +119,8 @@
     "https://cryptobriefing.com/mara-holdings-bitcoin-increase-falconx/",
     "https://coinmarketcap.com/headlines/news/mara-holdings-adds-400-btc-as-bitcoin-recovers-from-fridays-crash/",
     "https://www.livebitcoinnews.com/mara-adds-46m-in-bitcoin-through-falconx-purchase-amid-market-accumulation/",
-    "https://investinglive.com/Cryptocurrency/us-moves-to-seize-12-billion-in-bitcoin-tied-to-cambodia-scam-kingpin-chen-zhi-20251014/"
+    "https://investinglive.com/Cryptocurrency/us-moves-to-seize-12-billion-in-bitcoin-tied-to-cambodia-scam-kingpin-chen-zhi-20251014/",
+    "https://example.com/iren-news"
   ],
   "queued_articles": [
     {
@@ -3094,7 +3095,15 @@
       "date_published": "2025-10-14T21:44:27+00:00",
       "date_posted": "2025-10-14T22:53:53.649728+00:00",
       "body_preview": "Bitcoin was designed to be a digital asset beyond government control. Ownership is recorded on a decentralized blockchain and secured by private keys only the holder can access. In theory, this makes ..."
+    },
+    {
+      "url": "https://example.com/iren-news",
+      "title": "IREN Closes $1.0 Billion Convertible Notes Offering",
+      "source": "Test Source",
+      "date_published": null,
+      "date_posted": "2025-10-15T01:03:32.743645+00:00",
+      "body_preview": "Test content about IREN"
     }
   ],
-  "last_run_time": "2025-10-14T22:53:53.649889+00:00"
+  "last_run_time": "2025-10-15T01:03:32.743700+00:00"
 }
