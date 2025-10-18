@@ -1637,7 +1637,7 @@ class BitcoinMiningBot:
                     logger.warning(f"Invalid posted history data: {e}")
                     continue
             
-            logger.info(f"Checking duplicates against {len(existing_articles)} existing articles ({len(queued_articles_data)} queued + {len(posted_history)} posted)")
+            logger.info(f"Checking duplicates against {len(existing_articles)} existing articles ({len(queued_articles_data)} queued and {len(posted_history)} posted)")
             
             # Note: We can't reconstruct Article objects from just URLs in posted_uris,
             # so for backwards compatibility, we still check URL duplicates first
