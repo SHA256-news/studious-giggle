@@ -32,10 +32,11 @@
 **Problem Solved**: Previous filter was too restrictive, rejecting valid mining articles about public miners, AI/mining relationships, and political/regulatory news.
 
 **Improved Multi-Layer Filtering System**:
-- **Public mining companies auto-approval**: Comprehensive coverage of 33 publicly traded Bitcoin mining companies including Marathon Digital (MARA), Riot Platforms (RIOT), CleanSpark (CLSK), Hut 8 (HUT), Core Scientific (CORZ), Cipher Mining (CIFR), Bitfarms (BITF), HIVE Digital (HIVE), TeraWulf (WULF), Bitdeer (BTDR), Iris Energy (IREN), Bit Digital (BTBT), Greenidge (GREE), Stronghold (SDIG), Argo Blockchain (ARBK), Canaan (CAN), BIT Mining (BTCM), BitFuFu (FUFU), and many more - ALL are ALWAYS relevant
+- **Environmental blame filtering**: NEW - Rejects articles that blame Bitcoin mining for environmental problems (emissions crisis, pollution, boiling oceans, climate crisis, etc.) while allowing neutral or positive environmental reporting about renewables and efficiency
+- **Public mining companies auto-approval**: Comprehensive coverage of 33 publicly traded Bitcoin mining companies including Marathon Digital (MARA), Riot Platforms (RIOT), CleanSpark (CLSK), Hut 8 (HUT), Core Scientific (CORZ), Cipher Mining (CIFR), Bitfarms (BITF), HIVE Digital (HIVE), TeraWulf (WULF), Bitdeer (BTDR), Iris Energy (IREN), Bit Digital (BTBT), Greenidge (GREE), Stronghold (SDIG), Argo Blockchain (ARBK), Canaan (CAN), BIT Mining (BTCM), BitFuFu (FUFU), and many more - ALL are ALWAYS relevant (unless environmental blame)
 - **AI + mining relationships**: Articles about AI data centers, power struggles, electricity consumption with mining context are approved
 - **Political/regulatory mining news**: Government policies, regulations, bans, approvals related to Bitcoin mining are approved
-- **Law enforcement exclusions**: NEW - Filters out Treasury seizures, arrests, indictments, criminal investigations that only mention mining tangentially (requires 3+ law enforcement terms to trigger)
+- **Law enforcement exclusions**: Filters out Treasury seizures, arrests, indictments, criminal investigations that only mention mining tangentially (requires 3+ law enforcement terms to trigger)
 - **Flexible mining focus**: Requires only 1 substantial mining term (not 2+) for approval
 - **Targeted exclusions**: Only excludes obvious cloud mining, promotional schemes, and clear non-mining topics (DeFi, NFT, Web3)
 - **Content quality validation**: Ensures articles are genuinely about Bitcoin mining operations, companies, or regulation
@@ -46,9 +47,14 @@
 - ✅ **"JPMorgan Downgrades CleanSpark (CLSK) to Neutral"** - Public mining company (auto-approved)  
 - ✅ **"France: Éric Ciotti Opposes U.S. Takeover of Exaion, Defends Bitcoin Mining"** - Political/regulatory (approved)
 - ✅ **"MARA | My Life Long Girlfriend Stock | LONG"** - Public mining company MARA (auto-approved)
+- ✅ **"Bitcoin Mining Company Switches to 100% Renewable Energy"** - Positive environmental news (approved)
+- ✅ **"Marathon Digital Reports 20% Increase in Energy Efficiency"** - Energy efficiency improvement (approved)
 - ❌ **"U.S. Treasury Seizes 127,271 Bitcoin Worth $12 Billion"** - Law enforcement action (correctly rejected - 9 law enforcement terms detected)
+- ❌ **"Bitcoin's Thousands of Miners Fuel Emissions Crisis"** - Environmental blame (correctly rejected)
+- ❌ **"Bitcoin Mining Farms Generate Heat Pollution and Noise Locally"** - Environmental blame (correctly rejected)
+- ❌ **"Bitcoin Mining Is Boiling the Oceans"** - Environmental blame (correctly rejected)
 
-**Validation Results**: 7/7 filter tests passing after corrections, with proper rejection of promotional content like "HashJ Claims Users Can Earn $118 Daily Through Free Bitcoin Mining App" while approving legitimate mining industry content.
+**Validation Results**: 14/14 core tests passing, with proper rejection of promotional content and environmental blame articles while approving legitimate mining industry content and positive environmental reporting.
 
 **Complete Public Miners Coverage**: Now includes all major publicly traded Bitcoin mining companies such as Marathon Digital Holdings (MARA), Riot Platforms (RIOT), CleanSpark (CLSK), Hut 8 Mining Corp (HUT), Core Scientific (CORZ), Cipher Mining (CIFR), Bitfarms (BITF), HIVE Digital Technologies (HIVE), TeraWulf (WULF), Bitdeer Technologies (BTDR), Iris Energy (IREN), Bit Digital (BTBT), Greenidge Generation (GREE), Stronghold Digital Mining (SDIG), Argo Blockchain (ARBK), Canaan Inc (CAN), BIT Mining Limited (BTCM), BitFuFu Inc (FUFU), Phoenix Group (PHX), The9 Limited (NCTY), DMG Blockchain Solutions (DMGI), Cathedra Bitcoin (CBIT), Bitcoin Well (BTCW), LM Funding America (LMFA), SOS Limited (SOS), Neptune Digital Assets (NDA), Digihost Technology (HSSHF), SATO Technologies (SATO), Sphere 3D Corp (ANY), Gryphon Digital Mining (GRYP), American Bitcoin Corp (ABTC), and Abits Group (ABTS).n mining news Twitter bot** that fetches articles from EventRegistry API and posts AI-enhanced threads with Gemini-generated headlines and summaries. Runs every 90 minutes via GitHub Actions with sophisticated rate limiting and comprehensive error handling.
 
