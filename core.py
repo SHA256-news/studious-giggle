@@ -1211,8 +1211,14 @@ class NewsAPI:
         self.config = config
         self._client = None
     
-    def fetch_articles(self, max_articles: int = 20) -> List[Article]:
-        """Fetch fresh Bitcoin mining articles."""
+    def fetch_articles(self, max_articles: int = 20, start_datetime: Optional[datetime] = None) -> List[Article]:
+        """Fetch fresh Bitcoin mining articles.
+        
+        Args:
+            max_articles: Maximum number of articles to fetch
+            start_datetime: Optional datetime to fetch articles from. If not provided,
+                          uses article_lookback_days config setting.
+        """
         try:
             if self._client is None:
                 import eventregistry
@@ -1224,9 +1230,13 @@ class NewsAPI:
             # Simple query for recent Bitcoin mining articles
             from eventregistry import QueryArticlesIter
             
+            # Use provided start_datetime or fall back to article_lookback_days
+            if start_datetime is None:
+                start_datetime = datetime.now(timezone.utc) - timedelta(days=self.config.article_lookback_days)
+            
             q = QueryArticlesIter(
                 keywords="bitcoin mining",
-                dateStart=datetime.now(timezone.utc) - timedelta(days=self.config.article_lookback_days),
+                dateStart=start_datetime,
                 lang="eng"
             )
             
@@ -1567,9 +1577,28 @@ class BitcoinMiningBot:
                 logger.error(f"Missing required configuration: {', '.join(missing_config)}")
                 return False
             
-            # Fetch articles
+            # Fetch articles from last run time or fallback to default lookback
             logger.info("Fetching new articles...")
-            articles = self.news.fetch_articles(self.config.max_articles)
+            
+            # Use last_run_time if available to fetch only new articles
+            start_datetime = None
+            if self.posted_data.get("last_run_time"):
+                try:
+                    last_run_str = self.posted_data["last_run_time"]
+                    # Parse ISO format datetime string
+                    # Handle both with and without timezone info
+                    if last_run_str.endswith('Z'):
+                        last_run_str = last_run_str[:-1] + '+00:00'
+                    start_datetime = datetime.fromisoformat(last_run_str)
+                    # Ensure timezone aware
+                    if start_datetime.tzinfo is None:
+                        start_datetime = start_datetime.replace(tzinfo=timezone.utc)
+                    logger.info(f"Fetching articles published since last run: {start_datetime.isoformat()}")
+                except (ValueError, AttributeError) as e:
+                    logger.warning(f"Could not parse last_run_time, using default lookback: {e}")
+                    start_datetime = None
+            
+            articles = self.news.fetch_articles(self.config.max_articles, start_datetime=start_datetime)
             
             if not articles:
                 logger.info("No new articles found from EventRegistry")
@@ -1590,6 +1619,25 @@ class BitcoinMiningBot:
                 except (ValueError, KeyError) as e:
                     logger.warning(f"Invalid queued article data: {e}")
                     continue
+            
+            # ENHANCED: Also load posted articles history for deduplication
+            posted_history = self.posted_data.get("posted_articles_history", [])
+            for history_item in posted_history:
+                try:
+                    # Reconstruct Article object from history record
+                    article_dict = {
+                        "url": history_item.get("url", ""),
+                        "title": history_item.get("title", ""),
+                        "body": history_item.get("body_preview", ""),  # Use preview as body
+                        "source": {"title": history_item.get("source", "")},
+                        "dateTimePub": history_item.get("date_published")
+                    }
+                    existing_articles.append(Article.from_dict(article_dict))
+                except (ValueError, KeyError) as e:
+                    logger.warning(f"Invalid posted history data: {e}")
+                    continue
+            
+            logger.info(f"Checking duplicates against {len(existing_articles)} existing articles ({len(queued_articles_data)} queued + {len(posted_history)} posted)")
             
             # Note: We can't reconstruct Article objects from just URLs in posted_uris,
             # so for backwards compatibility, we still check URL duplicates first
