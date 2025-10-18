@@ -211,6 +211,112 @@ class TestBot:
         is_relevant2 = news_api._is_bitcoin_relevant(article2)
         assert is_relevant2 is True, "Legitimate mining article should be approved"
     
+    def test_ethereum_solana_filtering(self):
+        """Test that ethereum and solana articles are properly filtered out."""
+        from core import NewsAPI, Config
+        
+        config = Config()
+        news_api = NewsAPI(config)
+        
+        # Test article with Ethereum in title (should be rejected)
+        ethereum_title_article = {
+            "title": "Ethereum Mining Shifts to Proof of Stake",
+            "body": "Ethereum network transitions away from mining. Bitcoin mining continues with proof of work.",
+            "url": "https://example.com/eth",
+            "uri": "test-eth",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article1 = Article.from_dict(ethereum_title_article)
+        is_relevant1 = news_api._is_bitcoin_relevant(article1)
+        assert is_relevant1 is False, "Article with Ethereum in title should be rejected"
+        
+        # Test article with Solana in title (should be rejected)
+        solana_title_article = {
+            "title": "Solana Network Upgrades: New Features for Miners",
+            "body": "Solana announces new features. Bitcoin mining mentioned briefly.",
+            "url": "https://example.com/sol",
+            "uri": "test-sol",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article2 = Article.from_dict(solana_title_article)
+        is_relevant2 = news_api._is_bitcoin_relevant(article2)
+        assert is_relevant2 is False, "Article with Solana in title should be rejected"
+        
+        # Test article with multiple other crypto mentions in body (should be rejected)
+        multi_crypto_article = {
+            "title": "Cryptocurrency Mining Update",
+            "body": "Ethereum mining continues to grow. Solana network sees increased activity. Cardano miners report profits. Bitcoin mining was also mentioned briefly.",
+            "url": "https://example.com/multi",
+            "uri": "test-multi",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article3 = Article.from_dict(multi_crypto_article)
+        is_relevant3 = news_api._is_bitcoin_relevant(article3)
+        assert is_relevant3 is False, "Article with multiple other crypto mentions should be rejected"
+        
+        # Test article with ETH ticker in title (should be rejected)
+        eth_ticker_article = {
+            "title": "ETH Mining Profitability Increases",
+            "body": "Ethereum mining profitability grows. Bitcoin mining also discussed.",
+            "url": "https://example.com/eth-ticker",
+            "uri": "test-eth-ticker",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article4 = Article.from_dict(eth_ticker_article)
+        is_relevant4 = news_api._is_bitcoin_relevant(article4)
+        assert is_relevant4 is False, "Article with ETH ticker in title should be rejected"
+        
+        # Test legitimate Bitcoin mining article (should be approved)
+        bitcoin_only_article = {
+            "title": "Bitcoin Mining Revenue Reaches New High",
+            "body": "Bitcoin mining companies report record revenues. Mining difficulty increases. Hash rate reaches all-time high.",
+            "url": "https://example.com/btc",
+            "uri": "test-btc",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article5 = Article.from_dict(bitcoin_only_article)
+        is_relevant5 = news_api._is_bitcoin_relevant(article5)
+        assert is_relevant5 is True, "Legitimate Bitcoin mining article should be approved"
+    
+    def test_meta_language_filtering(self):
+        """Test that meta-analysis language is properly filtered from responses."""
+        from core import GeminiClient
+        
+        # Test _clean_headline removes meta-language
+        if GeminiClient:
+            gemini = object.__new__(GeminiClient)
+            
+            # Test headline with meta-language
+            dirty_headline1 = "The article states that Marathon Digital Expands Operations"
+            clean1 = gemini._clean_headline(dirty_headline1)
+            assert "the article states" not in clean1.lower(), "Meta-language should be removed from headline"
+            assert "Marathon Digital" in clean1, "Actual content should be preserved"
+            
+            dirty_headline2 = "According to the article, RIOT Platforms Reports Record Revenue"
+            clean2 = gemini._clean_headline(dirty_headline2)
+            assert "according to" not in clean2.lower(), "Meta-language should be removed from headline"
+            assert "RIOT Platforms" in clean2, "Actual content should be preserved"
+        
+        # Test _process_summary_response filters meta-commentary
+        if GeminiClient:
+            gemini = object.__new__(GeminiClient)
+            
+            # Test summary with meta-language
+            dirty_summary = """Now let's identify what not to repeat from the headline.
+• Revenue increased 42% year-over-year
+• The article discusses expansion plans
+• Hash rate improved significantly"""
+            
+            clean_summary = gemini._process_summary_response(dirty_summary)
+            assert "now let's" not in clean_summary.lower(), "Meta-language should be filtered"
+            assert "the article discusses" not in clean_summary.lower(), "Meta-language should be filtered"
+            assert "Revenue increased" in clean_summary, "Actual bullet points should be preserved"
+    
     def test_url_retrieval_error_handling(self):
         """Test that URLRetrievalError is properly raised and not caught incorrectly."""
         from core import URLRetrievalError, GeminiClient, TextProcessor
