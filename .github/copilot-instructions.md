@@ -25,7 +25,7 @@ The bot uses an **ultra-minimal, consolidated architecture** with clear separati
 
 ## Recent Critical Bug Fixes (Session Summary)
 
-The codebase has undergone comprehensive bug fixing with **19 critical issues resolved** (6 new fixes added):
+The codebase has undergone comprehensive bug fixing with **23 critical issues resolved** (10 new fixes added):
 
 ### Type Safety & Error Handling Improvements:
 1. **✅ Gemini Client Type Mismatch**: Fixed Optional[GeminiClient] property return type annotation
@@ -45,6 +45,15 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 19. **✅ URL Retrieval Status Logic**: CRITICAL - **JUST FIXED** - Corrected enum status checking to properly handle `UrlRetrievalStatus.URL_RETRIEVAL_STATUS_SUCCESS` format instead of simple string comparison, ensuring accurate URL retrieval validation
 20. **✅ Gemini URL Context API Format**: CRITICAL - **OCTOBER 2025 MAJOR FIX** - Discovered and fixed fundamental SDK vs REST API format confusion. We were using REST API dict syntax `{"url_context": {}}` in Python SDK calls instead of proper object syntax `types.Tool(url_context=types.UrlContext())`. This was the root cause of "unable to fetch content" error messages being posted as tweets.
 
+### NEWEST: Critical Content Filtering Fixes (October 2025):
+21. **✅ Ether/Ethereum Filtering**: CRITICAL - Added "ether" to cryptocurrency filter to prevent Ethereum articles from being posted. The filter previously only checked for "ethereum" and "eth" but missed "ether" keyword, allowing articles like "Bit Digital Pivots, Amasses $500M Ether" to pass.
+22. **✅ Altcoin Title Check Priority**: CRITICAL - Moved altcoin title checking BEFORE public miners check to prevent false approvals. Previously, articles about public mining companies pivoting to altcoins (e.g., "Bit Digital Pivots to Ether") would be auto-approved despite mentioning altcoins.
+23. **✅ Generic Ticker Removal**: MODERATE - Removed "any" ticker (Sphere 3D) from public miners list as it caused false positives matching any word containing "any" (e.g., "company").
+24. **✅ Gemini Metadata Exposure Prevention**: CRITICAL - Enhanced `_process_summary_response()` to detect and reject responses containing Gemini's internal processing language (e.g., "Okay, I have...", "Now I need to..."). Returns safe fallback content instead of exposing Gemini's thought process as tweets.
+25. **✅ Pre-Posting Content Validation**: CRITICAL - Added `_validate_content_before_posting()` method that checks all tweets for forbidden patterns before posting, including internal processing language, meta-language, altcoin mentions, and error messages. This is the last line of defense.
+26. **✅ Enhanced Gemini Prompts**: MODERATE - Simplified and strengthened Gemini prompts to explicitly prevent meta-commentary, internal processing language, and altcoin mentions in responses. Prompts now demand "ONLY the final output, no thinking process".
+27. **✅ Comprehensive Test Coverage**: Added 3 new test cases (test_ether_filtering, test_gemini_metadata_filtering, test_content_validation) and verification script (test_critical_fixes.py) to ensure fixes work correctly.
+
 ### Robustness & Validation Improvements:
 9. **✅ Mining Filter Logic**: Enhanced counting validation with defensive bounds checking
 10. **✅ Thread Type Error**: Added None check before enumeration in tools.py preview
@@ -55,7 +64,7 @@ The codebase has undergone comprehensive bug fixing with **19 critical issues re
 13. **✅ Clean API Design**: Removed misleading skip_gemini_analysis parameter
 14. **✅ Optimized Scheduling**: Clarified GitHub workflow cron scheduling (complementary 90-minute intervals)
 
-All fixes maintain **100% backward compatibility** with comprehensive testing validation. **NEW**: All 9 core functionality tests and 3 integration tests passing after latest fixes. **OCTOBER 2025 MAJOR UPDATE**: Fixed fundamental Gemini URL Context API implementation - bot will now fetch actual article content instead of posting error messages.
+All fixes maintain **100% backward compatibility** with comprehensive testing validation. **NEW**: All 17 core functionality tests passing after latest fixes (added 3 new tests for content filtering). **OCTOBER 2025 MAJOR UPDATE**: Fixed fundamental Gemini URL Context API implementation AND critical content filtering issues - bot will now fetch actual article content, filter out altcoins/Ethereum properly, and never expose Gemini's internal processing language as tweets.
 
 ## Working Effectively
 
@@ -72,8 +81,9 @@ All fixes maintain **100% backward compatibility** with comprehensive testing va
 - NEVER CANCEL: Dependency installation takes 30-60 seconds. Set timeout to 120+ seconds.
 
 ### Build and Test
-- **Core tests**: `python tests/test_bot.py` -- comprehensive validation (9 tests)
+- **Core tests**: `python tests/test_bot.py` -- comprehensive validation (17 tests)
 - **Integration tests**: `python tests/test_integration.py` -- workflow validation (3 tests)
+- **Critical fixes verification**: `python test_critical_fixes.py` -- validates ether filtering, metadata exposure prevention, and content validation
 - **Bot diagnostics**: `python bot.py --diagnose` -- takes <3 seconds (optimized)
 - **All tests organized**: All test files now in `tests/` directory for clean structure
 
