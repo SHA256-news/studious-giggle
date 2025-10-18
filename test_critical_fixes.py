@@ -75,7 +75,7 @@ def test_gemini_metadata():
     print("\n🧪 Testing Gemini Metadata Filtering")
     print("=" * 60)
     
-    gemini = object.__new__(GeminiClient)
+    gemini = GeminiClient()
     
     test_cases = [
         {
