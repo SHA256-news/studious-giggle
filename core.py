@@ -468,7 +468,7 @@ class GeminiClient:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
     def _clean_headline(self, headline: str) -> str:
-        """Clean up headline text by removing unwanted formatting."""
+        """Clean up headline text by removing unwanted formatting and meta-language."""
         import re
         
         # Remove quotes if present
@@ -480,6 +480,26 @@ class GeminiClient:
         
         # Remove any leading/trailing whitespace
         headline = headline.strip()
+        
+        # CRITICAL: Remove meta-analysis language that sometimes appears
+        meta_patterns = [
+            r'^(the article states that|the article discusses|according to the article|from the article)',
+            r'^(based on the article|the report states|this article discusses)',
+        ]
+        
+        headline_lower = headline.lower()
+        for pattern in meta_patterns:
+            if re.search(pattern, headline_lower):
+                logger.warning(f"⚠️ Removing meta-language from headline: {headline}")
+                # Try to extract the actual content after the meta-phrase
+                match = re.search(r'(?:the article states that|the article discusses|according to the article|from the article|based on the article|the report states|this article discusses)[\s:,]+(.*)', headline, re.IGNORECASE)
+                if match:
+                    headline = match.group(1).strip()
+                    # Capitalize first letter if needed
+                    if headline and headline[0].islower():
+                        headline = headline[0].upper() + headline[1:]
+                    logger.info(f"✅ Cleaned headline: {headline}")
+                    break
         
         return headline
     
@@ -568,6 +588,10 @@ class GeminiClient:
                 r'^(the following|these are|below are)',
                 r'(extract|create|generate|provide|present)\s+(the|specific|details)',
                 r'^(bullet points?|summary|details?)[:.]',
+                r'(the article discusses|the article states|the article mentions|the article reports)',
+                r'(now let\'?s|now we|let\'?s identify|let\'?s look)',
+                r'(what not to repeat|what to avoid|what we should)',
+                r'^(this article|the piece|the report)\s+(discusses|states|mentions|covers)',
             ]
             
             should_skip = False
@@ -604,7 +628,10 @@ class GeminiClient:
                 continue
             
             # Skip meta-commentary
-            if any(p in line_lower for p in ['i will', 'let me', 'here are', 'from the article:', 'based on', 'according to']):
+            if any(p in line_lower for p in [
+                'i will', 'let me', 'here are', 'from the article:', 'based on', 'according to',
+                'the article discusses', 'the article states', 'now let\'s', 'what not to repeat'
+            ]):
                 continue
             
             # Look for lines with numbers, percentages, or dollar amounts (likely real facts)
@@ -1292,9 +1319,23 @@ class NewsAPI:
             logger.info(f"❌ Excluded non-mining title topic: {article.title}")
             return False
         
-        # Exclude other cryptocurrencies - validation with proper bounds checking
-        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin"]
+        # CRITICAL: Exclude articles primarily about other cryptocurrencies
+        # Check title first - if title mentions other cryptos, it's not about Bitcoin mining
+        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin", "litecoin", "ripple", "xrp"]
+        
+        # Reject if other crypto mentioned in title (clear indicator of primary topic)
+        for crypto in other_cryptos:
+            if crypto in title_lower:
+                logger.info(f"❌ Article title mentions non-Bitcoin cryptocurrency '{crypto}': {article.title}")
+                return False
+        
+        # Also count mentions in body text
         other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
+        
+        # Reject if other cryptos mentioned significantly (3+ times) - indicates primary focus
+        if other_mentions >= 3:
+            logger.info(f"❌ Article focuses on other cryptocurrencies: {article.title} (Other crypto mentions: {other_mentions})")
+            return False
         
         # Skip if other cryptos mentioned more than Bitcoin (defensive check)
         if other_mentions > 0 and bitcoin_mentions > 0 and other_mentions > bitcoin_mentions:
