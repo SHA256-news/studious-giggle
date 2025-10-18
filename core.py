@@ -1382,8 +1382,8 @@ class NewsAPI:
             logger.info(f"❌ Excluded non-mining title topic: {article.title}")
             return False
         
-        # Note: other_cryptos title check was moved earlier (before public miners check)
-        # to prevent false approvals of articles about public miners pivoting to altcoins
+        # Altcoin title filtering is performed before the public miners check
+        # to ensure articles about public miners pivoting to altcoins are not falsely approved.
         
         # Count altcoin mentions in body text for articles that passed title check
         # Re-use the same crypto list defined earlier
