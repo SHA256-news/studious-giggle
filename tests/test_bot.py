@@ -211,6 +211,91 @@ class TestBot:
         is_relevant2 = news_api._is_bitcoin_relevant(article2)
         assert is_relevant2 is True, "Legitimate mining article should be approved"
     
+    def test_environmental_blame_filtering(self):
+        """Test that articles blaming Bitcoin mining for environmental problems are filtered out."""
+        from core import NewsAPI, Config
+        
+        config = Config()
+        news_api = NewsAPI(config)
+        
+        # Test article blaming mining for emissions crisis (should be rejected)
+        emissions_article = {
+            "title": "Bitcoin's Thousands of Miners Fuel Emissions Crisis",
+            "body": "Bitcoin mining operations are responsible for a growing emissions crisis. The thousands of miners fuel greenhouse gas emissions worldwide. Mining generates significant environmental damage.",
+            "url": "https://example.com/emissions",
+            "uri": "test-emissions",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article1 = Article.from_dict(emissions_article)
+        is_relevant1 = news_api._is_bitcoin_relevant(article1)
+        assert is_relevant1 is False, "Article blaming mining for emissions crisis should be rejected"
+        
+        # Test article about farms generating pollution (should be rejected)
+        pollution_article = {
+            "title": "Bitcoin Mining Farms Generate Heat and Noise Pollution Locally",
+            "body": "Mining farms generate heat pollution and noise pollution in local communities. The environmental damage from bitcoin mining continues to grow.",
+            "url": "https://example.com/pollution",
+            "uri": "test-pollution",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article2 = Article.from_dict(pollution_article)
+        is_relevant2 = news_api._is_bitcoin_relevant(article2)
+        assert is_relevant2 is False, "Article about mining generating pollution should be rejected"
+        
+        # Test article about boiling the oceans (should be rejected)
+        boiling_article = {
+            "title": "Critics Say Bitcoin Mining is Boiling the Oceans",
+            "body": "Environmental activists claim bitcoin mining is contributing to global warming. The carbon footprint of mining operations is enormous. Critics say it's boiling the oceans.",
+            "url": "https://example.com/boiling",
+            "uri": "test-boiling",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article3 = Article.from_dict(boiling_article)
+        is_relevant3 = news_api._is_bitcoin_relevant(article3)
+        assert is_relevant3 is False, "Article about boiling oceans should be rejected"
+        
+        # Test article with climate crisis blame (should be rejected)
+        climate_article = {
+            "title": "Bitcoin Mining Worsening Climate Crisis, Report Says",
+            "body": "New report shows bitcoin mining causes significant greenhouse gas emissions. The environmental crisis is worsening due to mining operations. Mining is blamed for accelerating climate change.",
+            "url": "https://example.com/climate",
+            "uri": "test-climate",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article4 = Article.from_dict(climate_article)
+        is_relevant4 = news_api._is_bitcoin_relevant(article4)
+        assert is_relevant4 is False, "Article blaming mining for climate crisis should be rejected"
+        
+        # Test neutral article about renewable energy (should be APPROVED)
+        renewable_article = {
+            "title": "Bitcoin Mining Company Switches to 100% Renewable Energy",
+            "body": "Major bitcoin mining company announces transition to renewable energy sources. The mining facility will be powered entirely by solar and wind. This move reduces the company's carbon footprint.",
+            "url": "https://example.com/renewable",
+            "uri": "test-renewable",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article5 = Article.from_dict(renewable_article)
+        is_relevant5 = news_api._is_bitcoin_relevant(article5)
+        assert is_relevant5 is True, "Neutral article about renewable energy should be approved"
+        
+        # Test neutral article about energy efficiency (should be APPROVED)
+        efficiency_article = {
+            "title": "Marathon Digital Reports 20% Increase in Energy Efficiency",
+            "body": "Marathon Digital Holdings announced improvements in energy efficiency for its mining operations. The company has upgraded to more efficient ASIC miners. Hash rate increased while maintaining stable power consumption.",
+            "url": "https://example.com/efficiency",
+            "uri": "test-efficiency",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article6 = Article.from_dict(efficiency_article)
+        is_relevant6 = news_api._is_bitcoin_relevant(article6)
+        assert is_relevant6 is True, "Neutral article about energy efficiency should be approved"
+    
     def test_ethereum_solana_filtering(self):
         """Test that ethereum and solana articles are properly filtered out."""
         from core import NewsAPI, Config

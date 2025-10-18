@@ -1258,7 +1258,60 @@ class NewsAPI:
         text = f"{article.title} {article.body}".lower()
         title_lower = article.title.lower()
         
-        # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant)
+        # CRITICAL: Check for promotional content FIRST
+        # This prevents scam apps like "HashJ" from being approved
+        promotional_terms = [
+            "cloud mining", "free bitcoin mining", "claim", "bonus", "gift", 
+            "sign up", "register now", "join now", "get started", "download app",
+            "earn daily", "passive income", "$118", "hashj", "momhash", 
+            "free mining", "no investment", "guaranteed returns", "daily earnings"
+        ]
+        if any(term in text for term in promotional_terms):
+            logger.info(f"❌ Excluded promotional content: {article.title}")
+            return False
+        
+        # CRITICAL: Check for environmental blame BEFORE public miners check
+        # Exclude articles that blame Bitcoin mining for environmental problems
+        # These articles frame mining negatively for pollution, emissions, climate impact, etc.
+        environmental_blame_terms = [
+            "emissions crisis", "fuel emissions", "pollution", "pollut", 
+            "heat pollution", "noise pollution", "environmental damage",
+            "environmental crisis", "climate crisis", "boiling the oceans",
+            "boil the ocean", "ecological damage", "ecological crisis",
+            "carbon footprint", "greenhouse gas", "global warming contributor",
+            "energy waste", "wasting energy", "environmental disaster",
+            "environmental harm", "environmental impact crisis", 
+            "destroying the environment", "killing the planet",
+            "climate change cause", "accelerating climate change"
+        ]
+        
+        # Check for negative framing with environmental terms
+        # Look for combinations that indicate blame rather than neutral reporting
+        negative_framing_indicators = [
+            "thousands of miners fuel", "miners fuel", "mining fuels",
+            "farms generate", "mining generates", "miners generate",
+            "mining causes", "miners cause", "responsible for",
+            "blamed for", "contributes to crisis", "worsening",
+            "devastating", "harmful", "damaging"
+        ]
+        
+        environmental_blame_count = sum(1 for term in environmental_blame_terms if term in text)
+        negative_framing_count = sum(1 for term in negative_framing_indicators if term in text)
+        
+        # Reject if article has both environmental blame language AND negative framing
+        # This filters out articles that blame mining for environmental problems
+        # while allowing neutral reporting on energy use, renewables, etc.
+        if environmental_blame_count >= 1 and negative_framing_count >= 1:
+            logger.info(f"❌ Excluded environmental blame article: {article.title} (Environmental terms: {environmental_blame_count}, Negative framing: {negative_framing_count})")
+            return False
+        
+        # Also reject if there are multiple strong environmental blame terms (2+)
+        # indicating the article is primarily about environmental criticism
+        if environmental_blame_count >= 2:
+            logger.info(f"❌ Excluded environmental criticism article: {article.title} (Environmental blame terms: {environmental_blame_count})")
+            return False
+        
+        # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant if not environmental blame)
         # Comprehensive list of 33 publicly traded Bitcoin mining companies with tickers
         public_miners = [
             # Major US-listed Bitcoin miners
@@ -1276,18 +1329,6 @@ class NewsAPI:
             "sphere 3d", "any", "gryphon digital", "gryp", "american bitcoin", "abtc",
             "abits group", "abts"
         ]
-        
-        # CRITICAL: Check for promotional content BEFORE public miner check
-        # This prevents scam apps like "HashJ" from being approved
-        promotional_terms = [
-            "cloud mining", "free bitcoin mining", "claim", "bonus", "gift", 
-            "sign up", "register now", "join now", "get started", "download app",
-            "earn daily", "passive income", "$118", "hashj", "momhash", 
-            "free mining", "no investment", "guaranteed returns", "daily earnings"
-        ]
-        if any(term in text for term in promotional_terms):
-            logger.info(f"❌ Excluded promotional content: {article.title}")
-            return False
         
         if any(company in text for company in public_miners):
             logger.info(f"✅ Public mining company detected - auto-approved: {article.title}")
