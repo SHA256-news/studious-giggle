@@ -433,6 +433,86 @@ class TestBot:
             assert "Failed to retrieve content" in str(e)
             assert "https://example.com/article" in str(e)
 
+    def test_ether_filtering(self):
+        """Test that 'ether' is properly filtered out."""
+        from core import NewsAPI, Config
+        
+        config = Config()
+        news_api = NewsAPI(config)
+        
+        # Test article about Ether (should be rejected)
+        article_data = {
+            "title": "Bit Digital Pivots, Amasses $500M Ether Post-Mining Exit",
+            "body": "Company transitions to Ethereum staking operations",
+            "url": "https://example.com/ether",
+            "uri": "test-ether",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article = Article.from_dict(article_data)
+        is_relevant = news_api._is_bitcoin_relevant(article)
+        assert is_relevant is False, "Ether article should be filtered out"
+        
+        # Test article with 'ether' in body (should be rejected if mentioned 3+ times)
+        article_data2 = {
+            "title": "Crypto Mining Company Shifts Focus",
+            "body": "Bitcoin mining company now focuses on ether ether ether operations",
+            "url": "https://example.com/ether2",
+            "uri": "test-ether2",
+            "source": {"title": "Test"},
+            "dateTimePub": "2024-01-01T12:00:00Z"
+        }
+        article2 = Article.from_dict(article_data2)
+        is_relevant2 = news_api._is_bitcoin_relevant(article2)
+        assert is_relevant2 is False, "Article with multiple ether mentions should be filtered"
+
+    def test_gemini_metadata_filtering(self):
+        """Test that Gemini internal processing is filtered."""
+        from core import GeminiClient
+        
+        # Create Gemini client instance
+        gemini = object.__new__(GeminiClient)
+        
+        # Test response with internal processing language
+        test_response = "Okay, I have the article content. Now I need to find three facts..."
+        cleaned = gemini._process_summary_response(test_response)
+        assert "okay, i have" not in cleaned.lower(), "Internal processing should be filtered"
+        assert "now i need" not in cleaned.lower(), "Internal processing should be filtered"
+        
+        # Test response with "forbidden info" mention
+        test_response2 = "Let me identify what not to repeat. Forbidden info includes..."
+        cleaned2 = gemini._process_summary_response(test_response2)
+        assert "forbidden info" not in cleaned2.lower(), "Forbidden info mention should be filtered"
+        assert "let me identify" not in cleaned2.lower(), "Internal processing should be filtered"
+        
+        # Test valid response (should pass through)
+        test_response3 = "• Marathon Digital expands operations\n• Revenue increased 42% year-over-year\n• Hash rate improved significantly"
+        cleaned3 = gemini._process_summary_response(test_response3)
+        assert "Marathon Digital" in cleaned3, "Valid content should be preserved"
+
+    def test_content_validation(self):
+        """Test pre-posting validation catches forbidden patterns."""
+        from core import BitcoinMiningBot, Config
+        
+        config = Config()
+        bot = BitcoinMiningBot(config=config)
+        
+        # Test bad content with internal processing
+        bad_content1 = "Okay, I have analyzed the Ether article"
+        assert not bot._validate_content_before_posting(bad_content1), "Should reject internal processing"
+        
+        # Test bad content with meta-language
+        bad_content2 = "The article states that Marathon Digital is expanding"
+        assert not bot._validate_content_before_posting(bad_content2), "Should reject meta-language"
+        
+        # Test bad content with altcoin mention
+        bad_content3 = "Ethereum mining operations are growing"
+        assert not bot._validate_content_before_posting(bad_content3), "Should reject altcoin mentions"
+        
+        # Test good content
+        good_content = "Marathon Digital Expands Mining Operations"
+        assert bot._validate_content_before_posting(good_content), "Should accept valid content"
+
 
 def run_simple_tests():
     """Run all simple tests."""

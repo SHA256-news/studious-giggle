@@ -563,6 +563,27 @@ class GeminiClient:
         """Process and clean Gemini's summary response to extract only bullet points."""
         import re
         
+        # CRITICAL: Detect and reject responses that are PRIMARILY internal processing
+        # Check if response has ANY actual bullet points with content
+        has_bullet_points = bool(re.search(r'[•\-\*]\s+\w{3,}', summary_text))
+        
+        # CRITICAL: Detect internal processing language ONLY if there are NO bullet points
+        # This prevents exposing pure thought process as tweets while allowing mixed content
+        internal_processing_patterns = [
+            "okay, i have", "now i need to", "let me find",
+            "forbidden info", "i'll extract", "i need to identify",
+            "okay i have", "now i need"
+        ]
+        
+        # Only return fallback if internal processing AND no bullet points
+        text_lower = summary_text.lower()
+        has_internal_processing = any(pattern in text_lower for pattern in internal_processing_patterns)
+        
+        if has_internal_processing and not has_bullet_points:
+            logger.error(f"❌ CRITICAL: Gemini response is pure internal processing, no content")
+            # Return safe fallback instead of exposing metadata
+            return "• Bitcoin mining sector update\n• Industry development\n• See article for details"
+        
         lines = summary_text.strip().split('\n')
         bullet_points = []
         
@@ -661,21 +682,17 @@ class GeminiClient:
             logger.info("🎯 Generating catchy headline with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Read the FULL Bitcoin mining article at {article.url} (not just the title) and write a PUNCHY news headline based on the article's BODY content.
-            
-            Article's original title: "{article.title}"
-            
-            CRITICAL: Your headline must be DIFFERENT from the original title. Extract NEW insights from reading the full article body.
+            Read the Bitcoin mining article at {article.url} and write a PUNCHY news headline.
             
             CRITICAL REQUIREMENTS:
-            - Read the ENTIRE article body to find the most newsworthy angle
-            - Write like a professional financial news reporter
-            - Start with COMPANY NAME or KEY ACTION, never "The article states that..."
+            - Write ONLY the final headline, no thinking process
+            - NO meta-commentary like "I need to" or "Let me" or "Okay, I have"
+            - NO mentions of other cryptocurrencies (Ethereum, Ether, Solana, etc.)
+            - Start with COMPANY NAME or KEY ACTION
             - Keep it under 70 characters
-            - Include specific numbers, percentages, or dollar amounts from the article BODY
-            - Use powerful action verbs: "soars", "plummets", "hits", "reaches", "secures", "reports"
-            - Sound like headlines from Bloomberg, Reuters, or MarketWatch
-            - Must be DIFFERENT from the original article title above
+            - Use powerful action verbs
+            
+            Return ONLY the headline text, nothing else. No explanations, no process, just the headline.
             
             GOOD EXAMPLES:
             - "HIVE Hits 52-Week High on Mining Surge"
@@ -684,12 +701,10 @@ class GeminiClient:
             - "CleanSpark Stock Jumps 15% on Expansion News"
             
             BAD EXAMPLES (NEVER DO THIS):
-            - "The article states that HIVE Digital Technologies..."
-            - "According to the report, Marathon Digital..."
-            - "The company announced in the article..."
-            - Repeating the original article title
-            
-            Return ONLY the headline, no quotes, no explanation.
+            - "The article states that..."
+            - "According to the report..."
+            - "Okay, I have read the article..."
+            - "Let me analyze the content..."
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
@@ -808,53 +823,29 @@ class GeminiClient:
             logger.info("🎯 Generating thread summary with Gemini 2.5 Flash + URL context...")
             
             prompt = f"""
-            Read the FULL Bitcoin mining article body at {article.url} and create SPECIFIC bullet points with NEW information.
+            Create 3 bullet points about this Bitcoin mining article at {article.url}.
             
-            Article's original title: "{article.title}"
-            Generated Headline: {headline}
+            CRITICAL OUTPUT RULES:
+            - Return ONLY the 3 bullet points
+            - NO thinking process or meta-commentary
+            - NO text like "I need to find" or "Let me identify" or "Okay, I have"
+            - NO mentions of forbidden info or filtering
+            - NO text like "From the article:" or "Based on the article:"
+            - Each bullet starts with "•" 
+            - Under 60 characters each
             
-            CRITICAL ANTI-REPETITION RULES:
-            - DO NOT repeat ANY information from the original article title above
-            - DO NOT repeat ANY information from the generated headline above
-            - DO NOT repeat ANY numbers, dollar amounts, Bitcoin amounts, percentages, dates, or specific facts (e.g., "127,271", "$12 billion") already mentioned in the original article title or generated headline
-            - Each bullet point must contain COMPLETELY NEW information from the article BODY
-            - Read the ENTIRE article body to find additional facts not in the title or headline
-            - If the headline mentions a specific Bitcoin amount or dollar figure, your bullets must discuss DIFFERENT aspects
+            Format exactly like this:
+            • [Fact 1]
+            • [Fact 2]  
+            • [Fact 3]
             
-            Create 3 rapid-fire bullet points that reveal DIFFERENT details from the article body:
-            - Total length under 180 characters
-            - Include specific numbers, dates, locations, dollar amounts NOT already mentioned
-            - Use telegraphic style like financial newswires
-            - Each point 50-60 characters max
-            - Format: "• [specific fact]"
-            - NO generic statements
-            - NO repetition of title or headline content
-            
-            GOOD EXAMPLES (each has NEW information):
-            • Q3 revenue jumped 42% to $87M year-over-year
-            • Added 2,500 miners at Texas facility this month  
-            • Power costs dropped to 4.2¢/kWh from 6.1¢/kWh
+            NOTHING ELSE. Just the bullets. Do not explain what you're doing.
             
             BAD EXAMPLES (NEVER DO):
-            • The company is performing well (too generic)
-            • Bitcoin mining operations are expanding (too generic)
-            • Repeating any number or fact from the title or headline (FORBIDDEN)
-            • "US Treasury seizing 127,271 BTC total" - if headline already says this amount (FORBIDDEN REPETITION)
-            • "Worth $12 billion" - if headline already mentions dollar amount (FORBIDDEN REPETITION)
-            • Restating the same event in different words (must be DIFFERENT facts)
-            
-            **CRITICAL OUTPUT FORMAT RULES:**
-            - Start IMMEDIATELY with the first bullet point (•)
-            - NO introductions like "I will now...", "Let me...", "Here are...", "From the article:", etc.
-            - NO explanations or meta-commentary about what you're doing
-            - NO blank lines between bullet points
-            - ONLY the 3 bullet points, nothing else
-            - Each bullet point must start with • character
-            
-            Your response must be EXACTLY in this format:
-            • [First NEW specific fact with numbers/details]
-            • [Second NEW specific fact with numbers/details]
-            • [Third NEW specific fact with numbers/details]
+            - "Okay, I have the article content. Now I need to find three facts..."
+            - "Let me identify the key points from the article..."
+            - "Here are the bullet points from the article:"
+            - "Based on the article content, here are three facts:"
             """
             
             # Use URL context tool with SIMPLE DICT format (from official cookbook examples)
@@ -1321,8 +1312,28 @@ class NewsAPI:
             logger.info(f"❌ Excluded environmental criticism article: {article.title} (Environmental blame terms: {environmental_blame_count})")
             return False
         
-        # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant if not environmental blame)
-        # Comprehensive list of 33 publicly traded Bitcoin mining companies with tickers
+        # CRITICAL: Check for altcoins in title BEFORE checking public miners
+        # This prevents approving articles like "Bit Digital Pivots to Ether"
+        other_cryptos = [
+            "ethereum", "eth", "ether",  # CRITICAL: Added "ether" to prevent Ethereum posts
+            "solana", "sol", "cardano", "ada",
+            "dogecoin", "doge", "litecoin", "ltc",
+            "ripple", "xrp", "polkadot", "dot",
+            "chainlink", "link", "polygon", "matic",
+            "avalanche", "avax", "cosmos", "atom",
+            "near", "algorand", "algo", "tezos",
+            "monero", "xmr", "zcash", "zec"
+        ]
+        
+        # Reject if other crypto mentioned in title (clear indicator of primary topic)
+        for crypto in other_cryptos:
+            if crypto in title_lower:
+                logger.info(f"❌ Article title mentions non-Bitcoin cryptocurrency '{crypto}': {article.title}")
+                return False
+        
+        # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant if not environmental blame or altcoin)
+        # Comprehensive list of publicly traded Bitcoin mining companies with tickers
+        # Note: Removed overly generic tickers like "ANY" (Sphere 3D) that cause false positives
         public_miners = [
             # Major US-listed Bitcoin miners
             "marathon digital", "mara", "riot platforms", "riot", "cleanspark", "clsk",
@@ -1336,7 +1347,8 @@ class NewsAPI:
             "dmggf", "cathedra bitcoin", "cbit", "cbttf", "bitcoin well", "btcw",
             "lm funding", "lmfa", "sos limited", "sos", "neptune digital", "nda",
             "npptf", "digihost", "hsshf", "sato technologies", "sato",
-            "sphere 3d", "any", "gryphon digital", "gryp", "american bitcoin", "abtc",
+            "sphere 3d",  # Removed "any" ticker - too generic, causes false positives
+            "gryphon digital", "gryp", "american bitcoin", "abtc",
             "abits group", "abts"
         ]
         
@@ -1370,18 +1382,22 @@ class NewsAPI:
             logger.info(f"❌ Excluded non-mining title topic: {article.title}")
             return False
         
-        # CRITICAL: Exclude articles primarily about other cryptocurrencies
-        # Check title first - if title mentions other cryptos, it's not about Bitcoin mining
-        other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin", "litecoin", "ripple", "xrp"]
+        # Note: other_cryptos title check was moved earlier (before public miners check)
+        # to prevent false approvals of articles about public miners pivoting to altcoins
         
-        # Reject if other crypto mentioned in title (clear indicator of primary topic)
-        for crypto in other_cryptos:
-            if crypto in title_lower:
-                logger.info(f"❌ Article title mentions non-Bitcoin cryptocurrency '{crypto}': {article.title}")
-                return False
-        
-        # Also count mentions in body text
-        other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
+        # Count altcoin mentions in body text for articles that passed title check
+        # Re-use the same crypto list defined earlier
+        other_cryptos_list = [
+            "ethereum", "eth", "ether",
+            "solana", "sol", "cardano", "ada",
+            "dogecoin", "doge", "litecoin", "ltc",
+            "ripple", "xrp", "polkadot", "dot",
+            "chainlink", "link", "polygon", "matic",
+            "avalanche", "avax", "cosmos", "atom",
+            "near", "algorand", "algo", "tezos",
+            "monero", "xmr", "zcash", "zec"
+        ]
+        other_mentions = sum(1 for crypto in other_cryptos_list if crypto in text)
         
         # Reject if other cryptos mentioned significantly (3+ times) - indicates primary focus
         if other_mentions >= 3:
@@ -1809,6 +1825,39 @@ class BitcoinMiningBot:
         return True
     
 
+    def _validate_content_before_posting(self, content: str) -> bool:
+        """Validate content doesn't contain Gemini metadata or processing language.
+        
+        CRITICAL: This prevents exposing Gemini's internal thought process as tweets.
+        """
+        
+        # CRITICAL: Patterns that should NEVER appear in tweets
+        forbidden_patterns = [
+            # Gemini internal processing
+            "okay, i have", "now i need", "let me", "i'll",
+            "forbidden info", "i need to", "i will now",
+            "let's identify", "here are", "based on the article",
+            "okay i have", "now i need to",
+            
+            # Meta-language
+            "the article states", "according to the article",
+            "the report says", "from the article",
+            
+            # Altcoin mentions that shouldn't be in Bitcoin bot
+            "ether", "ethereum", "solana", "cardano",
+            
+            # Debug/error messages
+            "error:", "warning:", "failed to", "unable to"
+        ]
+        
+        content_lower = content.lower()
+        for pattern in forbidden_patterns:
+            if pattern in content_lower:
+                logger.error(f"❌ Content validation failed - contains: '{pattern}'")
+                return False
+        
+        return True
+
     def _post_article(self, article: Article) -> bool:
         """Post an article to Twitter as a thread.
         
@@ -1823,6 +1872,12 @@ class BitcoinMiningBot:
             if thread_tweets is None:
                 logger.warning("❌ Cannot create thread without Gemini API - will retry later")
                 return False
+            
+            # CRITICAL: Validate each tweet before posting to prevent exposing Gemini metadata
+            for i, tweet in enumerate(thread_tweets):
+                if not self._validate_content_before_posting(tweet):
+                    logger.error(f"❌ Tweet {i+1} failed validation, skipping article: {article.title}")
+                    return False
             
             logger.info(f"Posting thread with {len(thread_tweets)} tweets: {article.title[:50]}...")
             
