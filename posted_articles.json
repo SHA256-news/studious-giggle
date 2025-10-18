@@ -131,7 +131,8 @@
     "https://www.ethnews.com/bitcoin-miners-pivot-to-ai-as-profit-margins-shrink-after-halving/",
     "https://www.investing.com/news/transcripts/earnings-call-transcript-iren-ltd-q4-2025-reports-record-revenue-stock-rises-93CH-4215726",
     "https://za.investing.com/news/transcripts/earnings-call-transcript-iren-ltd-q4-2025-reports-record-revenue-stock-rises-93CH-3860034",
-    "https://in.investing.com/news/transcripts/earnings-call-transcript-iren-ltd-q4-2025-reports-record-revenue-stock-rises-93CH-4984898"
+    "https://in.investing.com/news/transcripts/earnings-call-transcript-iren-ltd-q4-2025-reports-record-revenue-stock-rises-93CH-4984898",
+    "https://www.altcoinbuzz.io/cryptocurrency-news/us-authorities-hold-120k-btc-due-to-key-flaw/"
   ],
   "queued_articles": [
     {
@@ -3256,7 +3257,15 @@
       "date_published": "2025-08-28T22:32:08+00:00",
       "date_posted": "2025-10-18T19:37:46.841186+00:00",
       "body_preview": "IREN Ltd, a prominent player in the Bitcoin mining and AI cloud sectors, reported its Q4 2025 earnings with record annual revenue and a significant market reaction. The company exceeded revenue foreca..."
+    },
+    {
+      "url": "https://www.altcoinbuzz.io/cryptocurrency-news/us-authorities-hold-120k-btc-due-to-key-flaw/",
+      "title": "US Authorities Hold 120K BTC Due to Key Flaw -",
+      "source": "Altcoin Buzz",
+      "date_published": "2025-10-18T19:07:45+00:00",
+      "date_posted": "2025-10-18T20:00:55.836014+00:00",
+      "body_preview": "Back in 2020, about 120,000 Bitcoin, now worth around $15 billion, were mysteriously moved between wallets. Many believed it was a hack. But new reports say it wasn't hacking at all.\n\nAccording to cry..."
     }
   ],
-  "last_run_time": "2025-10-18T19:37:46.841310+00:00"
+  "last_run_time": "2025-10-18T20:00:55.836082+00:00"
 }
