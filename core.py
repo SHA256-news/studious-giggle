@@ -1347,7 +1347,7 @@ class NewsAPI:
             "dmggf", "cathedra bitcoin", "cbit", "cbttf", "bitcoin well", "btcw",
             "lm funding", "lmfa", "sos limited", "sos", "neptune digital", "nda",
             "npptf", "digihost", "hsshf", "sato technologies", "sato",
-            "sphere 3d",  # Removed "any" ticker - too generic, causes false positives
+            "sphere 3d",  # Sphere 3D mining company (ticker omitted due to false positives)
             "gryphon digital", "gryp", "american bitcoin", "abtc",
             "abits group", "abts"
         ]
