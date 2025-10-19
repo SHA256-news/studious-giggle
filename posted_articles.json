@@ -135,7 +135,8 @@
     "https://www.altcoinbuzz.io/cryptocurrency-news/us-authorities-hold-120k-btc-due-to-key-flaw/",
     "https://cointelegraph.com/magazine/bitcoin-mining-industry-dead-2-years-halving-bit-digital-ceo/",
     "https://www.benzinga.com/Opinion/25/10/48293512/the-insider-report-are-bears-getting-ready-to-hibernate",
-    "https://www.manilatimes.net/2025/08/29/tmt-newswire/globenewswire/iren-reports-full-year-fy25-results/2175593"
+    "https://www.manilatimes.net/2025/08/29/tmt-newswire/globenewswire/iren-reports-full-year-fy25-results/2175593",
+    "https://decrypt.co/344761/professor-coin-bitcoin-energy-future-sustainable-crypto"
   ],
   "queued_articles": [
     {
@@ -3364,7 +3365,15 @@
       "date_published": "2025-08-28T20:12:53+00:00",
       "date_posted": "2025-10-19T16:43:30.881225+00:00",
       "body_preview": "Kiniksa Pharmaceuticals to Present at Upcoming Investor Conferences\n\nRecord Earnings and Profitability\n\nExpansion to 10.9k GPUs & $200-250m AI Cloud Annualized Revenue by Dec 20251\n\nGPU Financing & NV..."
+    },
+    {
+      "url": "https://decrypt.co/344761/professor-coin-bitcoin-energy-future-sustainable-crypto",
+      "title": "Professor Coin: Bitcoin, Energy and the Future of Sustainable Crypto - Decrypt",
+      "source": "Decrypt",
+      "date_published": "2025-10-19T17:03:24+00:00",
+      "date_posted": "2025-10-19T18:18:00.579829+00:00",
+      "body_preview": "Policy pressure is rising as governments focus on what kind of power Bitcoin mining uses, where it is sited, and what externalities apply.\n\nProfessor Andrew Urquhart is Professor of Finance and Financ..."
     }
   ],
-  "last_run_time": "2025-10-19T16:43:30.881355+00:00"
+  "last_run_time": "2025-10-19T18:18:00.579935+00:00"
 }
