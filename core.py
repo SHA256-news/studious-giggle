@@ -127,6 +127,7 @@ class Article:
     url: str
     source: str = ""
     date_published: Optional[datetime] = None
+    event_id: Optional[str] = None  # NEW: EventRegistry unique event identifier
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Article':
@@ -151,12 +152,21 @@ class Article:
         if len(url) < 10 or ' ' in url:
             raise ValueError(f"Malformed URL: {url}")
         
+        # Extract eventID if available (EventRegistry provides this for deduplication)
+        event_id = None
+        if "eventUri" in data:
+            event_id = data["eventUri"]
+        elif "uri" in data and not url.startswith('http'):
+            # Sometimes 'uri' is the eventUri, not the article URL
+            event_id = data["uri"]
+        
         return cls(
             title=title,
             body=data.get("body", data.get("summary", "")),
             url=url,
             source=cls._extract_source(data.get("source")),
-            date_published=cls._parse_date(data.get("dateTimePub", data.get("dateTime")))
+            date_published=cls._parse_date(data.get("dateTimePub", data.get("dateTime"))),
+            event_id=event_id
         )
     
     @staticmethod
@@ -421,6 +431,7 @@ class Storage:
         data = Storage.load_json(filepath, {})
         return {
             "posted_uris": data.get("posted_uris", []),
+            "posted_event_ids": data.get("posted_event_ids", []),  # NEW: Track EventRegistry event IDs
             "queued_articles": data.get("queued_articles", []),
             "posted_articles_history": data.get("posted_articles_history", []),
             "last_run_time": data.get("last_run_time")
@@ -493,6 +504,9 @@ class GeminiClient:
     ⚠️ SYSTEMATIC ISSUE SOLVED: We kept forgetting correct API format during refactoring!
     ✅ PERMANENT FIX: Always use simple dict format {"url_context": {}}
     ❌ NEVER USE: Complex types.Tool() objects (causes error tweets)
+    
+    NEW: Gemini 2.5 Pro with thinking mode for semantic filtering
+    Reference: https://ai.google.dev/gemini-api/docs/thinking
     """
     
     def __init__(self, api_key: str):
@@ -506,6 +520,7 @@ class GeminiClient:
             # Reference: Official cookbook examples use simple dict tools
             self.client = genai.Client(api_key=api_key)
             self.model_name = 'gemini-2.5-flash'
+            self.pro_model_name = 'gemini-2.5-pro'  # For semantic filtering with thinking
         except Exception as e:
             raise ValueError(f"Failed to initialize Gemini client: {e}")
     
@@ -695,6 +710,31 @@ class GeminiClient:
                     logger.warning(f"❌ Gemini returned URL access error: {summary_text[:100]}...")
                     raise URLRetrievalError(f"Failed to retrieve content from {article.url}: Gemini access error")
             
+            # CRITICAL FIX: Gemini often puts final answer at the END after all reasoning
+            # Look for the last set of bullet points in the response
+            lines = summary_text.split('\n')
+            last_bullet_section = []
+            collecting_bullets = False
+            
+            for line in lines:
+                line_stripped = line.strip()
+                if line_stripped.startswith('•') or line_stripped.startswith('- ') or line_stripped.startswith('* '):
+                    if not collecting_bullets:
+                        # Start of a new bullet section - clear previous
+                        last_bullet_section = []
+                        collecting_bullets = True
+                    last_bullet_section.append(line_stripped)
+                elif collecting_bullets and line_stripped:
+                    # Non-bullet line after bullets - might be more text, keep collecting
+                    if not any(phrase in line_stripped.lower() for phrase in ['the article', 'let me', 'i will', 'here are', 'based on']):
+                        pass  # Continue collecting
+                    else:
+                        collecting_bullets = False
+            
+            # Use the last bullet section found (most likely the final answer)
+            if last_bullet_section:
+                summary_text = '\n'.join(last_bullet_section)
+            
             logger.info(f"✅ Generated summary with URL context: '{summary_text}'")
             
             # Check URL context metadata using CORRECT access pattern
@@ -744,27 +784,51 @@ class GeminiClient:
     
     def _process_summary_response(self, summary_text: str) -> str:
         """Process and clean the summary response from Gemini."""
-        # Clean up numbering
-        summary_text = re.sub(r'^\d+\.\s*', '', summary_text, flags=re.MULTILINE)
+        # CRITICAL FIX: Extract only the bullet points from Gemini's verbose response
+        # Gemini sometimes includes reasoning before the bullets
+        # Find all lines that start with bullet points
+        bullet_lines = []
+        for line in summary_text.split('\n'):
+            line = line.strip()
+            # Match lines that start with bullet (•, -, *, or numbered)
+            if line.startswith('•') or line.startswith('- ') or line.startswith('* '):
+                # Clean the bullet line
+                cleaned = line.lstrip('•-* ').strip()
+                # Remove surrounding quotes (Gemini sometimes quotes bullet content)
+                cleaned = cleaned.strip('"\'')
+                # Skip if it looks like reasoning (contains meta-language)
+                if any(phrase in cleaned.lower() for phrase in ['the article', 'confirmed new investments', 'this is', 'looking', 'based on']):
+                    continue
+                if cleaned:  # Only add non-empty lines
+                    bullet_lines.append(f'• {cleaned}')
         
-        # Convert inline bullets to line-break format
-        if ' • ' in summary_text and '\n' not in summary_text:
-            parts = [part.strip() for part in summary_text.split(' • ') if part.strip()]
-            summary_text = '\n'.join([f'• {part}' if not part.startswith('•') else part for part in parts[:3]])
-        elif '\n' in summary_text:
+        # If no bullet lines found, look for numbered list
+        if not bullet_lines:
+            for line in summary_text.split('\n'):
+                line = line.strip()
+                # Match numbered bullets like "1. ", "2. ", etc.
+                if re.match(r'^\d+\.\s+', line):
+                    cleaned = re.sub(r'^\d+\.\s+', '', line).strip()
+                    if cleaned:
+                        bullet_lines.append(f'• {cleaned}')
+        
+        # If still no bullets found, this is an error - Gemini didn't follow instructions
+        if not bullet_lines:
+            logger.warning(f"⚠️  Gemini response didn't contain bullet points. Raw response: {summary_text[:200]}")
+            # Fallback: take first 3 lines that aren't empty
             lines = [line.strip() for line in summary_text.split('\n') if line.strip()]
-            summary_text = '\n'.join([f'• {line}' if not line.startswith('•') else line for line in lines[:3]])
-        else:
-            summary_text = f'• {summary_text}'
+            bullet_lines = [f'• {line}' for line in lines[:3]]
+        
+        # Take only first 3 bullets
+        bullet_lines = bullet_lines[:3]
         
         # Remove trailing periods (but keep question marks)
-        lines = summary_text.split('\n')
         cleaned_lines = []
-        for line in lines:
-            if line.strip():
-                if line.rstrip().endswith('.') and not line.rstrip().endswith('?'):
-                    line = line.rstrip()[:-1]
-                cleaned_lines.append(line)
+        for line in bullet_lines:
+            if line.rstrip().endswith('.') and not line.rstrip().endswith('?'):
+                line = line.rstrip()[:-1]
+            cleaned_lines.append(line)
+        
         summary_text = '\n'.join(cleaned_lines)
         
         # Ensure it's not too long
@@ -787,7 +851,67 @@ class GeminiClient:
         return summary_text
     
     def _clean_headline(self, text: str) -> str:
-        """Remove emojis and clean headline text."""
+        """Extract and clean the actual headline from Gemini's response.
+        
+        Gemini sometimes includes reasoning before the headline. This method extracts
+        only the actual headline text.
+        """
+        # CRITICAL FIX: Extract actual headline from Gemini's verbose response
+        # Gemini often includes reasoning like "The article... Let's craft a headline..."
+        # We need to find and extract ONLY the actual headline
+        
+        lines = text.split('\n')
+        
+        # Strategy 1: Look for lines that don't contain meta-language
+        # Meta-language includes: "article", "headline", "Let's", "I will", "Here's", etc.
+        meta_phrases = [
+            'the article',
+            'let\'s craft',
+            'let\'s create',
+            'here\'s a headline',
+            'here is a headline',
+            'headline:',
+            'i will',
+            'i\'ll',
+            'based on',
+            'according to',
+            'from the',
+            'about bitcoin mining',
+            'not about bitcoin',
+            'key action:',
+            'company name:',
+            'key takeaway:',
+            'headline option',
+            'option 1',
+            'option 2',
+            'option 3'
+        ]
+        
+        potential_headlines = []
+        for line in lines:
+            line = line.strip()
+            if not line:  # Skip empty lines
+                continue
+            
+            # Skip lines that start with list markers (part of Gemini's reasoning)
+            if line.startswith('-') or line.startswith('*') or line.startswith('•'):
+                continue
+            
+            # Check if line contains meta-language (Gemini's reasoning)
+            line_lower = line.lower()
+            is_meta = any(phrase in line_lower for phrase in meta_phrases)
+            
+            if not is_meta and len(line) > 20:  # Likely a headline (not too short)
+                potential_headlines.append(line)
+        
+        # Take the first non-meta line as the headline
+        if potential_headlines:
+            text = potential_headlines[0]
+        else:
+            # Fallback: take the last line (Gemini often puts headline at the end)
+            if lines:
+                text = lines[-1].strip()
+        
         # Remove emojis
         emoji_pattern = re.compile(
             "["
@@ -804,12 +928,114 @@ class GeminiClient:
         # Remove common prefixes
         prefixes = [
             r"^(BREAKING:|JUST IN:|NEWS:|HOT:)\s*",
-            r"^🚨\s*", r"^📢\s*", r"^⚡\s*", r"^🔥\s*"
+            r"^🚨\s*", r"^📢\s*", r"^⚡\s*", r"^🔥\s*",
+            r"^Headline:\s*"
         ]
         for prefix in prefixes:
             text = re.sub(prefix, "", text, flags=re.IGNORECASE)
         
+        # Remove any remaining quotes
+        text = text.strip('"\'')
+        
         return text.strip()
+    
+    def check_article_similarity(self, article1: 'Article', article2: 'Article') -> Dict[str, Any]:
+        """Use Gemini Pro with thinking mode to perform deep semantic similarity check.
+        
+        Args:
+            article1: First article to compare
+            article2: Second article to compare
+            
+        Returns:
+            Dict with 'is_duplicate' (bool) and 'reasoning' (str) explaining the decision
+        """
+        try:
+            logger.info(f"🤔 Using Gemini Pro thinking mode for semantic similarity check...")
+            
+            prompt = f"""
+            Compare these two Bitcoin mining articles and determine if they are covering the same news event or story.
+            
+            Article 1:
+            Title: {article1.title}
+            Published: {article1.date_published}
+            Source: {article1.source}
+            Body: {article1.body[:500]}...
+            
+            Article 2:
+            Title: {article2.title}
+            Published: {article2.date_published}
+            Source: {article2.source}
+            Body: {article2.body[:500]}...
+            
+            Analyze deeply:
+            - Are they reporting the same underlying news event?
+            - Do they reference the same companies, deals, announcements, or developments?
+            - Are the dates close together (within 48 hours)?
+            - Are the key facts and figures identical or very similar?
+            
+            Consider these as DIFFERENT stories if:
+            - They discuss different mining companies
+            - They cover different types of events (one is earnings report, other is M&A deal)
+            - They are about different geographic regions or facilities
+            - The dates are far apart (>48 hours)
+            
+            Respond with ONLY a JSON object in this exact format:
+            {{
+                "is_duplicate": true/false,
+                "confidence": 0-100,
+                "reasoning": "Brief explanation of why they are or aren't duplicates"
+            }}
+            """
+            
+            # Use Gemini Pro with thinking mode enabled
+            # Reference: https://ai.google.dev/gemini-api/docs/thinking
+            config = {
+                "thinking_mode": "enabled",  # Enable internal reasoning process
+                "temperature": 0.1  # Low temperature for deterministic similarity checks
+            }
+            
+            response = self.client.models.generate_content(
+                model=self.pro_model_name,  # Use Pro model for better reasoning
+                contents=prompt.strip(),
+                config=config
+            )
+            
+            if not response or not response.text:
+                logger.warning("❌ Gemini Pro returned empty response for similarity check")
+                return {"is_duplicate": False, "reasoning": "API error - defaulting to not duplicate"}
+            
+            # Parse JSON response
+            import json
+            response_text = response.text.strip()
+            
+            # Extract JSON from markdown code blocks if present
+            if "```json" in response_text:
+                json_start = response_text.find("```json") + 7
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+            elif "```" in response_text:
+                json_start = response_text.find("```") + 3
+                json_end = response_text.find("```", json_start)
+                response_text = response_text[json_start:json_end].strip()
+            
+            result = json.loads(response_text)
+            
+            is_dup = result.get("is_duplicate", False)
+            confidence = result.get("confidence", 0)
+            reasoning = result.get("reasoning", "No reasoning provided")
+            
+            logger.info(f"🤔 Gemini Pro similarity result: duplicate={is_dup}, confidence={confidence}%")
+            logger.info(f"   Reasoning: {reasoning}")
+            
+            return {
+                "is_duplicate": is_dup,
+                "confidence": confidence,
+                "reasoning": reasoning
+            }
+            
+        except Exception as e:
+            logger.warning(f"❌ Gemini Pro similarity check failed: {e} - defaulting to not duplicate")
+            return {"is_duplicate": False, "reasoning": f"Error: {e}"}
 
 
 # =============================================================================
@@ -856,32 +1082,67 @@ class TextProcessor:
             
             thread = []
             
-            # Smart character limit logic: Try to combine headline + summary in one tweet
+            # FIXED: Proper character counting including newlines and bullets
+            # Twitter counts all characters including spaces, newlines, and emojis
+            # Each newline counts as 1 character
             combined_text = f"{headline}\n\n{summary_text}"
-            logger.info(f"📏 Combined text length: {len(combined_text)} chars")
+            combined_length = len(combined_text)
+            logger.info(f"📏 Combined text length: {combined_length} chars (headline: {len(headline)}, summary: {len(summary_text)})")
             
-            if len(combined_text) <= 280:
+            # CRITICAL: Must fit in 280 characters INCLUDING newlines
+            if combined_length <= 280:
                 logger.info("✅ Using combined format (headline + summary in one tweet)")
                 thread.append(combined_text)
             else:
                 logger.info("📏 Text too long, using separate tweets")
-                thread.append(headline)
+                # Headline in first tweet - trim if necessary
+                if len(headline) <= 280:
+                    thread.append(headline)
+                else:
+                    # Trim headline to fit (should rarely happen)
+                    trimmed_headline = headline[:277] + "..."
+                    thread.append(trimmed_headline)
+                    logger.warning(f"⚠️ Headline was too long ({len(headline)} chars), trimmed to 280")
                 
-                # Ensure summary fits in second tweet
+                # Summary in second tweet - trim if necessary
                 if len(summary_text) <= 280:
                     thread.append(summary_text)
                 else:
-                    # Truncate summary to fit in 280 chars
-                    truncated_summary = summary_text[:277] + "..."
+                    # CRITICAL: Intelligently trim summary while preserving bullet points
+                    bullet_lines = summary_text.split('\n')
+                    trimmed_lines = []
+                    current_length = 0
+                    
+                    for line in bullet_lines:
+                        line_length = len(line) + 1  # +1 for newline
+                        if current_length + line_length <= 277:  # Leave room for "..."
+                            trimmed_lines.append(line)
+                            current_length += line_length
+                        else:
+                            break
+                    
+                    if trimmed_lines:
+                        truncated_summary = '\n'.join(trimmed_lines) + "..."
+                    else:
+                        # Fallback: just truncate the text
+                        truncated_summary = summary_text[:277] + "..."
+                    
                     thread.append(truncated_summary)
+                    logger.warning(f"⚠️ Summary was too long ({len(summary_text)} chars), trimmed to {len(truncated_summary)}")
             
             # Final tweet: URL always goes in the last tweet
             if article.url:
                 thread.append(article.url)
             
             logger.info(f"✅ Generated {len(thread)}-tweet thread with Gemini")
+            for i, tweet in enumerate(thread):
+                logger.info(f"   Tweet {i+1}: {len(tweet)} chars")
+            
             return thread
             
+        except URLRetrievalError:
+            # Let URL retrieval errors bubble up - these should skip the article, not trigger cooldown
+            raise
         except Exception as e:
             logger.error(f"❌ Gemini content generation failed: {e} - will retry later")
             return None
@@ -1047,6 +1308,21 @@ class NewsAPI:
         text = f"{article.title} {article.body}".lower()
         title_lower = article.title.lower()
         
+        # CRITICAL: Exclude generic news roundups FIRST (before everything else)
+        # These articles only mention mining in passing and are NOT focused on mining
+        generic_roundup_titles = [
+            "morning minute",
+            "daily roundup",
+            "crypto news",
+            "market update",
+            "weekly recap",
+            "news digest",
+            "crypto briefing"
+        ]
+        if any(term in title_lower for term in generic_roundup_titles):
+            logger.info(f"❌ Excluded generic news roundup: {article.title}")
+            return False
+        
         # ENHANCED: Check for public Bitcoin mining companies (ALWAYS relevant)
         # Comprehensive list of 33 publicly traded Bitcoin mining companies with tickers
         public_miners = [
@@ -1078,9 +1354,28 @@ class NewsAPI:
             logger.info(f"❌ Excluded promotional content: {article.title}")
             return False
         
-        if any(company in text for company in public_miners):
-            logger.info(f"✅ Public mining company detected - auto-approved: {article.title}")
-            return True
+        # FIXED: Public miner check must require TITLE mention or substantial body content
+        # This prevents generic news roundups with passing mentions from being approved
+        for company in public_miners:
+            if company in title_lower:
+                # Direct title mention = definitely relevant
+                logger.info(f"✅ Public mining company in title - auto-approved: {article.title}")
+                return True
+            elif company in text:
+                # Body mention = check if it's substantial (multiple mentions or context)
+                company_count = text.count(company)
+                # Require at least 2 mentions OR the company appears with mining terms nearby
+                if company_count >= 2:
+                    logger.info(f"✅ Public mining company ({company}) mentioned {company_count}x - auto-approved: {article.title}")
+                    return True
+                # Single mention: check if it's in a meaningful mining context (within 100 chars)
+                company_pos = text.find(company)
+                if company_pos != -1:
+                    context = text[max(0, company_pos-50):min(len(text), company_pos+50)]
+                    mining_context_terms = ["miner", "mining", "hash", "bitcoin", "btc", "deal", "contract", "facility"]
+                    if any(term in context for term in mining_context_terms):
+                        logger.info(f"✅ Public mining company ({company}) in mining context - auto-approved: {article.title}")
+                        return True
         
         # Must contain Bitcoin mining terms
         bitcoin_terms = ["bitcoin", "btc", "mining", "miner", "hash rate", "asic"]
@@ -1108,7 +1403,7 @@ class NewsAPI:
             logger.info(f"❌ Excluded non-mining title topic: {article.title}")
             return False
         
-        # Exclude other cryptocurrencies - validation with proper bounds checking
+        # Exclude other cryptocurrencies
         other_cryptos = ["ethereum", "eth", "solana", "cardano", "dogecoin"]
         other_mentions = sum(1 for crypto in other_cryptos if crypto in text)
         
@@ -1310,9 +1605,10 @@ class BitcoinMiningBot:
             # Filter out already posted articles using INTELLIGENT deduplication
             new_articles: List[Article] = []
             posted_urls = set(self.posted_data["posted_uris"])
+            posted_event_ids = set(self.posted_data.get("posted_event_ids", []))  # NEW: EventRegistry deduplication
             queued_articles_data = self.posted_data.get("queued_articles", [])
             
-            # Convert existing queued articles to Article objects for comparison
+            # Convert existing queued articles AND recent posted articles to Article objects for comparison
             existing_articles: List[Article] = []
             
             # Add already queued articles for comparison
@@ -1323,20 +1619,62 @@ class BitcoinMiningBot:
                     logger.warning(f"Invalid queued article data: {e}")
                     continue
             
+            # CRITICAL FIX: Add recently posted articles from history for deduplication
+            # Check last 48 hours of posted articles to prevent duplicate topics
+            posted_articles_history = self.posted_data.get("posted_articles_history", [])
+            now = TimeManager.now()
+            
+            for posted_data in posted_articles_history:
+                try:
+                    # Only check articles posted in the last 48 hours
+                    date_posted_str = posted_data.get("date_posted")
+                    if date_posted_str:
+                        date_posted = datetime.fromisoformat(date_posted_str.replace('Z', '+00:00'))
+                        # Ensure timezone awareness for comparison
+                        if date_posted.tzinfo is None:
+                            date_posted = date_posted.replace(tzinfo=timezone.utc)
+                        hours_since_posted = (now - date_posted).total_seconds() / 3600
+                        
+                        if hours_since_posted <= self.config.duplicate_detection_date_window_hours:
+                            # Convert posted article back to Article object for comparison
+                            # CRITICAL: Use full title for better similarity matching
+                            # Since we only have body_preview, rely more heavily on title similarity
+                            article_dict = {
+                                "title": posted_data.get("title", ""),
+                                "body": posted_data.get("body_preview", ""),  # Use preview since full body not stored
+                                "url": posted_data.get("url", ""),
+                                "source": {"title": posted_data.get("source", "Unknown")},
+                                "dateTimePub": posted_data.get("date_published"),
+                                "event_id": posted_data.get("event_id")
+                            }
+                            existing_articles.append(Article.from_dict(article_dict))
+                except (ValueError, KeyError) as e:
+                    logger.warning(f"Invalid posted article history data: {e}")
+                    continue
+            
             # Note: We can't reconstruct Article objects from just URLs in posted_uris,
             # so for backwards compatibility, we still check URL duplicates first
             queued_urls = set(qa.get("url", "") for qa in queued_articles_data)
+            queued_event_ids = set(qa.get("event_id") for qa in queued_articles_data if qa.get("event_id"))
             existing_urls = posted_urls.union(queued_urls)
+            existing_event_ids = posted_event_ids.union(queued_event_ids)
             
             for article in articles:
-                # Quick URL check first (if URL already posted, definitely duplicate)
-                if article.url in existing_urls:
+                # CRITICAL: Primary deduplication via EventRegistry eventID
+                if article.event_id and article.event_id in existing_event_ids:
+                    logger.info(f"⚠️ Skipping duplicate event: '{article.title}' (eventID: {article.event_id})")
                     continue
                 
-                # Intelligent content similarity check against queued articles
+                # Quick URL check first (if URL already posted, definitely duplicate)
+                if article.url in existing_urls:
+                    logger.info(f"⚠️ Skipping duplicate URL: '{article.title}'")
+                    continue
+                
+                # Intelligent content similarity check against queued and posted articles
                 # Performance optimization: Early termination on first duplicate match
                 is_duplicate = False
                 for existing_article in existing_articles:
+                    # Stage 1: Fast content-based similarity check
                     if ContentSimilarity.is_duplicate_article(
                         article, existing_article,
                         title_threshold=self.config.title_similarity_threshold,
@@ -1346,6 +1684,47 @@ class BitcoinMiningBot:
                         logger.info(f"Found content duplicate: '{article.title}' matches existing '{existing_article.title}'")
                         is_duplicate = True
                         break  # Early termination - no need to check remaining articles
+                    
+                    # Stage 2: Calculate similarities for subsequent checks
+                    title_sim = ContentSimilarity.title_similarity(article.title, existing_article.title)
+                    content_sim = ContentSimilarity.content_similarity(article.body, existing_article.body)
+                    
+                    # Stage 2a: High title similarity (when body is limited/preview)
+                    if title_sim >= 0.6:
+                        logger.info(f"⚠️ High title similarity: '{article.title}' matches '{existing_article.title}' (similarity: {title_sim:.2f})")
+                        is_duplicate = True
+                        break
+                    
+                    # Stage 2b: Entity-based detection - check for common mining companies + partner companies
+                    mining_companies = ['iren', 'marathon', 'riot', 'cipher', 'hive', 'cleanspark', 'hut', 'core scientific', 'bitfarms', 'terawulf', 'bitdeer', 'iris energy']
+                    partner_companies = ['microsoft', 'amazon', 'google', 'aws', 'azure', 'openai', 'nvidia']
+                    
+                    title1_lower = article.title.lower()
+                    title2_lower = existing_article.title.lower()
+                    
+                    # Find common mining company mentions
+                    common_mining = [c for c in mining_companies if c in title1_lower and c in title2_lower]
+                    # Find common partner mentions
+                    common_partners = [p for p in partner_companies if p in title1_lower and p in title2_lower]
+                    
+                    # If same mining company + same partner company = very likely same story
+                    if common_mining and common_partners:
+                        logger.info(f"⚠️ Entity match duplicate: '{article.title}' matches '{existing_article.title}' (mining: {common_mining}, partners: {common_partners})")
+                        is_duplicate = True
+                        break
+                    
+                    # Stage 2c: Borderline similarity - use Gemini thinking for deeper analysis
+                    if title_sim >= 0.3 and self.gemini:  # Some similarity, but not conclusive
+                        logger.info(f"🤔 Borderline similarity detected (title: {title_sim:.2f}, content: {content_sim:.2f}), using Gemini 2.5 Pro thinking...")
+                        try:
+                            semantic_result = self._check_semantic_duplicate_with_thinking(article, existing_article)
+                            if semantic_result["is_duplicate"]:
+                                logger.info(f"⚠️ Gemini thinking detected duplicate: '{article.title}' matches '{existing_article.title}' - {semantic_result['reasoning']}")
+                                is_duplicate = True
+                                break
+                        except Exception as e:
+                            logger.warning(f"⚠️ Gemini thinking check failed: {e}")
+                            # Continue without semantic check - don't block on Gemini errors
                 
                 if not is_duplicate:
                     new_articles.append(article)
@@ -1362,6 +1741,80 @@ class BitcoinMiningBot:
                     while queued_articles:
                         article_data = queued_articles[0]
                         article_to_post = Article.from_dict(article_data)
+                        
+                        # CRITICAL FIX: Check if queued article is duplicate of recently posted articles
+                        is_duplicate_of_posted = False
+                        for posted_data in posted_articles_history:
+                            try:
+                                date_posted_str = posted_data.get("date_posted")
+                                if date_posted_str:
+                                    date_posted = datetime.fromisoformat(date_posted_str.replace('Z', '+00:00'))
+                                    if date_posted.tzinfo is None:
+                                        date_posted = date_posted.replace(tzinfo=timezone.utc)
+                                    hours_since_posted = (now - date_posted).total_seconds() / 3600
+                                    
+                                    if hours_since_posted <= self.config.duplicate_detection_date_window_hours:
+                                        posted_article_dict = {
+                                            "title": posted_data.get("title", ""),
+                                            "body": posted_data.get("body_preview", ""),
+                                            "url": posted_data.get("url", ""),
+                                            "source": {"title": posted_data.get("source", "Unknown")},
+                                            "dateTimePub": posted_data.get("date_published"),
+                                            "event_id": posted_data.get("event_id")
+                                        }
+                                        posted_article = Article.from_dict(posted_article_dict)
+                                        
+                                        # Use multiple detection methods since we only have body preview
+                                        title_sim = ContentSimilarity.title_similarity(article_to_post.title, posted_article.title)
+                                        
+                                        # Method 1: Title similarity
+                                        if title_sim >= 0.6:
+                                            logger.info(f"⚠️ Queued article is duplicate (title match): '{article_to_post.title}' matches '{posted_article.title}' (similarity: {title_sim:.2f})")
+                                            is_duplicate_of_posted = True
+                                            break
+                                        
+                                        # Method 2: Entity-based detection - check for common mining companies + partner companies
+                                        mining_companies = ['iren', 'marathon', 'riot', 'cipher', 'hive', 'cleanspark', 'hut', 'core scientific', 'bitfarms', 'terawulf', 'bitdeer', 'iris energy']
+                                        partner_companies = ['microsoft', 'amazon', 'google', 'aws', 'azure', 'openai', 'nvidia']
+                                        
+                                        title1_lower = article_to_post.title.lower()
+                                        title2_lower = posted_article.title.lower()
+                                        
+                                        # Find common mining company mentions
+                                        common_mining = [c for c in mining_companies if c in title1_lower and c in title2_lower]
+                                        # Find common partner mentions
+                                        common_partners = [p for p in partner_companies if p in title1_lower and p in title2_lower]
+                                        
+                                        # If same mining company + same partner company = very likely same story
+                                        if common_mining and common_partners:
+                                            logger.info(f"⚠️ Queued article is duplicate (entity match): '{article_to_post.title}' matches '{posted_article.title}' (mining: {common_mining}, partners: {common_partners})")
+                                            is_duplicate_of_posted = True
+                                            break
+                                        
+                                        # Method 3: Use Gemini 2.5 Pro with thinking for semantic analysis
+                                        # Only for borderline cases where entity matching is inconclusive
+                                        if title_sim >= 0.3 and self.gemini:  # Some similarity, but not enough
+                                            try:
+                                                logger.info(f"🤔 Using Gemini 2.5 Pro thinking mode to check semantic similarity...")
+                                                semantic_result = self._check_semantic_duplicate_with_thinking(
+                                                    article_to_post, posted_article
+                                                )
+                                                if semantic_result["is_duplicate"]:
+                                                    logger.info(f"⚠️ Queued article is duplicate (Gemini thinking): '{article_to_post.title}' matches '{posted_article.title}' - {semantic_result['reasoning']}")
+                                                    is_duplicate_of_posted = True
+                                                    break
+                                            except Exception as e:
+                                                logger.warning(f"⚠️ Gemini thinking check failed: {e}")
+                                                # Continue - don't block on Gemini errors
+                            except (ValueError, KeyError) as e:
+                                continue
+                        
+                        if is_duplicate_of_posted:
+                            # Skip this duplicate article and remove it from queue
+                            logger.info(f"🗑️ Removing duplicate article from queue: {article_to_post.title}")
+                            self.posted_data["queued_articles"].pop(0)
+                            self._save_data()
+                            continue
                         
                         try:
                             success = self._post_article(article_to_post)
@@ -1422,6 +1875,7 @@ class BitcoinMiningBot:
                             articles_posted += 1
                             
                             # Queue remaining articles (after the one we just posted)
+                            # CRITICAL: Use LIFO (Last In, First Out) - insert at front so newest articles are posted first
                             remaining_articles = new_articles[i+1:]
                             for article in remaining_articles:
                                 article_data = {
@@ -1429,9 +1883,11 @@ class BitcoinMiningBot:
                                     "body": article.body,
                                     "url": article.url,
                                     "source": {"title": article.source},
-                                    "dateTimePub": article.date_published.isoformat() if article.date_published else None
+                                    "dateTimePub": article.date_published.isoformat() if article.date_published else None,
+                                    "event_id": article.event_id  # NEW: Store eventID for deduplication
                                 }
-                                self.posted_data["queued_articles"].append(article_data)
+                                # Insert at beginning (index 0) for LIFO behavior
+                                self.posted_data["queued_articles"].insert(0, article_data)
                             
                             if remaining_articles:
                                 logger.info(f"Queued {len(remaining_articles)} additional articles")
@@ -1530,6 +1986,13 @@ class BitcoinMiningBot:
                 # Record successful post in both URL list and full history
                 self.posted_data["posted_uris"].append(article.url)
                 
+                # NEW: Track EventRegistry eventID for robust deduplication
+                if article.event_id:
+                    if "posted_event_ids" not in self.posted_data:
+                        self.posted_data["posted_event_ids"] = []
+                    self.posted_data["posted_event_ids"].append(article.event_id)
+                    logger.info(f"✅ Recorded eventID: {article.event_id}")
+                
                 # NEW: Save full article metadata to posted history
                 posted_article_record: Dict[str, Any] = {
                     "url": article.url,
@@ -1537,7 +2000,8 @@ class BitcoinMiningBot:
                     "source": article.source,
                     "date_published": article.date_published.isoformat() if article.date_published else None,
                     "date_posted": TimeManager.now().isoformat(),
-                    "body_preview": article.body[:200] + "..." if len(article.body) > 200 else article.body
+                    "body_preview": article.body[:200] + "..." if len(article.body) > 200 else article.body,
+                    "event_id": article.event_id  # NEW: Store eventID for historical tracking
                 }
                 
                 # Initialize posted_articles_history if it doesn't exist
@@ -1561,6 +2025,80 @@ class BitcoinMiningBot:
         except Exception as e:
             logger.error(f"Error posting article: {e}")
             return False
+    
+    def _check_semantic_duplicate_with_thinking(self, article1: Article, article2: Article) -> Dict[str, Any]:
+        """Use Gemini 2.5 Pro with thinking mode to determine if articles are semantically duplicate.
+        
+        Returns:
+            Dict with 'is_duplicate' (bool) and 'reasoning' (str)
+        """
+        if not self.gemini:
+            return {"is_duplicate": False, "reasoning": "Gemini not available"}
+        
+        try:
+            from google.genai import types
+            
+            prompt = f"""
+            You are a news deduplication expert. Analyze these two Bitcoin mining news articles and determine if they are about the SAME story/event.
+            
+            Article 1:
+            Title: {article1.title}
+            Source: {article1.source}
+            Date: {article1.date_published}
+            Body: {article1.body[:500]}...
+            
+            Article 2:
+            Title: {article2.title}
+            Source: {article2.source}
+            Date: {article2.date_published}
+            Body: {article2.body[:500]}...
+            
+            Consider:
+            - Are they covering the SAME event/announcement/deal?
+            - Do they involve the same companies and same transaction?
+            - Are they just different perspectives on the same story?
+            - Or are they genuinely different stories?
+            
+            Respond in JSON format:
+            {{
+                "is_duplicate": true/false,
+                "reasoning": "Brief explanation (max 50 words)"
+            }}
+            """
+            
+            # Use Gemini 2.5 Pro with thinking mode for better reasoning
+            response = self.gemini.client.models.generate_content(
+                model=self.gemini.pro_model_name,  # Use Pro for thinking
+                contents=prompt.strip(),
+                config=types.GenerateContentConfig(
+                    thinking_config=types.ThinkingConfig(
+                        thinking_budget=-1  # Dynamic thinking
+                    )
+                )
+            )
+            
+            if not response or not response.text:
+                return {"is_duplicate": False, "reasoning": "No response from Gemini"}
+            
+            # Parse JSON response
+            import json
+            result_text = response.text.strip()
+            # Remove markdown code blocks if present
+            if result_text.startswith("```json"):
+                result_text = result_text[7:]
+            if result_text.endswith("```"):
+                result_text = result_text[:-3]
+            result_text = result_text.strip()
+            
+            result = json.loads(result_text)
+            return {
+                "is_duplicate": result.get("is_duplicate", False),
+                "reasoning": result.get("reasoning", "")
+            }
+            
+        except Exception as e:
+            logger.warning(f"Error in Gemini thinking duplicate check: {e}")
+            return {"is_duplicate": False, "reasoning": f"Error: {e}"}
     
     def _handle_posting_failure(self) -> None:
         """Handle failure to post tweet (likely rate limiting)."""

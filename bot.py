@@ -9,7 +9,11 @@ using the new streamlined core module.
 """
 
 import sys
+from dotenv import load_dotenv
 from core import BitcoinMiningBot, Config, Article, Storage, TextProcessor, TimeManager
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # =============================================================================

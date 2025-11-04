@@ -2,3 +2,4 @@ tweepy>=4.14.0
 eventregistry>=9.1
 google-genai>=0.1.0
 requests>=2.25.0
+python-dotenv>=1.0.0

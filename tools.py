@@ -157,43 +157,92 @@ class BotTools:
     
     @staticmethod
     def show_next_tweet():
-        """Show the next tweet that would be posted."""
+        """Show the next tweet that would be posted with Gemini-enhanced content."""
         print("🔮 Preview Next Tweet")
         print("=" * 30)
         
         try:
             # Load queued articles
-            posted_articles = Storage.load_json("posted_articles.json", {"posted": [], "queue": []})
-            queue = posted_articles.get("queue", [])
+            posted_articles = Storage.load_json("posted_articles.json", {"posted": [], "queued_articles": []})
+            queue = posted_articles.get("queued_articles", [])
             
             if not queue:
-                print("📭 No articles queued")
+                print("📯 No articles queued")
                 print("💡 Run the bot to fetch fresh articles")
                 return True
             
-            next_article = queue[0]
+            next_article_data = queue[0]
             print(f"📰 Next Article:")
-            print(f"   Title: {next_article.get('title', 'Unknown')}")
+            print(f"   Title: {next_article_data.get('title', 'Unknown')}")
             
             # Safely handle source data access
-            source_data = next_article.get('source', {})
+            source_data = next_article_data.get('source', {})
             if isinstance(source_data, dict):
                 source = source_data.get('title', 'Unknown')
             else:
                 source = str(source_data) if source_data else 'Unknown'
             print(f"   Source: {source}")
+            print(f"   URL: {next_article_data.get('url', 'No URL')}")
             
-            print(f"   URL: {next_article.get('url', 'No URL')}")
+            # Generate Gemini-enhanced thread
+            print(f"\n🤖 Generating Gemini-enhanced tweet thread...\n")
             
-            # Generate tweet text
-            tweet_text = TextUtils.create_tweet_text(next_article)
-            print(f"\n🐦 Tweet Preview:")
-            print(f"   Text: {tweet_text}")
-            print(f"   Length: {len(tweet_text)} characters")
-            return True
+            try:
+                # Import Article class
+                import sys
+                import os
+                sys.path.insert(0, os.getcwd())
+                from core import Article, GeminiClient, TextProcessor, Config
+                
+                # Get Gemini API key from environment
+                config = Config.from_env()
+                if not config.gemini_api_key:
+                    print("⚠️  Gemini API key not found - showing basic preview only")
+                    tweet_text = next_article_data.get('title', 'Unknown')
+                    print(f"🐦 Tweet Preview (without Gemini):")
+                    print(f"   {tweet_text}")
+                    print(f"   Length: {len(tweet_text)} characters")
+                    return True
+                
+                # Create Article object
+                article = Article.from_dict(next_article_data)
+                
+                # Initialize Gemini client
+                gemini = GeminiClient(config.gemini_api_key)
+                
+                # Generate thread
+                thread = TextProcessor.create_tweet_thread(article, gemini)
+                
+                if thread is None:
+                    print("❌ Failed to generate thread with Gemini")
+                    return False
+                
+                # Display thread
+                print("🧵 Generated Tweet Thread:")
+                print("=" * 50)
+                for i, tweet in enumerate(thread, 1):
+                    print(f"\nTweet {i}:")
+                    print(tweet)
+                    print(f"Length: {len(tweet)} chars")
+                    if i < len(thread):
+                        print("-" * 50)
+                
+                print("=" * 50)
+                print(f"\n✅ Thread preview complete: {len(thread)} tweets total")
+                return True
+                
+            except Exception as gen_error:
+                print(f"❌ Error generating Gemini content: {gen_error}")
+                print("\nFalling back to basic preview:")
+                tweet_text = next_article_data.get('title', 'Unknown')
+                print(f"   {tweet_text}")
+                print(f"   Length: {len(tweet_text)} characters")
+                return True
             
         except Exception as e:
             print(f"❌ Error showing next tweet: {e}")
+            import traceback
+            traceback.print_exc()
             return False
     
     @staticmethod
@@ -203,9 +252,9 @@ class BotTools:
         print("=" * 25)
         
         try:
-            posted_articles = Storage.load_json("posted_articles.json", {"posted": [], "queue": []})
-            queue = posted_articles.get("queue", [])
-            posted = posted_articles.get("posted", [])
+            posted_articles = Storage.load_json("posted_articles.json", {"posted_uris": [], "queued_articles": []})
+            queue = posted_articles.get("queued_articles", [])
+            posted = posted_articles.get("posted_uris", [])
             
             print(f"📊 Queue Stats:")
             print(f"   Queued: {len(queue)} articles")
@@ -241,8 +290,8 @@ class BotTools:
         print("=" * 20)
         
         try:
-            posted_articles = Storage.load_json("posted_articles.json", {"posted": [], "queue": []})
-            queue = posted_articles.get("queue", [])
+            posted_articles = Storage.load_json("posted_articles.json", {"posted_uris": [], "queued_articles": []})
+            queue = posted_articles.get("queued_articles", [])
             
             if not queue:
                 print("📭 Queue is already empty")
